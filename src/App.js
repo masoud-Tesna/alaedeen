@@ -1,9 +1,6 @@
-import 'antd/dist/antd.less';
+import 'antd/dist/antd.css';
 import './styles/custom.css';
-import { ConfigProvider , Row, Col } from 'antd';
-
-import enUS from 'antd/lib/locale/en_US';
-import faIR from 'antd/lib/locale/fa_IR';
+import {ConfigProvider, Row, Col, Space, Button} from 'antd';
 
 import { Layout } from 'antd';
 
@@ -17,10 +14,39 @@ function App() {
         <Content className="px-2">
           <Layout>
             <Row>
-              <Col xs={24}>col</Col>
+              <Col xs={24}><Button type="primary">Primary Button</Button></Col>
             </Row>
             <Row>
-              <Col xs={24} sm={12}>col-12</Col>
+              <Col xs={24} sm={12}><div className="space-align-container">
+                <div className="space-align-block">
+                  <Space align="center">
+                    center
+                    <Button type="primary">Primary</Button>
+                    <span className="mock-block">Block</span>
+                  </Space>
+                </div>
+                <div className="space-align-block">
+                  <Space align="start">
+                    start
+                    <Button type="primary">Primary</Button>
+                    <span className="mock-block">Block</span>
+                  </Space>
+                </div>
+                <div className="space-align-block">
+                  <Space align="end">
+                    end
+                    <Button type="primary">Primary</Button>
+                    <span className="mock-block">Block</span>
+                  </Space>
+                </div>
+                <div className="space-align-block">
+                  <Space align="baseline">
+                    baseline
+                    <Button type="primary">Primary</Button>
+                    <span className="mock-block">Block</span>
+                  </Space>
+                </div>
+              </div></Col>
               <Col xs={24} sm={12}>col-12</Col>
             </Row>
             <Row>
