@@ -1,5 +1,4 @@
-import 'antd/dist/antd.css';
-import './styles/custom.css';
+import './styles/custom.less';
 import {ConfigProvider, Row, Col, Space, Button} from 'antd';
 
 import { Layout } from 'antd';
