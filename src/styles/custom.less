@@ -1,8 +1,8 @@
+// import ant design styles:
 @import '~antd/dist/antd.less';
 
 // Default Variables:
-@top-panel-primary: #484848;
-@top-panel-secondary: #2C2134;
+@top-panel-primary: #2C2134;
 
 /*  ===========  IMPORT FROM BOOTSTRAP  ===========  */
 
@@ -2152,12 +2152,14 @@ align-moz-middle {
     background-color: #FFE6E6 !important;
 }
 
-.bg-footer {
-    background-color: #2c2134!important;
+.bg-footer,
+.bg-top-panel {
+    background-color: @top-panel-primary !important;
 }
 
-.bg-footer-light {
-    background-color: #34273d!important;
+.bg-footer-light,
+.bg-top-panel-light {
+    background-color: lighten(@top-panel-primary, 3%) !important;
 }
 
 a.bg-trending_category-1:hover, a.bg-trending_category-1:focus,

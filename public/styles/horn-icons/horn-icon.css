@@ -1,0 +1,173 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('./icomoon.eot?w6107s');
+  src:  url('./icomoon.eot?w6107s#iefix') format('embedded-opentype'),
+    url('./icomoon.ttf?w6107s') format('truetype'),
+    url('./icomoon.woff?w6107s') format('woff'),
+    url('./icomoon.svg?w6107s#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-vv-seen:before {
+  content: "\e900";
+}
+.icon-vv-timestamp:before {
+  content: "\e901";
+}
+.icon-vv-message-1:before {
+  content: "\e902";
+}
+.icon-about-packs:before {
+  content: "\e903";
+}
+.icon-about-logistics:before {
+  content: "\e904";
+}
+.icon-about-driver:before {
+  content: "\e905";
+}
+.icon-business-directory:before {
+  content: "\e906";
+}
+.icon-vv-compare:before {
+  content: "\e907";
+}
+.icon-vv-favoriet-post:before {
+  content: "\e908";
+}
+.icon-vv-share-post:before {
+  content: "\e909";
+}
+.icon-vv-cat-882:before {
+  content: "\e90a";
+}
+.icon-vv-cat-884:before {
+  content: "\e90b";
+}
+.icon-vv-cat-885:before {
+  content: "\e90c";
+}
+.icon-vv-cat-886:before {
+  content: "\e90d";
+}
+.icon-vv-cat-887:before {
+  content: "\e90e";
+}
+.icon-vv-cat-889:before {
+  content: "\e90f";
+}
+.icon-vv-cat-941:before {
+  content: "\e910";
+}
+.icon-vv-cat-1014:before {
+  content: "\e911";
+}
+.icon-vv-ads:before {
+  content: "\e912";
+}
+.icon-vv-all-category:before {
+  content: "\e913";
+}
+.icon-vv-angle-down:before {
+  content: "\e914";
+}
+.icon-vv-angle-left:before {
+  content: "\e915";
+}
+.icon-vv-angle-right:before {
+  content: "\e916";
+}
+.icon-vv-angle-up:before {
+  content: "\e917";
+}
+.icon-vv-bookmark:before {
+  content: "\e918";
+}
+.icon-vv-bookmark-fill:before {
+  content: "\e919";
+}
+.icon-vv-filter:before {
+  content: "\e91a";
+}
+.icon-vv-home:before {
+  content: "\e91b";
+}
+.icon-vv-image:before {
+  content: "\e91c";
+}
+.icon-vv-location:before {
+  content: "\e91d";
+}
+.icon-vv-menu:before {
+  content: "\e91e";
+}
+.icon-vv-message-2:before {
+  content: "\e91f";
+}
+.icon-vv-message-2-fill:before {
+  content: "\e920";
+}
+.icon-vv-no-bookmark:before {
+  content: "\e921";
+}
+.icon-vv-phone:before {
+  content: "\e922";
+}
+.icon-vv-products-multicolumns:before {
+  content: "\e923";
+}
+.icon-vv-products-without-options:before {
+  content: "\e924";
+}
+
+.icon-vv-grid-list-business:before {
+  content: "\e923";
+}
+.icon-vv-list-without-options-business:before {
+  content: "\e924";
+}
+
+.icon-vv-recent-view:before {
+  content: "\e925";
+}
+.icon-vv-reefer-truck:before {
+  content: "\e926";
+}
+.icon-vv-search:before {
+  content: "\e927";
+}
+.icon-vv-settings:before {
+  content: "\e928";
+}
+.icon-vv-tik:before {
+  content: "\e929";
+}
+.icon-vv-truck:before {
+  content: "\e92a";
+}
+.icon-vv-truck-over-sized:before {
+  content: "\e92b";
+}
+.icon-vv-uploade-image:before {
+  content: "\e92c";
+}
+.icon-vv-user:before {
+  content: "\e92d";
+}
