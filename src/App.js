@@ -23,6 +23,7 @@ function App() {
               </Col>
             </Row>
           </Layout>
+
         </Content>
         <Footer>Footer</Footer>
       </Layout>
