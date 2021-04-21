@@ -1,5 +1,6 @@
 import './styles/custom.less';
 import {ConfigProvider, Row, Col, Space, Button} from 'antd';
+import Icon, {FastBackwardOutlined, LeftCircleTwoTone, MessageOutlined, SearchOutlined} from '@ant-design/icons';
 
 import { Layout } from 'antd';
 
@@ -12,47 +13,14 @@ function App() {
         <Header>Header</Header>
         <Content className="px-2">
           <Layout>
-            <Row>
-              <Col xs={24}><Button type="primary">Primary Button</Button></Col>
-            </Row>
-            <Row>
-              <Col xs={24} sm={12}><div className="space-align-container">
-                <div className="space-align-block">
-                  <Space align="center">
-                    center
-                    <Button type="primary">Primary</Button>
-                    <span className="mock-block">Block</span>
-                  </Space>
-                </div>
-                <div className="space-align-block">
-                  <Space align="start">
-                    start
-                    <Button type="primary">Primary</Button>
-                    <span className="mock-block">Block</span>
-                  </Space>
-                </div>
-                <div className="space-align-block">
-                  <Space align="end">
-                    end
-                    <Button type="primary">Primary</Button>
-                    <span className="mock-block">Block</span>
-                  </Space>
-                </div>
-                <div className="space-align-block">
-                  <Space align="baseline">
-                    baseline
-                    <Button type="primary">Primary</Button>
-                    <span className="mock-block">Block</span>
-                  </Space>
-                </div>
-              </div></Col>
-              <Col xs={24} sm={12}>col-12</Col>
-            </Row>
-            <Row>
-              <Col xs={24} sm={12}>col-8</Col>
-              <Col xs={24} sm={12}>col-8</Col>
-              <Col xs={24} sm={12}>col-8</Col>
-              <Col xs={24} sm={12}>col-8</Col>
+            <Row className="px-4" gutter={[16, 16]}>
+              <Col xs={24} className="primary"><Button type="primary" icon={<LeftCircleTwoTone spin={true} twoToneColor="#eb2f96" />} shape="circle" size="large" /></Col>
+
+              <Col xs={24} className="mt-5">
+                <MessageOutlined style={{ fontSize: '16px', color: '#08c' }} />
+                <br />
+                <Icon type="message" style={{ fontSize: '16px', color: '#08c' }} theme="outlined" />
+              </Col>
             </Row>
           </Layout>
         </Content>
