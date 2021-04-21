@@ -10,6 +10,9 @@ import { Layout, Menu, Breadcrumb } from 'antd';
 // Pages:
 import { Home } from "./pages";
 
+// Layouts:
+import TopPanel from "./layouts/topPanel";
+
 function App() {
 
   const { Header, Footer, Content } = Layout;
@@ -17,6 +20,7 @@ function App() {
   return (
     <Layout className="layout">
       <Router>
+        <TopPanel />
         <Header>
           <div className="logo" />
           <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
