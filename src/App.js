@@ -1,6 +1,7 @@
 import './styles/custom.less';
 
 import { Layout, Menu, Breadcrumb } from 'antd';
+import { Home } from "./pages";
 
 function App() {
 
@@ -17,12 +18,9 @@ function App() {
         </Menu>
       </Header>
       <Content style={{ padding: '0 50px' }}>
-        <Breadcrumb style={{ margin: '16px 0' }}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
-        </Breadcrumb>
-        <div className="site-layout-content">Content</div>
+        <div className="site-layout-content">
+          <Home />
+        </div>
       </Content>
       <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
     </Layout>
