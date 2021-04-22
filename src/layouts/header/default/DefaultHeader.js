@@ -13,7 +13,7 @@ import logoXs from '../../../assets/images/logoXs.png';
 
 const DefaultHeader = () => {
   return (
-    <Row className="header--container">
+    <Row className="h-100 header--container">
       <Col span={24} className="header--col">
         <Row className="h-100" gutter={24}>
           <Col className="topPanel--content__left my-auto" span={ 16 }>
