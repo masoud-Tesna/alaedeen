@@ -17,7 +17,7 @@ const DefaultTopPanel = () => {
       <Col span={24} className="topPanel--col">
         <Row className="h-100" gutter={24}>
           <Col className="topPanel--content__left my-auto" span={ 16 }>
-            <Space size={1}>
+            <Space size={0.5}>
               <Categories userClass="categories--dropDown topPanel--content__item hover" />
               <Divider type="vertical" className="border-70"/>
               <a className="topPanel--content__item hover">
@@ -38,7 +38,7 @@ const DefaultTopPanel = () => {
             </Space>
           </Col>
           <Col className="topPanel--content__right my-auto" span={ 8 }>
-            <Space size={1}>
+            <Space size={0.5}>
               <a className="topPanel--content__item hover">
                 <span className="topPanel--item__text">
                   عربی
@@ -57,17 +57,17 @@ const DefaultTopPanel = () => {
                 </span>
               </a>
 
-              <span className="topPanel--content__item">
-                <a className="topPanel--item__text">
+              <a className="topPanel--content__item home-icon">
+                <span className="topPanel--item__text">
                   <i className="fal fa-home text-white vv-font-size-1-5"></i>
-                </a>
-              </span>
+                </span>
+              </a>
 
-              <span className="topPanel--content__item">
-                <a className="topPanel--item__text">
+              <a className="topPanel--content__item question-icon">
+                <span className="topPanel--item__text">
                   <i className="fal fa-question-circle text-white vv-font-size-1-5"></i>
-                </a>
-              </span>
+                </span>
+              </a>
 
             </Space>
           </Col>
