@@ -12,6 +12,7 @@ import { Home } from "./pages";
 
 // Layouts:
 import TopPanel from "./layouts/topPanel";
+import { Header as SiteHeader } from "./layouts/header";
 
 function App() {
 
@@ -21,13 +22,8 @@ function App() {
     <Layout className="layout">
       <Router>
         <TopPanel />
-        <Header>
-          <div className="logo" />
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-            <Menu.Item key="1">nav 1</Menu.Item>
-            <Menu.Item key="2">nav 2</Menu.Item>
-            <Menu.Item key="3">nav 3</Menu.Item>
-          </Menu>
+        <Header className="site--header">
+          <SiteHeader />
         </Header>
         <Content>
           <div className="site-layout-content">
