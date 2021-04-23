@@ -1,3 +1,9 @@
-export const Home = () => {
-  return 'home!';
-}
+import React from 'react';
+
+const Home = () => {
+  return (
+    <>Home</>
+  );
+};
+
+export { Home };
