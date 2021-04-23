@@ -8,6 +8,7 @@ import { Col, Row } from "antd";
 
 // import blocks:
 import CategoriesMultiColumn from "../layouts/blocks/categories/CategoriesMultiColumn";
+import HomeCarousel from "../layouts/blocks/static_templates/HomeCarousel";
 
 const Home = () => {
   return (
@@ -18,7 +19,7 @@ const Home = () => {
         </Col>
 
         <Col span={12}>
-          test
+          <HomeCarousel />
         </Col>
 
         <Col span={6}>
