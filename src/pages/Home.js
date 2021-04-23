@@ -8,11 +8,11 @@ import { Col, Row } from "antd";
 
 // import blocks:
 import CategoriesMultiColumn from "../layouts/blocks/categories/CategoriesMultiColumn";
-import HomeLogisticsBanner from "../layouts/blocks/static_templates/HomeCarousel";
+import HomeLogisticsBanner from "../layouts/blocks/static_templates/HomeLogisticsBanner";
 
 const Home = () => {
   return (
-    <div className="topSection--container">
+    <div className="topSection--container bg-white">
       <Row gutter={24}>
         <Col span={6}>
           <CategoriesMultiColumn />

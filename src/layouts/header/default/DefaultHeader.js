@@ -15,7 +15,7 @@ const suffix = <span className="suffix-content"><i className="fal fa-search" /> 
 
 const DefaultHeader = () => {
   return (
-    <Row className="h-100 header--container">
+    <Row className="h-100 header--container shadow-line">
       <Col span={24} className="header--col">
         <Row className="h-100" gutter={{ lg: 32, xl: 100 }}>
           <Col className="topPanel--content__left" span={ 15 }>
