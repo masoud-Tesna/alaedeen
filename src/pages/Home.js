@@ -10,6 +10,7 @@ import { Col, Row } from "antd";
 import CategoriesMultiColumn from "../layouts/blocks/categories/CategoriesMultiColumn";
 import HomeLogisticsBanner from "../layouts/blocks/static_templates/HomeLogisticsBanner";
 import { OneRequestMultipleQuotes as RequestForm } from "../layouts/blocks/static_templates/OneRequestMultipleQuotes";
+import RequestsList from "../layouts/blocks/static_templates/RequestsList";
 
 const Home = () => {
   return (
@@ -29,7 +30,7 @@ const Home = () => {
               <RequestForm />
             </Col>
             <Col className="h-50" span={24}>
-
+              <RequestsList />
             </Col>
           </Row>
         </Col>
