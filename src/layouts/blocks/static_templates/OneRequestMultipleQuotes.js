@@ -9,29 +9,6 @@ const { Option } = Select;
 
 const OneRequestMultipleQuotes = () => {
 
-  const [form] = Form.useForm();
-
-  const onGenderChange = (value) => {
-    switch (value) {
-      case 'male':
-        form.setFieldsValue({
-          note: 'Hi, man!',
-        });
-        return;
-
-      case 'female':
-        form.setFieldsValue({
-          note: 'Hi, lady!',
-        });
-        return;
-
-      case 'other':
-        form.setFieldsValue({
-          note: 'Hi there!',
-        });
-    }
-  };
-
   const onFinish = (values) => {
     console.log(values);
   };
@@ -84,12 +61,11 @@ const OneRequestMultipleQuotes = () => {
                 >
                   <Select
                     placeholder="Piece/Pieces"
-                    onChange={onGenderChange}
                     allowClear
                   >
-                    <Option value="Piece1">Piece1</Option>
-                    <Option value="Piece2">Piece2</Option>
-                    <Option value="Piece3">Piece3</Option>
+                    <Option value="piece1">Piece1</Option>
+                    <Option value="piece2">Piece2</Option>
+                    <Option value="piece3">Piece3</Option>
                   </Select>
                 </Form.Item>
               </Col>
