@@ -26,10 +26,10 @@ const Home = () => {
 
         <Col span={6}>
           <Row className="h-100">
-            <Col className="h-50" span={24}>
+            <Col className="topSection--requestForm" span={24}>
               <RequestForm />
             </Col>
-            <Col className="h-50" span={24}>
+            <Col className="topSection--requestsList" span={24}>
               <RequestsList />
             </Col>
           </Row>
