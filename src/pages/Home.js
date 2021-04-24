@@ -9,6 +9,7 @@ import { Col, Row } from "antd";
 // import blocks:
 import CategoriesMultiColumn from "../layouts/blocks/categories/CategoriesMultiColumn";
 import HomeLogisticsBanner from "../layouts/blocks/static_templates/HomeLogisticsBanner";
+import { OneRequestMultipleQuotes as RequestForm } from "../layouts/blocks/static_templates/OneRequestMultipleQuotes";
 
 const Home = () => {
   return (
@@ -23,7 +24,14 @@ const Home = () => {
         </Col>
 
         <Col span={6}>
-          test
+          <Row>
+            <Col span={24}>
+              <RequestForm />
+            </Col>
+            <Col span={24}>
+
+            </Col>
+          </Row>
         </Col>
       </Row>
     </div>
