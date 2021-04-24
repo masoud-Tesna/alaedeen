@@ -24,11 +24,11 @@ const Home = () => {
         </Col>
 
         <Col span={6}>
-          <Row>
-            <Col span={24}>
+          <Row className="h-100">
+            <Col className="h-50" span={24}>
               <RequestForm />
             </Col>
-            <Col span={24}>
+            <Col className="h-50" span={24}>
 
             </Col>
           </Row>

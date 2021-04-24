@@ -6,8 +6,11 @@
   }
   .categoriesMultiColumn--item.vv-cursor-pointer {
     &:hover {
+      .categoriesMultiColumn--icon-title,
+      i.fa-list-ul {
+        color: darken(@primary-color, 10%) !important;
+      }
       .categoriesMultiColumn--icon-title {
-        color: @primary-color !important;
         font-weight: 600!important;
       }
     }
