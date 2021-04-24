@@ -22,8 +22,8 @@ const HomeLogisticsBanner = () => {
             </div>
           </div>
           <div className="py-3 text-center homeLogisticsBanner--caption__btn">
-            <Button className="text-white vv-font-size-1-2 px-4 py-0 rounded-lg bg-secondary border-0" size="large">
-              Download
+            <Button className="text-white vv-font-size-1-2 rounded-lg bg-secondary border-0" size="large">
+              Go to page
             </Button>
           </div>
         </Col>
