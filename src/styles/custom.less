@@ -2371,6 +2371,36 @@
 
 
 /* bg-color */
+.bg-primary {
+    background-color: @primary-color !important;
+}
+
+a.bg-primary:hover, a.bg-primary:focus,
+button.bg-primary:hover,
+button.bg-primary:focus {
+    background-color: darken(@primary-color, 10%) !important;
+}
+
+.bg-primary-10 {
+    background-color: darken(@primary-color, 10%) !important;
+}
+
+a.bg-primary-10:hover, a.bg-primary-10:focus,
+button.bg-primary-10:hover,
+button.bg-primary-10:focus {
+    background-color: darken(@primary-color, 20%) !important;
+}
+
+.bg-secondary {
+    background-color: @secondary-color !important;
+}
+
+a.bg-secondary:hover, a.bg-secondary:focus,
+button.bg-secondary:hover,
+button.bg-secondary:focus {
+    background-color: darken(@secondary-color, 10%) !important;
+}
+
 .bg-f2 {
     background-color: #F20604 !important;
 }
@@ -3819,6 +3849,18 @@ a.text-red:hover, a.text-red:focus {
 
 .text-primary {
     color: @primary-color!important;
+}
+
+a.text-primary:hover, a.text-primary:focus {
+    color: darken(@primary-color, 10%) !important;
+}
+
+.text-secondary {
+    color: @secondary-color !important;
+}
+
+a.text-secondary:hover, a.text-secondary:focus {
+    color: darken(@secondary-color, 10%) !important;
 }
 
 .text-primary-darken {
