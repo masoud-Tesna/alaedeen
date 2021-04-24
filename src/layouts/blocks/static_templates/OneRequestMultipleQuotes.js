@@ -4,17 +4,7 @@ import React from 'react';
 import './styles/OneRequestMultipleQuotes.less';
 
 // import ant design:
-import { Col, Row,
-  Form,
-  Input,
-  Button,
-  Radio,
-  Select,
-  Cascader,
-  DatePicker,
-  InputNumber,
-  TreeSelect,
-  Switch } from "antd";
+import { Col, Row, Form, Input, Button, Select, InputNumber} from "antd";
 const { Option } = Select;
 
 const OneRequestMultipleQuotes = () => {
@@ -47,14 +37,14 @@ const OneRequestMultipleQuotes = () => {
   };
 
   return (
-    <div className="px-4 py-1 border border-secondary-2 border-w-5 rounded-lg h-100 oneRequest--container">
+    <div className="px-4 border border-secondary-2 border-w-5 rounded-lg h-100 oneRequest--container">
       <Form
         className="h-100 oneRequest--formContent"
         name="nest-messages"
         onFinish={onFinish}>
         <Row className="h-100" align="middle">
           <Col span={24}>
-            <div className="font-weight-600 vv-font-size-1-6 text-black oneRequest--caption">One Request Multiple Quotes</div>
+            <div className="font-weight-600 vv-font-size-1-6 text-black oneRequest--formContent__caption">One Request Multiple Quotes</div>
           </Col>
           <Col className="mt-2" span={24}>
             <Form.Item
@@ -105,7 +95,7 @@ const OneRequestMultipleQuotes = () => {
               </Col>
             </Row>
           </Col>
-          <Col className="text-center" span={24}>
+          <Col className="text-center mt-2" span={24}>
             <Form.Item className="oneRequest--formContent__btn">
               <Button className="border border-secondary-2 rounded-3 bg-secondary-2 text-white vv-font-size-1 font-weight-500 px-5" size="large" htmlType="submit">
                 Request a Quote
