@@ -8,9 +8,14 @@ import { Col, Row } from "antd";
 
 const RequestsList = () => {
   return (
-    <div className="px-4 rounded-lg h-100 requestsList--container">
-      <Row className="requestsList--content h-100">
+    <div className="h-100 requestsList--container">
+      <Row className="rounded-lg h-100 px-4 requestsList--content" align="middle">
+        <Col span={24}>
+          <div className="font-weight-600 vv-font-size-1-6 text-black">Request for Quotation</div>
+        </Col>
+        <Col span={24}>
 
+        </Col>
       </Row>
     </div>
   );
