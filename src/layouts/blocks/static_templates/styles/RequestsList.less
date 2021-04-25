@@ -3,5 +3,20 @@
     background-image: url(../../../../assets/images/requestListBg.png);
     background-size: cover;
     box-shadow: 0 0 .6rem rgba(0, 0, 0, 0.40) !important;
+    .requestsList--items {
+      .requestsList--scrollContainer {
+        margin-left: -6px;
+        margin-right: -6px;
+        row-gap: 0;
+        cursor: grab;
+        .requestsList--item__content {
+          padding-left: 6px !important;
+          padding-right: 6px !important;
+          .requestsList--item {
+            width: 245px;
+          }
+        }
+      }
+    }
   }
 }
