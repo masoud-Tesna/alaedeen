@@ -13,6 +13,7 @@ import { OneRequestMultipleQuotes as RequestForm } from "../layouts/blocks/stati
 import RequestsList from "../layouts/blocks/static_templates/RequestsList";
 import Stats from "../layouts/blocks/static_templates/Stats";
 import ShipProductsBanner from "../layouts/blocks/static_templates/ShipProductsBanner";
+import ProductsMultiColumnVertical from "../layouts/blocks/product_list_templates/ProductsMultiColumnVertical";
 
 const Home = () => {
   return (
@@ -50,7 +51,7 @@ const Home = () => {
             <ShipProductsBanner />
           </Col>
           <Col span={16}>
-            2
+            <ProductsMultiColumnVertical productSlice={3} detailIcon="company" />
           </Col>
         </Row>
       </div>

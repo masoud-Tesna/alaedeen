@@ -1,7 +1,7 @@
 import React from 'react';
 
 // import Style LESS File:
-import './multiColumn.less';
+import './styles/CategoriesMultiColumn.less';
 import { Col, Divider, Row } from "antd";
 
 // import categories image:
