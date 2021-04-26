@@ -15,8 +15,8 @@ import cat_7 from '../../../assets/images/categories/7.png';
 
 const CategoriesMultiColumn = () => {
   return (
-    <div className="categoriesMultiColumn--container">
-      <Row>
+    <div className="categoriesMultiColumn--container h-100">
+      <Row className="h-100">
         <Col className="categoriesMultiColumn--item border-right border-70" span={12}>
           <Row className="border-bottom border-bc">
             <Col span={24} className="categoriesMultiColumn--img text-center py-2">

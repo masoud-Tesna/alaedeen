@@ -6,7 +6,7 @@ import { Button, Col, Row } from "antd";
 
 const HomeLogisticsBanner = () => {
   return (
-    <div className="homeLogisticsBanner--container h-100">
+    <div className="homeLogisticsBanner--container">
       <Row className="homeLogisticsBanner--content h-100">
         <Col className="homeLogisticsBanner--caption" span={11}>
           <Row className="h-100" align="middle">
