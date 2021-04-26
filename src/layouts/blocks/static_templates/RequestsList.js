@@ -13,53 +13,90 @@ const RequestsList = () => {
     <div className="h-100 requestsList--container">
       <Row className="rounded-lg h-100 requestsList--content" align="middle">
         <Col className="px-4" span={24}>
-          <div className="font-weight-600 vv-font-size-1-6 text-black">Request for Quotation</div>
+          <div className="font-weight-bold vv-font-size-2-2 text-black">Request for Quotation</div>
         </Col>
         <Col className="px-2 requestsList--items" span={24}>
           <ScrollContainer className="text-select-none d-flex requestsList--scrollContainer">
             <div className="d-inline requestsList--item__content">
-              <Row className="p-2 bg-white rounded-lg requestsList--item">
-                <Col span={12} className="text-left text-black vv-font-size-1-1rem my-auto">
+              <Row className="p-3 bg-white rounded-lg requestsList--item">
+                <Col span={12} className="text-left text-black vv-font-size-1-9 my-auto">
                   Red Carpet
                 </Col>
-                <Col span={12} className="text-right text-primary vv-font-size-0-9 my-auto">
+                <Col span={12} className="text-right text-primary vv-font-size-1-5 my-auto">
                   27 March, 2021
                 </Col>
-                <Col span={24} className="text-70 vv-font-size-0-9">
+                <Col span={24} className="text-70 vv-font-size-1-5">
                   Buyer is looking for 'Red Carpet'.
                 </Col>
                 <Col span={24} className="mt-3 px-2 pb-1 border-bottom border-8b">
                   <Row justify="space-between">
                     <Col>
-                      <i className="fal fa-map-marker-alt text-primary" />
-                      <span className="text-47 vv-font-size-0-9">Damascus, Syria</span>
+                      <i className="fal fa-map-marker-alt text-primary vv-font-size-1-9 mr-2" />
+                      <span className="text-47 vv-font-size-1-6">Damascus, Syria</span>
                     </Col>
-                    <Col>
-                      2
+                    <Col className="align-self-end">
+                      <i className="flag-icon flag-icon-iq vv-font-size-1-9" />
                     </Col>
                   </Row>
                 </Col>
-              </Row>
-            </div>
-
-            <div className="d-inline requestsList--item__content">
-              <Row className="p-2 bg-white rounded-lg requestsList--item">
-                <Col span={12} className="text-left text-black vv-font-size-1">
-                  Red Carpet
-                </Col>
-                <Col span={12} className="text-right text-primary vv-font-size-1">
-                  27 March, 2021
+                <Col span={24} className="vv-font-size-1-7 text-center mt-2 requestsList--item__contact">
+                  Contact Buyer Now
                 </Col>
               </Row>
             </div>
 
             <div className="d-inline requestsList--item__content">
-              <Row className="p-2 bg-white rounded-lg requestsList--item">
-                <Col span={12} className="text-left text-black vv-font-size-1">
+              <Row className="p-3 bg-white rounded-lg requestsList--item">
+                <Col span={12} className="text-left text-black vv-font-size-1-9 my-auto">
                   Red Carpet
                 </Col>
-                <Col span={12} className="text-right text-primary vv-font-size-1">
+                <Col span={12} className="text-right text-primary vv-font-size-1-5 my-auto">
                   27 March, 2021
+                </Col>
+                <Col span={24} className="text-70 vv-font-size-1-5">
+                  Buyer is looking for 'Red Carpet'.
+                </Col>
+                <Col span={24} className="mt-3 px-2 pb-1 border-bottom border-8b">
+                  <Row justify="space-between">
+                    <Col>
+                      <i className="fal fa-map-marker-alt text-primary vv-font-size-1-9 mr-2" />
+                      <span className="text-47 vv-font-size-1-6">Damascus, Syria</span>
+                    </Col>
+                    <Col className="align-self-end">
+                      <i className="flag-icon flag-icon-iq vv-font-size-1-9" />
+                    </Col>
+                  </Row>
+                </Col>
+                <Col span={24} className="vv-font-size-1-7 text-center mt-2 requestsList--item__contact">
+                  Contact Buyer Now
+                </Col>
+              </Row>
+            </div>
+
+            <div className="d-inline requestsList--item__content">
+              <Row className="p-3 bg-white rounded-lg requestsList--item">
+                <Col span={12} className="text-left text-black vv-font-size-1-9 my-auto">
+                  Red Carpet
+                </Col>
+                <Col span={12} className="text-right text-primary vv-font-size-1-5 my-auto">
+                  27 March, 2021
+                </Col>
+                <Col span={24} className="text-70 vv-font-size-1-5">
+                  Buyer is looking for 'Red Carpet'.
+                </Col>
+                <Col span={24} className="mt-3 px-2 pb-1 border-bottom border-8b">
+                  <Row justify="space-between">
+                    <Col>
+                      <i className="fal fa-map-marker-alt text-primary vv-font-size-1-9 mr-2" />
+                      <span className="text-47 vv-font-size-1-6">Damascus, Syria</span>
+                    </Col>
+                    <Col className="align-self-end">
+                      <i className="flag-icon flag-icon-iq vv-font-size-1-9" />
+                    </Col>
+                  </Row>
+                </Col>
+                <Col span={24} className="vv-font-size-1-7 text-center mt-2 requestsList--item__contact">
+                  Contact Buyer Now
                 </Col>
               </Row>
             </div>
