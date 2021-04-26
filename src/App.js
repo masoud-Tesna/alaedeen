@@ -1,6 +1,9 @@
 // Styles:
 import './styles/custom.less';
 
+// flag icons:
+import 'flag-icon-css/less/flag-icon.less';
+
 // Components:
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 

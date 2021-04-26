@@ -19,9 +19,9 @@ const CategoriesDropDownVertical = ({ userClass }) => {
   return (
     <Dropdown className={ userClass } overlay={CategoriesContent} trigger={['click']}>
       <a className="" onClick={e => e.preventDefault()}>
-        <i className="fal fa-list-ul mr-2 vv-font-size-1" />
+        <i className="fal fa-list-ul mr-3 vv-font-size-2" />
         <span className="topPanel--item__text">Categories</span>
-        <DownOutlined className="ml-2" />
+        <DownOutlined className="ml-3" />
       </a>
     </Dropdown>
   );

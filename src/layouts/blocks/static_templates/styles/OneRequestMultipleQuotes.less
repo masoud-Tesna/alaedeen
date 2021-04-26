@@ -7,6 +7,7 @@
     .ant-input-number {
       &::placeholder {
         color: #929191!important;
+        font-size: 1.4rem!important;
       }
       &:focus,
       &:hover{
@@ -18,10 +19,17 @@
       border-width: .5px!important;
       border-radius: 3px!important;
     }
+    .ant-input-number-focused {
+      box-shadow: none!important;
+    }
     .ant-input-number-input {
       border-color: #707070!important;
       border-width: .5px!important;
       border-radius: 3px!important;
+      &::placeholder {
+        color: #929191!important;
+        font-size: 1.4rem!important;
+      }
     }
     .ant-input-number {
       .anticon-up,
@@ -36,13 +44,14 @@
       border-width: .5px!important;
       border-radius: 3px!important;
       box-shadow: none !important;
+      .ant-select-selection-placeholder {
+        font-size: 1.4rem!important;
+        color: #929191!important;
+      }
       &:hover {
         border-color: darken(#707070, 40%)!important;
         border-width: .5px!important;
         border-radius: 3px!important;
-      }
-      .ant-select-selection-search {
-        color: #929191!important;
       }
     }
     .ant-form-item {
@@ -51,6 +60,16 @@
     .oneRequest--formContent__quantity {
       .ant-input-number {
         width: 100% !important;
+      }
+    }
+    .oneRequest--formContent__btn {
+      .ant-btn {
+        width: 32.1rem;
+        height: 32px;
+        span {
+          font-size: 1.6rem !important;
+          font-weight: 600;
+        }
       }
     }
   }

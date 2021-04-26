@@ -11,7 +11,7 @@ import logoXs from '../../../assets/images/logoXs.png';
 const onSearch = value => console.log(value);
 
 // Show suffix for search input:
-const suffix = <span className="suffix-content"><i className="fal fa-search" /> Search</span>;
+const suffix = <span className="suffix-content vv-font-size-2"><i className="fal fa-search vv-font-size-2" /> Search</span>;
 
 const DefaultHeader = () => {
   return (
@@ -35,22 +35,22 @@ const DefaultHeader = () => {
               <Col span={9}>
                 <Row align="middle" gutter={12}>
                   <Col>
-                    <i className="fal fa-user vv-font-size-2-5 text-70 d-block" />
+                    <i className="fal fa-user display-3 text-70 d-block" />
                   </Col>
                   <Col span={16}>
                     <Row gutter={[0, 24]}>
                       <Col span={24}>
-                        <a className="text-70 vv-font-size-1-2">Sign in</a>
+                        <a className="text-70 vv-font-size-2">Sign in</a>
                       </Col>
                       <Col span={24}>
-                        <a className="text-70 vv-font-size-1-2">Join Free</a>
+                        <a className="text-70 vv-font-size-2">Join Free</a>
                       </Col>
                     </Row>
                   </Col>
                 </Row>
               </Col>
-              <Col span={15} className="pr-0 pr-lg-5 btn-request">
-                <Button className="border border-primary-darken border-w-2 text-primary-darken vv-font-size-1 font-weight-600 px-4" size="large">Request a Quote</Button>
+              <Col span={15} className="pr-0 pr-lg-5 btn-request my-auto">
+                <Button className="border border-primary-darken border-w-2 text-primary-darken  font-weight-600 p-0" size="large">Request a Quote</Button>
               </Col>
             </Row>
           </Col>

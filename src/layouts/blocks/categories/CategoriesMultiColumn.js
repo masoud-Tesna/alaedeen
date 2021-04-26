@@ -22,7 +22,7 @@ const CategoriesMultiColumn = () => {
             <Col span={24} className="categoriesMultiColumn--img text-center py-2">
               <img className="rounded-circle shadow-circle" src={cat_1}  alt="cat_1"/>
             </Col>
-            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-1rem pb-2">
+            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2">
               Carpets
             </Col>
           </Row>
@@ -33,7 +33,7 @@ const CategoriesMultiColumn = () => {
             <Col span={24} className="categoriesMultiColumn--img text-center py-2">
               <img className="rounded-circle shadow-circle" src={cat_2}  alt="cat_2"/>
             </Col>
-            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-1rem pb-2">
+            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2">
               Kids & Baby Carpet
             </Col>
           </Row>
@@ -44,7 +44,7 @@ const CategoriesMultiColumn = () => {
             <Col span={24} className="categoriesMultiColumn--img text-center py-2">
               <img className="rounded-circle shadow-circle" src={cat_3}  alt="cat_3"/>
             </Col>
-            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-1rem pb-2">
+            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2">
               Collage of skin...
             </Col>
           </Row>
@@ -55,7 +55,7 @@ const CategoriesMultiColumn = () => {
             <Col span={24} className="categoriesMultiColumn--img text-center py-2">
               <img className="rounded-circle shadow-circle" src={cat_4}  alt="cat_4"/>
             </Col>
-            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-1rem pb-2">
+            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2">
               Cloth carpet
             </Col>
           </Row>
@@ -66,7 +66,7 @@ const CategoriesMultiColumn = () => {
             <Col span={24} className="categoriesMultiColumn--img text-center py-2">
               <img className="rounded-circle shadow-circle" src={cat_5}  alt="cat_5"/>
             </Col>
-            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-1rem pb-2">
+            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2">
               Handmade carpet
             </Col>
           </Row>
@@ -77,7 +77,7 @@ const CategoriesMultiColumn = () => {
             <Col span={24} className="categoriesMultiColumn--img text-center py-2">
               <img className="rounded-circle shadow-circle" src={cat_6}  alt="cat_6"/>
             </Col>
-            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-1rem pb-2">
+            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2">
               Tableau rug
             </Col>
           </Row>
@@ -88,7 +88,7 @@ const CategoriesMultiColumn = () => {
             <Col span={24} className="categoriesMultiColumn--img text-center py-2">
               <img className="rounded-circle shadow-circle" src={cat_7}  alt="cat_7"/>
             </Col>
-            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-1rem pb-2">
+            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2">
               Mats & Rugs
             </Col>
           </Row>
@@ -99,12 +99,11 @@ const CategoriesMultiColumn = () => {
             <Col span={24} className="categoriesMultiColumn--icon text-center my-2">
               <Row align="middle" className="h-100">
                 <Col span={24}>
-                  <i className="far fa-list-ul mr-2 vv-font-size-4 text-primary" />
+                  <i className="far fa-list-ul mr-2 display-1 font-weight-500 text-primary" />
                 </Col>
               </Row>
-
             </Col>
-            <Col span={24} className="categoriesMultiColumn--icon-title text-center text-47 vv-font-size-1-1rem pb-2">
+            <Col span={24} className="categoriesMultiColumn--icon-title text-center text-47 vv-font-size-1-8 pb-2">
               All Categories
             </Col>
           </Row>

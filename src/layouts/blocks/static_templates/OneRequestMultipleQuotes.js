@@ -21,7 +21,7 @@ const OneRequestMultipleQuotes = () => {
         onFinish={onFinish}>
         <Row className="h-100" align="middle">
           <Col span={24}>
-            <div className="font-weight-600 vv-font-size-1-6 text-black oneRequest--formContent__caption">One Request Multiple Quotes</div>
+            <div className="font-weight-bold vv-font-size-2-2 text-black oneRequest--formContent__caption">One Request Multiple Quotes</div>
           </Col>
           <Col className="mt-2" span={24}>
             <Form.Item
@@ -73,7 +73,7 @@ const OneRequestMultipleQuotes = () => {
           </Col>
           <Col className="text-center mt-2" span={24}>
             <Form.Item className="oneRequest--formContent__btn">
-              <Button className="border border-secondary-2 rounded-3 bg-secondary-2 text-white vv-font-size-1 font-weight-500 px-5" size="large" htmlType="submit">
+              <Button className="border border-secondary-2 rounded-3 bg-secondary-2 text-white vv-font-size-1 font-weight-500 p-0" size="large" htmlType="submit">
                 Request a Quote
               </Button>
             </Form.Item>

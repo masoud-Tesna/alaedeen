@@ -7,13 +7,14 @@
   .logo {
     margin-left: 32px;
     img {
-      width: 107px;
+      height: 50px;
     }
   }
   .topPanel--content__left {
     .ant-input-affix-wrapper {
       padding: 0 !important;
       border: 1px solid darken(@primary-color, 10%) !important;
+      height: 50px;
 
       .ant-input {
         padding: 0.5rem 0 0.5rem 0.5rem !important;
@@ -24,7 +25,6 @@
         padding: 0 1.5rem !important;
         cursor: pointer;
         color: white;
-        font-size: 1.2rem;
       }
     }
   }
@@ -32,6 +32,11 @@
     .btn-request {
       text-align: right !important;
       .ant-btn {
+        height: 50px;
+        width: 184px;
+        span {
+          font-size: 2rem!important;
+        }
         &:hover {
           background-color: darken(@primary-color, 20%) !important;
           span {
