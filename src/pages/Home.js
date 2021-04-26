@@ -12,11 +12,12 @@ import HomeLogisticsBanner from "../layouts/blocks/static_templates/HomeLogistic
 import { OneRequestMultipleQuotes as RequestForm } from "../layouts/blocks/static_templates/OneRequestMultipleQuotes";
 import RequestsList from "../layouts/blocks/static_templates/RequestsList";
 import Stats from "../layouts/blocks/static_templates/Stats";
+import ShipProductsBanner from "../layouts/blocks/static_templates/ShipProductsBanner";
 
 const Home = () => {
   return (
     <>
-      <div className="topSection--container bg-white">
+      <div className="top--section bg-white">
         <Row gutter={24}>
           <Col span={6}>
             <CategoriesMultiColumn />
@@ -41,6 +42,17 @@ const Home = () => {
 
       <div className="stats--section">
         <Stats />
+      </div>
+
+      <div className="shipProductsBanner--section product--section">
+        <Row gutter={16}>
+          <Col span={8}>
+            <ShipProductsBanner />
+          </Col>
+          <Col span={16}>
+            2
+          </Col>
+        </Row>
       </div>
     </>
   );
