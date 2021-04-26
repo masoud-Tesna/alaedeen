@@ -11,31 +11,38 @@ import CategoriesMultiColumn from "../layouts/blocks/categories/CategoriesMultiC
 import HomeLogisticsBanner from "../layouts/blocks/static_templates/HomeLogisticsBanner";
 import { OneRequestMultipleQuotes as RequestForm } from "../layouts/blocks/static_templates/OneRequestMultipleQuotes";
 import RequestsList from "../layouts/blocks/static_templates/RequestsList";
+import Stats from "../layouts/blocks/static_templates/Stats";
 
 const Home = () => {
   return (
-    <div className="topSection--container bg-white">
-      <Row gutter={24}>
-        <Col span={6}>
-          <CategoriesMultiColumn />
-        </Col>
+    <>
+      <div className="topSection--container bg-white">
+        <Row gutter={24}>
+          <Col span={6}>
+            <CategoriesMultiColumn />
+          </Col>
 
-        <Col span={12}>
-          <HomeLogisticsBanner />
-        </Col>
+          <Col span={12}>
+            <HomeLogisticsBanner />
+          </Col>
 
-        <Col span={6}>
-          <Row className="h-100">
-            <Col className="topSection--requestForm" span={24}>
-              <RequestForm />
-            </Col>
-            <Col className="topSection--requestsList" span={24}>
-              <RequestsList />
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-    </div>
+          <Col span={6}>
+            <Row className="h-100">
+              <Col className="topSection--requestForm" span={24}>
+                <RequestForm />
+              </Col>
+              <Col className="topSection--requestsList" span={24}>
+                <RequestsList />
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      </div>
+
+      <div className="stats--section">
+        <Stats />
+      </div>
+    </>
   );
 };
 
