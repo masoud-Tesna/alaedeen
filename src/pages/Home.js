@@ -14,6 +14,7 @@ import RequestsList from "../layouts/blocks/static_templates/RequestsList";
 import Stats from "../layouts/blocks/static_templates/Stats";
 import ShipProductsBanner from "../layouts/blocks/static_templates/ShipProductsBanner";
 import ProductsMultiColumnVertical from "../layouts/blocks/product_list_templates/ProductsMultiColumnVertical";
+import TopRankingProducts from "../layouts/blocks/static_templates/TopRankingProducts";
 
 const Home = () => {
   return (
@@ -54,6 +55,10 @@ const Home = () => {
             <ProductsMultiColumnVertical productSlice={3} detailIcon="company" />
           </Col>
         </Row>
+      </div>
+
+      <div className="topRankingProducts--section">
+        <TopRankingProducts />
       </div>
     </>
   );
