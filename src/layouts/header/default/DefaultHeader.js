@@ -17,7 +17,7 @@ const DefaultHeader = () => {
   return (
     <Row className="h-100 header--container shadow-line">
       <Col span={24} className="header--col">
-        <Row className="h-100" gutter={{ md: 8, lg: 16, xl: 50 }}>
+        <Row className="h-100 " gutter={{ md: 8, lg: 16, xl: 50 }}>
           <Col className="topPanel--content__left" md={ 15 } lg={ 15 } xl={ 16 }>
             <Row className="h-100">
               <Col className="my-auto" span={7}>
