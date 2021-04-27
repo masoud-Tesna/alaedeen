@@ -9,7 +9,7 @@ import polygon_2 from '../../../assets/images/polygon2.png';
 import polygon_3 from '../../../assets/images/polygon3.png';
 
 // import ANT Design Components used:
-import { Col, Divider, Row, Space } from "antd";
+import { Col, Row, Space } from "antd";
 
 const ProductsMultiColumnHorizontal = (props) => {
 
