@@ -15,6 +15,7 @@ import Stats from "../layouts/blocks/static_templates/Stats";
 import ShipProductsBanner from "../layouts/blocks/static_templates/ShipProductsBanner";
 import ProductsMultiColumnVertical from "../layouts/blocks/product_list_templates/ProductsMultiColumnVertical";
 import TopRankingProducts from "../layouts/blocks/static_templates/TopRankingProducts";
+import PremiumFactories from "../layouts/blocks/static_templates/PremiumFactories";
 
 const Home = () => {
   return (
@@ -59,6 +60,10 @@ const Home = () => {
 
       <div className="topRankingProducts--section">
         <TopRankingProducts />
+      </div>
+
+      <div className="PremiumFactories--section">
+        <PremiumFactories />
       </div>
     </>
   );
