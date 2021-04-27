@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import DefaultHeader from "./default/DefaultHeader";
 
 const Header = () => {
-  console.log('index header')
+
   // Get Location:
   let location = useLocation();
 

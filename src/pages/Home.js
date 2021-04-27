@@ -46,11 +46,11 @@ const Home = () => {
       </div>
 
       <div className="shipProductsBanner--section product--section">
-        <Row gutter={16}>
-          <Col span={8}>
+        <Row className="rounded-10 shadow-y-2 section--row" gutter={16}>
+          <Col className="pl-0" span={8}>
             <ShipProductsBanner />
           </Col>
-          <Col span={16}>
+          <Col className="pr-0" span={16}>
             <ProductsMultiColumnVertical productSlice={3} detailIcon="company" />
           </Col>
         </Row>
