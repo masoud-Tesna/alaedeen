@@ -47,10 +47,10 @@ const Home = () => {
 
       <div className="shipProductsBanner--section product--section">
         <Row className="rounded-10 shadow-y-2 section--row" gutter={16}>
-          <Col className="pl-0" span={8}>
+          <Col className="pl-0" span={10}>
             <ShipProductsBanner />
           </Col>
-          <Col className="pr-0" span={16}>
+          <Col className="pr-0" span={14}>
             <ProductsMultiColumnVertical productSlice={3} detailIcon="company" />
           </Col>
         </Row>

@@ -8,7 +8,7 @@ import { Button, Col, Row } from "antd";
 
 const ShipProductsBanner = () => {
   return (
-    <div className="shipProductsBanner--container">
+    <div className="h-100 shipProductsBanner--container">
       <Row className="h-100 px-5 pt-4 shipProductsBanner--content">
         <Col className="shipProductsBanner--content__topSection" span={24}>
           <div className="text-black vv-font-size-2-2 font-weight-bold shipProductsBanner--content__caption1">Ready-to-ship products</div>

@@ -1,8 +1,15 @@
 .productsMultiColumnVertical--container {
   .productsMultiColumnVertical--items {
     .productsMultiColumnVertical--item {
+      &:not(:last-child) {
+        border-right: .5px solid #BCBCBC !important;
+      }
       .productsMultiColumnVertical--item__image {
         height: 226px;
+        img {
+          max-width: 100%;
+          max-height: 100%;
+        }
       }
     }
   }
