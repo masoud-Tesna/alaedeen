@@ -46,7 +46,7 @@ const Home = () => {
       </div>
 
       <div className="shipProductsBanner--section product--section">
-        <Row className="rounded-10 shadow-y-2 section--row" gutter={16}>
+        <Row className="rounded-10 shadow-y-2 bg-white section--row" gutter={16}>
           <Col className="pl-0" span={10}>
             <ShipProductsBanner />
           </Col>

@@ -22,7 +22,7 @@ const CategoriesMultiColumn = () => {
             <Col span={24} className="categoriesMultiColumn--img text-center py-2">
               <img className="rounded-circle shadow-circle" src={cat_1}  alt="cat_1"/>
             </Col>
-            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2">
+            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2 text-truncate px-3">
               Carpets
             </Col>
           </Row>
@@ -33,7 +33,7 @@ const CategoriesMultiColumn = () => {
             <Col span={24} className="categoriesMultiColumn--img text-center py-2">
               <img className="rounded-circle shadow-circle" src={cat_2}  alt="cat_2"/>
             </Col>
-            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2">
+            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2 text-truncate px-3">
               Kids & Baby Carpet
             </Col>
           </Row>
@@ -44,7 +44,7 @@ const CategoriesMultiColumn = () => {
             <Col span={24} className="categoriesMultiColumn--img text-center py-2">
               <img className="rounded-circle shadow-circle" src={cat_3}  alt="cat_3"/>
             </Col>
-            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2">
+            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2 text-truncate px-3">
               Collage of skin...
             </Col>
           </Row>
@@ -55,7 +55,7 @@ const CategoriesMultiColumn = () => {
             <Col span={24} className="categoriesMultiColumn--img text-center py-2">
               <img className="rounded-circle shadow-circle" src={cat_4}  alt="cat_4"/>
             </Col>
-            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2">
+            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2 text-truncate px-3">
               Cloth carpet
             </Col>
           </Row>
@@ -66,7 +66,7 @@ const CategoriesMultiColumn = () => {
             <Col span={24} className="categoriesMultiColumn--img text-center py-2">
               <img className="rounded-circle shadow-circle" src={cat_5}  alt="cat_5"/>
             </Col>
-            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2">
+            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2 text-truncate px-3">
               Handmade carpet
             </Col>
           </Row>
@@ -77,7 +77,7 @@ const CategoriesMultiColumn = () => {
             <Col span={24} className="categoriesMultiColumn--img text-center py-2">
               <img className="rounded-circle shadow-circle" src={cat_6}  alt="cat_6"/>
             </Col>
-            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2">
+            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2 text-truncate px-3">
               Tableau rug
             </Col>
           </Row>
@@ -88,7 +88,7 @@ const CategoriesMultiColumn = () => {
             <Col span={24} className="categoriesMultiColumn--img text-center py-2">
               <img className="rounded-circle shadow-circle" src={cat_7}  alt="cat_7"/>
             </Col>
-            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2">
+            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2 text-truncate px-3">
               Mats & Rugs
             </Col>
           </Row>
@@ -103,7 +103,7 @@ const CategoriesMultiColumn = () => {
                 </Col>
               </Row>
             </Col>
-            <Col span={24} className="categoriesMultiColumn--icon-title text-center text-47 vv-font-size-1-8 pb-2">
+            <Col span={24} className="categoriesMultiColumn--icon-title text-center text-47 vv-font-size-1-8 pb-2 text-truncate px-3">
               All Categories
             </Col>
           </Row>
