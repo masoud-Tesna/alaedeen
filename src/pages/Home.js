@@ -65,6 +65,18 @@ const Home = () => {
       <div className="PremiumFactories--section">
         <PremiumFactories />
       </div>
+
+      <div className="recommended--section">
+        <Row>
+          <Col className="recommended--caption__content" span={24}>
+            <Row justify="space-between">
+              <Col className="text-33 text-uppercase vv-font-size-3 font-weight-bold">
+                Recommended for you
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      </div>
     </>
   );
 };
