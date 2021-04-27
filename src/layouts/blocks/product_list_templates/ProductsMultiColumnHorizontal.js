@@ -17,6 +17,8 @@ const ProductsMultiColumnHorizontal = (props) => {
         <Col className="text-black vv-font-size-2 font-weight-bold" span={24}>
           { caption }
         </Col>
+        <Col className="ProductsMultiColumnHorizontal--contant">
+        </Col>
       </Row>
     </div>
   );
