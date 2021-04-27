@@ -2,5 +2,15 @@
   padding: 0 18px;
   .TopRankingProducts--caption__content {
     padding: 0 10px;
+    margin-bottom: 1rem;
+  }
+  .topRankingProducts--content {
+    .topRankingProducts--items {
+      .topRankingProducts--item {
+        &:not(:last-child) {
+          border-right: 0.5px solid #BCBCBC !important;
+        }
+      }
+    }
   }
 }

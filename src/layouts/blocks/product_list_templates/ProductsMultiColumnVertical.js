@@ -20,7 +20,10 @@ import store_1 from '../../../assets/images/store-icon/1.png';
 import store_2 from '../../../assets/images/store-icon/2.png';
 import store_3 from '../../../assets/images/store-icon/3.png';
 
-const ProductsMultiColumnVertical = ({ productSlice, detailIcon = 'default' }) => {
+const ProductsMultiColumnVertical = (props) => {
+
+  const productSlice = props.productSlice || 3;
+  const detailIcon = props.detailIcon || 'default';
 
   const [load, setLoad] = useState(true);
 
