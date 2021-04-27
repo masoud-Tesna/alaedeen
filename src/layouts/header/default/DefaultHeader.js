@@ -17,20 +17,20 @@ const DefaultHeader = () => {
   return (
     <Row className="h-100 header--container shadow-line">
       <Col span={24} className="header--col">
-        <Row className="h-100" gutter={{ lg: 32, xl: 100 }}>
-          <Col className="topPanel--content__left" span={ 15 }>
+        <Row className="h-100" gutter={{ md: 8, lg: 16, xl: 50 }}>
+          <Col className="topPanel--content__left" md={ 15 } lg={ 15 } xl={ 16 }>
             <Row className="h-100">
               <Col className="my-auto" span={7}>
                 <div className="logo">
                   <img src={logoXs} />
                 </div>
               </Col>
-              <Col className="my-auto" span={17}>
-                <Input suffix={suffix} />
+              <Col className="my-auto topPanel--left__searchBox" span={17}>
+                <Input placeholder="What are you looking for..." suffix={suffix} />
               </Col>
             </Row>
           </Col>
-          <Col className="topPanel--content__right my-auto" span={ 9 }>
+          <Col className="topPanel--content__right my-auto" md={ 9 } lg={ 9 } xl={ 8 }>
             <Row className="h-100" gutter={12}>
               <Col span={9}>
                 <Row align="middle" gutter={12}>
