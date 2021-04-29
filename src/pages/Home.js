@@ -21,6 +21,7 @@ import axios from "axios";
 import SkeletonMultiColumnVertical from "../layouts/blocks/product_list_templates/SkeletonMultiColumnVertical";
 import RecentlyProductsView from "../layouts/blocks/static_templates/RecentlyProductsView";
 import TopBrands from "../layouts/blocks/static_templates/TopBrands";
+import WhatHorn from "../layouts/blocks/static_templates/WhatHorn";
 
 const Home = () => {
 
@@ -130,6 +131,10 @@ const Home = () => {
 
       <div className="topBrands--section">
         <TopBrands />
+      </div>
+
+      <div className="whatHorn--section">
+        <WhatHorn />
       </div>
     </>
   );
