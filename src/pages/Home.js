@@ -16,6 +16,7 @@ import ShipProductsBanner from "../layouts/blocks/static_templates/ShipProductsB
 import ProductsMultiColumnVertical from "../layouts/blocks/product_list_templates/ProductsMultiColumnVertical";
 import TopRankingProducts from "../layouts/blocks/static_templates/TopRankingProducts";
 import PremiumFactories from "../layouts/blocks/static_templates/PremiumFactories";
+import RecommendedProducts from "../layouts/blocks/static_templates/RecommendedProducts";
 
 const Home = () => {
   return (
@@ -53,7 +54,7 @@ const Home = () => {
             <ShipProductsBanner />
           </Col>
           <Col className="pr-0" span={14}>
-            <ProductsMultiColumnVertical productSlice={3} detailIcon="company" />
+            {/*<ProductsMultiColumnVertical productSlice={3} detailIcon="company" />*/}
           </Col>
         </Row>
       </div>
@@ -67,15 +68,7 @@ const Home = () => {
       </div>
 
       <div className="recommended--section">
-        <Row>
-          <Col className="recommended--caption__content" span={24}>
-            <Row justify="space-between">
-              <Col className="text-33 text-uppercase vv-font-size-3 font-weight-bold">
-                Recommended for you
-              </Col>
-            </Row>
-          </Col>
-        </Row>
+        <RecommendedProducts />
       </div>
     </>
   );
