@@ -6,6 +6,11 @@ import './styles/ProductsMultiColumnVertical.less';
 // import Ant Design Components:
 import { Col, Row } from "antd";
 
+// import store icon:
+import store_1 from '../../../assets/images/store-icon/1.png';
+import store_2 from '../../../assets/images/store-icon/2.png';
+import store_3 from '../../../assets/images/store-icon/3.png';
+
 import { useShowImage } from "../../../functions/useShowImage";
 
 const ProductsMultiColumnVertical = (props) => {

@@ -12,15 +12,19 @@
 }
 
 .shipProductsBanner--section.product--section {
-  .productsMultiColumnVertical--item {
-    &:not(:last-child) {
-      border-right: .5px solid #BCBCBC !important;
-    }
-    .productsMultiColumnVertical--item__image {
-      height: 226px;
-      img {
-        max-width: 100%;
-        max-height: 100%;
+  .productsMultiColumnVertical--items {
+    .productsMultiColumnVertical--item {
+      &:not(:last-child) {
+        border-right: .5px solid #BCBCBC !important;
+      }
+
+      .productsMultiColumnVertical--item__image {
+        height: 226px;
+
+        img {
+          max-width: 100%;
+          max-height: 100%;
+        }
       }
     }
   }
@@ -33,4 +37,12 @@
   h3 {
     width: 70% !important;
   }
+}
+
+.ant-skeleton-title, .ant-skeleton-paragraph {
+  margin-bottom: 0 !important;
+  margin-top: 10px!important;
+}
+.ant-skeleton-content .ant-skeleton-paragraph > li + li {
+  margin-top: 10px!important;
 }
