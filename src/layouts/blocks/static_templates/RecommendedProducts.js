@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import './styles/RecommendedProducts.less';
 
 // import ANT Design Components Used:
-import { Col, Row } from "antd";
+import { Button, Col, Row } from "antd";
 
 // import Another Components Used:
 import axios from 'axios';
@@ -71,8 +71,7 @@ const RecommendedProducts = () => {
         </Col>
         <Col span={24}>
           <div className="h-100 productsMultiColumnVertical--container">
-            <Row className="h-100 productsMultiColumnVertical--items row-cols-5" justify="space-around" gutter={[16, 20]}>
-
+            <Row className="h-100 productsMultiColumnVertical--items row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5" justify="space-around" gutter={[16, 20]}>
 
               {getProducts.map((product) => {
                 return (<ProductsMultiColumnVertical
@@ -86,12 +85,16 @@ const RecommendedProducts = () => {
                 <SkeletonMultiColumnVertical
                   className = "bg-white rounded-10 shadow-y-2"
                   skeleton = {true}
-                  skeltonNumbers = {5}
+                  skeltonNumbers = {20}
                 />
               }
 
               { productParams && page !== allPage &&
-              <div onClick={() => {ShowMore(productParams)}}>Show More</div>
+              <div className="text-center mt-4 productsMultiColumnVertical--item__loadMore">
+                <Button className="text-47 rounded-md bg-transparent border-primary" size="large" onClick={() => {ShowMore(productParams)}}>
+                  Load More
+                </Button>
+              </div>
               }
             </Row>
           </div>
