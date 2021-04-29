@@ -37,7 +37,10 @@ const ProductsMultiColumnVertical = (props) => {
 
         {productPrice != 0.000 &&
           <Col span={24} className="px-4 productsMultiColumnVertical--item__price">
-            <span className="vv-font-size-1-9 text-primary font-weight-bold"> { productPrice } - { productListPrice }</span>
+            <span className="vv-font-size-1-9 text-primary font-weight-bold">${ productPrice } </span>
+            { productListPrice != 0.00 &&
+            <span className="vv-font-size-1-9 text-primary font-weight-bold"> - ${productListPrice}</span>
+            }
             {product.quantity_unit &&
               <span className="vv-font-size-1-6 text-92"> / { product.quantity_unit }</span>
             }

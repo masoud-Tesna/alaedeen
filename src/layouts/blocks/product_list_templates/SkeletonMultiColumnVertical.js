@@ -11,7 +11,7 @@ const SkeletonGrid = (props) => {
     <Col className={ `productsMultiColumnVertical--item` } {...props.grid}>
       <Row className={ `h-100 ${props.className}` } justify="center">
         <Col span={24} className="d-flex align-items-center justify-content-center productsMultiColumnVertical--item__image">
-          <Skeleton.Image active={true} className="w-100 h-100 bg-white border-bottom border-w-05 rounded-top-10" />
+          <Skeleton.Image active={true} className="w-100 h-100 border-bottom border-w-05 rounded-top-10" />
         </Col>
         <Col span={24} className="px-4 text-47 vv-font-size-1-8 text-truncate productsMultiColumnVertical--item__title">
           <Skeleton active={true} paragraph={{ rows: 2 }} />

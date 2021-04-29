@@ -73,12 +73,14 @@ const RecommendedProducts = () => {
           <div className="h-100 productsMultiColumnVertical--container">
             <Row className="h-100 productsMultiColumnVertical--items row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5" justify="space-around" gutter={[16, 20]}>
 
-              {getProducts.map((product) => {
-                return (<ProductsMultiColumnVertical
-                  key = { product.product_id }
-                  className="bg-white rounded-10 shadow-y-2"
-                  product={product}
-                />);
+              {getProducts.map((product, i) => {
+                return (
+                  <ProductsMultiColumnVertical
+                    key = { i }
+                    className="bg-white rounded-10 shadow-y-2"
+                    product={product}
+                  />
+                );
               })}
 
               {load &&
