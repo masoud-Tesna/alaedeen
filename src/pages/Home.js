@@ -20,6 +20,7 @@ import RecommendedProducts from "../layouts/blocks/static_templates/RecommendedP
 import axios from "axios";
 import SkeletonMultiColumnVertical from "../layouts/blocks/product_list_templates/SkeletonMultiColumnVertical";
 import RecentlyProductsView from "../layouts/blocks/static_templates/RecentlyProductsView";
+import TopBrands from "../layouts/blocks/static_templates/TopBrands";
 
 const Home = () => {
 
@@ -125,6 +126,10 @@ const Home = () => {
 
       <div className="visitsProducts--section">
         <RecentlyProductsView />
+      </div>
+
+      <div className="topBrands--section">
+        <TopBrands />
       </div>
     </>
   );

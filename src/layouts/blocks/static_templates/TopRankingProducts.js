@@ -59,9 +59,9 @@ const TopRankingProducts = () => {
   }, []);
 
   return (
-    <div className="TopRankingProducts--container">
+    <div className="topRankingProducts--container">
       <Row>
-        <Col className="TopRankingProducts--caption__content" span={24}>
+        <Col className="topRankingProducts--caption__content" span={24}>
           <Row justify="space-between">
             <Col className="text-33 text-uppercase vv-font-size-3 font-weight-bold">
               TOP-RANKING PRODUCTS
