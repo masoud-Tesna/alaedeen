@@ -19,6 +19,7 @@ import PremiumFactories from "../layouts/blocks/static_templates/PremiumFactorie
 import RecommendedProducts from "../layouts/blocks/static_templates/RecommendedProducts";
 import axios from "axios";
 import SkeletonMultiColumnVertical from "../layouts/blocks/product_list_templates/SkeletonMultiColumnVertical";
+import RecentlyProductsView from "../layouts/blocks/static_templates/RecentlyProductsView";
 
 const Home = () => {
 
@@ -120,6 +121,10 @@ const Home = () => {
 
       <div className="recommended--section">
         <RecommendedProducts />
+      </div>
+
+      <div className="visitsProducts--section">
+        <RecentlyProductsView />
       </div>
     </>
   );
