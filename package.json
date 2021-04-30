@@ -1,5 +1,6 @@
 {
   "name": "horn-react",
+  "homepage": "https://hornb2b.com/home",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

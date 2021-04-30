@@ -52,6 +52,7 @@ const Home = () => {
   }
 
   useEffect(() => {
+    document.title = "horn.company: Iranian Exporters, Manufacturers, Logistics, Suppliers Directory, B2B Business Directory"
     getProductLists();
   }, []);
 
