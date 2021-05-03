@@ -48,7 +48,7 @@ function App() {
            <Row justify="space-between">
              <Col>
                <Space size="large">
-                 <div className="footer--topSection__logoApp"></div>
+                 <div className="footer--topSection__logoApp" />
                  <span className="vv-font-size-2-2 font-weight-600 text-white">Download the Horn App for iOS or Android <i className="fas fa-angle-right text-e6 vv-font-size-1-7 ml-3" /></span>
                </Space>
              </Col>
