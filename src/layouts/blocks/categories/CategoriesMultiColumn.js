@@ -94,12 +94,12 @@ const CategoriesMultiColumn = () => {
           </Row>
         </Col>
 
-        <Col className="categoriesMultiColumn--item vv-cursor-pointer" span={12}>
+        <Col className="categoriesMultiColumn--item" span={12}>
           <Row>
             <Col span={24} className="categoriesMultiColumn--icon text-center my-2">
               <Row align="middle" className="h-100">
                 <Col span={24}>
-                  <i className="far fa-list-ul mr-2 display-1 font-weight-500 text-primary" />
+                  <i className="far fa-list-ul mr-2 vv-font-size-4 font-weight-500 text-primary" />
                 </Col>
               </Row>
             </Col>

@@ -7,6 +7,10 @@ import { Row, Col, Divider, Space, Menu, Dropdown } from 'antd';
 // import categories drop down:
 import { CategoriesDropDownVertical as Categories } from "../../blocks/categories/CategoriesDropDownVertical";
 
+const handleLinkClick = (url, target) => {
+  window.open(url, target)
+}
+
 const DefaultTopPanel = () => {
   return (
     <Row className="bg-top-panel topPanel--container">
@@ -27,7 +31,7 @@ const DefaultTopPanel = () => {
                 </span>
               </a>
               <a className="topPanel--content__item hover">
-                <span className="topPanel--item__text">
+                <span className="topPanel--item__text" onClick={() => { handleLinkClick('https://calendar.iranfair.com/en/', '_blank') }}>
                   International Exhibition
                 </span>
               </a>
