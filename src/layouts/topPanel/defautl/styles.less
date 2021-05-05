@@ -1,7 +1,25 @@
 .topPanel--container {
-  height: 41px;
+  height: 60px;
+
   .topPanel--col {
     padding: 0 18px;
+    .topPanel--col__logoXS {
+      img {
+        width: 63px;
+      }
+    }
+    .topPanel--col__btnRequest {
+      .ant-btn {
+        height: 32px;
+        width: 145px;
+        &:hover {
+          border-color: darken(#A03033, 10%) !important;
+        }
+        span {
+          font-size: 1.5rem!important;
+        }
+      }
+    }
   }
 
   .topPanel--content__item {
@@ -45,5 +63,35 @@
         }
       }
     }
+  }
+}
+
+.topPanel--menuXs {
+  height: 100%;
+  display: block;
+  width: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 100;
+  transition: all .5s;
+  .ant-modal-content {
+    height: 100%;
+    .ant-modal-body {
+      padding: 0!important;
+    }
+  }
+}
+
+body.ant-scrolling-effect {
+  .ant-layout-header,
+  .ant-layout-content > .site-layout-content > * {
+    overflow-y: hidden !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .topPanel--container {
+    height: 41px;
   }
 }
