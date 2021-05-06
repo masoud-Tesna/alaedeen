@@ -81,15 +81,20 @@
       padding: 0!important;
       height: 100%;
       .topPanel--menuXs__container {
-        .menuXs--bgTopSection__container {
-          background: #003501;
-          background-image: none;
-          background-size: auto;
-          background-image: url(../../../assets/images/sideNavBg.png);
-          background-size: cover;
-          height: 95px;
+        .topPanel--menuXs__topSection {
+          .menuXs--bgTopSection__container {
+            background: #003501;
+            background-image: none;
+            background-size: auto;
+            background-image: url(../../../assets/images/sideNavBg.png);
+            background-size: cover;
+            height: 95px;
+          }
         }
-        .menuXs--sideNavLinks__container {
+        .topPanel--menuXs__middleSection {
+          max-height: calc(100% - 70px);
+          overflow-y: scroll;
+          overflow-x: hidden;
           .menuXs--sideNavLinks__items {
             .menuXs--sideNavLinks__item {
               &:hover {
@@ -124,6 +129,18 @@
               }
             }
           }
+          .menuXs--sideNavBtn__items {
+            div {
+              width: 100%;
+            }
+            .ant-btn {
+              height: 35px;
+            }
+          }
+        }
+        .topPanel--menuXs__bottomSection {
+          position: absolute;
+          bottom: 0;
         }
       }
     }
