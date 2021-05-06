@@ -1,6 +1,5 @@
 .ant-layout-header.site--header {
-  height: 35px;
-  padding: 0 0 1.2rem !important;
+  height: auto;
   background: #FFFFFF;
   line-height: 0!important;
   overflow-x: hidden!important;
@@ -10,8 +9,8 @@
       height: 50px;
     }
   }
-  .topPanel--content__left {
-    .topPanel--left__searchBox {
+  .header--content__left {
+    .header--left__searchBox {
       .ant-input-affix-wrapper {
         padding: 0 !important;
         border: 1px solid darken(@primary-color, 10%) !important;
@@ -34,7 +33,7 @@
       }
     }
   }
-  .topPanel--content__right {
+  .header--content__right {
     .btn-request {
       text-align: right !important;
       .ant-btn {
@@ -52,10 +51,39 @@
       }
     }
   }
+  .header--mobile__searchBox {
+    .ant-input-affix-wrapper {
+      padding: 0 !important;
+      border: 0 !important;
+      height: 40px;
+      &:focus {
+        box-shadow: none !important;
+      }
+
+      .ant-input {
+        padding-left: 2rem !important;
+        font-size: 1.8rem!important;
+        &::placeholder {
+          color: #929191 !important;
+        }
+      }
+
+      .ant-input-suffix {
+        background-color: darken(@primary-color, 10%) !important;
+        padding: 0 1.5rem !important;
+        cursor: pointer;
+        color: white;
+      }
+    }
+    .ant-input-affix-wrapper-focused {
+      box-shadow: none !important;
+    }
+  }
 }
 
 @media (min-width: 768px) {
   .ant-layout-header.site--header {
     height: calc(80px + 1.2rem);
+    padding: 0 0 1.2rem !important;
   }
 }
