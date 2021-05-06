@@ -10,8 +10,9 @@ const HomeLogisticsBanner = () => {
       <Row className="homeLogisticsBanner--content h-100">
         <Col className="homeLogisticsBanner--caption" span={11}>
           <Row className="h-100" align="middle">
-            <Col span={24} className="py-3 text-secondary font-weight-600 text-center vv-font-size-4 homeLogisticsBanner--caption__text1">Logistics</Col>
-            <Col span={24} className="px-3 py-3 text-white vv-font-size-1-2 homeLogisticsBanner--caption__text2">
+            {/*Desktop*/}
+            <Col span={24} className="d-none d-lg-block py-3 text-secondary font-weight-600 text-center vv-font-size-4 homeLogisticsBanner--caption__text1">Logistics</Col>
+            <Col span={24} className="d-none d-lg-block px-3 py-3 text-white vv-font-size-1-2 homeLogisticsBanner--caption__text2">
               <div className="caption--text2__top vv-font-size-2 pb-5">
                 Worried about shipping?
               </div>
@@ -22,6 +23,10 @@ const HomeLogisticsBanner = () => {
                 Get the best price now!
               </div>
             </Col>
+            {/*Mobile*/}
+            <Col span={24} className="d-lg-none py-0 py-lg-3 text-secondary font-weight-600 text-center vv-font-size-2-5 homeLogisticsBanner--caption__text1">Logistics Services</Col>
+            <Col span={24} className="d-lg-none text-white font-weight-600 text-center vv-font-size-1-5 homeLogisticsBanner--caption__text1">Get the best price now!</Col>
+            {/*Desktop & Mobile*/}
             <Col span={24} className="py-3 text-center homeLogisticsBanner--caption__btn">
               <Button className="text-white vv-font-size-1-2 rounded-lg bg-secondary border-0" size="large">
                 Go to page

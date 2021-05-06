@@ -59,26 +59,36 @@ const Home = () => {
   return (
     <>
       <div className="top--section bg-white">
-        <Row gutter={24}>
-          <Col span={6}>
-            <CategoriesMultiColumn />
-          </Col>
+        <div className="d-none d-lg-block">
+          <Row gutter={24}>
+            <Col span={6}>
+              <CategoriesMultiColumn />
+            </Col>
 
-          <Col span={12}>
-            <HomeLogisticsBanner />
-          </Col>
+            <Col span={12}>
+              <HomeLogisticsBanner />
+            </Col>
 
-          <Col span={6}>
-            <Row className="h-100">
-              <Col className="topSection--requestForm" span={24}>
-                <RequestForm />
-              </Col>
-              <Col className="topSection--requestsList" span={24}>
-                <RequestsList />
-              </Col>
-            </Row>
-          </Col>
-        </Row>
+            <Col span={6}>
+              <Row className="h-100">
+                <Col className="topSection--requestForm" span={24}>
+                  <RequestForm />
+                </Col>
+                <Col className="topSection--requestsList" span={24}>
+                  <RequestsList />
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </div>
+
+        <div className="d-lg-none">
+          <Row>
+            <Col span={24}>
+              <HomeLogisticsBanner />
+            </Col>
+          </Row>
+        </div>
       </div>
 
       <div className="stats--section">

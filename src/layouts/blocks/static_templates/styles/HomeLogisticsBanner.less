@@ -1,18 +1,31 @@
 .homeLogisticsBanner--container {
-  height: 560px;
   .homeLogisticsBanner--content {
-    background-image: url(../../../../assets/images/logisticsBanner-en.png);
+    background-image: url(../../../../assets/images/logisticsBannerXs-en.png);
     background-size: cover;
     .homeLogisticsBanner--caption {
       background-color: rgba(0,0,0,0.7) !important;
       .homeLogisticsBanner--caption__btn {
-        padding-top: 5rem !important;
         .ant-btn {
           width: 15rem;
           height: 4.5rem;
           span {
             font-size: 2rem;
           }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .homeLogisticsBanner--container {
+    height: 560px;
+    .homeLogisticsBanner--content {
+      background-image: url(../../../../assets/images/logisticsBanner-en.png);
+      background-size: cover;
+      .homeLogisticsBanner--caption {
+        .homeLogisticsBanner--caption__btn {
+          padding-top: 5rem !important;
         }
       }
     }
