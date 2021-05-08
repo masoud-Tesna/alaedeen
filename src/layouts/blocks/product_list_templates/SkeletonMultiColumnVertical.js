@@ -7,6 +7,11 @@ import './styles/ProductsMultiColumnVertical.less';
 import { Col, Row, Skeleton } from "antd";
 
 const SkeletonGrid = (props) => {
+  const { width } = props;
+  let paragraph_rows = { rows: 2 };
+  if (width <= 991) {
+    paragraph_rows = { rows: 1 };
+  }
   return (
     <Col className={ `productsMultiColumnVertical--item` } {...props.grid}>
       <Row className={ `h-100 ${props.className}` } justify="center">
@@ -14,9 +19,9 @@ const SkeletonGrid = (props) => {
           <Skeleton.Image active={true} className="w-100 h-100 border-bottom border-w-05 rounded-top-10" />
         </Col>
         <Col span={24} className="px-4 text-47 vv-font-size-1-8 text-truncate productsMultiColumnVertical--item__title">
-          <Skeleton active={true} paragraph={{ rows: 2 }} />
+          <Skeleton active={true} paragraph={ paragraph_rows } />
         </Col>
-        <Col span={24} className="px-4 mb-2 productsMultiColumnVertical--item__location-detailIcon">
+        <Col span={24} className="d-none d-lg-block px-4 mb-2 productsMultiColumnVertical--item__location-detailIcon">
           <Row justify="space-between" align="bottom">
             <Col className="align-self-end skeletonForLocation" span={16}>
               <Skeleton active={true} paragraph={{ rows: 0 }} />

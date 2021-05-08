@@ -143,8 +143,9 @@ const Home = () => {
               {load &&
               <SkeletonMultiColumnVertical
                 skeleton = {true}
-                skeltonNumbers = {3}
-                grid={{ span: 8 }}
+                skeltonNumbers = {width >= 992 ? 3 : 2}
+                grid={productsMultiColumnVertical_items}
+                width = { width }
               />
               }
             </Row>
