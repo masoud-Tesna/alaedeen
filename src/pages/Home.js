@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
+// import Custom Hooks:
+import { useWindowSize } from '../functions';
+
 // import Style LESS File:
 import './home.less';
 
@@ -31,6 +34,8 @@ const Home = () => {
 
   const [error, setError] = useState(null);
 
+  const { width } = useWindowSize();
+
   const getProductLists = () => {
 
     setLoad(true);
@@ -59,16 +64,27 @@ const Home = () => {
   return (
     <>
       <div className="top--section bg-white">
-        <div className="d-none d-lg-block">
-          <Row gutter={24}>
+        <Row gutter={width >= 992 && 24}>
+          {/* if Screen Width >= 992px (Desktop) Show Component: */}
+          {width >= 992 &&
             <Col span={6}>
               <CategoriesMultiColumn />
             </Col>
+          }
 
-            <Col span={12}>
-              <HomeLogisticsBanner />
+          <Col span={width >= 992 ? 12 : 24}>
+            <HomeLogisticsBanner />
+          </Col>
+
+          {/* if Screen Width <= 991px (Mobile) Show Component: */}
+          {width <= 991 &&
+            <Col span={24}>
+              <CategoriesMultiColumn />
             </Col>
+          }
 
+          {/* if Screen Width >= 992px (Desktop) Show Component: */}
+          {width >= 992 ?
             <Col span={6}>
               <Row className="h-100">
                 <Col className="topSection--requestForm" span={24}>
@@ -78,17 +94,15 @@ const Home = () => {
                   <RequestsList />
                 </Col>
               </Row>
-            </Col>
-          </Row>
-        </div>
-
-        <div className="d-lg-none">
-          <Row>
+            </Col> :
+            /* if Screen Width <= 991px (Mobile) Show Component: */
             <Col span={24}>
-              <HomeLogisticsBanner />
+              <RequestsList />
             </Col>
-          </Row>
-        </div>
+          }
+
+
+        </Row>
       </div>
 
       <div className="stats--section">

@@ -39,7 +39,7 @@ const TopBrands = () => {
         setLoad(false);
       });
   }
-  console.log(topBrands)
+
   useEffect(() => {
     getTopBrandLists();
   }, []);
