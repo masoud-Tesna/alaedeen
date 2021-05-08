@@ -42,7 +42,13 @@ const Home = () => {
 
     const lang_code = 'en';
 
-    const url = `https://hornb2b.com/products-api/?items_per_page=3&company_id=181&lang_code=${lang_code}`;
+    let items_per_page = 2;
+
+    if (width >= 992) {
+      items_per_page = 3;
+    }
+
+    const url = `https://hornb2b.com/products-api/?items_per_page=${items_per_page}&company_id=181&lang_code=${lang_code}`;
 
     axios.get (url)
       .then ((res) => {
