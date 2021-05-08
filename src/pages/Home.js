@@ -96,7 +96,7 @@ const Home = () => {
               </Row>
             </Col> :
             /* if Screen Width <= 991px (Mobile) Show Component: */
-            <Col span={24}>
+            <Col span={24} className="px-3">
               <RequestsList />
             </Col>
           }

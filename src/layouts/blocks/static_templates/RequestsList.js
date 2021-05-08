@@ -10,8 +10,8 @@ import { Col, Row } from "antd";
 const RequestsList = () => {
   return (
     <div className="h-100 requestsList--container">
-      <Row className="rounded-lg h-100 requestsList--content" align="middle">
-        <Col className="px-4" span={24}>
+      <Row className="rounded-lg h-100 requestsList--content py-4 py-lg-0" align="middle">
+        <Col className="px-4 mb-3 mb-lg-0" span={24}>
           <div className="font-weight-bold vv-font-size-2-2 text-black">Request for Quotation</div>
         </Col>
         <Col className="px-2 requestsList--items" span={24}>
