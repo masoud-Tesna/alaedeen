@@ -17,3 +17,28 @@
     }
   }
 }
+
+
+.categoriesMultiColumn--containerXs {
+  .categoriesMultiColumn--item {
+    cursor: pointer;
+    .categoriesMultiColumn--icon .rounded-circle, .categoriesMultiColumn--img>img {
+      height: 50px;
+      width: 50px;
+    }
+    .categoriesMultiColumn--icon .rounded-circle i {
+      line-height: 50px;
+    }
+  }
+  .categoriesMultiColumn--item.vv-cursor-pointer {
+    &:hover {
+      .categoriesMultiColumn--icon-title,
+      i.fa-list-ul {
+        color: darken(@primary-color, 10%) !important;
+      }
+      .categoriesMultiColumn--icon-title {
+        font-weight: 600!important;
+      }
+    }
+  }
+}
