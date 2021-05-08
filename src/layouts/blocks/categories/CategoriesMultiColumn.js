@@ -1,9 +1,6 @@
 import React from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 
-// import Custom Hooks:
-import { useWindowSize } from '../../../functions';
-
 // import Style LESS File:
 import './styles/CategoriesMultiColumn.less';
 
@@ -21,9 +18,9 @@ import cat_7 from '../../../assets/images/categories/7.png';
 import { OneRequestMultipleQuotes as RequestForm } from "../static_templates/OneRequestMultipleQuotes";
 import RequestsList from "../static_templates/RequestsList";
 
-const CategoriesMultiColumn = () => {
+const CategoriesMultiColumn = (props) => {
 
-  const { width } = useWindowSize();
+  const { width } = props;
 
   return (
     <div className={ `${width >= 992 ? 'categoriesMultiColumn--container' : 'categoriesMultiColumn--containerXs my-4'} h-100` }>

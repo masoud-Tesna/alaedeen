@@ -1,17 +1,14 @@
 import React from 'react';
 
-//import Custom Hooks:
-import { useWindowSize } from "../../../functions";
-
 // import styles:
 import './styles/ShipProductsBanner.less';
 
 // import Ant Design Components:
 import { Button, Col, Row } from "antd";
 
-const ShipProductsBanner = () => {
+const ShipProductsBanner = (props) => {
 
-  const { width } = useWindowSize();
+  const { width } = props;
 
   return (
     <div className="h-100 shipProductsBanner--container">

@@ -80,7 +80,7 @@ const Home = () => {
           {/* if Screen Width >= 992px (Desktop) Show Component: */}
           {width >= 992 &&
             <Col span={6}>
-              <CategoriesMultiColumn />
+              <CategoriesMultiColumn width />
             </Col>
           }
 
@@ -91,7 +91,7 @@ const Home = () => {
           {/* if Screen Width <= 991px (Mobile) Show Component: */}
           {width <= 991 &&
             <Col span={24}>
-              <CategoriesMultiColumn />
+              <CategoriesMultiColumn width />
             </Col>
           }
 
@@ -113,7 +113,6 @@ const Home = () => {
             </Col>
           }
 
-
         </Row>
       </div>
 
@@ -124,7 +123,7 @@ const Home = () => {
       <div className="shipProductsBanner--section product--section">
         <Row className="rounded-10 shadow-y-2 bg-white section--row" gutter={{ xs: 0, lg: 16 }}>
           <Col className="pl-0" span={10}>
-            <ShipProductsBanner />
+            <ShipProductsBanner width />
           </Col>
           <Col className="pr-0" span={14}>
             <Row className="h-100 productsMultiColumnVertical--items" justify="space-around">
@@ -135,6 +134,7 @@ const Home = () => {
                   product={product}
                   detailIcon="company"
                   grid={productsMultiColumnVertical_items}
+                  width
                 />);
               })}
 
@@ -143,7 +143,7 @@ const Home = () => {
                 skeleton = {true}
                 skeltonNumbers = {width >= 992 ? 3 : 2}
                 grid={productsMultiColumnVertical_items}
-                width = { width }
+                width
               />
               }
             </Row>
@@ -152,7 +152,7 @@ const Home = () => {
       </div>
 
       <div className="topRankingProducts--section">
-        <TopRankingProducts />
+        <TopRankingProducts width />
       </div>
 
       <div className="PremiumFactories--section">
