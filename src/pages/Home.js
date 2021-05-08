@@ -152,7 +152,7 @@ const Home = () => {
       </div>
 
       <div className="topRankingProducts--section">
-        <TopRankingProducts width />
+        <TopRankingProducts width = { width } />
       </div>
 
       <div className="PremiumFactories--section">

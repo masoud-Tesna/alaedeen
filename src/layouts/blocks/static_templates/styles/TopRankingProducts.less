@@ -1,14 +1,48 @@
 .topRankingProducts--container {
-  padding: 0 80px;
+  padding: 0 8px;
   .topRankingProducts--caption__content {
     padding: 0 10px;
     margin-bottom: 1rem;
   }
   .topRankingProducts--content {
     .topRankingProducts--items {
+
+
+      /*new*/
+      .topRankingProducts--item__polygon {
+        img {
+          width: 19px;
+        }
+      }
+
+
       .topRankingProducts--item {
-        &:not(:last-child) {
-          border-right: 0.5px solid #BCBCBC !important;
+        .ProductsMultiColumnHorizontal--container {
+          .ProductsMultiColumnHorizontal--content {
+            .ProductsMultiColumnHorizontal--content__title {
+              height: 50px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .topRankingProducts--container {
+    padding: 0 80px;
+    .topRankingProducts--caption__content {
+      padding: 0 10px;
+      margin-bottom: 1rem;
+    }
+    .topRankingProducts--content {
+      .topRankingProducts--items {
+
+        .topRankingProducts--item {
+          &:not(:last-child) {
+            border-right: 0.5px solid #BCBCBC !important;
+          }
         }
       }
     }
