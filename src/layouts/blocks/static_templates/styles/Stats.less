@@ -1,7 +1,28 @@
 .stats--container {
-  height: 110px;
   .stats--content {
     background-image: url(../../../../assets/images/statsBg.jpg);
     background-size: cover;
+    .stats--content__title {
+      font-size: 1.5rem;
+    }
+    .stats--content__value {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .stats--container {
+    height: 110px;
+    .stats--content {
+      background-image: url(../../../../assets/images/statsBg.jpg);
+      background-size: cover;
+      .stats--content__title {
+        font-size: 2.25rem;
+      }
+      .stats--content__value {
+        font-size: 4rem;
+      }
+    }
   }
 }
