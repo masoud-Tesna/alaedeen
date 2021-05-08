@@ -38,9 +38,7 @@ const Home = () => {
 
   let productsMultiColumnVertical_items = { span: 8 };
 
-  if (width >= 992) {
-    productsMultiColumnVertical_items = { span: 8 };
-  }else {
+  if (width <= 991) {
     productsMultiColumnVertical_items = { span: 12 };
   }
 
@@ -50,10 +48,10 @@ const Home = () => {
 
     const lang_code = 'en';
 
-    let items_per_page = 2;
+    let items_per_page = 3;
 
-    if (width >= 992) {
-      items_per_page = 3;
+    if (width <= 991) {
+      items_per_page = 2;
     }
 
     const url = `https://hornb2b.com/products-api/?items_per_page=${items_per_page}&company_id=181&lang_code=${lang_code}`;
