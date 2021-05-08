@@ -1,5 +1,8 @@
 import React from 'react';
 
+// import Custom Hooks:
+import { useShowImage } from "../../../functions";
+
 // import style file:
 import './styles/ProductsMultiColumnHorizontal.less';
 
@@ -10,7 +13,6 @@ import polygon_3 from '../../../assets/images/polygon3.png';
 
 // import ANT Design Components used:
 import { Col, Row, Space } from "antd";
-import { useShowImage } from "../../../functions/useShowImage";
 
 const ProductsMultiColumnHorizontal = (props) => {
 

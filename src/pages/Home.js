@@ -36,6 +36,14 @@ const Home = () => {
 
   const { width } = useWindowSize();
 
+  let productsMultiColumnVertical_items = { span: 8 };
+
+  if (width >= 992) {
+    productsMultiColumnVertical_items = { span: 8 };
+  }else {
+    productsMultiColumnVertical_items = { span: 12 };
+  }
+
   const getProductLists = () => {
 
     setLoad(true);
@@ -116,7 +124,7 @@ const Home = () => {
       </div>
 
       <div className="shipProductsBanner--section product--section">
-        <Row className="rounded-10 shadow-y-2 bg-white section--row" gutter={16}>
+        <Row className="rounded-10 shadow-y-2 bg-white section--row" gutter={{ xs: 0, lg: 16 }}>
           <Col className="pl-0" span={10}>
             <ShipProductsBanner />
           </Col>
@@ -128,7 +136,7 @@ const Home = () => {
                   key = { product.product_id }
                   product={product}
                   detailIcon="company"
-                  grid={{ span: 8 }}
+                  grid={productsMultiColumnVertical_items}
                 />);
               })}
 

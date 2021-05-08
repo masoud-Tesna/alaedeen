@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
 
+// import Custom Hooks:
+import { useWindowSize, useShowImage } from "../../../functions";
+
 // import style file:
 import './styles/ProductsMultiColumnVertical.less';
 
@@ -11,9 +14,9 @@ import store_1 from '../../../assets/images/store-icon/1.png';
 import store_2 from '../../../assets/images/store-icon/2.png';
 import store_3 from '../../../assets/images/store-icon/3.png';
 
-import { useShowImage } from "../../../functions/useShowImage";
-
 const ProductsMultiColumnVertical = (props) => {
+
+  const { width } = useWindowSize();
 
   const { product } = props;
   
@@ -26,35 +29,35 @@ const ProductsMultiColumnVertical = (props) => {
 
   return (
     <Col className={ `productsMultiColumnVertical--item` } {...props.grid}>
-      <Row className={ `h-100 ${props.className}` } justify="center">
+      <Row className={ `h-100 pb-3 pb-lg-0 ${props.className}` } justify="center">
         <Col span={24} className="d-flex align-items-center justify-content-center productsMultiColumnVertical--item__image">
           {useShowImage(product.main_pair.detailed.image_path, product.product)}
         </Col>
 
-        <Col span={24} className="px-4 text-47 vv-font-size-1-8 text-truncate productsMultiColumnVertical--item__title">
+        <Col span={24} className="d-none d-lg-block px-4 text-47 vv-font-size-1-8 text-truncate productsMultiColumnVertical--item__title">
           { product.product }
         </Col>
 
         {productPrice != 0.000 &&
-          <Col span={24} className="px-4 productsMultiColumnVertical--item__price">
-            <span className="vv-font-size-1-9 text-primary font-weight-bold">${ productPrice } </span>
+          <Col span={24} className="px-2 px-lg-4 productsMultiColumnVertical--item__price">
+            <span className={ `${ width >= 992 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }>${ productPrice } </span>
             { productListPrice != 0.00 &&
-            <span className="vv-font-size-1-9 text-primary font-weight-bold"> - ${productListPrice}</span>
+            <span className={ `${ width >= 992 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }> - ${productListPrice}</span>
             }
             {product.quantity_unit &&
-              <span className="vv-font-size-1-6 text-92"> / { product.quantity_unit }</span>
+              <span className="d-none d-lg-inline vv-font-size-1-6 text-92"> / { product.quantity_unit }</span>
             }
           </Col>
         }
 
         {(product.min_qty && product.quantity_unit) &&
-          <Col span={24} className="px-4 productsMultiColumnVertical--item__quantity">
-            <span className="vv-font-size-1-4 text-47">{ product.min_qty } { product.quantity_unit }</span>
-            <span className="vv-font-size-1-2rem text-92"> (MOQ)</span>
+          <Col span={24} className="px-2 px-lg-4 productsMultiColumnVertical--item__quantity">
+            <span className={ `${ width >= 992 ? 'vv-font-size-1-4' : 'vv-font-size-1-2rem' } text-47` }>{ product.min_qty } { product.quantity_unit }</span>
+            <span className={` ${ width >= 992 ? 'vv-font-size-1-2rem' : 'vv-font-size-1' } text-92 `}> (MOQ)</span>
           </Col>
         }
 
-        <Col span={24} className="px-4 mb-2 align-self-end productsMultiColumnVertical--item__location-detailIcon">
+        <Col span={24} className="d-none d-lg-block px-4 mb-2 align-self-end productsMultiColumnVertical--item__location-detailIcon">
           <Row justify="space-between" align="bottom">
             <Col>
               <i className="fal fa-map-marker-alt text-red-a0 display-5 mr-3" />
@@ -68,6 +71,7 @@ const ProductsMultiColumnVertical = (props) => {
             </Col>
           </Row>
         </Col>
+
       </Row>
     </Col>
   );

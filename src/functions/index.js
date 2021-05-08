@@ -1,4 +1,7 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+
+// import ANT Design Components Used:
+import { Image } from "antd";
 
 function useWindowSize() {
   // Initialize state with undefined width/height so server and client renders match
@@ -31,4 +34,16 @@ function useWindowSize() {
   return windowSize;
 }
 
-export { useWindowSize }
+function useShowImage(image, alt, width, height) {
+  useEffect(() => {
+    const test = 'test';
+  }, []);
+
+  return (
+    <>
+      <img src={ image } alt={ alt }/>
+    </>
+  );
+}
+
+export { useWindowSize, useShowImage }
