@@ -156,7 +156,7 @@ const Home = () => {
       </div>
 
       <div className="PremiumFactories--section">
-        <PremiumFactories />
+        <PremiumFactories width = { width } />
       </div>
 
       <div className="recommended--section">
