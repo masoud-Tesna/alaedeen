@@ -105,7 +105,7 @@ const TopRankingProducts = (props) => {
                     {loadCarpets &&
                     <SkeletonMultiColumnHorizontal
                       skeleton = {true}
-                      skeltonNumbers = {4}
+                      skeltonNumbers = {3}
                       className="SkeletonMultiColumnHorizontal"
                     />
                     }
@@ -134,7 +134,7 @@ const TopRankingProducts = (props) => {
                     {loadHandmadeCarpet &&
                     <SkeletonMultiColumnHorizontal
                       skeleton = {true}
-                      skeltonNumbers = {4}
+                      skeltonNumbers = {3}
                       className="SkeletonMultiColumnHorizontal"
                     />
                     }
@@ -163,7 +163,7 @@ const TopRankingProducts = (props) => {
                     {loadBabyCarpet &&
                     <SkeletonMultiColumnHorizontal
                       skeleton = {true}
-                      skeltonNumbers = {4}
+                      skeltonNumbers = {3}
                       className="SkeletonMultiColumnHorizontal"
                     />
                     }
@@ -212,8 +212,9 @@ const TopRankingProducts = (props) => {
                         {loadCarpets &&
                         <SkeletonMultiColumnHorizontal
                           skeleton = {true}
-                          skeltonNumbers = {4}
+                          skeltonNumbers = {3}
                           className="SkeletonMultiColumnHorizontal"
+                          Xs
                         />
                         }
                       </Row>
@@ -242,8 +243,9 @@ const TopRankingProducts = (props) => {
                         {loadHandmadeCarpet &&
                         <SkeletonMultiColumnHorizontal
                           skeleton = {true}
-                          skeltonNumbers = {4}
+                          skeltonNumbers = {3}
                           className="SkeletonMultiColumnHorizontal"
+                          Xs
                         />
                         }
                       </Row>
@@ -272,8 +274,9 @@ const TopRankingProducts = (props) => {
                         {loadBabyCarpet &&
                         <SkeletonMultiColumnHorizontal
                           skeleton = {true}
-                          skeltonNumbers = {4}
+                          skeltonNumbers = {3}
                           className="SkeletonMultiColumnHorizontal"
+                          Xs
                         />
                         }
                       </Row>
