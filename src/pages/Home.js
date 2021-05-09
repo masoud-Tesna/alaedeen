@@ -164,7 +164,7 @@ const Home = () => {
       </div>
 
       <div className="visitsProducts--section">
-        <RecentlyProductsView />
+        <RecentlyProductsView width = { width } />
       </div>
 
       <div className="topBrands--section">

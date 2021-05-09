@@ -14,11 +14,13 @@ import store_1 from '../../../assets/images/store-icon/1.png';
 import store_2 from '../../../assets/images/store-icon/2.png';
 import store_3 from '../../../assets/images/store-icon/3.png';
 
+
 const ProductsMultiColumnVertical = (props) => {
 
   const { width } = useWindowSize();
 
   const { allDetails } = props;
+  const { swiper } = props;
 
   console.log(allDetails)
 
@@ -28,18 +30,23 @@ const ProductsMultiColumnVertical = (props) => {
 
   const productPrice = parseFloat(product.price).toFixed(2);
   const productListPrice = parseFloat(product.list_price).toFixed(2);
+  const productImage = useShowImage(product.main_pair.detailed.image_path, product.product);
 
   const manufacturing_country = product.manufacturing_country;
 
   return (
     <Col className={ `productsMultiColumnVertical--item` } {...props.grid}>
       <Row className={ `h-100 pb-3 pb-lg-0 ${props.className}` } justify="center">
-        <Col span={24} className="d-flex align-items-center justify-content-center productsMultiColumnVertical--item__image">
-          {useShowImage(product.main_pair.detailed.image_path, product.product)}
-        </Col>
+        <Col className="align-self-start">
+          <Row>
+            <Col span={24} className="d-flex align-items-center justify-content-center productsMultiColumnVertical--item__image">
+              {productImage}
+            </Col>
 
-        <Col span={24} className={ `${ !allDetails && 'd-none d-lg-block' } text-47 vv-font-size-1-8 text-truncate productsMultiColumnVertical--item__title` }>
-          { product.product }
+            <Col span={24} className={ `${ !allDetails && 'd-none d-lg-block' } text-47 vv-font-size-1-8 text-truncate productsMultiColumnVertical--item__title` }>
+              { product.product }
+            </Col>
+          </Row>
         </Col>
 
         {productPrice != 0.000 &&

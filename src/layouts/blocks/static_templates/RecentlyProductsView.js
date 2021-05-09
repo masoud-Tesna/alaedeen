@@ -2,18 +2,26 @@ import React, { useEffect, useState } from 'react';
 
 // import Style File:
 import './styles/RecommendedProducts.less';
+import 'swiper/swiper.less';
 
 // import ANT Design Components Used:
 import { Button, Col, Row } from "antd";
 
 // import Another Components Used:
 import axios from 'axios';
+import SwiperCore, { Autoplay } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+
 
 import ProductsMultiColumnVertical from "../product_list_templates/ProductsMultiColumnVertical";
 
 import SkeletonMultiColumnVertical from "../product_list_templates/SkeletonMultiColumnVertical";
 
-const RecentlyProductsView = () => {
+SwiperCore.use([Autoplay ]);
+
+const RecentlyProductsView = (props) => {
+
+  const { width } = props;
 
   const [load, setLoad] = useState(true);
 
@@ -49,24 +57,49 @@ const RecentlyProductsView = () => {
       <Row>
         <Col className="recommendedProducts--caption__content" span={24}>
           <Row justify="space-between">
-            <Col className="text-33 text-uppercase vv-font-size-3 font-weight-bold">
+            <Col className={ `text-33 text-uppercase ${ width >= 992 ? 'vv-font-size-3' : 'vv-font-size-1-6' } font-weight-bold` }>
               Your visits
             </Col>
           </Row>
         </Col>
         <Col span={24}>
           <div className="h-100 productsMultiColumnVertical--container">
-            <Row className="h-100 productsMultiColumnVertical--items row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5" justify="space-around" gutter={16}>
+            <Row className={ `h-100 productsMultiColumnVertical--items ${width <= 991 && 'swiperProductShow'} row-cols-12 row-cols-lg-4 row-cols-xl-5` } justify="space-around" gutter={[16, 20]}>
 
-              {getProducts.map((product, i) => {
-                return (
-                  <ProductsMultiColumnVertical
-                    key = { i }
-                    className="bg-white rounded-10 shadow-y-2"
-                    product={product}
-                  />
-                );
-              })}
+              {width >= 992 ?
+                <>
+                  {getProducts.map((product, i) => {
+                    return (
+                      <ProductsMultiColumnVertical
+                        key = { i }
+                        className="bg-white rounded-10 shadow-y-2"
+                        product={product}
+                        allDetails
+                      />
+                    );
+                  })}
+                </> :
+                <>
+                  <Swiper
+                    slidesPerView={2}
+                    autoplay={{delay: 5000}}
+                  >
+                    {getProducts.map((product, i) => {
+                      return (
+                        <SwiperSlide>
+                          <ProductsMultiColumnVertical
+                            key = { i }
+                            className="bg-white rounded-10 shadow-y-2"
+                            product={product}
+                            allDetails
+                            swiper
+                          />
+                        </SwiperSlide>
+                      );
+                    })}
+                  </Swiper>
+                </>
+              }
 
               {load &&
                 <SkeletonMultiColumnVertical
