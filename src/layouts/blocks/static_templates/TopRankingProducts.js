@@ -82,7 +82,7 @@ const TopRankingProducts = (props) => {
         <Col className="rounded-10 shadow-y-2 bg-white p px-3 px-0 py-lg-5 topRankingProducts--content" span={24}>
 
           {width >= 992 ?
-            <Row className="topRankingProducts--items d-none">
+            <Row className="topRankingProducts--items">
               <Col className="topRankingProducts--item px-4" span={8}>
                 <div className="ProductsMultiColumnHorizontal--container">
                   <Row className="ProductsMultiColumnHorizontal--content row-cols-1">
