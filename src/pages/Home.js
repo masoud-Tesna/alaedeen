@@ -171,7 +171,7 @@ const Home = () => {
         <TopBrands width = { width } />
       </div>
 
-      <div className="whatHorn--section">
+      <div className="d-none d-lg-block whatHorn--section">
         <WhatHorn />
       </div>
     </>
