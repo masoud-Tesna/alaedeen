@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import { useLocation } from 'react-router-dom';
+
 // import ANT Design Components Used:
 import { Image } from "antd";
 
@@ -44,6 +46,10 @@ function useShowImage(image, alt, width, height) {
       <img src={ image } alt={ alt }/>
     </>
   );
+}
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
 }
 
 export { useWindowSize, useShowImage }
