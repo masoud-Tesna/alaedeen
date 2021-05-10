@@ -64,7 +64,7 @@ const RecentlyProductsView = (props) => {
         </Col>
         <Col span={24}>
           <div className="h-100 productsMultiColumnVertical--container">
-            <Row className={ `h-100 productsMultiColumnVertical--items ${width <= 991 && 'swiperProductShow'} row-cols-12 row-cols-lg-4 row-cols-xl-5` } justify="space-around" gutter={[16, 20]}>
+            <Row className={ `h-100 productsMultiColumnVertical--items ${width <= 991 && 'swiperProductShow'} row-cols-12 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5` } justify="space-around" gutter={[16, 20]}>
 
               {width >= 992 ?
                 <>
@@ -82,24 +82,29 @@ const RecentlyProductsView = (props) => {
                 <>
                   <Swiper
                     slidesPerView={2}
-                    autoplay={{delay: 5000}}
+                    autoplay={{delay: 3000}}
+
                   >
                     {getProducts.map((product, i) => {
                       return (
-                        <SwiperSlide>
-                          <ProductsMultiColumnVertical
-                            key = { i }
-                            className="bg-white rounded-10 shadow-y-2"
-                            product={product}
-                            allDetails
-                            swiper
-                          />
-                        </SwiperSlide>
+                        <Col>
+                          <SwiperSlide>
+                            <ProductsMultiColumnVertical
+                              key = { i }
+                              className="bg-white rounded-10 shadow-y-2"
+                              product={product}
+                              allDetails
+                              swiper
+                            />
+                          </SwiperSlide>
+                        </Col>
                       );
                     })}
                   </Swiper>
                 </>
               }
+
+
 
               {load &&
                 <SkeletonMultiColumnVertical
