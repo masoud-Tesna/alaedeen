@@ -93,7 +93,7 @@ const TopBrands = (props) => {
                 <ScrollContainer className="text-select-none d-flex topBrands--scrollContainer">
                   {topBrands.map((brand, index) => {
                     return (
-                      <div className="d-inline topBrandsScroll--item__content">
+                      <div className="d-inline topBrandsScroll--item__content" key={index}>
                         <Row className="topBrandsScroll--item" justify="center">
                           <div className="d-flex align-items-end justify-content-center w-100 topBrands--item__image">
                             {brand.logo ?

@@ -78,23 +78,31 @@ const RecentlyProductsView = (props) => {
                       />
                     );
                   })}
+
+                  {!load &&
+                  <SkeletonMultiColumnVertical
+                    className = "bg-white rounded-10 shadow-y-2"
+                    skeleton = {true}
+                    skeltonNumbers = {5}
+                  />
+                  }
+
                 </> :
                 <>
                   <Swiper
                     slidesPerView={2}
-                    autoplay={{delay: 3000}}
-
+                    /*autoplay={{delay: 3000}}*/
                   >
                     {getProducts.map((product, i) => {
                       return (
-                        <Col>
+                        <Col key = { i }>
                           <SwiperSlide>
                             <ProductsMultiColumnVertical
-                              key = { i }
                               className="bg-white rounded-10 shadow-y-2"
                               product={product}
                               allDetails
                               swiper
+                              load = { load }
                             />
                           </SwiperSlide>
                         </Col>
@@ -104,15 +112,6 @@ const RecentlyProductsView = (props) => {
                 </>
               }
 
-
-
-              {load &&
-                <SkeletonMultiColumnVertical
-                  className = "bg-white rounded-10 shadow-y-2"
-                  skeleton = {true}
-                  skeltonNumbers = {5}
-                />
-              }
             </Row>
           </div>
         </Col>

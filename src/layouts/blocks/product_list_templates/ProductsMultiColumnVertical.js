@@ -7,7 +7,7 @@ import { useWindowSize, useShowImage } from "../../../functions";
 import './styles/ProductsMultiColumnVertical.less';
 
 // import Ant Design Components:
-import { Col, Row } from "antd";
+import { Col, Row, Skeleton } from "antd";
 
 // import store icon:
 import store_1 from '../../../assets/images/store-icon/1.png';
@@ -21,8 +21,12 @@ const ProductsMultiColumnVertical = (props) => {
 
   const { allDetails } = props;
   const { swiper } = props;
+  const { load } = props;
 
-  console.log(allDetails)
+  let paragraph_rows = { rows: 2 };
+  if (width <= 991) {
+    paragraph_rows = { rows: 1 };
+  }
 
   const { product } = props;
   
@@ -33,6 +37,21 @@ const ProductsMultiColumnVertical = (props) => {
   const productImage = useShowImage(product.main_pair.detailed.image_path, product.product);
 
   const manufacturing_country = product.manufacturing_country;
+
+  if (swiper && load) {
+    return (
+      <Col className={ `productsMultiColumnVertical--item` } {...props.grid} span={24}>
+        <Row className={ `h-100 ${props.className}` } justify="center">
+          <Col span={24} className="d-flex align-items-center justify-content-center productsMultiColumnVertical--item__image">
+            <Skeleton.Image active={true} className="w-100 h-100 border-bottom border-w-05 rounded-top-10" />
+          </Col>
+          <Col span={24} className="px-4 text-47 vv-font-size-1-8 text-truncate mb-3 productsMultiColumnVertical--item__title">
+            <Skeleton active={true} paragraph={ paragraph_rows } />
+          </Col>
+        </Row>
+      </Col>
+    );
+  }
 
   return (
     <Col className={ `productsMultiColumnVertical--item` } {...props.grid}>
