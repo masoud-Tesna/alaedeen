@@ -44,7 +44,7 @@ const SkeletonMultiColumnHorizontal = (props) => {
   const [skeletonNumbers] = useState(props.skeltonNumbers);
 
   let RowsSkeleton = [];
-  for (let i = 0; i < skeletonNumbers; i++) {
+  for (let i = 1; i <= skeletonNumbers; i++) {
     RowsSkeleton.push(<SkeletonGrid {...props} key={i} />);
   }
   return <>{RowsSkeleton}</>;

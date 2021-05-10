@@ -44,7 +44,6 @@ const SkeletonMultiColumnVertical = (props) => {
   for (let i = 1; i <= skeletonNumbers; i++) {
     RowsSkeleton.push(<SkeletonGrid {...props} key={i+1} />);
   }
-  console.log(RowsSkeleton);
   return <>{RowsSkeleton}</>;
 };
 
