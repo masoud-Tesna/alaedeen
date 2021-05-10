@@ -1,0 +1,1 @@
+export { SiteFooter } from './default/SiteFooter';
