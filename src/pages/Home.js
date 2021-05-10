@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useWindowSize } from '../functions';
 
 // import Style LESS File:
-import './home.less';
+import './styles/Home.less';
 
 // import Design:
 import { Button, Col, Row } from "antd";

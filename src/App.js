@@ -14,7 +14,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Layout } from 'antd';
 
 // Pages:
-import { Home } from "./pages";
+import { Home, Factories } from "./pages";
 
 import googlePlay from './assets/images/googlePlay.svg';
 import appleStore from './assets/images/appleStore.svg';
@@ -40,6 +40,7 @@ function App() {
             <Switch>
               <Route path="/home" component={Home} />
               <Route exact path="/" component={Home} />
+              <Route exact path="/factories" component={Factories} />
             </Switch>
           </div>
         </Content>
