@@ -1,11 +1,10 @@
 .topBrands--container {
-  padding: 0 80px;
+  padding: 0 8px;
   .topBrands--caption__content {
     padding: 0 10px;
     margin-bottom: 1rem;
   }
   .topBrands--items {
-    padding: 0 20px;
     .topBrands--item {
       .topBrands--item__image {
         height: 158px;
@@ -19,6 +18,50 @@
           line-height: 1.2;
         }
       }
+    }
+
+    .topBrands--scroll {
+      padding: 9px 16px;
+      .topBrands--scrollContainer {
+        margin-left: -16px;
+        margin-right: -16px;
+        grid-row-gap: 0;
+        row-gap: 0;
+        cursor: grab;
+
+        .topBrandsScroll--item__content {
+          padding: 0 8px;
+
+
+          .topBrandsScroll--item {
+            width: 90px;
+
+            .topBrands--item__image {
+              height: 66px;
+
+              img {
+                max-width: 100%;
+                max-height: 100%;
+              }
+
+              i {
+                font-size: 5rem;
+                font-weight: 300;
+                line-height: 1.2;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .topBrands--container {
+    padding: 0 80px;
+    .topBrands--items {
+      padding: 0 20px;
     }
   }
 }
