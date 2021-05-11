@@ -1019,7 +1019,24 @@ const Factories = () => {
                       }
                     </Col>
                     <Col className="factories--dataContainer">
-test
+                      <Row gutter={[0,8]}>
+                        <Col span={24}>
+                          <Row justify={"space-between"}>
+                            <Col>
+
+                            </Col>
+                            <Col>
+
+                            </Col>
+                          </Row>
+                        </Col>
+                        <Col span={24}>
+
+                        </Col>
+                        <Col span={24}>
+
+                        </Col>
+                      </Row>
                     </Col>
                   </Row>
                 </Col>
