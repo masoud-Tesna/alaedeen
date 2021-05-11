@@ -4,7 +4,7 @@ import React from 'react';
 import './styles/Factories.less';
 
 // import ANT Design Components Used:
-import { Col, Row, Skeleton, Space } from "antd";
+import { Button, Col, Row, Skeleton, Space } from "antd";
 
 // import factories icon:
 import aghigh from '../assets/images/store-icon/1.png';
@@ -16,6 +16,9 @@ import topSectionBg from '../assets/images/factoriezTopSectionBg.png';
 import factoryImage_1 from '../assets/images/factoryImages/1.png';
 import factoryImage_2 from '../assets/images/factoryImages/2.png';
 import factoryImage_3 from '../assets/images/factoryImages/3.png';
+// import Verified
+import verifiedIcon from '../assets/images/verified.png';
+import { CommentOutlined } from "@ant-design/icons";
 
 // data for show:
 const factoriesData = [
@@ -1005,9 +1008,9 @@ const Factories = () => {
               return (
                 <Col span={24} key = { factoryData.factory_id } className="bg-white rounded-10 p-3 factories--item">
                   <Row gutter={16}>
-                    <Col className="factories--imageContainer">
+                    <Col flex='400px' className="factories--imageContainer">
                       {factoryData.logo === 'farrahi' &&
-                        <img src={ factoryImage_1 } alt="farrahi"/>
+                      <img src={ factoryImage_1 } alt="farrahi"/>
                       }
 
                       {factoryData.logo === 'aghigh' &&
@@ -1018,15 +1021,47 @@ const Factories = () => {
                       <img src={ factoryImage_3 } alt="farrahi"/>
                       }
                     </Col>
-                    <Col className="factories--dataContainer">
+                    <Col flex="auto" className="factories--dataContainer">
                       <Row gutter={[0,8]}>
                         <Col span={24}>
                           <Row justify={"space-between"}>
                             <Col>
+                              <Row gutter={16}>
+                                <Col className="factories--iconContainer">
+                                  {factoryData.logo === 'farrahi' &&
+                                  <img src={ farrahi } alt="farrahi"/>
+                                  }
 
+                                  {factoryData.logo === 'aghigh' &&
+                                  <img src={ aghigh } alt="farrahi"/>
+                                  }
+
+                                  {factoryData.logo === 'savin' &&
+                                  <img src={ savin } alt="farrahi"/>
+                                  }
+                                </Col>
+                                <Col>
+                                  <Row className="h-100">
+                                    <Col span={24} className="vv-font-size-1-6 text-black font-weight-600">
+                                      { factoryData.factory }
+                                    </Col>
+                                    <Col span={24} className="mt-2">
+                                      <img src={ verifiedIcon } alt="verified"/>
+                                    </Col>
+                                  </Row>
+                                </Col>
+                              </Row>
                             </Col>
-                            <Col>
+                            <Col className="text-right factories--btnContainer">
+                              <Space size={"middle"}>
+                                <Button type="primary" icon={<CommentOutlined className="vv-font-size-1-7" />} className="p-0 bg-primary-darken border-primary-darken factories--btn__chat" size={"large"}>
+                                  Chat Now
+                                </Button>
 
+                                <Button icon={<i className="far fa-address-book vv-font-size-1-7" />} className="p-0 text-primary-darken border-0 factories--btn__contacts" size={"large"}>
+                                  Contacts
+                                </Button>
+                              </Space>
                             </Col>
                           </Row>
                         </Col>

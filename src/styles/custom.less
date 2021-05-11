@@ -3807,14 +3807,24 @@ button.bg-primary:focus {
     background-color: darken(@primary-color, 10%) !important;
 }
 
-.bg-primary-10 {
+.bg-primary-darken {
     background-color: darken(@primary-color, 10%) !important;
 }
 
-a.bg-primary-10:hover, a.bg-primary-10:focus,
-button.bg-primary-10:hover,
-button.bg-primary-10:focus {
+a.bg-primary-darken:hover, a.bg-primary-darken:focus,
+button.bg-primary-darken:hover,
+button.bg-primary-darken:focus {
     background-color: darken(@primary-color, 20%) !important;
+}
+
+.bg-primary-lighten {
+    background-color: lighten(@primary-color, 10%) !important;
+}
+
+a.bg-primary-lighten:hover, a.bg-primary-lighten:focus,
+button.bg-primary-lighten:hover,
+button.bg-primary-lighten:focus {
+    background-color: lighten(@primary-color, 20%) !important;
 }
 
 .bg-secondary {
@@ -3886,7 +3896,11 @@ align-moz-middle {
 }
 
 .border-primary-darken {
-    border-color: darken(@primary-color, 20%) !important;
+    border-color: darken(@primary-color, 10%) !important;
+}
+
+.border-primary-lighten {
+    border-color: lighten(@primary-color, 10%) !important;
 }
 
 .border-secondary-2 {
@@ -5359,7 +5373,19 @@ a.text-secondary:hover, a.text-secondary:focus {
 }
 
 .text-primary-darken {
+    color: darken(@primary-color, 10%) !important;
+}
+
+a.text-primary-darken:hover, a.text-primary-darken:focus {
     color: darken(@primary-color, 20%) !important;
+}
+
+.text-primary-lighten {
+    color: darken(@primary-color, 10%) !important;
+}
+
+a.text-primary-lighten:hover, a.text-primary-lighten:focus {
+    color: lighten(@primary-color, 20%) !important;
 }
 
 .text-secondary-2 {

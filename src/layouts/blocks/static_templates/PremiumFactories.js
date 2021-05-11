@@ -18,12 +18,8 @@ import factoryImage_3 from '../../../assets/images/factoryImages/3.png';
 
 // import Verified
 import verifiedIcon from '../../../assets/images/verified.png';
+
 import TextTruncate from 'react-text-truncate';
-import ProductsMultiColumnHorizontal from "../product_list_templates/ProductsMultiColumnHorizontal";
-import SkeletonMultiColumnHorizontal from "../product_list_templates/SkeletonMultiColumnHorizontal";
-import polygon_1 from "../../../assets/images/polygon1.png";
-import polygon_2 from "../../../assets/images/polygon2.png";
-import polygon_3 from "../../../assets/images/polygon3.png";
 
 const PremiumFactories = (props) => {
   const { width } = props;
