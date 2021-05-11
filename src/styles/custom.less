@@ -4220,6 +4220,8 @@ button.bg-dc:focus {
     box-shadow: 0 0 0.5rem 0.13rem rgba(0,0,0,0.15) !important;
 }
 
+
+
 .shadow-lg-y {
     box-shadow: 0 0 3rem rgba(0, 0, 0, 0.175) !important;
 }
@@ -4259,6 +4261,14 @@ button.bg-dc:focus {
 
 .shadow-circle {
     box-shadow: 0 0 1rem rgba(0,0,0,0.38) !important;
+}
+
+.topShadow { --t:-100%; }
+.rightShadow { --r:-100%;}
+.bottomShadow { --b:-100%; }
+.leftShadow { --l:-100%;}
+.clipShadow {
+    clip-path: inset(var(--t,0) var(--r,0) var(--b,0) var(--l,0));
 }
 /* /Shadow Custom */
 

@@ -11,7 +11,7 @@ import { useWindowSize } from '../../../functions';
 import appleStore from "../../../assets/images/appleStore.svg";
 import googlePlay from "../../../assets/images/googlePlay.svg";
 
-const SiteFooter = () => {
+const DefaultFooter = () => {
 
   const { width } = useWindowSize();
 
@@ -180,4 +180,4 @@ const SiteFooter = () => {
   );
 };
 
-export { SiteFooter };
+export { DefaultFooter };
