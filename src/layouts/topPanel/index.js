@@ -23,7 +23,7 @@ const TopPanel = () => {
     return <TopPanelWhitBackIcon />
   }
 
-  // if get default Top panel:
+  // if get default Header:
   return <DefaultTopPanel />
 };
 

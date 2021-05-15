@@ -18,11 +18,11 @@ const Header = () => {
     setPathName(location.pathname);
   }, [location]);
 
-  // Check pathName For Set Default Top Panel Or Not:
-  if (pathName === '/not-default') {
+  // Check pathName For Set Default Header Or Not:
+  if (pathName === '/factories') {
     return (
       <>
-        Not Default Header
+
       </>
     );
   }
