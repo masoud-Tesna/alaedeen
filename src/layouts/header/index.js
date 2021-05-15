@@ -2,10 +2,16 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
+// import Custom Hooks:
+import { useWindowSize } from '../../functions';
+
 // Layouts:
 import DefaultHeader from "./default/DefaultHeader";
 
 const Header = () => {
+
+  // Get Width Window:
+  const { width } = useWindowSize();
 
   // Get Location:
   let location = useLocation();
@@ -19,7 +25,7 @@ const Header = () => {
   }, [location]);
 
   // Check pathName For Set Default Header Or Not:
-  if (pathName === '/factories') {
+  if (pathName === '/factories' && width <= 991) {
     return (
       <>
 
