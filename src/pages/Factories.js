@@ -1027,15 +1027,27 @@ const Factories = () => {
 
   const { pathname } = useLocation();
 
-  const [items, setItems] = useState(factoriesData);
-  const [hasMore, setHasMore] = useState(true);
+  const factory_param_id = useQuery().get('factory');
+  const [factoryDataInParam, setFactoryDataInParam] = useState([]);
 
-  const factory_id = useQuery().get('factory');
-  console.log(factory_id);
+  if (factory_param_id) {
+    {
+      factoriesData.map((factoryData, i) => {
+        if (factoryData.factory_id == factory_param_id) {
+          setFactoryDataInParam([factoryData]);
+          factoriesData.splice(i, 1);
+        }
+      });
+    }
+  }
+
+
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
+  console.log(factoryDataInParam);
 
   return (
     <div className="bg-footer factories--pageSection">
@@ -1072,10 +1084,121 @@ const Factories = () => {
 
         <Col span={24} className="px-6 factories--bottomSection">
           <Row gutter={[0, 50]} className="factories--items">
+
+            {factoryDataInParam && factory_param_id &&
+              <>
+                {factoryDataInParam.map((data, k) => {
+                  return (
+                    <>
+                      <Col span={24} key = { data.factory_id } className="bg-f7 rounded-10 p-3 factories--item byParam">
+                        <Row gutter={16} className="h-100">
+                          <Col flex='400px' className="h-100 factories--imageContainer">
+                            {data.logo === 'farrahi' &&
+                              <img src={ factoryImage_1 } alt="farrahi"/>
+                            }
+
+                            {data.logo === 'aghigh' &&
+                              <img src={ factoryImage_2 } alt="farrahi"/>
+                            }
+
+                            {data.logo === 'savin' &&
+                              <img src={ factoryImage_3 } alt="farrahi"/>
+                            }
+                          </Col>
+                          <Col flex="1 1" className="factories--dataContainer">
+                            <Row gutter={[0,8]}>
+                              <Col className="factories--data__topSection" span={24}>
+                                <Row justify={"space-between"}>
+                                  <Col>
+                                    <Row gutter={16}>
+                                      <Col className="factories--iconContainer">
+                                        {data.logo === 'farrahi' &&
+                                        <img src={ farrahi } alt="farrahi"/>
+                                        }
+
+                                        {data.logo === 'aghigh' &&
+                                        <img src={ aghigh } alt="farrahi"/>
+                                        }
+
+                                        {data.logo === 'savin' &&
+                                        <img src={ savin } alt="farrahi"/>
+                                        }
+                                      </Col>
+                                      <Col>
+                                        <Row className="h-100">
+                                          <Col span={24} className="vv-font-size-1-6 text-black font-weight-600">
+                                            { data.factory }
+                                          </Col>
+                                          <Col span={24} className="mt-2">
+                                            <img src={ verifiedIcon } alt="verified"/>
+                                          </Col>
+                                        </Row>
+                                      </Col>
+                                    </Row>
+                                  </Col>
+                                  <Col className="text-right factories--btnContainer">
+                                    <Space size={"middle"}>
+                                      <Button type="primary" icon={<CommentOutlined className="vv-font-size-1-7" />} className="p-0 bg-primary-darken border-primary-darken factories--btn__chat" size={"large"}>Chat Now</Button>
+                                      <Button icon={<i className="far fa-address-book vv-font-size-1-7" />} className="p-0 bg-transparent text-primary-darken border-0 factories--btn__contacts" size={"large"}>Contacts</Button>
+                                    </Space>
+                                  </Col>
+                                </Row>
+                              </Col>
+                              <Col className="factories--data__middleSection" span={24}>
+                                <Row gutter={16}>
+                                  <Col span={4}>
+                                    <TextTruncate
+                                      className="vv-font-size-1-6 font-weight-600"
+                                      line={6}
+                                      element="span"
+                                      truncateText=" …"
+                                      text={`About Us: ${data.about_us}`}
+                                    />
+                                  </Col>
+                                  <Col span={20}>
+                                    <Row gutter={16}>
+                                      <Col span={6} className="factories--productImageContainer">
+                                        <div className="rounded-10 shadow-y-2 text-center factories--productImage">
+                                          <img src={ product_1 } alt="product_1"/>
+                                        </div>
+                                      </Col>
+                                      <Col span={6} className="factories--productImageContainer">
+                                        <div className="rounded-10 shadow-y-2 text-center factories--productImage">
+                                          <img src={ product_2 } alt="product_2"/>
+                                        </div>
+                                      </Col>
+                                      <Col span={6} className="factories--productImageContainer">
+                                        <div className="rounded-10 shadow-y-2 text-center factories--productImage">
+                                          <img src={ product_3 } alt="product_3"/>
+                                        </div>
+                                      </Col>
+                                      <Col span={6} className="factories--productImageContainer">
+                                        <div className="rounded-10 shadow-y-2 text-center factories--productImage">
+                                          <img src={ product_4 } alt="product_4"/>
+                                        </div>
+                                      </Col>
+                                    </Row>
+                                  </Col>
+                                </Row>
+                              </Col>
+                              <Col className="factories--data__bottomSection" span={24}>
+                                <Row gutter={16} className="factories--informationContainer">
+                                  <GroupFields groupFields = { data.factories_fields } />
+                                </Row>
+                              </Col>
+                            </Row>
+                          </Col>
+                        </Row>
+                      </Col>
+                    </>
+                  );
+                })}
+              </>
+            }
+
             {factoriesData.map((factoryData, i) => {
               return (
                 <>
-                  {factory_id && factory_id == factoryData.factory_id && 'teeest'}
                   <Col span={24} key = { factoryData.factory_id } className="bg-white rounded-10 p-3 factories--item">
                     <Row gutter={16} className="h-100">
                       <Col flex='400px' className="h-100 factories--imageContainer">
