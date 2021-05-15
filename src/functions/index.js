@@ -52,4 +52,4 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-export { useWindowSize, useShowImage }
+export { useWindowSize, useShowImage, useQuery }

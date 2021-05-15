@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory, Link } from "react-router-dom";
 
 // import Style File:
 import './styles/PremiumFactories.less';
@@ -23,6 +24,13 @@ import TextTruncate from 'react-text-truncate';
 
 const PremiumFactories = (props) => {
   const { width } = props;
+
+  let history = useHistory();
+
+  const goToFactoriesPage = (factory_id) => {
+    history.push(`/factories?factory_id=${factory_id}`);
+  }
+
   return (
     <div className="premiumFactories--container">
       <Row>
@@ -41,161 +49,173 @@ const PremiumFactories = (props) => {
             {width >= 992 ?
               <>
                 <Col span={8}>
-                  <div className="premiumFactories--item rounded-10 shadow-y-2 bg-white">
-                    <div className="mb-4 d-flex align-items-center">
-                      <div className="premiumFactories--item__image">
-                        <img src={ store_2 } alt="store_2"/>
+                  <Link to="/factories?factory=124">
+                    <div className="premiumFactories--item rounded-10 shadow-y-2 bg-white">
+                      <div className="mb-4 d-flex align-items-center">
+                        <div className="premiumFactories--item__image">
+                          <img src={ store_2 } alt="store_2"/>
+                        </div>
+                        <div className="w-100 premiumFactories--item__caption">
+                          <div className="vv-font-size-1-6 text-black premiumFactories--item__name">
+                            <TextTruncate
+                              line={1}
+                              element="span"
+                              truncateText="…"
+                              text="Farahi carpet company"
+                            />
+                          </div>
+                          <div className="premiumFactories--item__verified">
+                            <img src={ verifiedIcon } alt="Verified"/>
+                          </div>
+                        </div>
                       </div>
-                      <div className="w-100 premiumFactories--item__caption">
-                        <div className="vv-font-size-1-6 text-black premiumFactories--item__name">
-                          <TextTruncate
-                            line={1}
-                            element="span"
-                            truncateText="…"
-                            text="Farahi carpet company"
-                          />
+                      <div className="d-flex">
+                        <div className="premiumFactories--factoryImages__item1">
+                          <img src={ factoryImage_1 } alt="factoryImage_1"/>
                         </div>
-                        <div className="premiumFactories--item__verified">
-                          <img src={ verifiedIcon } alt="Verified"/>
-                        </div>
+                        <Row className="premiumFactories--factoryImages__item_2_3">
+                          <Col span={24} className="premiumFactories--factoryImages__item2 align-self-start">
+                            <img src={ factoryImage_2 } alt="factoryImage_2"/>
+                          </Col>
+                          <Col span={24} className="premiumFactories--factoryImages__item3 align-self-end">
+                            <img src={ factoryImage_3 } alt="factoryImage_3"/>
+                          </Col>
+                        </Row>
                       </div>
                     </div>
-                    <div className="d-flex">
-                      <div className="premiumFactories--factoryImages__item1">
-                        <img src={ factoryImage_1 } alt="factoryImage_1"/>
-                      </div>
-                      <Row className="premiumFactories--factoryImages__item_2_3">
-                        <Col span={24} className="premiumFactories--factoryImages__item2 align-self-start">
-                          <img src={ factoryImage_2 } alt="factoryImage_2"/>
-                        </Col>
-                        <Col span={24} className="premiumFactories--factoryImages__item3 align-self-end">
-                          <img src={ factoryImage_3 } alt="factoryImage_3"/>
-                        </Col>
-                      </Row>
-                    </div>
-                  </div>
+                  </Link>
                 </Col>
 
                 <Col span={8}>
-                  <div className="premiumFactories--item rounded-10 shadow-y-2 bg-white">
-                    <div className="mb-4 d-flex align-items-center">
-                      <div className="premiumFactories--item__image">
-                        <img src={ store_3 } alt="store_3"/>
+                  <Link to="/factories?factory=127">
+                    <div className="premiumFactories--item rounded-10 shadow-y-2 bg-white">
+                      <div className="mb-4 d-flex align-items-center">
+                        <div className="premiumFactories--item__image">
+                          <img src={ store_3 } alt="store_3"/>
+                        </div>
+                        <div className="w-100 premiumFactories--item__caption">
+                          <div className="vv-font-size-1-6 text-black premiumFactories--item__name">
+                            <TextTruncate
+                              line={1}
+                              element="span"
+                              truncateText="…"
+                              text="Savin carpet company"
+                            />
+                          </div>
+                          <div className="premiumFactories--item__verified">
+                            <img src={ verifiedIcon } alt="Verified"/>
+                          </div>
+                        </div>
                       </div>
-                      <div className="w-100 premiumFactories--item__caption">
-                        <div className="vv-font-size-1-6 text-black premiumFactories--item__name">
-                          <TextTruncate
-                            line={1}
-                            element="span"
-                            truncateText="…"
-                            text="Savin carpet company"
-                          />
+                      <div className="d-flex">
+                        <div className="premiumFactories--factoryImages__item1">
+                          <img src={ factoryImage_2 } alt="factoryImage_2"/>
                         </div>
-                        <div className="premiumFactories--item__verified">
-                          <img src={ verifiedIcon } alt="Verified"/>
-                        </div>
+                        <Row className="premiumFactories--factoryImages__item_2_3">
+                          <Col span={24} className="premiumFactories--factoryImages__item2 align-self-start">
+                            <img src={ factoryImage_3 } alt="factoryImage_3"/>
+                          </Col>
+                          <Col span={24} className="premiumFactories--factoryImages__item3 align-self-end">
+                            <img src={ factoryImage_1 } alt="factoryImage_1"/>
+                          </Col>
+                        </Row>
                       </div>
                     </div>
-                    <div className="d-flex">
-                      <div className="premiumFactories--factoryImages__item1">
-                        <img src={ factoryImage_2 } alt="factoryImage_2"/>
-                      </div>
-                      <Row className="premiumFactories--factoryImages__item_2_3">
-                        <Col span={24} className="premiumFactories--factoryImages__item2 align-self-start">
-                          <img src={ factoryImage_3 } alt="factoryImage_3"/>
-                        </Col>
-                        <Col span={24} className="premiumFactories--factoryImages__item3 align-self-end">
-                          <img src={ factoryImage_1 } alt="factoryImage_1"/>
-                        </Col>
-                      </Row>
-                    </div>
-                  </div>
+                  </Link>
                 </Col>
 
                 <Col span={8}>
-                  <div className="premiumFactories--item rounded-10 shadow-y-2 bg-white">
-                    <div className="mb-4 d-flex align-items-center">
-                      <div className="premiumFactories--item__image">
-                        <img src={ store_1 } alt="store_1"/>
+                  <Link to="/factories?factory=135">
+                    <div className="premiumFactories--item rounded-10 shadow-y-2 bg-white">
+                      <div className="mb-4 d-flex align-items-center">
+                        <div className="premiumFactories--item__image">
+                          <img src={ store_1 } alt="store_1"/>
+                        </div>
+                        <div className="w-100 premiumFactories--item__caption">
+                          <div className="vv-font-size-1-6 text-black premiumFactories--item__name">
+                            <TextTruncate
+                              line={1}
+                              element="span"
+                              truncateText="…"
+                              text="Aghigh carpet company"
+                            />
+                          </div>
+                          <div className="premiumFactories--item__verified">
+                            <img src={ verifiedIcon } alt="Verified"/>
+                          </div>
+                        </div>
                       </div>
-                      <div className="w-100 premiumFactories--item__caption">
-                        <div className="vv-font-size-1-6 text-black premiumFactories--item__name">
-                          <TextTruncate
-                            line={1}
-                            element="span"
-                            truncateText="…"
-                            text="Aghigh carpet company"
-                          />
+                      <div className="d-flex">
+                        <div className="premiumFactories--factoryImages__item1">
+                          <img src={ factoryImage_3 } alt="factoryImage_3"/>
                         </div>
-                        <div className="premiumFactories--item__verified">
-                          <img src={ verifiedIcon } alt="Verified"/>
-                        </div>
+                        <Row className="premiumFactories--factoryImages__item_2_3">
+                          <Col span={24} className="premiumFactories--factoryImages__item2 align-self-start">
+                            <img src={ factoryImage_1 } alt="factoryImage_1"/>
+                          </Col>
+                          <Col span={24} className="premiumFactories--factoryImages__item3 align-self-end">
+                            <img src={ factoryImage_2 } alt="factoryImage_2"/>
+                          </Col>
+                        </Row>
                       </div>
                     </div>
-                    <div className="d-flex">
-                      <div className="premiumFactories--factoryImages__item1">
-                        <img src={ factoryImage_3 } alt="factoryImage_3"/>
-                      </div>
-                      <Row className="premiumFactories--factoryImages__item_2_3">
-                        <Col span={24} className="premiumFactories--factoryImages__item2 align-self-start">
-                          <img src={ factoryImage_1 } alt="factoryImage_1"/>
-                        </Col>
-                        <Col span={24} className="premiumFactories--factoryImages__item3 align-self-end">
-                          <img src={ factoryImage_2 } alt="factoryImage_2"/>
-                        </Col>
-                      </Row>
-                    </div>
-                  </div>
+                  </Link>
                 </Col>
               </>:
 
               <>
                 <Col>
-                  <div className="premiumFactories--itemXs">
-                    <div className="premiumFactories--factoryImages__Xs">
-                      <img src={ factoryImage_1 } alt="factoryImage_1"/>
+                  <Link to="/factories?factory=124">
+                    <div className="premiumFactories--itemXs">
+                      <div className="premiumFactories--factoryImages__Xs">
+                        <img src={ factoryImage_1 } alt="factoryImage_1"/>
+                      </div>
+                      <div>
+                        <Row>
+                          <Col className="text-truncate my-auto" span={18}>Farahi carpet company</Col>
+                          <Col className="text-right premiumFactories--factoryIcon__Xs" span={6}>
+                            <img src={ store_2 } alt="store_2"/>
+                          </Col>
+                        </Row>
+                      </div>
                     </div>
-                    <div>
-                      <Row>
-                        <Col className="text-truncate my-auto" span={18}>Farahi carpet company</Col>
-                        <Col className="text-right premiumFactories--factoryIcon__Xs" span={6}>
-                          <img src={ store_2 } alt="store_2"/>
-                        </Col>
-                      </Row>
-                    </div>
-                  </div>
+                  </Link>
                 </Col>
 
                 <Col>
-                  <div className="premiumFactories--itemXs">
-                    <div className="premiumFactories--factoryImages__Xs">
-                      <img src={ factoryImage_3 } alt="factoryImage_1"/>
+                  <Link to="/factories?factory=127">
+                    <div className="premiumFactories--itemXs">
+                      <div className="premiumFactories--factoryImages__Xs">
+                        <img src={ factoryImage_3 } alt="factoryImage_1"/>
+                      </div>
+                      <div>
+                        <Row>
+                          <Col className="text-truncate my-auto" span={18}>Savin carpet company</Col>
+                          <Col className="text-right premiumFactories--factoryIcon__Xs" span={6}>
+                            <img src={ store_3 } alt="store_3"/>
+                          </Col>
+                        </Row>
+                      </div>
                     </div>
-                    <div>
-                      <Row>
-                        <Col className="text-truncate my-auto" span={18}>Savin carpet company</Col>
-                        <Col className="text-right premiumFactories--factoryIcon__Xs" span={6}>
-                          <img src={ store_3 } alt="store_3"/>
-                        </Col>
-                      </Row>
-                    </div>
-                  </div>
+                  </Link>
                 </Col>
 
                 <Col>
-                  <div className="premiumFactories--itemXs">
-                    <div className="premiumFactories--factoryImages__Xs">
-                      <img src={ factoryImage_2 } alt="factoryImage_1"/>
+                  <Link to="/factories?factory=135">
+                    <div className="premiumFactories--itemXs">
+                      <div className="premiumFactories--factoryImages__Xs">
+                        <img src={ factoryImage_2 } alt="factoryImage_1"/>
+                      </div>
+                      <div>
+                        <Row>
+                          <Col className="text-truncate my-auto" span={18}>Aghigh carpet company</Col>
+                          <Col className="text-right premiumFactories--factoryIcon__Xs" span={6}>
+                            <img src={ store_1 } alt="store_1"/>
+                          </Col>
+                        </Row>
+                      </div>
                     </div>
-                    <div>
-                      <Row>
-                        <Col className="text-truncate my-auto" span={18}>Aghigh carpet company</Col>
-                        <Col className="text-right premiumFactories--factoryIcon__Xs" span={6}>
-                          <img src={ store_1 } alt="store_1"/>
-                        </Col>
-                      </Row>
-                    </div>
-                  </div>
+                  </Link>
                 </Col>
               </>
             }

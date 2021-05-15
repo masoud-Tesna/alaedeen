@@ -8,37 +8,70 @@
       margin-top: 40px !important;
       .factories--items {
         .factories--item {
+          height: 310px;
           .factories--imageContainer img {
             width: 400px;
-            height: 280px;
+            height: 100%;
           }
           .factories--dataContainer {
-            .factories--iconContainer img {
-              width: 65px;
-              height: 65px;
+            .factories--data__topSection {
+              .factories--iconContainer img {
+                width: 65px;
+                height: 65px;
+              }
+              .factories--btnContainer {
+                .factories--btn__chat,
+                .factories--btn__contacts {
+                  width: 130px;
+                  height: 36px;
+                  line-height: 16px;
+
+                  span:last-child {
+                    font-size: 1.7rem;
+                    font-weight: 600;
+                  }
+                }
+
+                .factories--btn__chat {
+                  border-radius: 10px;
+
+                  span:first-child {
+                    margin-right: 1rem;
+                    transform: scale(2);
+                  }
+                }
+
+                .factories--btn__contacts {
+                  i {
+                    margin-right: 1.6rem;
+                    transform: scale(1.6);
+                  }
+                }
+              }
             }
-            .factories--btnContainer {
-              .factories--btn__chat,
-              .factories--btn__contacts {
-                width: 130px;
-                height: 36px;
-                line-height: 16px;
-                span:last-child {
-                  font-size: 1.7rem;
-                  font-weight: 600;
+            .factories--data__middleSection {
+              .factories--productImageContainer {
+                .factories--productImage {
+                  height: 136px;
+                  img {
+                    height: 100%;
+                  }
                 }
               }
-              .factories--btn__chat {
-                border-radius: 10px;
-                span:first-child {
-                  margin-right: 1rem;
-                  transform: scale(2);
-                }
-              }
-              .factories--btn__contacts {
-                i {
-                  margin-right: 1.6rem;
-                  transform: scale(1.6);
+            }
+            .factories--data__bottomSection {
+              .factories--informationContainer {
+                .factories--informationItem {
+                  background-color: #EFEFEF;
+                  border-radius: 5px;
+                  .factories--fieldItem {
+                    margin-top: 5px;
+                    &:not(:last-child) {
+                      .factories--fieldRow {
+                        border-right: 1px solid #BCBCBC;
+                      }
+                    }
+                  }
                 }
               }
             }

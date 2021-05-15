@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from "react-router-dom";
 
 // import Style File:
 import './styles/Factories.less';
@@ -16,9 +17,20 @@ import topSectionBg from '../assets/images/factoriezTopSectionBg.png';
 import factoryImage_1 from '../assets/images/factoryImages/1.png';
 import factoryImage_2 from '../assets/images/factoryImages/2.png';
 import factoryImage_3 from '../assets/images/factoryImages/3.png';
+// import Products image:
+import product_1 from '../assets/images/products/4.png';
+import product_2 from '../assets/images/products/5.png';
+import product_3 from '../assets/images/products/6.png';
+import product_4 from '../assets/images/products/7.png';
 // import Verified
 import verifiedIcon from '../assets/images/verified.png';
 import { CommentOutlined } from "@ant-design/icons";
+
+// import Another Package used:
+import TextTruncate from "react-text-truncate";
+
+// import Custom hooks:
+import { useQuery } from '../functions';
 
 // data for show:
 const factoriesData = [
@@ -26,7 +38,7 @@ const factoriesData = [
     'factory_id': 122,
     'logo': 'farrahi',
     'factory': 'Farrahi carpet company',
-    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet aperiam at, iusto molestias mollitia nesciunt officia officiis quae sequi!',
+    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, est facere inventore ipsum laborum minus nemo odit quisquam repellendus reprehenderit! Accusantium dolorem iusto molestiae nostrum numquam perspiciatis quas quos tenetur!',
     'products': [
       {
         'product_id': 1141
@@ -85,7 +97,7 @@ const factoriesData = [
     'factory_id': 123,
     'logo': 'aghigh',
     'factory': 'Aghigh carpet company',
-    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet aperiam at, iusto molestias mollitia nesciunt officia officiis quae sequi!',
+    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, est facere inventore ipsum laborum minus nemo odit quisquam repellendus reprehenderit! Accusantium dolorem iusto molestiae nostrum numquam perspiciatis quas quos tenetur!',
     'products': [
       {
         'product_id': 1141
@@ -144,7 +156,7 @@ const factoriesData = [
     'factory_id': 124,
     'logo': 'farrahi',
     'factory': 'Farrahi carpet company',
-    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet aperiam at, iusto molestias mollitia nesciunt officia officiis quae sequi!',
+    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, est facere inventore ipsum laborum minus nemo odit quisquam repellendus reprehenderit! Accusantium dolorem iusto molestiae nostrum numquam perspiciatis quas quos tenetur!',
     'products': [
       {
         'product_id': 1141
@@ -203,7 +215,7 @@ const factoriesData = [
     'factory_id': 125,
     'logo': 'savin',
     'factory': 'Savin carpet company',
-    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet aperiam at, iusto molestias mollitia nesciunt officia officiis quae sequi!',
+    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, est facere inventore ipsum laborum minus nemo odit quisquam repellendus reprehenderit! Accusantium dolorem iusto molestiae nostrum numquam perspiciatis quas quos tenetur!',
     'products': [
       {
         'product_id': 1141
@@ -262,7 +274,7 @@ const factoriesData = [
     'factory_id': 126,
     'logo': 'farrahi',
     'factory': 'Farrahi carpet company',
-    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet aperiam at, iusto molestias mollitia nesciunt officia officiis quae sequi!',
+    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, est facere inventore ipsum laborum minus nemo odit quisquam repellendus reprehenderit! Accusantium dolorem iusto molestiae nostrum numquam perspiciatis quas quos tenetur!',
     'products': [
       {
         'product_id': 1141
@@ -321,7 +333,7 @@ const factoriesData = [
     'factory_id': 127,
     'logo': 'savin',
     'factory': 'Savin carpet company',
-    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet aperiam at, iusto molestias mollitia nesciunt officia officiis quae sequi!',
+    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, est facere inventore ipsum laborum minus nemo odit quisquam repellendus reprehenderit! Accusantium dolorem iusto molestiae nostrum numquam perspiciatis quas quos tenetur!',
     'products': [
       {
         'product_id': 1141
@@ -380,7 +392,7 @@ const factoriesData = [
     'factory_id': 128,
     'logo': 'aghigh',
     'factory': 'Aghigh carpet company',
-    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet aperiam at, iusto molestias mollitia nesciunt officia officiis quae sequi!',
+    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, est facere inventore ipsum laborum minus nemo odit quisquam repellendus reprehenderit! Accusantium dolorem iusto molestiae nostrum numquam perspiciatis quas quos tenetur!',
     'products': [
       {
         'product_id': 1141
@@ -439,7 +451,7 @@ const factoriesData = [
     'factory_id': 129,
     'logo': 'farrahi',
     'factory': 'Farrahi carpet company',
-    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet aperiam at, iusto molestias mollitia nesciunt officia officiis quae sequi!',
+    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, est facere inventore ipsum laborum minus nemo odit quisquam repellendus reprehenderit! Accusantium dolorem iusto molestiae nostrum numquam perspiciatis quas quos tenetur!',
     'products': [
       {
         'product_id': 1141
@@ -498,7 +510,7 @@ const factoriesData = [
     'factory_id': 132,
     'logo': 'farrahi',
     'factory': 'Farrahi carpet company',
-    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet aperiam at, iusto molestias mollitia nesciunt officia officiis quae sequi!',
+    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, est facere inventore ipsum laborum minus nemo odit quisquam repellendus reprehenderit! Accusantium dolorem iusto molestiae nostrum numquam perspiciatis quas quos tenetur!',
     'products': [
       {
         'product_id': 1141
@@ -557,7 +569,7 @@ const factoriesData = [
     'factory_id': 133,
     'logo': 'savin',
     'factory': 'Savin carpet company',
-    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet aperiam at, iusto molestias mollitia nesciunt officia officiis quae sequi!',
+    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, est facere inventore ipsum laborum minus nemo odit quisquam repellendus reprehenderit! Accusantium dolorem iusto molestiae nostrum numquam perspiciatis quas quos tenetur!',
     'products': [
       {
         'product_id': 1141
@@ -616,7 +628,7 @@ const factoriesData = [
     'factory_id': 134,
     'logo': 'farrahi',
     'factory': 'Farrahi carpet company',
-    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet aperiam at, iusto molestias mollitia nesciunt officia officiis quae sequi!',
+    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, est facere inventore ipsum laborum minus nemo odit quisquam repellendus reprehenderit! Accusantium dolorem iusto molestiae nostrum numquam perspiciatis quas quos tenetur!',
     'products': [
       {
         'product_id': 1141
@@ -675,7 +687,7 @@ const factoriesData = [
     'factory_id': 135,
     'logo': 'aghigh',
     'factory': 'Aghigh carpet company',
-    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet aperiam at, iusto molestias mollitia nesciunt officia officiis quae sequi!',
+    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, est facere inventore ipsum laborum minus nemo odit quisquam repellendus reprehenderit! Accusantium dolorem iusto molestiae nostrum numquam perspiciatis quas quos tenetur!',
     'products': [
       {
         'product_id': 1141
@@ -734,7 +746,7 @@ const factoriesData = [
     'factory_id': 136,
     'logo': 'savin',
     'factory': 'Savin carpet company',
-    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet aperiam at, iusto molestias mollitia nesciunt officia officiis quae sequi!',
+    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, est facere inventore ipsum laborum minus nemo odit quisquam repellendus reprehenderit! Accusantium dolorem iusto molestiae nostrum numquam perspiciatis quas quos tenetur!',
     'products': [
       {
         'product_id': 1141
@@ -793,7 +805,7 @@ const factoriesData = [
     'factory_id': 137,
     'logo': 'farrahi',
     'factory': 'Farrahi carpet company',
-    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet aperiam at, iusto molestias mollitia nesciunt officia officiis quae sequi!',
+    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, est facere inventore ipsum laborum minus nemo odit quisquam repellendus reprehenderit! Accusantium dolorem iusto molestiae nostrum numquam perspiciatis quas quos tenetur!',
     'products': [
       {
         'product_id': 1141
@@ -852,7 +864,7 @@ const factoriesData = [
     'factory_id': 138,
     'logo': 'farrahi',
     'factory': 'Farrahi carpet company',
-    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet aperiam at, iusto molestias mollitia nesciunt officia officiis quae sequi!',
+    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, est facere inventore ipsum laborum minus nemo odit quisquam repellendus reprehenderit! Accusantium dolorem iusto molestiae nostrum numquam perspiciatis quas quos tenetur!',
     'products': [
       {
         'product_id': 1141
@@ -911,7 +923,7 @@ const factoriesData = [
     'factory_id': 139,
     'logo': 'savin',
     'factory': 'Savin carpet company',
-    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A amet aperiam at, iusto molestias mollitia nesciunt officia officiis quae sequi!',
+    'about_us': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, est facere inventore ipsum laborum minus nemo odit quisquam repellendus reprehenderit! Accusantium dolorem iusto molestiae nostrum numquam perspiciatis quas quos tenetur!',
     'products': [
       {
         'product_id': 1141
@@ -968,7 +980,63 @@ const factoriesData = [
   },
 ];
 
+
+const FieldValues = ({ fieldValues }) => {
+  return (
+    <>
+      {fieldValues.map((fieldValue, i) => {
+        return (
+          <>
+            <Col className="factories--fieldItem">
+              <Row className="factories--fieldRow">
+                <Col span={24} className="vv-font-size-1-5 text-black font-weight-bold">{fieldValue.value}</Col>
+                <Col span={24} className="vv-font-size-1-4 text-92">{fieldValue.caption}</Col>
+              </Row>
+            </Col>
+          </>
+        );
+      })}
+    </>
+  );
+}
+
+const GroupFields = ({ groupFields }) => {
+  return (
+    <>
+      {groupFields.map((groupField, i) => {
+          return (
+            <Col span={12} key = { groupField.group_id }>
+              <div className="py-2 px-3 factories--informationItem">
+                <Row>
+                  <Col span={24} className="vv-font-size-1-4 text-33">{groupField.caption}:</Col>
+                  <Col span={24} className="vv-font-size-1-4 text-33">
+                    <Row justify={"space-between"}>
+                      <FieldValues fieldValues = { groupField.values } />
+                    </Row>
+                  </Col>
+                </Row>
+              </div>
+            </Col>
+          );
+        })}
+    </>
+  );
+}
+
 const Factories = () => {
+
+  const { pathname } = useLocation();
+
+  const [items, setItems] = useState(factoriesData);
+  const [hasMore, setHasMore] = useState(true);
+
+  const factory_id = useQuery().get('factory');
+  console.log(factory_id);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <div className="bg-footer factories--pageSection">
       <Row className="factories--container">
@@ -1006,75 +1074,109 @@ const Factories = () => {
           <Row gutter={[0, 50]} className="factories--items">
             {factoriesData.map((factoryData, i) => {
               return (
-                <Col span={24} key = { factoryData.factory_id } className="bg-white rounded-10 p-3 factories--item">
-                  <Row gutter={16}>
-                    <Col flex='400px' className="factories--imageContainer">
-                      {factoryData.logo === 'farrahi' &&
-                      <img src={ factoryImage_1 } alt="farrahi"/>
-                      }
+                <>
+                  {factory_id && factory_id == factoryData.factory_id && 'teeest'}
+                  <Col span={24} key = { factoryData.factory_id } className="bg-white rounded-10 p-3 factories--item">
+                    <Row gutter={16} className="h-100">
+                      <Col flex='400px' className="h-100 factories--imageContainer">
+                        {factoryData.logo === 'farrahi' &&
+                        <img src={ factoryImage_1 } alt="farrahi"/>
+                        }
 
-                      {factoryData.logo === 'aghigh' &&
-                      <img src={ factoryImage_2 } alt="farrahi"/>
-                      }
+                        {factoryData.logo === 'aghigh' &&
+                        <img src={ factoryImage_2 } alt="farrahi"/>
+                        }
 
-                      {factoryData.logo === 'savin' &&
-                      <img src={ factoryImage_3 } alt="farrahi"/>
-                      }
-                    </Col>
-                    <Col flex="auto" className="factories--dataContainer">
-                      <Row gutter={[0,8]}>
-                        <Col span={24}>
-                          <Row justify={"space-between"}>
-                            <Col>
-                              <Row gutter={16}>
-                                <Col className="factories--iconContainer">
-                                  {factoryData.logo === 'farrahi' &&
-                                  <img src={ farrahi } alt="farrahi"/>
-                                  }
+                        {factoryData.logo === 'savin' &&
+                        <img src={ factoryImage_3 } alt="farrahi"/>
+                        }
+                      </Col>
+                      <Col flex="1 1" className="factories--dataContainer">
+                        <Row gutter={[0,8]}>
+                          <Col className="factories--data__topSection" span={24}>
+                            <Row justify={"space-between"}>
+                              <Col>
+                                <Row gutter={16}>
+                                  <Col className="factories--iconContainer">
+                                    {factoryData.logo === 'farrahi' &&
+                                    <img src={ farrahi } alt="farrahi"/>
+                                    }
 
-                                  {factoryData.logo === 'aghigh' &&
-                                  <img src={ aghigh } alt="farrahi"/>
-                                  }
+                                    {factoryData.logo === 'aghigh' &&
+                                    <img src={ aghigh } alt="farrahi"/>
+                                    }
 
-                                  {factoryData.logo === 'savin' &&
-                                  <img src={ savin } alt="farrahi"/>
-                                  }
-                                </Col>
-                                <Col>
-                                  <Row className="h-100">
-                                    <Col span={24} className="vv-font-size-1-6 text-black font-weight-600">
-                                      { factoryData.factory }
-                                    </Col>
-                                    <Col span={24} className="mt-2">
-                                      <img src={ verifiedIcon } alt="verified"/>
-                                    </Col>
-                                  </Row>
-                                </Col>
-                              </Row>
-                            </Col>
-                            <Col className="text-right factories--btnContainer">
-                              <Space size={"middle"}>
-                                <Button type="primary" icon={<CommentOutlined className="vv-font-size-1-7" />} className="p-0 bg-primary-darken border-primary-darken factories--btn__chat" size={"large"}>
-                                  Chat Now
-                                </Button>
-
-                                <Button icon={<i className="far fa-address-book vv-font-size-1-7" />} className="p-0 text-primary-darken border-0 factories--btn__contacts" size={"large"}>
-                                  Contacts
-                                </Button>
-                              </Space>
-                            </Col>
-                          </Row>
-                        </Col>
-                        <Col span={24}>
-
-                        </Col>
-                        <Col span={24}>
-
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
-                </Col>
+                                    {factoryData.logo === 'savin' &&
+                                    <img src={ savin } alt="farrahi"/>
+                                    }
+                                  </Col>
+                                  <Col>
+                                    <Row className="h-100">
+                                      <Col span={24} className="vv-font-size-1-6 text-black font-weight-600">
+                                        { factoryData.factory }
+                                      </Col>
+                                      <Col span={24} className="mt-2">
+                                        <img src={ verifiedIcon } alt="verified"/>
+                                      </Col>
+                                    </Row>
+                                  </Col>
+                                </Row>
+                              </Col>
+                              <Col className="text-right factories--btnContainer">
+                                <Space size={"middle"}>
+                                  <Button type="primary" icon={<CommentOutlined className="vv-font-size-1-7" />} className="p-0 bg-primary-darken border-primary-darken factories--btn__chat" size={"large"}>Chat Now</Button>
+                                  <Button icon={<i className="far fa-address-book vv-font-size-1-7" />} className="p-0 text-primary-darken border-0 factories--btn__contacts" size={"large"}>Contacts</Button>
+                                </Space>
+                              </Col>
+                            </Row>
+                          </Col>
+                          <Col className="factories--data__middleSection" span={24}>
+                            <Row gutter={16}>
+                              <Col span={4}>
+                                <TextTruncate
+                                  className="vv-font-size-1-6 font-weight-600"
+                                  line={6}
+                                  element="span"
+                                  truncateText=" …"
+                                  text={`About Us: ${factoryData.about_us}`}
+                                />
+                              </Col>
+                              <Col span={20}>
+                                <Row gutter={16}>
+                                  <Col span={6} className="factories--productImageContainer">
+                                    <div className="rounded-10 shadow-y-2 text-center factories--productImage">
+                                      <img src={ product_1 } alt="product_1"/>
+                                    </div>
+                                  </Col>
+                                  <Col span={6} className="factories--productImageContainer">
+                                    <div className="rounded-10 shadow-y-2 text-center factories--productImage">
+                                      <img src={ product_2 } alt="product_2"/>
+                                    </div>
+                                  </Col>
+                                  <Col span={6} className="factories--productImageContainer">
+                                    <div className="rounded-10 shadow-y-2 text-center factories--productImage">
+                                      <img src={ product_3 } alt="product_3"/>
+                                    </div>
+                                  </Col>
+                                  <Col span={6} className="factories--productImageContainer">
+                                    <div className="rounded-10 shadow-y-2 text-center factories--productImage">
+                                      <img src={ product_4 } alt="product_4"/>
+                                    </div>
+                                  </Col>
+                                </Row>
+                              </Col>
+                            </Row>
+                          </Col>
+                          <Col className="factories--data__bottomSection" span={24}>
+                            <Row gutter={16} className="factories--informationContainer">
+                              <GroupFields groupFields = { factoryData.factories_fields } />
+                            </Row>
+                          </Col>
+                        </Row>
+                      </Col>
+                    </Row>
+                  </Col>
+                </>
               );
             })}
           </Row>
