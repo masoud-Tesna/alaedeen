@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 // Layouts:
 import DefaultTopPanel from "./defautl/DefaultTopPanel";
+import TopPanelWhitBackIcon from "./defautl/TopPanelWhitBackIcon";
 
 const TopPanel = () => {
   // Get Location:
@@ -18,12 +19,8 @@ const TopPanel = () => {
   }, [location]);
 
   // Check pathName For Set Default Top Panel Or Not:
-  if (pathName === '/not-default') {
-    return (
-      <>
-        Not Default Top Panel
-      </>
-    );
+  if (pathName === '/factories') {
+    return <TopPanelWhitBackIcon />
   }
 
   // if get default Top panel:
