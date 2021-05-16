@@ -8,6 +8,9 @@
         width: 63px;
       }
     }
+    .topPanel--col__titleXS {
+      display: none;
+    }
     .topPanel--col__btnRequest {
       .ant-btn {
         height: 32px;
@@ -63,6 +66,33 @@
         }
       }
     }
+  }
+}
+
+.topPanel--container.TopPanelWhitBackIcon {
+  height: 40px;
+}
+
+
+.topPanel--container.scrolled {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  animation: moveDown 0.5s ease-in-out;
+  box-shadow: 0 0 2rem 1.5rem rgb(59, 48, 66);
+  .topPanel--col {
+    .topPanel--col__titleXS {
+      display: block;
+    }
+  }
+}
+
+@keyframes moveDown {
+  from {
+    transform: translateY(-5rem);
+  }
+  to {
+    transform: translateY(0rem);
   }
 }
 
