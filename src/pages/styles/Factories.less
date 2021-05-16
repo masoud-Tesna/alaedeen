@@ -2,49 +2,63 @@
   margin-top: -1.2rem;
   .factories--container {
     .factories--topSection {
+      padding: 1rem 1.5rem;
       box-shadow: 0 0 20px 20px #3B3042;
+      .factories--topSection__caption1 {
+        font-size: 2rem !important;
+      }
+      .factories--topSection__caption2 {
+        font-size: 1.4rem !important;
+      }
+      .factories--topSection__image {
+        img {
+          height: 100px;
+        }
+      }
     }
     .factories--bottomSection {
       margin-top: 40px !important;
       .factories--items {
         .factories--item {
-          height: 310px;
           .factories--imageContainer img {
             width: 400px;
             height: 100%;
           }
           .factories--dataContainer {
             .factories--data__topSection {
-              .factories--iconContainer img {
-                width: 65px;
-                height: 65px;
+              .factories--iconContainer {
+                img {
+                  width: 65px;
+                  height: 65px;
+                  border: 1px solid #d4d4d4;
+                  border-radius: 5px;
+                }
               }
               .factories--btnContainer {
-                .factories--btn__chat,
-                .factories--btn__contacts {
-                  width: 130px;
-                  height: 36px;
-                  line-height: 16px;
-
+                .factories--btn__chat {
+                  width: 56px;
+                  height: 21px;
+                  line-height: 12px;
+                  border-radius: 10px;
+                  span:first-child {
+                    transform: scale(1.1);
+                  }
                   span:last-child {
-                    font-size: 1.7rem;
+                    font-size: 1.3rem;
                     font-weight: 600;
                   }
                 }
-
-                .factories--btn__chat {
-                  border-radius: 10px;
-
-                  span:first-child {
-                    margin-right: 1rem;
-                    transform: scale(2);
-                  }
-                }
-
-                .factories--btn__contacts {
-                  i {
-                    margin-right: 1.6rem;
-                    transform: scale(1.6);
+              }
+              .factories--informationItem {
+                background-color: #EFEFEF;
+                border-radius: 5px;
+                .factories--fieldItem {
+                  margin: 2px 0;
+                  padding-left: 8px;
+                  &:not(:last-child) {
+                    .factories--fieldRow {
+                      border-right: 1px solid #BCBCBC;
+                    }
                   }
                 }
               }
@@ -52,7 +66,7 @@
             .factories--data__middleSection {
               .factories--productImageContainer {
                 .factories--productImage {
-                  height: 136px;
+                  height: 98px;
                   img {
                     height: 100%;
                   }
@@ -79,6 +93,76 @@
         }
         .factories--item.byParam {
           box-shadow: 0 0 2rem rgb(172, 166, 166) !important;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .factories--pageSection {
+    .factories--container {
+      .factories--topSection {
+        padding: 6rem 6rem 1rem;
+        .factories--topSection__caption1 {
+          font-size: 5rem !important;
+          line-height: 1.2;
+        }
+        .factories--topSection__caption2 {
+          font-size: 2rem !important;
+        }
+        .factories--topSection__image {
+          img {
+            height: auto;
+          }
+        }
+      }
+      .factories--bottomSection {
+        .factories--items {
+          .factories--item {
+            height: 310px;
+            .factories--dataContainer {
+              .factories--data__topSection {
+                .factories--iconContainer {
+                  img {
+                    width: 65px;
+                    height: 65px;
+                    border: 0;
+                    border-radius: 0;
+                  }
+                }
+                .factories--btnContainer {
+                  .factories--btn__chat,
+                  .factories--btn__contacts {
+                    width: 130px;
+                    height: 36px;
+                    line-height: 16px;
+
+                    span:last-child {
+                      font-size: 1.7rem;
+                      font-weight: 600;
+                    }
+                  }
+
+                  .factories--btn__chat {
+                    border-radius: 10px;
+
+                    span:first-child {
+                      margin-right: 1rem;
+                      transform: scale(2);
+                    }
+                  }
+
+                  .factories--btn__contacts {
+                    i {
+                      margin-right: 1.6rem;
+                      transform: scale(1.6);
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
