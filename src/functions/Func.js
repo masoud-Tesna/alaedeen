@@ -1,6 +1,5 @@
-import React from "react";
-
-export function StripHtml(strip) {
+function StripHtml(strip) {
   const regex = /(<([^>]+)>)/ig;
   return strip.replace(regex, '');
-};
+}
+export { StripHtml }
