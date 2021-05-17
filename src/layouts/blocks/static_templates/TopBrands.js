@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from "react";
 
 // import Style File:
 import './styles/TopBrands.less';
@@ -7,44 +7,20 @@ import './styles/TopBrands.less';
 import { Col, Row } from "antd";
 
 // import Another Components Used:
-import axios from 'axios';
 import { StripHtml } from '../../../functions/Func';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import SkeletonTopBrands from "./SkeletonTopBrands";
 
-const TopBrands = (props) => {
+// import custom hooks:
+import { useGetApi, useWindowSize } from "../../../functions";
 
-  const { width } = props;
+const TopBrands = () => {
 
-  const [load, setLoad] = useState(true);
+  const { width } = useWindowSize();
 
-  const [topBrands, setTopBrands] = useState([]);
 
-  const [error, setError] = useState(null);
+  const { load, items, error } = useGetApi('https://hornb2b.com/top-brands/?items_per_page=5', 'top_brands')
 
-  const getTopBrandLists = () => {
-
-    setLoad(true);
-
-    const lang_code = 'en';
-
-    const url = `https://hornb2b.com/top-brands/?items_per_page=5`;
-
-    axios.get (url)
-      .then ((res) => {
-        setTopBrands(res.data.top_brands);
-    })
-      .catch ((error) => {
-      setError(error);
-    })
-      .finally(() => {
-        setLoad(false);
-      });
-  }
-
-  useEffect(() => {
-    getTopBrandLists();
-  }, []);
   return (
     <div className="topBrands--container">
       <Row>
@@ -60,7 +36,7 @@ const TopBrands = (props) => {
 
             {width >= 992 ?
               <>
-                {topBrands.map((brand, index) => {
+                {items.map((brand, index) => {
                   return (
                     <Col className="topBrands--item" key={ index }>
                       <div className="d-flex align-items-end justify-content-center topBrands--item__image">
@@ -91,7 +67,7 @@ const TopBrands = (props) => {
               </> :
               <Col className="topBrands--scroll" span={24}>
                 <ScrollContainer className="text-select-none d-flex topBrands--scrollContainer">
-                  {topBrands.map((brand, index) => {
+                  {items.map((brand, index) => {
                     return (
                       <div className="d-inline topBrandsScroll--item__content" key={index}>
                         <Row className="topBrandsScroll--item" justify="center">
