@@ -16,4 +16,4 @@ const Application = () => {
 
 ReactDOM.render( <Application />, document.getElementById('HornApp'));
 
-serviceWorker.unregister();
+serviceWorker.register();
