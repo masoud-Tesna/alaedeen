@@ -17,41 +17,17 @@ import ProductsMultiColumnVertical from "../product_list_templates/ProductsMulti
 
 import SkeletonMultiColumnVertical from "../product_list_templates/SkeletonMultiColumnVertical";
 
+// import custom hooks:
+import { useGetProductApi, useWindowSize } from '../../../functions';
+
 SwiperCore.use([Autoplay ]);
 
-const RecentlyProductsView = (props) => {
+const RecentlyProductsView = () => {
 
-  const { width } = props;
+  const { width } = useWindowSize();
 
-  const [load, setLoad] = useState(true);
+  const {load, products, parameters, error} = useGetProductApi('items_per_page=5&company_id=181');
 
-  const [getProducts, setGetProducts] = useState([]);
-
-  const [error, setError] = useState(null);
-
-  const getProductLists = () => {
-
-    setLoad(true);
-
-    const lang_code = 'en';
-
-    const url = `https://hornb2b.com/products-api/?items_per_page=5&company_id=181`;
-
-    axios.get (url)
-      .then ((res) => {
-      setGetProducts(res.data.products);
-    })
-      .catch ((error) => {
-      setError(error);
-    })
-      .finally(() => {
-        setLoad(false);
-      });
-  }
-
-  useEffect(() => {
-    getProductLists();
-  }, []);
   return (
     <div className="recommendedProducts--container">
       <Row>
@@ -68,7 +44,7 @@ const RecentlyProductsView = (props) => {
 
               {width >= 992 ?
                 <>
-                  {getProducts.map((product, i) => {
+                  {products.map((product, i) => {
                     return (
                       <ProductsMultiColumnVertical
                         key = { i }
@@ -79,7 +55,7 @@ const RecentlyProductsView = (props) => {
                     );
                   })}
 
-                  {!load &&
+                  {load &&
                   <SkeletonMultiColumnVertical
                     className = "bg-white rounded-10 shadow-y-2"
                     skeleton = {true}
@@ -91,9 +67,9 @@ const RecentlyProductsView = (props) => {
                 <>
                   <Swiper
                     slidesPerView={2}
-                    /*autoplay={{delay: 3000}}*/
+                    autoplay={{delay: 3000}}
                   >
-                    {getProducts.map((product, i) => {
+                    {products.map((product, i) => {
                       return (
                         <Col key = { i }>
                           <SwiperSlide>
@@ -108,6 +84,15 @@ const RecentlyProductsView = (props) => {
                         </Col>
                       );
                     })}
+
+                    {/*{load &&
+                    <SkeletonMultiColumnVertical
+                      className = "bg-white rounded-10 shadow-y-2"
+                      skeleton = {true}
+                      skeltonNumbers = {5}
+                      width={width}
+                    />
+                    }*/}
                   </Swiper>
                 </>
               }

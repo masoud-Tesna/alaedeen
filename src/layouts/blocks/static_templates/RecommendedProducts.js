@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from 'react';
-
 // import Style File:
 import './styles/RecommendedProducts.less';
 
@@ -7,47 +5,19 @@ import './styles/RecommendedProducts.less';
 import { Button, Col, Row } from "antd";
 
 // import Another Components Used:
-import axios from 'axios';
-
 import ProductsMultiColumnVertical from "../product_list_templates/ProductsMultiColumnVertical";
 
 import SkeletonMultiColumnVertical from "../product_list_templates/SkeletonMultiColumnVertical";
+import { useGetProductApi, useWindowSize } from "../../../functions";
 
-const RecommendedProducts = (props) => {
+const RecommendedProducts = () => {
 
-  const { width } = props;
+  const { width } = useWindowSize();
 
-  const [load, setLoad] = useState(true);
+  const product_items_per_page = width >= 992 ? 20 : 12;
+  const url = `items_per_page=${product_items_per_page}&company_id=181&page=1&lang_code=en`;
 
-  const [getProducts, setGetProducts] = useState([]);
-
-  const [productParams, setProductParams] = useState(null);
-
-  const [error, setError] = useState(null);
-
-  const getProductLists = () => {
-
-    setLoad(true);
-
-    const lang_code = 'en';
-
-    const product_items_per_page = width >=992 ? 20 : 12;
-
-    const url = `https://hornb2b.com/products-api/?items_per_page=${product_items_per_page}&company_id=181&page=1&lang_code=${lang_code}`;
-
-    axios.get (url).then ((res) => {
-      setLoad(false);
-      setGetProducts(res.data.products);
-      setProductParams(res.data.params);
-    }).catch ((error) => {
-      setLoad(false);
-      setError(error);
-    });
-  }
-
-  useEffect(() => {
-    getProductLists();
-  }, []);
+  const {load, products, parameters, error} = useGetProductApi(url);
 
   return (
     <div className="recommendedProducts--container">
@@ -63,7 +33,7 @@ const RecommendedProducts = (props) => {
           <div className="h-100 productsMultiColumnVertical--container">
             <Row className="h-100 productsMultiColumnVertical--items row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5" justify="space-around" gutter={[16, 20]}>
 
-              {getProducts.map((product, i) => {
+              {products.map((product, i) => {
                 return (
                   <ProductsMultiColumnVertical
                     key = { i }

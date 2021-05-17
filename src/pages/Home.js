@@ -25,52 +25,14 @@ import SkeletonMultiColumnVertical from "../layouts/blocks/product_list_template
 import RecentlyProductsView from "../layouts/blocks/static_templates/RecentlyProductsView";
 import TopBrands from "../layouts/blocks/static_templates/TopBrands";
 import WhatHorn from "../layouts/blocks/static_templates/WhatHorn";
+import HomePageShowProducts from "../layouts/blocks/static_templates/HomePageShowProducts";
 
 const Home = () => {
 
-  const [load, setLoad] = useState(true);
-
-  const [getProducts, setGetProducts] = useState([]);
-
-  const [error, setError] = useState(null);
-
   const { width } = useWindowSize();
-
-  let productsMultiColumnVertical_items = { span: 8 };
-
-  if (width <= 991) {
-    productsMultiColumnVertical_items = { span: 12 };
-  }
-
-  const getProductLists = () => {
-
-    setLoad(true);
-
-    const lang_code = 'en';
-
-    let items_per_page = 3;
-
-    if (width <= 991) {
-      items_per_page = 2;
-    }
-
-    const url = `https://hornb2b.com/products-api/?items_per_page=${items_per_page}&company_id=181&lang_code=${lang_code}`;
-
-    axios.get (url)
-      .then ((res) => {
-      setGetProducts(res.data.products);
-    })
-      .catch ((error) => {
-      setError(error);
-    })
-      .finally(() => {
-        setLoad(false);
-      });
-  }
 
   useEffect(() => {
     document.title = "horn.company: Iranian Exporters, Manufacturers, Logistics, Suppliers Directory, B2B Business Directory"
-    getProductLists();
   }, []);
 
   return (
@@ -126,33 +88,13 @@ const Home = () => {
             <ShipProductsBanner width = { width } />
           </Col>
           <Col className="pr-0" span={14}>
-            <Row className="h-100 productsMultiColumnVertical--items" justify="space-around">
-
-              {getProducts.map((product) => {
-                return (<ProductsMultiColumnVertical
-                  key = { product.product_id }
-                  product={product}
-                  detailIcon="company"
-                  grid={productsMultiColumnVertical_items}
-                  width = { width }
-                />);
-              })}
-
-              {load &&
-              <SkeletonMultiColumnVertical
-                skeleton = {true}
-                skeltonNumbers = {width >= 992 ? 3 : 2}
-                grid={productsMultiColumnVertical_items}
-                width = { width }
-              />
-              }
-            </Row>
+            <HomePageShowProducts />
           </Col>
         </Row>
       </div>
 
       <div className="topRankingProducts--section">
-        <TopRankingProducts width = { width } />
+        <TopRankingProducts />
       </div>
 
       <div className="PremiumFactories--section">
@@ -160,15 +102,15 @@ const Home = () => {
       </div>
 
       <div className="recommended--section">
-        <RecommendedProducts width = { width } />
+        <RecommendedProducts />
       </div>
 
       <div className="visitsProducts--section">
-        <RecentlyProductsView width = { width } />
+        <RecentlyProductsView />
       </div>
 
       <div className="topBrands--section">
-        <TopBrands width = { width } />
+        <TopBrands/>
       </div>
 
       <div className="d-none d-lg-block whatHorn--section">

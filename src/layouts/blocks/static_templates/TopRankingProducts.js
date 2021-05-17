@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from 'react';
-
 // import style file:
 import './styles/TopRankingProducts.less';
 
@@ -8,63 +6,26 @@ import { Col, Row, Skeleton } from "antd";
 
 // import Another Components used:
 import ProductsMultiColumnHorizontal from "../product_list_templates/ProductsMultiColumnHorizontal";
-import axios from "axios";
 import SkeletonMultiColumnHorizontal from "../product_list_templates/SkeletonMultiColumnHorizontal";
-
 
 // import polygon images:
 import polygon_1 from '../../../assets/images/polygon1.png';
 import polygon_2 from '../../../assets/images/polygon2.png';
 import polygon_3 from '../../../assets/images/polygon3.png';
 
+// import custom hooks:
+import { useGetTopRankingProducts, useWindowSize } from "../../../functions";
 
-const TopRankingProducts = (props) => {
 
-  const { width } = props;
+const TopRankingProducts = () => {
 
-  const [loadCarpets, setLoadCarpets] = useState(true);
-  const [loadHandmadeCarpet, setLoadHandmadeCarpet] = useState(true);
-  const [loadBabyCarpet, setLoadBabyCarpet] = useState(true);
+  const { width } = useWindowSize();
 
-  const [getProductsCarpets, setGetProductsCarpets] = useState([]);
-  const [getProductsHandmadeCarpet, setGetProductsHandmadeCarpet] = useState([]);
-  const [getProductsBabyCarpet, setGetProductsBabyCarpet] = useState([]);
+  const urlCarpets = 'items_per_page=3&company_id=181&page=1lang_code=en';
+  const urlHandmadeCarpet = 'items_per_page=3&company_id=181&page=2lang_code=en';
+  const urlBabyCarpet = 'items_per_page=3&page=4company_id=181&lang_code=en';
 
-  const [error, setError] = useState(null);
-
-  const getProductLists = () => {
-
-    setLoadCarpets(true);
-    setLoadHandmadeCarpet(true);
-    setLoadBabyCarpet(true);
-
-    const lang_code = 'en';
-
-    const urlCarpets = `https://hornb2b.com/products-api/?items_per_page=3&company_id=181&page=1lang_code=${lang_code}`;
-    const urlHandmadeCarpet = `https://hornb2b.com/products-api/?items_per_page=3&company_id=181&page=2lang_code=${lang_code}`;
-    const urlBabyCarpet = `https://hornb2b.com/products-api/?items_per_page=3&page=4company_id=181&lang_code=${lang_code}`;
-
-    axios.all([axios.get(urlCarpets),
-      axios.get(urlHandmadeCarpet),
-      axios.get(urlBabyCarpet)])
-      .then(axios.spread((firstResponse, secondResponse, thirdResponse) => {
-        setGetProductsCarpets(firstResponse.data.products);
-        setGetProductsHandmadeCarpet(secondResponse.data.products);
-        setGetProductsBabyCarpet(thirdResponse.data.products);
-      }))
-      .catch ((error) => {
-        setError(error);
-      })
-      .finally(() => {
-        setLoadCarpets(false);
-        setLoadHandmadeCarpet(false);
-        setLoadBabyCarpet(false);
-      });
-  }
-
-  useEffect(() => {
-    getProductLists();
-  }, []);
+  const { load, productsCat1, productsCat2, productsCat3, parametersCat1, parametersCat2, parametersCat3, error } = useGetTopRankingProducts(urlCarpets, urlHandmadeCarpet, urlBabyCarpet);
 
   return (
     <div className="topRankingProducts--container">
@@ -87,12 +48,12 @@ const TopRankingProducts = (props) => {
                 <div className="ProductsMultiColumnHorizontal--container">
                   <Row className="ProductsMultiColumnHorizontal--content row-cols-1">
                     <Col className="text-black vv-font-size-2 font-weight-bold mb-3" span={24}>
-                      {loadCarpets ?
+                      {load ?
                         <Skeleton.Input style={{ width: 150, borderRadius: '10px' }} active={true} size={"small"} /> :
                         "Carpets"
                       }
                     </Col>
-                    {getProductsCarpets.map((product, i) => {
+                    {productsCat1.map((product, i) => {
                       return (
                         <ProductsMultiColumnHorizontal
                           key = { i }
@@ -102,7 +63,7 @@ const TopRankingProducts = (props) => {
                       );
                     })}
 
-                    {loadCarpets &&
+                    {load &&
                     <SkeletonMultiColumnHorizontal
                       skeleton = {true}
                       skeltonNumbers = {3}
@@ -117,12 +78,12 @@ const TopRankingProducts = (props) => {
                 <div className="ProductsMultiColumnHorizontal--container">
                   <Row className="ProductsMultiColumnHorizontal--content row-cols-1">
                     <Col className="text-black vv-font-size-2 font-weight-bold mb-3" span={24}>
-                      {loadHandmadeCarpet ?
+                      {load ?
                         <Skeleton.Input style={{ width: 150, borderRadius: '10px' }} active={true} size={"small"} /> :
                         "Handmade carpet"
                       }
                     </Col>
-                    {getProductsHandmadeCarpet.map((product, i) => {
+                    {productsCat2.map((product, i) => {
                       return (
                         <ProductsMultiColumnHorizontal
                           key = { i }
@@ -131,7 +92,7 @@ const TopRankingProducts = (props) => {
                         />
                       );
                     })}
-                    {loadHandmadeCarpet &&
+                    {load &&
                     <SkeletonMultiColumnHorizontal
                       skeleton = {true}
                       skeltonNumbers = {3}
@@ -146,12 +107,12 @@ const TopRankingProducts = (props) => {
                 <div className="ProductsMultiColumnHorizontal--container">
                   <Row className="ProductsMultiColumnHorizontal--content row-cols-1">
                     <Col className="text-black vv-font-size-2 font-weight-bold mb-3" span={24}>
-                      {loadBabyCarpet ?
+                      {load ?
                         <Skeleton.Input style={{ width: 150, borderRadius: '10px' }} active={true} size={"small"} /> :
                         "Kids & Baby Carpet"
                       }
                     </Col>
-                    {getProductsBabyCarpet.map((product, i) => {
+                    {productsCat3.map((product, i) => {
                       return (
                         <ProductsMultiColumnHorizontal
                           key = { i }
@@ -160,7 +121,7 @@ const TopRankingProducts = (props) => {
                         />
                       );
                     })}
-                    {loadBabyCarpet &&
+                    {load &&
                     <SkeletonMultiColumnHorizontal
                       skeleton = {true}
                       skeltonNumbers = {3}
@@ -194,12 +155,12 @@ const TopRankingProducts = (props) => {
                     <div className="ProductsMultiColumnHorizontal--container">
                       <Row className="ProductsMultiColumnHorizontal--content row-cols-1">
                         <Col className="text-black vv-font-size-1-4 font-weight-bold text-center ProductsMultiColumnHorizontal--content__title" span={24}>
-                          {loadCarpets ?
+                          {load ?
                             <Skeleton.Input style={{ width: 50, borderRadius: '10px' }} active={true} size={"small"} /> :
                             "Carpets"
                           }
                         </Col>
-                        {getProductsCarpets.map((product, i) => {
+                        {productsCat1.map((product, i) => {
                           return (
                             <ProductsMultiColumnHorizontal
                               key = { i }
@@ -209,7 +170,7 @@ const TopRankingProducts = (props) => {
                           );
                         })}
 
-                        {loadCarpets &&
+                        {load &&
                         <SkeletonMultiColumnHorizontal
                           skeleton = {true}
                           skeltonNumbers = {3}
@@ -225,12 +186,12 @@ const TopRankingProducts = (props) => {
                     <div className="ProductsMultiColumnHorizontal--container">
                       <Row className="ProductsMultiColumnHorizontal--content row-cols-1">
                         <Col className="text-black vv-font-size-1-4 font-weight-bold text-center ProductsMultiColumnHorizontal--content__title" span={24}>
-                          {loadCarpets ?
+                          {load ?
                             <Skeleton.Input style={{ width: 50, borderRadius: '10px' }} active={true} size={"small"} /> :
                             "Handmade carpet"
                           }
                         </Col>
-                        {getProductsHandmadeCarpet.map((product, i) => {
+                        {productsCat2.map((product, i) => {
                           return (
                             <ProductsMultiColumnHorizontal
                               key = { i }
@@ -240,7 +201,7 @@ const TopRankingProducts = (props) => {
                           );
                         })}
 
-                        {loadHandmadeCarpet &&
+                        {load &&
                         <SkeletonMultiColumnHorizontal
                           skeleton = {true}
                           skeltonNumbers = {3}
@@ -256,12 +217,12 @@ const TopRankingProducts = (props) => {
                     <div className="ProductsMultiColumnHorizontal--container">
                       <Row className="ProductsMultiColumnHorizontal--content row-cols-1">
                         <Col className="text-black vv-font-size-1-4 font-weight-bold text-center ProductsMultiColumnHorizontal--content__title" span={24}>
-                          {loadCarpets ?
+                          {load ?
                             <Skeleton.Input style={{ width: 50, borderRadius: '10px' }} active={true} size={"small"} /> :
                             "Kids & Baby Carpet"
                           }
                         </Col>
-                        {getProductsBabyCarpet.map((product, i) => {
+                        {productsCat3.map((product, i) => {
                           return (
                             <ProductsMultiColumnHorizontal
                               key = { i }
@@ -271,7 +232,7 @@ const TopRankingProducts = (props) => {
                           );
                         })}
 
-                        {loadBabyCarpet &&
+                        {load &&
                         <SkeletonMultiColumnHorizontal
                           skeleton = {true}
                           skeltonNumbers = {3}
