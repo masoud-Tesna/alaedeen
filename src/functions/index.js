@@ -87,6 +87,38 @@ function useGetTopRankingProducts(cat1, cat2, cat3) {
   return { load, productsCat1, productsCat2, productsCat3, parametersCat1, parametersCat2, parametersCat3, error }
 }
 
+function useGetApi(url, item, loading = true) {
+  const [load, setLoad] = useState(loading);
+  const [items, setItems] = useState([]);
+  const [error, setError] = useState(null);
+
+
+  async function getApi() {
+    return await axios.get(url);
+  }
+
+  useEffect(() => {
+    let mounted  = true;
+
+    if (mounted) {
+      getApi()
+        .then(res => {
+          setItems(res.data[item]);
+        })
+        .then(() => {
+          setLoad(false);
+        })
+        .catch ((error) => {
+          setError(error);
+          setLoad(false);
+        })
+    }
+    return () => mounted = false;
+  }, [url, loading]);
+
+  return { load, items, error }
+}
+
 function useWindowSize() {
   // Initialize state with undefined width/height so server and client renders match
   // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
@@ -134,4 +166,4 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-export { useGetProductApi, useGetTopRankingProducts, useWindowSize, useShowImage, useQuery }
+export { useGetProductApi, useGetTopRankingProducts, useGetApi, useWindowSize, useShowImage, useQuery }
