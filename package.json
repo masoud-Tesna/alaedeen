@@ -23,9 +23,11 @@
     "react-i18next": "^11.8.13",
     "react-indiana-drag-scroll": "^2.0.1",
     "react-infinite-scroll-component": "^6.1.0",
+    "react-redux": "^7.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-text-truncate": "^0.16.0",
+    "redux": "^4.1.0",
     "swiper": "^6.5.9",
     "web-vitals": "^1.1.1"
   },
