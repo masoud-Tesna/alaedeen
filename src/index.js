@@ -4,6 +4,8 @@ import App from './App';
 
 import { ConfigProvider } from 'antd';
 
+import * as serviceWorker from './serviceWorker';
+
 const Application = () => {
   return (
     <ConfigProvider direction="ltr">
@@ -13,3 +15,5 @@ const Application = () => {
 }
 
 ReactDOM.render( <Application />, document.getElementById('HornApp'));
+
+serviceWorker.unregister();

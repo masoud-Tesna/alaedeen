@@ -32,7 +32,7 @@ const Home = () => {
   const { width } = useWindowSize();
 
   useEffect(() => {
-    document.title = "horn.company: Iranian Exporters, Manufacturers, Logistics, Suppliers Directory, B2B Business Directory"
+    document.title = "hornb2b.com: Iranian Exporters, Manufacturers, Logistics, Suppliers Directory, B2B Business Directory"
   }, []);
 
   return (
