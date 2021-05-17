@@ -4,6 +4,42 @@ import { useLocation, useHistory } from 'react-router-dom';
 
 // import ANT Design Components Used:
 import { Image } from "antd";
+import axios from "axios";
+
+// Function For Get Product by API From Server:
+function useGetProductApi(params) {
+  const [load, setLoad] = useState(true);
+  const [products, setProducts] = useState([]);
+  const [parameters, setParameters] = useState([]);
+  const [error, setError] = useState(null);
+
+  const url = `https://hornb2b.com/products-api/?${params}`;
+  async function getProduct() {
+    return await axios.get(url);
+  }
+
+  useEffect(() => {
+    let mounted  = true;
+    setLoad(true);
+
+    if (mounted) {
+      getProduct()
+        .then(res => {
+        setProducts(res.data.products);
+        setParameters(res.data.params);
+      })
+        .catch ((error) => {
+          setError(error);
+        })
+        .finally(() => {
+          setLoad(false);
+        });
+    }
+    return () => mounted = false;
+  }, []);
+
+  return { load, products, parameters, error }
+}
 
 function useWindowSize() {
   // Initialize state with undefined width/height so server and client renders match
@@ -52,4 +88,4 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-export { useWindowSize, useShowImage, useQuery }
+export { useGetProductApi, useWindowSize, useShowImage, useQuery }
