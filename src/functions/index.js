@@ -36,7 +36,7 @@ function useGetProductApi(params) {
         });
     }
     return () => mounted = false;
-  }, []);
+  }, [params]);
 
   return { load, products, parameters, error }
 }
