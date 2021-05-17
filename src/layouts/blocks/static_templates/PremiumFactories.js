@@ -22,14 +22,13 @@ import verifiedIcon from '../../../assets/images/verified.png';
 
 import TextTruncate from 'react-text-truncate';
 
+// import another components used:
+import { useWindowSize } from '../../../functions';
+
 const PremiumFactories = (props) => {
-  const { width } = props;
+  const { width } = useWindowSize();
 
   let history = useHistory();
-
-  const goToFactoriesPage = (factory_id) => {
-    history.push(`/factories?factory_id=${factory_id}`);
-  }
 
   return (
     <div className="premiumFactories--container">
@@ -40,7 +39,9 @@ const PremiumFactories = (props) => {
               Premium OEM Factories
             </Col>
             <Col className="my-auto">
-              <a className={ `${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } text-33` }>View More <i className={ `far fa-chevron-right ${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } ml-3` } /></a>
+              <Link to="/factories" className={ `${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } text-33` } >
+                View More <i className={ `far fa-chevron-right ${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } ml-3` } />
+              </Link>
             </Col>
           </Row>
         </Col>

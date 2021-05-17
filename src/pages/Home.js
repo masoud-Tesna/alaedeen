@@ -42,7 +42,7 @@ const Home = () => {
           {/* if Screen Width >= 992px (Desktop) Show Component: */}
           {width >= 992 &&
             <Col span={6}>
-              <CategoriesMultiColumn width = { width } />
+              <CategoriesMultiColumn />
             </Col>
           }
 
@@ -53,7 +53,7 @@ const Home = () => {
           {/* if Screen Width <= 991px (Mobile) Show Component: */}
           {width <= 991 &&
             <Col span={24}>
-              <CategoriesMultiColumn width = { width } />
+              <CategoriesMultiColumn />
             </Col>
           }
 
@@ -85,7 +85,7 @@ const Home = () => {
       <div className="shipProductsBanner--section product--section">
         <Row className="rounded-10 shadow-y-2 bg-white section--row" gutter={{ xs: 0, lg: 16 }}>
           <Col className="pl-0" span={10}>
-            <ShipProductsBanner width = { width } />
+            <ShipProductsBanner />
           </Col>
           <Col className="pr-0" span={14}>
             <HomePageShowProducts />
@@ -98,7 +98,7 @@ const Home = () => {
       </div>
 
       <div className="PremiumFactories--section">
-        <PremiumFactories width = { width } />
+        <PremiumFactories />
       </div>
 
       <div className="recommended--section">

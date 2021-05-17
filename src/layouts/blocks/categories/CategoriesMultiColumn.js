@@ -1,11 +1,11 @@
-import React from 'react';
-import ScrollContainer from 'react-indiana-drag-scroll';
-
 // import Style LESS File:
 import './styles/CategoriesMultiColumn.less';
 
 // import ANT Design Components used:
-import { Col, Divider, Row } from "antd";
+import { Col, Row } from "antd";
+
+// import another components used:
+import ScrollContainer from 'react-indiana-drag-scroll';
 
 // import categories image:
 import cat_1 from '../../../assets/images/categories/1.png';
@@ -15,12 +15,13 @@ import cat_4 from '../../../assets/images/categories/4.png';
 import cat_5 from '../../../assets/images/categories/5.png';
 import cat_6 from '../../../assets/images/categories/6.png';
 import cat_7 from '../../../assets/images/categories/7.png';
-import { OneRequestMultipleQuotes as RequestForm } from "../static_templates/OneRequestMultipleQuotes";
-import RequestsList from "../static_templates/RequestsList";
+
+// import custom hooks:
+import { useWindowSize } from "../../../functions";
 
 const CategoriesMultiColumn = (props) => {
 
-  const { width } = props;
+  const { width } = useWindowSize();
 
   return (
     <div className={ `${width >= 992 ? 'categoriesMultiColumn--container' : 'categoriesMultiColumn--containerXs my-4'} h-100` }>
