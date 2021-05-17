@@ -18,7 +18,7 @@ const SiteFooter = () => {
   }, [location]);
 
   // Check pathName For Set Default Top Panel Or Not:
-  if (pathName === '/factories') {
+  if (pathName === '/path') {
     return (
       <>
         Not Default Footer

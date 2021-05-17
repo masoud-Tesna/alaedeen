@@ -1077,24 +1077,16 @@ const Factories = () => {
   const factory_param_id = useQuery().get('factory');
   const [factoryDataInParam, setFactoryDataInParam] = useState([]);
 
-  if (factory_param_id) {
-    {
-      factoriesData.map((factoryData, i) => {
-        if (factoryData.factory_id == factory_param_id) {
-          setFactoryDataInParam([factoryData]);
-          factoriesData.splice(i, 1);
-        }
-      });
-    }
-  }
-
-
-
   useEffect(() => {
     window.scrollTo(0, 0);
+    if (factory_param_id) {
+      {
+        const i = factoriesData.findIndex(factoryData => factoryData.factory_id == factory_param_id);
+        setFactoryDataInParam([factoriesData[i]]);
+        factoriesData.splice(i, 1);
+      }
+    }
   }, [pathname]);
-
-  console.log(factoryDataInParam);
 
   return (
     <div className="bg-footer factories--pageSection">
