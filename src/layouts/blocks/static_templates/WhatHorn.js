@@ -5,7 +5,6 @@ import './styles/WhatHorn.less';
 
 // import ANT Design Components Used:
 import { Col, Divider, Row } from "antd";
-import { StripHtml } from "../../../functions/Func";
 
 const WhatHorn = () => {
 

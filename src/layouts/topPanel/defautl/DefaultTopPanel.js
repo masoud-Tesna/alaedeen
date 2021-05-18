@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 // import Styles For default:
 import './styles.less';
@@ -13,9 +14,9 @@ import { CategoriesDropDownVertical as Categories } from "../../blocks/categorie
 // import images used:
 import hornLogo from '../../../assets/images/logoXs.png';
 
-const handleLinkClick = (url, target) => {
-  window.open(url, target)
-}
+// import helper functions used:
+import { fn_handleLinkClick } from '../../../functions/Helper';
+
 
 const DefaultTopPanel = () => {
 
@@ -238,7 +239,7 @@ const DefaultTopPanel = () => {
                 </span>
               </a>
               <a className="topPanel--content__item hover">
-                <span className="topPanel--item__text" onClick={() => { handleLinkClick('https://calendar.iranfair.com/en/', '_blank') }}>
+                <span className="topPanel--item__text" onClick={() => { fn_handleLinkClick('https://calendar.iranfair.com/en/', '_blank') }}>
                   International Exhibition
                 </span>
               </a>
@@ -278,8 +279,10 @@ const DefaultTopPanel = () => {
 
             </Space>
           </Col>
-          <Col className="d-lg-none my-auto vv-cursor-pointer topPanel--col__logoXS" onClick={() => { handleLinkClick('/home', '_parent') }}>
-            <img src={hornLogo} alt="Horn"/>
+          <Col className="d-lg-none my-auto vv-cursor-pointer topPanel--col__logoXS">
+            <Link to={"/"} >
+              <img src={hornLogo} alt="Horn"/>
+            </Link>
           </Col>
           <Col className="d-lg-none my-auto topPanel--col__btnRequest">
             <Button className="border border-secondary-2 bg-secondary-2 border-w-2 text-white font-weight-600 p-0" size="large">Request a Quote</Button>

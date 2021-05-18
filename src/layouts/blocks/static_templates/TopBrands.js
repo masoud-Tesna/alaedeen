@@ -7,7 +7,7 @@ import './styles/TopBrands.less';
 import { Col, Row } from "antd";
 
 // import Another Components Used:
-import { StripHtml } from '../../../functions/Func';
+import { fn_stripHtml } from '../../../functions/Helper';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import SkeletonTopBrands from "./SkeletonTopBrands";
 
@@ -50,7 +50,7 @@ const TopBrands = () => {
                         { brand.company }
                       </div>
                       <div className="vv-font-size-1-9 text-8b text-center mt-3 topBrands--item__name">
-                        { StripHtml (brand.company_description) }
+                        { fn_stripHtml(brand.company_description) }
                       </div>
                     </Col>
                   );
@@ -82,7 +82,7 @@ const TopBrands = () => {
                             { brand.company }
                           </div>
                           <div className="vv-font-size-1-4 text-8b text-center text-truncate mt-1 w-100 topBrands--item__name">
-                            { StripHtml (brand.company_description) }
+                            { fn_stripHtml(brand.company_description) }
                           </div>
                         </Row>
                       </div>

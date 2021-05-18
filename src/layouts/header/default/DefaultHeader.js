@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 // import Styles For default:
 import './styles.less';
 
@@ -24,7 +26,9 @@ const DefaultHeader = () => {
             <Row className="h-100">
               <Col className="my-auto" span={7}>
                 <div className="logo">
-                  <img src={logoXs} />
+                  <Link to={"/"} >
+                    <img src={logoXs} />
+                  </Link>
                 </div>
               </Col>
               <Col className="my-auto header--left__searchBox" span={17}>
