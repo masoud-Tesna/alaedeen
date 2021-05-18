@@ -45,7 +45,7 @@ const SkeletonTopBrands = (props) => {
 
   let RowsSkeleton = [];
   for (let i = 0; i < skeletonNumbers; i++) {
-    RowsSkeleton.push(<SkeletonGrid {...props} key={i} />);
+    RowsSkeleton.push(<SkeletonGrid {...props} swiper={swiper} key={i} />);
   }
   return <>{RowsSkeleton}</>;
 };

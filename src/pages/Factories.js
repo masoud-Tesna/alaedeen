@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import './styles/Factories.less';
 
 // import ANT Design Components Used:
-import { Button, Col, Row, Skeleton, Space } from "antd";
+import { Button, Col, Row, Space } from "antd";
 
 // import factories icon:
 import aghigh from '../assets/images/store-icon/1.png';
@@ -990,14 +990,12 @@ const FieldValues = ({ fieldValues }) => {
       <>
         {fieldValues.map((fieldValue, i) => {
           return (
-            <>
-              <Col className="factories--fieldItem">
-                <Row className="factories--fieldRow">
-                  <Col span={24} className="vv-font-size-1-5 text-black font-weight-bold">{fieldValue.value}</Col>
-                  <Col span={24} className="vv-font-size-1-4 text-92">{fieldValue.caption}</Col>
-                </Row>
-              </Col>
-            </>
+            <Col className="factories--fieldItem" key={i}>
+              <Row className="factories--fieldRow">
+                <Col span={24} className="vv-font-size-1-5 text-black font-weight-bold">{fieldValue.value}</Col>
+                <Col span={24} className="vv-font-size-1-4 text-92">{fieldValue.caption}</Col>
+              </Row>
+            </Col>
           );
         })}
       </>
@@ -1007,14 +1005,12 @@ const FieldValues = ({ fieldValues }) => {
       <>
         {fieldValues.slice(0,2).map((fieldValue, i) => {
           return (
-            <>
-              <Col span={12} className="factories--fieldItem">
-                <Row className="factories--fieldRow">
-                  <Col span={24} className="vv-font-size-1-2 text-black font-weight-bold">{fieldValue.value}</Col>
-                  <Col span={24} className="vv-font-size-1-2 text-92">{fieldValue.caption}</Col>
-                </Row>
-              </Col>
-            </>
+            <Col span={12} className="factories--fieldItem" key={i}>
+              <Row className="factories--fieldRow">
+                <Col span={24} className="vv-font-size-1-2 text-black font-weight-bold">{fieldValue.value}</Col>
+                <Col span={24} className="vv-font-size-1-2 text-92">{fieldValue.caption}</Col>
+              </Row>
+            </Col>
           );
         })}
       </>
@@ -1029,7 +1025,7 @@ const GroupFields = ({ groupFields }) => {
   if (width >= 991) { // For Desktop:
     return (
       <>
-        {groupFields.map((groupField, i) => {
+        {groupFields.map((groupField) => {
           return (
             <Col span={12} key = { groupField.group_id }>
               <div className="py-2 px-3 factories--informationItem">
@@ -1050,7 +1046,7 @@ const GroupFields = ({ groupFields }) => {
   }else { // For Mobile:
     return (
       <>
-        {groupFields.slice(0,1).map((groupField, i) => {
+        {groupFields.slice(0,1).map((groupField) => {
           return (
             <Col flex="1 1" key = { groupField.group_id }>
               <div className="factories--informationItem">
@@ -1086,7 +1082,7 @@ const Factories = () => {
         factoriesData.splice(i, 1);
       }
     }
-  }, [pathname]);
+  }, [pathname, factory_param_id]);
 
   return (
     <div className="bg-footer factories--pageSection">
@@ -1126,10 +1122,9 @@ const Factories = () => {
 
             {factoryDataInParam && factory_param_id &&
             <>
-              {factoryDataInParam.map((data, k) => {
+              {factoryDataInParam.map((data) => {
                 return (
-                  <>
-                    <Col span={24} key = { data.factory_id } className="bg-f7 rounded-10 p-3 factories--item byParam">
+                  <Col span={24} key = { data.factory_id } className="bg-f7 rounded-10 p-3 factories--item byParam">
                       <Row gutter={16} className="h-100">
                         <Col flex='400px' className="d-none d-lg-block h-100 factories--imageContainer">
                           {data.logo === 'farrahi' &&
@@ -1267,16 +1262,14 @@ const Factories = () => {
                         </Col>
                       </Row>
                     </Col>
-                  </>
                 );
               })}
             </>
             }
 
-            {factoriesData.map((data, i) => {
+            {factoriesData.map((data) => {
               return (
-                <>
-                  <Col span={24} key = { data.factory_id } className="bg-white rounded-10 p-3 factories--item">
+                <Col span={24} key = { data.factory_id } className="bg-white rounded-10 p-3 factories--item">
                     <Row gutter={16} className="h-100">
                       <Col flex='400px' className="d-none d-lg-block h-100 factories--imageContainer">
                         {data.logo === 'farrahi' &&
@@ -1414,7 +1407,6 @@ const Factories = () => {
                       </Col>
                     </Row>
                   </Col>
-                </>
               );
             })}
           </Row>

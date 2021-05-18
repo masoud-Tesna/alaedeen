@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from 'react';
-
 // import Style File:
 import './styles/RecommendedProducts.less';
 import 'swiper/swiper.less';
 
 // import ANT Design Components Used:
-import { Button, Col, Row } from "antd";
+import { Col, Row } from "antd";
 
 // import Another Components Used:
-import axios from 'axios';
 import SwiperCore, { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -26,7 +23,7 @@ const RecentlyProductsView = () => {
 
   const { width } = useWindowSize();
 
-  const {load, products, parameters, error} = useGetProductApi('items_per_page=5&company_id=181');
+  const { load, products } = useGetProductApi('items_per_page=5&company_id=181');
 
   return (
     <div className="recommendedProducts--container">

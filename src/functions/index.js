@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 // import ANT Design Components Used:
 import { Image } from "antd";
@@ -151,10 +151,6 @@ function useWindowSize() {
 }
 
 function useShowImage(image, alt, width, height) {
-  useEffect(() => {
-    const test = 'test';
-  }, []);
-
   return (
     <>
       <img src={ image } alt={ alt }/>

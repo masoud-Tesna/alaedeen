@@ -17,7 +17,7 @@ const RecommendedProducts = () => {
   const product_items_per_page = width >= 992 ? 20 : 12;
   const url = `items_per_page=${product_items_per_page}&company_id=181&page=1&lang_code=en`;
 
-  const {load, products, parameters, error} = useGetProductApi(url);
+  const { load, products } = useGetProductApi(url);
 
   return (
     <div className="recommendedProducts--container">

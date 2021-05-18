@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import './styles.less';
 
 // Ant Design Import:
-import { Row, Col, Divider, Space, Menu, Select , Button, Modal, Collapse } from 'antd';
+import { Row, Col, Divider, Space, Button, Modal, Collapse } from 'antd';
 import { UpOutlined } from "@ant-design/icons";
 
 // import categories drop down:
@@ -14,14 +14,9 @@ import { CategoriesDropDownVertical as Categories } from "../../blocks/categorie
 // import images used:
 import hornLogo from '../../../assets/images/logoXs.png';
 
-// import helper functions used:
-import { fn_handleLinkClick } from '../../../functions/Helper';
-
-
 const DefaultTopPanel = () => {
 
   const { Panel } = Collapse;
-  const { Option } = Select;
 
   const [visibleTopPanelMenuXs, setVisibleTopPanelMenuXs] = useState(false);
   const [lang, setLang] = useState('en');
@@ -49,7 +44,7 @@ const DefaultTopPanel = () => {
       <Modal
         visible={visibleTopPanelMenuXs}
         onCancel={closeTopPanelMenuXs}
-        className="bg-white shadow-lg w-75 m-0 p-0 topPanel--menuXs"
+        className="d-lg-none bg-white shadow-lg w-75 m-0 p-0 topPanel--menuXs"
         closable={false}
         footer={null}
       >
@@ -66,9 +61,13 @@ const DefaultTopPanel = () => {
                         Hello
                       </Col>
                       <Col span={24}>
-                        <a className="text-white vv-font-size-1-7 font-weight-600">Sign in</a>
+                        <Link className="text-white vv-font-size-1-7 font-weight-600" to={"/sign-in"} >
+                          Sign in
+                        </Link>
                         <Divider type="vertical" className="border-70"/>
-                        <a className="text-white vv-font-size-1-7 font-weight-600">Join Free</a>
+                        <Link className="text-white vv-font-size-1-7 font-weight-600" to={"/register"} >
+                          Join Free
+                        </Link>
                       </Col>
                     </Row>
                   </Col>
@@ -80,7 +79,7 @@ const DefaultTopPanel = () => {
             <Row className="pt-4 px-4">
               <Col className="menuXs--sideNavLinks__items" span={24}>
                 <Space direction="vertical" size={"middle"} className="w-100">
-                  <a className="menuXs--sideNavLinks__item d-block">
+                  <Link className="menuXs--sideNavLinks__item d-block" to={"/"} >
                     <Row justify={"space-between"}>
                       <Col className="text-center" span={5}>
                         <i className="fal fa-home text-primary vv-font-size-3" />
@@ -89,9 +88,9 @@ const DefaultTopPanel = () => {
                         <span className="text-70 vv-font-size-1-6">Home</span>
                       </Col>
                     </Row>
-                  </a>
+                  </Link>
 
-                  <a className="menuXs--sideNavLinks__item languagesCurrencyCollapse d-block">
+                  <span className="menuXs--sideNavLinks__item languagesCurrencyCollapse d-block">
                     <Row justify={"space-between"}>
                       <Col className="text-center" span={5}>
                         <i className="fal fa-globe text-primary vv-font-size-3" />
@@ -157,9 +156,9 @@ const DefaultTopPanel = () => {
                         </Collapse>
                       </Col>
                     </Row>
-                  </a>
+                  </span>
 
-                  <a className="menuXs--sideNavLinks__item d-block">
+                  <Link className="menuXs--sideNavLinks__item d-block" to={"/favorites"} >
                     <Row justify={"space-between"}>
                       <Col className="text-center" span={5}>
                         <i className="fal fa-star text-primary vv-font-size-3" />
@@ -168,9 +167,9 @@ const DefaultTopPanel = () => {
                         <span className="text-70 vv-font-size-1-6">Favorites</span>
                       </Col>
                     </Row>
-                  </a>
+                  </Link>
 
-                  <a className="menuXs--sideNavLinks__item d-block">
+                  <Link className="menuXs--sideNavLinks__item d-block" to={"/comparison"} >
                     <Row justify={"space-between"}>
                       <Col className="text-center" span={5}>
                         <i className="icon-vv-compare text-primary vv-font-size-2-5" />
@@ -179,9 +178,9 @@ const DefaultTopPanel = () => {
                         <span className="text-70 vv-font-size-1-6">Comparison</span>
                       </Col>
                     </Row>
-                  </a>
+                  </Link>
 
-                  <a className="menuXs--sideNavLinks__item d-block">
+                  <Link className="menuXs--sideNavLinks__item d-block" to={"/messages"} >
                     <Row justify={"space-between"}>
                       <Col className="text-center" span={5}>
                         <i className="fal fa-envelope text-primary vv-font-size-3" />
@@ -190,7 +189,7 @@ const DefaultTopPanel = () => {
                         <span className="text-70 vv-font-size-1-6">Messages</span>
                       </Col>
                     </Row>
-                  </a>
+                  </Link>
                 </Space>
               </Col>
               <Divider className="border-bc" />
@@ -228,18 +227,20 @@ const DefaultTopPanel = () => {
             <Space size="middle">
               <Categories userClass="categories--dropDown topPanel--content__item hover" />
               <Divider type="vertical" className="border-70"/>
-              <a className="topPanel--content__item hover">
+              <Link className="topPanel--content__item hover" to={"/stores"} >
                 <span className="topPanel--item__text">
                   Stores
                 </span>
-              </a>
-              <a className="topPanel--content__item hover">
+              </Link>
+
+              <Link className="topPanel--content__item hover" to={"/logistics"} >
                 <span className="topPanel--item__text">
                   Logistics
                 </span>
-              </a>
-              <a className="topPanel--content__item hover">
-                <span className="topPanel--item__text" onClick={() => { fn_handleLinkClick('https://calendar.iranfair.com/en/', '_blank') }}>
+              </Link>
+
+              <a className="topPanel--content__item hover" href="https://calendar.iranfair.com/en/" target="_blank" rel="noreferrer">
+                <span className="topPanel--item__text">
                   International Exhibition
                 </span>
               </a>
@@ -247,35 +248,35 @@ const DefaultTopPanel = () => {
           </Col>
           <Col className="topPanel--content__right my-auto d-none d-lg-block">
             <Space size={0.5}>
-              <a className="topPanel--content__item hover">
-                <span className="topPanel--item__text">
+              <span className="topPanel--content__item hover">
+                <span className="vv-cursor-pointer topPanel--item__text">
                   عربی
                 </span>
-              </a>
+              </span>
               <Divider type="vertical" className="border-70"/>
-              <a className="topPanel--content__item hover">
+              <span className="vv-cursor-pointer topPanel--content__item hover">
                 <span className="topPanel--item__text">
                   English
                 </span>
-              </a>
+              </span>
               <Divider type="vertical" className="border-70"/>
-              <a className="topPanel--content__item hover">
+              <span className="vv-cursor-pointer topPanel--content__item hover">
                 <span className="topPanel--item__text">
                   فارسی
                 </span>
-              </a>
+              </span>
 
-              <a className="topPanel--content__item home-icon">
+              <Link className="topPanel--content__item home-icon" to={"/"} >
                 <span className="topPanel--item__text">
                   <i className="fal fa-home text-white vv-font-size-2"></i>
                 </span>
-              </a>
+              </Link>
 
-              <a className="topPanel--content__item question-icon">
+              <Link className="topPanel--content__item question-icon" to={"/faq"} >
                 <span className="topPanel--item__text">
                   <i className="fal fa-question-circle text-white vv-font-size-2"></i>
                 </span>
-              </a>
+              </Link>
 
             </Space>
           </Col>

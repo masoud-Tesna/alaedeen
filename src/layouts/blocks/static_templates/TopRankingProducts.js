@@ -15,6 +15,8 @@ import polygon_3 from '../../../assets/images/polygon3.png';
 
 // import custom hooks:
 import { useGetTopRankingProducts, useWindowSize } from "../../../functions";
+import { Link } from "react-router-dom";
+import React from "react";
 
 
 const TopRankingProducts = () => {
@@ -25,7 +27,7 @@ const TopRankingProducts = () => {
   const urlHandmadeCarpet = 'items_per_page=3&company_id=181&page=2lang_code=en';
   const urlBabyCarpet = 'items_per_page=3&page=4company_id=181&lang_code=en';
 
-  const { load, productsCat1, productsCat2, productsCat3, parametersCat1, parametersCat2, parametersCat3, error } = useGetTopRankingProducts(urlCarpets, urlHandmadeCarpet, urlBabyCarpet);
+  const { load, productsCat1, productsCat2, productsCat3 } = useGetTopRankingProducts(urlCarpets, urlHandmadeCarpet, urlBabyCarpet);
 
   return (
     <div className="topRankingProducts--container">
@@ -36,7 +38,9 @@ const TopRankingProducts = () => {
               TOP-RANKING PRODUCTS
             </Col>
             <Col className="my-auto">
-              <a className={ `${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } text-33` }>View More <i className={ `far fa-chevron-right ${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } ml-3` } /></a>
+              <Link to="/top-rankings" className={ `${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } text-33` } >
+                View More <i className={ `far fa-chevron-right ${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } ml-3` } />
+              </Link>>
             </Col>
           </Row>
         </Col>

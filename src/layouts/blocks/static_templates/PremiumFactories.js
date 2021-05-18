@@ -1,11 +1,11 @@
 import React from 'react';
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // import Style File:
 import './styles/PremiumFactories.less';
 
 // import ANT Design Components Used:
-import { Col, Row, Skeleton, Space } from "antd";
+import { Col, Row} from "antd";
 
 // import store icon:
 import store_1 from '../../../assets/images/store-icon/1.png';
@@ -27,8 +27,6 @@ import { useWindowSize } from '../../../functions';
 
 const PremiumFactories = (props) => {
   const { width } = useWindowSize();
-
-  let history = useHistory();
 
   return (
     <div className="premiumFactories--container">

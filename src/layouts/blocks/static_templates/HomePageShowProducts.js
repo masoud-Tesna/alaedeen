@@ -21,7 +21,7 @@ const HomePageShowProducts = () => {
   }
   let url = `items_per_page=${items_per_page}&company_id=181`;
 
-  const {load, products, parameters, error} = useGetProductApi(url);
+  const { load, products } = useGetProductApi(url);
 
   return (
     <Row className="h-100 productsMultiColumnVertical--items" justify="space-around">

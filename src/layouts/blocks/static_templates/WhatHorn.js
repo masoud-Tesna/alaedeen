@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from 'react';
-
 // import Style File:
 import './styles/WhatHorn.less';
 

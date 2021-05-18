@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 // import Custom Hooks:
 import { useWindowSize } from '../functions';
@@ -7,7 +7,7 @@ import { useWindowSize } from '../functions';
 import './styles/Home.less';
 
 // import Design:
-import { Button, Col, Row } from "antd";
+import { Col, Row } from "antd";
 
 // import blocks:
 import CategoriesMultiColumn from "../layouts/blocks/categories/CategoriesMultiColumn";
@@ -16,12 +16,9 @@ import { OneRequestMultipleQuotes as RequestForm } from "../layouts/blocks/stati
 import RequestsList from "../layouts/blocks/static_templates/RequestsList";
 import Stats from "../layouts/blocks/static_templates/Stats";
 import ShipProductsBanner from "../layouts/blocks/static_templates/ShipProductsBanner";
-import ProductsMultiColumnVertical from "../layouts/blocks/product_list_templates/ProductsMultiColumnVertical";
 import TopRankingProducts from "../layouts/blocks/static_templates/TopRankingProducts";
 import PremiumFactories from "../layouts/blocks/static_templates/PremiumFactories";
 import RecommendedProducts from "../layouts/blocks/static_templates/RecommendedProducts";
-import axios from "axios";
-import SkeletonMultiColumnVertical from "../layouts/blocks/product_list_templates/SkeletonMultiColumnVertical";
 import RecentlyProductsView from "../layouts/blocks/static_templates/RecentlyProductsView";
 import TopBrands from "../layouts/blocks/static_templates/TopBrands";
 import WhatHorn from "../layouts/blocks/static_templates/WhatHorn";

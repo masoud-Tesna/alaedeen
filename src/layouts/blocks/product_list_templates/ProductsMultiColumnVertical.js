@@ -1,5 +1,3 @@
-import React, { useEffect } from 'react';
-
 // import Custom Hooks:
 import { useWindowSize, useShowImage } from "../../../functions";
 
@@ -11,8 +9,6 @@ import { Col, Row, Skeleton } from "antd";
 
 // import store icon:
 import store_1 from '../../../assets/images/store-icon/1.png';
-import store_2 from '../../../assets/images/store-icon/2.png';
-import store_3 from '../../../assets/images/store-icon/3.png';
 
 
 const ProductsMultiColumnVertical = (props) => {

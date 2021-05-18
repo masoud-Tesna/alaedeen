@@ -16,9 +16,6 @@ import { Layout } from 'antd';
 // Pages:
 import { Home, Factories } from "./pages";
 
-import googlePlay from './assets/images/googlePlay.svg';
-import appleStore from './assets/images/appleStore.svg';
-
 // Layouts:
 import TopPanel from "./layouts/topPanel";
 import { Header as SiteHeader } from "./layouts/header";
@@ -38,7 +35,6 @@ function App() {
         <Content>
           <div className="site-layout-content">
             <Switch>
-              <Route path="/home" component={Home} />
               <Route exact path="/" component={Home} />
               <Route exact path="/factories" component={Factories} />
             </Switch>

@@ -18,11 +18,11 @@ const CategoriesContent = (
 const CategoriesDropDownVertical = ({ userClass }) => {
   return (
     <Dropdown className={ userClass } overlay={CategoriesContent} trigger={['click']}>
-      <a className="" onClick={e => e.preventDefault()}>
+      <span className="vv-cursor-pointer" onClick={e => e.preventDefault()}>
         <i className="fal fa-list-ul mr-3 vv-font-size-2" />
         <span className="topPanel--item__text">Categories</span>
         <DownOutlined className="ml-3" />
-      </a>
+      </span>
     </Dropdown>
   );
 };

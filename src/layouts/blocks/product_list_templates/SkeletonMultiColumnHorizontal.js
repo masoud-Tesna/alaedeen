@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import './styles/ProductsMultiColumnHorizontal.less';
 
 // import Ant Design Components:
-import { Col, Row, Skeleton, Space } from "antd";
+import { Col, Skeleton, Space } from "antd";
 
 const SkeletonGrid = (props) => {
   const { Xs } = props;

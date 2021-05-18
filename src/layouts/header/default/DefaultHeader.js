@@ -4,13 +4,10 @@ import { Link } from "react-router-dom";
 import './styles.less';
 
 // Ant Design Import:
-import { Row, Col, Space, Input, Button  } from 'antd';
+import { Row, Col, Input, Button  } from 'antd';
 
 // import logo:
 import logoXs from '../../../assets/images/logoXs.png';
-
-// click on search:
-const onSearch = value => console.log(value);
 
 // Show suffix for search input:
 const suffix = <span className="suffix-content vv-font-size-2"><i className="far fa-search vv-font-size-2" /> Search</span>;
@@ -27,7 +24,7 @@ const DefaultHeader = () => {
               <Col className="my-auto" span={7}>
                 <div className="logo">
                   <Link to={"/"} >
-                    <img src={logoXs} />
+                    <img src={logoXs} alt="Horn" />
                   </Link>
                 </div>
               </Col>
@@ -46,10 +43,14 @@ const DefaultHeader = () => {
                   <Col span={16}>
                     <Row gutter={[0, 24]}>
                       <Col span={24}>
-                        <a className="text-70 vv-font-size-2">Sign in</a>
+                        <Link className="text-70 vv-font-size-2" to={"/sign-in"} >
+                          Sign in
+                        </Link>
                       </Col>
                       <Col span={24}>
-                        <a className="text-70 vv-font-size-2">Join Free</a>
+                        <Link className="text-70 vv-font-size-2" to={"/register"} >
+                          Join Free
+                        </Link>
                       </Col>
                     </Row>
                   </Col>
