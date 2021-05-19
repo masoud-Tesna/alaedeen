@@ -26,30 +26,30 @@ const HomePageShowProducts = () => {
   const { language } = useGetLanguageState();
 
   let url = `items_per_page=${items_per_page}&company_id=181&lang_code=${language}`;
-  console.log(url);
 
   const { load, products } = useGetProductApi(url);
 
   return (
     <Row className="h-100 productsMultiColumnVertical--items" justify="space-around">
 
-      {products.map((product) => {
-        return (<ProductsMultiColumnVertical
-          key = { product.product_id }
-          product={product}
-          detailIcon="company"
-          grid={productsMultiColumnVertical_items}
-          width = { width }
-        />);
-      })}
-
-      {load &&
+      {load ?
       <SkeletonMultiColumnVertical
         skeleton = {true}
         skeltonNumbers = {width >= 992 ? 3 : 2}
         grid={productsMultiColumnVertical_items}
         width = { width }
-      />
+      /> :
+        <>
+          {products.map((product) => {
+            return (<ProductsMultiColumnVertical
+              key = { product.product_id }
+              product={product}
+              detailIcon="company"
+              grid={productsMultiColumnVertical_items}
+              width = { width }
+            />);
+          })}
+        </>
       }
     </Row>
   );
