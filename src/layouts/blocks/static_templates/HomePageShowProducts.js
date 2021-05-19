@@ -8,6 +8,9 @@ import { Row } from "antd";
 // import Custom hooks:
 import { useGetProductApi, useWindowSize } from "../../../functions";
 
+// import get language context
+import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
+
 const HomePageShowProducts = () => {
 
   const { width } = useWindowSize();
@@ -19,7 +22,11 @@ const HomePageShowProducts = () => {
     productsMultiColumnVertical_items = { span: 12 };
     items_per_page = 2;
   }
-  let url = `items_per_page=${items_per_page}&company_id=181`;
+
+  const { language } = useGetLanguageState();
+
+  let url = `items_per_page=${items_per_page}&company_id=181&lang_code=${language}`;
+  console.log(url);
 
   const { load, products } = useGetProductApi(url);
 
