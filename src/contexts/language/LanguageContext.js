@@ -21,12 +21,12 @@ const languageContext = createContext(undefined);
 
 // create Language Context Provide:
 function LanguageProvider({ children }) {
-  const [language, setLanguage] = useReducer(
+  const [language, dispatch] = useReducer(
     useLanguageReducer,
     InitialLanguageState
   );
   return (
-    <languageContext.Provider value={{ language, setLanguage }}>
+    <languageContext.Provider value={{ language, dispatch }}>
       {children}
     </languageContext.Provider>
   );
