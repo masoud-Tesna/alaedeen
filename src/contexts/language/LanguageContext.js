@@ -25,7 +25,9 @@ function LanguageProvider({ children }) {
     useLanguageReducer,
     InitialLanguageState
   );
+
   const language = lang.language;
+
   return (
     <languageContext.Provider value={{ language, dispatch }}>
       {children}
