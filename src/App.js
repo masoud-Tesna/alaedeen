@@ -14,7 +14,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Layout } from 'antd';
 
 // Pages:
-import { Home, Factories } from "./pages";
+import { Home, Factories } from "./components";
 
 // Layouts:
 import TopPanel from "./layouts/topPanel";
