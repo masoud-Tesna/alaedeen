@@ -1124,7 +1124,7 @@ const Factories = () => {
             <>
               {factoryDataInParam.map((data) => {
                 return (
-                  <Col span={24} key = { data.factory_id } className="bg-f7 rounded-10 p-3 factories--item byParam">
+                  <Col span={24} key = { data.factory_id } className="bg-f7 rounded-10 p-3 border border-70 factories--item byParam">
                       <Row gutter={16} className="h-100">
                         <Col flex='400px' className="d-none d-lg-block h-100 factories--imageContainer">
                           {data.logo === 'farrahi' &&
@@ -1269,7 +1269,7 @@ const Factories = () => {
 
             {factoriesData.map((data) => {
               return (
-                <Col span={24} key = { data.factory_id } className="bg-white rounded-10 p-3 factories--item">
+                <Col span={24} key = { data.factory_id } className="bg-white rounded-10 p-3 border border-70 factories--item">
                     <Row gutter={16} className="h-100">
                       <Col flex='400px' className="d-none d-lg-block h-100 factories--imageContainer">
                         {data.logo === 'farrahi' &&
