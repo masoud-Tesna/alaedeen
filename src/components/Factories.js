@@ -1076,11 +1076,9 @@ const Factories = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     if (factory_param_id) {
-      {
-        const i = factoriesData.findIndex(factoryData => factoryData.factory_id == factory_param_id);
-        setFactoryDataInParam([factoriesData[i]]);
-        factoriesData.splice(i, 1);
-      }
+      const i = factoriesData.findIndex(factoryData => factoryData.factory_id == factory_param_id);
+      setFactoryDataInParam([factoriesData[i]]);
+      factoriesData.splice(i, 1);
     }
   }, [pathname, factory_param_id]);
 

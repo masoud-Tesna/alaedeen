@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 // import Style File:
 import './styles/TopBrands.less';
 
@@ -19,7 +17,7 @@ const TopBrands = () => {
   const { width } = useWindowSize();
 
 
-  const { load, items, error } = useGetApi('https://hornb2b.com/top-brands/?items_per_page=5', 'top_brands')
+  const { load, items } = useGetApi('https://hornb2b.com/top-brands/?items_per_page=5', 'top_brands')
 
   return (
     <div className="topBrands--container">
