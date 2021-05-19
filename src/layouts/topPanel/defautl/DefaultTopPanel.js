@@ -14,12 +14,23 @@ import { CategoriesDropDownVertical as Categories } from "../../blocks/categorie
 // import images used:
 import hornLogo from '../../../assets/images/logoXs.png';
 
+// import language context:
+import { useLanguageState, changeLanguageAction } from '../../../contexts/language/LanguageContext';
+
 const DefaultTopPanel = () => {
+
+  const { language, dispatch } = useLanguageState();
+
+  const handleChangeLanguage = (lang) => {
+    if (lang !== language) {
+      dispatch(changeLanguageAction(lang));
+    }
+  }
 
   const { Panel } = Collapse;
 
   const [visibleTopPanelMenuXs, setVisibleTopPanelMenuXs] = useState(false);
-  const [lang, setLang] = useState('en');
+
   const [currency, setCurrency] = useState('USD');
 
   const showTopPanelMenuXs = () => {
@@ -28,10 +39,6 @@ const DefaultTopPanel = () => {
 
   const closeTopPanelMenuXs = () => {
     setVisibleTopPanelMenuXs(false);
-  }
-
-  const handleChangeLang = (e) => {
-    setLang(e.target.value);
   }
 
   const handleChangeCurrency = (e) => {
@@ -109,8 +116,8 @@ const DefaultTopPanel = () => {
                                 </Col>
                                 <Col className="my-auto" span={12}>
                                   <select
-                                    value={lang}
-                                    onChange={e => handleChangeLang(e)}
+                                    value={language}
+                                    onChange={e => handleChangeLanguage(e.target.value)}
                                     className="w-100 text-red-a0 select-box-remove-arrow border-0 vv-font-size-1-5 p-0 mobileChangeLangSelect">
                                     <option value="en"
                                             selected="">English
@@ -248,19 +255,25 @@ const DefaultTopPanel = () => {
           </Col>
           <Col className="topPanel--content__right my-auto d-none d-lg-block">
             <Space size={0.5}>
-              <span className="topPanel--content__item hover">
-                <span className="vv-cursor-pointer topPanel--item__text">
+              <span
+                className={ `vv-cursor-pointer topPanel--content__item ${ language === 'ar' ? 'active' : 'hover' }` }
+                onClick={() => handleChangeLanguage('ar')}>
+                <span className="topPanel--item__text">
                   عربی
                 </span>
               </span>
               <Divider type="vertical" className="border-70"/>
-              <span className="vv-cursor-pointer topPanel--content__item hover">
+              <span
+                className={ `vv-cursor-pointer topPanel--content__item ${ language === 'en' ? 'active' : 'hover' }` }
+                onClick={() => handleChangeLanguage('en')}>
                 <span className="topPanel--item__text">
                   English
                 </span>
               </span>
               <Divider type="vertical" className="border-70"/>
-              <span className="vv-cursor-pointer topPanel--content__item hover">
+              <span
+                className={ `vv-cursor-pointer topPanel--content__item ${ language === 'fa' ? 'active' : 'hover' }` }
+                onClick={() => handleChangeLanguage('fa')}>
                 <span className="topPanel--item__text">
                   فارسی
                 </span>
