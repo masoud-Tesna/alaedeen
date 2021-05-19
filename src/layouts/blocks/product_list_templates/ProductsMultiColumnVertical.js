@@ -52,7 +52,7 @@ const ProductsMultiColumnVertical = (props) => {
   return (
     <Col className={ `productsMultiColumnVertical--item` } {...props.grid}>
       <Row className={ `h-100 pb-3 pb-lg-0 ${props.className}` } justify="center">
-        <Col className="align-self-start">
+        <Col className="align-self-start" span={24}>
           <Row>
             <Col span={24} className="d-flex align-items-center justify-content-center productsMultiColumnVertical--item__image">
               {productImage}
