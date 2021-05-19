@@ -21,7 +21,7 @@ function fn_set_initial_language(key, lang) {
     window.localStorage.setItem(key, lang);
     i18n.changeLanguage(key);
   }
-  return { storageLang };
+  return storageLang;
 }
 
 export { fn_stripHtml, fn_handleLinkClick, fn_set_initial_language }
