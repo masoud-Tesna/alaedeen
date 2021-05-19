@@ -24,4 +24,8 @@ function fn_set_initial_language(key, lang) {
   return storageLang;
 }
 
-export { fn_stripHtml, fn_handleLinkClick, fn_set_initial_language }
+function fn_set_local_storage(key, value) {
+  window.localStorage.setItem(key, value);
+}
+
+export { fn_stripHtml, fn_handleLinkClick, fn_set_initial_language, fn_set_local_storage }
