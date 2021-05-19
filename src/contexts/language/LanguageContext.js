@@ -1,21 +1,23 @@
 import { createContext, useContext, useReducer } from "react";
 
+// import custom hooks:
+import { fn_set_initial_language } from '../../functions/Helper';
+
 // import language actions and action creator:
 import { CHANGE_LANGUAGE } from './LanguageActions';
-
-// import custom hooks:
-import { useLocalStorage } from '../../functions';
 
 // import i18n in translations:
 import i18n from "../../translations";
 
+
+
 // Initial State:
 const InitialLanguageState = {
-  language: useLocalStorage("lang", "en")
+  language: fn_set_initial_language("lang", "en")
 };
 
 // Language Context Create:
-const languageContext = createContext();
+const languageContext = createContext(undefined);
 
 // create Language Context Provide:
 function LanguageProvider({ children }) {
@@ -41,7 +43,7 @@ function useLanguageReducer(state, action) {
       i18n
         .changeLanguage(action.payload)
         .then(() => {
-          useLocalStorage("lang", action.payload);
+          fn_set_initial_language("lang", "en");
         });
       return {
         language: action.payload
