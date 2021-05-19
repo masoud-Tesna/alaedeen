@@ -20,6 +20,7 @@ function useGetProductApi(params) {
 
   useEffect(() => {
     let mounted  = true;
+    setLoad(true);
 
     if (mounted) {
       getProduct()
@@ -61,6 +62,7 @@ function useGetTopRankingProducts(cat1, cat2, cat3) {
 
   useEffect(() => {
     let mounted  = true;
+    setLoad(true);
 
     if (mounted) {
       getProduct()
@@ -99,6 +101,7 @@ function useGetApi(url, item, loading = true) {
 
   useEffect(() => {
     let mounted  = true;
+    setLoad(loading);
 
     if (mounted) {
       getApi()
