@@ -17,6 +17,8 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.env
+.gitignore
 
 npm-debug.log*
 yarn-debug.log*
@@ -24,9 +26,6 @@ yarn-error.log*
 
 # npm run
 .idea
-
-# git
-.gitignore
 
 # PhpStorm
 .run
