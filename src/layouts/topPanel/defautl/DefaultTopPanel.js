@@ -15,15 +15,16 @@ import { CategoriesDropDownVertical as Categories } from "../../blocks/categorie
 import hornLogo from '../../../assets/images/logoXs.png';
 
 // import language context:
-import { useLanguageState, changeLanguageAction } from '../../../contexts/language/LanguageContext';
+import { changeLanguageAction, useGetLanguageState, useDispatchLanguageState } from '../../../contexts/language/LanguageContext';
 
 const DefaultTopPanel = () => {
 
-  const { language, dispatch } = useLanguageState();
+  const { language } = useGetLanguageState();
+  const { languageDispatch } = useDispatchLanguageState();
 
   const handleChangeLanguage = (lang) => {
     if (lang !== language) {
-      dispatch(changeLanguageAction(lang));
+      languageDispatch(changeLanguageAction(lang));
     }
   }
 
