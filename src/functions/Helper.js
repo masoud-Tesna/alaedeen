@@ -18,7 +18,7 @@ function fn_set_initial_language(key, lang) {
     storageLang = item;
     i18n.changeLanguage(item);
   } else {
-    window.localStorage.setItem(key, JSON.stringify(lang));
+    window.localStorage.setItem(key, lang);
     i18n.changeLanguage(key);
   }
   return { storageLang };
