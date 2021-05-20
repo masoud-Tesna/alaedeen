@@ -14,6 +14,9 @@ import { CategoriesDropDownVertical as Categories } from "../../blocks/categorie
 // import images used:
 import hornLogo from '../../../assets/images/logoXs.png';
 
+// import another components used:
+import LoaderSpinner from '../../blocks/static_templates/LoadSpinner';
+
 // import language context:
 import { changeLanguageAction, useGetLanguageState, useDispatchLanguageState } from '../../../contexts/language/LanguageContext';
 
@@ -22,9 +25,17 @@ const DefaultTopPanel = () => {
   const { language } = useGetLanguageState();
   const { languageDispatch } = useDispatchLanguageState();
 
+  const [ showLoadSpinner, setShowLoadSpinner ] = useState(false);
+
   const handleChangeLanguage = (lang) => {
     if (lang !== language) {
+      setShowLoadSpinner(true);
+
       languageDispatch(changeLanguageAction(lang));
+      setTimeout(() => {
+        setShowLoadSpinner(false)
+      }, 1000);
+
     }
   }
 
@@ -49,6 +60,12 @@ const DefaultTopPanel = () => {
 
   return (
     <Row className="bg-top-panel topPanel--container">
+
+      {/*Show Loading Spinner if Change language*/}
+      <div className={ `${ showLoadSpinner ? 'd-block' : 'd-none' }` }>
+        <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>
+      </div>
+
       <Modal
         visible={visibleTopPanelMenuXs}
         onCancel={closeTopPanelMenuXs}
