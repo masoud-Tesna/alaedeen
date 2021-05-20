@@ -1,0 +1,32 @@
+
+.overlay {
+  background: #000000;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 5000;
+  top: 0;
+  left: 0;
+  float: left;
+  text-align: center;
+  padding-top: 25%;
+  opacity: .8;
+}
+.spinner {
+  height: 64px;
+  width: 64px;
+  animation: rotate 0.8s infinite linear;
+  border-right-color: transparent !important;
+  border-radius: 50%;
+  position: absolute;
+  top: calc(50vh - 64px);
+  right: calc(50% - 20px);
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
