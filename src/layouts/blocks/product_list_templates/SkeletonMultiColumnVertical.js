@@ -8,12 +8,13 @@ import { Col, Row, Skeleton } from "antd";
 
 const SkeletonGrid = (props) => {
   const { width } = props;
+  const { height } = props;
   let paragraph_rows = { rows: 2 };
   if (width <= 991) {
     paragraph_rows = { rows: 1 };
   }
   return (
-    <Col className={ `productsMultiColumnVertical--item` } {...props.grid}>
+    <Col className={ `productsMultiColumnVertical--item` } {...props.grid} style={{ minHeight: `${height}px` }}>
       <Row className={ `h-100 ${props.className}` } justify="center">
         <Col span={24} className="d-flex align-items-center justify-content-center productsMultiColumnVertical--item__image">
           <Skeleton.Image active={true} className="w-100 h-100 border-bottom border-w-05 rounded-top-10" />

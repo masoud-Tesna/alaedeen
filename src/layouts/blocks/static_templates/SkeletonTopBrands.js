@@ -9,6 +9,8 @@ import { Col, Row, Skeleton } from "antd";
 const SkeletonGrid = (props) => {
   const { swiper } = props;
 
+  const { height } = props;
+
   if (swiper) {
     return (
       <div className={ `d-inline skeletonTopBrands--item` } {...props.grid}>
@@ -24,7 +26,7 @@ const SkeletonGrid = (props) => {
     );
   }
   return (
-    <Col className={ `skeletonTopBrands--item` } {...props.grid}>
+    <Col className={ `skeletonTopBrands--item` } {...props.grid} style={{ minHeight: `${height}px` }}>
       <Row className={ `h-100 ${props.className}` } justify="center">
         <Col span={24} className="d-flex align-items-center justify-content-center skeletonTopBrands--item__image">
           <Skeleton.Image active={true} className="" />
