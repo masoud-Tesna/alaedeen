@@ -17,13 +17,18 @@ import SkeletonMultiColumnVertical from "../product_list_templates/SkeletonMulti
 // import custom hooks:
 import { useGetProductApi, useWindowSize } from '../../../functions';
 
+// import get language context:
+import { useGetLanguageState } from '../../../contexts/language/LanguageContext';
+
 SwiperCore.use([Autoplay ]);
 
 const RecentlyProductsView = () => {
 
+  const { language } = useGetLanguageState();
+
   const { width } = useWindowSize();
 
-  const { load, products } = useGetProductApi('items_per_page=5&company_id=181');
+  const { load, products } = useGetProductApi(`items_per_page=5&company_id=181&lang_code=${language}`);
 
   return (
     <div className="recommendedProducts--container">
@@ -41,23 +46,26 @@ const RecentlyProductsView = () => {
 
               {width >= 992 ?
                 <>
-                  {products.map((product, i) => {
-                    return (
-                      <ProductsMultiColumnVertical
-                        key = { i }
-                        className="bg-white rounded-10 shadow-y-2"
-                        product={product}
-                        allDetails
-                      />
-                    );
-                  })}
 
-                  {load &&
+                  {load ?
                   <SkeletonMultiColumnVertical
                     className = "bg-white rounded-10 shadow-y-2"
                     skeleton = {true}
                     skeltonNumbers = {5}
-                  />
+                    height = {width >= 992 ? 363.933 : 273.05}
+                  /> :
+                    <>
+                      {products.map((product, i) => {
+                        return (
+                          <ProductsMultiColumnVertical
+                            key = { i }
+                            className="bg-white rounded-10 shadow-y-2"
+                            product={product}
+                            allDetails
+                          />
+                        );
+                      })}
+                    </>
                   }
 
                 </> :

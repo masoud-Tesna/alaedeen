@@ -6,18 +6,30 @@ import { Button, Col, Row } from "antd";
 
 // import Another Components Used:
 import ProductsMultiColumnVertical from "../product_list_templates/ProductsMultiColumnVertical";
-
 import SkeletonMultiColumnVertical from "../product_list_templates/SkeletonMultiColumnVertical";
+
+// import Custom hooks:
 import { useGetProductApi, useWindowSize } from "../../../functions";
 
+// import get language context:
+import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
+
 const RecommendedProducts = () => {
+
+  const { language } = useGetLanguageState();
 
   const { width } = useWindowSize();
 
   const product_items_per_page = width >= 992 ? 20 : 12;
-  const url = `items_per_page=${product_items_per_page}&company_id=181&page=1&lang_code=en`;
+  const url = `items_per_page=${product_items_per_page}&company_id=181&page=1&lang_code=${language}`;
 
   const { load, products } = useGetProductApi(url);
+
+  let productsMultiColumnVertical_items = { span: 8 };
+
+  if (width <= 991) {
+    productsMultiColumnVertical_items = { span: 12 };
+  }
 
   return (
     <div className="recommendedProducts--container">
@@ -33,23 +45,26 @@ const RecommendedProducts = () => {
           <div className="h-100 productsMultiColumnVertical--container">
             <Row className="h-100 productsMultiColumnVertical--items row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5" justify="space-around" gutter={[16, 20]}>
 
-              {products.map((product, i) => {
-                return (
-                  <ProductsMultiColumnVertical
-                    key = { i }
-                    className="bg-white rounded-10 shadow-y-2"
-                    product={product}
-                    allDetails
-                  />
-                );
-              })}
-
-              {load &&
+              {load ?
                 <SkeletonMultiColumnVertical
-                  className = "bg-white rounded-10 shadow-y-2"
                   skeleton = {true}
-                  sskeltonNumbers = {width >= 992 ? 20 : 12}
-                />
+                  skeltonNumbers = {width >= 992 ? 20 : 12}
+                  grid={productsMultiColumnVertical_items}
+                  width = { width }
+                  height = {width >= 992 ? 363.933 : 273.05}
+                /> :
+                <>
+                  {products.map((product, i) => {
+                    return (
+                      <ProductsMultiColumnVertical
+                        key = { i }
+                        className="bg-white rounded-10 shadow-y-2"
+                        product={product}
+                        allDetails
+                      />
+                    );
+                  })}
+                </>
               }
 
               <div className="text-center mt-4 productsMultiColumnVertical--item__loadMore">

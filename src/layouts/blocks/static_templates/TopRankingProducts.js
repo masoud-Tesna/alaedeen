@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 // import style file:
 import './styles/TopRankingProducts.less';
 
@@ -15,17 +17,20 @@ import polygon_3 from '../../../assets/images/polygon3.png';
 
 // import custom hooks:
 import { useGetTopRankingProducts, useWindowSize } from "../../../functions";
-import { Link } from "react-router-dom";
-import React from "react";
+
+// import get language context
+import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
 
 
 const TopRankingProducts = () => {
 
   const { width } = useWindowSize();
 
-  const urlCarpets = 'items_per_page=3&company_id=181&page=1lang_code=en';
-  const urlHandmadeCarpet = 'items_per_page=3&company_id=181&page=2lang_code=en';
-  const urlBabyCarpet = 'items_per_page=3&page=4company_id=181&lang_code=en';
+  const { language } = useGetLanguageState();
+
+  const urlCarpets = `items_per_page=3&company_id=181&page=1lang_code=${language}`;
+  const urlHandmadeCarpet = `items_per_page=3&company_id=181&page=2lang_code=${language}`;
+  const urlBabyCarpet = `items_per_page=3&page=4company_id=181&lang_code=${language}`;
 
   const { load, productsCat1, productsCat2, productsCat3 } = useGetTopRankingProducts(urlCarpets, urlHandmadeCarpet, urlBabyCarpet);
 
@@ -40,7 +45,7 @@ const TopRankingProducts = () => {
             <Col className="my-auto">
               <Link to="/top-rankings" className={ `${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } text-33` } >
                 View More <i className={ `far fa-chevron-right ${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } ml-3` } />
-              </Link>>
+              </Link>
             </Col>
           </Row>
         </Col>
@@ -57,23 +62,26 @@ const TopRankingProducts = () => {
                         "Carpets"
                       }
                     </Col>
-                    {productsCat1.map((product, i) => {
-                      return (
-                        <ProductsMultiColumnHorizontal
-                          key = { i }
-                          productKey = { i }
-                          product= {product}
-                        />
-                      );
-                    })}
 
-                    {load &&
-                    <SkeletonMultiColumnHorizontal
-                      skeleton = {true}
-                      skeltonNumbers = {3}
-                      className="SkeletonMultiColumnHorizontal"
-                    />
+                    {load ?
+                      <SkeletonMultiColumnHorizontal
+                        skeleton = {true}
+                        skeltonNumbers = {3}
+                        className="SkeletonMultiColumnHorizontal"
+                      /> :
+                      <>
+                        {productsCat1.map((product, i) => {
+                          return (
+                            <ProductsMultiColumnHorizontal
+                              key = { i }
+                              productKey = { i }
+                              product= {product}
+                            />
+                          );
+                        })}
+                      </>
                     }
+
                   </Row>
                 </div>
               </Col>
@@ -87,22 +95,26 @@ const TopRankingProducts = () => {
                         "Handmade carpet"
                       }
                     </Col>
-                    {productsCat2.map((product, i) => {
-                      return (
-                        <ProductsMultiColumnHorizontal
-                          key = { i }
-                          productKey = { i }
-                          product= {product}
-                        />
-                      );
-                    })}
-                    {load &&
-                    <SkeletonMultiColumnHorizontal
-                      skeleton = {true}
-                      skeltonNumbers = {3}
-                      className="SkeletonMultiColumnHorizontal"
-                    />
+
+                    {load ?
+                      <SkeletonMultiColumnHorizontal
+                        skeleton = {true}
+                        skeltonNumbers = {3}
+                        className="SkeletonMultiColumnHorizontal"
+                      /> :
+                      <>
+                        {productsCat2.map((product, i) => {
+                          return (
+                            <ProductsMultiColumnHorizontal
+                              key = { i }
+                              productKey = { i }
+                              product= {product}
+                            />
+                          );
+                        })}
+                      </>
                     }
+
                   </Row>
                 </div>
               </Col>
@@ -116,22 +128,26 @@ const TopRankingProducts = () => {
                         "Kids & Baby Carpet"
                       }
                     </Col>
-                    {productsCat3.map((product, i) => {
-                      return (
-                        <ProductsMultiColumnHorizontal
-                          key = { i }
-                          productKey = { i }
-                          product= {product}
-                        />
-                      );
-                    })}
-                    {load &&
-                    <SkeletonMultiColumnHorizontal
-                      skeleton = {true}
-                      skeltonNumbers = {3}
-                      className="SkeletonMultiColumnHorizontal"
-                    />
+
+                    {load ?
+                      <SkeletonMultiColumnHorizontal
+                        skeleton = {true}
+                        skeltonNumbers = {3}
+                        className="SkeletonMultiColumnHorizontal"
+                      /> :
+                      <>
+                        {productsCat3.map((product, i) => {
+                          return (
+                            <ProductsMultiColumnHorizontal
+                              key = { i }
+                              productKey = { i }
+                              product= {product}
+                            />
+                          );
+                        })}
+                      </>
                     }
+
                   </Row>
                 </div>
               </Col>
@@ -164,24 +180,27 @@ const TopRankingProducts = () => {
                             "Carpets"
                           }
                         </Col>
-                        {productsCat1.map((product, i) => {
-                          return (
-                            <ProductsMultiColumnHorizontal
-                              key = { i }
-                              productKey = { i }
-                              product= {product}
-                            />
-                          );
-                        })}
 
-                        {load &&
-                        <SkeletonMultiColumnHorizontal
-                          skeleton = {true}
-                          skeltonNumbers = {3}
-                          className="SkeletonMultiColumnHorizontal"
-                          Xs
-                        />
+                        {load ?
+                          <SkeletonMultiColumnHorizontal
+                            skeleton = {true}
+                            skeltonNumbers = {3}
+                            className="SkeletonMultiColumnHorizontal"
+                            Xs
+                          /> :
+                          <>
+                            {productsCat1.map((product, i) => {
+                              return (
+                                <ProductsMultiColumnHorizontal
+                                  key = { i }
+                                  productKey = { i }
+                                  product= {product}
+                                />
+                              );
+                            })}
+                          </>
                         }
+
                       </Row>
                     </div>
                   </Col>
@@ -195,24 +214,27 @@ const TopRankingProducts = () => {
                             "Handmade carpet"
                           }
                         </Col>
-                        {productsCat2.map((product, i) => {
-                          return (
-                            <ProductsMultiColumnHorizontal
-                              key = { i }
-                              productKey = { i }
-                              product= {product}
-                            />
-                          );
-                        })}
 
-                        {load &&
-                        <SkeletonMultiColumnHorizontal
-                          skeleton = {true}
-                          skeltonNumbers = {3}
-                          className="SkeletonMultiColumnHorizontal"
-                          Xs
-                        />
+                        {load ?
+                          <SkeletonMultiColumnHorizontal
+                            skeleton = {true}
+                            skeltonNumbers = {3}
+                            className="SkeletonMultiColumnHorizontal"
+                            Xs
+                          /> :
+                          <>
+                            {productsCat2.map((product, i) => {
+                              return (
+                                <ProductsMultiColumnHorizontal
+                                  key = { i }
+                                  productKey = { i }
+                                  product= {product}
+                                />
+                              );
+                            })}
+                          </>
                         }
+
                       </Row>
                     </div>
                   </Col>
@@ -226,24 +248,27 @@ const TopRankingProducts = () => {
                             "Kids & Baby Carpet"
                           }
                         </Col>
-                        {productsCat3.map((product, i) => {
-                          return (
-                            <ProductsMultiColumnHorizontal
-                              key = { i }
-                              productKey = { i }
-                              product= {product}
-                            />
-                          );
-                        })}
 
-                        {load &&
-                        <SkeletonMultiColumnHorizontal
-                          skeleton = {true}
-                          skeltonNumbers = {3}
-                          className="SkeletonMultiColumnHorizontal"
-                          Xs
-                        />
+                        {load ?
+                          <SkeletonMultiColumnHorizontal
+                            skeleton = {true}
+                            skeltonNumbers = {3}
+                            className="SkeletonMultiColumnHorizontal"
+                            Xs
+                          /> :
+                          <>
+                            {productsCat3.map((product, i) => {
+                              return (
+                                <ProductsMultiColumnHorizontal
+                                  key = { i }
+                                  productKey = { i }
+                                  product= {product}
+                                />
+                              );
+                            })}
+                          </>
                         }
+
                       </Row>
                     </div>
                   </Col>

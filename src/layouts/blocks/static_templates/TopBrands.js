@@ -12,12 +12,17 @@ import SkeletonTopBrands from "./SkeletonTopBrands";
 // import custom hooks:
 import { useGetApi, useWindowSize } from "../../../functions";
 
+// import get language context:
+import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
+
 const TopBrands = () => {
+
+  const { language } = useGetLanguageState();
 
   const { width } = useWindowSize();
 
 
-  const { load, items } = useGetApi('https://hornb2b.com/top-brands/?items_per_page=5', 'top_brands')
+  const { load, items } = useGetApi(`https://hornb2b.com/top-brands-api/?items_per_page=5&lang_code=${language}`, 'top_brands')
 
   return (
     <div className="topBrands--container">
@@ -34,65 +39,71 @@ const TopBrands = () => {
 
             {width >= 992 ?
               <>
-                {items.map((brand, index) => {
-                  return (
-                    <Col className="topBrands--item" key={ index }>
-                      <div className="d-flex align-items-end justify-content-center topBrands--item__image">
-                        {brand.logo ?
-                          <img src={ brand.logo.image_path } alt={ brand.logo.alt }/> :
-                          <i className="fal fa-image text-bf" />
-                        }
 
-                      </div>
-                      <div className="vv-font-size-2-2 text-47 text-center mt-3 topBrands--item__name">
-                        { brand.company }
-                      </div>
-                      <div className="vv-font-size-1-9 text-8b text-center mt-3 topBrands--item__name">
-                        { fn_stripHtml(brand.company_description) }
-                      </div>
-                    </Col>
-                  );
-                })}
-
-                {load &&
+                {load ?
                 <SkeletonTopBrands
                   skeleton = {true}
                   skeltonNumbers = {5}
                   grid={{ span: 8 }}
-                />
-                }
+                  height = {234.367}
 
-              </> :
-              <Col className="topBrands--scroll" span={24}>
-                <ScrollContainer className="text-select-none d-flex topBrands--scrollContainer">
-                  {items.map((brand, index) => {
-                    return (
-                      <div className="d-inline topBrandsScroll--item__content" key={index}>
-                        <Row className="topBrandsScroll--item" justify="center">
-                          <div className="d-flex align-items-end justify-content-center w-100 topBrands--item__image">
+                /> :
+                  <>
+                    {items.map((brand, index) => {
+                      return (
+                        <Col className="topBrands--item" key={ index }>
+                          <div className="d-flex align-items-end justify-content-center topBrands--item__image">
                             {brand.logo ?
                               <img src={ brand.logo.image_path } alt={ brand.logo.alt }/> :
                               <i className="fal fa-image text-bf" />
                             }
 
                           </div>
-                          <div className="vv-font-size-1-4 font-weight-600 text-47 text-center text-truncate mt-1 w-100 topBrands--item__name">
+                          <div className="vv-font-size-2-2 text-47 text-center mt-3 topBrands--item__name">
                             { brand.company }
                           </div>
-                          <div className="vv-font-size-1-4 text-8b text-center text-truncate mt-1 w-100 topBrands--item__name">
+                          <div className="vv-font-size-1-9 text-8b text-center mt-3 topBrands--item__name">
                             { fn_stripHtml(brand.company_description) }
                           </div>
-                        </Row>
-                      </div>
-                    );
-                  })}
+                        </Col>
+                      );
+                    })}
+                  </>
+                }
 
-                  {load &&
+              </> :
+              <Col className="topBrands--scroll" span={24}>
+                <ScrollContainer className="text-select-none d-flex topBrands--scrollContainer">
+
+                  {load ?
                   <SkeletonTopBrands
                     skeleton = {true}
                     skeltonNumbers = {5}
                     swiper
-                  />
+                  /> :
+                    <>
+                      {items.map((brand, index) => {
+                        return (
+                          <div className="d-inline topBrandsScroll--item__content" key={index}>
+                            <Row className="topBrandsScroll--item" justify="center">
+                              <div className="d-flex align-items-end justify-content-center w-100 topBrands--item__image">
+                                {brand.logo ?
+                                  <img src={ brand.logo.image_path } alt={ brand.logo.alt }/> :
+                                  <i className="fal fa-image text-bf" />
+                                }
+
+                              </div>
+                              <div className="vv-font-size-1-4 font-weight-600 text-47 text-center text-truncate mt-1 w-100 topBrands--item__name">
+                                { brand.company }
+                              </div>
+                              <div className="vv-font-size-1-4 text-8b text-center text-truncate mt-1 w-100 topBrands--item__name">
+                                { fn_stripHtml(brand.company_description) }
+                              </div>
+                            </Row>
+                          </div>
+                        );
+                      })}
+                    </>
                   }
 
                 </ScrollContainer>
