@@ -39,7 +39,7 @@ function useGetProductApi(params) {
     return () => mounted = false;
   }, [params]);
 
-  return { load, products, parameters, error }
+  return { products, parameters, load, error }
 }
 
 function useGetTopRankingProducts(cat1, cat2, cat3) {
@@ -86,7 +86,7 @@ function useGetTopRankingProducts(cat1, cat2, cat3) {
     return () => mounted = false;
   }, [cat1, cat2, cat3]);
 
-  return { load, productsCat1, productsCat2, productsCat3, parametersCat1, parametersCat2, parametersCat3, error }
+  return { productsCat1, productsCat2, productsCat3, parametersCat1, parametersCat2, parametersCat3, load, error }
 }
 
 function useGetApi(url, item, loading = true) {
@@ -119,7 +119,7 @@ function useGetApi(url, item, loading = true) {
     return () => mounted = false;
   }, [url, loading]);
 
-  return { load, items, error }
+  return { items, load, error }
 }
 
 function useWindowSize() {
