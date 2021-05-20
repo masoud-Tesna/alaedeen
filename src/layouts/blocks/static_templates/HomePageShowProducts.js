@@ -38,6 +38,7 @@ const HomePageShowProducts = () => {
         skeltonNumbers = {width >= 992 ? 3 : 2}
         grid={productsMultiColumnVertical_items}
         width = { width }
+        height = {width >= 992 ? 352.923 : 149.8}
       /> :
         <>
           {products.map((product) => {
