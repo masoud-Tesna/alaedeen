@@ -62,9 +62,12 @@ const TopBrands = () => {
                           <div className="vv-font-size-2-2 text-47 text-center mt-3 topBrands--item__name">
                             { brand.company }
                           </div>
-                          <div className="vv-font-size-1-9 text-8b text-center mt-3 topBrands--item__name">
-                            { fn_stripHtml(brand.company_description) }
-                          </div>
+
+                          { brand.company_description &&
+                            <div className="vv-font-size-1-9 text-8b text-center mt-3 topBrands--item__name">
+                              {fn_stripHtml(brand.company_description) }
+                            </div>
+                          }
                         </Col>
                       );
                     })}
@@ -96,9 +99,11 @@ const TopBrands = () => {
                               <div className="vv-font-size-1-4 font-weight-600 text-47 text-center text-truncate mt-1 w-100 topBrands--item__name">
                                 { brand.company }
                               </div>
-                              <div className="vv-font-size-1-4 text-8b text-center text-truncate mt-1 w-100 topBrands--item__name">
-                                { fn_stripHtml(brand.company_description) }
-                              </div>
+                              { brand.company_description &&
+                                <div className="vv-font-size-1-4 text-8b text-center text-truncate mt-1 w-100 topBrands--item__name">
+                                  { fn_stripHtml(brand.company_description) }
+                                </div>
+                              }
                             </Row>
                           </div>
                         );

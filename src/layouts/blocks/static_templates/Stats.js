@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from 'react';
-
 //import Style:
 import './styles/Stats.less';
 
@@ -8,7 +6,6 @@ import { Col, Row } from "antd";
 
 // import custom hooks:
 import { useGetApi } from "../../../functions";
-import axios from "axios";
 
 const Stats = () => {
   const { items } = useGetApi('https://hornb2b.com/stats-api', 'stats', false);
