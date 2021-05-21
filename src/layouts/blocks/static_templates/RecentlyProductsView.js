@@ -17,18 +17,15 @@ import SkeletonMultiColumnVertical from "../product_list_templates/SkeletonMulti
 // import custom hooks:
 import { useGetProductApi, useWindowSize } from '../../../functions';
 
-// import get language context:
-import { useGetLanguageState } from '../../../contexts/language/LanguageContext';
-
 SwiperCore.use([Autoplay ]);
 
 const RecentlyProductsView = () => {
 
-  const { language } = useGetLanguageState();
-
   const { width } = useWindowSize();
 
-  const { load, products } = useGetProductApi(`items_per_page=5&company_id=181&lang_code=${language}`);
+  let url = `items_per_page=5&company_id=181`;
+
+  const { load, products } = useGetProductApi(url);
 
   return (
     <div className="recommendedProducts--container">

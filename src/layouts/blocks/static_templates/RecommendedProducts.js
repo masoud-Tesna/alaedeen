@@ -11,17 +11,12 @@ import SkeletonMultiColumnVertical from "../product_list_templates/SkeletonMulti
 // import Custom hooks:
 import { useGetProductApi, useWindowSize } from "../../../functions";
 
-// import get language context:
-import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
-
 const RecommendedProducts = () => {
-
-  const { language } = useGetLanguageState();
 
   const { width } = useWindowSize();
 
   const product_items_per_page = width >= 992 ? 20 : 12;
-  const url = `items_per_page=${product_items_per_page}&company_id=181&page=1&lang_code=${language}`;
+  const url = `items_per_page=${product_items_per_page}&company_id=181&page=1`;
 
   const { load, products } = useGetProductApi(url);
 

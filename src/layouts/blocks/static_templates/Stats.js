@@ -8,7 +8,7 @@ import { Col, Row } from "antd";
 import { useGetApi } from "../../../functions";
 
 const Stats = () => {
-  const { items } = useGetApi('https://hornb2b.com/stats-api', 'stats', false);
+  const { items } = useGetApi('stats-api', 'stats', false, false);
   return (
     <div className="stats--container">
       <Row className="h-100 stats--content" justify="space-around" align="middle">

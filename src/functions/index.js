@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 // import ANT Design Components Used:
 import { Image } from "antd";
 import axios from "axios";
+import { useGetLanguageState } from "../contexts/language/LanguageContext";
 
 // Function For Get Product by API From Server:
 function useGetProductApi(params) {
@@ -13,14 +14,21 @@ function useGetProductApi(params) {
   const [parameters, setParameters] = useState([]);
   const [error, setError] = useState(null);
 
-  const url = `https://hornb2b.com/products-api/?${params}`;
+  const { language } = useGetLanguageState();
+
+  const url = `https://hornb2b.com/products-api/?${params}&lang_code=${language}`;
   async function getProduct() {
     return await axios.get(url);
   }
 
   useEffect(() => {
+
     let mounted  = true;
     setLoad(true);
+    if (language === 'null') {
+      mounted  = false;
+      return () => mounted = false;
+    }
 
     if (mounted) {
       getProduct()
@@ -37,7 +45,7 @@ function useGetProductApi(params) {
         })
     }
     return () => mounted = false;
-  }, [params]);
+  }, [params, language]);
 
   return { products, parameters, load, error }
 }
@@ -52,17 +60,24 @@ function useGetTopRankingProducts(cat1, cat2, cat3) {
   const [parametersCat3, setParametersCat3] = useState([]);
   const [error, setError] = useState(null);
 
+  const { language } = useGetLanguageState();
+
   async function getProduct() {
     return await axios.all([
-      axios.get(`https://hornb2b.com/products-api/?${cat1}`),
-      axios.get(`https://hornb2b.com/products-api/?${cat2}`),
-      axios.get(`https://hornb2b.com/products-api/?${cat3}`)
+      axios.get(`https://hornb2b.com/products-api/?${cat1}&lang_code=${language}`),
+      axios.get(`https://hornb2b.com/products-api/?${cat2}&lang_code=${language}`),
+      axios.get(`https://hornb2b.com/products-api/?${cat3}&lang_code=${language}`)
     ]);
   }
 
   useEffect(() => {
     let mounted  = true;
     setLoad(true);
+
+    if (language === 'null') {
+      mounted  = false;
+      return () => mounted = false;
+    }
 
     if (mounted) {
       getProduct()
@@ -84,16 +99,25 @@ function useGetTopRankingProducts(cat1, cat2, cat3) {
         })
     }
     return () => mounted = false;
-  }, [cat1, cat2, cat3]);
+  }, [cat1, cat2, cat3, language]);
 
   return { productsCat1, productsCat2, productsCat3, parametersCat1, parametersCat2, parametersCat3, load, error }
 }
 
-function useGetApi(url, item, loading = true) {
+function useGetApi(params, item, loading = true, setLanguage = true) {
   const [load, setLoad] = useState(loading);
   const [items, setItems] = useState([]);
   const [error, setError] = useState(null);
 
+  const { language } = useGetLanguageState();
+
+  let url;
+
+  if (setLanguage) {
+    url = `https://hornb2b.com/${params}&lang_code=${language}`;
+  }else {
+    url = `https://hornb2b.com/${params}`;
+  }
 
   async function getApi() {
     return await axios.get(url);
@@ -102,6 +126,11 @@ function useGetApi(url, item, loading = true) {
   useEffect(() => {
     let mounted  = true;
     setLoad(loading);
+
+    if (language === 'null') {
+      mounted  = false;
+      return () => mounted = false;
+    }
 
     if (mounted) {
       getApi()
@@ -117,7 +146,7 @@ function useGetApi(url, item, loading = true) {
         })
     }
     return () => mounted = false;
-  }, [url, loading]);
+  }, [url, loading, setLanguage, language]);
 
   return { items, load, error }
 }

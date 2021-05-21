@@ -22,7 +22,7 @@ const TopBrands = () => {
   const { width } = useWindowSize();
 
 
-  const { load, items } = useGetApi(`https://hornb2b.com/top-brands-api/?items_per_page=5&lang_code=${language}`, 'top_brands')
+  const { load, items } = useGetApi(`top-brands-api/?items_per_page=5`, 'top_brands')
 
   return (
     <div className="topBrands--container">

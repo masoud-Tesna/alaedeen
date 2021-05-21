@@ -18,19 +18,13 @@ import polygon_3 from '../../../assets/images/polygon3.png';
 // import custom hooks:
 import { useGetTopRankingProducts, useWindowSize } from "../../../functions";
 
-// import get language context
-import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
-
-
 const TopRankingProducts = () => {
 
   const { width } = useWindowSize();
 
-  const { language } = useGetLanguageState();
-
-  const urlCarpets = `items_per_page=3&company_id=181&page=1lang_code=${language}`;
-  const urlHandmadeCarpet = `items_per_page=3&company_id=181&page=2lang_code=${language}`;
-  const urlBabyCarpet = `items_per_page=3&page=4company_id=181&lang_code=${language}`;
+  const urlCarpets = `items_per_page=3&company_id=181&page=1`;
+  const urlHandmadeCarpet = `items_per_page=3&company_id=181&page=2`;
+  const urlBabyCarpet = `items_per_page=3&page=4company_id=181`;
 
   const { load, productsCat1, productsCat2, productsCat3 } = useGetTopRankingProducts(urlCarpets, urlHandmadeCarpet, urlBabyCarpet);
 
