@@ -12,12 +12,7 @@ import SkeletonTopBrands from "./SkeletonTopBrands";
 // import custom hooks:
 import { useGetApi, useWindowSize } from "../../../functions";
 
-// import get language context:
-import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
-
 const TopBrands = () => {
-
-  const { language } = useGetLanguageState();
 
   const { width } = useWindowSize();
 
