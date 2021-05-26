@@ -158,8 +158,8 @@ const PremiumFactories = () => {
                 {load ?
                   <SkeletonTopBrands
                     skeleton = {true}
-                    skeltonNumbers = {5}
-                    swiper
+                    skeltonNumbers = {3}
+                    grid={{ span: 8 }}
                   /> :
                   <>
                     {factories.map((factory, index) => {
@@ -168,13 +168,13 @@ const PremiumFactories = () => {
                           <Link className="d-block h-100" to={ `/factories?factory=${factory.company_id}` }>
                             <div className="premiumFactories--itemXs">
                               <div className="premiumFactories--factoryImages__Xs">
-                                <img src={ factoryImage_1 } alt="factoryImage_1"/>
+                                <img src={ factory.images[0] } alt="factoryImage_1"/>
                               </div>
-                              <div>
+                              <div className="mt-2">
                                 <Row>
-                                  <Col className="text-truncate my-auto" span={18}>Farahi carpet company</Col>
+                                  <Col className="text-truncate my-auto text-black" span={18}>{factory.company}</Col>
                                   <Col className="text-right premiumFactories--factoryIcon__Xs" span={6}>
-                                    <img src={ store_2 } alt="store_2"/>
+                                    <FactoriesLogo logo={ factory.logo } alt={ factory.company }/>
                                   </Col>
                                 </Row>
                               </div>
