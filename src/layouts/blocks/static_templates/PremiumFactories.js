@@ -86,7 +86,6 @@ const PremiumFactories = () => {
   const { width } = useWindowSize();
 
   const { factories, load } = useGetPremiumFactories();
-  console.log(factories)
 
   return (
     <div className="premiumFactories--container">
