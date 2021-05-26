@@ -193,6 +193,40 @@ function useGetFactories(params) {
   return { factories, parameters, load, error }
 }
 
+function useResizeImage(image_path, image_folder, image_width, image_height) {
+  const [load, setLoad] = useState(true);
+  const [image, setImage] = useState([]);
+  const [error, setError] = useState(null);
+
+  const url = `https://hornb2b.com/image-resize-api/?image_path=${image_path}&image_folder=${image_folder}&image_width=${image_width}&image_height=${image_height}`;
+  async function getImageResized() {
+    return await axios.get(url);
+  }
+
+  useEffect(() => {
+
+    let mounted  = true;
+    setLoad(true);
+
+    if (mounted) {
+      getImageResized()
+        .then(res => {
+          setImage(res.data.image);
+        })
+        .then(() => {
+          setLoad(false);
+        })
+        .catch ((error) => {
+          setError(error);
+          setLoad(false);
+        })
+    }
+    return () => mounted = false;
+  }, [image_path, image_folder, image_width, image_height]);
+
+  return { image, load, error }
+}
+
 function useWindowSize() {
   // Initialize state with undefined width/height so server and client renders match
   // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
@@ -272,4 +306,4 @@ function useLocalStorage(key, initialValue) {
   return [storedValue, setValue];
 }
 
-export { useGetProductApi, useGetTopRankingProducts, useGetApi, useGetFactories, useWindowSize, useShowImage, useQuery, useLocalStorage }
+export { useGetProductApi, useGetTopRankingProducts, useGetApi, useGetFactories, useWindowSize, useResizeImage, useShowImage, useQuery, useLocalStorage }
