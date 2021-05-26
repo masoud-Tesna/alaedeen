@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import './styles/PremiumFactories.less';
 
 // import ANT Design Components Used:
-import { Col, Row} from "antd";
+import { Col, Row, Skeleton } from "antd";
 
 // import store icon:
 import store_1 from '../../../assets/images/store-icon/1.png';
@@ -22,13 +22,14 @@ import verifiedIcon from '../../../assets/images/verified.png';
 
 // import another components used:
 import TextTruncate from 'react-text-truncate';
+import SkeletonTopBrands from "./SkeletonTopBrands";
 
 // import get language context:
 import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
 
 
 // import custom hook used:
-import { useGetFactories, useWindowSize } from '../../../functions';
+import { useGetPremiumFactories, useWindowSize } from '../../../functions';
 
 const FactoriesLogo = ({ logo, alt }) => {
 
@@ -52,19 +53,28 @@ const FactoriesLogo = ({ logo, alt }) => {
 
 }
 
-const FactoriesImages = ({ image_1, image_2, image_3, alt }) => {
+const FactoriesImages = ({ images, alt }) => {
 
   return(
     <div className="d-flex premiumFactories--item__detailImages">
       <div className="premiumFactories--factoryImages__item1">
-        <img src={ image_1 && image_1.process_pictures[ 0 ] } alt="factoryImage_1"/>
+        {images[0] ?
+          <img src={ images[ 0 ] } alt={ alt }/> :
+          <Skeleton.Image active={true} className="premiumFactories--skeletonImages__item1" />
+        }
       </div>
       <Row className="premiumFactories--factoryImages__item_2_3">
-        <Col span={24} className="premiumFactories--factoryImages__item2 align-self-start">
-          <img src={ image_2 && image_2.process_pictures[ 0 ] } alt="factoryImage_2"/>
+        <Col span={24} className="premiumFactories--factoryImages__item2 mb-4 align-self-start">
+          {images[1] ?
+            <img src={ images[ 1 ] } alt={ alt }/> :
+            <Skeleton.Image active={true} className="premiumFactories--skeletonImages__item_2_3" />
+          }
         </Col>
         <Col span={24} className="premiumFactories--factoryImages__item3 align-self-end">
-          <img src={ image_3 && image_3.process_pictures[ 0 ] } alt="factoryImage_3"/>
+          {images[2] ?
+            <img src={ images[ 2 ] } alt={ alt }/> :
+            <Skeleton.Image active={true} className="premiumFactories--skeletonImages__item_2_3" />
+          }
         </Col>
       </Row>
     </div>
@@ -75,17 +85,8 @@ const PremiumFactories = () => {
 
   const { width } = useWindowSize();
 
-  let factories = [];
-  const factory_255 = useGetFactories('company_id=255');
-  const factory_255_2 = useGetFactories('company_id=255');
-  const factory_264 = useGetFactories('company_id=264');
-  if (factory_255.factories[ 0 ] && factory_264.factories[ 0 ] && factory_255_2.factories[ 0 ]) {
-    factories = [
-      factory_255.factories[ 0 ],
-      factory_264.factories[ 0 ],
-      factory_255_2.factories[ 0 ]
-    ];
-  }
+  const { factories, load } = useGetPremiumFactories();
+  console.log(factories)
 
   return (
     <div className="premiumFactories--container">
@@ -106,140 +107,84 @@ const PremiumFactories = () => {
           <Row className="premiumFactories--items" justify="space-between" gutter={{ xs: 0, sm: 5, md: 5, lg: 8, xl: 10, xxl: 35 }}>
             {width >= 992 ?
               <>
-                {factories.map((factory, index) => {
+                {load ?
+                  <SkeletonTopBrands
+                    skeleton = {true}
+                    skeltonNumbers = {3}
+                    grid={{ span: 8 }}
+                    height = {324.7}
 
-                  const image_1= factory.manufacturing_capability.parents.process.fields[1];
-                  const image_2= factory.quality_control.parents.process.fields[1];
-                  const image_3= factory.r_and_d_capability.parents.process.fields[1];
-
-                  return (
-                    <Col span={8} key={index}>
-                      <Link className="d-block h-100" to={ `/factories?factory=${factory.company_id}` }>
-                        <div className="premiumFactories--item rounded-10 shadow-y-2 bg-white h-100">
-                          <div className="mb-4 d-flex align-items-center premiumFactories--item__detail" style={{ height: '60px' }}>
-                            <div className="premiumFactories--item__image">
-                              <FactoriesLogo logo={ factory.company_introduction.fields.company_logo } alt={ factory.general.company }/>
-                            </div>
-                            <div className="w-100 premiumFactories--item__caption">
-                              <div className="vv-font-size-1-6 text-black premiumFactories--item__name">
-                                <TextTruncate
-                                  line={1}
-                                  element="span"
-                                  truncateText="…"
-                                  text={ factory.general.company }
-                                />
+                  /> :
+                  <>
+                    {factories.map((factory, index) => {
+                      return (
+                        <Col span={8} key={index}>
+                          <Link className="d-block h-100" to={ `/factories?factory=${factory.company_id}` }>
+                            <div className="premiumFactories--item rounded-10 shadow-y-2 bg-white h-100">
+                              <div className="mb-4 d-flex align-items-center premiumFactories--item__detail" style={{ height: '60px' }}>
+                                <div className="premiumFactories--item__image">
+                                  <FactoriesLogo logo={ factory.logo } alt={ factory.company }/>
+                                </div>
+                                <div className="w-100 premiumFactories--item__caption">
+                                  <div className="vv-font-size-1-6 text-black premiumFactories--item__name">
+                                    <TextTruncate
+                                      line={1}
+                                      element="span"
+                                      truncateText="…"
+                                      text={ factory.company }
+                                    />
+                                  </div>
+                                  <div className="premiumFactories--item__verified">
+                                    <img src={ verifiedIcon } alt="Verified"/>
+                                  </div>
+                                </div>
                               </div>
-                              <div className="premiumFactories--item__verified">
-                                <img src={ verifiedIcon } alt="Verified"/>
-                              </div>
+
+                              <FactoriesImages
+                                images={factory.images || ''}
+                                alt={ factory.company }
+                              />
+
                             </div>
-                          </div>
-
-                          <FactoriesImages
-                            image_1={image_1}
-                            image_2={image_2}
-                            image_3={image_3}
-                          />
-
-                        </div>
-                      </Link>
-                    </Col>
-                  );
-                })}
+                          </Link>
+                        </Col>
+                      );
+                    })}
+                  </>
+                }
               </>:
 
               <>
-                <Col span={8}>
-                  <Link to="/factories?factory=124">
-                    <div className="premiumFactories--item rounded-10 shadow-y-2 bg-white">
-                      <div className="mb-4 d-flex align-items-center">
-                        <div className="premiumFactories--item__image">
-                          <img src={ store_2 } alt="store_2"/>
-                        </div>
-                        <div className="w-100 premiumFactories--item__caption">
-                          <div className="vv-font-size-1-6 text-black premiumFactories--item__name">
-                            <TextTruncate
-                              line={1}
-                              element="span"
-                              truncateText="…"
-                              text="Farahi carpet company"
-                            />
-                          </div>
-                          <div className="premiumFactories--item__verified">
-                            <img src={ verifiedIcon } alt="Verified"/>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="d-flex">
-                        <div className="premiumFactories--factoryImages__item1">
-                          <img src={ factoryImage_1 } alt="factoryImage_1"/>
-                        </div>
-                        <Row className="premiumFactories--factoryImages__item_2_3">
-                          <Col span={24} className="premiumFactories--factoryImages__item2 align-self-start">
-                            <img src={ factoryImage_2 } alt="factoryImage_2"/>
-                          </Col>
-                          <Col span={24} className="premiumFactories--factoryImages__item3 align-self-end">
-                            <img src={ factoryImage_3 } alt="factoryImage_3"/>
-                          </Col>
-                        </Row>
-                      </div>
-                    </div>
-                  </Link>
-                </Col>
-
-                <Col>
-                  <Link to="/factories?factory=124">
-                    <div className="premiumFactories--itemXs">
-                      <div className="premiumFactories--factoryImages__Xs">
-                        <img src={ factoryImage_1 } alt="factoryImage_1"/>
-                      </div>
-                      <div>
-                        <Row>
-                          <Col className="text-truncate my-auto" span={18}>Farahi carpet company</Col>
-                          <Col className="text-right premiumFactories--factoryIcon__Xs" span={6}>
-                            <img src={ store_2 } alt="store_2"/>
-                          </Col>
-                        </Row>
-                      </div>
-                    </div>
-                  </Link>
-                </Col>
-
-                <Col>
-                  <Link to="/factories?factory=127">
-                    <div className="premiumFactories--itemXs">
-                      <div className="premiumFactories--factoryImages__Xs">
-                        <img src={ factoryImage_3 } alt="factoryImage_1"/>
-                      </div>
-                      <div>
-                        <Row>
-                          <Col className="text-truncate my-auto" span={18}>Savin carpet company</Col>
-                          <Col className="text-right premiumFactories--factoryIcon__Xs" span={6}>
-                            <img src={ store_3 } alt="store_3"/>
-                          </Col>
-                        </Row>
-                      </div>
-                    </div>
-                  </Link>
-                </Col>
-
-                <Col>
-                  <Link to="/factories?factory=135">
-                    <div className="premiumFactories--itemXs">
-                      <div className="premiumFactories--factoryImages__Xs">
-                        <img src={ factoryImage_2 } alt="factoryImage_1"/>
-                      </div>
-                      <div>
-                        <Row>
-                          <Col className="text-truncate my-auto" span={18}>Aghigh carpet company</Col>
-                          <Col className="text-right premiumFactories--factoryIcon__Xs" span={6}>
-                            <img src={ store_1 } alt="store_1"/>
-                          </Col>
-                        </Row>
-                      </div>
-                    </div>
-                  </Link>
-                </Col>
+                {load ?
+                  <SkeletonTopBrands
+                    skeleton = {true}
+                    skeltonNumbers = {5}
+                    swiper
+                  /> :
+                  <>
+                    {factories.map((factory, index) => {
+                      return (
+                        <Col span={8} key={index}>
+                          <Link className="d-block h-100" to={ `/factories?factory=${factory.company_id}` }>
+                            <div className="premiumFactories--itemXs">
+                              <div className="premiumFactories--factoryImages__Xs">
+                                <img src={ factoryImage_1 } alt="factoryImage_1"/>
+                              </div>
+                              <div>
+                                <Row>
+                                  <Col className="text-truncate my-auto" span={18}>Farahi carpet company</Col>
+                                  <Col className="text-right premiumFactories--factoryIcon__Xs" span={6}>
+                                    <img src={ store_2 } alt="store_2"/>
+                                  </Col>
+                                </Row>
+                              </div>
+                            </div>
+                          </Link>
+                        </Col>
+                      );
+                    })}
+                  </>
+                }
               </>
             }
           </Row>

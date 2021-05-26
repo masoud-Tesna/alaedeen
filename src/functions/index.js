@@ -151,6 +151,48 @@ function useGetApi(params, item, loading = true, setLanguage = true) {
   return { items, load, error }
 }
 
+function useGetPremiumFactories(params) {
+  const [load, setLoad] = useState(true);
+  const [factories, setFactories] = useState([]);
+  const [parameters, setParameters] = useState([]);
+  const [error, setError] = useState(null);
+
+  const { language } = useGetLanguageState();
+
+  const url = `https://hornb2b.com/premium-factories-api/?${params}&lang_code=${language}`;
+  async function getPremiumFactories() {
+    return await axios.get(url);
+  }
+
+  useEffect(() => {
+
+    let mounted  = true;
+    setLoad(true);
+    if (language === 'null') {
+      mounted  = false;
+      return () => mounted = false;
+    }
+
+    if (mounted) {
+      getPremiumFactories()
+        .then(res => {
+          setFactories(res.data.factories);
+          setParameters(res.data.params);
+        })
+        .then(() => {
+          setLoad(false);
+        })
+        .catch ((error) => {
+          setError(error);
+          setLoad(false);
+        })
+    }
+    return () => mounted = false;
+  }, [params, language]);
+
+  return { factories, parameters, load, error }
+}
+
 function useGetFactories(params) {
   const [load, setLoad] = useState(true);
   const [factories, setFactories] = useState([]);
@@ -306,4 +348,4 @@ function useLocalStorage(key, initialValue) {
   return [storedValue, setValue];
 }
 
-export { useGetProductApi, useGetTopRankingProducts, useGetApi, useGetFactories, useWindowSize, useResizeImage, useShowImage, useQuery, useLocalStorage }
+export { useGetProductApi, useGetTopRankingProducts, useGetApi, useGetPremiumFactories, useGetFactories, useWindowSize, useResizeImage, useShowImage, useQuery, useLocalStorage }
