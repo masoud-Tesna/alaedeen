@@ -49,7 +49,7 @@ function LanguageProvider({ children }) {
 
       if (mounted) {
         dispatchItem(getClientLanguageLoadingAction());
-        getApi('https://hornb2b.com/client-language-api/')
+        getApi('https://hornb2b.com/horn/client-language-api/')
           .then(res => {
             dispatchItem(getClientLanguageAction(res.data.client_language));
             dispatch(changeLanguageAction(res.data.client_language))
