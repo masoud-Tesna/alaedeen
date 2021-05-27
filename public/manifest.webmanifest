@@ -1,6 +1,7 @@
 {
   "short_name": "Hornb2b",
   "name": "Iranian Exporters, Manufacturers, Logistics, Suppliers Directory, B2B Business Directory",
+  "description": "Iranian Exporters, Manufacturers, Logistics, Suppliers Directory, B2B Business Directory",
   "icons": [
     {
       "src": "logoApp.png",
@@ -18,7 +19,7 @@
       "sizes": "493x493"
     }
   ],
-  "start_url": "/home/index.html",
+  "start_url": "/index.html",
   "display": "standalone",
   "theme_color": "#F20604",
   "background_color": "#FFFFFF"
