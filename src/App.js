@@ -36,7 +36,6 @@ function App() {
           <div className="site-layout-content">
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/home" component={Home} />
               <Route path="/factories" component={Factories} />
             </Switch>
           </div>
