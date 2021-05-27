@@ -17,28 +17,6 @@ const SkeletonGrid = (props) => {
   }
   return (
     <>
-{/*      <Col className={ `productsMultiColumnVertical--item` } {...props.grid} style={{ minHeight: `${height}px` }}>
-        <Row className={ `h-100 ${props.className}` } justify="center">
-          <Col span={24} className="d-flex align-items-center justify-content-center productsMultiColumnVertical--item__image">
-            <Skeleton.Image active={true} className="w-100 h-100 border-bottom border-w-05 rounded-top-10" />
-          </Col>
-          <Col span={24} className="px-4 text-47 vv-font-size-1-8 text-truncate productsMultiColumnVertical--item__title">
-            <Skeleton active={true} paragraph={ paragraph_rows } />
-          </Col>
-          <Col span={24} className="d-none d-lg-block px-4 mb-2 productsMultiColumnVertical--item__location-detailIcon">
-            <Row justify="space-between" align="bottom">
-              <Col className="align-self-end skeletonForLocation" span={16}>
-                <Skeleton active={true} paragraph={{ rows: 0 }} />
-              </Col>
-              <Col className="align-self-end">
-                <Skeleton.Avatar active={true} size={"default"} shape={"square"} />
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </Col>*/}
-
-
       <Col span={24} className="bg-white rounded-10 p-3 border border-70 factories--item">
         <Row gutter={16} className="h-100">
           <Col flex='400px' className="d-none d-lg-block h-100 factories--imageContainer">

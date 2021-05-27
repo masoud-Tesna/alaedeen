@@ -1,7 +1,7 @@
 import React from 'react';
 
 // import Custom Hooks:
-import { useWindowSize, useShowImage } from "../../../functions";
+import { useWindowSize } from "../../../functions";
 
 // import style file:
 import './styles/ProductsMultiColumnHorizontal.less';
@@ -23,8 +23,6 @@ const ProductsMultiColumnHorizontal = (props) => {
   const productPrice = parseFloat(product.price).toFixed(2);
   const productListPrice = parseFloat(product.list_price).toFixed(2);
 
-  const productImage = useShowImage(product.main_pair.detailed.image_path, product.product);
-
   let polygon;
   if (width >= 992) {
     if (props.productKey + 1 === 1) {
@@ -42,7 +40,7 @@ const ProductsMultiColumnHorizontal = (props) => {
             <img src={ polygon } alt="polygon 1"/>
           </div>
           <div className="rounded-10 shadow-y-2 d-flex align-items-center justify-content-center ProductsMultiColumnHorizontal--image">
-            {productImage}
+            <img src={product.main_pair.detailed.image_path} alt=""/>
           </div>
           <div className="ProductsMultiColumnHorizontal--details">
             {productPrice != 0.000 &&
@@ -75,7 +73,7 @@ const ProductsMultiColumnHorizontal = (props) => {
     <Col className={ `ProductsMultiColumnHorizontal--item vv-cursor-pointer ${props.className}` } {...props.grid}>
       <Row justify="center">
         <div className="rounded-10 shadow-y-2 d-flex align-items-center justify-content-center ProductsMultiColumnHorizontal--image">
-          {productImage}
+          <img src={product.main_pair.detailed.image_path} alt=""/>
         </div>
 
         <div className="w-100 ProductsMultiColumnHorizontal--details">

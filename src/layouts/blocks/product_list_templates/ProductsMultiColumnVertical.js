@@ -1,5 +1,5 @@
 // import Custom Hooks:
-import { useWindowSize, useShowImage } from "../../../functions";
+import { useWindowSize } from "../../../functions";
 
 // import style file:
 import './styles/ProductsMultiColumnVertical.less';
@@ -9,6 +9,7 @@ import { Col, Row, Skeleton } from "antd";
 
 // import store icon:
 import store_1 from '../../../assets/images/store-icon/1.png';
+import React from "react";
 
 
 const ProductsMultiColumnVertical = (props) => {
@@ -30,7 +31,6 @@ const ProductsMultiColumnVertical = (props) => {
 
   const productPrice = parseFloat(product.price).toFixed(2);
   const productListPrice = parseFloat(product.list_price).toFixed(2);
-  const productImage = useShowImage(product.main_pair.detailed.image_path, product.product);
 
   const manufacturing_country = product.manufacturing_country;
 
@@ -55,7 +55,7 @@ const ProductsMultiColumnVertical = (props) => {
         <Col className="align-self-start" span={24}>
           <Row>
             <Col span={24} className="d-flex align-items-center justify-content-center productsMultiColumnVertical--item__image">
-              {productImage}
+              <img src={product.main_pair.detailed.image_path} alt=""/>
             </Col>
 
             <Col span={24} className={ `${ !allDetails && 'd-none d-lg-block' } text-47 vv-font-size-1-8 text-truncate productsMultiColumnVertical--item__title` }>
