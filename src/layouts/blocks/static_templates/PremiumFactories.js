@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 
 // import Style File:
@@ -6,16 +5,6 @@ import './styles/PremiumFactories.less';
 
 // import ANT Design Components Used:
 import { Col, Row, Skeleton } from "antd";
-
-// import store icon:
-import store_1 from '../../../assets/images/store-icon/1.png';
-import store_2 from '../../../assets/images/store-icon/2.png';
-import store_3 from '../../../assets/images/store-icon/3.png';
-
-// import Factory Images:
-import factoryImage_1 from '../../../assets/images/factoryImages/1.png';
-import factoryImage_2 from '../../../assets/images/factoryImages/2.png';
-import factoryImage_3 from '../../../assets/images/factoryImages/3.png';
 
 // import Verified
 import verifiedIcon from '../../../assets/images/verified.png';

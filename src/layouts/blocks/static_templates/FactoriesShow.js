@@ -240,7 +240,7 @@ const FactoriesShow = () => {
   return (
     <>
 
-      { !load ?
+      { load ?
         <SkeletonFactoriesShow
           skeleton = {true}
           skeltonNumbers = {3}
