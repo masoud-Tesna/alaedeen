@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import { useLocation } from 'react-router-dom';
 
-// import ANT Design Components Used:
-import { Image } from "antd";
 import axios from "axios";
+
 import { useGetLanguageState } from "../contexts/language/LanguageContext";
 
 // Function For Get Product by API From Server:
@@ -300,14 +299,6 @@ function useWindowSize() {
   return windowSize;
 }
 
-function useShowImage(image, alt, width, height) {
-  return (
-    <>
-      <img src={ image } alt={ alt }/>
-    </>
-  );
-}
-
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
@@ -346,4 +337,4 @@ function useLocalStorage(key, initialValue) {
   return [storedValue, setValue];
 }
 
-export { useGetProductApi, useGetTopRankingProducts, useGetApi, useGetPremiumFactories, useGetFactories, useWindowSize, useResizeImage, useShowImage, useQuery, useLocalStorage }
+export { useGetProductApi, useGetTopRankingProducts, useGetApi, useGetPremiumFactories, useGetFactories, useWindowSize, useResizeImage, useQuery, useLocalStorage }
