@@ -68,7 +68,7 @@ const ProductsMultiColumnVertical = (props) => {
         <Col className="align-self-start" span={24}>
           <Row>
             <Col span={24} className="d-flex align-items-center justify-content-center productsMultiColumnVertical--item__image">
-              <ShowResponsiveImage imagePath={ product.main_pair.detailed.image_path } imageFolder='detailed' width={widthProductImage || 300} height={heightProductImage || 220} imageAlt={ product.product }/>
+              <ShowResponsiveImage imagePath={ product.main_pair.detailed.image_path } imageFolder='detailed' width={widthProductImage || 150} height={heightProductImage || 150} imageAlt={ product.product }/>
             </Col>
 
             <Col span={24} className={ `${ !allDetails && 'd-none d-lg-block' } text-47 vv-font-size-1-8 text-truncate productsMultiColumnVertical--item__title` }>
