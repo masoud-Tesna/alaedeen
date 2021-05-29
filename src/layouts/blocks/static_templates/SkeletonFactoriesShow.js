@@ -34,7 +34,7 @@ const SkeletonGrid = (props) => {
                       <Col span={16} className="">
                         <Row className="h-100">
                           <Col span={24} className="vv-font-size-1-6 text-black font-weight-600">
-                            <Skeleton.Input style={{ width: 200, height: 23 }} active={true} size={'default'} />
+                            <Skeleton.Input style={{ width: 140, height: 23 }} active={true} size={'default'} />
                           </Col>
                           <Col span={24} className="mt-2">
                             <Skeleton.Avatar active={true} size={"default"} shape={"circle"} />
@@ -45,8 +45,8 @@ const SkeletonGrid = (props) => {
                   </Col>
                   <Col className="text-right factories--btnContainer">
                     <Space size={"middle"}>
-                      <Skeleton.Button active={true} size={"default"} shape={'round'} />
-                      <Skeleton.Button active={true} size={"default"} shape={'round'} />
+                      <Skeleton.Button active={true} size={"default"} style={{ width: 130 }} shape={'round'} />
+                      <Skeleton.Button active={true} size={"default"} style={{ width: 130 }} shape={'round'} />
                     </Space>
                   </Col>
                 </Row>
@@ -111,10 +111,10 @@ const SkeletonGrid = (props) => {
 
               <Col className="factories--data__middleSection" span={24}>
                 <Row gutter={16}>
-                  <Col className="d-none d-lg-block" span={4}>
+                  <Col className="d-none d-lg-block" span={6}>
                     <Skeleton active={true} paragraph={ about_rows } />
                   </Col>
-                  <Col xs={24} lg={20}>
+                  <Col xs={24} lg={18}>
                     <Row gutter={16} className="row-cols-3 row-cols-lg-4">
                       <Col className={ `factories--productImageContainer` }>
                         <div className="rounded-10 shadow-y-2 text-center factories--productImage">

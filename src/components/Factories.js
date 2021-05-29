@@ -54,7 +54,7 @@ const Factories = () => {
           </Row>
         </Col>
 
-        <Col span={24} className="px-4 px-lg-6 factories--bottomSection mb-5">
+        <Col span={24} className="factories--bottomSection mb-5">
           <Row gutter={[0, 50]} className="factories--items">
             <FactoriesShow />
           </Row>

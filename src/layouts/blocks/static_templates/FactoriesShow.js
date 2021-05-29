@@ -162,13 +162,16 @@ const GroupFields = ({ groupFields, width }) => {
 }
 
 const FactoryProduct = ({ products }) => {
+  const { width } = useWindowSize();
+  const imageWidth = width >= 992? 157.733 : 98;
+  const imageHeight = width >= 992? 157.733 : 98;
   return(
     <>
       {products.map((product, i) => {
         return (
           <Col className={ `${ i === 3 && 'd-none d-lg-block' } factories--productImageContainer` } key={product.product_id}>
             <div className="rounded-10 shadow-y-2 text-center factories--productImage">
-              <ShowResponsiveImage imagePath={ product.main_pair.detailed.image_path } imageFolder='detailed' width={158} height={158} imageAlt={ product.product }/>
+              <ShowResponsiveImage imagePath={ product.main_pair.detailed.image_path } imageFolder='detailed' width={imageWidth} height={imageHeight} imageAlt={ product.product }/>
             </div>
           </Col>
         );
@@ -321,7 +324,7 @@ const FactoriesShow = () => {
 
                         <Col className="factories--data__middleSection" span={24}>
                           <Row gutter={16}>
-                            <Col className="d-none d-lg-block" span={4}>
+                            <Col className="d-none d-lg-block" span={6}>
                               <TextTruncate
                                 className="vv-font-size-1-6 font-weight-600"
                                 line={6}
@@ -330,7 +333,7 @@ const FactoriesShow = () => {
                                 text={`About Us: ${factory.company_introduction.fields.detailed_company_introduction}`}
                               />
                             </Col>
-                            <Col xs={24} lg={20}>
+                            <Col xs={24} lg={18}>
                               <Row gutter={16} className="row-cols-3 row-cols-lg-4">
                                 <FactoryProduct products={factory.products} />
                               </Row>
@@ -465,7 +468,7 @@ const FactoriesShow = () => {
 
                       <Col className="factories--data__middleSection" span={24}>
                         <Row gutter={16}>
-                          <Col className="d-none d-lg-block" span={4}>
+                          <Col className="d-none d-lg-block" span={6}>
                             <TextTruncate
                               className="vv-font-size-1-6 font-weight-600"
                               line={6}
@@ -474,7 +477,7 @@ const FactoriesShow = () => {
                               text={`About Us: ${factory.company_introduction.fields.detailed_company_introduction}`}
                             />
                           </Col>
-                          <Col xs={24} lg={20}>
+                          <Col xs={24} lg={18}>
                             <Row gutter={16} className="row-cols-3 row-cols-lg-4">
                               <FactoryProduct products={factory.products} />
                             </Row>
