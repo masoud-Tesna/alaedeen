@@ -103,7 +103,7 @@ function useGetTopRankingProducts(cat1, cat2, cat3) {
   return { productsCat1, productsCat2, productsCat3, parametersCat1, parametersCat2, parametersCat3, load, error }
 }
 
-function useGetApi(params, item, loading = true, setLanguage = true) {
+function useGetApi(mode, params, item, loading = true, setLanguage = true) {
   const [load, setLoad] = useState(loading);
   const [items, setItems] = useState([]);
   const [error, setError] = useState(null);
@@ -113,9 +113,9 @@ function useGetApi(params, item, loading = true, setLanguage = true) {
   let url;
 
   if (setLanguage) {
-    url = `https://hornb2b.com/horn/${params}&lang_code=${language}`;
+    url = `https://hornb2b.com/horn/${mode}/?${params}&lang_code=${language}`;
   }else {
-    url = `https://hornb2b.com/horn/${params}`;
+    url = `https://hornb2b.com/horn/${mode}/?${params}`;
   }
 
   async function getApi() {
