@@ -1,6 +1,35 @@
 .categoriesMultiColumn--container {
   .categoriesMultiColumn--item {
+    &:nth-child(odd) {
+      border-right: 1px solid #707070;
+    }
     cursor: pointer;
+    .categoriesMultiColumn--item__row.categoriesMultiColumn--item__borderBottom {
+      border-bottom: 1px solid #BCBCBC;
+    }
+
+    .categoriesMultiColumn--item__row {
+      .categoriesMultiColumn--img,
+      .categoriesMultiColumn--img .categoriesMultiColumn--img__wrapper {
+        width: 80px;
+        height: 80px;
+      }
+
+      .categoriesMultiColumn--img .categoriesMultiColumn--img__wrapper {
+        display: inline-block;
+      }
+
+      .categoriesMultiColumn--img .categoriesMultiColumn--img__wrapper {
+        border-radius: 50%;
+        box-shadow: 0 0 1rem rgba(0, 0, 0, 0.38);
+      }
+
+      .categoriesMultiColumn--img .categoriesMultiColumn--img__wrapper > img,
+      .categoriesMultiColumn--img .categoriesMultiColumn--img__wrapper .ant-image-img {
+        border-radius: 50%;
+      }
+    }
+
     .categoriesMultiColumn--icon {
       height: 80px;
     }
@@ -9,10 +38,10 @@
     &:hover {
       .categoriesMultiColumn--icon-title,
       i.fa-list-ul {
-        color: darken(@primary-color, 10%) !important;
+        color: darken(@primary-color, 10%);
       }
       .categoriesMultiColumn--icon-title {
-        font-weight: 600!important;
+        font-weight: 600;
       }
     }
   }
@@ -26,8 +55,31 @@
       height: 50px;
       width: 50px;
     }
+
     .categoriesMultiColumn--icon .rounded-circle i {
       line-height: 50px;
+    }
+
+    .categoriesMultiColumn--item__row {
+      .categoriesMultiColumn--img,
+      .categoriesMultiColumn--img .categoriesMultiColumn--img__wrapper {
+        width: 50px;
+        height: 50px;
+      }
+
+      .categoriesMultiColumn--img .categoriesMultiColumn--img__wrapper {
+        display: inline-block;
+      }
+
+      .categoriesMultiColumn--img .categoriesMultiColumn--img__wrapper {
+        border-radius: 50%;
+        box-shadow: 0 0 1rem rgba(0, 0, 0, 0.38);
+      }
+
+      .categoriesMultiColumn--img .categoriesMultiColumn--img__wrapper > img,
+      .categoriesMultiColumn--img .categoriesMultiColumn--img__wrapper .ant-image-img {
+        border-radius: 50%;
+      }
     }
   }
   .categoriesMultiColumn--item.vv-cursor-pointer {

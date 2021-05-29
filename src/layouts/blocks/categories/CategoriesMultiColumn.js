@@ -7,21 +7,18 @@ import { Col, Row } from "antd";
 // import another components used:
 import ScrollContainer from 'react-indiana-drag-scroll';
 
-// import categories image:
-import cat_1 from '../../../assets/images/categories/1.png';
-import cat_2 from '../../../assets/images/categories/2.png';
-import cat_3 from '../../../assets/images/categories/3.png';
-import cat_4 from '../../../assets/images/categories/4.png';
-import cat_5 from '../../../assets/images/categories/5.png';
-import cat_6 from '../../../assets/images/categories/6.png';
-import cat_7 from '../../../assets/images/categories/7.png';
-
 // import custom hooks:
-import { useWindowSize } from "../../../functions";
+import { useGetApi, useWindowSize } from "../../../functions";
+import { fn_handleLinkClick } from "../../../functions/Helper";
+import ShowResponsiveImage from "../../common/ShowResponsiveImage";
+import React from "react";
+import CategoriesMultiColumnSkeleton from "./CategoriesMultiColumnSkeleton";
 
-const CategoriesMultiColumn = (props) => {
+const CategoriesMultiColumn = () => {
 
   const { width } = useWindowSize();
+
+  const { load, items } = useGetApi(`home-categories-api`, '', 'categories');
 
   return (
     <div className={ `${width >= 992 ? 'categoriesMultiColumn--container' : 'categoriesMultiColumn--containerXs my-4'} h-100` }>
@@ -30,183 +27,95 @@ const CategoriesMultiColumn = (props) => {
         {/* if Screen Width >= 992px (Desktop) Show Component: */}
         {width >= 992 ?
           <>
-            <Col className="categoriesMultiColumn--item border-right border-70" span={12}>
-              <Row className="border-bottom border-bc">
-                <Col span={24} className="categoriesMultiColumn--img text-center py-2">
-                  <img className="rounded-circle shadow-circle" src={cat_1}  alt="cat_1"/>
-                </Col>
-                <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2 text-truncate px-3">
-                  Carpets
-                </Col>
-              </Row>
-            </Col>
 
-            <Col className="categoriesMultiColumn--item" span={12}>
-              <Row className="border-bottom border-bc">
-                <Col span={24} className="categoriesMultiColumn--img text-center py-2">
-                  <img className="rounded-circle shadow-circle" src={cat_2}  alt="cat_2"/>
-                </Col>
-                <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2 text-truncate px-3">
-                  Kids & Baby Carpet
-                </Col>
-              </Row>
-            </Col>
+            { load ?
+              <CategoriesMultiColumnSkeleton
+                skeleton = {true}
+                skeltonNumbers = {8}
+              /> :
+              <>
+                {items.map((category, index) => {
+                  return (
+                    <Col key={category.category_id} className="categoriesMultiColumn--item" span={12} onClick={() => { fn_handleLinkClick(category.link, '_blank'); }}>
+                      <Row className={`categoriesMultiColumn--item__row ${ index !== 6 ? 'categoriesMultiColumn--item__borderBottom': '' }`}>
+                        <Col span={24} className="categoriesMultiColumn--img text-center py-2">
+                          <div className="categoriesMultiColumn--img__wrapper">
+                            <ShowResponsiveImage imagePath={ category.main_pair.detailed.image_path } imageFolder='detailed' width={80} height={80} imageAlt={ category.category }/>
+                          </div>
+                        </Col>
+                        <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2 text-truncate px-3">
+                          { category.category }
+                        </Col>
+                      </Row>
+                    </Col>
+                  );
+                })}
 
-            <Col className="categoriesMultiColumn--item border-right border-70" span={12}>
-              <Row className="border-bottom border-bc">
-                <Col span={24} className="categoriesMultiColumn--img text-center py-2">
-                  <img className="rounded-circle shadow-circle" src={cat_3}  alt="cat_3"/>
-                </Col>
-                <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2 text-truncate px-3">
-                  Collage of skin...
-                </Col>
-              </Row>
-            </Col>
-
-            <Col className="categoriesMultiColumn--item" span={12}>
-              <Row className="border-bottom border-bc">
-                <Col span={24} className="categoriesMultiColumn--img text-center py-2">
-                  <img className="rounded-circle shadow-circle" src={cat_4}  alt="cat_4"/>
-                </Col>
-                <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2 text-truncate px-3">
-                  Cloth carpet
-                </Col>
-              </Row>
-            </Col>
-
-            <Col className="categoriesMultiColumn--item border-right border-70" span={12}>
-              <Row className="border-bottom border-bc">
-                <Col span={24} className="categoriesMultiColumn--img text-center py-2">
-                  <img className="rounded-circle shadow-circle" src={cat_5}  alt="cat_5"/>
-                </Col>
-                <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2 text-truncate px-3">
-                  Handmade carpet
-                </Col>
-              </Row>
-            </Col>
-
-            <Col className="categoriesMultiColumn--item" span={12}>
-              <Row className="border-bottom border-bc">
-                <Col span={24} className="categoriesMultiColumn--img text-center py-2">
-                  <img className="rounded-circle shadow-circle" src={cat_6}  alt="cat_6"/>
-                </Col>
-                <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2 text-truncate px-3">
-                  Tableau rug
-                </Col>
-              </Row>
-            </Col>
-
-            <Col className="categoriesMultiColumn--item border-right border-70" span={12}>
-              <Row>
-                <Col span={24} className="categoriesMultiColumn--img text-center py-2">
-                  <img className="rounded-circle shadow-circle" src={cat_7}  alt="cat_7"/>
-                </Col>
-                <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2 text-truncate px-3">
-                  Mats & Rugs
-                </Col>
-              </Row>
-            </Col>
-
-            <Col className="categoriesMultiColumn--item" span={12}>
-              <Row>
-                <Col span={24} className="categoriesMultiColumn--icon text-center my-2">
-                  <Row align="middle" className="h-100">
-                    <Col span={24}>
-                      <i className="far fa-list-ul mr-2 vv-font-size-4 font-weight-500 text-primary" />
+                <Col className="categoriesMultiColumn--item" span={12}>
+                  <Row className="categoriesMultiColumn--item__row">
+                    <Col span={24} className="categoriesMultiColumn--icon text-center my-2">
+                      <Row align="middle" className="h-100">
+                        <Col span={24}>
+                          <i className="far fa-list-ul mr-2 vv-font-size-4 font-weight-500 text-primary" />
+                        </Col>
+                      </Row>
+                    </Col>
+                    <Col span={24} className="categoriesMultiColumn--icon-title text-center text-47 vv-font-size-1-8 pb-2 text-truncate px-3">
+                      All Categories
                     </Col>
                   </Row>
                 </Col>
-                <Col span={24} className="categoriesMultiColumn--icon-title text-center text-47 vv-font-size-1-8 pb-2 text-truncate px-3">
-                  All Categories
-                </Col>
-              </Row>
-            </Col>
+              </>
+            }
           </> :
+
           /* if Screen Width <= 991px (Mobile) Show Component: */
           <>
-            <Col className="categoriesMultiColumn--item" span={7}>
-              <Row>
-                <Col span={24} className="categoriesMultiColumn--icon text-center my-2">
-                  <Row justify="center" className="h-100">
-                    <div className="rounded-circle shadow-circle">
-                      <i className="far fa-list-ul mr-2 vv-font-size-3 font-weight-500 text-primary mx-auto" />
-                    </div>
-                  </Row>
-                </Col>
-                <Col span={24} className="categoriesMultiColumn--icon-title text-center text-47 vv-font-size-1-5 pb-2 text-wrap px-3">
-                  All Categories
-                </Col>
-              </Row>
-            </Col>
-            <Col span={17}>
-              <ScrollContainer className="text-select-none d-flex requestsList--scrollContainer">
-                <Col span={9} className="categoriesMultiColumn--item">
-                  <Row>
-                    <Col span={24} className="categoriesMultiColumn--img text-center py-2">
-                      <img className="rounded-circle shadow-circle" src={cat_2}  alt="cat_2"/>
-                    </Col>
-                    <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-5 pb-2 text-wrap px-3">
-                      Kids & Baby Carpet
-                    </Col>
-                  </Row>
-                </Col>
 
-                <Col span={9} className="categoriesMultiColumn--item">
+            { load ?
+              <CategoriesMultiColumnSkeleton
+                skeleton = {true}
+                skeltonNumbers = {7}
+                swiper
+              /> :
+              <>
+                <Col className="categoriesMultiColumn--item" span={7}>
                   <Row>
-                    <Col span={24} className="categoriesMultiColumn--img text-center py-2">
-                      <img className="rounded-circle shadow-circle" src={cat_3}  alt="cat_3"/>
+                    <Col span={24} className="categoriesMultiColumn--icon text-center my-2">
+                      <Row justify="center" className="h-100">
+                        <div className="rounded-circle shadow-circle">
+                          <i className="far fa-list-ul mr-2 vv-font-size-3 font-weight-500 text-primary mx-auto" />
+                        </div>
+                      </Row>
                     </Col>
-                    <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-5 pb-2 text-wrap px-3">
-                      Collage of skin...
+                    <Col span={24} className="categoriesMultiColumn--icon-title text-center text-47 vv-font-size-1-5 pb-2 text-wrap px-3">
+                      All Categories
                     </Col>
                   </Row>
                 </Col>
+                <Col span={17}>
+                  <ScrollContainer className="text-select-none d-flex requestsList--scrollContainer">
+                    {items.map((category, index) => {
+                      return (
+                        <Col key={category.category_id} span={9} className="categoriesMultiColumn--item" onClick={() => { fn_handleLinkClick(category.link, '_blank'); }}>
+                          <Row className="categoriesMultiColumn--item__row">
+                            <Col span={24} className="categoriesMultiColumn--img text-center py-2">
+                              <div className="categoriesMultiColumn--img__wrapper">
+                                <ShowResponsiveImage imagePath={ category.main_pair.detailed.image_path } imageFolder='detailed' width={50} height={50} imageAlt={ category.category }/>
+                              </div>
+                            </Col>
+                            <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-5 pb-2 text-wrap px-3">
+                              Kids & Baby Carpet
+                            </Col>
+                          </Row>
+                        </Col>
+                      );
+                    })}
+                  </ScrollContainer>
+                </Col>
+              </>
+            }
 
-                <Col span={9} className="categoriesMultiColumn--item">
-                  <Row>
-                    <Col span={24} className="categoriesMultiColumn--img text-center py-2">
-                      <img className="rounded-circle shadow-circle" src={cat_4}  alt="cat_4"/>
-                    </Col>
-                    <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-5 pb-2 text-wrap px-3">
-                      Cloth carpet
-                    </Col>
-                  </Row>
-                </Col>
-
-                <Col span={9} className="categoriesMultiColumn--item">
-                  <Row>
-                    <Col span={24} className="categoriesMultiColumn--img text-center py-2">
-                      <img className="rounded-circle shadow-circle" src={cat_5}  alt="cat_5"/>
-                    </Col>
-                    <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-5 pb-2 text-wrap px-3">
-                      Handmade carpet
-                    </Col>
-                  </Row>
-                </Col>
-
-                <Col span={9} className="categoriesMultiColumn--item">
-                  <Row>
-                    <Col span={24} className="categoriesMultiColumn--img text-center py-2">
-                      <img className="rounded-circle shadow-circle" src={cat_6}  alt="cat_6"/>
-                    </Col>
-                    <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-5 pb-2 text-wrap px-3">
-                      Tableau rug
-                    </Col>
-                  </Row>
-                </Col>
-
-                <Col span={9} className="categoriesMultiColumn--item">
-                  <Row>
-                    <Col span={24} className="categoriesMultiColumn--img text-center py-2">
-                      <img className="rounded-circle shadow-circle" src={cat_7}  alt="cat_7"/>
-                    </Col>
-                    <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-5 pb-2 text-wrap px-3">
-                      Mats & Rugs
-                    </Col>
-                  </Row>
-                </Col>
-              </ScrollContainer>
-            </Col>
           </>
         }
 
