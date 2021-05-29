@@ -10,21 +10,32 @@ import { Col, Row, Skeleton } from "antd";
 // import store icon:
 import store_1 from '../../../assets/images/store-icon/1.png';
 import React from "react";
+import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 
 
 const ProductsMultiColumnVertical = (props) => {
 
+  // get screen width:
   const { width } = useWindowSize();
 
+  // check show all details:
   const { allDetails } = props;
+
+  // check product show swiper:
   const { swiper } = props;
+
+  // check load:
   const { load } = props;
+
+  // get width and height product image:
+  const { widthProductImage, heightProductImage } = props;
 
   let paragraph_rows = { rows: 2 };
   if (width <= 991) {
     paragraph_rows = { rows: 1 };
   }
 
+  // product data:
   const { product } = props;
   
   const detailIcon = props.detailIcon || 'default';
@@ -34,6 +45,7 @@ const ProductsMultiColumnVertical = (props) => {
 
   const manufacturing_country = product.manufacturing_country;
 
+  // show skeleton if swiper is true
   if (swiper && load) {
     return (
       <Col className={ `productsMultiColumnVertical--item` } {...props.grid} span={24}>
@@ -55,7 +67,7 @@ const ProductsMultiColumnVertical = (props) => {
         <Col className="align-self-start" span={24}>
           <Row>
             <Col span={24} className="d-flex align-items-center justify-content-center productsMultiColumnVertical--item__image">
-              <img src={product.main_pair.detailed.image_path} alt=""/>
+              <ShowResponsiveImage imagePath={ product.main_pair.detailed.image_path } imageFolder='detailed' width={widthProductImage || 300} height={heightProductImage || 220} imageAlt={ product.product }/>
             </Col>
 
             <Col span={24} className={ `${ !allDetails && 'd-none d-lg-block' } text-47 vv-font-size-1-8 text-truncate productsMultiColumnVertical--item__title` }>

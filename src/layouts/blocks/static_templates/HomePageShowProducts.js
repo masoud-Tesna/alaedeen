@@ -42,7 +42,8 @@ const HomePageShowProducts = () => {
               product={product}
               detailIcon="company"
               grid={productsMultiColumnVertical_items}
-              width = { width }
+              widthProductImage={291}
+              heightProductImage={226}
             />);
           })}
         </>
