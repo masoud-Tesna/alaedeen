@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import './styles/Factories.less';
 
 // import ANT Design Components Used:
-import { Button, Col, Row, Space } from "antd";
+import { Col, Row, Space } from "antd";
 
 // import bg image:
 import topSectionBg from '../assets/images/factoriezTopSectionBg.png';
