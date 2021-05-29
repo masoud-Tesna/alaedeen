@@ -1,11 +1,11 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 // import Styles For default:
 import './styles.less';
 
 // Ant Design Import:
-import { Row, Col, Divider, Space, Button, Modal, Collapse } from 'antd';
+import { Row, Col, Divider, Space, Button, Collapse, Drawer } from 'antd';
 import { UpOutlined } from "@ant-design/icons";
 
 // import categories drop down:
@@ -20,43 +20,68 @@ import LoaderSpinner from '../../blocks/static_templates/LoadSpinner';
 // import language context:
 import { changeLanguageAction, useGetLanguageState, useDispatchLanguageState } from '../../../contexts/language/LanguageContext';
 
+// import Custom hooks:
+import { useWindowSize } from "../../../functions";
+
 const DefaultTopPanel = () => {
 
+  // get screen width:
+  const { width } = useWindowSize();
+
+  // initial state for language:
   const { language } = useGetLanguageState();
   const { languageDispatch } = useDispatchLanguageState();
 
+  // initial state for currency:
+  const [currency, setCurrency] = useState('USD');
+
+  // initial state for drawer Menu (mobile version):
+  const [visibleTopPanelMenuXs, setVisibleTopPanelMenuXs] = useState(false);
+
+  // initial state for show spinner:
   const [ showLoadSpinner, setShowLoadSpinner ] = useState(false);
 
+  // function for change language:
   const handleChangeLanguage = (lang) => {
     if (lang !== language) {
       setShowLoadSpinner(true);
 
       languageDispatch(changeLanguageAction(lang));
       setTimeout(() => {
-        setShowLoadSpinner(false)
+        setShowLoadSpinner(false);
+        setVisibleTopPanelMenuXs(false);
       }, 1000);
 
     }
   }
 
-  const { Panel } = Collapse;
+  // function for change currency:
+  const handleChangeCurrency = (e) => {
+    setCurrency(e.target.value);
+    if (e.target.value !== currency) {
+      setShowLoadSpinner(true);
 
-  const [visibleTopPanelMenuXs, setVisibleTopPanelMenuXs] = useState(false);
+      setCurrency(e.target.value);
+      setTimeout(() => {
+        setShowLoadSpinner(false);
+        setVisibleTopPanelMenuXs(false);
+      }, 1000);
 
-  const [currency, setCurrency] = useState('USD');
+    }
+  }
 
+  // function for show drawer Menu:
   const showTopPanelMenuXs = () => {
     setVisibleTopPanelMenuXs(true);
   }
 
+  // function for close drawer Menu:
   const closeTopPanelMenuXs = () => {
     setVisibleTopPanelMenuXs(false);
   }
 
-  const handleChangeCurrency = (e) => {
-    setCurrency(e.target.value);
-  }
-
+  // for show languages and currencies:
+  const { Panel } = Collapse;
 
   return (
     <Row className="bg-top-panel topPanel--container">
@@ -66,15 +91,18 @@ const DefaultTopPanel = () => {
         <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>
       </div>
 
-      <Modal
-        visible={visibleTopPanelMenuXs}
-        onCancel={closeTopPanelMenuXs}
-        className="d-lg-none bg-white shadow-lg w-75 m-0 p-0 topPanel--menuXs"
-        closable={false}
-        footer={null}
-      >
-        <Row className="topPanel--menuXs__container">
-          <Col span={24} className="align-self-start topPanel--menuXs__topSection">
+      {/* if Screen Width <= 992px (Mobile) render drawer Menu: */}
+      {width <= 992 &&
+        <Drawer
+          placement="right"
+          className="shadow-lg m-0 p-0 topPanel--menuXs"
+          closable={false}
+          width={"75%"}
+          onClose={closeTopPanelMenuXs}
+          visible={visibleTopPanelMenuXs}
+        >
+          <Row className="topPanel--menuXs__container">
+            <Col span={24} className="align-self-start topPanel--menuXs__topSection">
               <Col span={24} className="menuXs--bgTopSection__container">
                 <Row className="h-100 px-4" align="middle" gutter={16}>
                   <Col>
@@ -90,161 +118,162 @@ const DefaultTopPanel = () => {
                           Sign in
                         </Link>
                         <Divider type="vertical" className="border-70"/>
-                        <Link className="text-white vv-font-size-1-7 font-weight-600" to={"/register"} >
+                        <a className="text-white vv-font-size-1-7 font-weight-600" href="https://hornb2b.com/horn/register/" target="_blank">
                           Join Free
-                        </Link>
+                        </a>
                       </Col>
                     </Row>
                   </Col>
                 </Row>
               </Col>
-          </Col>
+            </Col>
 
-          <Col span={24} className="topPanel--menuXs__middleSection">
-            <Row className="pt-4 px-4">
-              <Col className="menuXs--sideNavLinks__items" span={24}>
-                <Space direction="vertical" size={"middle"} className="w-100">
-                  <Link className="menuXs--sideNavLinks__item d-block" to={"/"} >
-                    <Row justify={"space-between"}>
-                      <Col className="text-center" span={5}>
-                        <i className="fal fa-home text-primary vv-font-size-3" />
-                      </Col>
-                      <Col span={18} className="my-auto">
-                        <span className="text-70 vv-font-size-1-6">Home</span>
-                      </Col>
-                    </Row>
-                  </Link>
+            <Col span={24} className="topPanel--menuXs__middleSection">
+              <Row className="pt-4 px-4">
+                <Col className="menuXs--sideNavLinks__items" span={24}>
+                  <Space direction="vertical" size={"middle"} className="w-100">
+                    <Link className="menuXs--sideNavLinks__item d-block" to={"/"} >
+                      <Row justify={"space-between"}>
+                        <Col className="text-center" span={5}>
+                          <i className="fal fa-home text-primary vv-font-size-3" />
+                        </Col>
+                        <Col span={18} className="my-auto">
+                          <span className="text-70 vv-font-size-1-6">Home</span>
+                        </Col>
+                      </Row>
+                    </Link>
 
-                  <span className="menuXs--sideNavLinks__item languagesCurrencyCollapse d-block">
-                    <Row justify={"space-between"}>
-                      <Col className="text-center" span={5}>
-                        <i className="fal fa-globe text-primary vv-font-size-3" />
-                      </Col>
-                      <Col style={{ paddingTop: '0.9rem' }} span={18}>
-                        <Collapse
-                          expandIconPosition={"right"}
-                          ghost
-                          expandIcon={({ isActive }) => <UpOutlined rotate={isActive ? 180 : 0} />}
-                        >
-                          <Panel header="Language & Currency" key="1">
-                            <div className="mb-4">
-                              <Row justify="space-between">
-                                <Col className="my-auto">
-                                  <span className="mr-2">Language</span>
-                                </Col>
-                                <Col className="my-auto" span={12}>
-                                  <select
-                                    value={language}
-                                    onChange={e => handleChangeLanguage(e.target.value)}
-                                    className="w-100 text-red-a0 select-box-remove-arrow border-0 vv-font-size-1-5 p-0 mobileChangeLangSelect">
-                                    <option value="en"
-                                            selected="">English
-                                    </option>
-                                    <option value="ar">العربية
-                                    </option>
-                                    <option value="fa">فارسی
-                                    </option>
-                                  </select>
-                                </Col>
-                              </Row>
-                            </div>
+                    <span className="menuXs--sideNavLinks__item languagesCurrencyCollapse d-block">
+                      <Row justify={"space-between"}>
+                        <Col className="text-center" span={5}>
+                          <i className="fal fa-globe text-primary vv-font-size-3" />
+                        </Col>
+                        <Col style={{ paddingTop: '0.9rem' }} span={18}>
+                          <Collapse
+                            expandIconPosition={"right"}
+                            ghost
+                            expandIcon={({ isActive }) => <UpOutlined rotate={isActive ? 180 : 0} />}
+                          >
+                            <Panel header="Language & Currency" key="1">
+                              <div className="mb-4">
+                                <Row justify="space-between">
+                                  <Col className="my-auto">
+                                    <span className="mr-2">Language</span>
+                                  </Col>
+                                  <Col className="my-auto" span={12}>
+                                    <select
+                                      value={language}
+                                      onChange={e => handleChangeLanguage(e.target.value)}
+                                      className="w-100 text-red-a0 select-box-remove-arrow border-0 vv-font-size-1-5 p-0 mobileChangeLangSelect">
+                                      <option value="en"
+                                              selected="">English
+                                      </option>
+                                      <option value="ar">العربية
+                                      </option>
+                                      <option value="fa">فارسی
+                                      </option>
+                                    </select>
+                                  </Col>
+                                </Row>
+                              </div>
 
-                            <div>
-                              <Row justify="space-between">
-                                <Col className="my-auto" span={12}>
-                                  <span className="mr-2">Currency</span>
-                                </Col>
-                                <Col className="my-auto" span={12}>
-                                  <select
-                                    value={currency}
-                                    onChange={e => handleChangeCurrency(e)}
-                                    className="w-100 text-red-a0 select-box-remove-arrow border-0 vv-font-size-1-5 p-0 mobileChangeCurrencySelect">
-                                    <option value="USD">US dollars</option>
-                                    <option value="AED" selected="">United
-                                      arab emirates dirham
-                                    </option>
-                                    <option value="IQD">Iraqi dinar
-                                    </option>
-                                    <option value="SAR">Saudi riyal
-                                    </option>
-                                    <option value="KWD">Kuwaiti dinar
-                                    </option>
-                                    <option value="BHD">Bahraini dinar
-                                    </option>
-                                    <option value="QAR">Qatari riyal
-                                    </option>
-                                  </select>
-                                </Col>
-                              </Row>
-                            </div>
-                          </Panel>
-                        </Collapse>
-                      </Col>
-                    </Row>
-                  </span>
+                              <div>
+                                <Row justify="space-between">
+                                  <Col className="my-auto" span={12}>
+                                    <span className="mr-2">Currency</span>
+                                  </Col>
+                                  <Col className="my-auto" span={12}>
+                                    <select
+                                      value={currency}
+                                      onChange={e => handleChangeCurrency(e)}
+                                      className="w-100 text-red-a0 select-box-remove-arrow border-0 vv-font-size-1-5 p-0 mobileChangeCurrencySelect">
+                                      <option value="USD">US dollars</option>
+                                      <option value="AED" selected="">United
+                                        arab emirates dirham
+                                      </option>
+                                      <option value="IQD">Iraqi dinar
+                                      </option>
+                                      <option value="SAR">Saudi riyal
+                                      </option>
+                                      <option value="KWD">Kuwaiti dinar
+                                      </option>
+                                      <option value="BHD">Bahraini dinar
+                                      </option>
+                                      <option value="QAR">Qatari riyal
+                                      </option>
+                                    </select>
+                                  </Col>
+                                </Row>
+                              </div>
+                            </Panel>
+                          </Collapse>
+                        </Col>
+                      </Row>
+                    </span>
 
-                  <Link className="menuXs--sideNavLinks__item d-block" to={"/favorites"} >
-                    <Row justify={"space-between"}>
-                      <Col className="text-center" span={5}>
-                        <i className="fal fa-star text-primary vv-font-size-3" />
-                      </Col>
-                      <Col span={18} className="my-auto">
-                        <span className="text-70 vv-font-size-1-6">Favorites</span>
-                      </Col>
-                    </Row>
-                  </Link>
+                    <Link className="menuXs--sideNavLinks__item d-block" to={"/favorites"} >
+                      <Row justify={"space-between"}>
+                        <Col className="text-center" span={5}>
+                          <i className="fal fa-star text-primary vv-font-size-3" />
+                        </Col>
+                        <Col span={18} className="my-auto">
+                          <span className="text-70 vv-font-size-1-6">Favorites</span>
+                        </Col>
+                      </Row>
+                    </Link>
 
-                  <Link className="menuXs--sideNavLinks__item d-block" to={"/comparison"} >
-                    <Row justify={"space-between"}>
-                      <Col className="text-center" span={5}>
-                        <i className="icon-vv-compare text-primary vv-font-size-2-5" />
-                      </Col>
-                      <Col span={18} className="my-auto">
-                        <span className="text-70 vv-font-size-1-6">Comparison</span>
-                      </Col>
-                    </Row>
-                  </Link>
+                    <Link className="menuXs--sideNavLinks__item d-block" to={"/comparison"} >
+                      <Row justify={"space-between"}>
+                        <Col className="text-center" span={5}>
+                          <i className="icon-vv-compare text-primary vv-font-size-2-5" />
+                        </Col>
+                        <Col span={18} className="my-auto">
+                          <span className="text-70 vv-font-size-1-6">Comparison</span>
+                        </Col>
+                      </Row>
+                    </Link>
 
-                  <Link className="menuXs--sideNavLinks__item d-block" to={"/messages"} >
-                    <Row justify={"space-between"}>
-                      <Col className="text-center" span={5}>
-                        <i className="fal fa-envelope text-primary vv-font-size-3" />
-                      </Col>
-                      <Col span={18} className="my-auto">
-                        <span className="text-70 vv-font-size-1-6">Messages</span>
-                      </Col>
-                    </Row>
-                  </Link>
-                </Space>
-              </Col>
-              <Divider className="border-bc" />
-              <Col className="px-4 menuXs--sideNavBtn__items" span={24}>
-                <Space direction="vertical" size={15}>
-                  <Button className="border-primary text-primary w-100">International Exhibition</Button>
+                    <Link className="menuXs--sideNavLinks__item d-block" to={"/messages"} >
+                      <Row justify={"space-between"}>
+                        <Col className="text-center" span={5}>
+                          <i className="fal fa-envelope text-primary vv-font-size-3" />
+                        </Col>
+                        <Col span={18} className="my-auto">
+                          <span className="text-70 vv-font-size-1-6">Messages</span>
+                        </Col>
+                      </Row>
+                    </Link>
+                  </Space>
+                </Col>
+                <Divider className="border-bc" />
+                <Col className="px-4 menuXs--sideNavBtn__items" span={24}>
+                  <Space direction="vertical" size={15}>
+                    <Button className="border-primary text-primary w-100">International Exhibition</Button>
 
-                  <Button className="border-primary text-primary w-100">Trading Guide</Button>
-                </Space>
-              </Col>
-            </Row>
-          </Col>
+                    <Button className="border-primary text-primary w-100">Trading Guide</Button>
+                  </Space>
+                </Col>
+              </Row>
+            </Col>
 
-          <Col span={24} className="bg-footer p-4 w-100 topPanel--menuXs__bottomSection">
-            <Space size={15}>
-              <div className="d-inline-block">
-                <i className="fad fa-download text-primary display-4" />
-              </div>
-              <div className="d-inline-block">
-                <div className="text-white vv-font-size-1-5 font-weight-bold">
-                  Download the Horn app
+            <Col span={24} className="bg-footer p-4 w-100 topPanel--menuXs__bottomSection">
+              <Space size={15}>
+                <div className="d-inline-block">
+                  <i className="fad fa-download text-primary display-4" />
                 </div>
-                <div className="text-white vv-font-size-1-2 mt-2">
-                  For 10x Faster
+                <div className="d-inline-block">
+                  <div className="text-white vv-font-size-1-5 font-weight-bold">
+                    Download the Horn app
+                  </div>
+                  <div className="text-white vv-font-size-1-2 mt-2">
+                    For 10x Faster
+                  </div>
                 </div>
-              </div>
-            </Space>
-          </Col>
-        </Row>
-      </Modal>
+              </Space>
+            </Col>
+          </Row>
+        </Drawer>
+      }
 
       <Col span={24} className="topPanel--col">
         <Row className="h-100" gutter={24} justify="space-between">
