@@ -17,7 +17,7 @@ const TopBrands = () => {
   const { width } = useWindowSize();
 
 
-  const { load, items } = useGetApi(`top-brands-api/?items_per_page=5`, 'top_brands')
+  const { load, items } = useGetApi(`top-brands-api`, 'items_per_page=5', 'top_brands');
 
   return (
     <div className="topBrands--container">
