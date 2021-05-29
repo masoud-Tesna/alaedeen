@@ -9,7 +9,8 @@ import { Col, Row, Skeleton } from "antd";
 
 // import store icon:
 import store_1 from '../../../assets/images/store-icon/1.png';
-import React from "react";
+
+// import get image responsive from server and show:
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 
 
