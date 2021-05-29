@@ -13,11 +13,17 @@ import polygon_3 from '../../../assets/images/polygon3.png';
 
 // import ANT Design Components used:
 import { Col, Row, Space } from "antd";
+import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 
 const ProductsMultiColumnHorizontal = (props) => {
 
+  // get screen width:
   const { width } = useWindowSize();
 
+  // get width and height product image:
+  const { widthProductImage, heightProductImage } = props;
+
+  // get product data:
   const { product } = props;
 
   const productPrice = parseFloat(product.price).toFixed(2);
@@ -40,7 +46,7 @@ const ProductsMultiColumnHorizontal = (props) => {
             <img src={ polygon } alt="polygon 1"/>
           </div>
           <div className="rounded-10 shadow-y-2 d-flex align-items-center justify-content-center ProductsMultiColumnHorizontal--image">
-            <img src={product.main_pair.detailed.image_path} alt=""/>
+            <ShowResponsiveImage imagePath={ product.main_pair.detailed.image_path } imageFolder='detailed' width={widthProductImage || 140} height={heightProductImage || 140} imageAlt={ product.product }/>
           </div>
           <div className="ProductsMultiColumnHorizontal--details">
             {productPrice != 0.000 &&
@@ -73,7 +79,7 @@ const ProductsMultiColumnHorizontal = (props) => {
     <Col className={ `ProductsMultiColumnHorizontal--item vv-cursor-pointer ${props.className}` } {...props.grid}>
       <Row justify="center">
         <div className="rounded-10 shadow-y-2 d-flex align-items-center justify-content-center ProductsMultiColumnHorizontal--image">
-          <img src={product.main_pair.detailed.image_path} alt=""/>
+          <ShowResponsiveImage imagePath={ product.main_pair.detailed.image_path } imageFolder='detailed' width={widthProductImage || 90} height={heightProductImage || 90} imageAlt={ product.product }/>
         </div>
 
         <div className="w-100 ProductsMultiColumnHorizontal--details">

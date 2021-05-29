@@ -17,6 +17,7 @@ import polygon_3 from '../../../assets/images/polygon3.png';
 
 // import custom hooks:
 import { useGetTopRankingProducts, useWindowSize } from "../../../functions";
+import ProductsMultiColumnVertical from "../product_list_templates/ProductsMultiColumnVertical";
 
 const TopRankingProducts = () => {
 
@@ -70,6 +71,8 @@ const TopRankingProducts = () => {
                               key = { i }
                               productKey = { i }
                               product= {product}
+                              widthProductImage={140}
+                              heightProductImage={140}
                             />
                           );
                         })}
@@ -103,6 +106,8 @@ const TopRankingProducts = () => {
                               key = { i }
                               productKey = { i }
                               product= {product}
+                              widthProductImage={140}
+                              heightProductImage={140}
                             />
                           );
                         })}
@@ -136,6 +141,8 @@ const TopRankingProducts = () => {
                               key = { i }
                               productKey = { i }
                               product= {product}
+                              widthProductImage={140}
+                              heightProductImage={140}
                             />
                           );
                         })}
@@ -189,6 +196,8 @@ const TopRankingProducts = () => {
                                   key = { i }
                                   productKey = { i }
                                   product= {product}
+                                  widthProductImage={90}
+                                  heightProductImage={90}
                                 />
                               );
                             })}
@@ -223,6 +232,8 @@ const TopRankingProducts = () => {
                                   key = { i }
                                   productKey = { i }
                                   product= {product}
+                                  widthProductImage={90}
+                                  heightProductImage={90}
                                 />
                               );
                             })}
@@ -257,6 +268,8 @@ const TopRankingProducts = () => {
                                   key = { i }
                                   productKey = { i }
                                   product= {product}
+                                  widthProductImage={90}
+                                  heightProductImage={90}
                                 />
                               );
                             })}
