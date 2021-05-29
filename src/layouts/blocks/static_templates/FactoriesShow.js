@@ -11,7 +11,7 @@ import { Button, Col, Row, Space } from "antd";
 import { CommentOutlined } from "@ant-design/icons";
 
 // import Custom hooks:
-import { useGetFactories, useQuery, useWindowSize } from "../../../functions";
+import { useGetFactories, useQuery, useWindowSize, useResizeImage } from "../../../functions";
 
 // import Verified
 import verifiedIcon from "../../../assets/images/verified.png";
@@ -22,20 +22,23 @@ import TextTruncate from "react-text-truncate";
 // import Skeleton used:
 import SkeletonFactoriesShow from "./SkeletonFactoriesShow";
 
+// import Show responsive image:
+import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 
-const FactoriesLogo = ({ logo, alt }) => {
+
+const FactoriesLogo = ({ logo, imageAlt }) => {
 
   const { language } = useGetLanguageState();
 
   if (language === 'en' && logo.en) {
     return (
-      <img src={ logo.en } alt={ alt }/>
+      <img src={ logo.en } alt={ imageAlt }/>
     );
   }
 
   if (language === 'fa' && logo.fa) {
     return (
-      <img src={ logo.fa } alt={ alt }/>
+      <img src={ logo.fa } alt={ imageAlt }/>
     );
   }
 
@@ -156,50 +159,6 @@ const GroupFields = ({ groupFields, width }) => {
       );
     }
   }
-  /*  const { width } = useWindowSize();
-
-    if (width >= 991) { // For Desktop:
-      return (
-        <>
-          {groupFields.map((groupField) => {
-            return (
-              <Col span={12} key = { groupField.group_id }>
-                <div className="py-2 px-3 factories--informationItem">
-                  <Row>
-                    <Col span={24} className="vv-font-size-1-4 text-33">{groupField.caption}:</Col>
-                    <Col span={24} className="vv-font-size-1-4 text-33">
-                      <Row justify={"space-between"}>
-                        <FieldValues fieldValues = { groupField.values } />
-                      </Row>
-                    </Col>
-                  </Row>
-                </div>
-              </Col>
-            );
-          })}
-        </>
-      );
-    }else { // For Mobile:
-      return (
-        <>
-          {groupFields.slice(0,1).map((groupField) => {
-            return (
-              <Col flex="1 1" key = { groupField.group_id }>
-                <div className="factories--informationItem">
-                  <Row>
-                    <Col span={24} className="vv-font-size-1-4 text-33">
-                      <Row justify={"space-between"}>
-                        <FieldValues fieldValues = { groupField.values } />
-                      </Row>
-                    </Col>
-                  </Row>
-                </div>
-              </Col>
-            );
-          })}
-        </>
-      );
-    }*/
 }
 
 const FactoryProduct = ({ products }) => {
@@ -209,7 +168,7 @@ const FactoryProduct = ({ products }) => {
         return (
           <Col className={ `${ i === 3 && 'd-none d-lg-block' } factories--productImageContainer` } key={product.product_id}>
             <div className="rounded-10 shadow-y-2 text-center factories--productImage">
-              <img src={ product.main_pair.detailed.image_path } alt={ product.product }/>
+              <ShowResponsiveImage imagePath={ product.main_pair.detailed.image_path } imageFolder='detailed' width={158} height={158} imageAlt={ product.product }/>
             </div>
           </Col>
         );
@@ -300,7 +259,7 @@ const FactoriesShow = () => {
                 <Col span={24} key = { factory.company_id } className="bg-f7 rounded-10 p-3 border border-70 factories--item byParam">
                   <Row gutter={16} className="h-100">
                     <Col flex='400px' className="d-none d-lg-block h-100 factories--imageContainer">
-                      <img src={ factory.images[0] } alt="farrahi"/>
+                      <ShowResponsiveImage imagePath={ factory.images[0] } imageFolder='profiles' width={400} height={313} imageAlt={ factory.general.company }/>
                     </Col>
                     <Col flex="1 1" className="factories--dataContainer">
                       <Row gutter={[0,8]}>
@@ -309,12 +268,12 @@ const FactoriesShow = () => {
                             <Col>
                               <Row gutter={16}>
                                 <Col className="factories--iconContainer">
-                                  <FactoriesLogo logo={ factory.company_introduction.fields.company_logo } alt={ factory.company }/>
+                                  <FactoriesLogo logo={ factory.company_introduction.fields.company_logo } imageAlt={ factory.general.company }/>
                                 </Col>
                                 <Col className="">
                                   <Row className="h-100">
                                     <Col span={24} className="vv-font-size-1-6 text-black font-weight-600">
-                                      { factory.company }
+                                      { factory.general.company }
                                     </Col>
                                     <Col span={24} className="mt-2">
                                       <img src={ verifiedIcon } alt="verified"/>
@@ -333,14 +292,14 @@ const FactoriesShow = () => {
 
                           <Row className="d-flex d-lg-none">
                             <Col flex='69px' className="factories--iconContainer">
-                              <FactoriesLogo logo={ factory.company_introduction.fields.company_logo } alt={ factory.company }/>
+                              <FactoriesLogo logo={ factory.company_introduction.fields.company_logo } imageAlt={ factory.general.company }/>
                             </Col>
                             <Col flex="1 1" className="">
                               <Row gutter={[0, 5]}>
                                 <Col className="" span={24}>
                                   <Row justify={"space-between"}>
                                     <Col className="vv-font-size-1-4 text-black font-weight-600">
-                                      { factory.company }
+                                      { factory.general.company }
                                     </Col>
                                     <Col className="factories--btnContainer">
                                       <Button type="primary" icon={<CommentOutlined className="vv-font-size-1-7" />} className="p-0 bg-primary-darken border-primary-darken factories--btn__chat" size={"large"}>Chat</Button>
@@ -439,12 +398,12 @@ const FactoriesShow = () => {
                 groupFields_2
               ];
             }
-
+            //console.log(factory.general.company)
             return (
               <Col span={24} key = { factory.company_id } className="bg-white rounded-10 p-3 border border-70 factories--item">
                 <Row gutter={16} className="h-100">
                   <Col flex='400px' className="d-none d-lg-block h-100 factories--imageContainer">
-                    <img src={ factory.images[0] } alt="farrahi"/>
+                    <ShowResponsiveImage imagePath={ factory.images[0] } imageFolder='profiles' width={400} height={313} imageAlt={ factory.general.company }/>
                   </Col>
                   <Col flex="1 1" className="factories--dataContainer">
                     <Row gutter={[0,8]}>
@@ -453,12 +412,12 @@ const FactoriesShow = () => {
                           <Col>
                             <Row gutter={16}>
                               <Col className="factories--iconContainer">
-                                <FactoriesLogo logo={ factory.company_introduction.fields.company_logo } alt={ factory.company }/>
+                                <FactoriesLogo logo={ factory.company_introduction.fields.company_logo } imageAlt={ factory.general.company }/>
                               </Col>
                               <Col className="">
                                 <Row className="h-100">
                                   <Col span={24} className="vv-font-size-1-6 text-black font-weight-600">
-                                    { factory.company }
+                                    { factory.general.company }
                                   </Col>
                                   <Col span={24} className="mt-2">
                                     <img src={ verifiedIcon } alt="verified"/>
@@ -477,14 +436,14 @@ const FactoriesShow = () => {
 
                         <Row className="d-flex d-lg-none">
                           <Col flex='69px' className="factories--iconContainer">
-                            <FactoriesLogo logo={ factory.company_introduction.fields.company_logo } alt={ factory.company }/>
+                            <FactoriesLogo logo={ factory.company_introduction.fields.company_logo } imageAlt={ factory.general.company }/>
                           </Col>
                           <Col flex="1 1" className="">
                             <Row gutter={[0, 5]}>
                               <Col className="" span={24}>
                                 <Row justify={"space-between"}>
                                   <Col className="vv-font-size-1-4 text-black font-weight-600">
-                                    { factory.company }
+                                    { factory.general.company }
                                   </Col>
                                   <Col className="factories--btnContainer">
                                     <Button type="primary" icon={<CommentOutlined className="vv-font-size-1-7" />} className="p-0 bg-primary-darken border-primary-darken factories--btn__chat" size={"large"}>Chat</Button>
