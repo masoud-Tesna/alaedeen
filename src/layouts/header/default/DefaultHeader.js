@@ -48,9 +48,9 @@ const DefaultHeader = () => {
                         </Link>
                       </Col>
                       <Col span={24}>
-                        <Link className="text-70 vv-font-size-2" to={"/register"} >
+                        <a className="text-70 vv-font-size-2" href="https://hornb2b.com/horn/register/" target="_blank" >
                           Join Free
-                        </Link>
+                        </a>
                       </Col>
                     </Row>
                   </Col>
