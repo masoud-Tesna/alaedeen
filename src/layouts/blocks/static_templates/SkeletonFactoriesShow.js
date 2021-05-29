@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 // import style file:
 import './styles/SkeletonFactoriesShow.less';
 
