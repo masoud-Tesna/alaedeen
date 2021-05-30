@@ -44,7 +44,7 @@ const TopRankingProducts = () => {
             </Col>
           </Row>
         </Col>
-        <Col className="rounded-10 shadow-y-2 bg-white p px-3 px-0 py-lg-5 topRankingProducts--content" span={24}>
+        <Col className="rounded-10 shadow-y-2 bg-white p px-3 px-0 pt-3 pb-4 py-lg-5 topRankingProducts--content" span={24}>
 
           {width >= 992 ?
             <Row className="topRankingProducts--items">

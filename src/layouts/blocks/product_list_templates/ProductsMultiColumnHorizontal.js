@@ -40,63 +40,67 @@ const ProductsMultiColumnHorizontal = (props) => {
     }
 
     return (
-      <Col className={ `ProductsMultiColumnHorizontal--item vv-cursor-pointer ${props.className}` } {...props.grid}>
-        <Space size={16}>
-          <div className="ProductsMultiColumnHorizontal--polygon">
-            <img src={ polygon } alt="polygon 1"/>
-          </div>
-          <div className="rounded-10 shadow-y-2 d-flex align-items-center justify-content-center ProductsMultiColumnHorizontal--image">
-            <ShowResponsiveImage imagePath={ product.main_pair.detailed.image_path } imageFolder='detailed' width={widthProductImage || 140} height={heightProductImage || 140} imageAlt={ product.product }/>
-          </div>
-          <div className="ProductsMultiColumnHorizontal--details">
-            {productPrice != 0.000 &&
-            <div className="mb-3 ProductsMultiColumnHorizontal--details__price">
-              <span className="vv-font-size-1-9 text-primary font-weight-bold">${ productPrice } </span>
-              { productListPrice != 0.00 &&
-              <span className="vv-font-size-1-9 text-primary font-weight-bold"> - ${productListPrice}</span>
+      <Col className={ `ProductsMultiColumnHorizontal--item ${props.className}` } {...props.grid}>
+        <a className="d-block" href={ product.link } target={'_blank'}>
+          <Space size={16}>
+            <div className="ProductsMultiColumnHorizontal--polygon">
+              <img src={ polygon } alt="polygon 1"/>
+            </div>
+            <div className="rounded-10 shadow-y-2 d-flex align-items-center justify-content-center ProductsMultiColumnHorizontal--image">
+              <ShowResponsiveImage imagePath={ product.main_pair.detailed.image_path } imageFolder='detailed' width={widthProductImage || 140} height={heightProductImage || 140} imageAlt={ product.product }/>
+            </div>
+            <div className="ProductsMultiColumnHorizontal--details">
+              {productPrice != 0.000 &&
+              <div className="mb-3 ProductsMultiColumnHorizontal--details__price">
+                <span className="vv-font-size-1-9 text-primary font-weight-bold">${ productPrice } </span>
+                { productListPrice != 0.00 &&
+                <span className="vv-font-size-1-9 text-primary font-weight-bold"> - ${productListPrice}</span>
+                }
+              </div>
               }
-            </div>
-            }
 
-            {(product.min_qty && product.quantity_unit) &&
-            <div className="mb-3 ProductsMultiColumnHorizontal--details__quantity">
-              <span className="vv-font-size-1-4 text-47">{ product.min_qty } { product.quantity_unit }</span>
-              <span className="vv-font-size-1-2rem text-92"> (MOQ)</span>
+              {(product.min_qty && product.quantity_unit) &&
+              <div className="mb-3 ProductsMultiColumnHorizontal--details__quantity">
+                <span className="vv-font-size-1-4 text-47">{ product.min_qty } { product.quantity_unit }</span>
+                <span className="vv-font-size-1-2rem text-92"> (MOQ)</span>
+              </div>
+              }
+              <div className="ProductsMultiColumnHorizontal--details__view">
+                <span className="vv-font-size-1-4 text-8b mr-3">{ product.popularity  }</span>
+                <span className="vv-font-size-1-4 text-8b">View</span>
+              </div>
             </div>
-            }
-            <div className="ProductsMultiColumnHorizontal--details__view">
-              <span className="vv-font-size-1-4 text-8b mr-3">{ product.popularity  }</span>
-              <span className="vv-font-size-1-4 text-8b">View</span>
-            </div>
-          </div>
-        </Space>
+          </Space>
+        </a>
       </Col>
     );
 
   }
 
   return (
-    <Col className={ `ProductsMultiColumnHorizontal--item vv-cursor-pointer ${props.className}` } {...props.grid}>
-      <Row justify="center">
-        <div className="rounded-10 shadow-y-2 d-flex align-items-center justify-content-center ProductsMultiColumnHorizontal--image">
-          <ShowResponsiveImage imagePath={ product.main_pair.detailed.image_path } imageFolder='detailed' width={widthProductImage || 90} height={heightProductImage || 90} imageAlt={ product.product }/>
-        </div>
+    <Col className={ `ProductsMultiColumnHorizontal--item ${props.className}` } {...props.grid}>
+      <a className="d-block h-100" href={ product.link } target={'_blank'}>
+        <Row className="h-100" justify="center">
+          <div className="rounded-10 shadow-y-2 d-flex align-items-center justify-content-center ProductsMultiColumnHorizontal--image">
+            <ShowResponsiveImage imagePath={ product.main_pair.detailed.image_path } imageFolder='detailed' width={widthProductImage || 90} height={heightProductImage || 90} imageAlt={ product.product }/>
+          </div>
 
-        <div className="w-100 ProductsMultiColumnHorizontal--details">
-          {productPrice != 0.000 &&
-          <div className="text-center ProductsMultiColumnHorizontal--details__price">
-            <span className="vv-font-size-1-1rem text-primary font-weight-bold">${ productPrice } </span>
-            { productListPrice != 0.00 &&
-            <span className="vv-font-size-1-1rem text-primary font-weight-bold"> - ${productListPrice}</span>
+          <div className="w-100 align-self-end ProductsMultiColumnHorizontal--details">
+            {productPrice != 0.000 &&
+            <div className="text-center ProductsMultiColumnHorizontal--details__price">
+              <span className="vv-font-size-1-1rem text-primary font-weight-bold">${ productPrice } </span>
+              { productListPrice != 0.00 &&
+              <span className="vv-font-size-1-1rem text-primary font-weight-bold"> - ${productListPrice}</span>
+              }
+            </div>
             }
+            <div className="text-center ProductsMultiColumnHorizontal--details__view">
+              <span className="vv-font-size-1 text-8b mr-3">{ product.popularity  }</span>
+              <span className="vv-font-size-1 text-8b">View</span>
+            </div>
           </div>
-          }
-          <div className="text-center ProductsMultiColumnHorizontal--details__view">
-            <span className="vv-font-size-1 text-8b mr-3">{ product.popularity  }</span>
-            <span className="vv-font-size-1 text-8b">View</span>
-          </div>
-        </div>
-      </Row>
+        </Row>
+      </a>
     </Col>
   );
 
