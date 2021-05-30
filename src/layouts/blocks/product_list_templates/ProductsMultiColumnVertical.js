@@ -64,54 +64,56 @@ const ProductsMultiColumnVertical = (props) => {
 
   return (
     <Col className={ `productsMultiColumnVertical--item` } {...props.grid}>
-      <Row className={ `h-100 pb-3 pb-lg-0 ${props.className}` } justify="center">
-        <Col className="align-self-start" span={24}>
-          <Row>
-            <Col span={24} className="d-flex align-items-center justify-content-center productsMultiColumnVertical--item__image">
-              <ShowResponsiveImage imagePath={ product.main_pair.detailed.image_path } imageFolder='detailed' width={widthProductImage || 150} height={heightProductImage || 150} imageAlt={ product.product }/>
-            </Col>
+      <a className="d-block h-100" href={ product.link } target={'_blank'}>
+        <Row className={ `h-100 pb-3 pb-lg-0 ${props.className}` } justify="center">
+          <Col className="align-self-start" span={24}>
+            <Row>
+              <Col span={24} className="d-flex align-items-center justify-content-center productsMultiColumnVertical--item__image">
+                <ShowResponsiveImage imagePath={ product.main_pair.detailed.image_path } imageFolder='detailed' width={widthProductImage || 150} height={heightProductImage || 150} imageAlt={ product.product }/>
+              </Col>
 
-            <Col span={24} className={ `${ !allDetails && 'd-none d-lg-block' } text-47 vv-font-size-1-8 text-truncate productsMultiColumnVertical--item__title` }>
-              { product.product }
-            </Col>
-          </Row>
-        </Col>
-
-        {productPrice != 0.000 &&
-          <Col span={24} className="productsMultiColumnVertical--item__price">
-            <span className={ `${ width >= 992 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }>${ productPrice } </span>
-            { productListPrice != 0.00 &&
-            <span className={ `${ width >= 992 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }> - ${productListPrice}</span>
-            }
-            {product.quantity_unit &&
-              <span className={ `${ !allDetails && 'd-none d-lg-inline' } vv-font-size-1-6 text-92` }> / { product.quantity_unit }</span>
-            }
+              <Col span={24} className={ `${ !allDetails && 'd-none d-lg-block' } text-47 vv-font-size-1-8 text-truncate productsMultiColumnVertical--item__title` }>
+                { product.product }
+              </Col>
+            </Row>
           </Col>
-        }
 
-        {(product.min_qty && product.quantity_unit) &&
-          <Col span={24} className="productsMultiColumnVertical--item__quantity">
-            <span className={ `${ width >= 992 ? 'vv-font-size-1-4' : 'vv-font-size-1-2rem' } text-47` }>{ product.min_qty } { product.quantity_unit }</span>
-            <span className={` ${ width >= 992 ? 'vv-font-size-1-2rem' : 'vv-font-size-1' } text-92 `}> (MOQ)</span>
-          </Col>
-        }
-
-        <Col span={24} className={ `${ !allDetails && 'd-none d-lg-block' } px-4 mb-2 align-self-end productsMultiColumnVertical--item__location-detailIcon` }>
-          <Row justify="space-between" align="bottom">
-            <Col className="productsMultiColumnVertical--item__location">
-              <i className="fal fa-map-marker-alt text-red-a0 mr-2 mr-lg-3" />
-              <span className="text-47">{ product.wk_location }</span>
-            </Col>
-            <Col className="align-self-end productsMultiColumnVertical--item__detailIcon">
-              {detailIcon === 'default' ?
-                <><i className={ `flag-icon flag-icon-${ manufacturing_country.toLowerCase() } vv-font-size-1-9` } /> <span className="vv-font-size-1-5 text-92">{ manufacturing_country }</span></> :
-                <img src={ store_1 } alt="store 1"/>
+          {productPrice != 0.000 &&
+            <Col span={24} className="productsMultiColumnVertical--item__price">
+              <span className={ `${ width >= 992 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }>${ productPrice } </span>
+              { productListPrice != 0.00 &&
+              <span className={ `${ width >= 992 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }> - ${productListPrice}</span>
+              }
+              {product.quantity_unit &&
+                <span className={ `${ !allDetails && 'd-none d-lg-inline' } vv-font-size-1-6 text-92` }> / { product.quantity_unit }</span>
               }
             </Col>
-          </Row>
-        </Col>
+          }
 
-      </Row>
+          {(product.min_qty && product.quantity_unit) &&
+            <Col span={24} className="productsMultiColumnVertical--item__quantity">
+              <span className={ `${ width >= 992 ? 'vv-font-size-1-4' : 'vv-font-size-1-2rem' } text-47` }>{ product.min_qty } { product.quantity_unit }</span>
+              <span className={` ${ width >= 992 ? 'vv-font-size-1-2rem' : 'vv-font-size-1' } text-92 `}> (MOQ)</span>
+            </Col>
+          }
+
+          <Col span={24} className={ `${ !allDetails && 'd-none d-lg-block' } px-4 mb-2 align-self-end productsMultiColumnVertical--item__location-detailIcon` }>
+            <Row justify="space-between" align="bottom">
+              <Col className="productsMultiColumnVertical--item__location">
+                <i className="fal fa-map-marker-alt text-red-a0 mr-2 mr-lg-3" />
+                <span className="text-47">{ product.wk_location }</span>
+              </Col>
+              <Col className="align-self-end productsMultiColumnVertical--item__detailIcon">
+                {detailIcon === 'default' ?
+                  <><i className={ `flag-icon flag-icon-${ manufacturing_country.toLowerCase() } vv-font-size-1-9` } /> <span className="vv-font-size-1-5 text-92">{ manufacturing_country }</span></> :
+                  <img src={ store_1 } alt="store 1"/>
+                }
+              </Col>
+            </Row>
+          </Col>
+
+        </Row>
+      </a>
     </Col>
   );
 };
