@@ -7,6 +7,9 @@ import { Row, Col, Space, Button } from 'antd';
 // import Custom Hooks:
 import { useWindowSize } from '../../../functions';
 
+// import helper functions:
+import { fn_handleLinkClick } from '../../../functions/Helper';
+
 // import logo:
 import appleStore from "../../../assets/images/appleStore.svg";
 import googlePlay from "../../../assets/images/googlePlay.svg";
@@ -38,6 +41,7 @@ const DefaultFooter = () => {
               </div>
             </Space>
           </Col>
+
           <Col className="mt-2 d-none d-lg-block">
             <Space size="large">
               <span className="footer--topSection__storeIcon">
@@ -48,11 +52,13 @@ const DefaultFooter = () => {
                   </span>
             </Space>
           </Col>
+
           <Col className="d-lg-none my-auto footer--topSection__btnInstall">
             <Button className="border border-primary bg-primary border-w-2 text-white font-weight-600 p-0" size="small">Install</Button>
           </Col>
         </Row>
       </Col>
+
       <Col className="bg-footer-light footer--container__middleSection" span={24}>
         <Row className="row-cols-2 row-cols-md-4" gutter={[8, 24]}>
           <Col>
@@ -61,13 +67,19 @@ const DefaultFooter = () => {
                 Tips and Help
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                About Horn
+                <a href="https://hornb2b.com/horn/about-horn/" target="_blank">
+                  About Horn
+                </a>
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                Company Registration
+                <a href="https://hornb2b.com/horn/company-register/" target="_blank">
+                  Company Registration
+                </a>
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                Horn Blog
+                <a href="https://hornb2b.com/horn/horn-blog/" target="_blank">
+                  Horn Blog
+                </a>
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
                 Help
@@ -84,16 +96,24 @@ const DefaultFooter = () => {
                 Legal Bits
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                Terms of Use
+                <a href="https://hornb2b.com/horn/terms-of-use/" target="_blank">
+                  Terms of Use
+                </a>
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                Privacy Policy
+                <a href="https://hornb2b.com/horn/privacy-policy/" target="_blank">
+                  Privacy Policy
+                </a>
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                Posting Policy
+                <a href="https://hornb2b.com/horn/posting-policy/" target="_blank">
+                  Posting Policy
+                </a>
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                Cookie Policy
+                <a href="https://hornb2b.com/horn/cookie-policy/" target="_blank">
+                  Cookie Policy
+                </a>
               </Col>
             </Row>
           </Col>
@@ -104,7 +124,9 @@ const DefaultFooter = () => {
                 For Business
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                Order Fright
+                <a href="https://hornb2b.com/horn/freight-register/" target="_blank">
+                  Order Fright
+                </a>
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
                 Horn Business
@@ -118,30 +140,45 @@ const DefaultFooter = () => {
                 Explore
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                Carpets
+                <a href="https://hornb2b.com/horn/business/fabric-and-textile-raw-material-home-textiles/home-textiles/carpets-and-rugs/carpets/" target="_blank">
+                  Carpets
+                </a>
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                Handmade carpet
+                <a href="https://hornb2b.com/horn/business/fabric-and-textile-raw-material-home-textiles/home-textiles/carpets-and-rugs/handmade-carpet/" target="_blank">
+                  Handmade carpet
+                </a>
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                Kids & Baby Carpet
+                <a href="https://hornb2b.com/horn/business/fabric-and-textile-raw-material-home-textiles/home-textiles/carpets-and-rugs/baby-rugs/" target="_blank">
+                  Kids & Baby Carpet
+                </a>
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                Tableau rug
+                <a href="https://hornb2b.com/horn/business/fabric-and-textile-raw-material-home-textiles/home-textiles/carpets-and-rugs/tableau-rug/" target="_blank">
+                  Tableau rug
+                </a>
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                Collage of skin and carpets
+                <a href="https://hornb2b.com/horn/business/fabric-and-textile-raw-material-home-textiles/home-textiles/carpets-and-rugs/collage-of-skin-and-carpets/" target="_blank">
+                  Collage of skin and carpets
+                </a>
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                Mats & Rugs
+                <a href="https://hornb2b.com/horn/business/fabric-and-textile-raw-material-home-textiles/home-textiles/carpets-and-rugs/mats-and-rugs/" target="_blank">
+                  Mats & Rugs
+                </a>
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                Cloth carpet
+                <a href="https://hornb2b.com/horn/business/fabric-and-textile-raw-material-home-textiles/home-textiles/carpets-and-rugs/cloth-carpet/" target="_blank">
+                  Cloth carpet
+                </a>
               </Col>
             </Row>
           </Col>
         </Row>
       </Col>
+
       <Col className="bg-footer footer--container__bottomSection" span={24}>
         <Row justify={ width >= 992 ? "space-between": 'center' }>
           <Col xs={{ order: 2 }} lg={{ order: 1 }} className="vv-font-size-1-4 text-white mt-3 my-lg-auto">
