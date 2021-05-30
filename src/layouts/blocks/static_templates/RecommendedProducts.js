@@ -56,6 +56,8 @@ const RecommendedProducts = () => {
                         className="bg-white rounded-10 shadow-y-2"
                         product={product}
                         allDetails
+                        widthProductImage={width >= 992 ? 287 : 164}
+                        heightProductImage={width >= 992 ? 230 : 170}
                       />
                     );
                   })}
