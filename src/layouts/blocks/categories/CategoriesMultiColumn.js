@@ -36,17 +36,19 @@ const CategoriesMultiColumn = () => {
               <>
                 {items.map((category, index) => {
                   return (
-                    <Col key={category.category_id} className="categoriesMultiColumn--item" span={12} onClick={() => { fn_handleLinkClick(category.link, '_blank'); }}>
-                      <Row className={`categoriesMultiColumn--item__row ${ index !== 6 ? 'categoriesMultiColumn--item__borderBottom': '' }`}>
-                        <Col span={24} className="categoriesMultiColumn--img text-center py-2">
-                          <div className="categoriesMultiColumn--img__wrapper">
-                            <ShowResponsiveImage imagePath={ category.main_pair.detailed.image_path } imageFolder='detailed' width={80} height={80} imageAlt={ category.category }/>
-                          </div>
-                        </Col>
-                        <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2 text-truncate px-3">
-                          { category.category }
-                        </Col>
-                      </Row>
+                    <Col key={category.category_id} className="categoriesMultiColumn--item" span={12}>
+                      <a className="d-block h-100" href={ category.link } target={'_blank'}>
+                        <Row className={`categoriesMultiColumn--item__row ${ index !== 6 ? 'categoriesMultiColumn--item__borderBottom': '' }`}>
+                          <Col span={24} className="categoriesMultiColumn--img text-center py-2">
+                            <div className="categoriesMultiColumn--img__wrapper">
+                              <ShowResponsiveImage imagePath={ category.main_pair.detailed.image_path } imageFolder='detailed' width={80} height={80} imageAlt={ category.category }/>
+                            </div>
+                          </Col>
+                          <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2 text-truncate px-3">
+                            { category.category }
+                          </Col>
+                        </Row>
+                      </a>
                     </Col>
                   );
                 })}
