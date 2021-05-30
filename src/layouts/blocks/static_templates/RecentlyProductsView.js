@@ -59,6 +59,8 @@ const RecentlyProductsView = () => {
                             className="bg-white rounded-10 shadow-y-2"
                             product={product}
                             allDetails
+                            widthProductImage={287}
+                            heightProductImage={230}
                           />
                         );
                       })}
@@ -81,6 +83,8 @@ const RecentlyProductsView = () => {
                               allDetails
                               swiper
                               load = { load }
+                              widthProductImage={164}
+                              heightProductImage={170}
                             />
                           </SwiperSlide>
                         </Col>
