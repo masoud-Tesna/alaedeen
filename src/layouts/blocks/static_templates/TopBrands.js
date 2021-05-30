@@ -10,14 +10,39 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import SkeletonTopBrands from "./SkeletonTopBrands";
 
 // import custom hooks:
-import { useGetApi, useWindowSize } from "../../../functions";
+import { useGetPremiumFactories, useWindowSize } from "../../../functions";
+
+// get current language from context:
+import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
+
+
+const FactoriesLogo = ({ logo, alt }) => {
+
+  const { language } = useGetLanguageState();
+
+  if (language === 'en' && logo.en) {
+    return (
+      <img src={ logo.en } alt={ alt }/>
+    );
+  }
+
+  if (language === 'fa' && logo.fa) {
+    return (
+      <img src={ logo.fa } alt={ alt }/>
+    );
+  }
+
+  return (
+    <i className="fal fa-image text-bc display-2" />
+  );
+
+}
 
 const TopBrands = () => {
 
   const { width } = useWindowSize();
 
-
-  const { load, items } = useGetApi(`top-brands-api`, 'items_per_page=5', 'top_brands');
+  const { factories, load } = useGetPremiumFactories('items_per_page=5');
 
   return (
     <div className="topBrands--container">
@@ -44,23 +69,19 @@ const TopBrands = () => {
 
                 /> :
                   <>
-                    {items.map((brand, index) => {
+                    {factories.map((brand) => {
                       return (
-                        <Col className="topBrands--item" key={ index }>
+                        <Col className="topBrands--item" key={ brand.company_id }>
                           <div className="d-flex align-items-end justify-content-center topBrands--item__image">
-                            {brand.logo ?
-                              <img src={ brand.logo.image_path } alt={ brand.logo.alt }/> :
-                              <i className="fal fa-image text-bf" />
-                            }
-
+                            <FactoriesLogo logo={ brand.logo } alt={ brand.company }/>
                           </div>
                           <div className="vv-font-size-2-2 text-47 text-center mt-3 topBrands--item__name">
                             { brand.company }
                           </div>
 
-                          { brand.company_description &&
-                            <div className="vv-font-size-1-9 text-8b text-center mt-3 topBrands--item__name">
-                              {fn_stripHtml(brand.company_description) }
+                          { brand.description &&
+                            <div className="vv-font-size-1-9 text-8b text-center mt-3 text-truncate topBrands--item__name">
+                              {fn_stripHtml(brand.description) }
                             </div>
                           }
                         </Col>
@@ -80,23 +101,19 @@ const TopBrands = () => {
                     swiper
                   /> :
                     <>
-                      {items.map((brand, index) => {
+                      {factories.map((brand) => {
                         return (
-                          <div className="d-inline topBrandsScroll--item__content" key={index}>
+                          <div className="d-inline topBrandsScroll--item__content" key={brand.company_id}>
                             <Row className="topBrandsScroll--item" justify="center">
                               <div className="d-flex align-items-end justify-content-center w-100 topBrands--item__image">
-                                {brand.logo ?
-                                  <img src={ brand.logo.image_path } alt={ brand.logo.alt }/> :
-                                  <i className="fal fa-image text-bf" />
-                                }
-
+                                <FactoriesLogo logo={ brand.logo } alt={ brand.company }/>
                               </div>
                               <div className="vv-font-size-1-4 font-weight-600 text-47 text-center text-truncate mt-1 w-100 topBrands--item__name">
                                 { brand.company }
                               </div>
-                              { brand.company_description &&
+                              { brand.description &&
                                 <div className="vv-font-size-1-4 text-8b text-center text-truncate mt-1 w-100 topBrands--item__name">
-                                  { fn_stripHtml(brand.company_description) }
+                                  { fn_stripHtml(brand.description) }
                                 </div>
                               }
                             </Row>
