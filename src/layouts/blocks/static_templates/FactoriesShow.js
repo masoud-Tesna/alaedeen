@@ -259,7 +259,7 @@ const FactoriesShow = () => {
               }
 
               return (
-                <Col span={24} key = { factory.company_id } className="bg-f7 rounded-10 p-3 border border-70 factories--item byParam">
+                <Col span={24} key = { factory.company_id } className="bg-white rounded-10 p-3 border border-70 factories--item byParam">
                   <Row gutter={16} className="h-100">
                     <Col flex='400px' className="d-none d-lg-block h-100 factories--imageContainer">
                       <ShowResponsiveImage imagePath={ factory.images[0] } imageFolder='profiles' width={400} height={313} imageAlt={ factory.general.company }/>

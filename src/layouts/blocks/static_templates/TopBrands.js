@@ -14,6 +14,7 @@ import { useGetPremiumFactories, useWindowSize } from "../../../functions";
 
 // get current language from context:
 import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
+import { Link } from "react-router-dom";
 
 
 const FactoriesLogo = ({ logo, alt }) => {
@@ -50,7 +51,7 @@ const TopBrands = () => {
         <Col className="topBrands--caption__content" span={24}>
           <Row justify="space-between">
             <Col className={ `text-33 text-uppercase ${ width >= 992 ? 'vv-font-size-3' : 'vv-font-size-1-6' } font-weight-bold` }>
-             Top Brands
+              Top Brands
             </Col>
           </Row>
         </Col>
@@ -61,29 +62,31 @@ const TopBrands = () => {
               <>
 
                 {load ?
-                <SkeletonTopBrands
-                  skeleton = {true}
-                  skeltonNumbers = {5}
-                  grid={{ span: 8 }}
-                  height = {234.367}
+                  <SkeletonTopBrands
+                    skeleton = {true}
+                    skeltonNumbers = {5}
+                    grid={{ span: 8 }}
+                    height = {234.367}
 
-                /> :
+                  /> :
                   <>
                     {factories.map((brand) => {
                       return (
-                        <Col className="topBrands--item" key={ brand.company_id }>
-                          <div className="d-flex align-items-end justify-content-center topBrands--item__image">
-                            <FactoriesLogo logo={ brand.logo } alt={ brand.company }/>
-                          </div>
-                          <div className="vv-font-size-2-2 text-47 text-center mt-3 topBrands--item__name">
-                            { brand.company }
-                          </div>
+                        <Col className="topBrands--item" key={ brand.company_id * 10 }>
+                          <Link className="d-block h-100" to={ `/factories?factory=${brand.company_id}` }>
+                            <div className="d-flex align-items-end justify-content-center topBrands--item__image">
+                              <FactoriesLogo logo={ brand.logo } alt={ brand.company }/>
+                            </div>
+                            <div className="vv-font-size-2-2 text-47 text-center mt-3 topBrands--item__name">
+                              { brand.company }
+                            </div>
 
-                          { brand.description &&
+                            { brand.description &&
                             <div className="vv-font-size-1-9 text-8b text-center mt-3 text-truncate topBrands--item__name">
                               {fn_stripHtml(brand.description) }
                             </div>
-                          }
+                            }
+                          </Link>
                         </Col>
                       );
                     })}
@@ -95,11 +98,11 @@ const TopBrands = () => {
                 <ScrollContainer className="text-select-none d-flex topBrands--scrollContainer">
 
                   {load ?
-                  <SkeletonTopBrands
-                    skeleton = {true}
-                    skeltonNumbers = {5}
-                    swiper
-                  /> :
+                    <SkeletonTopBrands
+                      skeleton = {true}
+                      skeltonNumbers = {5}
+                      swiper
+                    /> :
                     <>
                       {factories.map((brand) => {
                         return (
@@ -112,9 +115,9 @@ const TopBrands = () => {
                                 { brand.company }
                               </div>
                               { brand.description &&
-                                <div className="vv-font-size-1-4 text-8b text-center text-truncate mt-1 w-100 topBrands--item__name">
-                                  { fn_stripHtml(brand.description) }
-                                </div>
+                              <div className="vv-font-size-1-4 text-8b text-center text-truncate mt-1 w-100 topBrands--item__name">
+                                { fn_stripHtml(brand.description) }
+                              </div>
                               }
                             </Row>
                           </div>

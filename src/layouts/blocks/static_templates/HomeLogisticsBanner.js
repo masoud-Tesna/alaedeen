@@ -28,9 +28,9 @@ const HomeLogisticsBanner = () => {
             <Col span={24} className="d-lg-none text-white font-weight-600 text-center vv-font-size-1-5 homeLogisticsBanner--caption__text1">Get the best price now!</Col>
             {/*Desktop & Mobile*/}
             <Col span={24} className="py-3 text-center homeLogisticsBanner--caption__btn">
-              <Button className="text-white vv-font-size-1-2 rounded-lg bg-secondary border-0" size="large">
+              <a href="https://hornb2b.com/horn/logistics/" target="_blank" className="text-white vv-font-size-2 rounded-lg bg-secondary border-0 d-inline-block">
                 Go to page
-              </Button>
+              </a>
             </Col>
           </Row>
         </Col>

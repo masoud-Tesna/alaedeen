@@ -7,8 +7,8 @@ import { Row, Col, Space, Button } from 'antd';
 // import Custom Hooks:
 import { useWindowSize } from '../../../functions';
 
-// import helper functions:
-import { fn_handleLinkClick } from '../../../functions/Helper';
+// import language context:
+import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
 
 // import logo:
 import appleStore from "../../../assets/images/appleStore.svg";
@@ -25,6 +25,12 @@ const DefaultFooter = () => {
   }else{
     spaceSize = 'small';
   }
+
+  // initial state for language:
+  const { language } = useGetLanguageState();
+
+  // set initial link for instagram related to each language:
+  let instagramLink = language === 'en' ? "https://instagram.com/hornb2b" : language === 'fa' ? "https://instagram.com/hornb2b.ir" : language === 'ar' ? "https://instagram.com/horn.ar" : "https://instagram.com/hornb2b";
 
   return (
     <Row className="footer--container">
@@ -60,7 +66,7 @@ const DefaultFooter = () => {
       </Col>
 
       <Col className="bg-footer-light footer--container__middleSection" span={24}>
-        <Row className="row-cols-2 row-cols-md-4" gutter={[8, 24]}>
+        <Row className="row-cols-2 row-cols-md-3" gutter={[8, 24]}>
           <Col>
             <Row gutter={[0, 5]}>
               <Col className="text-white vv-font-size-1-7 font-weight-600 mb-4" span={24}>
@@ -121,22 +127,6 @@ const DefaultFooter = () => {
           <Col>
             <Row gutter={[0, 5]}>
               <Col className="text-white vv-font-size-1-7 font-weight-600 mb-4" span={24}>
-                For Business
-              </Col>
-              <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                <a href="https://hornb2b.com/horn/freight-register/" target="_blank">
-                  Order Fright
-                </a>
-              </Col>
-              <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                Horn Business
-              </Col>
-            </Row>
-          </Col>
-
-          <Col>
-            <Row gutter={[0, 5]}>
-              <Col className="text-white vv-font-size-1-7 font-weight-600 mb-4" span={24}>
                 Explore
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
@@ -187,27 +177,27 @@ const DefaultFooter = () => {
           <Col xs={{ order: 1 }} lg={{ order: 2 }} className="my-lg-auto">
             <Space size="middle">
               <div className="footer--bottomSection-socialLink facebook">
-                    <span className="text-decoration-none">
-                      <i className="fab fa-facebook-f" />
-                    </span>
+                <a className="">
+                  <i className="fab fa-facebook-f" />
+                </a>
               </div>
 
               <div className="footer--bottomSection-socialLink instagram">
-                    <span className="text-decoration-none">
-                      <i className="fab fa-instagram" />
-                    </span>
+                <a className="" href={instagramLink} target="_blank" rel="nofollow">
+                  <i className="fab fa-instagram" />
+                </a>
               </div>
 
               <div className="footer--bottomSection-socialLink twitter">
-                    <span className="text-decoration-none">
-                      <i className="fab fa-twitter" />
-                    </span>
+                <a className="">
+                  <i className="fab fa-twitter" />
+                </a>
               </div>
 
               <div className="footer--bottomSection-socialLink youtube">
-                    <span className="text-decoration-none">
-                      <i className="fab fa-youtube" />
-                    </span>
+                <a className="">
+                  <i className="fab fa-youtube" />
+                </a>
               </div>
             </Space>
           </Col>

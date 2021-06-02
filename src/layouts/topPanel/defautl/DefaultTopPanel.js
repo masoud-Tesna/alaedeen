@@ -211,7 +211,7 @@ const DefaultTopPanel = () => {
                       </Row>
                     </span>
 
-                    <Link className="menuXs--sideNavLinks__item d-block" to={"/favorites"} >
+                    <a className="menuXs--sideNavLinks__item d-block" href="https://hornb2b.com/horn/wishlist/" target="_blank">
                       <Row justify={"space-between"}>
                         <Col className="text-center" span={5}>
                           <i className="fal fa-star text-primary vv-font-size-3" />
@@ -220,9 +220,9 @@ const DefaultTopPanel = () => {
                           <span className="text-70 vv-font-size-1-6">Favorites</span>
                         </Col>
                       </Row>
-                    </Link>
+                    </a>
 
-                    <Link className="menuXs--sideNavLinks__item d-block" to={"/comparison"} >
+                    <a className="menuXs--sideNavLinks__item d-block" href="https://hornb2b.com/horn/compare/" target="_blank">
                       <Row justify={"space-between"}>
                         <Col className="text-center" span={5}>
                           <i className="icon-vv-compare text-primary vv-font-size-2-5" />
@@ -231,9 +231,9 @@ const DefaultTopPanel = () => {
                           <span className="text-70 vv-font-size-1-6">Comparison</span>
                         </Col>
                       </Row>
-                    </Link>
+                    </a>
 
-                    <Link className="menuXs--sideNavLinks__item d-block" to={"/messages"} >
+                    <a className="menuXs--sideNavLinks__item d-block" href="https://hornb2b.com/horn/index.php?dispatch=vendor_communication.threads" target="_blank">
                       <Row justify={"space-between"}>
                         <Col className="text-center" span={5}>
                           <i className="fal fa-envelope text-primary vv-font-size-3" />
@@ -242,15 +242,13 @@ const DefaultTopPanel = () => {
                           <span className="text-70 vv-font-size-1-6">Messages</span>
                         </Col>
                       </Row>
-                    </Link>
+                    </a>
                   </Space>
                 </Col>
                 <Divider className="border-bc" />
                 <Col className="px-4 menuXs--sideNavBtn__items" span={24}>
                   <Space direction="vertical" size={15}>
                     <Button className="border-primary text-primary w-100">International Exhibition</Button>
-
-                    <Button className="border-primary text-primary w-100">Trading Guide</Button>
                   </Space>
                 </Col>
               </Row>
@@ -281,17 +279,17 @@ const DefaultTopPanel = () => {
             <Space size="middle">
               <Categories userClass="categories--dropDown topPanel--content__item hover" />
               <Divider type="vertical" className="border-70"/>
-              <Link className="topPanel--content__item hover" to={"/stores"} >
+              <Link className="topPanel--content__item hover" to={"/factories"} >
                 <span className="topPanel--item__text">
                   Stores
                 </span>
               </Link>
 
-              <Link className="topPanel--content__item hover" to={"/logistics"} >
+              <a className="topPanel--content__item hover" href="https://hornb2b.com/horn/logistics/" target="_blank">
                 <span className="topPanel--item__text">
                   Logistics
                 </span>
-              </Link>
+              </a>
 
               <a className="topPanel--content__item hover" href="https://calendar.iranfair.com/en/" target="_blank" rel="noreferrer">
                 <span className="topPanel--item__text">
