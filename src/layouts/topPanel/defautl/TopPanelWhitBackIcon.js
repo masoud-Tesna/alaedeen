@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 // import Styles For TopPanelWhitBackIcon:
 import './styles.less';
