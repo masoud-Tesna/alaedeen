@@ -17,6 +17,7 @@ function __(world, prefix = "", sign = ".") {
     .replaceAll(" / ", "_and_")
     .replaceAll("/", "_and_")
     .replaceAll(" & ", "_and_")
+    .replaceAll("&", "_and_")
     .replaceAll("(", "")
     .replaceAll(")", "")
     .replaceAll("?", "")
