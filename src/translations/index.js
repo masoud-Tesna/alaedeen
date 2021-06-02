@@ -4,6 +4,7 @@ import { initReactI18next } from "react-i18next";
 // import Language Variables File:
 import en from "./locales/en";
 import fa from "./locales/fa";
+import ar from "./locales/ar";
 
 // the translations
 // (tip move them in a JSON file and import them)
@@ -13,14 +14,21 @@ const resources = {
   },
   fa: {
     translation: fa
+  },
+  ar: {
+    translation: ar
   }
 };
 
 i18n
-  .use(initReactI18next) // passes i18n down to react-i18next
+  // pass the i18n instance to react-i18next.
+  .use(initReactI18next)
+  // init i18next
+  // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
     resources,
-    lng: "fa",
+    fallbackLng: 'en',
+    debug: false,
 
     keySeparator: false, // we do not use keys in form messages.welcome
 
@@ -28,5 +36,6 @@ i18n
       escapeValue: false // react already safes from xss
     }
   });
+
 
 export default i18n;
