@@ -1,6 +1,4 @@
-// import i18n in translations:
 import i18n from "../translations";
-import { useTranslation } from "react-i18next";
 
 function fn_stripHtml(strip) {
   const regex = /(<([^>]+)>)/ig;
@@ -9,41 +7,31 @@ function fn_stripHtml(strip) {
 
 function __(world, prefix = "", sign = ".") {
 
-  const { t } = useTranslation();
-
   let returnWord = world;
 
-  // change to string:
-  returnWord = returnWord.toString();
-
-  // trim:
-  returnWord = returnWord.trim();
-
-  // lower case:
-  returnWord = returnWord.toLowerCase();
-
-  // replace:
-  returnWord = returnWord.replaceAll("    ", "_");
-  returnWord = returnWord.replaceAll("   ", "_");
-  returnWord = returnWord.replaceAll("  ", "_");
-  returnWord = returnWord.replaceAll(" ", "_");
-  returnWord = returnWord.replaceAll(" / ", "_and_");
-  returnWord = returnWord.replaceAll("/", "_and_");
-  returnWord = returnWord.replaceAll(" & ", "_and_");
-  returnWord = returnWord.replaceAll("&", "_and_");
-  returnWord = returnWord.replaceAll("(", "");
-  returnWord = returnWord.replaceAll(")", "");
-  returnWord = returnWord.replaceAll(".", "");
-  returnWord = returnWord.replaceAll(",", "");
-  returnWord = returnWord.replaceAll("’", "");
-  returnWord = returnWord.replaceAll("²", "");
-  returnWord = returnWord.replaceAll("%", "");
-  returnWord = returnWord.replaceAll(" - ", "_");
-  returnWord = returnWord.replaceAll("-", "_");
+  returnWord = returnWord.toString().trim().toLowerCase()
+    .replaceAll("    ", "_")
+    .replaceAll("   ", "_")
+    .replaceAll("  ", "_")
+    .replaceAll(" ", "_")
+    .replaceAll(" / ", "_and_")
+    .replaceAll("/", "_and_")
+    .replaceAll(" & ", "_and_")
+    .replaceAll("(", "")
+    .replaceAll(")", "")
+    .replaceAll("?", "")
+    .replaceAll("!", "")
+    .replaceAll(".", "")
+    .replaceAll(",", "")
+    .replaceAll("’", "")
+    .replaceAll("²", "")
+    .replaceAll("%", "")
+    .replaceAll(" - ", "_")
+    .replaceAll("-", "_");
 
   returnWord = prefix? `${prefix}${sign}${returnWord}` : returnWord;
 
-  return t(returnWord);
+  return returnWord;
 
 }
 
