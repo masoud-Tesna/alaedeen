@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import { useLocation } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ import axios from "axios";
 import { useGetLanguageState } from "../contexts/language/LanguageContext";
 
 // Function For Get Product by API From Server:
-function useGetProductApi(params) {
+export function useGetProductApi (params) {
   const [load, setLoad] = useState(true);
   const [products, setProducts] = useState([]);
   const [parameters, setParameters] = useState([]);
@@ -49,7 +49,7 @@ function useGetProductApi(params) {
   return { products, parameters, load, error }
 }
 
-function useGetTopRankingProducts(cat1, cat2, cat3) {
+export function useGetTopRankingProducts (cat1, cat2, cat3) {
   const [load, setLoad] = useState(true);
   const [productsCat1, setProductsCat1] = useState([]);
   const [productsCat2, setProductsCat2] = useState([]);
@@ -103,7 +103,7 @@ function useGetTopRankingProducts(cat1, cat2, cat3) {
   return { productsCat1, productsCat2, productsCat3, parametersCat1, parametersCat2, parametersCat3, load, error }
 }
 
-function useGetApi(mode, params, item, loading = true, setLanguage = true) {
+export function useGetApi (mode, params, item, loading = true, setLanguage = true) {
   const [load, setLoad] = useState(loading);
   const [items, setItems] = useState([]);
   const [error, setError] = useState(null);
@@ -150,7 +150,7 @@ function useGetApi(mode, params, item, loading = true, setLanguage = true) {
   return { items, load, error }
 }
 
-function useGetPremiumFactories(params) {
+export function useGetPremiumFactories (params) {
   const [load, setLoad] = useState(true);
   const [factories, setFactories] = useState([]);
   const [parameters, setParameters] = useState([]);
@@ -192,7 +192,7 @@ function useGetPremiumFactories(params) {
   return { factories, parameters, load, error }
 }
 
-function useGetFactories(params) {
+export function useGetFactories (params) {
   const [load, setLoad] = useState(true);
   const [factories, setFactories] = useState([]);
   const [parameters, setParameters] = useState([]);
@@ -234,7 +234,7 @@ function useGetFactories(params) {
   return { factories, parameters, load, error }
 }
 
-function useResizeImage(image_path, image_folder, image_width, image_height) {
+export function useResizeImage (image_path, image_folder, image_width, image_height) {
   const [load, setLoad] = useState(true);
   const [image, setImage] = useState([]);
   const [error, setError] = useState(null);
@@ -268,7 +268,7 @@ function useResizeImage(image_path, image_folder, image_width, image_height) {
   return { image, load, error }
 }
 
-function useWindowSize() {
+export function useWindowSize () {
   // Initialize state with undefined width/height so server and client renders match
   // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
   const [windowSize, setWindowSize] = useState({
@@ -299,11 +299,11 @@ function useWindowSize() {
   return windowSize;
 }
 
-function useQuery() {
+export function useQuery () {
   return new URLSearchParams(useLocation().search);
 }
 
-function useLocalStorage(key, initialValue) {
+export function useLocalStorage (key, initialValue) {
   // State to store our value
   // Pass initial state function to useState so logic is only executed once
   const [storedValue, setStoredValue] = useState(() => {
@@ -336,5 +336,3 @@ function useLocalStorage(key, initialValue) {
 
   return [storedValue, setValue];
 }
-
-export { useGetProductApi, useGetTopRankingProducts, useGetApi, useGetPremiumFactories, useGetFactories, useWindowSize, useResizeImage, useQuery, useLocalStorage }
