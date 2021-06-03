@@ -86,12 +86,12 @@ const DefaultFooter = () => {
                 { t(__('Tips and Help')) }
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                <a href="https://hornb2b.com/horn/about-horn/" target="_blank">
+                <a href="https://hornb2b.com/horn/about-horn/">
                   { t(__('About Horn')) }
                 </a>
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                <a href="https://hornb2b.com/horn/horn-blog/" target="_blank">
+                <a href="https://hornb2b.com/horn/horn-blog/">
                   { t(__('Horn Blog')) }
                 </a>
               </Col>
@@ -110,22 +110,22 @@ const DefaultFooter = () => {
                 { t(__('Legal Bits')) }
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                <a href="https://hornb2b.com/horn/terms-of-use/" target="_blank">
+                <a href="https://hornb2b.com/horn/terms-of-use/">
                   { t(__('Terms of Use')) }
                 </a>
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                <a href="https://hornb2b.com/horn/privacy-policy/" target="_blank">
+                <a href="https://hornb2b.com/horn/privacy-policy/">
                   { t(__('Privacy Policy')) }
                 </a>
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                <a href="https://hornb2b.com/horn/posting-policy/" target="_blank">
+                <a href="https://hornb2b.com/horn/posting-policy/">
                   { t(__('Posting Policy')) }
                 </a>
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                <a href="https://hornb2b.com/horn/cookie-policy/" target="_blank">
+                <a href="https://hornb2b.com/horn/cookie-policy/">
                   { t(__('Cookie Policy')) }
                 </a>
               </Col>
@@ -141,7 +141,7 @@ const DefaultFooter = () => {
               {items.map((category, index) => {
                 return (
                   <Col key={category.category_id} className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                    <a href={ category.link } target="_blank">
+                    <a href={ category.link }>
                       { category.category }
                     </a>
                   </Col>

@@ -41,7 +41,7 @@ const ProductsMultiColumnHorizontal = (props) => {
 
     return (
       <Col className={ `ProductsMultiColumnHorizontal--item ${props.className}` } {...props.grid}>
-        <a className="d-block" href={ product.link } target={'_blank'}>
+        <a className="d-block" href={ product.link }>
           <Space size={16}>
             <div className="ProductsMultiColumnHorizontal--polygon">
               <img src={ polygon } alt="polygon 1"/>
@@ -79,7 +79,7 @@ const ProductsMultiColumnHorizontal = (props) => {
 
   return (
     <Col className={ `ProductsMultiColumnHorizontal--item ${props.className}` } {...props.grid}>
-      <a className="d-block h-100" href={ product.link } target={'_blank'}>
+      <a className="d-block h-100" href={ product.link }>
         <Row className="h-100" justify="center">
           <div className="rounded-10 shadow-y-2 d-flex align-items-center justify-content-center ProductsMultiColumnHorizontal--image">
             <ShowResponsiveImage imagePath={ product.main_pair.detailed.image_path } imageFolder='detailed' width={widthProductImage || 90} height={heightProductImage || 90} imageAlt={ product.product }/>

@@ -64,7 +64,7 @@ const ProductsMultiColumnVertical = (props) => {
 
   return (
     <Col className={ `productsMultiColumnVertical--item` } {...props.grid}>
-      <a className="d-block h-100" href={ product.link } target={'_blank'}>
+      <a className="d-block h-100" href={ product.link }>
         <Row className={ `h-100 pb-3 pb-lg-0 ${props.className}` } justify="center">
           <Col className="align-self-start" span={24}>
             <Row>

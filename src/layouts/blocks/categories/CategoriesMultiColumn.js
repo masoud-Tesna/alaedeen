@@ -45,7 +45,7 @@ const CategoriesMultiColumn = () => {
                 {items.map((category, index) => {
                   return (
                     <Col key={category.category_id} className="categoriesMultiColumn--item" span={12}>
-                      <a className="d-block h-100" href={ category.link } target={'_blank'}>
+                      <a className="d-block h-100" href={ category.link }>
                         <Row className={`categoriesMultiColumn--item__row ${ index !== 6 ? 'categoriesMultiColumn--item__borderBottom': '' }`}>
                           <Col span={24} className="categoriesMultiColumn--img text-center py-2">
                             <div className="categoriesMultiColumn--img__wrapper">
@@ -92,7 +92,7 @@ const CategoriesMultiColumn = () => {
               /> :
               <>
                 <Col className="categoriesMultiColumn--item" span={7}>
-                  <a className="d-block h-100" href="https://hornb2b.com/horn/all-categories/" target={'_blank'}>
+                  <a className="d-block h-100" href="https://hornb2b.com/horn/all-categories/">
                     <Row>
                       <Col span={24} className="categoriesMultiColumn--icon text-center my-2">
                         <Row justify="center" className="h-100">
@@ -112,7 +112,7 @@ const CategoriesMultiColumn = () => {
                     {items.map((category, index) => {
                       return (
                         <Col key={category.category_id} span={9} className="categoriesMultiColumn--item">
-                          <a className="d-block h-100" href={ category.link } target={'_blank'}>
+                          <a className="d-block h-100" href={ category.link }>
                             <Row className="categoriesMultiColumn--item__row">
                               <Col span={24} className="categoriesMultiColumn--img text-center my-2">
                                 <div className="categoriesMultiColumn--img__wrapper">
