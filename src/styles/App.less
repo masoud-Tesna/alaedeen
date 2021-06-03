@@ -1,3 +1,62 @@
+/*  ===========  CHANGE FONT FACE FOR FA - AR  ===========  */
+@font-face {
+  font-family:IRANSans;
+  font-style:normal;
+  font-weight:normal;
+  src:url(../assets/webfonts/fa/IRANSansWeb_Bold.f2cb5d5.eot);
+  src:url(../assets/webfonts/fa/IRANSansWeb_Bold.43a0ecf.woff2) format("woff2"),
+  url(../assets/webfonts/fa/IRANSansWeb_Bold.e4ed975.woff) format("woff"),
+  url(../assets/webfonts/fa/IRANSansWeb_Bold.ebec177.ttf) format("truetype")
+}
+@font-face {
+  font-family:IRANSans;
+  font-style:normal;
+  font-weight:normal;
+  src:url(../assets/webfonts/fa/IRANSansWeb_Medium.3d46855.eot);
+  src:url(../assets/webfonts/fa/IRANSansWeb_Medium.9c66b76.woff2) format("woff2"),
+  url(../assets/webfonts/fa/IRANSansWeb_Medium.0c40b1a.woff) format("woff"),
+  url(../assets/webfonts/fa/IRANSansWeb_Medium.1da39fc.ttf) format("truetype")
+}
+@font-face {
+  font-family:IRANSans;
+  font-style:normal;
+  font-weight:normal;
+  src:url(../assets/webfonts/fa/IRANSansWeb.d393186.eot);
+  src:url(../assets/webfonts/fa/IRANSansWeb.0b5055a.woff2) format("woff2"),
+  url(../assets/webfonts/fa/IRANSansWeb.66b5cb3.woff) format("woff"),
+  url(../assets/webfonts/fa/IRANSansWeb.c26a9eb.ttf) format("truetype")
+}
+@font-face {
+  font-family:IRANSans;
+  font-style:normal;
+  font-weight:normal;
+  src:url(../assets/webfonts/fa/IRANSansWeb_Light.28bc7e3.eot);
+  src:url(../assets/webfonts/fa/IRANSansWeb_Light.f7e4be9.woff2) format("woff2"),
+  url(../assets/webfonts/fa/IRANSansWeb_Light.63f8b4b.woff) format("woff"),
+  url(../assets/webfonts/fa/IRANSansWeb_Light.e8ff3f7.ttf) format("truetype")
+}
+
+
+@font-face {
+  font-family: 'DroidArabicKufi-Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../assets/webfonts/ar/DroidArabicKufi-Regular.eot);
+  src: url(../assets/webfonts/ar/DroidArabicKufi-Regular.eot?#iefix) format('embedded-opentype'), url(../assets/webfonts/ar/DroidArabicKufi-Regular.woff2) format('woff2'),
+  url(../assets/webfonts/ar/DroidArabicKufi-Regular.woff) format('woff'),
+  url(../assets/webfonts/ar/DroidArabicKufi-Regular.ttf) format('truetype');
+  font-display: swap
+}
+
+html:lang(fa) *:not(i)	{
+  font-family: 'IRANSans' !important;
+}
+
+html:lang(ar) *:not(i)	{
+  font-family: 'DroidArabicKufi-Regular' !important;
+}
+
+
 /*  ===========  CHANGE ANT DESIGN CLASS  ===========  */
 * {
   scroll-behavior: smooth;

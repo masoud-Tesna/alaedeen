@@ -9,6 +9,9 @@ export function LanguageReducer(state, action) {
         .changeLanguage(action.payload)
         .then(() => {
           fn_set_local_storage("client_lang", action.payload);
+        })
+        .then(() => {
+          document.documentElement.lang = action.payload;
         });
       return {
         language: action.payload
