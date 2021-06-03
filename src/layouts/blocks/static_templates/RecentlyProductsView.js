@@ -9,7 +9,6 @@ import { Col, Row } from "antd";
 import SwiperCore, { Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-
 import ProductsMultiColumnVertical from "../product_list_templates/ProductsMultiColumnVertical";
 
 import SkeletonMultiColumnVertical from "../product_list_templates/SkeletonMultiColumnVertical";
@@ -17,9 +16,16 @@ import SkeletonMultiColumnVertical from "../product_list_templates/SkeletonMulti
 // import custom hooks:
 import { useGetProductApi, useWindowSize } from '../../../functions';
 
+// import helper functions:
+import { __ } from '../../../functions/Helper';
+
+import { useTranslation } from "react-i18next";
+
 SwiperCore.use([Autoplay ]);
 
 const RecentlyProductsView = () => {
+
+  const { t } = useTranslation();
 
   const { width } = useWindowSize();
 
@@ -33,7 +39,7 @@ const RecentlyProductsView = () => {
         <Col className="recommendedProducts--caption__content" span={24}>
           <Row justify="space-between">
             <Col className={ `text-33 text-uppercase ${ width >= 992 ? 'vv-font-size-3' : 'vv-font-size-1-6' } font-weight-bold` }>
-              Your visits
+              { t(__('Your visits')) }
             </Col>
           </Row>
         </Col>

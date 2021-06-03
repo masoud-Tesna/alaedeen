@@ -15,7 +15,14 @@ import React from "react";
 import CategoriesMultiColumnSkeleton from "./CategoriesMultiColumnSkeleton";
 import TextTruncate from "react-text-truncate";
 
+// import helper functions:
+import { __ } from '../../../functions/Helper';
+
+import { useTranslation } from "react-i18next";
+
 const CategoriesMultiColumn = () => {
+
+  const { t } = useTranslation();
 
   const { width } = useWindowSize();
 
@@ -65,7 +72,7 @@ const CategoriesMultiColumn = () => {
                         </Row>
                       </Col>
                       <Col span={24} className="categoriesMultiColumn--icon-title text-center text-47 vv-font-size-1-8 pb-2 text-truncate px-3">
-                        All Categories
+                        { t(__('All Categories')) }
                       </Col>
                     </Row>
                   </a>
@@ -95,7 +102,7 @@ const CategoriesMultiColumn = () => {
                         </Row>
                       </Col>
                       <Col span={24} className="categoriesMultiColumn--icon-title text-center text-47 vv-font-size-1-5 pb-2 text-wrap px-3">
-                        All Categories
+                        { t(__('All Categories')) }
                       </Col>
                     </Row>
                   </a>

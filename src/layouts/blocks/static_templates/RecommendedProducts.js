@@ -11,7 +11,14 @@ import SkeletonMultiColumnVertical from "../product_list_templates/SkeletonMulti
 // import Custom hooks:
 import { useGetProductApi, useWindowSize } from "../../../functions";
 
+// import helper functions:
+import { __ } from '../../../functions/Helper';
+
+import { useTranslation } from "react-i18next";
+
 const RecommendedProducts = () => {
+
+  const { t } = useTranslation();
 
   const { width } = useWindowSize();
 
@@ -32,7 +39,7 @@ const RecommendedProducts = () => {
         <Col className="recommendedProducts--caption__content" span={24}>
           <Row justify="space-between">
             <Col className={ `text-33 text-uppercase ${ width >= 992 ? 'vv-font-size-3' : 'vv-font-size-1-6' } font-weight-bold` }>
-              Recommended for you
+              { t(__('Recommended for you')) }
             </Col>
           </Row>
         </Col>
@@ -66,7 +73,7 @@ const RecommendedProducts = () => {
 
               <div className="text-center mt-4 productsMultiColumnVertical--item__loadMore">
                 <Button className="text-47 rounded-md bg-transparent border-primary" size="large">
-                  Show More
+                  { t(__('Show More')) }
                 </Button>
               </div>
             </Row>

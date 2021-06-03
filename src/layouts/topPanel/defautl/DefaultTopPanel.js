@@ -23,7 +23,14 @@ import { changeLanguageAction, useGetLanguageState, useDispatchLanguageState } f
 // import Custom hooks:
 import { useWindowSize } from "../../../functions";
 
+// import helper functions:
+import { __ } from "../../../functions/Helper";
+
+import { useTranslation } from "react-i18next";
+
 const DefaultTopPanel = () => {
+
+  const { t } = useTranslation();
 
   // get screen width:
   const { width } = useWindowSize();
@@ -111,15 +118,15 @@ const DefaultTopPanel = () => {
                   <Col>
                     <Row gutter={[0, 5]}>
                       <Col span={24} className="text-white vv-font-size-1-7 font-weight-bolder">
-                        Hello
+                        {t(__('Hello'))}
                       </Col>
                       <Col span={24}>
                         <Link className="text-white vv-font-size-1-7 font-weight-600" to={"/sign-in"} >
-                          Sign in
+                         {t(__(' Sign in'))}
                         </Link>
                         <Divider type="vertical" className="border-70"/>
                         <a className="text-white vv-font-size-1-7 font-weight-600" href="https://hornb2b.com/horn/register/" target="_blank">
-                          Join Free
+                          {t(__('Join Free'))}
                         </a>
                       </Col>
                     </Row>
@@ -138,7 +145,7 @@ const DefaultTopPanel = () => {
                           <i className="fal fa-home text-primary vv-font-size-3" />
                         </Col>
                         <Col span={18} className="my-auto">
-                          <span className="text-70 vv-font-size-1-6">Home</span>
+                          <span className="text-70 vv-font-size-1-6">{t(__('Home'))}</span>
                         </Col>
                       </Row>
                     </Link>
@@ -154,24 +161,20 @@ const DefaultTopPanel = () => {
                             ghost
                             expandIcon={({ isActive }) => <UpOutlined rotate={isActive ? 180 : 0} />}
                           >
-                            <Panel header="Language & Currency" key="1">
+                            <Panel header={t(__('Language & Currency'))} key="1">
                               <div className="mb-4">
                                 <Row justify="space-between">
                                   <Col className="my-auto">
-                                    <span className="mr-2">Language</span>
+                                    <span className="mr-2">{t(__('Language'))}</span>
                                   </Col>
                                   <Col className="my-auto" span={12}>
                                     <select
                                       value={language}
                                       onChange={e => handleChangeLanguage(e.target.value)}
                                       className="w-100 text-red-a0 select-box-remove-arrow border-0 vv-font-size-1-5 p-0 mobileChangeLangSelect">
-                                      <option value="en"
-                                              selected="">English
-                                      </option>
-                                      <option value="ar">العربية
-                                      </option>
-                                      <option value="fa">فارسی
-                                      </option>
+                                      <option value="en">English</option>
+                                      <option value="ar">عربی</option>
+                                      <option value="fa">فارسی</option>
                                     </select>
                                   </Col>
                                 </Row>
@@ -180,7 +183,7 @@ const DefaultTopPanel = () => {
                               <div>
                                 <Row justify="space-between">
                                   <Col className="my-auto" span={12}>
-                                    <span className="mr-2">Currency</span>
+                                    <span className="mr-2">{t(__('Currency'))}</span>
                                   </Col>
                                   <Col className="my-auto" span={12}>
                                     <select
@@ -217,7 +220,7 @@ const DefaultTopPanel = () => {
                           <i className="fal fa-star text-primary vv-font-size-3" />
                         </Col>
                         <Col span={18} className="my-auto">
-                          <span className="text-70 vv-font-size-1-6">Favorites</span>
+                          <span className="text-70 vv-font-size-1-6">{t(__('Favorites'))}</span>
                         </Col>
                       </Row>
                     </a>
@@ -228,7 +231,7 @@ const DefaultTopPanel = () => {
                           <i className="icon-vv-compare text-primary vv-font-size-2-5" />
                         </Col>
                         <Col span={18} className="my-auto">
-                          <span className="text-70 vv-font-size-1-6">Comparison</span>
+                          <span className="text-70 vv-font-size-1-6">{t(__('Comparison'))}</span>
                         </Col>
                       </Row>
                     </a>
@@ -239,7 +242,7 @@ const DefaultTopPanel = () => {
                           <i className="fal fa-envelope text-primary vv-font-size-3" />
                         </Col>
                         <Col span={18} className="my-auto">
-                          <span className="text-70 vv-font-size-1-6">Messages</span>
+                          <span className="text-70 vv-font-size-1-6">{t(__('Messages'))}</span>
                         </Col>
                       </Row>
                     </a>
@@ -248,7 +251,7 @@ const DefaultTopPanel = () => {
                 <Divider className="border-bc" />
                 <Col className="px-4 menuXs--sideNavBtn__items" span={24}>
                   <Space direction="vertical" size={15}>
-                    <Button className="border-primary text-primary w-100">International Exhibition</Button>
+                    <Button className="border-primary text-primary w-100">{t(__('International Exhibition'))}</Button>
                   </Space>
                 </Col>
               </Row>
@@ -261,10 +264,10 @@ const DefaultTopPanel = () => {
                 </div>
                 <div className="d-inline-block">
                   <div className="text-white vv-font-size-1-5 font-weight-bold">
-                    Download the Horn app
+                    {t(__('Download the Horn app'))}
                   </div>
                   <div className="text-white vv-font-size-1-2 mt-2">
-                    For 10x Faster
+                    {t(__('For 10x Faster'))}
                   </div>
                 </div>
               </Space>
@@ -281,19 +284,19 @@ const DefaultTopPanel = () => {
               <Divider type="vertical" className="border-70"/>
               <Link className="topPanel--content__item hover" to={"/factories"} >
                 <span className="topPanel--item__text">
-                  Stores
+                  {t(__('Stores'))}
                 </span>
               </Link>
 
               <a className="topPanel--content__item hover" href="https://hornb2b.com/horn/logistics/" target="_blank">
                 <span className="topPanel--item__text">
-                  Logistics
+                  {t(__('Logistics'))}
                 </span>
               </a>
 
               <a className="topPanel--content__item hover" href="https://calendar.iranfair.com/en/" target="_blank" rel="noreferrer">
                 <span className="topPanel--item__text">
-                  International Exhibition
+                  {t(__('International Exhibition'))}
                 </span>
               </a>
             </Space>
@@ -344,7 +347,7 @@ const DefaultTopPanel = () => {
             </Link>
           </Col>
           <Col className="d-lg-none my-auto topPanel--col__btnRequest">
-            <Button className="border border-secondary-2 bg-secondary-2 border-w-2 text-white font-weight-600 p-0" size="large">Request a Quote</Button>
+            <Button className="border border-secondary-2 bg-secondary-2 border-w-2 text-white font-weight-600 p-0" size="large">{t(__('Request a Quote'))}</Button>
           </Col>
           <Col className="d-lg-none my-auto vv-cursor-pointer" onClick={showTopPanelMenuXs}>
             <i className="fas fa-grip-lines cursor-pointer text-white display-3" />

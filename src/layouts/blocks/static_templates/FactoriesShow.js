@@ -25,6 +25,10 @@ import SkeletonFactoriesShow from "./SkeletonFactoriesShow";
 // import Show responsive image:
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 
+// import helper functions:
+import { __ } from '../../../functions/Helper';
+
+import { useTranslation } from "react-i18next";
 
 const FactoriesLogo = ({ logo, imageAlt }) => {
 
@@ -56,7 +60,7 @@ const ShowMainMarket = ({ mainMarkets }) => {
       {mainMarkets.map((mainMarket, i) => {
         return (
           <>
-            { i <= 4 &&
+            { i <= 3 &&
             <span key={i}>
               { mainMarket.country }
             </span>
@@ -64,7 +68,7 @@ const ShowMainMarket = ({ mainMarkets }) => {
           </>
         );
       })}
-      { length > 4 && '...' }
+      { length > 3 && '...' }
     </Space>
   );
 }
@@ -87,7 +91,6 @@ const FieldValues = ({ fieldValues, width }) => {
                 <Col span={24} className="vv-font-size-1-4 text-92">{fieldValue.caption}</Col>
               </Row>
             </Col>
-
           );
         })}
       </>
@@ -113,7 +116,6 @@ const FieldValues = ({ fieldValues, width }) => {
 const GroupFields = ({ groupFields, width }) => {
 
   if (groupFields) {
-
 
     if (width >= 991) { // For Desktop:
       return (
@@ -181,6 +183,8 @@ const FactoryProduct = ({ products }) => {
 }
 
 const FactoriesShow = () => {
+
+  const { t } = useTranslation();
 
   const factory_param_id = useQuery().get('factory');
   const [factoryDataInParam, setFactoryDataInParam] = useState([]);
@@ -287,8 +291,8 @@ const FactoriesShow = () => {
                             </Col>
                             <Col className="text-right factories--btnContainer">
                               <Space size={"middle"}>
-                                <Button type="primary" icon={<CommentOutlined className="vv-font-size-1-7" />} className="p-0 bg-primary-darken border-primary-darken factories--btn__chat" size={"large"}>Chat Now</Button>
-                                <Button icon={<i className="far fa-address-book vv-font-size-1-7" />} className="p-0 bg-transparent text-primary-darken border-0 factories--btn__contacts" size={"large"}>Contacts</Button>
+                                <Button type="primary" icon={<CommentOutlined className="vv-font-size-1-7" />} className="p-0 bg-primary-darken border-primary-darken factories--btn__chat" size={"large"}>{ t(__('Chat Now')) }</Button>
+                                <Button icon={<i className="far fa-address-book vv-font-size-1-7" />} className="p-0 bg-transparent text-primary-darken border-0 factories--btn__contacts" size={"large"}>{ t(__('Contacts')) }</Button>
                               </Space>
                             </Col>
                           </Row>
@@ -305,7 +309,7 @@ const FactoriesShow = () => {
                                       { factory.general.company }
                                     </Col>
                                     <Col className="factories--btnContainer">
-                                      <Button type="primary" icon={<CommentOutlined className="vv-font-size-1-7" />} className="p-0 bg-primary-darken border-primary-darken factories--btn__chat" size={"large"}>Chat</Button>
+                                      <Button type="primary" icon={<CommentOutlined className="vv-font-size-1-7" />} className="p-0 bg-primary-darken border-primary-darken factories--btn__chat" size={"large"}>{ t(__('Chat')) }</Button>
                                     </Col>
                                   </Row>
                                 </Col>
@@ -431,8 +435,8 @@ const FactoriesShow = () => {
                           </Col>
                           <Col className="text-right factories--btnContainer">
                             <Space size={"middle"}>
-                              <Button type="primary" icon={<CommentOutlined className="vv-font-size-1-7" />} className="p-0 bg-primary-darken border-primary-darken factories--btn__chat" size={"large"}>Chat Now</Button>
-                              <Button icon={<i className="far fa-address-book vv-font-size-1-7" />} className="p-0 bg-transparent text-primary-darken border-0 factories--btn__contacts" size={"large"}>Contacts</Button>
+                              <Button type="primary" icon={<CommentOutlined className="vv-font-size-1-7" />} className="p-0 bg-primary-darken border-primary-darken factories--btn__chat" size={"large"}>{ t(__('Chat Now')) }</Button>
+                              <Button icon={<i className="far fa-address-book vv-font-size-1-7" />} className="p-0 bg-transparent text-primary-darken border-0 factories--btn__contacts" size={"large"}>{ t(__('Contacts')) }</Button>
                             </Space>
                           </Col>
                         </Row>
@@ -449,7 +453,7 @@ const FactoriesShow = () => {
                                     { factory.general.company }
                                   </Col>
                                   <Col className="factories--btnContainer">
-                                    <Button type="primary" icon={<CommentOutlined className="vv-font-size-1-7" />} className="p-0 bg-primary-darken border-primary-darken factories--btn__chat" size={"large"}>Chat</Button>
+                                    <Button type="primary" icon={<CommentOutlined className="vv-font-size-1-7" />} className="p-0 bg-primary-darken border-primary-darken factories--btn__chat" size={"large"}>{ t(__('Chat')) }</Button>
                                   </Col>
                                 </Row>
                               </Col>

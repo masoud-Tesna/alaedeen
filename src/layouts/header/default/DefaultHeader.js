@@ -9,12 +9,20 @@ import { Row, Col, Input, Button  } from 'antd';
 // import logo:
 import logoXs from '../../../assets/images/logoXs.png';
 
+// import helper functions:
+import { __ } from "../../../functions/Helper";
+
+import { useTranslation } from "react-i18next";
+
 // Show suffix for search input:
 const suffix = <span className="suffix-content vv-font-size-2"><i className="far fa-search vv-font-size-2" /> Search</span>;
 
 const prefix = <i className="far fa-search text-primary vv-font-size-2" />;
 
 const DefaultHeader = () => {
+
+  const { t } = useTranslation();
+
   return (
     <Row className="h-100 header--container">
       <Col span={24} className="header--col shadow-line d-none d-lg-block">
@@ -29,7 +37,7 @@ const DefaultHeader = () => {
                 </div>
               </Col>
               <Col className="my-auto header--left__searchBox" span={17}>
-                <Input placeholder="What are you looking for..." suffix={suffix} />
+                <Input placeholder={ t(__('What are you looking for...')) } suffix={suffix} />
               </Col>
             </Row>
           </Col>
@@ -44,12 +52,12 @@ const DefaultHeader = () => {
                     <Row gutter={[0, 24]}>
                       <Col span={24}>
                         <Link className="text-70 vv-font-size-2" to={"/sign-in"} >
-                          Sign in
+                          {t(__('Sign in'))}
                         </Link>
                       </Col>
                       <Col span={24}>
                         <a className="text-70 vv-font-size-2" href="https://hornb2b.com/horn/register/" target="_blank" >
-                          Join Free
+                          {t(__('Join Free'))}
                         </a>
                       </Col>
                     </Row>
@@ -57,14 +65,14 @@ const DefaultHeader = () => {
                 </Row>
               </Col>
               <Col span={15} className="pr-0 pr-lg-5 btn-request my-auto">
-                <Button className="border border-primary-darken border-w-2 text-primary-darken  font-weight-600 p-0" size="large">Request a Quote</Button>
+                <Button className="border border-primary-darken border-w-2 text-primary-darken  font-weight-600 p-0" size="large">{t(__('Request a Quote'))}</Button>
               </Col>
             </Row>
           </Col>
         </Row>
       </Col>
       <Col span={24} className="d-lg-none header--mobile__searchBox">
-        <Input placeholder="What are you looking for..." prefix={prefix} />
+        <Input placeholder={ t(__('What are you looking for...')) } prefix={prefix} />
       </Col>
     </Row>
   );

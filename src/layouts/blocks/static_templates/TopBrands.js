@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 // import Style File:
 import './styles/TopBrands.less';
 
@@ -5,7 +7,6 @@ import './styles/TopBrands.less';
 import { Col, Row } from "antd";
 
 // import Another Components Used:
-import { fn_stripHtml } from '../../../functions/Helper';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import SkeletonTopBrands from "./SkeletonTopBrands";
 
@@ -14,8 +15,11 @@ import { useGetPremiumFactories, useWindowSize } from "../../../functions";
 
 // get current language from context:
 import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
-import { Link } from "react-router-dom";
 
+// import helper functions:
+import { __, fn_stripHtml } from '../../../functions/Helper';
+
+import { useTranslation } from "react-i18next";
 
 const FactoriesLogo = ({ logo, alt }) => {
 
@@ -41,6 +45,8 @@ const FactoriesLogo = ({ logo, alt }) => {
 
 const TopBrands = () => {
 
+  const { t } = useTranslation();
+
   const { width } = useWindowSize();
 
   const { factories, load } = useGetPremiumFactories('items_per_page=5');
@@ -51,7 +57,7 @@ const TopBrands = () => {
         <Col className="topBrands--caption__content" span={24}>
           <Row justify="space-between">
             <Col className={ `text-33 text-uppercase ${ width >= 992 ? 'vv-font-size-3' : 'vv-font-size-1-6' } font-weight-bold` }>
-              Top Brands
+              { t(__('Top Brands')) }
             </Col>
           </Row>
         </Col>
@@ -130,7 +136,6 @@ const TopBrands = () => {
 
               </Col>
             }
-
 
           </Row>
         </Col>

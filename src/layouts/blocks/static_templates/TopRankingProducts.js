@@ -17,9 +17,15 @@ import polygon_3 from '../../../assets/images/polygon3.png';
 
 // import custom hooks:
 import { useGetTopRankingProducts, useWindowSize } from "../../../functions";
-import ProductsMultiColumnVertical from "../product_list_templates/ProductsMultiColumnVertical";
+
+// import helper functions:
+import { __ } from '../../../functions/Helper';
+
+import { useTranslation } from "react-i18next";
 
 const TopRankingProducts = () => {
+
+  const { t } = useTranslation();
 
   const { width } = useWindowSize();
 
@@ -35,11 +41,11 @@ const TopRankingProducts = () => {
         <Col className="topRankingProducts--caption__content" span={24}>
           <Row justify="space-between">
             <Col className={ `text-33 text-uppercase ${ width >= 992 ? 'vv-font-size-3' : 'vv-font-size-1-6' } font-weight-bold` }>
-              TOP-RANKING PRODUCTS
+              { t(__('TOP-RANKING PRODUCTS')) }
             </Col>
             <Col className="my-auto">
               <Link to="/top-rankings" className={ `${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } text-33` } >
-                View More <i className={ `far fa-chevron-right ${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } ml-3` } />
+                { t(__('View More')) } <i className={ `far fa-chevron-right ${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } ml-3` } />
               </Link>
             </Col>
           </Row>

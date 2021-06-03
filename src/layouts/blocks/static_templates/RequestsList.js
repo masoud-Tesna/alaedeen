@@ -7,12 +7,20 @@ import './styles/RequestsList.less';
 // import ant design:
 import { Col, Row } from "antd";
 
+// import helper functions:
+import { __ } from '../../../functions/Helper';
+
+import { useTranslation } from "react-i18next";
+
 const RequestsList = () => {
+
+  const { t } = useTranslation();
+
   return (
     <div className="h-100 requestsList--container">
       <Row className="rounded-lg h-100 requestsList--content py-4 py-lg-0" align="middle">
         <Col className="px-4 mb-3 mb-lg-0" span={24}>
-          <div className="font-weight-bold vv-font-size-2-2 text-black">Request for Quotation</div>
+          <div className="font-weight-bold vv-font-size-2-2 text-black">{ t(__('Request for Quotation')) }</div>
         </Col>
         <Col className="px-2 requestsList--items" span={24}>
           <ScrollContainer className="text-select-none d-flex requestsList--scrollContainer">
@@ -39,7 +47,7 @@ const RequestsList = () => {
                   </Row>
                 </Col>
                 <Col span={24} className="vv-font-size-1-7 text-center mt-2 requestsList--item__contact">
-                  Contact Buyer Now
+                  { t(__('Contact Buyer Now')) }
                 </Col>
               </Row>
             </div>
@@ -67,7 +75,7 @@ const RequestsList = () => {
                   </Row>
                 </Col>
                 <Col span={24} className="vv-font-size-1-7 text-center mt-2 requestsList--item__contact">
-                  Contact Buyer Now
+                  { t(__('Contact Buyer Now')) }
                 </Col>
               </Row>
             </div>
@@ -95,7 +103,7 @@ const RequestsList = () => {
                   </Row>
                 </Col>
                 <Col span={24} className="vv-font-size-1-7 text-center mt-2 requestsList--item__contact">
-                  Contact Buyer Now
+                  { t(__('Contact Buyer Now')) }
                 </Col>
               </Row>
             </div>

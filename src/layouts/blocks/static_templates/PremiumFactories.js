@@ -20,6 +20,11 @@ import { useGetLanguageState } from "../../../contexts/language/LanguageContext"
 // import custom hook used:
 import { useGetPremiumFactories, useWindowSize } from '../../../functions';
 
+// import helper functions:
+import { __ } from '../../../functions/Helper';
+
+import { useTranslation } from "react-i18next";
+
 const FactoriesLogo = ({ logo, alt }) => {
 
   const { language } = useGetLanguageState();
@@ -72,6 +77,8 @@ const FactoriesImages = ({ images, alt }) => {
 
 const PremiumFactories = () => {
 
+  const { t } = useTranslation();
+
   const { width } = useWindowSize();
 
   const { factories, load } = useGetPremiumFactories();
@@ -82,11 +89,11 @@ const PremiumFactories = () => {
         <Col className="premiumFactories--caption__content" span={24}>
           <Row justify="space-between">
             <Col className={ `text-33 text-uppercase ${ width >= 992 ? 'vv-font-size-3' : 'vv-font-size-1-6' } font-weight-bold` }>
-              Premium OEM Factories
+              { t(__('Premium OEM Factories')) }
             </Col>
             <Col className="my-auto">
               <Link to="/factories" className={ `${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } text-33` } >
-                View More <i className={ `far fa-chevron-right ${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } ml-3` } />
+                { t(__('View More')) } <i className={ `far fa-chevron-right ${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } ml-3` } />
               </Link>
             </Col>
           </Row>

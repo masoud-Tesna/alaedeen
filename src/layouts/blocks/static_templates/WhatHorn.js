@@ -4,13 +4,20 @@ import './styles/WhatHorn.less';
 // import ANT Design Components Used:
 import { Col, Divider, Row } from "antd";
 
+// import helper functions:
+import { __ } from '../../../functions/Helper';
+
+import { useTranslation } from "react-i18next";
+
 const WhatHorn = () => {
+
+  const { t } = useTranslation();
 
   return (
     <div className="whatHorn--container">
       <Row>
         <Col className="whatHorn--caption__content" span={24}>
-          <Divider orientation="left" className="dividerText">What does Horn do?</Divider>
+          <Divider orientation="left" className="dividerText">{ t(__('What does Horn do?')) }</Divider>
         </Col>
         <Col className="whatHorn--items" span={24}>
           <Row className="row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-3 row-cols-xl-3" justify="space-between" gutter={ { xs: 16, sm: 16, md: 16, lg: 0, xl: 0, xxl: 0 }}>
@@ -25,10 +32,10 @@ const WhatHorn = () => {
                     </div>
                   </div>
                   <div className="vv-font-size-3 text-33 font-weight-bold text-center mt-2  whatHorn--item__caption1">
-                    Experienced Guides
+                    { t(__('Experienced Guides')) }
                   </div>
                   <div className="vv-font-size-2-4 text-70 font-weight-600 text-center mt-1 whatHorn--item__caption2">
-                    Lorem ipsum dolor sit amet, consectetuer consectetuer  elit adipiscing.
+                    { t(__('Experienced Guides description')) }
                   </div>
                 </Col>
               </Row>
@@ -45,10 +52,10 @@ const WhatHorn = () => {
                     </div>
                   </div>
                   <div className="vv-font-size-3 text-33 font-weight-bold text-center mt-2  whatHorn--item__caption1">
-                    Freight Service
+                    { t(__('Introducing Top Brands')) }
                   </div>
                   <div className="vv-font-size-2-4 text-70 font-weight-600 text-center mt-1 whatHorn--item__caption2">
-                    Lorem ipsum dolor sit amet, consectetuer consectetuer  elit adipiscing.
+                    { t(__('Introducing Top Brands description')) }
                   </div>
                 </Col>
               </Row>
@@ -65,10 +72,10 @@ const WhatHorn = () => {
                     </div>
                   </div>
                   <div className="vv-font-size-3 text-33 font-weight-bold text-center mt-2  whatHorn--item__caption1">
-                    Freight Service
+                    { t(__('Freight Service')) }
                   </div>
                   <div className="vv-font-size-2-4 text-70 font-weight-600 text-center mt-1 whatHorn--item__caption2">
-                    Lorem ipsum dolor sit amet, consectetuer consectetuer  elit adipiscing.
+                    { t(__('Freight Service description')) }
                   </div>
                 </Col>
               </Row>

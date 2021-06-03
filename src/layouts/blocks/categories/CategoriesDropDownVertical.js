@@ -1,6 +1,10 @@
 import { Dropdown, Menu } from "antd";
 import { DownOutlined } from "@ant-design/icons";
 
+// import helper functions:
+import { __ } from "../../../functions/Helper";
+
+import { useTranslation } from "react-i18next";
 
 const CategoriesContent = (
   <Menu className="menu-test">
@@ -16,11 +20,14 @@ const CategoriesContent = (
 );
 
 const CategoriesDropDownVertical = ({ userClass }) => {
+
+  const { t } = useTranslation();
+
   return (
     <Dropdown className={ userClass } overlay={CategoriesContent} trigger={['click']}>
       <span className="vv-cursor-pointer" onClick={e => e.preventDefault()}>
         <i className="fal fa-list-ul mr-3 vv-font-size-2" />
-        <span className="topPanel--item__text">Categories</span>
+        <span className="topPanel--item__text">{t(__('Categories'))}</span>
         <DownOutlined className="ml-3" />
       </span>
     </Dropdown>

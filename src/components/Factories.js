@@ -13,7 +13,14 @@ import topSectionBg from '../assets/images/factoriezTopSectionBg.png';
 // import Factories Show Component:
 import FactoriesShow from "../layouts/blocks/static_templates/FactoriesShow";
 
+// import helper functions:
+import { __ } from '../functions/Helper';
+
+import { useTranslation } from "react-i18next";
+
 const Factories = () => {
+
+  const { t } = useTranslation();
 
   const { pathname } = useLocation();
 
@@ -27,24 +34,24 @@ const Factories = () => {
         <Col span={24} className="factories--topSection bottomShadow clipShadow">
           <Row justify={"space-between"}>
             <Col span={14} className="text-white">
-              <div className="font-weight-bold font-italic factories--topSection__caption1">Premium OEM Factories</div>
-              <div className="font-weight-600 mt-3 factories--topSection__caption2">Manufacturers assessed by independent third parties</div>
+              <div className="font-weight-bold font-italic factories--topSection__caption1">{ t(__('Premium OEM Factories')) }</div>
+              <div className="font-weight-600 mt-3 factories--topSection__caption2">{ t(__('Manufacturers assessed by independent third parties')) }</div>
               <div className="d-none d-lg-block mt-4">
                 <Space size={"middle"} >
                   <i className="fas fa-lightbulb display-3 font-weight-bold" />
-                  <span className="vv-font-size-2 font-weight-600">High-performance manufacturing capacity</span>
+                  <span className="vv-font-size-2 font-weight-600">{ t(__('High-performance manufacturing capacity')) }</span>
                 </Space>
               </div>
               <div className="d-none d-lg-block mt-4">
                 <Space size={"middle"} >
                   <i className="fas fa-cog display-3 font-weight-bold" />
-                  <span className="vv-font-size-2 font-weight-600">R&D capability  for customization</span>
+                  <span className="vv-font-size-2 font-weight-600">{ t(__('R&D capability for customization')) }</span>
                 </Space>
               </div>
               <div className="d-none d-lg-block mt-4">
                 <Space size={"middle"} >
                   <i className="fas fa-file-certificate display-3 font-weight-bold" />
-                  <span className="vv-font-size-2 font-weight-600">Professional certifications and approvals</span>
+                  <span className="vv-font-size-2 font-weight-600">{ t(__('Professional certifications and approvals')) }</span>
                 </Space>
               </div>
             </Col>
