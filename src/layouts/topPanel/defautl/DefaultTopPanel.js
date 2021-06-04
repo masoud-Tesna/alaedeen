@@ -6,7 +6,7 @@ import './styles.less';
 
 // Ant Design Import:
 import { Row, Col, Divider, Space, Button, Collapse, Drawer } from 'antd';
-import { UpOutlined } from "@ant-design/icons";
+import { DownOutlined } from "@ant-design/icons";
 
 // import categories drop down:
 import { CategoriesDropDownVertical as Categories } from "../../blocks/categories/CategoriesDropDownVertical";
@@ -159,7 +159,7 @@ const DefaultTopPanel = () => {
                           <Collapse
                             expandIconPosition={"right"}
                             ghost
-                            expandIcon={({ isActive }) => <UpOutlined rotate={isActive ? 180 : 0} />}
+                            expandIcon={({ isActive }) => <DownOutlined rotate={isActive ? 180 : 0} />}
                           >
                             <Panel header={t(__('Language & Currency'))} key="1">
                               <div className="mb-4">
