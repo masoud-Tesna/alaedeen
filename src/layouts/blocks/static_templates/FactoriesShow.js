@@ -125,8 +125,8 @@ const GroupFields = ({ groupFields, width }) => {
               <Col span={12} key = { groupField.group_id }>
                 <div className="py-2 px-3 factories--informationItem">
                   <Row>
-                    <Col span={24} className="vv-font-size-1-4 text-33">{groupField.caption}:</Col>
-                    <Col span={24} className="vv-font-size-1-4 text-33">
+                    <Col span={24} className="vv-font-size-1-4 text-33 factories--informationItem__caption">{groupField.caption}:</Col>
+                    <Col span={24} className="vv-font-size-1-4 text-33 factories--informationItem__details">
                       <Row justify={"space-between"}>
                         <FieldValues fieldValues = { groupField.values } width={width}/>
                       </Row>
