@@ -237,7 +237,7 @@ export function useGetFactories (params) {
 export function useResizeImage (image_path, image_folder, image_width, image_height) {
   const [load, setLoad] = useState(true);
   const [image, setImage] = useState([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
 
   const url = `https://hornb2b.com/horn/image-resize-api/?image_path=${image_path}&image_folder=${image_folder}&image_width=${image_width}&image_height=${image_height}`;
   async function getImageResized() {
@@ -258,12 +258,14 @@ export function useResizeImage (image_path, image_folder, image_width, image_hei
           setLoad(false);
         })
         .catch ((error) => {
-          setError(error);
+          setError((prev => !prev));
           setLoad(false);
         })
     }
+
     return () => mounted = false;
-  }, [image_path, image_folder, image_width, image_height]);
+
+  }, [image_path, image_folder, image_width, image_height, error]);
 
   return { image, load, error }
 }
