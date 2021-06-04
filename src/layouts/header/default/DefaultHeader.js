@@ -44,7 +44,7 @@ const DefaultHeader = () => {
           <Col className="header--content__right my-auto" md={ 9 } lg={ 9 } xl={ 8 }>
             <Row className="h-100" gutter={12}>
               <Col span={9}>
-                <Row align="middle" gutter={12}>
+                <Row className="header--content__account" align="middle" gutter={12}>
                   <Col>
                     <i className="fal fa-user display-3 text-70 d-block" />
                   </Col>

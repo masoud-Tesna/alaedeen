@@ -78,6 +78,7 @@ const RecentlyProductsView = () => {
                   <Swiper
                     slidesPerView={2}
                     autoplay={{delay: 3000}}
+                    dir={'ltr'}
                   >
                     {products.map((product, i) => {
                       return (

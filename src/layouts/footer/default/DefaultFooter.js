@@ -47,12 +47,12 @@ const DefaultFooter = () => {
       <Col className="bg-footer footer--container__topSection" span={24}>
         <Row justify="space-between">
           <Col>
-            <Space size={ spaceSize }>
+            <Space className="ant-space-rtl" size={ spaceSize }>
               <div className="footer--topSection__logoApp" />
               <div className="d-inline my-auto">
                 <div className="d-none d-lg-inline">
                   <div className="vv-font-size-2-2 font-weight-600 text-white d-inline">{ t(__('Download the Horn App for iOS or Android')) }</div>
-                  <i className="fas fa-angle-right text-e6 vv-font-size-1-7 ml-3 text-white" />
+                  <i className={ `fas fa-angle-${language === 'en' ? 'right' : 'left'} text-bc vv-font-size-1-7 ${language === 'en' ? '' : 'align-middle'}` } />
                 </div>
 
                 <span className="d-block d-lg-none vv-font-size-1-4 font-weight-bold text-white">{ t(__('Download the Horn app')) }</span>

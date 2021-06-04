@@ -15,7 +15,7 @@ const HomeLogisticsBanner = () => {
     <div className="homeLogisticsBanner--container">
       <Row className="homeLogisticsBanner--content h-100">
         <Col className="homeLogisticsBanner--caption" span={11}>
-          <Row className="h-100" align="middle">
+          <Row className="h-100 homeLogisticsBanner--details" align="middle">
             {/*Desktop*/}
             <Col span={24} className="d-none d-lg-block py-3 text-secondary font-weight-600 text-center vv-font-size-4 homeLogisticsBanner--caption__text1">{ t(__('Logistics')) }</Col>
             <Col span={24} className="d-none d-lg-block px-3 py-3 text-white vv-font-size-1-2 homeLogisticsBanner--caption__text2">

@@ -20,7 +20,7 @@ const RequestsList = () => {
     <div className="h-100 requestsList--container">
       <Row className="rounded-lg h-100 requestsList--content py-4 py-lg-0" align="middle">
         <Col className="px-4 mb-3 mb-lg-0" span={24}>
-          <div className="font-weight-bold vv-font-size-2-2 text-black">{ t(__('Request for Quotation')) }</div>
+          <div className="font-weight-bold vv-font-size-2-2 text-black requestsList--caption">{ t(__('Request for Quotation')) }</div>
         </Col>
         <Col className="px-2 requestsList--items" span={24}>
           <ScrollContainer className="text-select-none d-flex requestsList--scrollContainer">
@@ -32,8 +32,8 @@ const RequestsList = () => {
                 <Col span={12} className="text-right text-primary vv-font-size-1-5 my-auto">
                   27 March, 2021
                 </Col>
-                <Col span={24} className="text-70 vv-font-size-1-5">
-                  Buyer is looking for 'Red Carpet'.
+                <Col span={24} className="text-70 vv-font-size-1-5 requestsList--item__buyerLooking">
+                  { t(__('Buyer is looking for')) } 'Red Carpet'.
                 </Col>
                 <Col span={24} className="mt-3 px-2 pb-1 border-bottom border-8b">
                   <Row justify="space-between">
@@ -60,8 +60,8 @@ const RequestsList = () => {
                 <Col span={12} className="text-right text-primary vv-font-size-1-5 my-auto">
                   27 March, 2021
                 </Col>
-                <Col span={24} className="text-70 vv-font-size-1-5">
-                  Buyer is looking for 'Red Carpet'.
+                <Col span={24} className="text-70 vv-font-size-1-5 requestsList--item__buyerLooking">
+                  { t(__('Buyer is looking for')) } 'Red Carpet'.
                 </Col>
                 <Col span={24} className="mt-3 px-2 pb-1 border-bottom border-8b">
                   <Row justify="space-between">
@@ -88,8 +88,8 @@ const RequestsList = () => {
                 <Col span={12} className="text-right text-primary vv-font-size-1-5 my-auto">
                   27 March, 2021
                 </Col>
-                <Col span={24} className="text-70 vv-font-size-1-5">
-                  Buyer is looking for 'Red Carpet'.
+                <Col span={24} className="text-70 vv-font-size-1-5 requestsList--item__buyerLooking">
+                  { t(__('Buyer is looking for')) } 'Red Carpet'.
                 </Col>
                 <Col span={24} className="mt-3 px-2 pb-1 border-bottom border-8b">
                   <Row justify="space-between">

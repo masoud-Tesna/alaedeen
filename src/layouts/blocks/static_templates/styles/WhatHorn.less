@@ -1,3 +1,24 @@
+html:lang(fa),
+html:lang(ar) {
+  .whatHorn--container {
+    .whatHorn--caption__content {
+      .dividerText {
+        span {
+          padding-left: 15px !important;
+          padding-right: 0 !important;
+        }
+        &:after {
+          margin-bottom: 18px;
+        }
+        }
+      }
+
+    .whatHorn--items > .ant-row-rtl {
+      direction: ltr;
+    }
+  }
+}
+
 .whatHorn--container {
   padding: 0 80px;
   .whatHorn--caption__content {
@@ -11,8 +32,8 @@
         font-size: 3rem!important;
         color: #333333;
         font-weight: bold!important;
-        padding-left: 0!important;
-        padding-right: 15px!important;
+        padding-left: 0 !important;
+        padding-right: 15px !important;
       }
       &:after {
         height: 9px!important;
@@ -24,6 +45,7 @@
       }
     }
   }
+
   .whatHorn--items {
     padding: 0 20px;
     .whatHorn--item {

@@ -77,6 +77,9 @@ const FactoriesImages = ({ images, alt }) => {
 
 const PremiumFactories = () => {
 
+  // initial state for language:
+  const { language } = useGetLanguageState();
+
   const { t } = useTranslation();
 
   const { width } = useWindowSize();
@@ -93,7 +96,7 @@ const PremiumFactories = () => {
             </Col>
             <Col className="my-auto">
               <Link to="/factories" className={ `${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } text-33` } >
-                { t(__('View More')) } <i className={ `far fa-chevron-right ${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } ml-3` } />
+                { t(__('View More')) } <i className={ `far fa-chevron-${language === 'en' ? 'right' : 'left'} ${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } ${language === 'en' ? '' : 'align-middle'}` } />
               </Link>
             </Col>
           </Row>
@@ -121,13 +124,8 @@ const PremiumFactories = () => {
                                   <FactoriesLogo logo={ factory.logo } alt={ factory.company }/>
                                 </div>
                                 <div className="w-100 premiumFactories--item__caption">
-                                  <div className="vv-font-size-1-6 text-black premiumFactories--item__name">
-                                    <TextTruncate
-                                      line={1}
-                                      element="span"
-                                      truncateText="…"
-                                      text={ factory.company }
-                                    />
+                                  <div className="vv-font-size-1-6 text-black text-truncate premiumFactories--item__name">
+                                    { factory.company }
                                   </div>
                                   <div className="premiumFactories--item__verified">
                                     <img src={ verifiedIcon } alt="Verified"/>
@@ -166,7 +164,7 @@ const PremiumFactories = () => {
                                 <img src={ factory.images[0] } alt="factoryImage_1"/>
                               </div>
                               <div className="mt-2">
-                                <Row>
+                                <Row className="premiumFactoriesXs--item__detail">
                                   <Col className="text-truncate my-auto text-black" span={18}>{factory.company}</Col>
                                   <Col className="text-right premiumFactories--factoryIcon__Xs" span={6}>
                                     <FactoriesLogo logo={ factory.logo } alt={ factory.company }/>

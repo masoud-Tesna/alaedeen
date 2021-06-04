@@ -1,8 +1,36 @@
+html:lang(fa),
+html:lang(ar) {
+  .header--col .ant-row-rtl {
+    direction: ltr;
+  }
+
+  .header--content__account .ant-row-rtl {
+    direction: rtl;
+  }
+
+  .header--left__searchBox input,
+  .header--mobile__searchBox input,
+  .header--content__account {
+    direction: rtl !important;
+  }
+
+  .header--content__left {
+    .header--left__searchBox {
+      .ant-input-affix-wrapper {
+        .ant-input {
+          padding-right: 2rem;
+        }
+      }
+    }
+  }
+}
+
 .ant-layout-header.site--header {
   height: auto;
   background: #FFFFFF;
-  line-height: 0!important;
-  overflow-x: hidden!important;
+  line-height: 0 !important;
+  overflow-x: hidden !important;
+  padding: 0 18px;
   .logo {
     margin-left: 32px;
     img {
@@ -17,7 +45,7 @@
         height: 40px;
 
         .ant-input {
-          padding-left: 2rem !important;
+          padding-left: 2rem;
           font-size: 1.8rem!important;
           &::placeholder {
             color: #929191 !important;

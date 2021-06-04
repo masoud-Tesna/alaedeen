@@ -159,7 +159,7 @@ const DefaultTopPanel = () => {
                           <Collapse
                             expandIconPosition={"right"}
                             ghost
-                            expandIcon={({ isActive }) => <DownOutlined rotate={isActive ? 180 : 0} />}
+                            expandIcon={({ isActive }) => <DownOutlined rotate={ language === 'en' ? (isActive ? 180 : 0) : (isActive ? 0 : 1)} />}
                           >
                             <Panel header={t(__('Language & Currency'))} key="1">
                               <div className="mb-4">
@@ -251,7 +251,7 @@ const DefaultTopPanel = () => {
                 <Divider className="border-bc" />
                 <Col className="px-4 menuXs--sideNavBtn__items" span={24}>
                   <Space direction="vertical" size={15}>
-                    <Button className="border-primary text-primary w-100">{t(__('International Exhibition'))}</Button>
+                    <a href={`https://calendar.iranfair.com/${language === 'ar'? '' : language}`} target="_blank" rel="noreferrer" className="border border-primary text-primary w-100 d-block text-center">{t(__('International Exhibition'))}</a>
                   </Space>
                 </Col>
               </Row>
@@ -279,7 +279,7 @@ const DefaultTopPanel = () => {
       <Col span={24} className="topPanel--col">
         <Row className="h-100" gutter={24} justify="space-between">
           <Col className="topPanel--content__left my-auto d-none d-lg-block">
-            <Space size="middle">
+            <Space size="middle" align={"center"}>
               <Categories userClass="categories--dropDown topPanel--content__item hover" />
               <Divider type="vertical" className="border-70"/>
               <Link className="topPanel--content__item hover" to={"/factories"} >

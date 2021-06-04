@@ -23,7 +23,13 @@ import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
 
+// import language context:
+import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
+
 const TopRankingProducts = () => {
+
+  // initial state for language:
+  const { language } = useGetLanguageState();
 
   const { t } = useTranslation();
 
@@ -45,7 +51,7 @@ const TopRankingProducts = () => {
             </Col>
             <Col className="my-auto">
               <Link to="/top-rankings" className={ `${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } text-33` } >
-                { t(__('View More')) } <i className={ `far fa-chevron-right ${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } ml-3` } />
+                { t(__('View More')) } <i className={ `far fa-chevron-${language === 'en' ? 'right' : 'left'} ${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } ${language === 'en' ? '' : 'align-middle'}` } />
               </Link>
             </Col>
           </Row>

@@ -1,3 +1,35 @@
+html:lang(fa),
+html:lang(ar) {
+  .topPanel--col > .ant-row-rtl,
+  .topPanel--col .ant-space-rtl {
+    direction: ltr;
+  }
+
+  .topPanel--col .ant-space-rtl {
+    .ant-space-item {
+      &:not(:last-child) {
+        margin-right: 16px;
+        margin-left: 0 !important;
+      }
+    }
+  }
+
+  .topPanel--content__right .ant-space-rtl {
+    .ant-space-item {
+      &:not(:last-child) {
+        margin-right: 0.5px;
+        margin-left: 0 !important;
+      }
+    }
+  }
+
+  .ant-collapse-arrow {
+    right: unset !important;
+    left: 0 !important;
+    padding-top: 0 !important;
+  }
+}
+
 .topPanel--container {
   height: 60px;
 
@@ -134,12 +166,12 @@
               .ant-collapse {
                 .ant-collapse-item {
                   .ant-collapse-header {
-                    padding: 0!important;
+                    padding: 0 !important;
                     color: #707070;
                     font-size: 1.6rem;
                     .ant-collapse-arrow {
-                      right: 1px!important;
-                      padding-top: 3px !important;
+                      right: 1px;
+                      padding-top: 3px;
                       color: #bcbcbc !important;
                     }
                   }
@@ -157,8 +189,9 @@
             div {
               width: 100%;
             }
-            .ant-btn {
+            a {
               height: 35px;
+              line-height: 33px;
             }
           }
         }

@@ -4,6 +4,9 @@ import './styles/WhatHorn.less';
 // import ANT Design Components Used:
 import { Col, Divider, Row } from "antd";
 
+// import language context:
+import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
+
 // import helper functions:
 import { __ } from '../../../functions/Helper';
 
@@ -11,13 +14,15 @@ import { useTranslation } from "react-i18next";
 
 const WhatHorn = () => {
 
+  const { language } = useGetLanguageState();
+
   const { t } = useTranslation();
 
   return (
     <div className="whatHorn--container">
       <Row>
         <Col className="whatHorn--caption__content" span={24}>
-          <Divider orientation="left" className="dividerText">{ t(__('What does Horn do?')) }</Divider>
+          <Divider orientation={language === 'en' ? 'left' : 'right'} className="dividerText">{ t(__('What does Horn do?')) }</Divider>
         </Col>
         <Col className="whatHorn--items" span={24}>
           <Row className="row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-3 row-cols-xl-3" justify="space-between" gutter={ { xs: 16, sm: 16, md: 16, lg: 0, xl: 0, xxl: 0 }}>

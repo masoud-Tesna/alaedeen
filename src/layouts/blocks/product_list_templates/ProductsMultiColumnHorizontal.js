@@ -15,7 +15,14 @@ import polygon_3 from '../../../assets/images/polygon3.png';
 import { Col, Row, Space } from "antd";
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 
+// import helper functions:
+import { __ } from '../../../functions/Helper';
+
+import { useTranslation } from "react-i18next";
+
 const ProductsMultiColumnHorizontal = (props) => {
+
+  const { t } = useTranslation();
 
   // get screen width:
   const { width } = useWindowSize();
@@ -67,7 +74,7 @@ const ProductsMultiColumnHorizontal = (props) => {
               }
               <div className="ProductsMultiColumnHorizontal--details__view">
                 <span className="vv-font-size-1-4 text-8b mr-3">{ product.popularity  }</span>
-                <span className="vv-font-size-1-4 text-8b">View</span>
+                <span className="vv-font-size-1-4 text-8b">{ t(__('View')) }</span>
               </div>
             </div>
           </Space>
@@ -96,7 +103,7 @@ const ProductsMultiColumnHorizontal = (props) => {
             }
             <div className="text-center ProductsMultiColumnHorizontal--details__view">
               <span className="vv-font-size-1 text-8b mr-3">{ product.popularity  }</span>
-              <span className="vv-font-size-1 text-8b">View</span>
+              <span className="vv-font-size-1 text-8b">{ t(__('View')) }</span>
             </div>
           </div>
         </Row>
