@@ -161,25 +161,25 @@ const DefaultFooter = () => {
           <Col xs={{ order: 1 }} lg={{ order: 2 }} className="my-lg-auto">
             <Space size="middle">
               <div className="footer--bottomSection-socialLink facebook">
-                <a className="">
+                <a href="#" className="">
                   <i className="fab fa-facebook-f" />
                 </a>
               </div>
 
               <div className="footer--bottomSection-socialLink instagram">
-                <a className="" href={instagramLink} target="_blank" rel="nofollow">
+                <a className="" href={instagramLink} target="_blank" rel="noreferrer">
                   <i className="fab fa-instagram" />
                 </a>
               </div>
 
               <div className="footer--bottomSection-socialLink twitter">
-                <a className="">
+                <a href="#" className="">
                   <i className="fab fa-twitter" />
                 </a>
               </div>
 
               <div className="footer--bottomSection-socialLink youtube">
-                <a className="">
+                <a href="#" className="">
                   <i className="fab fa-youtube" />
                 </a>
               </div>

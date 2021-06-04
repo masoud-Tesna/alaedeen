@@ -15,12 +15,12 @@ export function useGetProductApi (params) {
 
   const { language } = useGetLanguageState();
 
-  const url = `https://hornb2b.com/horn/products-api/?${params}&lang_code=${language}`;
-  async function getProduct() {
-    return await axios.get(url);
-  }
-
   useEffect(() => {
+    // async function for get API:
+    const url = `https://hornb2b.com/horn/products-api/?${params}&lang_code=${language}`;
+    async function getProduct() {
+      return await axios.get(url);
+    }
 
     let mounted  = true;
     setLoad(true);
@@ -61,15 +61,16 @@ export function useGetTopRankingProducts (cat1, cat2, cat3) {
 
   const { language } = useGetLanguageState();
 
-  async function getProduct() {
-    return await axios.all([
-      axios.get(`https://hornb2b.com/horn/products-api/?${cat1}&lang_code=${language}`),
-      axios.get(`https://hornb2b.com/horn/products-api/?${cat2}&lang_code=${language}`),
-      axios.get(`https://hornb2b.com/horn/products-api/?${cat3}&lang_code=${language}`)
-    ]);
-  }
-
   useEffect(() => {
+    // async function for get API:
+    async function getProduct() {
+      return await axios.all([
+        axios.get(`https://hornb2b.com/horn/products-api/?${cat1}&lang_code=${language}`),
+        axios.get(`https://hornb2b.com/horn/products-api/?${cat2}&lang_code=${language}`),
+        axios.get(`https://hornb2b.com/horn/products-api/?${cat3}&lang_code=${language}`)
+      ]);
+    }
+
     let mounted  = true;
     setLoad(true);
 
@@ -110,19 +111,19 @@ export function useGetApi (mode, params, item, loading = true, setLanguage = tru
 
   const { language } = useGetLanguageState();
 
-  let url;
-
-  if (setLanguage) {
-    url = `https://hornb2b.com/horn/${mode}/?${params}&lang_code=${language}`;
-  }else {
-    url = `https://hornb2b.com/horn/${mode}/?${params}`;
-  }
-
-  async function getApi() {
-    return await axios.get(url);
-  }
-
   useEffect(() => {
+// async function for get API:
+    let url;
+    if (setLanguage) {
+      url = `https://hornb2b.com/horn/${mode}/?${params}&lang_code=${language}`;
+    }else {
+      url = `https://hornb2b.com/horn/${mode}/?${params}`;
+    }
+
+    async function getApi() {
+      return await axios.get(url);
+    }
+
     let mounted  = true;
     setLoad(loading);
 
@@ -145,7 +146,7 @@ export function useGetApi (mode, params, item, loading = true, setLanguage = tru
         })
     }
     return () => mounted = false;
-  }, [url, loading, setLanguage, language]);
+  }, [mode, params, item, loading, setLanguage, language]);
 
   return { items, load, error }
 }
@@ -158,12 +159,12 @@ export function useGetPremiumFactories (params) {
 
   const { language } = useGetLanguageState();
 
-  const url = `https://hornb2b.com/horn/premium-factories-api/?${params}&lang_code=${language}`;
-  async function getPremiumFactories() {
-    return await axios.get(url);
-  }
-
   useEffect(() => {
+    // async function for get API:
+    const url = `https://hornb2b.com/horn/premium-factories-api/?${params}&lang_code=${language}`;
+    async function getPremiumFactories() {
+      return await axios.get(url);
+    }
 
     let mounted  = true;
     setLoad(true);
@@ -200,12 +201,12 @@ export function useGetFactories (params) {
 
   const { language } = useGetLanguageState();
 
-  const url = `https://hornb2b.com/horn/factories-api/?${params}&lang_code=${language}`;
-  async function getFactories() {
-    return await axios.get(url);
-  }
-
   useEffect(() => {
+    // async function for get API:
+    const url = `https://hornb2b.com/horn/factories-api/?${params}&lang_code=${language}`;
+    async function getFactories() {
+      return await axios.get(url);
+    }
 
     let mounted  = true;
     setLoad(true);
@@ -239,12 +240,12 @@ export function useResizeImage (image_path, image_folder, image_width, image_hei
   const [image, setImage] = useState([]);
   const [error, setError] = useState(false);
 
-  const url = `https://hornb2b.com/horn/image-resize-api/?image_path=${image_path}&image_folder=${image_folder}&image_width=${image_width}&image_height=${image_height}`;
-  async function getImageResized() {
-    return await axios.get(url);
-  }
-
   useEffect(() => {
+    // async function for get API:
+    const url = `https://hornb2b.com/horn/image-resize-api/?image_path=${image_path}&image_folder=${image_folder}&image_width=${image_width}&image_height=${image_height}`;
+    async function getImageResized() {
+      return await axios.get(url);
+    }
 
     let mounted  = true;
     setLoad(true);

@@ -9,10 +9,12 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 
 // import custom hooks:
 import { useGetApi, useWindowSize } from "../../../functions";
-import { fn_handleLinkClick } from "../../../functions/Helper";
+
+// import responsive image show component:
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
-import React from "react";
+
 import CategoriesMultiColumnSkeleton from "./CategoriesMultiColumnSkeleton";
+
 import TextTruncate from "react-text-truncate";
 
 // import helper functions:
@@ -62,7 +64,7 @@ const CategoriesMultiColumn = () => {
                 })}
 
                 <Col className="categoriesMultiColumn--item" span={12}>
-                  <a className="d-block h-100">
+                  <a href="#" className="d-block h-100">
                     <Row className="categoriesMultiColumn--item__row">
                       <Col span={24} className="categoriesMultiColumn--icon text-center my-2">
                         <Row align="middle" className="h-100">

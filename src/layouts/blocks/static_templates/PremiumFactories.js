@@ -10,7 +10,6 @@ import { Col, Row, Skeleton } from "antd";
 import verifiedIcon from '../../../assets/images/verified.png';
 
 // import another components used:
-import TextTruncate from 'react-text-truncate';
 import SkeletonTopBrands from "./SkeletonTopBrands";
 
 // import get language context:

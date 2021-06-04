@@ -6,13 +6,12 @@ import { Col, Row, Skeleton, Space } from "antd";
 
 const SkeletonGrid = (props) => {
   const { width } = props;
-  const { height } = props;
-  let field_rows = { rows: 2 };
+
   let about_rows = { rows: 5 };
   if (width <= 991) {
-    field_rows = { rows: 1 };
     about_rows = { rows: 4 };
   }
+
   return (
     <>
       <Col span={24} className="bg-white rounded-10 p-3 border border-70 factories--item">

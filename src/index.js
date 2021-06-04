@@ -3,12 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './App';
 
 // import i18n:
-import i18n from "./translations";
+import "./translations";
 
 // import language context:
 import { LanguageProvider } from "./contexts/language/LanguageContext";
-
-import { ConfigProvider } from 'antd';
 
 import * as serviceWorker from './serviceWorker';
 

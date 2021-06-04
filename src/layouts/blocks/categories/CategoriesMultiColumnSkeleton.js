@@ -2,7 +2,7 @@
 import './styles/CategoriesMultiColumn.less';
 
 // import Ant Design Components:
-import { Col, Image, Row, Skeleton, Space } from "antd";
+import { Col, Image, Row, Skeleton } from "antd";
 
 import React from "react";
 import ScrollContainer from "react-indiana-drag-scroll";
