@@ -43,7 +43,7 @@ const DefaultHeader = () => {
           </Col>
           <Col className="header--content__right my-auto" md={ 9 } lg={ 9 } xl={ 8 }>
             <Row className="h-100" gutter={12}>
-              <Col span={9}>
+              <Col span={11}>
                 <Row className="header--content__account" align="middle" gutter={12}>
                   <Col>
                     <i className="fal fa-user display-3 text-70 d-block" />
@@ -64,7 +64,7 @@ const DefaultHeader = () => {
                   </Col>
                 </Row>
               </Col>
-              <Col span={15} className="pr-0 pr-lg-5 btn-request my-auto">
+              <Col span={13} className="pr-0 pr-lg-5 btn-request my-auto">
                 <Button className="border border-primary-darken border-w-2 text-primary-darken  font-weight-600 p-0" size="large">{t(__('Request a Quote'))}</Button>
               </Col>
             </Row>
