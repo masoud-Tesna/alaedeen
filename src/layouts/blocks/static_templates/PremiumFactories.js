@@ -160,7 +160,10 @@ const PremiumFactories = () => {
                           <Link className="d-block h-100" to={ `/factories?factory=${factory.company_id}` }>
                             <div className="premiumFactories--itemXs">
                               <div className="premiumFactories--factoryImages__Xs">
-                                <img src={ factory.images[0] } alt="factoryImage_1"/>
+                                {factory.images[0] ?
+                                  <img src={ factory.images[0] } alt={factory.company}/> :
+                                  <Skeleton.Image active={true} className="premiumFactories--skeletonImages__item1" />
+                                }
                               </div>
                               <div className="mt-2">
                                 <Row className="premiumFactoriesXs--item__detail">
