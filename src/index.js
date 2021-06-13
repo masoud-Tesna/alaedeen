@@ -15,7 +15,7 @@ import * as serviceWorker from './serviceWorker';
 const Application = () => {
   return (
     <LanguageProvider>
-      <App/>
+      <App />
     </LanguageProvider>
   );
 }
