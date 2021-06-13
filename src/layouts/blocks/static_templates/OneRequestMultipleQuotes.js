@@ -1,5 +1,3 @@
-import React from 'react';
-
 // import style file:
 import './styles/OneRequestMultipleQuotes.less';
 
@@ -7,6 +5,8 @@ import './styles/OneRequestMultipleQuotes.less';
 import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
+
+import { useGetApi } from '../../../functions';
 
 // import ant design:
 import { Col, Row, Form, Input, Button, Select, InputNumber} from "antd";
@@ -20,6 +20,8 @@ const OneRequestMultipleQuotes = () => {
   const onFinish = (values) => {
     console.log(values);
   };
+
+  const { items } = useGetApi('request-content-api', 'variant=quantity_units', 'request_contents', false);
 
   return (
     <div className="px-4 border border-secondary-2 border-w-5 rounded-lg h-100 oneRequest--container">
@@ -71,9 +73,14 @@ const OneRequestMultipleQuotes = () => {
                     placeholder={ t(__('Piece/Pieces')) }
                     allowClear
                   >
-                    <Option value="piece1">Piece1</Option>
-                    <Option value="piece2">Piece2</Option>
-                    <Option value="piece3">Piece3</Option>
+                    <>
+                      {items.map((item) => {
+                        return (
+                          <Option key={item.key} value={item.key} >{ item.value }</Option>
+                        );
+                      })}
+
+                    </>
                   </Select>
                 </Form.Item>
               </Col>
