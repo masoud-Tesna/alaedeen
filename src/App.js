@@ -36,7 +36,7 @@ function App() {
 
   return (
     <ConfigProvider direction={ directionTheme }>
-      <Layout className="layout">
+      <Layout className="layout" style={{ minHeight: "100vh" }}>
         <Router>
           <TopPanel />
           <Header className="site--header">
