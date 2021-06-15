@@ -105,7 +105,6 @@ const OneRequestMultipleQuotes = () => {
         quantityBefore = {quantityBefore}
         pieceBefore = {pieceBefore}
       />
-
     </div>
   );
 };

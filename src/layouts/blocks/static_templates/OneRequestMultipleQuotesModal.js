@@ -59,7 +59,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
         setTrackingCode(res.data.tracking_code);
         setLastFormContent('d-none');
         setSuccessFormContent('d-block');
-        console.log(trackingCode)
+        console.log(trackingCode);
       });
   };
 
@@ -533,7 +533,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
 
             <div className={`requestSuccessFormContent ${successFormContent}`}>
               <Result
-                className="requstSendSuccess--container"
+                className="requestSendSuccess--container"
                 status="success"
                 title={ t(__('send request success message')) }
                 subTitle={ ` ${ t(__('your request tracking code')) } : HORN-${ trackingCode } ` }
