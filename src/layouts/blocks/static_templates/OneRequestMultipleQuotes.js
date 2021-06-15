@@ -31,10 +31,6 @@ const OneRequestMultipleQuotes = () => {
     setIsRequestModalVisible(true);
   };
 
-  const handleClosRequestModal = () => {
-    setIsRequestModalVisible(false);
-  };
-
 
   const { items } = useGetApi('request-content-api', 'variant=quantity_units', 'request_contents', false);
 
@@ -104,7 +100,7 @@ const OneRequestMultipleQuotes = () => {
 
       <OneRequestMultipleQuotesModal
         isRequestModalVisible = {isRequestModalVisible}
-        handleClosRequestModal = {handleClosRequestModal}
+        setIsRequestModalVisible = {setIsRequestModalVisible}
         productNameBefore = {productNameBefore}
         quantityBefore = {quantityBefore}
         pieceBefore = {pieceBefore}

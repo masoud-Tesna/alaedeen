@@ -11,13 +11,13 @@ import { useTranslation } from "react-i18next";
 import { useGetApi } from '../../../functions';
 
 // import ant design:
-import { Col, Row, Form, Input, Button, Select, InputNumber, Modal, Checkbox, Radio } from "antd";
+import { Col, Row, Form, Input, Button, Select, InputNumber, Modal, Checkbox, Radio, Result } from "antd";
 
 import axios from "axios";
 
 const { Option } = Select;
 
-const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, handleClosRequestModal, productNameBefore, quantityBefore, pieceBefore }) => {
+const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModalVisible, productNameBefore, quantityBefore, pieceBefore }) => {
 
   const { t } = useTranslation();
 
@@ -36,13 +36,31 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, handleClosReques
   const country_code = useGetApi('country-code-api', '', 'country_code', false, false);
 
 
-  const [firstFormContent, setFirstFormContent] = useState('d-block');
+
+  const [firstFormContent, setFirstFormContent] = useState('d-none');
   const [lastFormContent, setLastFormContent] = useState('d-none');
 
+  const [successFormContent, setSuccessFormContent] = useState('d-block');
 
+  const [trackingCode, setTrackingCode] = useState();
+
+
+  const handleClosRequestModal = () => {
+    setIsRequestModalVisible(false);
+    setTrackingCode('');
+    setFirstFormContent('d-block');
+    setLastFormContent('d-none');
+    setSuccessFormContent('d-none');
+  };
 
   const onFinish = (values) => {
-    axios.post(`https://hornb2b.com/horn/send-request-api`, { values });
+    axios.post(`https://hornb2b.com/horn/send-request-api`, { values })
+      .then(res => {
+        setTrackingCode(res.data.tracking_code);
+        setLastFormContent('d-none');
+        setSuccessFormContent('d-block');
+        console.log(trackingCode)
+      });
   };
 
   const phoneCodeShow = (<Form.Item name="phone_code" noStyle>
@@ -513,8 +531,20 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, handleClosReques
 
             </div>
 
+            <div className={`requestSuccessFormContent ${successFormContent}`}>
+              <Result
+                className="requstSendSuccess--container"
+                status="success"
+                title={ t(__('send request success message')) }
+                subTitle={ ` ${ t(__('your request tracking code')) } : HORN-${ trackingCode } ` }
+                extra={[
+                  <Button className="closeRequestModalBtn" key="close_modal" onClick={handleClosRequestModal}>{ t(__('close')) }</Button>,
+                ]}
+              />
+            </div>
+
             <div className="steps-action mt-4 text-center">
-              {lastFormContent === 'd-none' && (
+              {lastFormContent === 'd-none' && firstFormContent === 'd-block' && (
                 <Button
                   className="oneRequest--formContent__nextBtn"
                   onClick={() => {

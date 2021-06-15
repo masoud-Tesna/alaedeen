@@ -170,12 +170,17 @@ html:lang(ar) {
           }
         }
 
-        .oneRequest--formContent__previousBtn {
+        .oneRequest--formContent__previousBtn,
+        .closeRequestModalBtn {
           border-radius: 3px;
           width: 100px;
           &:hover {
             border-color: rgb(44, 136, 57);
             color: rgb(44, 136, 57);
+          }
+
+          span {
+            font-size: 1.7rem;
           }
         }
       }
@@ -186,6 +191,11 @@ html:lang(ar) {
 .phoneCodeSelect {
   width: 200px !important;
 }
-.hidden {
-  display: none;
+
+.requstSendSuccess--container {
+  .ant-result-icon {
+    svg {
+      font-size: 10rem;
+    }
+  }
 }
