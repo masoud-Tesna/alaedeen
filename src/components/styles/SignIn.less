@@ -1,0 +1,106 @@
+.signIn--container {
+  .signIn--formContent {
+    .signIn--loginContent {
+      .ant-form-item {
+        margin-bottom: 2rem;
+      }
+
+      .signIn--formContent__userLogin,
+      .signIn--formContent__password {
+        .ant-input-affix-wrapper {
+          border-bottom: 1px solid #707070;
+
+          &:focus {
+            box-shadow: none;
+          }
+
+          .ant-input-prefix{
+            margin-right: 1rem;
+          }
+
+          .ant-input-prefix,
+          .ant-input-suffix {
+            svg {
+              font-size: 2rem;
+            }
+          }
+
+          .ant-input {
+            &::placeholder {
+              font-size: 1.7rem;
+              color: #929191;
+            }
+          }
+        }
+
+        .ant-input-affix-wrapper.ant-input-affix-wrapper-focused {
+          box-shadow: none;
+        }
+      }
+
+      .ant-form-item-has-error .ant-input-affix-wrapper {
+        border-bottom: 1px solid #f5222d !important;
+      }
+
+      .signIn--rememberMe {
+        .ant-checkbox-wrapper {
+          color: #929191;
+
+          &:hover {
+            color: #5f5e5e;
+          }
+        }
+      }
+
+      .signIn--signInBtn {
+        margin-bottom: 0 !important;
+        .ant-btn {
+          border-radius: 6px;
+
+          span {
+            font-size: 2rem;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    .signIn--loginExtra {
+      text-align: center;
+
+      .signInWithGoogleTxt {
+        margin-bottom: 3rem;
+      }
+
+      .signInWithGoogleBtn {
+        margin-bottom: 4rem;
+        div.shadow-circle {
+          width: 54px;
+          height: 54px;
+          line-height: 49px;
+
+          img {
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .signIn--container {
+    .signIn--content {
+      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.17);
+      border-radius: 10px;
+      margin: 1.5rem 0;
+    }
+
+    .signIn--formContent {
+      .signIn--loginContent {
+        border-right: 1px solid #707070;
+      }
+    }
+  }
+}
