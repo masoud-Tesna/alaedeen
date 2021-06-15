@@ -33,6 +33,14 @@ const Header = () => {
     );
   }
 
+  if (pathName === '/sign-in') {
+    return (
+      <>
+
+      </>
+    );
+  }
+
   // if get default Top panel:
   return <DefaultHeader />
 };

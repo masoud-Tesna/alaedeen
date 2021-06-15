@@ -4,7 +4,13 @@ import { useLocation } from 'react-router-dom';
 // import Footer:
 import { DefaultFooter } from './default/DefaultFooter';
 
+// import Custom Hooks:
+import { useWindowSize } from "../../functions";
+
 const SiteFooter = () => {
+
+  // Get Width Window:
+  const { width } = useWindowSize();
 
   // Get Location:
   let location = useLocation();
@@ -18,10 +24,10 @@ const SiteFooter = () => {
   }, [location]);
 
   // Check pathName For Set Default Top Panel Or Not:
-  if (pathName === '/path') {
+  if (pathName === '/sign-in' && width <= 991) {
     return (
       <>
-        Not Default Footer
+
       </>
     );
   }
