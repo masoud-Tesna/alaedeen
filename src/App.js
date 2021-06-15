@@ -24,6 +24,7 @@ import TopPanel from "./layouts/topPanel";
 import { Header as SiteHeader } from "./layouts/header";
 import { SiteFooter } from "./layouts/footer";
 import React from "react";
+import SignIn from "./components/SignIn";
 
 function App() {
 
@@ -45,6 +46,7 @@ function App() {
             <div className="site-layout-content">
               <Switch>
                 <Route exact path="/" component={Home} />
+                <Route path="/sign-in" component={SignIn} />
                 <Route path="/factories" component={Factories} />
               </Switch>
             </div>
