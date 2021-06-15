@@ -23,6 +23,7 @@ export function __ (world, prefix = "", sign = ".") {
     .replaceAll("?", "")
     .replaceAll("!", "")
     .replaceAll(".", "")
+    .replaceAll("'", "")
     .replaceAll(",", "")
     .replaceAll("’", "")
     .replaceAll("²", "")
