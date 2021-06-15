@@ -23,7 +23,6 @@ import { useGetLanguageState } from "./contexts/language/LanguageContext";
 import TopPanel from "./layouts/topPanel";
 import { Header as SiteHeader } from "./layouts/header";
 import { SiteFooter } from "./layouts/footer";
-import React from "react";
 import SignIn from "./components/SignIn";
 
 function App() {
@@ -32,16 +31,15 @@ function App() {
 
   const directionTheme = language === 'en' ? 'ltr' : 'rtl';
 
-  const { Header, Footer, Content } = Layout;
+  const { Footer, Content } = Layout;
 
   return (
     <ConfigProvider direction={ directionTheme }>
       <Layout className="layout" style={{ minHeight: "100vh" }}>
         <Router>
           <TopPanel />
-          <Header className="site--header">
-            <SiteHeader />
-          </Header>
+
+          <SiteHeader />
           <Content>
             <div className="site-layout-content">
               <Switch>
