@@ -136,7 +136,6 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
 
 
           <Col span={14} className="bg-f6 oneRequest--formContent__right">
-
             <Spin spinning={isSpinSend} tip={ `${ t(__('send_request')) }...` }>
               <div>
 
