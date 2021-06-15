@@ -47,7 +47,7 @@ const DefaultFooter = () => {
       <Col className="bg-footer footer--container__topSection" span={24}>
         <Row justify="space-between">
           <Col>
-            <Space className="ant-space-rtl" size={ spaceSize }>
+            <Space className="" size={ spaceSize }>
               <div className="footer--topSection__logoApp" />
               <div className="d-inline my-auto">
                 <div className="d-none d-lg-inline">
