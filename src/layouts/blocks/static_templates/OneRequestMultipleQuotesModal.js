@@ -126,9 +126,9 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
               </Col>
               <Col span={24} className="align-self-end text-center oneRequest--description__features">
                 <ul>
-                  <li>Submit RFQ</li>
-                  <li>Compare Quotes</li>
-                  <li>Contact Supplier</li>
+                  <li>{ t(__('Submit RFQ')) }</li>
+                  <li>{ t(__('Compare Quotes')) }</li>
+                  <li>{ t(__('Contact Supplier')) }</li>
                 </ul>
               </Col>
             </Row>
