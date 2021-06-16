@@ -32,9 +32,10 @@ const DefaultHeader = () => {
 
   const { AuthDispatch } = useDispatchAuthState();
 
+  console.log(user_data)
+
   const handleLogOut = () => {
     AuthDispatch(logout(AuthDispatch));
-    console.log(user_data)
   }
 
   return (
