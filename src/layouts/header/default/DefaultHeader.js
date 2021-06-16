@@ -13,7 +13,9 @@ import logoXs from '../../../assets/images/logoXs.png';
 import { __ } from "../../../functions/Helper";
 
 import { useTranslation } from "react-i18next";
-import React from "react";
+
+// import user context:
+import { useGetAuthState, useDispatchAuthState, logout } from '../../../contexts/user/UserContext';
 
 // Show suffix for search input:
 const suffix = <span className="suffix-content vv-font-size-2"><i className="far fa-search vv-font-size-2" /> Search</span>;
@@ -25,6 +27,15 @@ const DefaultHeader = () => {
   const { Header } = Layout;
 
   const { t } = useTranslation();
+
+  const { user_data } = useGetAuthState();
+
+  const { AuthDispatch } = useDispatchAuthState();
+
+  const handleLogOut = () => {
+    AuthDispatch(logout(AuthDispatch));
+    // console.log(user_data)
+  }
 
   return (
     <Header className="site--header">
@@ -53,18 +64,22 @@ const DefaultHeader = () => {
                       <i className="fal fa-user display-3 text-70 d-block" />
                     </Col>
                     <Col span={16}>
-                      <Row gutter={[0, 24]}>
-                        <Col span={24}>
-                          <Link className="text-70 vv-font-size-2" to={"/sign-in"} >
-                            {t(__('Sign in'))}
-                          </Link>
-                        </Col>
-                        <Col span={24}>
-                          <a className="text-70 vv-font-size-2" href="https://hornb2b.com/horn/register/">
-                            {t(__('Join Free'))}
-                          </a>
-                        </Col>
-                      </Row>
+                      {user_data.user_data.user_id ?
+                        <span onClick={handleLogOut}>logout</span> :
+                        <Row gutter={[0, 24]}>
+                          <Col span={24}>
+                            <Link className="text-70 vv-font-size-2" to={"/sign-in"} >
+                              {t(__('Sign in'))}
+                            </Link>
+                          </Col>
+                          <Col span={24}>
+                            <a className="text-70 vv-font-size-2" href="https://hornb2b.com/horn/register/">
+                              {t(__('Join Free'))}
+                            </a>
+                          </Col>
+                        </Row>
+                      }
+
                     </Col>
                   </Row>
                 </Col>
