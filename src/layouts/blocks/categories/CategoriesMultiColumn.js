@@ -128,7 +128,7 @@ const CategoriesMultiColumn = () => {
                               <Col span={24} className="categoriesMultiColumn--img text-center my-2">
                                 <div className="categoriesMultiColumn--img__wrapper">
                                   {category.main_pair ?
-                                    <ShowResponsiveImage imagePath={ category.main_pair.detailed.image_path } imageFolder='detailed' width={80} height={80} imageAlt={ category.category }/> :
+                                    <ShowResponsiveImage imagePath={ category.main_pair.detailed.image_path } imageFolder='detailed' width={50} height={50} imageAlt={ category.category }/> :
                                     <Image
                                       width={80}
                                       height={80}
