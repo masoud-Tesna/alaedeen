@@ -8,7 +8,7 @@ import './styles/App.less';
 import 'flag-icon-css/less/flag-icon.less';
 
 // Components:
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect, useHistory, useLocation } from "react-router-dom";
 
 // Design:
 import { ConfigProvider, Layout } from 'antd';
