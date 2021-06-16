@@ -41,7 +41,7 @@ function App() {
 
           <SiteHeader />
           <Content>
-            <div className="site-layout-content">
+            <div className="site-layout-content" id="siteLayoutContent">
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/sign-in" component={SignIn} />
