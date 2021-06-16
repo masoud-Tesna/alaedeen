@@ -425,7 +425,7 @@ const FactoriesShow = () => {
                 groupFields_2
               ];
             }
-            //console.log(factory.general.company)
+
             return (
               <Col span={24} key = { factory.company_id } className="bg-white rounded-10 p-3 border border-70 factories--item">
                 <Row gutter={16} className="h-100">
