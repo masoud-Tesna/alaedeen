@@ -34,7 +34,7 @@ const SignIn = () => {
   const { user_data } = useGetAuthState();
   const { AuthDispatch } = useDispatchAuthState();
 
-  if (user_data.user_data.user_id) {
+  if (user_data.auth.user_id) {
     history.push('/');
   }
 
