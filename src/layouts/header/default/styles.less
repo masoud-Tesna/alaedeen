@@ -31,12 +31,14 @@ html:lang(ar) {
   line-height: 0 !important;
   overflow-x: hidden !important;
   padding: 0 18px;
+
   .logo {
     margin-left: 32px;
     img {
       height: 50px;
     }
   }
+
   .header--content__left {
     .header--left__searchBox {
       .ant-input-affix-wrapper {
@@ -61,7 +63,44 @@ html:lang(ar) {
       }
     }
   }
+
   .header--content__right {
+    .header--content__account {
+      .content--account__companyLogo {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        box-shadow: 0 0 1rem rgba(0, 0, 0, 0.38);
+        img {
+          border-radius: 50%;
+          width: 100%;
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+        .content--account__companyName,
+        .anticon.anticon-down svg {
+          color: #2e8339;
+        }
+      }
+
+      .anticon.anticon-down {
+        margin: 0 1rem;
+
+        svg {
+          transition: all 0.1s 0.1s;
+          font-weight: bolder;
+        }
+      }
+
+      .content--account__companyName,
+      .anticon.anticon-down svg {
+        font-size: 1.5rem;
+      }
+    }
+
     .btn-request {
       text-align: right !important;
       .ant-btn {
@@ -79,6 +118,7 @@ html:lang(ar) {
       }
     }
   }
+
   .header--mobile__searchBox {
     .ant-input-affix-wrapper {
       padding: 0 !important;
@@ -105,6 +145,22 @@ html:lang(ar) {
     }
     .ant-input-affix-wrapper-focused {
       box-shadow: none !important;
+    }
+  }
+}
+
+.header--userMenu {
+  .header--userMenu__signOut {
+    .ant-dropdown-menu-title-content {
+      width: 100%;
+    }
+    .header--userMenu__signOutBtn {
+      padding: 0;
+      span {
+        color: #FFFFFF;
+        font-weight: bolder;
+        font-size: 1.5rem;
+      }
     }
   }
 }
