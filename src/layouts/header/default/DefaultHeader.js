@@ -34,7 +34,7 @@ const DefaultHeader = () => {
 
   const handleLogOut = () => {
     AuthDispatch(logout(AuthDispatch));
-    // console.log(user_data)
+    console.log(user_data)
   }
 
   return (
