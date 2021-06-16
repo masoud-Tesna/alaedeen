@@ -1,4 +1,4 @@
-import { AUTH_SIGN_IN, CHECK_REMEMBER_ME, AUTH_LOGOUT, AUTH_LOADING } from "./UserActions";
+import { AUTH_SIGN_IN, CHECK_REMEMBER_ME, AUTH_LOGOUT, AUTH_LOADING, AUTH_LOADING_FALSE } from "./UserActions";
 
 
 import { fn_set_local_storage, fn_set_local_storage_with_expiry } from "../../functions/Helper";
@@ -13,15 +13,19 @@ export function UserReducer(state, action) {
       /*fn_set_local_storage("user_login", action.user_login);
       fn_set_local_storage("user_password", action.user_password);*/
       return {
-        ...state, user_data: action.user_data, load: false
+        ...state, auth: action.user_data, load: false
       };
     case AUTH_LOGOUT:
       return {
-        ...state, user_data: [], load: false
+        ...state, auth: [], load: false
       };
     case AUTH_LOADING:
       return {
         ...state, load: true
+      };
+    case AUTH_LOADING_FALSE:
+      return {
+        ...state, load: false
       };
     case CHECK_REMEMBER_ME:
       fn_set_local_storage("user_login", action.user_login);
