@@ -114,7 +114,6 @@ const DefaultHeader = () => {
                       <>
                         { user_data.auth.user_id ?
                           <>
-
                             <Dropdown overlay={menu} trigger={['click']} openClassName="content--account__DropDownIsOpen" onVisibleChange={visible => setDropDownIsActive(visible)} >
 
                               <Row className="w-100" align="middle" gutter={12} onClick={e => e.preventDefault()}>
@@ -126,19 +125,19 @@ const DefaultHeader = () => {
                                     <i className="fal fa-user display-3 text-70 d-block" />
                                   }
                                 </Col>
+
                                 <Col span={16}>
-                              <span className="font-weight-600 content--account__companyName">
-                                {user_data.auth.company ?
-                                  <>{ user_data.auth.company }</> :
-                                  <>{ ` ${user_data.auth.firstname} ${user_data.auth.lastname} ` }</>
-                                }
-                              </span>
+                                  <span className="font-weight-600 content--account__companyName">
+                                    {user_data.auth.company ?
+                                      <>{ user_data.auth.company }</> :
+                                      <>{ ` ${user_data.auth.firstname} ${user_data.auth.lastname} ` }</>
+                                    }
+                                  </span>
                                   <DownOutlined rotate={ dropDownIsActive ? 180 : 0} />
                                 </Col>
                               </Row>
 
                             </Dropdown>
-
                           </> :
                           <>
                             <Col>
