@@ -20,6 +20,7 @@ import { signInAction, useGetAuthState, useDispatchAuthState, signIn, checkSignI
 
 import axios from "axios";
 import { useGetLanguageState } from "../contexts/language/LanguageContext";
+import { useEffect } from "react";
 
 const SignIn = () => {
 
@@ -53,15 +54,17 @@ const SignIn = () => {
         history.push('/');
       })
 
-    /*axios.post(`https://hornb2b.com/horn/login-api`, { user_login: values.user_login, password: values.password, remember_me: values.remember_me })
-      .then(res => {
-        console.log(res);
-      });*/
-
   }
 
+  useEffect(() => {
+    document.getElementById("siteLayoutContent").classList.add("siteLayoutContent__signIn--page");
+    return(() => {
+      document.getElementById("siteLayoutContent").classList.remove("siteLayoutContent__signIn--page");
+    })
+  }, [])
+
   return (
-    <Row justify={"center"} className="signIn--container">
+    <Row justify={"center"} className="signIn--container h-100">
       <Col xs={24} lg={12} className="signIn--content bg-white p-5">
         <Form
           className="h-100 signIn--formContent"
