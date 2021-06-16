@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // import Styles For default:
 import './styles.less';
 
 // Ant Design Import:
-import { Row, Col, Divider, Space, Button, Collapse, Drawer } from 'antd';
+import { Row, Col, Divider, Space, Button, Collapse, Drawer, Skeleton } from 'antd';
 import { DownOutlined } from "@ant-design/icons";
 
 // import categories drop down:
@@ -26,9 +26,17 @@ import { useWindowSize } from "../../../functions";
 // import helper functions:
 import { __ } from "../../../functions/Helper";
 
+// import i18next component:
 import { useTranslation } from "react-i18next";
 
+// import user context:
+import { logout, useDispatchAuthState, useGetAuthState } from "../../../contexts/user/UserContext";
+
 const DefaultTopPanel = () => {
+
+  const { user_data } = useGetAuthState();
+
+  const { AuthDispatch } = useDispatchAuthState();
 
   const { t } = useTranslation();
 
@@ -87,6 +95,12 @@ const DefaultTopPanel = () => {
     setVisibleTopPanelMenuXs(false);
   }
 
+  // function for handle sign out
+  const handleLogOut = () => {
+    AuthDispatch(logout(AuthDispatch));
+    closeTopPanelMenuXs();
+  }
+
   // for show languages and currencies:
   const { Panel } = Collapse;
 
@@ -112,25 +126,71 @@ const DefaultTopPanel = () => {
             <Col span={24} className="align-self-start topPanel--menuXs__topSection">
               <Col span={24} className="menuXs--bgTopSection__container">
                 <Row className="h-100 px-4" align="middle" gutter={16}>
-                  <Col>
-                    <i className="fal fa-user text-white vv-font-size-4-5" />
-                  </Col>
-                  <Col>
-                    <Row gutter={[0, 5]}>
-                      <Col span={24} className="text-white vv-font-size-1-7 font-weight-bolder">
-                        {t(__('Hello'))}
-                      </Col>
-                      <Col span={24}>
-                        <Link className="text-white vv-font-size-1-7 font-weight-600" to={"/sign-in"} >
-                         {t(__(' Sign in'))}
-                        </Link>
-                        <Divider type="vertical" className="border-70"/>
-                        <a className="text-white vv-font-size-1-7 font-weight-600" href="https://hornb2b.com/horn/register/">
-                          {t(__('Join Free'))}
-                        </a>
-                      </Col>
-                    </Row>
-                  </Col>
+
+                  { user_data.load ?
+                    <>
+                      <Skeleton avatar paragraph={{ rows: 1 }} />
+                    </> :
+                    <>
+                      { user_data.auth.user_id ?
+                        <>
+                          <Col span={ user_data.auth.company_logo ? 7 : 5 }>
+                            { user_data.auth.company_logo ?
+                              <span className="content--account__companyLogo">
+                                  <img src={user_data.auth.company_logo.logo_path} alt=""/>
+                                </span> :
+                              <i className="fal fa-user text-white vv-font-size-4-5" />
+                            }
+                          </Col>
+
+                          <Col span={ user_data.auth.company_logo ? 17 : 19 }>
+                            <Row gutter={[0, 5]}>
+                              <Col span={24} className="text-white vv-font-size-1-7 font-weight-bolder">
+                                {t(__('Hello'))}
+                              </Col>
+                              <Col span={24} className="d-flex">
+                                <div className="text-white vv-font-size-1-5 font-weight-600 text-truncate" style={{ direction: 'rtl' }}>
+                                  {user_data.auth.company ?
+                                    <>{ user_data.auth.company }</> :
+                                    <>{ ` ${user_data.auth.firstname} ${user_data.auth.lastname} ` }</>
+                                  }
+                                </div>
+
+                                <Divider type="vertical" className="border-70 my-auto"/>
+
+                                <div className="text-white vv-font-size-1-5 font-weight-600 cursor-pointer" onClick={handleLogOut}>
+                                  { t(__('sign out')) }
+                                </div>
+                              </Col>
+                            </Row>
+                          </Col>
+                        </> :
+                        <>
+                          <Col>
+                            <i className="fal fa-user text-white vv-font-size-4-5" />
+                          </Col>
+
+                          <Col>
+                            <Row gutter={[0, 5]}>
+                              <Col span={24} className="text-white vv-font-size-1-7 font-weight-bolder">
+                                {t(__('Hello'))}
+                              </Col>
+                              <Col span={24}>
+                                <Link className="text-white vv-font-size-1-7 font-weight-600" to={"/sign-in"} >
+                                  {t(__(' Sign in'))}
+                                </Link>
+                                <Divider type="vertical" className="border-70"/>
+                                <a className="text-white vv-font-size-1-7 font-weight-600" href="https://hornb2b.com/horn/register/">
+                                  {t(__('Join Free'))}
+                                </a>
+                              </Col>
+                            </Row>
+                          </Col>
+                        </>
+                      }
+                    </>
+                  }
+
                 </Row>
               </Col>
             </Col>
