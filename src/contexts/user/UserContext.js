@@ -10,12 +10,7 @@ import { signInAction, checkRememberAction, logOutAction, checkSignInLoadingActi
 import axios from "axios";
 
 import LoaderSpinner from '../../layouts/blocks/static_templates/LoadSpinner';
-import {
-  changeLanguageAction,
-  getClientLanguageAction,
-  getClientLanguageLoadingAction
-} from "../language/LanguageActionCreators";
-
+import { fn_get_local_storage_with_expiry } from "../../functions/Helper";
 
 // User Context Create:
 const userContext = createContext();
@@ -29,18 +24,28 @@ export function UserProvider ({ children }) {
     UserInitialState
   );
 
-
-
   useEffect(() => {
 
     let mounted  = true;
 
-    const clientUserLoginLocalStorage = window.localStorage.getItem('user_login');
-    const clientPasswordLocalStorage = window.localStorage.getItem('user_password');
+    const checkRememberMe = localStorage.getItem('remember_me');
+
+    let clientUserLoginLocalStorage,
+        clientPasswordLocalStorage;
+
+    if (checkRememberMe) {
+      clientUserLoginLocalStorage = localStorage.getItem('user_login');
+      clientPasswordLocalStorage = localStorage.getItem('user_password');
+    }else {
+      clientUserLoginLocalStorage = fn_get_local_storage_with_expiry('user_login');
+      clientPasswordLocalStorage = fn_get_local_storage_with_expiry('user_password');
+    }
+
     if (clientUserLoginLocalStorage && clientPasswordLocalStorage) {
+      dispatch(checkSignInLoadingAction());
       signIn(clientUserLoginLocalStorage, clientPasswordLocalStorage)
         .then(res => {
-          dispatch(signInAction(res.data.auth, clientUserLoginLocalStorage, clientPasswordLocalStorage));
+          dispatch(signInAction(res.data.auth, clientUserLoginLocalStorage, clientPasswordLocalStorage, false));
         });
       mounted  = false;
       return () => mounted = false;
@@ -49,6 +54,7 @@ export function UserProvider ({ children }) {
     return () => mounted = false;
   }, []);
 
+  console.log(auth)
   return (
     <userContext.Provider value={{ auth, dispatch }}>
       <div className={ `${ auth.load ? 'd-block' : 'd-none' }` }>
@@ -64,11 +70,16 @@ export async function signIn(user_login, password) {
   return await axios.post(`https://hornb2b.com/horn/login-api`, { user_login: user_login, password: password });
 }
 
-export async function useLogout() {
-  const { AuthDispatch } = useDispatchAuthState();
-  AuthDispatch(logOutAction);
-  window.localStorage.removeItem('user_login');
-  window.localStorage.removeItem('user_password');
+export async function logout(dispatch) {
+  dispatch(checkSignInLoadingAction());
+
+  setTimeout(() => {
+    dispatch(logOutAction());
+    window.localStorage.removeItem('user_login');
+    window.localStorage.removeItem('user_password');
+    window.localStorage.removeItem('remember_me');
+  }, 1000);
+
 }
 
 // get current user data
@@ -82,4 +93,4 @@ export function useDispatchAuthState() {
   return { AuthDispatch };
 }
 
-export { signInAction, checkSignInLoadingAction } from './UserActionCreators';
+export { signInAction, checkSignInLoadingAction, checkRememberAction } from './UserActionCreators';
