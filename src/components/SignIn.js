@@ -1,12 +1,11 @@
-
 // import style file:
 import './styles/SignIn.less';
 
-// import Design:
-import { Button, Checkbox, Col, Divider, Form, Input, Row } from "antd";
+import { useHistory  } from "react-router-dom";
 
-// import Custom Hooks:
-import { useWindowSize } from "../functions";
+
+// import Design:
+import { Button, Checkbox, Col, Form, Input, Row } from "antd";
 
 // import helper functions:
 import { __ } from "../functions/Helper";
@@ -16,14 +15,43 @@ import { EyeInvisibleOutlined, EyeTwoTone, LockOutlined, UserOutlined } from "@a
 // import google pic:
 import googlePic from '../assets/images/google.png';
 
+// import language context:
+import { signInAction, useGetAuthState, useDispatchAuthState, signIn, checkSignInLoadingAction, checkRememberAction } from '../contexts/user/UserContext';
+
+import axios from "axios";
+
 const SignIn = () => {
+
+  const history = useHistory();
 
   const { t } = useTranslation();
 
-  const { width } = useWindowSize();
+  //initial state and dispatch for auth context:
+  const { user_data } = useGetAuthState();
+  const { AuthDispatch } = useDispatchAuthState();
+
+  if (user_data.user_data.user_id) {
+    history.push('/');
+  }
 
   const onFinish = values => {
-    console.log(values);
+    AuthDispatch(checkSignInLoadingAction());
+    signIn(values.user_login, values.password)
+      .then(res => {
+        if (values.remember_me) {
+          AuthDispatch(signInAction(res.data.auth, values.user_login, values.password, false));
+          AuthDispatch(checkRememberAction(values.user_login, values.password));
+        }
+      })
+      .then(() => {
+        history.push('/');
+      })
+
+    /*axios.post(`https://hornb2b.com/horn/login-api`, { user_login: values.user_login, password: values.password, remember_me: values.remember_me })
+      .then(res => {
+        console.log(res);
+      });*/
+
   }
 
   return (
