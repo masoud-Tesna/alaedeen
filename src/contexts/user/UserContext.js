@@ -28,6 +28,8 @@ export function UserProvider ({ children }) {
     UserInitialState
   );
 
+  const clientLang = localStorage.getItem('client_lang');
+
   useEffect(() => {
 
     let mounted  = true;
@@ -56,7 +58,7 @@ export function UserProvider ({ children }) {
     }
 
     return () => mounted = false;
-  }, []);
+  }, [language]);
 
   return (
     <userContext.Provider value={{ auth, dispatch }}>
