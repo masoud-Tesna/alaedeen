@@ -75,15 +75,20 @@ export async function signIn(user_login, password, language) {
   return await axios.post(`https://hornb2b.com/horn/login-api/?lang_code=${language}`, { user_login: user_login, password: password });
 }
 
+async function signOutAxios() {
+  return await axios.get(`https://hornb2b.com/horn/logout-api/`);
+}
+
 export async function logout(dispatch) {
   dispatch(checkSignInLoadingAction());
 
-  setTimeout(() => {
-    dispatch(logOutAction());
-    window.localStorage.removeItem('user_login');
-    window.localStorage.removeItem('user_password');
-    window.localStorage.removeItem('remember_me');
-  }, 1000);
+  signOutAxios()
+    .then(res => {
+      dispatch(logOutAction());
+      window.localStorage.removeItem('user_login');
+      window.localStorage.removeItem('user_password');
+      window.localStorage.removeItem('remember_me');
+    });
 
 }
 
