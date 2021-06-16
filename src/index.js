@@ -14,11 +14,11 @@ import * as serviceWorker from './serviceWorker';
 
 const Application = () => {
   return (
-    <UserProvider>
-      <LanguageProvider>
+    <LanguageProvider>
+      <UserProvider>
         <App />
-      </LanguageProvider>
-    </UserProvider>
+      </UserProvider>
+    </LanguageProvider>
   );
 }
 

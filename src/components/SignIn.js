@@ -19,8 +19,12 @@ import googlePic from '../assets/images/google.png';
 import { signInAction, useGetAuthState, useDispatchAuthState, signIn, checkSignInLoadingAction, checkRememberAction } from '../contexts/user/UserContext';
 
 import axios from "axios";
+import { useGetLanguageState } from "../contexts/language/LanguageContext";
 
 const SignIn = () => {
+
+  // initial state for language:
+  const { language } = useGetLanguageState();
 
   const history = useHistory();
 
@@ -36,11 +40,13 @@ const SignIn = () => {
 
   const onFinish = values => {
     AuthDispatch(checkSignInLoadingAction());
-    signIn(values.user_login, values.password)
+    signIn(values.user_login, values.password, language)
       .then(res => {
         if (values.remember_me) {
           AuthDispatch(signInAction(res.data.auth, values.user_login, values.password, false));
           AuthDispatch(checkRememberAction(values.user_login, values.password));
+        }else {
+          AuthDispatch(signInAction(res.data.auth, values.user_login, values.password));
         }
       })
       .then(() => {

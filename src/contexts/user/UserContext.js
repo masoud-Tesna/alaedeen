@@ -11,12 +11,16 @@ import axios from "axios";
 
 import LoaderSpinner from '../../layouts/blocks/static_templates/LoadSpinner';
 import { fn_get_local_storage_with_expiry } from "../../functions/Helper";
+import { useGetLanguageState } from "../language/LanguageContext";
 
 // User Context Create:
 const userContext = createContext();
 
 // create User Context Provide:
 export function UserProvider ({ children }) {
+
+  // initial state for language:
+  const { language } = useGetLanguageState();
 
   // useReducer For Language use in app
   const [auth, dispatch] = useReducer(
@@ -43,7 +47,7 @@ export function UserProvider ({ children }) {
 
     if (clientUserLoginLocalStorage && clientPasswordLocalStorage) {
       dispatch(checkSignInLoadingAction());
-      signIn(clientUserLoginLocalStorage, clientPasswordLocalStorage)
+      signIn(clientUserLoginLocalStorage, clientPasswordLocalStorage, language)
         .then(res => {
           dispatch(signInAction(res.data.auth, clientUserLoginLocalStorage, clientPasswordLocalStorage, false));
         });
@@ -65,8 +69,8 @@ export function UserProvider ({ children }) {
 }
 
 // function for sign in:
-export async function signIn(user_login, password) {
-  return await axios.post(`https://hornb2b.com/horn/login-api`, { user_login: user_login, password: password });
+export async function signIn(user_login, password, language) {
+  return await axios.post(`https://hornb2b.com/horn/login-api/?lang_code=${language}`, { user_login: user_login, password: password });
 }
 
 export async function logout(dispatch) {
