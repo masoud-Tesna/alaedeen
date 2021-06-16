@@ -54,7 +54,6 @@ export function UserProvider ({ children }) {
     return () => mounted = false;
   }, []);
 
-  console.log(auth)
   return (
     <userContext.Provider value={{ auth, dispatch }}>
       <div className={ `${ auth.load ? 'd-block' : 'd-none' }` }>
