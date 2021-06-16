@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // import Styles For default:
@@ -5,6 +6,7 @@ import './styles.less';
 
 // Ant Design Import:
 import { Row, Col, Input, Button, Layout, Skeleton, Dropdown, Menu } from 'antd';
+import { DownOutlined } from "@ant-design/icons";
 
 // import logo:
 import logoXs from '../../../assets/images/logoXs.png';
@@ -12,23 +14,19 @@ import logoXs from '../../../assets/images/logoXs.png';
 // import helper functions:
 import { __ } from "../../../functions/Helper";
 
+// import i18next component:
 import { useTranslation } from "react-i18next";
 
 // import user context:
 import { useGetAuthState, useDispatchAuthState, logout } from '../../../contexts/user/UserContext';
-import { DownOutlined, UserOutlined } from "@ant-design/icons";
-import React, { useState } from "react";
-import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
 
 // Show suffix for search input:
 const suffix = <span className="suffix-content vv-font-size-2"><i className="far fa-search vv-font-size-2" /> Search</span>;
 
+// Show prefix for search input:
 const prefix = <i className="far fa-search text-primary vv-font-size-2" />;
 
 const DefaultHeader = () => {
-
-  // initial state for language:
-  const { language } = useGetLanguageState();
 
   const [dropDownIsActive, setDropDownIsActive] = useState(false);
 
@@ -40,6 +38,7 @@ const DefaultHeader = () => {
 
   const { AuthDispatch } = useDispatchAuthState();
 
+  // function for handle sign out
   const handleLogOut = () => {
     AuthDispatch(logout(AuthDispatch));
   }
