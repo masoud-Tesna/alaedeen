@@ -10,7 +10,7 @@ import { LanguageProvider } from "./contexts/language/LanguageContext";
 
 import { UserProvider } from "./contexts/user/UserContext";
 
-import * as serviceWorker from './serviceWorker';
+/*import * as serviceWorker from './serviceWorker';*/
 
 const Application = () => {
   return (
@@ -24,4 +24,4 @@ const Application = () => {
 
 ReactDOM.render( <Application />, document.getElementById('HornApp'));
 
-serviceWorker.register();
+/*serviceWorker.register();*/
