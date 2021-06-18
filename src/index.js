@@ -22,6 +22,6 @@ const Application = () => {
   );
 }
 
-ReactDOM.render( <Application />, document.getElementById('HornApp'));
+ReactDOM.hydrate( <Application />, document.getElementById('HornApp'));
 
 /*serviceWorker.register();*/
