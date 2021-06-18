@@ -1,5 +1,6 @@
 {
   "name": "horn-react",
+  "proxy": "https://hornb2b.com",
   "homepage": "https://hornb2b.com/",
   "version": "0.1.0",
   "private": true,
