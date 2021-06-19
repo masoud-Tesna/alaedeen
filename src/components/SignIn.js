@@ -6,11 +6,11 @@ import { useHistory  } from "react-router-dom";
 
 // import Design:
 import { Button, Checkbox, Col, Form, Input, Row } from "antd";
+import { EyeInvisibleOutlined, EyeTwoTone, LockOutlined, UserOutlined } from "@ant-design/icons";
 
 // import helper functions:
 import { __ } from "../functions/Helper";
 import { useTranslation } from "react-i18next";
-import { EyeInvisibleOutlined, EyeTwoTone, LockOutlined, UserOutlined } from "@ant-design/icons";
 
 // import google pic:
 import googlePic from '../assets/images/google.png';
@@ -18,7 +18,6 @@ import googlePic from '../assets/images/google.png';
 // import language context:
 import { signInAction, useGetAuthState, useDispatchAuthState, signIn, checkSignInLoadingAction, checkRememberAction } from '../contexts/user/UserContext';
 
-import axios from "axios";
 import { useGetLanguageState } from "../contexts/language/LanguageContext";
 import { useEffect } from "react";
 

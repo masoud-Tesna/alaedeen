@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 // import style file:
 import './styles/OneRequestMultipleQuotes.less';
@@ -14,7 +14,6 @@ import { useGetApi } from '../../../functions';
 import { Col, Row, Form, Input, Button, Select, InputNumber, Modal, Checkbox, Radio, Result, Spin } from "antd";
 
 import axios from "axios";
-import LoaderSpinner from "./LoadSpinner";
 
 const { Option } = Select;
 

@@ -6,7 +6,7 @@ import { UserReducer } from './UserReducer';
 // import user initial state:
 import { UserInitialState } from './UserInitialState';
 
-import { signInAction, checkRememberAction, logOutAction, checkSignInLoadingAction, signInLoadingFalseAction } from './UserActionCreators';
+import { signInAction, logOutAction, checkSignInLoadingAction, signInLoadingFalseAction } from './UserActionCreators';
 import axios from "axios";
 
 import LoaderSpinner from '../../layouts/blocks/static_templates/LoadSpinner';
