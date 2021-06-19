@@ -52,6 +52,7 @@ const en = {
   "professional_certifications_and_approvals": "Professional certifications and approvals",
   "chat_now": "Chat Now",
   "contacts": "contacts",
+  "language_and_currency": "Language & Currency",
   "search": "Search"
 };
 
