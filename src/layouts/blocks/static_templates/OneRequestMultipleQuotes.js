@@ -74,11 +74,15 @@ const OneRequestMultipleQuotes = () => {
                     placeholder={ t(__('Piece/Pieces')) }
                     onChange={e => setPieceBefore(e)}
                     allowClear
+                    showSearch
+                    filterOption={(input, option) =>
+                      option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                    }
                   >
                     <>
-                      {items.map((item) => {
+                      {items.map((item, index) => {
                         return (
-                          <Option key={item.key} value={item.key} >{ item.value }</Option>
+                          <Option key={(index + 2) * 4} value={item.key} >{ item.value }</Option>
                         );
                       })}
                     </>
