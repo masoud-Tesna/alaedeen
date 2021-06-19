@@ -23,6 +23,8 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
 
   const quantity_units = useGetApi('request-content-api', 'variant=quantity_units', 'request_contents', false);
 
+  const country_lists = useGetApi('country-lists-api', '', 'country_lists', false);
+
   const order_values = useGetApi('request-content-api', 'variant=order_values', 'request_contents', false);
 
   const supp_locations = useGetApi('request-content-api', 'variant=supp_locations', 'request_contents', false);
@@ -43,6 +45,10 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
   const [successFormContent, setSuccessFormContent] = useState('d-none');
 
   const [trackingCode, setTrackingCode] = useState();
+
+  const [countryCode, setCountryCode] = useState('IR');
+
+  const cityLists = useGetApi('city-lists-api', `country_code=${countryCode}`, 'city_lists', false);
 
   async function getRequestCheck() {
     return await axios.get("https://hornb2b.com/horn/request-check-api/?table=?:vv_products_request&column=request_check");
@@ -260,7 +266,39 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                       <Row gutter={24}>
                         <Col span={12}>
                           <Form.Item
-                            className="oneRequest--formContent__quantity"
+                            className="oneRequest--formContent__piece"
+                            name="auth_country"
+                            label={ t(__('country')) }
+                            labelCol={{ span: 24 }}
+                            rules={[
+                              {
+                                required: true,
+                              },
+                            ]}
+                          >
+                            <Select
+                              placeholder={ t(__('country')) }
+                              allowClear
+                              showSearch
+                              filterOption={(input, option) =>
+                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                              }
+                              onChange={e => setCountryCode(e)}
+                            >
+                              <>
+                                {country_lists.items.map((item) => {
+                                  return (
+                                    <Option key={item.code} value={item.code} >{ item.country }</Option>
+                                  );
+                                })}
+                              </>
+                            </Select>
+                          </Form.Item>
+                        </Col>
+
+                        <Col span={12}>
+                          <Form.Item
+                            className="oneRequest--formContent__piece"
                             name="auth_city"
                             label={ t(__('city')) }
                             labelCol={{ span: 24 }}
@@ -268,30 +306,24 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                               {
                                 required: true,
                               },
-                            ]}>
-                            <Input
-                              placeholder={ t(__('Enter Your city')) }
-                            />
-                          </Form.Item>
-                        </Col>
-
-                        <Col className="align-self-end" span={12}>
-                          <Form.Item
-                            className="oneRequest--formContent__terms"
-                            name="terms"
-                            valuePropName="checked"
-                            rules={[
-                              {
-                                validator: (_, value) =>
-                                  value ? Promise.resolve() : Promise.reject(new Error( t(__('Should accept terms')) )),
-                              },
                             ]}
                           >
-                            <Checkbox
-                              value="yes"
+                            <Select
+                              placeholder={ t(__('city')) }
+                              allowClear
+                              showSearch
+                              filterOption={(input, option) =>
+                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                              }
                             >
-                              { t(__('I Agree to Terms and Conditions')) }
-                            </Checkbox>
+                              <>
+                                {cityLists.items.map((item) => {
+                                  return (
+                                    <Option key={item.code} value={item.code} >{ item.state }</Option>
+                                  );
+                                })}
+                              </>
+                            </Select>
                           </Form.Item>
                         </Col>
                       </Row>
@@ -343,6 +375,10 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                             <Select
                               placeholder={ t(__('Piece/Pieces')) }
                               allowClear
+                              showSearch
+                              filterOption={(input, option) =>
+                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                              }
                             >
                               <>
                                 {quantity_units.items.map((item) => {
@@ -397,6 +433,10 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                             <Select
                               placeholder={ t(__('order_values')) }
                               allowClear
+                              showSearch
+                              filterOption={(input, option) =>
+                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                              }
                             >
                               <>
                                 {order_values.items.map((item, index) => {
@@ -428,6 +468,10 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                             <Select
                               placeholder={ t(__('supp_locations')) }
                               allowClear
+                              showSearch
+                              filterOption={(input, option) =>
+                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                              }
                             >
                               <>
                                 {supp_locations.items.map((item, index) => {
@@ -455,6 +499,10 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                             <Select
                               placeholder={ t(__('requirement_urgency')) }
                               allowClear
+                              showSearch
+                              filterOption={(input, option) =>
+                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                              }
                             >
                               <>
                                 {requirement_urgencies.items.map((item, index) => {
@@ -509,6 +557,10 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                             <Select
                               placeholder={ t(__('regular_type')) }
                               allowClear
+                              showSearch
+                              filterOption={(input, option) =>
+                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                              }
                             >
                               <>
                                 {regular_types.items.map((item, index) => {
@@ -523,11 +575,23 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                       </Row>
                     </Col>
 
-                    <Col className="text-center mt-2 d-none" span={24}>
-                      <Form.Item className="oneRequest--formContent__btn">
-                        <Button className="border border-secondary-2 rounded-3 bg-secondary-2 text-white vv-font-size-1 font-weight-500 p-0" size="large" htmlType="submit">
-                          { t(__('Request a Quote')) }
-                        </Button>
+                    <Col className="align-self-end" span={24}>
+                      <Form.Item
+                        className="oneRequest--formContent__terms"
+                        name="terms"
+                        valuePropName="checked"
+                        rules={[
+                          /*{
+                            validator: (_, value) =>
+                              value ? Promise.resolve() : Promise.reject(new Error( t(__('Should accept terms')) )),
+                          },*/
+                        ]}
+                      >
+                        <Checkbox
+                          value="yes"
+                        >
+                          { t(__('I Agree to Terms and Conditions')) }
+                        </Checkbox>
                       </Form.Item>
                     </Col>
                   </Row>
