@@ -209,11 +209,11 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                             name="phone_number"
                             label={ t(__('Mobile No.')) }
                             labelCol={{ span: 24 }}
-                            rules={[
+                            /*rules={[
                               {
                                 required: true,
                               },
-                            ]}
+                            ]}*/
                           >
                             <Input
                               addonBefore={phoneCodeShow}
@@ -249,11 +249,11 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                             name="auth_company"
                             label={ t(__('Company name')) }
                             labelCol={{ span: 24 }}
-                            rules={[
+                            /*rules={[
                               {
                                 required: true,
                               },
-                            ]}>
+                            ]}*/>
                             <Input
                               placeholder={ t(__('Enter Your Company name')) }
                             />
@@ -302,11 +302,11 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                             name="auth_city"
                             label={ t(__('city')) }
                             labelCol={{ span: 24 }}
-                            rules={[
+                            /*rules={[
                               {
                                 required: true,
                               },
-                            ]}
+                            ]}*/
                           >
                             <Select
                               placeholder={ t(__('city')) }
