@@ -80,11 +80,15 @@ const RequestsList = () => {
                       return (
                         <div key={ requestList.request_id } className="d-inline requestsList--item__content">
                           <Row className="p-3 bg-white rounded-lg requestsList--item">
-                            <Col span={12} className="text-left text-black vv-font-size-1-9 my-auto">
-                              { requestList.product_name }
-                            </Col>
-                            <Col span={12} className="text-right text-primary vv-font-size-1-5 my-auto">
-                              <Moment format="DD MMM, YYYY" unix>{timestamp}</Moment>
+                            <Col span={24}>
+                              <Row className="requestsList--item__first">
+                                <Col span={12} className="text-black vv-font-size-1-9 my-auto requestsList--item__firstOne">
+                                  { requestList.product_name }
+                                </Col>
+                                <Col span={12} className="text-primary vv-font-size-1-5 my-auto requestsList--item__firstTow">
+                                  <Moment format="DD MMM, YYYY" unix>{timestamp}</Moment>
+                                </Col>
+                              </Row>
                             </Col>
                             <Col span={24} className="text-70 vv-font-size-1-5 requestsList--item__buyerLooking">
                               { t(__('Buyer is looking for')) } '{ requestList.product_name }'.

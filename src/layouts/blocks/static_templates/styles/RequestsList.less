@@ -5,8 +5,16 @@ html:lang(ar) {
     direction: ltr;
   }
 
-  .requestsList--item__location {
+  .requestsList--item__location,
+  .requestsList--item__first {
     direction: rtl !important;
+
+    .requestsList--item__firstOne {
+      text-align: right !important;
+    }
+    .requestsList--item__firstTow {
+      text-align: left !important;
+    }
 
     .fal.fa-map-marker-alt {
       margin-right: 0 !important;
@@ -36,6 +44,16 @@ html:lang(ar) {
           padding-right: 6px !important;
           .requestsList--item {
             width: 245px;
+
+            .requestsList--item__first {
+              .requestsList--item__firstOne {
+                text-align: left;
+              }
+              .requestsList--item__firstTow {
+                text-align: right;
+              }
+            }
+
             .requestsList--item__contact {
               color: #F26B04;
             }
