@@ -48,6 +48,8 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
 
   const [countryCode, setCountryCode] = useState('IR');
 
+  const [isRegularType, setIsRegularType] = useState(false);
+
   const cityLists = useGetApi('city-lists-api', `country_code=${countryCode}`, 'city_lists', false);
 
   async function getRequestCheck() {
@@ -103,6 +105,15 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
       </>
     </Select>
   </Form.Item>);
+
+  const regularShow = e => {
+    const val = e.target.value;
+    if (val === 'one_time') {
+      setIsRegularType(false);
+    } else if (val === 'regular') {
+      setIsRegularType(true);
+    }
+  }
 
   return (
     <Modal
@@ -380,13 +391,11 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                               }
                             >
-                              <>
                                 {quantity_units.items.map((item) => {
                                   return (
-                                    <Option key={item.key} value={item.key} >{ item.value }</Option>
+                                    <Option value={item.key} >{ item.value }</Option>
                                   );
                                 })}
-                              </>
                             </Select>
                           </Form.Item>
                         </Col>
@@ -531,7 +540,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                               },
                             ]}
                           >
-                            <Radio.Group>
+                            <Radio.Group onChange={regularShow}>
                               <Radio
                                 value="one_time"
                               >{ t(__('one_time')) }</Radio>
@@ -550,7 +559,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                             labelCol={{ span: 24 }}
                             rules={[
                               {
-                                required: true,
+                                required: isRegularType,
                               },
                             ]}
                           >
@@ -561,6 +570,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                               filterOption={(input, option) =>
                                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                               }
+                              disabled={isRegularType ? false : true}
                             >
                               <>
                                 {regular_types.items.map((item, index) => {
