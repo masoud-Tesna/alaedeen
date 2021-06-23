@@ -21,7 +21,11 @@ import { useTranslation } from "react-i18next";
 import { useGetAuthState, useDispatchAuthState, logout } from '../../../contexts/user/UserContext';
 
 // Show suffix for search input:
-const suffix = <span className="suffix-content vv-font-size-2"><i className="far fa-search vv-font-size-2" /> Search</span>;
+const suffix = (text) => {
+  return(
+    <span className="suffix-content vv-font-size-2"><i className="far fa-search vv-font-size-2" /> { text }</span>
+  );
+}
 
 // Show prefix for search input:
 const prefix = <i className="far fa-search text-primary vv-font-size-2" />;
@@ -98,7 +102,7 @@ const DefaultHeader = () => {
                   </div>
                 </Col>
                 <Col className="my-auto header--left__searchBox" span={17}>
-                  <Input placeholder={ t(__('What are you looking for...')) } suffix={suffix} />
+                  <Input placeholder={ t(__('What are you looking for...')) } suffix={suffix(t(__('search')))} />
                 </Col>
               </Row>
             </Col>
