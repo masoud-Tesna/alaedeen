@@ -14,7 +14,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ConfigProvider, Layout } from 'antd';
 
 // Pages:
-import { Home, Factories } from "./components";
+import { Home, Factories, SignIn } from "./components";
 
 // import language context:
 import { useGetLanguageState } from "./contexts/language/LanguageContext";
@@ -23,7 +23,6 @@ import { useGetLanguageState } from "./contexts/language/LanguageContext";
 import TopPanel from "./layouts/topPanel";
 import { Header as SiteHeader } from "./layouts/header";
 import { SiteFooter } from "./layouts/footer";
-import SignIn from "./components/SignIn";
 
 function App() {
 
