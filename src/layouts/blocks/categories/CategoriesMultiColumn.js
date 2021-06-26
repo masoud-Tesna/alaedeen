@@ -73,7 +73,7 @@ const CategoriesMultiColumn = () => {
                 })}
 
                 <Col className="categoriesMultiColumn--item" span={12}>
-                  <a href="#" className="d-block h-100">
+                  <a href="https://hornb2b.com/horn/all-categories/" className="d-block h-100">
                     <Row className="categoriesMultiColumn--item__row">
                       <Col span={24} className="categoriesMultiColumn--icon text-center my-2">
                         <Row align="middle" className="h-100">
