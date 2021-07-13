@@ -22,7 +22,7 @@ const RecommendedProducts = () => {
 
   const { width } = useWindowSize();
 
-  const product_items_per_page = width >= 992 ? 20 : 12;
+  const product_items_per_page = width >= 768 ? 20 : 12;
   const url = `items_per_page=${product_items_per_page}&company_id=181&page=1`;
 
   const { load, products } = useGetProductApi(url);
@@ -38,7 +38,7 @@ const RecommendedProducts = () => {
       <Row>
         <Col className="recommendedProducts--caption__content" span={24}>
           <Row justify="space-between">
-            <Col className={ `text-33 text-uppercase ${ width >= 992 ? 'vv-font-size-3' : 'vv-font-size-1-6' } font-weight-bold` }>
+            <Col className={ `text-33 text-uppercase ${ width >= 768 ? 'vv-font-size-3' : 'vv-font-size-1-6' } font-weight-bold` }>
               { t(__('Recommended for you')) }
             </Col>
           </Row>
@@ -50,10 +50,10 @@ const RecommendedProducts = () => {
               {load ?
                 <SkeletonMultiColumnVertical
                   skeleton = {true}
-                  skeltonNumbers = {width >= 992 ? 20 : 12}
+                  skeltonNumbers = {width >= 768 ? 20 : 12}
                   grid={productsMultiColumnVertical_items}
                   width = { width }
-                  height = {width >= 992 ? 363.933 : 273.05}
+                  height = {width >= 768 ? 363.933 : 273.05}
                 /> :
                 <>
                   {products.map((product, i) => {
@@ -63,8 +63,8 @@ const RecommendedProducts = () => {
                         className="bg-white rounded-10 shadow-y-2"
                         product={product}
                         allDetails
-                        widthProductImage={width >= 992 ? 287 : 164}
-                        heightProductImage={width >= 992 ? 230 : 170}
+                        widthProductImage={width >= 768 ? 287 : 164}
+                        heightProductImage={width >= 768 ? 230 : 170}
                       />
                     );
                   })}

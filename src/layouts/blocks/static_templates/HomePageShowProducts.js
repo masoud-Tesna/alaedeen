@@ -30,10 +30,10 @@ const HomePageShowProducts = () => {
       {load ?
       <SkeletonMultiColumnVertical
         skeleton = {true}
-        skeltonNumbers = {width >= 992 ? 3 : 2}
+        skeltonNumbers = {width >= 768 ? 3 : 2}
         grid={productsMultiColumnVertical_items}
         width = { width }
-        height = {width >= 992 ? 352.923 : 149.8}
+        height = {width >= 768 ? 352.923 : 149.8}
       /> :
         <>
           {products.map((product) => {
@@ -42,8 +42,8 @@ const HomePageShowProducts = () => {
               product={product}
               detailIcon="company"
               grid={productsMultiColumnVertical_items}
-              widthProductImage={width >= 992 ? 291 : 100}
-              heightProductImage={width >= 992 ? 226 : 100}
+              widthProductImage={width >= 768 ? 291 : 100}
+              heightProductImage={width >= 768 ? 226 : 100}
             />);
           })}
         </>

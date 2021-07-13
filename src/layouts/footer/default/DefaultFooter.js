@@ -28,7 +28,7 @@ const DefaultFooter = () => {
 
   let spaceSize;
 
-  if (width >= 992) {
+  if (width >= 768) {
     spaceSize = 'large';
   }else{
     spaceSize = 'small';
@@ -154,7 +154,7 @@ const DefaultFooter = () => {
       </Col>
 
       <Col className="bg-footer footer--container__bottomSection" span={24}>
-        <Row justify={ width >= 992 ? "space-between": 'center' }>
+        <Row justify={ width >= 768 ? "space-between": 'center' }>
           <Col xs={{ order: 2 }} lg={{ order: 1 }} className="vv-font-size-1-4 text-white mt-3 my-lg-auto">
             © 2018 - 2021 Horn Company, All rights reserved
           </Col>

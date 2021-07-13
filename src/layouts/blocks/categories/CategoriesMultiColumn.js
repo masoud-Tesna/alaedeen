@@ -31,11 +31,11 @@ const CategoriesMultiColumn = () => {
   const { load, items } = useGetApi(`home-categories-api`, '', 'categories');
 
   return (
-    <div className={ `${width >= 992 ? 'categoriesMultiColumn--container' : 'categoriesMultiColumn--containerXs my-4'} h-100` }>
+    <div className={ `${width >= 768 ? 'categoriesMultiColumn--container' : 'categoriesMultiColumn--containerXs my-4'} h-100` }>
       <Row className="h-100">
 
-        {/* if Screen Width >= 992px (Desktop) Show Component: */}
-        {width >= 992 ?
+        {/* if Screen Width >= 768px (Desktop) Show Component: */}
+        {width >= 768 ?
           <>
 
             { load ?

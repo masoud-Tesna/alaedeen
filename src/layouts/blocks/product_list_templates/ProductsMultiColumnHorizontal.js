@@ -35,7 +35,7 @@ const ProductsMultiColumnHorizontal = (props) => {
   const productListPrice = parseFloat(product.list_price).toFixed(2);
 
   let polygon;
-  if (width >= 992) {
+  if (width >= 768) {
     if (props.productKey + 1 === 1) {
       polygon = polygon_1;
     } else if (props.productKey + 1 === 2) {

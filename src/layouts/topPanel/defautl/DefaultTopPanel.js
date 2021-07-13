@@ -112,8 +112,8 @@ const DefaultTopPanel = () => {
         <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>
       </div>
 
-      {/* if Screen Width <= 992px (Mobile) render drawer Menu: */}
-      {width <= 992 &&
+      {/* if Screen Width <= 768px (Mobile) render drawer Menu: */}
+      {width <= 768 &&
         <Drawer
           placement="right"
           className="shadow-lg m-0 p-0 topPanel--menuXs"
