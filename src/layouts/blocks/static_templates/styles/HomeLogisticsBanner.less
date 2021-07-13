@@ -1,5 +1,4 @@
-html:lang(fa),
-html:lang(ar) {
+/*html:lang(fa) {
   .homeLogisticsBanner--container {
     .homeLogisticsBanner--content {
       background-image: url(../../../../assets/images/logisticsBannerXs-rtl.png);
@@ -7,9 +6,23 @@ html:lang(ar) {
   }
 }
 
+html:lang(ar) {
+  .homeLogisticsBanner--container {
+    .homeLogisticsBanner--content {
+      background-image: url(../../../../assets/images/logisticsBannerXs-rtl.png);
+    }
+  }
+}*/
+
 .homeLogisticsBanner--container {
   height: 160px;
   .homeLogisticsBanner--content {
+    .homeLogisticsBanner--img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  /*.homeLogisticsBanner--content {
     background-image: url(../../../../assets/images/logisticsBannerXs-ltr.png);
     background-size: cover;
     .homeLogisticsBanner--caption {
@@ -25,11 +38,26 @@ html:lang(ar) {
         }
       }
     }
-  }
+  }*/
 }
 
-@media (min-width: 992px) {
-  html:lang(fa),
+@media (min-width: 768px) {
+/*  html:lang(fa) {
+    .homeLogisticsBanner--container {
+      .homeLogisticsBanner--content {
+        .homeLogisticsBanner--details {
+          direction: rtl;
+        }
+      }
+    }
+
+    .homeLogisticsBanner--container {
+      .homeLogisticsBanner--content {
+        background-image: url(../../../../assets/images/logisticsBanner-fa.png);
+      }
+    }
+  }
+
   html:lang(ar) {
     .homeLogisticsBanner--container {
       .homeLogisticsBanner--content {
@@ -44,11 +72,11 @@ html:lang(ar) {
         background-image: url(../../../../assets/images/logisticsBanner-rtl.png);
       }
     }
-  }
+  }*/
 
   .homeLogisticsBanner--container {
     height: 560px;
-    .homeLogisticsBanner--content {
+    /*.homeLogisticsBanner--content {
       background-image: url(../../../../assets/images/logisticsBanner-ltr.png);
       .homeLogisticsBanner--caption {
         .homeLogisticsBanner--caption__btn {
@@ -63,6 +91,6 @@ html:lang(ar) {
           }
         }
       }
-    }
+    }*/
   }
 }
