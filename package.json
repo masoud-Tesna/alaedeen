@@ -2,36 +2,35 @@
   "name": "horn-react",
   "proxy": "https://hornb2b.com",
   "homepage": "https://hornb2b.com/",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
-    "@craco/craco": "^6.1.2",
+    "@craco/craco": "^6.2.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
-    "@testing-library/user-event": "^13.1.9",
-    "antd": "^4.16.3",
+    "@testing-library/user-event": "^12.8.3",
+    "antd": "^4.16.9",
     "axios": "^0.21.1",
-    "bootstrap": "^5.0.1",
-    "craco-less": "^1.17.1",
+    "bootstrap": "^5.0.2",
+    "craco-less": "^1.18.0",
+    "cross-domain-storage": "^2.0.7",
     "eslint-plugin-react-hooks": "^4.2.0",
     "flag-icon-css": "^3.5.0",
-    "i18next": "^20.3.2",
-    "join-react-context": "^1.1.0",
-    "npm-upgrade": "^3.0.0",
+    "i18next": "^20.3.5",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-combine-reducers": "^1.1.1",
     "react-dom": "^17.0.2",
-    "react-i18next": "^11.11.0",
+    "react-i18next": "^11.11.4",
     "react-indiana-drag-scroll": "^2.0.1",
     "react-infinite-scroll-component": "^6.1.0",
     "react-moment": "^1.1.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "react-text-truncate": "^0.16.0",
-    "swiper": "^6.7.0",
-    "web-vitals": "^2.0.1"
+    "react-text-truncate": "^0.17.0",
+    "swiper": "^6.8.0",
+    "web-vitals": "^1.1.2"
   },
   "scripts": {
     "start": "craco start",
@@ -43,14 +42,7 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ],
-    "plugins": [
-      "react-hooks"
-    ],
-    "rules": {
-      "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "warn"
-    }
+    ]
   },
   "browserslist": {
     "production": [
