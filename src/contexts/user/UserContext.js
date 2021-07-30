@@ -78,6 +78,7 @@ export function UserProvider ({ children }) {
 
                 fn_set_local_storage("user_password", userPassword); // set user_password in to local storage
                 setGetUserLoginStatusHorn('get user_password'); // set userLogin status
+                getUserLoginFromHornDomain.close();
 
               }
             });
@@ -130,7 +131,7 @@ export async function logout(dispatch) {
       getUserLoginFromHornDomain.remove('user_login', function(userLoginErrorRemove, userLoginRemove) {
         getUserLoginFromHornDomain.remove('user_password', function(userPasswordErrorRemove, userPasswordRemove) {
           getUserLoginFromHornDomain.remove('remember_me', function(rememberMeErrorRemove, rememberMeRemove) {
-            // foo is now removed
+            getUserLoginFromHornDomain.close();
           });
         });
       });

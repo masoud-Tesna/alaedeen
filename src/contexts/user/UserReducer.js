@@ -1,13 +1,9 @@
-import { AUTH_SIGN_IN, CHECK_REMEMBER_ME, AUTH_LOGOUT, AUTH_LOADING, AUTH_LOADING_FALSE } from "./UserActions";
-
+import { AUTH_LOADING, AUTH_LOADING_FALSE, AUTH_LOGOUT, AUTH_SIGN_IN, CHECK_REMEMBER_ME } from "./UserActions";
 
 import {
-  fn_get_local_storage_with_expiry,
   fn_set_local_storage,
   fn_set_local_storage_with_expiry
 } from "../../functions/Helper";
-
-import { getUserLoginFromHornDomain } from "../../functions/accessExternalLocalStorage";
 
 export function UserReducer(state, action) {
   switch (action.type) {
@@ -15,17 +11,7 @@ export function UserReducer(state, action) {
       if (action.update_expiration) {
         fn_set_local_storage_with_expiry("user_login", action.user_login, 1);
         fn_set_local_storage_with_expiry("user_password", action.user_password, 1);
-
-        const getUserLoginFromLocalStorage = fn_get_local_storage_with_expiry("user_login");
-        const getUserPasswordFromLocalStorage = fn_get_local_storage_with_expiry("user_password");
-        getUserLoginFromHornDomain.set('user_login', getUserLoginFromLocalStorage, function(userLoginErrorSet, userLoginSet) {
-          getUserLoginFromHornDomain.set('user_password', getUserPasswordFromLocalStorage, function(userPasswordErrorSet, userPasswordSet) {
-            // foo is now set to 'bar'
-          });
-        });
       }
-      /*fn_set_local_storage("user_login", action.user_login);
-      fn_set_local_storage("user_password", action.user_password);*/
       return {
         ...state, auth: action.user_data, load: false
       };
@@ -45,14 +31,6 @@ export function UserReducer(state, action) {
       fn_set_local_storage("user_login", action.user_login);
       fn_set_local_storage("user_password", action.user_password);
       fn_set_local_storage("remember_me", 'true');
-
-      getUserLoginFromHornDomain.set('user_login', action.user_login, function(userLoginErrorSet, userLoginSet) {
-        getUserLoginFromHornDomain.set('user_password', action.user_password, function(userPasswordErrorSet, userPasswordSet) {
-          getUserLoginFromHornDomain.set('remember_me', 'true', function(rememberMeErrorSet, rememberMeSet) {
-            // foo is now set to 'bar'
-          });
-        });
-      });
       return state;
     default:
       return state;

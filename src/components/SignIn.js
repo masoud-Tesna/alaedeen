@@ -21,6 +21,8 @@ import googlePic from '../assets/images/google.png';
 import { signInAction, useGetAuthState, useDispatchAuthState, signIn, checkSignInLoadingAction, checkRememberAction } from '../contexts/user/UserContext';
 
 import { useGetLanguageState } from "../contexts/language/LanguageContext";
+import { getUserLoginFromHornDomain } from "../functions/accessExternalLocalStorage";
+
 
 const SignIn = () => {
 
@@ -51,8 +53,31 @@ const SignIn = () => {
         }
       })
       .then(() => {
-        history.push('/');
+        if (values.remember_me) {
+          getUserLoginFromHornDomain.set('remember_me', true, function(rememberMeErrorSet, rememberMeSet) {
+            getUserLoginFromHornDomain.set('user_login', values.user_login, function(userLoginErrorSet, userLoginSet) {
+              getUserLoginFromHornDomain.set('user_password', values.password, function(userPasswordErrorSet, userPasswordSet) {
+                getUserLoginFromHornDomain.close();
+              });
+            });
+          });
+
+        }else {
+          const getUserLoginFromLocalStorage = localStorage.getItem("user_login");
+          const getUserPasswordFromLocalStorage = localStorage.getItem("user_password");
+
+          if (getUserLoginFromLocalStorage && getUserPasswordFromLocalStorage) {
+            getUserLoginFromHornDomain.set('user_login', getUserLoginFromLocalStorage, function (userLoginErrorSet, userLoginSet) {
+              getUserLoginFromHornDomain.set('user_password', getUserPasswordFromLocalStorage, function (userPasswordErrorSet, userPasswordSet) {
+                getUserLoginFromHornDomain.close();
+              });
+            });
+          }
+        }
       })
+      .then(() => {
+        history.push('/');
+      });
 
   }
 
