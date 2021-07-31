@@ -94,5 +94,6 @@ export function fn_get_local_storage_with_expiry(key) {
 export function fn_set_date_day(day) {
   const date = new Date();
 
-  return date.setTime(date.getTime() + (day*24*60*60*1000));
+  date.setTime(date.getTime() + (day*24*60*60*1000));
+  return date;
 }
