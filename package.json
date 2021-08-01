@@ -27,6 +27,7 @@
     "react-indiana-drag-scroll": "^2.0.1",
     "react-infinite-scroll-component": "^6.1.0",
     "react-moment": "^1.1.1",
+    "react-query": "^3.19.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-text-truncate": "^0.17.0",
