@@ -37,61 +37,7 @@ export function __ (world, prefix = "", sign = ".") {
 
 }
 
-export function fn_handleLinkClick (url, target) {
-  return window.open(url, target);
-}
-
-export function fn_set_initial_language (key, lang) {
-  let storageLang;
-  // Get from local storage by key
-  const item = window.localStorage.getItem(key);
-  if (item) {
-    storageLang = item;
-    i18n.changeLanguage(item);
-  } else {
-    window.localStorage.setItem(key, lang);
-    i18n.changeLanguage(key);
-  }
-  return storageLang;
-}
-
-export function fn_set_local_storage (key, value) {
-  window.localStorage.setItem(key, value);
-}
-
-export function fn_set_local_storage_with_expiry(key, value, ttl) {
-  const now = new Date();
-
-  const setTime = ttl*60*60*1000;
-
-  // `item` is an object which contains the original value
-  // as well as the time when it's supposed to expire
-  const item = {
-    value: value,
-    expiry: now.getTime() + setTime,
-  }
-  localStorage.setItem(key, JSON.stringify(item))
-}
-
-export function fn_get_local_storage_with_expiry(key) {
-  const itemStr = localStorage.getItem(key)
-  // if the item doesn't exist, return null
-  if (!itemStr) {
-    return null
-  }
-  const item = JSON.parse(itemStr)
-  const now = new Date()
-  // compare the expiry time of the item with the current time
-  if (now.getTime() > item.expiry) {
-    // If the item is expired, delete the item from storage
-    // and return null
-    localStorage.removeItem(key)
-    return null
-  }
-  return item.value
-}
-
-export function fn_set_date_day(day) {
+export function fn_set_date_day (day) {
   const date = new Date();
 
   date.setTime(date.getTime() + (day*24*60*60*1000));
