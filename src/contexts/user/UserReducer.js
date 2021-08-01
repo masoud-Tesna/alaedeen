@@ -1,21 +1,42 @@
 import { AUTH_LOADING, AUTH_LOADING_FALSE, AUTH_LOGOUT, AUTH_SIGN_IN, CHECK_REMEMBER_ME } from "./UserActions";
 
-import {
-  fn_set_local_storage,
-  fn_set_local_storage_with_expiry
-} from "../../functions/Helper";
+import { fn_set_date_day } from "../../functions/Helper";
+import { Cookies } from "react-cookie";
 
 export function UserReducer(state, action) {
+  // use Cookies Class:
+  const Cookie = new Cookies();
+
   switch (action.type) {
     case AUTH_SIGN_IN:
       if (action.update_expiration) {
-        fn_set_local_storage_with_expiry("user_login", action.user_login, 1);
-        fn_set_local_storage_with_expiry("user_password", action.user_password, 1);
+        // set user_login cookie:
+        Cookie.set("user_login", action.user_login,
+          {
+            path: "/",
+            domain: "localhost",
+            expires: fn_set_date_day(1)
+          }
+        );
+        // set user_password cookie:
+        Cookie.set("user_password", action.user_password,
+          {
+            path: "/",
+            domain: "localhost",
+            expires: fn_set_date_day(1)
+          }
+        );
       }
       return {
         ...state, auth: action.user_data, load: false
       };
     case AUTH_LOGOUT:
+      // remove remember_me cookie:
+      Cookie.remove("remember_me");
+      // remove user_login cookie:
+      Cookie.remove("user_login");
+      // remove user_password cookie:
+      Cookie.remove("user_password");
       return {
         ...state, auth: [], load: false
       };
@@ -28,9 +49,27 @@ export function UserReducer(state, action) {
         ...state, load: false
       };
     case CHECK_REMEMBER_ME:
-      fn_set_local_storage("user_login", action.user_login);
-      fn_set_local_storage("user_password", action.user_password);
-      fn_set_local_storage("remember_me", 'true');
+      // set remember_me cookie:
+      Cookie.set("remember_me", "true",
+        {
+          path: "/",
+          domain: "localhost"
+        }
+      );
+      // set user_login cookie:
+      Cookie.set("user_login", action.user_login,
+        {
+          path: "/",
+          domain: "localhost"
+        }
+      );
+      // set user_password cookie:
+      Cookie.set("user_password", action.user_password,
+        {
+          path: "/",
+          domain: "localhost"
+        }
+      );
       return state;
     default:
       return state;

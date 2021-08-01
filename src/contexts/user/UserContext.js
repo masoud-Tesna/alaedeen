@@ -1,18 +1,23 @@
-import { createContext, useContext, useEffect, useReducer, useState } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
+import axios from "axios";
 
-// import user reducer:
+// import use reducer:
 import { UserReducer } from './UserReducer';
 
 // import user initial state:
 import { UserInitialState } from './UserInitialState';
 
+// import Action Creator:
 import { signInAction, logOutAction, checkSignInLoadingAction, signInLoadingFalseAction } from './UserActionCreators';
-import axios from "axios";
 
+// import LoaderSpinner:
 import LoaderSpinner from '../../layouts/blocks/static_templates/LoadSpinner';
-import { fn_get_local_storage_with_expiry, fn_set_local_storage } from "../../functions/Helper";
+
+// import language state:
 import { useGetLanguageState } from "../language/LanguageContext";
-import { getUserLoginFromHornDomain } from "../../functions/accessExternalLocalStorage";
+
+// import Cookies Package:
+import { Cookies } from "react-cookie";
 
 
 // User Context Create:
@@ -20,6 +25,9 @@ const userContext = createContext();
 
 // create User Context Provide:
 export function UserProvider ({ children }) {
+
+  // use Cookies Class:
+  const Cookie = new Cookies();
 
   // initial state for language:
   const { language } = useGetLanguageState();
@@ -30,63 +38,20 @@ export function UserProvider ({ children }) {
     UserInitialState
   );
 
-  const [getUserLoginStatusHorn, setGetUserLoginStatusHorn] = useState("loading");
+  const userLoginCookie = Cookie.get('user_login');
+  const userPasswordCookie = Cookie.get('user_password');
 
   useEffect(() => {
 
-    console.log('start');
-
     let mounted  = true;
 
-    const checkRememberMe = localStorage.getItem('remember_me');
-
-    let clientUserLoginLocalStorage,
-      clientPasswordLocalStorage;
-
-    if (checkRememberMe) {
-      clientUserLoginLocalStorage = localStorage.getItem('user_login');
-      clientPasswordLocalStorage = localStorage.getItem('user_password');
-    }else {
-      clientUserLoginLocalStorage = fn_get_local_storage_with_expiry('user_login');
-      clientPasswordLocalStorage = fn_get_local_storage_with_expiry('user_password');
-    }
-
-    if (clientUserLoginLocalStorage && clientPasswordLocalStorage) {
+    if (userLoginCookie && userPasswordCookie) {
       dispatch(checkSignInLoadingAction());
       console.log('start with local storage');
-      signIn(clientUserLoginLocalStorage, clientPasswordLocalStorage, language)
+      signIn(userLoginCookie, userPasswordCookie, language)
         .then(res => {
-          dispatch(signInAction(res.data.auth, clientUserLoginLocalStorage, clientPasswordLocalStorage, false));
+          dispatch(signInAction(res.data.auth, userLoginCookie, userPasswordCookie, false));
         });
-
-    }else {
-
-      getUserLoginFromHornDomain.get('remember_me', function (rememberMeError, rememberMe) { // get remember_me from hornb2b domain local storage
-        if (rememberMe) { // if remember_me is true:
-          fn_set_local_storage("remember_me", 'true'); // set remember_me in to local storage
-          //setGetUserLoginStatusHorn('get remember_me'); // set userLogin status
-        }
-
-        getUserLoginFromHornDomain.get('user_login', function (userLoginError, userLogin) { // get user_login from hornb2b domain local storage
-          if (userLogin) {
-
-            fn_set_local_storage("user_login", userLogin); // set user_login in to local storage
-            //setGetUserLoginStatusHorn('get user_login'); // set userLogin status
-
-            getUserLoginFromHornDomain.get('user_password', function (userPasswordError, userPassword) { // get user_password from hornb2b domain local storage
-              if (userPassword) {
-
-                fn_set_local_storage("user_password", userPassword); // set user_password in to local storage
-                setGetUserLoginStatusHorn('get user_password'); // set userLogin status
-                getUserLoginFromHornDomain.close();
-
-              }
-            });
-
-          }
-        });
-
-      });
 
     }
 
@@ -95,7 +60,7 @@ export function UserProvider ({ children }) {
       dispatch(signInLoadingFalseAction());
     }
 
-  }, [language, getUserLoginStatusHorn]);
+  }, [language, userLoginCookie, userPasswordCookie]);
 
 
   return (
@@ -123,20 +88,7 @@ export async function logout(dispatch) {
   signOutAxios()
     .then(() => {
       dispatch(logOutAction());
-      window.localStorage.removeItem('user_login');
-      window.localStorage.removeItem('user_password');
-      window.localStorage.removeItem('remember_me');
-    })
-    .then(() => {
-      getUserLoginFromHornDomain.remove('user_login', function(userLoginErrorRemove, userLoginRemove) {
-        getUserLoginFromHornDomain.remove('user_password', function(userPasswordErrorRemove, userPasswordRemove) {
-          getUserLoginFromHornDomain.remove('remember_me', function(rememberMeErrorRemove, rememberMeRemove) {
-            getUserLoginFromHornDomain.close();
-          });
-        });
-      });
     });
-
 }
 
 // get current user data
