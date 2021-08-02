@@ -46,16 +46,14 @@ export function fn_set_date_day (day) {
 
 export const useParsPathName = () => {
   // Get Location pathName:
-  const pathName = useLocation().pathname;
+  let pathName = useLocation().pathname;
 
-  let returnWord = pathName;
-
-  if (returnWord === '/') {
+  if (pathName === '/') {
     return 'homePage';
   }
 
-  returnWord = returnWord.toString().trim().toLowerCase()
+  pathName = pathName.toString().trim().toLowerCase()
     .replaceAll("/", "");
 
-  return returnWord;
+  return pathName;
 }
