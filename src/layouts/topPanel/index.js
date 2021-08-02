@@ -8,16 +8,15 @@ import { useWindowSize } from '../../functions';
 // Layouts:
 import DefaultTopPanel from "./defautl/DefaultTopPanel";
 import TopPanelWhitBackIcon from "./defautl/TopPanelWhitBackIcon";
+import { useParsPathName } from "../../functions/Helper";
 
 const TopPanel = () => {
-  // Get Location:
-  let location = useLocation();
 
   // Get Width Window:
   const { width } = useWindowSize();
 
-  // Set State For Path NAme:
-  const [pathName, setPathName] = useState(location.pathname);
+  // Get Location:
+  const pathName = useParsPathName();
 
   const [scrolled, setScrolled] = useState(false);
   const [scrolledClass, setScrolledClass] = useState();
@@ -56,23 +55,22 @@ const TopPanel = () => {
   useEffect(() => {
     window.addEventListener('scroll', handleScroll); //if Scroll Page Run handleScroll function
 
-    window.addEventListener('load', () => { setWidthPage(window.innerWidth);}); //if Load Page Update widthPage State Value
-    window.addEventListener('resize', () => { setWidthPage(window.innerWidth);}); //if Resize Page Update widthPage State Value
-    if(scrolled){
+    window.addEventListener('load', () => {
+      setWidthPage(window.innerWidth);
+    }); //if Load Page Update widthPage State Value
+    window.addEventListener('resize', () => {
+      setWidthPage(window.innerWidth);
+    }); //if Resize Page Update widthPage State Value
+    if (scrolled) {
       setScrolledClass('scrolled');
-    }else {
+    } else {
       setScrolledClass('')
     }
   }, [handleScroll]);
 
-  // if Changed Location.pathname Change state:
-  useEffect(() => {
-    setPathName(location.pathname);
-  }, [location]);
-
   // Check pathName For Set Default Top Panel Or Not:
-  if ((pathName === '/factories' || pathName === '/sign-in') && width <= 991) {
-    return <TopPanelWhitBackIcon scrolledClass={scrolledClass} />
+  if (((pathName === 'factories' || pathName === 'sign-in') && width <= 991) || pathName === 'all-categories') {
+    return <TopPanelWhitBackIcon scrolledClass={scrolledClass} pathName={pathName} />
   }
 
   // if get default Header:

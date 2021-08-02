@@ -3,27 +3,17 @@ import { useLocation } from 'react-router-dom';
 
 // import Footer:
 import { DefaultFooter } from './default/DefaultFooter';
+import { useParsPathName } from "../../functions/Helper";
+
 
 const SiteFooter = () => {
 
   // Get Location:
-  let location = useLocation();
-
-  // Set State For Path NAme:
-  const [pathName, setPathName] = useState(location.pathname);
-
-  // if Changed Location.pathname Change state:
-  useEffect(() => {
-    setPathName(location.pathname);
-  }, [location]);
+  const pathName = useParsPathName();
 
   // Check pathName For Set Default Top Panel Or Not:
-  if (pathName === '/sign-in') {
-    return (
-      <>
-
-      </>
-    );
+  if (pathName === 'sign-in' || pathName === 'all-categories') {
+    return <></> // remove Footer
   }
 
   // if get default Top panel:

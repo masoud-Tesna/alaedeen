@@ -1,9 +1,6 @@
-// Components:
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-
 // import Custom Hooks:
 import { useWindowSize } from '../../functions';
+import { useParsPathName } from "../../functions/Helper";
 
 // Layouts:
 import DefaultHeader from "./default/DefaultHeader";
@@ -14,31 +11,11 @@ const Header = () => {
   const { width } = useWindowSize();
 
   // Get Location:
-  let location = useLocation();
-
-  // Set State For Path NAme:
-  const [pathName, setPathName] = useState(location.pathname);
-
-  // if Changed Location.pathname Change state:
-  useEffect(() => {
-    setPathName(location.pathname);
-  }, [location]);
+  const pathName = useParsPathName();
 
   // Check pathName For Set Default Header Or Not:
-  if (pathName === '/factories' && width <= 991) {
-    return (
-      <>
-
-      </>
-    );
-  }
-
-  if (pathName === '/sign-in') {
-    return (
-      <>
-
-      </>
-    );
+  if ((pathName === 'factories' && width <= 991) || pathName === 'sign-in') {
+    return <></> // remove Footer
   }
 
   // if get default Top panel:
