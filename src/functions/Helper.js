@@ -1,4 +1,4 @@
-import i18n from "../translations";
+import { useLocation } from "react-router-dom";
 
 export function fn_stripHtml (strip) {
   const regex = /(<([^>]+)>)/ig;
@@ -42,4 +42,20 @@ export function fn_set_date_day (day) {
 
   date.setTime(date.getTime() + (day*24*60*60*1000));
   return date;
+}
+
+export const useParsPathName = () => {
+  // Get Location pathName:
+  const pathName = useLocation().pathname;
+
+  let returnWord = pathName;
+
+  if (returnWord === '/') {
+    return 'homePage';
+  }
+
+  returnWord = returnWord.toString().trim().toLowerCase()
+    .replaceAll("/", "");
+
+  return returnWord;
 }
