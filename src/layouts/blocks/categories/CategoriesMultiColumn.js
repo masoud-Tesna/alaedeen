@@ -92,7 +92,7 @@ const CategoriesMultiColumn = () => {
             }
           </> :
 
-          /* if Screen Width <= 991px (Mobile) Show Component: */
+          /* if Screen Width <= 768px (Mobile) Show Component: */
           <>
 
             { load ?
