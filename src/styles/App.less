@@ -1,3 +1,6 @@
+// import Mixin:
+@import './Mixins';
+
 /*  ===========  CHANGE FONT FACE FOR FA - AR  ===========  */
 @font-face {
   font-family:IRANSans;
@@ -102,15 +105,12 @@ html * {
 }*/
 
 .ant-layout {
-  background-color: #F6F6F6!important;
+  background-color: #F6F6F6! important;
+  @media (min-width: @screen-md) {
+    min-height: 100vh;
+  }
 }
 
 .ant-layout-footer {
   padding: 0!important;
-}
-
-@media (min-width: 768px) {
-  .layout {
-    min-height: 100vh;
-  }
 }
