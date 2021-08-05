@@ -17,7 +17,6 @@ const TopPanelWhitBackIcon = ({ scrolledClass, pathName }) => {
   const goBack = () => {
     history.goBack()
   }
-  console.log(pathName)
 
   return (
     <Row className={ `bg-top-panel topPanel--container TopPanelWhitBackIcon ${scrolledClass}` }>
