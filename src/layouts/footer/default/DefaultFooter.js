@@ -2,7 +2,7 @@
 import './styles.less';
 
 // Ant Design Import:
-import { Row, Col, Space, Button } from 'antd';
+import { Row, Col, Space, Button, Tooltip } from 'antd';
 
 // import Custom Hooks:
 import { useGetApi, useWindowSize } from '../../../functions';
@@ -42,6 +42,9 @@ const DefaultFooter = () => {
   // set initial link for instagram related to each language:
   let instagramLink = language === 'en' ? "https://instagram.com/hornb2b" : language === 'fa' ? "https://instagram.com/hornb2b.ir" : language === 'ar' ? "https://instagram.com/horn.ar" : "https://instagram.com/hornb2b";
 
+  // Mobile Application Coming Son Tooltip Text:
+  const comingSonTooltipText = <span>{ t(__('coming son')) }</span>;
+
   return (
     <Row className="footer--container">
       <Col className="bg-footer footer--container__topSection" span={24}>
@@ -63,17 +66,23 @@ const DefaultFooter = () => {
 
           <Col className="mt-2 d-none d-lg-block">
             <Space size="large">
-              <span className="footer--topSection__storeIcon">
-                <img className="border border-bc rounded-5" src={ appleStore } alt="_app_store" />
-              </span>
-              <span className="footer--topSection__storeIcon">
-                    <img className="border border-bc rounded-5" src={ googlePlay } alt="_google_play" />
-                  </span>
+              <div className="footer--topSection__storeIcon">
+                <Tooltip placement="top" title={comingSonTooltipText}>
+                  <img className="border border-bc rounded-5" src={ appleStore } alt="_app_store" />
+                </Tooltip>
+              </div>
+              <div className="footer--topSection__storeIcon">
+                <Tooltip placement="top" title={comingSonTooltipText}>
+                  <img className="border border-bc rounded-5" src={ googlePlay } alt="_google_play" />
+                </Tooltip>
+              </div>
             </Space>
           </Col>
 
           <Col className="d-lg-none my-auto footer--topSection__btnInstall">
-            <Button className="border border-primary bg-primary border-w-2 text-white font-weight-600 p-0" size="small">{ t(__('Install')) }</Button>
+            <Tooltip placement="top" title={comingSonTooltipText}>
+              <Button className="border border-primary bg-primary border-w-2 text-white font-weight-600 p-0" size="small">{ t(__('Install')) }</Button>
+            </Tooltip>
           </Col>
         </Row>
       </Col>
