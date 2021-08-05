@@ -19,15 +19,26 @@ const TopPanel = () => {
   const pathName = useParsPathName();
 
   const [scrolled, setScrolled] = useState(false);
-  const [scrolledClass, setScrolledClass] = useState();
 
-  const [widthPage, setWidthPage] = useState();
+  // Old
+  /*const [scrolledClass, setScrolledClass] = useState();*/
+
+  // Old
+  /*const [widthPage, setWidthPage] = useState();*/
 
   const handleScroll = () => {
     const offsetY = window.scrollY;
 
-    if (widthPage <= 576) { // if WidthPage state value <= 576 change condition for scroll and set class name
-      if(offsetY > 150 ){
+    // New
+    if(offsetY > 40 ){
+      setScrolled(true);
+    }else {
+      setScrolled(false);
+    }
+
+    // Old
+    /*if (widthPage <= 576) { // if WidthPage state value <= 576 change condition for scroll and set class name
+      if(offsetY > 40 ){
         setScrolled(true);
       }
       else{
@@ -49,28 +60,31 @@ const TopPanel = () => {
       else{
         setScrolled(false);
       }
-    }
+    }*/
+
   }
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll); //if Scroll Page Run handleScroll function
 
     window.addEventListener('load', () => {
-      setWidthPage(window.innerWidth);
+      //setWidthPage(window.innerWidth); //Old
     }); //if Load Page Update widthPage State Value
     window.addEventListener('resize', () => {
-      setWidthPage(window.innerWidth);
+      //setWidthPage(window.innerWidth); //Old
     }); //if Resize Page Update widthPage State Value
-    if (scrolled) {
+
+    // Old
+    /*if (scrolled) {
       setScrolledClass('scrolled');
     } else {
       setScrolledClass('')
-    }
+    }*/
   }, [handleScroll]);
 
   // Check pathName For Set Default Top Panel Or Not:
   if (((pathName === 'factories' || pathName === 'sign-in') && width <= 991) || pathName === 'all-categories') {
-    return <TopPanelWhitBackIcon scrolledClass={scrolledClass} pathName={pathName} />
+    return <TopPanelWhitBackIcon scrolledClass={ scrolled && 'scrolled' } pathName={pathName} />
   }
 
   // if get default Header:

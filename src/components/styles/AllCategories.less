@@ -1,0 +1,22 @@
+// import Mixin:
+@import '../../styles/Mixins';
+
+.allCategories--container {
+  .allCategories--item {
+    height: 50px;
+    line-height: 48px;
+    &:hover {
+      background-color: #EEEBF4;
+    }
+
+    a {
+      @media (min-width: @screen-md) {
+        font-size: 1.7rem;
+      }
+    }
+  }
+}
+
+.ant-layout.layout {
+  min-height: 100vh;
+}

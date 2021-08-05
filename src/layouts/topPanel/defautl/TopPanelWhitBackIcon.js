@@ -20,7 +20,7 @@ const TopPanelWhitBackIcon = ({ scrolledClass, pathName }) => {
   console.log(pathName)
 
   return (
-    <Row className={ `bg-top-panel topPanel--container TopPanelWhitBackIcon ${pathName !== 'all-categories' && scrolledClass}` }>
+    <Row className={ `bg-top-panel topPanel--container TopPanelWhitBackIcon ${scrolledClass}` }>
       <Col span={24} className="topPanel--col">
         <Row className="h-100" gutter={24}>
           <Col className="d-lg-none my-auto vv-cursor-pointer topPanel--col__logoXS" onClick={() => { goBack() }}>

@@ -21,6 +21,7 @@ import TextTruncate from "react-text-truncate";
 import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const CategoriesMultiColumn = () => {
 
@@ -73,7 +74,7 @@ const CategoriesMultiColumn = () => {
                 })}
 
                 <Col className="categoriesMultiColumn--item" span={12}>
-                  <a href="https://hornb2b.com/horn/all-categories/" className="d-block h-100">
+                  <Link to="/all-categories/" className="d-block h-100">
                     <Row className="categoriesMultiColumn--item__row">
                       <Col span={24} className="categoriesMultiColumn--icon text-center my-2">
                         <Row align="middle" className="h-100">
@@ -86,7 +87,7 @@ const CategoriesMultiColumn = () => {
                         { t(__('All Categories')) }
                       </Col>
                     </Row>
-                  </a>
+                  </Link>
                 </Col>
               </>
             }
@@ -103,7 +104,7 @@ const CategoriesMultiColumn = () => {
               /> :
               <>
                 <Col className="categoriesMultiColumn--item" span={7}>
-                  <a className="d-block h-100" href="https://hornb2b.com/horn/all-categories/">
+                  <Link className="d-block h-100" to="/all-categories/">
                     <Row>
                       <Col span={24} className="categoriesMultiColumn--icon text-center my-2">
                         <Row justify="center" className="h-100">
@@ -116,7 +117,7 @@ const CategoriesMultiColumn = () => {
                         { t(__('All Categories')) }
                       </Col>
                     </Row>
-                  </a>
+                  </Link>
                 </Col>
                 <Col span={17}>
                   <ScrollContainer className="text-select-none d-flex requestsList--scrollContainer">
