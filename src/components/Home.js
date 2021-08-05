@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 
-// import Custom Hooks:
-import { useWindowSize } from '../functions';
-
 // import Style LESS File:
 import './styles/Home.less';
+
+// import Custom Hooks:
+import { useWindowSize } from '../functions';
 
 // import Design:
 import { Col, Row } from "antd";
