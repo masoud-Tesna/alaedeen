@@ -20,19 +20,11 @@ import { useTranslation } from "react-i18next";
 // import user context:
 import { useGetAuthState, useDispatchAuthState, logout } from '../../../contexts/user/UserContext';
 
-// Show suffix for search input:
-const suffix = (text) => {
-  return(
-    <span className="suffix-content vv-font-size-2"><i className="far fa-search vv-font-size-2" /> { text }</span>
-  );
-}
-
-// Show prefix for search input:
-const prefix = <i className="far fa-search text-primary vv-font-size-2" />;
-
 const DefaultHeader = () => {
 
   const [dropDownIsActive, setDropDownIsActive] = useState(false);
+
+  const [searchValue, setSearchValue] = useState();
 
   const { Header } = Layout;
 
@@ -87,6 +79,25 @@ const DefaultHeader = () => {
     </Menu>
   );
 
+  const handleSubmitSearch = () => {
+    if (searchValue) {
+      const url = `/horn/?subcats=Y&pcode_from_q=Y&pshort=Y&pfull=Y&pname=Y&pkeywords=Y&search_performed=Y&q=${ searchValue }&dispatch=products.search&security_hash=6f98c36fe3677b696695ad3ca456de51`;
+      window.location.href = url;
+    }
+  }
+
+  // Show suffix for search input:
+  const searchTextSuffix = (text) => {
+    return(
+      <span className="suffix-content vv-font-size-2" onClick={() => { handleSubmitSearch() }}>
+      <i className="far fa-search vv-font-size-2" /> { text }
+    </span>
+    );
+  }
+
+  // Show prefix for search input:
+  const searchTextPrefix = <i className="far fa-search text-primary vv-font-size-2 cursor-pointer" onClick={() => { handleSubmitSearch() }} />;
+
   return (
     <Header className="site--header">
       <Row className="h-100 header--container">
@@ -102,7 +113,7 @@ const DefaultHeader = () => {
                   </div>
                 </Col>
                 <Col className="my-auto header--left__searchBox" span={17}>
-                  <Input placeholder={ t(__('What are you looking for...')) } suffix={suffix(t(__('search')))} />
+                  <Input placeholder={ t(__('What are you looking for...')) } suffix={searchTextSuffix(t(__('search')))} onChange={e => {setSearchValue(e.target.value)}} onPressEnter={() => { handleSubmitSearch() }} />
                 </Col>
               </Row>
             </Col>
@@ -178,7 +189,7 @@ const DefaultHeader = () => {
           </Row>
         </Col>
         <Col span={24} className="d-lg-none header--mobile__searchBox">
-          <Input placeholder={ t(__('What are you looking for...')) } prefix={prefix} />
+          <Input placeholder={ t(__('What are you looking for...')) } prefix={searchTextPrefix} onChange={e => {setSearchValue(e.target.value)}} onPressEnter={() => { handleSubmitSearch() }} />
         </Col>
       </Row>
     </Header>
