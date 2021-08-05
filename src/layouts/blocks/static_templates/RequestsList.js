@@ -67,7 +67,6 @@ const RequestsList = () => {
   }
 
   const handleRequestModalClose = (requestId) => {
-    console.log(requestId)
     setIsRequestModal(prevState => {
       return {
         ...prevState,
@@ -75,8 +74,6 @@ const RequestsList = () => {
       }
     });
   }
-
-  console.log(isRequestModal)
 
   let requestRowsSkeleton = [];
   for (let i = 1; i <= 5; i++) {
