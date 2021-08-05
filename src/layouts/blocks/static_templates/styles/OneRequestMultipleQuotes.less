@@ -1,3 +1,6 @@
+// import Mixin:
+@import '../../../../styles/Mixins';
+
 html:lang(fa),
 html:lang(ar) {
   .oneRequest--formContent__caption,
@@ -114,7 +117,10 @@ html:lang(ar) {
 }
 
 .RequestModal {
-  width: 60% !important;
+
+  @media (min-width: @screen-md) {
+    width: 60% !important;
+  }
   .ant-modal-title {
     text-align: center;
     font-size: 2.2rem;

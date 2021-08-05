@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // import Styles For default:
-import './styles.less';
+import './styles/styles.less';
 
 // Ant Design Import:
 import { Row, Col, Input, Button, Layout, Skeleton, Dropdown, Menu } from 'antd';
@@ -20,7 +20,13 @@ import { useTranslation } from "react-i18next";
 // import user context:
 import { useGetAuthState, useDispatchAuthState, logout } from '../../../contexts/user/UserContext';
 
+// import OneRequestMultipleQuotesModal component for show send request form modal:
+import OneRequestMultipleQuotesModal from "../../blocks/static_templates/OneRequestMultipleQuotesModal";
+
 const DefaultHeader = () => {
+
+  // state for request form modal:
+  const [isRequestModalVisible, setIsRequestModalVisible] = useState(false);
 
   const [dropDownIsActive, setDropDownIsActive] = useState(false);
 
@@ -96,7 +102,12 @@ const DefaultHeader = () => {
   }
 
   // Show prefix for search input:
-  const searchTextPrefix = <i className="far fa-search text-primary vv-font-size-2 cursor-pointer" onClick={() => { handleSubmitSearch() }} />;
+  const searchTextPrefix = <i className="far fa-search text-primary vv-font-size-2 cursor-pointer" onClick={() => { handleSubmitSearch() }} />
+
+  // show request form modal function:
+  const showRequestModalHeader = () => {
+    setIsRequestModalVisible(true);
+  }
 
   return (
     <Header className="site--header">
@@ -182,7 +193,7 @@ const DefaultHeader = () => {
                   </Row>
                 </Col>
                 <Col span={13} className="pr-0 pr-lg-5 btn-request my-auto">
-                  <Button className="border border-primary-darken border-w-2 text-primary-darken  font-weight-600 p-0" size="large">{t(__('Request a Quote'))}</Button>
+                  <Button className="border border-primary-darken border-w-2 text-primary-darken  font-weight-600 p-0" size="large" onClick={() => { showRequestModalHeader() }}>{t(__('Request a Quote'))}</Button>
                 </Col>
               </Row>
             </Col>
@@ -192,6 +203,12 @@ const DefaultHeader = () => {
           <Input placeholder={ t(__('What are you looking for...')) } prefix={searchTextPrefix} onChange={e => {setSearchValue(e.target.value)}} onPressEnter={() => { handleSubmitSearch() }} />
         </Col>
       </Row>
+
+      <OneRequestMultipleQuotesModal
+        isRequestModalVisible = {isRequestModalVisible}
+        setIsRequestModalVisible = {setIsRequestModalVisible}
+      />
+
     </Header>
   );
 };

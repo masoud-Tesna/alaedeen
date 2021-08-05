@@ -8,7 +8,7 @@ import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
 
-import { useGetApi } from '../../../functions';
+import { useGetApi, useWindowSize } from '../../../functions';
 
 // import ant design:
 import { Col, Row, Form, Input, Button, Select, InputNumber, Modal, Checkbox, Radio, Result, Spin } from "antd";
@@ -17,7 +17,9 @@ import axios from "axios";
 
 const { Option } = Select;
 
-const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModalVisible, productNameBefore, quantityBefore, pieceBefore }) => {
+const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModalVisible, productNameBefore, quantityBefore, pieceBefore, section }) => {
+
+  const { width } = useWindowSize();
 
   const { t } = useTranslation();
 
@@ -118,10 +120,11 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
   return (
     <Modal
       title={ t(__('Post Your buy Requirement')) }
+      style={{ top: width < 768 && 10 }}
       visible={isRequestModalVisible}
       onCancel={handleClosRequestModal}
       destroyOnClose={true}
-      footer={null}
+      footer={false}
       className="RequestModal"
     >
       <Form
@@ -135,7 +138,9 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
         onFinish={onFinish}
       >
         <Row>
-          <Col span={10} className="oneRequest--formContent__left">
+
+          {section !== 'topPanel' &&
+            <Col span={10} className="oneRequest--formContent__left">
             <Row className="h-100 oneRequest--left__description">
               <Col span={24} className="align-self-start text-center text-white vv-font-size-2">
                 { t(__('How to Get Quotation Quickly?')) }
@@ -149,9 +154,9 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
               </Col>
             </Row>
           </Col>
+          }
 
-
-          <Col span={14} className="bg-f6 oneRequest--formContent__right">
+          <Col span={section !== 'topPanel' ? 14 : 24} className="bg-f6 oneRequest--formContent__right">
             <Spin spinning={isSpinSend} tip={ `${ t(__('send_request')) }...` }>
               <div>
 
@@ -391,11 +396,11 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                               }
                             >
-                                {quantity_units.items.map((item) => {
-                                  return (
-                                    <Option value={item.key} >{ item.value }</Option>
-                                  );
-                                })}
+                              {quantity_units.items.map((item) => {
+                                return (
+                                  <Option value={item.key} >{ item.value }</Option>
+                                );
+                              })}
                             </Select>
                           </Form.Item>
                         </Col>

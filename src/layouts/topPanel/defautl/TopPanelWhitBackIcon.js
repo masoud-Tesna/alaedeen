@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
 
 // import Styles For TopPanelWhitBackIcon:
-import './styles.less';
+import './styles/styles.less';
 
 // Ant Design Import:
 import { Row, Col } from 'antd';
