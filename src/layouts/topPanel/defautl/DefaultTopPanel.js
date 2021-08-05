@@ -359,11 +359,12 @@ const DefaultTopPanel = () => {
                 </span>
               </Link>
 
-              <a className="topPanel--content__item hover" href="https://hornb2b.com/horn/logistics/">
+              {/* Hide Logistics page link: */}
+              {/*<a className="topPanel--content__item hover" href="https://hornb2b.com/horn/logistics/">
                 <span className="topPanel--item__text">
                   {t(__('Logistics'))}
                 </span>
-              </a>
+              </a>*/}
 
               <a className="topPanel--content__item hover" href={`https://calendar.iranfair.com/${language === 'ar'? '' : language}`} target="_blank" rel="noreferrer">
                 <span className="topPanel--item__text">
