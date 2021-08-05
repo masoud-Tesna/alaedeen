@@ -70,7 +70,7 @@ const DefaultTopPanel = () => {
       languageDispatch(changeLanguageAction(lang));
       setTimeout(() => {
         setShowLoadSpinner(false);
-        setVisibleTopPanelMenuXs(false);
+        closeTopPanelMenuXs();
       }, 1000);
 
     }
@@ -85,7 +85,7 @@ const DefaultTopPanel = () => {
       setCurrency(e.target.value);
       setTimeout(() => {
         setShowLoadSpinner(false);
-        setVisibleTopPanelMenuXs(false);
+        closeTopPanelMenuXs();
       }, 1000);
 
     }
