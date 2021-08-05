@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 
 // import style file:
 import './styles/RequestsList.less';
 
 // import ant design:
-import { Col, Row, Skeleton } from "antd";
+import { Col, Row, Skeleton, Modal } from "antd";
 
 // import helper functions:
 import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
-import { useGetApi } from "../../../functions";
+import { useGetApi, useWindowSize } from "../../../functions";
 
 // ikport Moment for show date:
 import Moment from 'react-moment';
@@ -49,9 +49,34 @@ const RequestSkeleton = () => {
 
 const RequestsList = () => {
 
+  const { width } = useWindowSize();
+
   const { t } = useTranslation();
 
   const requestLists = useGetApi('request-list-api', `items_per_page=5&status=C`, 'request_lists');
+
+  const [isRequestModal, setIsRequestModal] = useState([]);
+
+  const showRequestModal = (requestId) => {
+    setIsRequestModal(prevState => {
+      return {
+        ...prevState,
+        [requestId]: true
+      }
+    });
+  }
+
+  const handleRequestModalClose = (requestId) => {
+    console.log(requestId)
+    setIsRequestModal(prevState => {
+      return {
+        ...prevState,
+        [requestId]: false
+      }
+    });
+  }
+
+  console.log(isRequestModal)
 
   let requestRowsSkeleton = [];
   for (let i = 1; i <= 5; i++) {
@@ -72,13 +97,14 @@ const RequestsList = () => {
                 { requestRowsSkeleton }
               </> :
               <>
-                {requestLists.items[0] ?
-                  <>
-                    {requestLists.items[0].map(requestList => {
-                      let timestamp = requestList.timestamp;
+                {requestLists.items[0] &&
+                <>
+                  {requestLists.items[0].map(requestList => {
+                    let timestamp = requestList.timestamp;
 
-                      return (
-                        <div key={ requestList.request_id } className="d-inline requestsList--item__content">
+                    return (
+                      <>
+                        <div key={ requestList.request_id } className="d-inline requestsList--item__content" onClick={() => { showRequestModal(requestList.request_id) }}>
                           <Row className="p-3 bg-white rounded-lg requestsList--item">
                             <Col span={24}>
                               <Row className="requestsList--item__first">
@@ -105,16 +131,122 @@ const RequestsList = () => {
                               </Row>
                             </Col>
                             <Col span={24} className="vv-font-size-1-7 text-center mt-2 cursor-pointer requestsList--item__contact">
-                              { t(__('Contact Buyer Now')) }
+                              { t(__('Show all details')) }
                             </Col>
                           </Row>
                         </div>
-                      );
-                    })}
-                  </> :
-                  <>
+                        <Modal
+                          title={ requestList.product_name }
+                          style={{ top: width < 768 && 10 }}
+                          visible={isRequestModal[requestList.request_id] || false}
+                          onCancel={() => { handleRequestModalClose(requestList.request_id) }}
+                          footer={false}
+                        >
+                          <Row className="row-cols-1 row-cols-md-2 requestsList--item__modal" gutter={[width >= 768 ? 16 : 0, 30]}>
+                            <Col>
+                              <Row gutter={width >= 768 ? 16 : 0}>
+                                <Col span={12} className="text-92 requestsList--modal__variable">
+                                  { t(__('request name')) }:
+                                </Col>
+                                <Col span={12} className="text-47 requestsList--modal__value">
+                                  { requestList.product_name }
+                                </Col>
+                              </Row>
+                            </Col>
 
-                  </>
+                            <Col>
+                              <Row gutter={width >= 768 ? 16 : 0}>
+                                <Col span={12} className="text-92 requestsList--modal__variable">
+                                  { t(__('Applicant name')) }:
+                                </Col>
+                                <Col span={12} className="text-47 requestsList--modal__value">
+                                  { requestList.auth_name }
+                                </Col>
+                              </Row>
+                            </Col>
+
+                            <Col>
+                              <Row gutter={width >= 768 ? 16 : 0}>
+                                <Col span={12} className="text-92 requestsList--modal__variable">
+                                  { t(__('location')) }:
+                                </Col>
+                                <Col span={12} className="text-47 requestsList--modal__value">
+                                  { `${requestList.auth_country}, ${requestList.auth_city}` }
+                                </Col>
+                              </Row>
+                            </Col>
+
+                            <Col>
+                              <Row gutter={width >= 768 ? 16 : 0}>
+                                <Col span={12} className="text-92 requestsList--modal__variable">
+                                  { t(__('quantity')) }:
+                                </Col>
+                                <Col span={12} className="text-47 requestsList--modal__value">
+                                  { `${requestList.quantity} ${requestList.quantity_unit}` }
+                                </Col>
+                              </Row>
+                            </Col>
+
+                            <Col>
+                              <Row gutter={width >= 768 ? 16 : 0}>
+                                <Col span={12} className="text-92 requestsList--modal__variable">
+                                  { t(__('order_value')) }:
+                                </Col>
+                                <Col span={12} className="text-47 requestsList--modal__value">
+                                  { `${requestList.order_value} ${requestList.currency}` }
+                                </Col>
+                              </Row>
+                            </Col>
+
+                            <Col>
+                              <Row gutter={width >= 768 ? 16 : 0}>
+                                <Col span={12} className="text-92 requestsList--modal__variable">
+                                  { t(__('requirement_urgency')) }:
+                                </Col>
+                                <Col span={12} className="text-47 requestsList--modal__value">
+                                  { requestList.requirement_urgency }
+                                </Col>
+                              </Row>
+                            </Col>
+
+                            <Col>
+                              <Row gutter={width >= 768 ? 16 : 0}>
+                                <Col span={12} className="text-92 requestsList--modal__variable">
+                                  { t(__('supp_location')) }:
+                                </Col>
+                                <Col span={12} className="text-47 requestsList--modal__value">
+                                  { requestList.supp_location }
+                                </Col>
+                              </Row>
+                            </Col>
+
+                            <Col>
+                              <Row gutter={width >= 768 ? 16 : 0}>
+                                <Col span={12} className="text-92 requestsList--modal__variable">
+                                  { t(__('requirement_frequency')) }:
+                                </Col>
+                                <Col span={12} className="text-47 requestsList--modal__value">
+                                  { requestList.regular_type ? requestList.regular_type : requestList.requirement_frequency }
+                                </Col>
+                              </Row>
+                            </Col>
+
+                            <Col>
+                              <Row gutter={width >= 768 ? 16 : 0}>
+                                <Col span={12} className="text-92 requestsList--modal__variable">
+                                  { t(__('description')) }:
+                                </Col>
+                                <Col span={12} className="text-47 requestsList--modal__value">
+                                  { requestList.description }
+                                </Col>
+                              </Row>
+                            </Col>
+                          </Row>
+                        </Modal>
+                      </>
+                    );
+                  })}
+                </>
                 }
               </>
             }
