@@ -79,7 +79,7 @@ const TopBrands = () => {
                     {factories.map((brand) => {
                       return (
                         <Col className="topBrands--item" key={ brand.company_id * 10 }>
-                          <Link className="d-block h-100" to={ `/factories?factory=${brand.company_id}` }>
+                          <a className="d-block h-100" href={`https://store.hornb2b.com/?store_id=${brand.company_id}`}>
                             <div className="d-flex align-items-end justify-content-center topBrands--item__image">
                               <FactoriesLogo logo={ brand.logo } alt={ brand.company }/>
                             </div>
@@ -92,7 +92,7 @@ const TopBrands = () => {
                               {fn_stripHtml(brand.description) }
                             </div>
                             }
-                          </Link>
+                          </a>
                         </Col>
                       );
                     })}
@@ -113,19 +113,21 @@ const TopBrands = () => {
                       {factories.map((brand) => {
                         return (
                           <div className="d-inline topBrandsScroll--item__content" key={brand.company_id}>
-                            <Row className="topBrandsScroll--item" justify="center">
-                              <div className="d-flex align-items-end justify-content-center w-100 topBrands--item__image">
-                                <FactoriesLogo logo={ brand.logo } alt={ brand.company }/>
-                              </div>
-                              <div className="vv-font-size-1-4 font-weight-600 text-47 text-center text-truncate mt-1 w-100 topBrands--item__name">
-                                { brand.company }
-                              </div>
-                              { brand.description &&
-                              <div className="vv-font-size-1-4 text-8b text-center text-truncate mt-1 w-100 topBrands--item__name">
-                                { fn_stripHtml(brand.description) }
-                              </div>
-                              }
-                            </Row>
+                            <a className="d-block h-100" href={`https://store.hornb2b.com/?store_id=${brand.company_id}`}>
+                              <Row className="topBrandsScroll--item" justify="center">
+                                <div className="d-flex align-items-end justify-content-center w-100 topBrands--item__image">
+                                  <FactoriesLogo logo={ brand.logo } alt={ brand.company }/>
+                                </div>
+                                <div className="vv-font-size-1-4 font-weight-600 text-47 text-center text-truncate mt-1 w-100 topBrands--item__name">
+                                  { brand.company }
+                                </div>
+                                { brand.description &&
+                                <div className="vv-font-size-1-4 text-8b text-center text-truncate mt-1 w-100 topBrands--item__name">
+                                  { fn_stripHtml(brand.description) }
+                                </div>
+                                }
+                              </Row>
+                            </a>
                           </div>
                         );
                       })}
@@ -133,7 +135,6 @@ const TopBrands = () => {
                   }
 
                 </ScrollContainer>
-
               </Col>
             }
 
