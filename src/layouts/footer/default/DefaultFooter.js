@@ -95,12 +95,12 @@ const DefaultFooter = () => {
                 { t(__('Tips and Help')) }
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                <a href="https://hornb2b.com/horn/about-horn/">
+                <a href="https://alaedeen.com/horn/about-horn/">
                   { t(__('About Horn')) }
                 </a>
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                <a href="https://hornb2b.com/horn/horn-blog/">
+                <a href="https://alaedeen.com/horn/horn-blog/">
                   { t(__('Horn Blog')) }
                 </a>
               </Col>
@@ -119,22 +119,22 @@ const DefaultFooter = () => {
                 { t(__('Legal Bits')) }
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                <a href="https://hornb2b.com/horn/terms-of-use/">
+                <a href="https://alaedeen.com/horn/terms-of-use/">
                   { t(__('Terms of Use')) }
                 </a>
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                <a href="https://hornb2b.com/horn/privacy-policy/">
+                <a href="https://alaedeen.com/horn/privacy-policy/">
                   { t(__('Privacy Policy')) }
                 </a>
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                <a href="https://hornb2b.com/horn/posting-policy/">
+                <a href="https://alaedeen.com/horn/posting-policy/">
                   { t(__('Posting Policy')) }
                 </a>
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                <a href="https://hornb2b.com/horn/cookie-policy/">
+                <a href="https://alaedeen.com/horn/cookie-policy/">
                   { t(__('Cookie Policy')) }
                 </a>
               </Col>

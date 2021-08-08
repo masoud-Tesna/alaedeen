@@ -17,7 +17,7 @@ export function useGetProductApi (params) {
 
   useEffect(() => {
     // async function for get API:
-    const url = `https://hornb2b.com/horn/products-api/?${params}&lang_code=${language}`;
+    const url = `https://alaedeen.com/horn/products-api/?${params}&lang_code=${language}`;
     async function getProduct() {
       return await axios.get(url);
     }
@@ -65,9 +65,9 @@ export function useGetTopRankingProducts (cat1, cat2, cat3) {
     // async function for get API:
     async function getProduct() {
       return await axios.all([
-        axios.get(`https://hornb2b.com/horn/products-api/?${cat1}&lang_code=${language}`),
-        axios.get(`https://hornb2b.com/horn/products-api/?${cat2}&lang_code=${language}`),
-        axios.get(`https://hornb2b.com/horn/products-api/?${cat3}&lang_code=${language}`)
+        axios.get(`https://alaedeen.com/horn/products-api/?${cat1}&lang_code=${language}`),
+        axios.get(`https://alaedeen.com/horn/products-api/?${cat2}&lang_code=${language}`),
+        axios.get(`https://alaedeen.com/horn/products-api/?${cat3}&lang_code=${language}`)
       ]);
     }
 
@@ -115,9 +115,9 @@ export function useGetApi (mode, params, item, loading = true, setLanguage = tru
 // async function for get API:
     let url;
     if (setLanguage) {
-      url = `https://hornb2b.com/horn/${mode}/?${params}&lang_code=${language}`;
+      url = `https://alaedeen.com/horn/${mode}/?${params}&lang_code=${language}`;
     }else {
-      url = `https://hornb2b.com/horn/${mode}/?${params}`;
+      url = `https://alaedeen.com/horn/${mode}/?${params}`;
     }
 
     async function getApi() {
@@ -161,7 +161,7 @@ export function useGetPremiumFactories (params) {
 
   useEffect(() => {
     // async function for get API:
-    const url = `https://hornb2b.com/horn/premium-factories-api/?${params}&lang_code=${language}`;
+    const url = `https://alaedeen.com/horn/premium-factories-api/?${params}&lang_code=${language}`;
     async function getPremiumFactories() {
       return await axios.get(url);
     }
@@ -203,7 +203,7 @@ export function useGetFactories (params) {
 
   useEffect(() => {
     // async function for get API:
-    const url = `https://hornb2b.com/horn/factories-api/?${params}&lang_code=${language}`;
+    const url = `https://alaedeen.com/horn/factories-api/?${params}&lang_code=${language}`;
     async function getFactories() {
       return await axios.get(url);
     }
@@ -242,7 +242,7 @@ export function useResizeImage (image_path, image_folder, image_width, image_hei
 
   useEffect(() => {
     // async function for get API:
-    const url = `https://hornb2b.com/horn/image-resize-api/?image_path=${image_path}&image_folder=${image_folder}&image_width=${image_width}&image_height=${image_height}`;
+    const url = `https://alaedeen.com/horn/image-resize-api/?image_path=${image_path}&image_folder=${image_folder}&image_width=${image_width}&image_height=${image_height}`;
     async function getImageResized() {
       return await axios.get(url);
     }

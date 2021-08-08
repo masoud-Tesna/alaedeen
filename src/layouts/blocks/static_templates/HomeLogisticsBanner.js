@@ -76,7 +76,7 @@ const HomeLogisticsBanner = () => {
             <Col span={24} className="d-lg-none text-white font-weight-600 text-center vv-font-size-1-5 homeLogisticsBanner--caption__text1">{ t(__('Get the best price now!')) }</Col>
             Desktop & Mobile
             <Col span={24} className="py-3 text-center homeLogisticsBanner--caption__btn">
-              <a href="https://hornb2b.com/horn/logistics/" className="text-black border-0 d-inline-block">
+              <a href="https://alaedeen.com/horn/logistics/" className="text-black border-0 d-inline-block">
                 { t(__('Go to page')) }
               </a>
             </Col>

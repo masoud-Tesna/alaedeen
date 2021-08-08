@@ -54,25 +54,25 @@ const DefaultHeader = () => {
       </Menu.Item>
 
       <Menu.Item>
-        <a href="https://hornb2b.com/horn/profile-settings/">
+        <a href="https://alaedeen.com/horn/profile-settings/">
           { t(__('profile settings')) }
         </a>
       </Menu.Item>
 
       <Menu.Item>
-        <a href="https://hornb2b.com/horn/compare/">
+        <a href="https://alaedeen.com/horn/compare/">
           { t(__('Comparison')) }
         </a>
       </Menu.Item>
 
       <Menu.Item>
-        <a href="https://hornb2b.com/horn/index.php?dispatch=vendor_communication.threads">
+        <a href="https://alaedeen.com/horn/index.php?dispatch=vendor_communication.threads">
           { t(__('Messages')) }
         </a>
       </Menu.Item>
 
       <Menu.Item>
-        <a href="https://hornb2b.com/horn/wishlist/">
+        <a href="https://alaedeen.com/horn/wishlist/">
           { t(__('Favorites')) }
         </a>
       </Menu.Item>
@@ -177,7 +177,7 @@ const DefaultHeader = () => {
                                   </Link>
                                 </Col>
                                 <Col span={24}>
-                                  <a className="text-70 vv-font-size-2" href="https://hornb2b.com/horn/register/">
+                                  <a className="text-70 vv-font-size-2" href="https://alaedeen.com/horn/register/">
                                     {t(__('Join Free'))}
                                   </a>
                                 </Col>

@@ -55,7 +55,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
   const cityLists = useGetApi('city-lists-api', `country_code=${countryCode}`, 'city_lists', false);
 
   async function getRequestCheck() {
-    return await axios.get("https://hornb2b.com/horn/request-check-api/?table=?:vv_products_request&column=request_check");
+    return await axios.get("https://alaedeen.com/horn/request-check-api/?table=?:vv_products_request&column=request_check");
   }
 
   const handleClosRequestModal = () => {
@@ -74,7 +74,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
         values.request_check = res.data.request_check;
       })
       .then(() => {
-        axios.post(`https://hornb2b.com/horn/send-request-api`, { values })
+        axios.post(`https://alaedeen.com/horn/send-request-api`, { values })
           .then(res => {
             setTrackingCode(res.data.tracking_code);
             setIsSpinSend(false);

@@ -79,7 +79,7 @@ const TopBrands = () => {
                     {factories.map((brand) => {
                       return (
                         <Col className="topBrands--item" key={ brand.company_id * 10 }>
-                          <a className="d-block h-100" href={`https://store.hornb2b.com/?store_id=${brand.company_id}`}>
+                          <a className="d-block h-100" href={`https://store.alaedeen.com/?store_id=${brand.company_id}`}>
                             <div className="d-flex align-items-end justify-content-center topBrands--item__image">
                               <FactoriesLogo logo={ brand.logo } alt={ brand.company }/>
                             </div>
@@ -113,7 +113,7 @@ const TopBrands = () => {
                       {factories.map((brand) => {
                         return (
                           <div className="d-inline topBrandsScroll--item__content" key={brand.company_id}>
-                            <a className="d-block h-100" href={`https://store.hornb2b.com/?store_id=${brand.company_id}`}>
+                            <a className="d-block h-100" href={`https://store.alaedeen.com/?store_id=${brand.company_id}`}>
                               <Row className="topBrandsScroll--item" justify="center">
                                 <div className="d-flex align-items-end justify-content-center w-100 topBrands--item__image">
                                   <FactoriesLogo logo={ brand.logo } alt={ brand.company }/>

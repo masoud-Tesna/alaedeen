@@ -131,7 +131,7 @@ const SignIn = () => {
                         name="remember_me"
                         valuePropName="checked"
                       >
-                        <a href="https://hornb2b.com/horn/index.php?dispatch=auth.recover_password" className="text-92 vv-font-size-1-2">{ t(__('Forgot Password')) } ?</a>
+                        <a href="https://alaedeen.com/horn/index.php?dispatch=auth.recover_password" className="text-92 vv-font-size-1-2">{ t(__('Forgot Password')) } ?</a>
                       </Form.Item>
                     </Col>
                   </Row>
@@ -165,7 +165,7 @@ const SignIn = () => {
 
                 <Col span={24} className="dontHaveAccountContainer">
                   <span className="text-92 vv-font-size-1-6">{ t(__('Don\'t have an account')) } ?</span>
-                  <a href="https://hornb2b.com/horn/register/" className="text-primary-darken mx-2 vv-font-size-1-8 font-weight-600">{ t(__('Join Free')) }</a>
+                  <a href="https://alaedeen.com/horn/register/" className="text-primary-darken mx-2 vv-font-size-1-8 font-weight-600">{ t(__('Join Free')) }</a>
                 </Col>
               </Row>
             </Col>

@@ -75,11 +75,11 @@ export function UserProvider ({ children }) {
 
 // function for sign in:
 export async function signIn(user_login, password, language) {
-  return await axios.post(`https://hornb2b.com/horn/login-api/?lang_code=${language}`, { user_login: user_login, password: password });
+  return await axios.post(`https://alaedeen.com/horn/login-api/?lang_code=${language}`, { user_login: user_login, password: password });
 }
 
 async function signOutAxios() {
-  return await axios.get(`https://hornb2b.com/horn/logout-api/`);
+  return await axios.get(`https://alaedeen.com/horn/logout-api/`);
 }
 
 export async function logout(dispatch) {

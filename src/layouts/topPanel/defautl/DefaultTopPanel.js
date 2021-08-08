@@ -191,7 +191,7 @@ const DefaultTopPanel = () => {
                                   {t(__(' Sign in'))}
                                 </Link>
                                 <Divider type="vertical" className="border-70"/>
-                                <a className="text-white vv-font-size-1-7 font-weight-600" href="https://hornb2b.com/horn/register/">
+                                <a className="text-white vv-font-size-1-7 font-weight-600" href="https://alaedeen.com/horn/register/">
                                   {t(__('Join Free'))}
                                 </a>
                               </Col>
@@ -285,7 +285,7 @@ const DefaultTopPanel = () => {
                         </Row>
                       </span>
 
-                    <a className="menuXs--sideNavLinks__item d-block" href="https://hornb2b.com/horn/wishlist/" >
+                    <a className="menuXs--sideNavLinks__item d-block" href="https://alaedeen.com/horn/wishlist/" >
                       <Row justify={"space-between"}>
                         <Col className="text-center" span={5}>
                           <i className="fal fa-star text-primary vv-font-size-3" />
@@ -296,7 +296,7 @@ const DefaultTopPanel = () => {
                       </Row>
                     </a>
 
-                    <a className="menuXs--sideNavLinks__item d-block" href="https://hornb2b.com/horn/compare/">
+                    <a className="menuXs--sideNavLinks__item d-block" href="https://alaedeen.com/horn/compare/">
                       <Row justify={"space-between"}>
                         <Col className="text-center" span={5}>
                           <i className="icon-vv-compare text-primary vv-font-size-2-5" />
@@ -307,7 +307,7 @@ const DefaultTopPanel = () => {
                       </Row>
                     </a>
 
-                    <a className="menuXs--sideNavLinks__item d-block" href="https://hornb2b.com/horn/index.php?dispatch=vendor_communication.threads">
+                    <a className="menuXs--sideNavLinks__item d-block" href="https://alaedeen.com/horn/index.php?dispatch=vendor_communication.threads">
                       <Row justify={"space-between"}>
                         <Col className="text-center" span={5}>
                           <i className="fal fa-envelope text-primary vv-font-size-3" />
@@ -360,7 +360,7 @@ const DefaultTopPanel = () => {
               </Link>
 
               {/* Hide Logistics page link: */}
-              {/*<a className="topPanel--content__item hover" href="https://hornb2b.com/horn/logistics/">
+              {/*<a className="topPanel--content__item hover" href="https://alaedeen.com/horn/logistics/">
                 <span className="topPanel--item__text">
                   {t(__('Logistics'))}
                 </span>
