@@ -34,8 +34,25 @@ html:lang(ar) {
 
   .logo {
     margin-left: 32px;
+
+    @media (min-width: 992px) {
+      margin-left: 20px;
+    }
+
+    @media (min-width: 1200px) {
+      margin-left: 25px;
+    }
+
     img {
-      height: 50px;
+      height: 40px;
+
+      @media (min-width: 992px) {
+        width: 200px;
+      }
+
+      @media (min-width: 1200px) {
+        width: auto;
+      }
     }
   }
 

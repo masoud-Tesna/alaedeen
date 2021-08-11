@@ -9,7 +9,8 @@ import { Row, Col, Input, Button, Layout, Skeleton, Dropdown, Menu } from 'antd'
 import { DownOutlined } from "@ant-design/icons";
 
 // import logo:
-import logoXs from '../../../assets/images/logoXs.png';
+import logoXs from '../../../assets/images/alaedeenLogo-Xs.png';
+import logoXl from '../../../assets/images/alaedeenLogo-Xl.png';
 
 // import helper functions:
 import { __ } from "../../../functions/Helper";
@@ -22,8 +23,12 @@ import { useGetAuthState, useDispatchAuthState, logout } from '../../../contexts
 
 // import OneRequestMultipleQuotesModal component for show send request form modal:
 import OneRequestMultipleQuotesModal from "../../blocks/static_templates/OneRequestMultipleQuotesModal";
+import { useWindowSize } from "../../../functions";
 
 const DefaultHeader = () => {
+
+  // get screen width:
+  const { width } = useWindowSize();
 
   // state for request form modal:
   const [isRequestModalVisible, setIsRequestModalVisible] = useState(false);
@@ -116,14 +121,14 @@ const DefaultHeader = () => {
           <Row className="h-100 " gutter={{ md: 8, lg: 16, xl: 50 }}>
             <Col className="header--content__left" md={ 15 } lg={ 15 } xl={ 16 }>
               <Row className="h-100">
-                <Col className="my-auto" span={7}>
+                <Col className="my-auto" md={10} lg={10} xl={9} xxl={7}>
                   <div className="logo">
                     <Link to={"/"} >
-                      <img src={logoXs} alt="Horn" />
+                      <img src={ width <= 768 ? logoXs : logoXl } alt="Horn" />
                     </Link>
                   </div>
                 </Col>
-                <Col className="my-auto header--left__searchBox" span={17}>
+                <Col className="my-auto header--left__searchBox" md={14} lg={14} xl={15} xxl={17}>
                   <Input placeholder={ t(__('What are you looking for...')) } suffix={searchTextSuffix(t(__('search')))} onChange={e => {setSearchValue(e.target.value)}} onPressEnter={() => { handleSubmitSearch() }} />
                 </Col>
               </Row>

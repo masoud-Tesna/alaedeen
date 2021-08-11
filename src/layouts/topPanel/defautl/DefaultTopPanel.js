@@ -11,8 +11,8 @@ import { DownOutlined } from "@ant-design/icons";
 // import categories drop down:
 import { CategoriesDropDownVertical as Categories } from "../../blocks/categories/CategoriesDropDownVertical";
 
-// import images used:
-import hornLogo from '../../../assets/images/logoXs.png';
+// import logo:
+import logoXs from '../../../assets/images/alaedeenLogo-Xs.png';
 
 // import another components used:
 import LoaderSpinner from '../../blocks/static_templates/LoadSpinner';
@@ -348,8 +348,8 @@ const DefaultTopPanel = () => {
       }
 
       <Col span={24} className="topPanel--col">
-        <Row className="h-100" gutter={24} justify="space-between">
-          <Col className="topPanel--content__left my-auto d-none d-lg-block">
+        <Row className="h-100 d-none d-lg-flex" gutter={24} justify="space-between">
+          <Col span={15} className="topPanel--content__left my-auto">
             <Space size="middle" align={"center"}>
               <Categories userClass="categories--dropDown topPanel--content__item hover" />
               <Divider type="vertical" className="border-70"/>
@@ -373,7 +373,7 @@ const DefaultTopPanel = () => {
               </a>
             </Space>
           </Col>
-          <Col className="topPanel--content__right my-auto d-none d-lg-block">
+          <Col span={9} className="topPanel--content__right my-auto">
             <Space size={0.5}>
               <span
                 className={ `vv-cursor-pointer topPanel--content__item ${ language === 'ar' ? 'active' : 'hover' }` }
@@ -413,15 +413,18 @@ const DefaultTopPanel = () => {
 
             </Space>
           </Col>
-          <Col className="d-lg-none my-auto vv-cursor-pointer topPanel--col__logoXS">
+        </Row>
+
+        <Row className="h-100 d-lg-none" gutter={24} justify="space-between">
+          <Col span={9} className="my-auto vv-cursor-pointer topPanel--col__logoXS">
             <Link to={"/"} >
-              <img src={hornLogo} alt="Horn"/>
+              <img src={logoXs} alt="Horn"/>
             </Link>
           </Col>
-          <Col className="d-lg-none my-auto topPanel--col__btnRequest">
+          <Col span={11} className="my-auto topPanel--col__btnRequest">
             <Button className="border border-secondary-2 bg-secondary-2 border-w-2 text-white font-weight-600 p-0" size="large" onClick={() => { showRequestModalHeader() }}>{t(__('Request a Quote'))}</Button>
           </Col>
-          <Col className="d-lg-none my-auto vv-cursor-pointer" onClick={showTopPanelMenuXs}>
+          <Col span={4} className="my-auto vv-cursor-pointer" onClick={showTopPanelMenuXs}>
             <i className="fas fa-grip-lines cursor-pointer text-white display-3" />
           </Col>
         </Row>
