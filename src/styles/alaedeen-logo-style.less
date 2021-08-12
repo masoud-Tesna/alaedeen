@@ -1,0 +1,43 @@
+@import "./alaedeen-logo-variables";
+
+@font-face {
+  font-family: '@{alaedeen-logo-font-family}';
+  src:  url('@{alaedeen-logo-font-path}/@{alaedeen-logo-font-family}.eot?iihdyh');
+  src:  url('@{alaedeen-logo-font-path}/@{alaedeen-logo-font-family}.eot?iihdyh#iefix') format('embedded-opentype'),
+    url('@{alaedeen-logo-font-path}/@{alaedeen-logo-font-family}.ttf?iihdyh') format('truetype'),
+    url('@{alaedeen-logo-font-path}/@{alaedeen-logo-font-family}.woff?iihdyh') format('woff'),
+    url('@{alaedeen-logo-font-path}/@{alaedeen-logo-font-family}.svg?iihdyh#@{alaedeen-logo-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="logo-icon-"], [class*=" logo-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '@{alaedeen-logo-font-family}' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  color: @primary-color;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.logo-icon-alaedeen {
+  font-size: 50px;
+  &:before {
+    content: @logo-icon-alaedeen; 
+  }
+}
+.logo-icon-alaedeen-com {
+  font-size: 24px;
+  &:before {
+    content: @logo-icon-alaedeen-com; 
+  }
+}
+
