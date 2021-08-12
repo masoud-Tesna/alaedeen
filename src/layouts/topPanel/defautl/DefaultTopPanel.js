@@ -11,9 +11,6 @@ import { DownOutlined } from "@ant-design/icons";
 // import categories drop down:
 import { CategoriesDropDownVertical as Categories } from "../../blocks/categories/CategoriesDropDownVertical";
 
-// import logo:
-import logoXs from '../../../assets/images/alaedeenLogo-Xs.png';
-
 // import another components used:
 import LoaderSpinner from '../../blocks/static_templates/LoadSpinner';
 

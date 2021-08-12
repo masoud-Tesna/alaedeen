@@ -8,10 +8,6 @@ import './styles/styles.less';
 import { Row, Col, Input, Button, Layout, Skeleton, Dropdown, Menu } from 'antd';
 import { DownOutlined } from "@ant-design/icons";
 
-// import logo:
-import logoXs from '../../../assets/images/alaedeen1.png';
-import logoXl from '../../../assets/images/alaedeen2.png';
-
 // import helper functions:
 import { __ } from "../../../functions/Helper";
 
