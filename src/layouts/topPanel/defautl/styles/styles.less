@@ -28,6 +28,11 @@ html:lang(ar) {
     left: 0 !important;
     padding-top: 0 !important;
   }
+
+  .topPanel--col__logoXSRow,
+  .topPanel--col__logoXSRow .ant-row {
+    direction: ltr !important;
+  }
 }
 
 .topPanel--container {
@@ -36,9 +41,16 @@ html:lang(ar) {
   .topPanel--col {
     padding: 0 18px;
     .topPanel--col__logoXS {
-      img {
-        max-width: 100%;
-        max-height: 32px;
+      .logo--character {
+        i {
+          font-size: 35px;
+        }
+      }
+
+      .logo--alaedeenSlug {
+        p {
+          font-size: .8rem;
+        }
       }
     }
     .topPanel--col__titleXS {

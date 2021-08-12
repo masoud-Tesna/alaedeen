@@ -123,8 +123,22 @@ const DefaultHeader = () => {
               <Row className="h-100">
                 <Col className="my-auto" md={10} lg={10} xl={9} xxl={7}>
                   <div className="logo">
-                    <Link to={"/"} >
-                      <img src={ width <= 768 ? logoXs : logoXl } alt="Horn" />
+                    <Link to={"/"} className="d-block">
+                      <Row>
+                        <Col flex="26px" className="logo--character">
+                          <i className="logo-icon-alaedeen" />
+                        </Col>
+                        <Col flex="1 1" className="pl-3">
+                          <Row className="h-100">
+                            <Col span={24} className="logo--alaedeenCom">
+                              <i className="logo-icon-alaedeen-com" />
+                            </Col>
+                            <Col span={24} className="logo--alaedeenSlug">
+                              <p className="m-0 text-47 vv-font-size-1-7">Alaedeen Slug Section</p>
+                            </Col>
+                          </Row>
+                        </Col>
+                      </Row>
                     </Link>
                   </div>
                 </Col>

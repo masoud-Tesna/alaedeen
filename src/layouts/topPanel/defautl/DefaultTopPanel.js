@@ -417,8 +417,22 @@ const DefaultTopPanel = () => {
 
         <Row className="h-100 d-lg-none" gutter={24} justify="space-between">
           <Col span={9} className="my-auto vv-cursor-pointer topPanel--col__logoXS">
-            <Link to={"/"} >
-              <img src={logoXs} alt="Horn"/>
+            <Link to={"/"} className="d-block">
+              <Row className="topPanel--col__logoXSRow">
+                <Col span={ 4 } className="logo--character">
+                  <i className="logo-icon-alaedeen" />
+                </Col>
+                <Col span={ 20 } className="pl-3">
+                  <Row className="h-100">
+                    <Col span={24} className="logo--alaedeenCom">
+                      <i className="logo-icon-alaedeen-com vv-font-size-1-5" />
+                    </Col>
+                    <Col span={24} className="logo--alaedeenSlug">
+                      <p className="m-0 text-white">Alaedeen Slug Section</p>
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
             </Link>
           </Col>
           <Col span={11} className="my-auto topPanel--col__btnRequest">

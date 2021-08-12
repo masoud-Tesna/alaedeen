@@ -51,7 +51,9 @@ const DefaultFooter = () => {
         <Row justify="space-between">
           <Col>
             <Space className="" size={ spaceSize }>
-              <div className="footer--topSection__logoApp" />
+              <div className="footer--topSection__logoApp">
+                <i className="logo-icon-alaedeen" />
+              </div>
               <div className="d-inline my-auto">
                 <div className="d-none d-lg-inline">
                   <div className="vv-font-size-2-2 font-weight-600 text-white d-inline">{ t(__('Download the Horn App for iOS or Android')) }</div>
