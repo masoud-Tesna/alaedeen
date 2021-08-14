@@ -53,7 +53,8 @@ const en = {
   "chat_now": "Chat Now",
   "contacts": "contacts",
   "language_and_currency": "Language & Currency",
-  "search": "Search"
+  "search": "Search",
+  "alaedeen_slug_section": "Iranian manufacturers & products"
 };
 
 export default en;

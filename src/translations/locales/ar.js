@@ -53,7 +53,8 @@ const ar = {
   "professional_certifications_and_approvals": "Professional certifications and approvals",
   "chat_now": "دردش",
   "contacts": "جهات الاتصال",
-  "search": "بحث"
+  "search": "بحث",
+  "alaedeen_slug_section": "المنتجات الايرانية و المنتجين"
 };
 
 export default ar;

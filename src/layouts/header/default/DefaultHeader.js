@@ -8,6 +8,9 @@ import './styles/styles.less';
 import { Row, Col, Input, Button, Layout, Skeleton, Dropdown, Menu } from 'antd';
 import { DownOutlined } from "@ant-design/icons";
 
+// import alaedeen character:
+import alaedeenChar from '../../../assets/images/alaedeen-char.svg';
+
 // import helper functions:
 import { __ } from "../../../functions/Helper";
 
@@ -19,12 +22,8 @@ import { useGetAuthState, useDispatchAuthState, logout } from '../../../contexts
 
 // import OneRequestMultipleQuotesModal component for show send request form modal:
 import OneRequestMultipleQuotesModal from "../../blocks/static_templates/OneRequestMultipleQuotesModal";
-import { useWindowSize } from "../../../functions";
 
 const DefaultHeader = () => {
-
-  // get screen width:
-  const { width } = useWindowSize();
 
   // state for request form modal:
   const [isRequestModalVisible, setIsRequestModalVisible] = useState(false);
@@ -122,15 +121,15 @@ const DefaultHeader = () => {
                     <Link to={"/"} className="d-block">
                       <Row>
                         <Col flex="26px" className="logo--character">
-                          <i className="logo-icon-alaedeen" />
+                          <img src={alaedeenChar} alt=""/>
                         </Col>
-                        <Col flex="1 1" className="pl-3">
+                        <Col flex="1 1" className="pl-2">
                           <Row className="h-100">
                             <Col span={24} className="logo--alaedeenCom">
                               <i className="logo-icon-alaedeen-com" />
                             </Col>
                             <Col span={24} className="logo--alaedeenSlug">
-                              <p className="m-0 text-47 vv-font-size-1-7">Alaedeen Slug Section</p>
+                              <p className={ `m-0 text-47 vv-font-size-1-4` }>{ t(__('Alaedeen Slug Section')) }</p>
                             </Col>
                           </Row>
                         </Col>

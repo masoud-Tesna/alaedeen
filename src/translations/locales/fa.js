@@ -53,7 +53,8 @@ const fa = {
   "professional_certifications_and_approvals": "نمایش گواهینامه‌ها و تاییدیه‌ها",
   "chat_now": "چت",
   "contacts": "اطلاعات تماس",
-  "search": "جستجو"
+  "search": "جستجو",
+  "alaedeen_slug_section": "تولیدکننده‌گان و تولیدات ایرانی"
 };
 
 export default fa;
