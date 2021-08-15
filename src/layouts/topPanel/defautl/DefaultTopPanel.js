@@ -8,6 +8,9 @@ import './styles/styles.less';
 import { Row, Col, Divider, Space, Button, Collapse, Drawer, Skeleton } from 'antd';
 import { DownOutlined } from "@ant-design/icons";
 
+// import alaedeen character:
+import alaedeenChar from '../../../assets/images/alaedeen-char.svg'
+
 // import categories drop down:
 import { CategoriesDropDownVertical as Categories } from "../../blocks/categories/CategoriesDropDownVertical";
 
@@ -417,12 +420,12 @@ const DefaultTopPanel = () => {
             <Link to={"/"} className="d-block">
               <Row className="topPanel--col__logoXSRow">
                 <Col span={ 4 } className="logo--character">
-                  <i className="logo-icon-alaedeen" />
+                  <img src={alaedeenChar} alt=""/>
                 </Col>
-                <Col span={ 20 } className="pl-1">
+                <Col span={ 20 } className="logo-slug">
                   <Row className="h-100">
                     <Col span={24} className="logo--alaedeenCom">
-                      <i className="logo-icon-alaedeen-com vv-font-size-1-6" />
+                      <i className="logo-icon-alaedeen-com vv-font-size-1-8" />
                     </Col>
                     <Col span={24} className="logo--alaedeenSlug">
                       <p className="m-0 text-white">{ t(__('Alaedeen Slug Section')) }</p>
