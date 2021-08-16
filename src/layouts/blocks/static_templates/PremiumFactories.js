@@ -83,7 +83,7 @@ const PremiumFactories = () => {
 
   const { width } = useWindowSize();
 
-  const { factories, load } = useGetPremiumFactories();
+  const { factories, load } = useGetPremiumFactories("items_per_page=3");
 
   return (
     <div className="premiumFactories--container">
