@@ -16,20 +16,18 @@ export function useGetProductApi (params) {
   const { language } = useGetLanguageState();
 
   useEffect(() => {
-    // async function for get API:
-    const url = `https://alaedeen.com/horn/products-api/?${params}&lang_code=${language}`;
-    async function getProduct() {
-      return await axios.get(url);
-    }
-
     let mounted  = true;
     setLoad(true);
-    if (language === 'null') {
-      mounted  = false;
-      return () => mounted = false;
-    }
 
-    if (mounted) {
+    if (mounted && language) {
+
+      // async function for get API:
+      const url = `https://alaedeen.com/horn/products-api/?${params}&lang_code=${language}`;
+
+      async function getProduct() {
+        return await axios.get(url);
+      }
+
       getProduct()
         .then(res => {
         setProducts(res.data.products);
@@ -41,7 +39,8 @@ export function useGetProductApi (params) {
         .catch ((error) => {
           setError(error);
           setLoad(false);
-        })
+        });
+
     }
     return () => mounted = false;
   }, [params, language]);
@@ -62,24 +61,20 @@ export function useGetTopRankingProducts (cat1, cat2, cat3) {
   const { language } = useGetLanguageState();
 
   useEffect(() => {
-    // async function for get API:
-    async function getProduct() {
-      return await axios.all([
-        axios.get(`https://alaedeen.com/horn/products-api/?${cat1}&lang_code=${language}`),
-        axios.get(`https://alaedeen.com/horn/products-api/?${cat2}&lang_code=${language}`),
-        axios.get(`https://alaedeen.com/horn/products-api/?${cat3}&lang_code=${language}`)
-      ]);
-    }
-
     let mounted  = true;
     setLoad(true);
 
-    if (language === 'null') {
-      mounted  = false;
-      return () => mounted = false;
-    }
+    if (mounted && language) {
 
-    if (mounted) {
+      // async function for get API:
+      async function getProduct() {
+        return await axios.all([
+          axios.get(`https://alaedeen.com/horn/products-api/?${cat1}&lang_code=${language}`),
+          axios.get(`https://alaedeen.com/horn/products-api/?${cat2}&lang_code=${language}`),
+          axios.get(`https://alaedeen.com/horn/products-api/?${cat3}&lang_code=${language}`)
+        ]);
+      }
+
       getProduct()
         .then(axios.spread((firstResponse, secondResponse, thirdResponse) => {
           setProductsCat1(firstResponse.data.products);
@@ -114,7 +109,7 @@ export function useGetApi (mode, params, item, loading = true, setLanguage = tru
   useEffect(() => {
 // async function for get API:
     let url;
-    if (setLanguage) {
+    if (setLanguage && language) {
       url = `https://alaedeen.com/horn/${mode}/?${params}&lang_code=${language}`;
     }else {
       url = `https://alaedeen.com/horn/${mode}/?${params}`;
@@ -127,12 +122,7 @@ export function useGetApi (mode, params, item, loading = true, setLanguage = tru
     let mounted  = true;
     setLoad(loading);
 
-    if (language === 'null') {
-      mounted  = false;
-      return () => mounted = false;
-    }
-
-    if (mounted) {
+    if (mounted && language) {
       getApi()
         .then(res => {
           setItems(res.data[item]);
@@ -145,6 +135,7 @@ export function useGetApi (mode, params, item, loading = true, setLanguage = tru
           setLoad(false);
         })
     }
+
     return () => mounted = false;
   }, [mode, params, item, loading, setLanguage, language]);
 
@@ -160,20 +151,17 @@ export function useGetPremiumFactories (params) {
   const { language } = useGetLanguageState();
 
   useEffect(() => {
-    // async function for get API:
-    const url = `https://alaedeen.com/horn/premium-factories-api/?${params}&lang_code=${language}`;
-    async function getPremiumFactories() {
-      return await axios.get(url);
-    }
-
     let mounted  = true;
     setLoad(true);
-    if (language === 'null') {
-      mounted  = false;
-      return () => mounted = false;
-    }
 
-    if (mounted) {
+    if (mounted && language) {
+
+      // async function for get API:
+      const url = `https://alaedeen.com/horn/premium-factories-api/?${params}&lang_code=${language}`;
+      async function getPremiumFactories() {
+        return await axios.get(url);
+      }
+
       getPremiumFactories()
         .then(res => {
           setFactories(res.data.factories);
@@ -202,20 +190,17 @@ export function useGetFactories (params) {
   const { language } = useGetLanguageState();
 
   useEffect(() => {
-    // async function for get API:
-    const url = `https://alaedeen.com/horn/factories-api/?${params}&lang_code=${language}`;
-    async function getFactories() {
-      return await axios.get(url);
-    }
-
     let mounted  = true;
     setLoad(true);
-    if (language === 'null') {
-      mounted  = false;
-      return () => mounted = false;
-    }
 
-    if (mounted) {
+    if (mounted && language) {
+
+      // async function for get API:
+      const url = `https://alaedeen.com/horn/factories-api/?${params}&lang_code=${language}`;
+      async function getFactories() {
+        return await axios.get(url);
+      }
+
       getFactories()
         .then(res => {
           setFactories(res.data.factories);
@@ -229,6 +214,7 @@ export function useGetFactories (params) {
           setLoad(false);
         })
     }
+
     return () => mounted = false;
   }, [params, language]);
 

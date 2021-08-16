@@ -1,4 +1,4 @@
 // Initial State:
 export const LanguageInitialState = {
-  language: 'null'
+  language: null
 }

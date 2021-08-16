@@ -45,12 +45,12 @@ export function UserProvider ({ children }) {
 
     let mounted  = true;
 
-    if (userLoginCookie && userPasswordCookie) {
+    if (userLoginCookie && userPasswordCookie && language) {
       dispatch(checkSignInLoadingAction());
       console.log('start with local storage');
       signIn(userLoginCookie, userPasswordCookie, language)
         .then(res => {
-          dispatch(signInAction(res.data.auth, userLoginCookie, userPasswordCookie, false));
+          dispatch(signInAction(res?.data?.auth, userLoginCookie, userPasswordCookie, false));
         });
 
     }
