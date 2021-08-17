@@ -14,7 +14,6 @@ const fa = {
   "registered_users": "عضو",
   "total_products": "محصولات",
   "total_stores": "فروشگاه",
-  "language_and_currency": "Language & Currency",
   "one_request_multiple_quotes": "یک درخواست و چندین پاسخ",
   "worried_about_shipping": "Worried About Shipping?",
   "send_your_goods_through_the_most_reliable_shipping_service_providers": "کالاهای خود را از طریق معتبرترین ارائه دهندگان خدمات حمل و نقل ارسال کنید.",
@@ -54,6 +53,7 @@ const fa = {
   "chat_now": "چت",
   "contacts": "اطلاعات تماس",
   "search": "جستجو",
+  "language_and_currency": "Language & Currency",
   "alaedeen_slug_section": "تولیدکننده‌گان و تولیدات ایرانی"
 };
 

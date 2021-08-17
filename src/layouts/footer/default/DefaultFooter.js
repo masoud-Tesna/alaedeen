@@ -13,7 +13,6 @@ import { useGetLanguageState } from "../../../contexts/language/LanguageContext"
 // import logo:
 import appleStore from "../../../assets/images/appleStore.svg";
 import googlePlay from "../../../assets/images/googlePlay.svg";
-import alaedeenXs from "../../../assets/images/alaedeen-xs.svg";
 
 // import helper functions:
 import { __ } from '../../../functions/Helper';

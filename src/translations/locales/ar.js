@@ -26,7 +26,6 @@ const ar = {
   "premium_oem_factories": "PREMIUM OEM FACTORIES",
   "recommended_for_you": "موصى به لك",
   "show_more": "اظهر المزید",
-  "language_and_currency": "Language & Currency",
   "your_visits": "زياراتك",
   "top_brands": "أفضل العلامات التجارية",
   "what_does_horn_do": "ما هي خدمات هورن ؟",
@@ -54,6 +53,7 @@ const ar = {
   "chat_now": "دردش",
   "contacts": "جهات الاتصال",
   "search": "بحث",
+  "language_and_currency": "Language & Currency",
   "alaedeen_slug_section": "المنتجات الايرانية و المنتجين"
 };
 

@@ -52,8 +52,8 @@ const en = {
   "professional_certifications_and_approvals": "Professional certifications and approvals",
   "chat_now": "Chat Now",
   "contacts": "contacts",
-  "language_and_currency": "Language & Currency",
   "search": "Search",
+  "language_and_currency": "Language & Currency",
   "alaedeen_slug_section": "Iranian manufacturers & products"
 };
 
