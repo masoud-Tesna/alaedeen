@@ -19,5 +19,6 @@
         <language minSize="308" name="JavaScript" />
       </Languages>
     </inspection_tool>
+    <inspection_tool class="PhpVoidFunctionResultUsedInspection" enabled="false" level="WARNING" enabled_by_default="false" />
   </profile>
 </component>
