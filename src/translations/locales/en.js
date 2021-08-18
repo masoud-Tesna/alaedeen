@@ -120,6 +120,7 @@ const en = {
   "submit_btn_msg.edit_profile": "By clicking 'Submit', all the information in Manage Company Information section will be submitted. Once submitted, no further editing is allowed within one working day.",
   "save_btn_msg.edit_profile": "By clicking on \"Save\", all the information in the company's information management section will be saved and will not be included in the company's profile until this information is sent.",
   "products": "products",
+  "manufacturers_assessed_by_independent_third_parties": "manufacturers assessed by independent third parties",
   "share": "Share",
   "send_inquiry": "Send inquiry",
   "popular_products": "POPULAR PRODUCTS",

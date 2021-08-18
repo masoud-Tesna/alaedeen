@@ -123,6 +123,7 @@ const ar = {
   "share": "نشر",
   "send_inquiry": "إرسال استعلام",
   "popular_products": "المنتجات الشعبية",
+  "manufacturers_assessed_by_independent_third_parties": "الشركات المصنعة التي تم تقييمها من قبل أطراف ثالثة مستقلة",
   "experienced_guides_description": "مستشارون ذوو خبرة في شؤون الأعمال",
   "introducing_top_brands_description": "تقديم أفضل مصنع ومنتجات من إيران",
   "chat": "دردش",

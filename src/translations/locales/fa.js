@@ -113,6 +113,7 @@ const fa = {
   "quality_control": "کنترل کیفیت",
   "r_and_d_capability": "قابلیت تحقیق و توسعه",
   "export_capability": "قابلیت صادرات",
+  "manufacturers_assessed_by_independent_third_parties": "تولیدکنندگان توسط اشخاص مجرب و مورد اعتماد ارزیابی می‌شوند",
   "certificate_center": "گواهینامه‌ها",
   "company_introduction": "معرفی شرکت",
   "save": "ذخیره",
