@@ -14,7 +14,7 @@ export function UserReducer(state, action) {
         Cookie.set("user_login", action.user_login,
           {
             path: "/",
-            domain: "localhost",
+            domain: ".alaedeen.com",
             expires: fn_set_date_day(1)
           }
         );
@@ -22,7 +22,7 @@ export function UserReducer(state, action) {
         Cookie.set("user_password", action.user_password,
           {
             path: "/",
-            domain: "localhost",
+            domain: ".alaedeen.com",
             expires: fn_set_date_day(1)
           }
         );
@@ -53,21 +53,21 @@ export function UserReducer(state, action) {
       Cookie.set("remember_me", "true",
         {
           path: "/",
-          domain: "localhost"
+          domain: ".alaedeen.com"
         }
       );
       // set user_login cookie:
       Cookie.set("user_login", action.user_login,
         {
           path: "/",
-          domain: "localhost"
+          domain: ".alaedeen.com"
         }
       );
       // set user_password cookie:
       Cookie.set("user_password", action.user_password,
         {
           path: "/",
-          domain: "localhost"
+          domain: ".alaedeen.com"
         }
       );
       return state;
