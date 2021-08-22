@@ -348,7 +348,7 @@ const DefaultTopPanel = () => {
       }
 
       <Col span={24} className="topPanel--col">
-        <Row className="h-100 d-none d-lg-flex" gutter={24} justify="space-between">
+        <Row className="h-100 d-none d-lg-flex"  justify="space-between">
           <Col span={15} className="topPanel--content__left my-auto">
             <Space size="middle" align={"center"}>
               <Categories userClass="categories--dropDown topPanel--content__item hover" />
