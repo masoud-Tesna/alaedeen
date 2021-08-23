@@ -54,11 +54,11 @@ const DefaultFooter = () => {
               <div className="footer--topSection__logoApp" />
               <div className="d-inline my-auto">
                 <div className="d-none d-lg-inline">
-                  <div className="vv-font-size-2-2 font-weight-600 text-white d-inline">{ t(__('Download the Horn App for iOS or Android')) }</div>
+                  <div className="vv-font-size-2-2 font-weight-600 text-white d-inline">{ t(__('Download the Alaedeen App for iOS or Android')) }</div>
                   <i className={ `fas fa-angle-${language === 'en' ? 'right' : 'left'} text-bc vv-font-size-1-7 ${language === 'en' ? '' : 'align-middle'}` } />
                 </div>
 
-                <span className="d-block d-lg-none vv-font-size-1-4 font-weight-bold text-white">{ t(__('Download the Horn app')) }</span>
+                <span className="d-block d-lg-none vv-font-size-1-4 font-weight-bold text-white">{ t(__('Download the Alaedeen app')) }</span>
                 <span className="d-block d-lg-none mt-1 vv-font-size-1-3 font-weight-600 text-white">{ t(__('Buy and sell safely and cheaply')) }</span>
               </div>
             </Space>
@@ -96,12 +96,12 @@ const DefaultFooter = () => {
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
                 <a href="https://alaedeen.com/horn/about-horn/">
-                  { t(__('About Horn')) }
+                  { t(__('About alaedeen')) }
                 </a>
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
                 <a href="https://alaedeen.com/horn/horn-blog/">
-                  { t(__('Horn Blog')) }
+                  { t(__('Alaedeen Blog')) }
                 </a>
               </Col>
               <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
