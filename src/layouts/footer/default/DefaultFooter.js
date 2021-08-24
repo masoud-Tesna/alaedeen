@@ -165,7 +165,7 @@ const DefaultFooter = () => {
       <Col className="bg-footer footer--container__bottomSection" span={24}>
         <Row justify={ width >= 768 ? "space-between": 'center' }>
           <Col xs={{ order: 2 }} lg={{ order: 1 }} className="vv-font-size-1-4 text-white mt-3 my-lg-auto">
-            © 2018 - 2021 Horn Company, All rights reserved
+            © 2018 - 2021 {t(__('footer_reserved_msg'))}
           </Col>
           <Col xs={{ order: 1 }} lg={{ order: 2 }} className="my-lg-auto">
             <Space size="middle">
