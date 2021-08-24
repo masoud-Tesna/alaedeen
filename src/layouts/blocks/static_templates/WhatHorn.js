@@ -22,7 +22,7 @@ const WhatHorn = () => {
     <div className="whatHorn--container">
       <Row>
         <Col className="whatHorn--caption__content" span={24}>
-          <Divider orientation={language === 'en' ? 'left' : 'right'} className="dividerText">{ t(__('What does Horn do?')) }</Divider>
+          <Divider orientation={language === 'en' ? 'left' : 'right'} className="dividerText">{ t(__('What does alaedeen do?')) }</Divider>
         </Col>
         <Col className="whatHorn--items" span={24}>
           <Row className="row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-3 row-cols-xl-3" justify="space-between" gutter={ { xs: 16, sm: 16, md: 16, lg: 0, xl: 0, xxl: 0 }}>
