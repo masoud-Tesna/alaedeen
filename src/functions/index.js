@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import axios from "axios";
 
 import { useGetLanguageState } from "../contexts/language/LanguageContext";
+import { useQuery } from "react-query";
 
 // Function For Get Product by API From Server:
 export function useGetProductApi (params) {
@@ -162,7 +163,7 @@ export function useGetApiQuery (mode, params, useQueryKey) {
   }
 
   return useQuery(['getApi', useQueryKeyClone], getApi, {
-    enabled: !!language,
+    enabled: !!language
   });
 }
 
@@ -310,10 +311,6 @@ export function useWindowSize () {
   }, []); // Empty array ensures that effect is only run on mount
 
   return windowSize;
-}
-
-export function useQuery () {
-  return new URLSearchParams(useLocation().search);
 }
 
 export function useQueryString () {
