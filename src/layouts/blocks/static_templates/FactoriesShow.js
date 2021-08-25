@@ -11,7 +11,7 @@ import { Button, Col, Row, Space, Image, Skeleton } from "antd";
 import { CommentOutlined } from "@ant-design/icons";
 
 // import Custom hooks:
-import { useGetFactories, useQuery, useWindowSize } from "../../../functions";
+import { useGetFactories, useQueryString, useWindowSize } from "../../../functions";
 
 // import Verified
 import verifiedIcon from "../../../assets/images/verified.png";
@@ -222,7 +222,7 @@ const FactoriesShow = () => {
 
   const { t } = useTranslation();
 
-  const factory_param_id = useQuery().get('factory');
+  const factory_param_id = useQueryString().get('factory');
   const [factoryDataInParam, setFactoryDataInParam] = useState([]);
 
   const { factories, load } = useGetFactories();
