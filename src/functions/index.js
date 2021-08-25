@@ -142,6 +142,30 @@ export function useGetApi (mode, params, item, loading = true, setLanguage = tru
   return { items, load, error }
 }
 
+export function useGetApiQuery (mode, params, useQueryKey) {
+
+  const { language } = useGetLanguageState();
+
+  let useQueryKeyClone,
+    url;
+
+  if (language) {
+    url = `https://alaedeen.com/horn/${ mode }/?${ params }&lang_code=${ language }`;
+    useQueryKeyClone = `${useQueryKey}_${language}`;
+  }
+
+
+  // async function for get API:
+  async function getApi() {
+    const { data } = await axios.get(url);
+    return data;
+  }
+
+  return useQuery(['getApi', useQueryKeyClone], getApi, {
+    enabled: !!language,
+  });
+}
+
 export function useGetPremiumFactories (params) {
   const [load, setLoad] = useState(true);
   const [factories, setFactories] = useState([]);
@@ -289,5 +313,9 @@ export function useWindowSize () {
 }
 
 export function useQuery () {
+  return new URLSearchParams(useLocation().search);
+}
+
+export function useQueryString () {
   return new URLSearchParams(useLocation().search);
 }
