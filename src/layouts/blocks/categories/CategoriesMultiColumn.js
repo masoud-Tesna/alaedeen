@@ -45,10 +45,10 @@ const CategoriesMultiColumn = () => {
                 skeltonNumbers = {8}
               /> :
               <>
-                {items.map((category, index) => {
+                {items?.map((category, index) => {
                   return (
-                    <Col key={category.category_id} className="categoriesMultiColumn--item" span={12}>
-                      <a className="d-block h-100" href={ category.link }>
+                    <Col key={category?.category_id} className="categoriesMultiColumn--item" span={12}>
+                      <Link to={ `/categories/${category?.seo_name}` } className="d-block h-100" >
                         <Row className={`categoriesMultiColumn--item__row ${ index !== 6 ? 'categoriesMultiColumn--item__borderBottom': '' }`}>
                           <Col span={24} className="categoriesMultiColumn--img text-center py-2">
                             <div className="categoriesMultiColumn--img__wrapper">
@@ -68,7 +68,7 @@ const CategoriesMultiColumn = () => {
                             { category.category }
                           </Col>
                         </Row>
-                      </a>
+                      </Link>
                     </Col>
                   );
                 })}
@@ -121,10 +121,10 @@ const CategoriesMultiColumn = () => {
                 </Col>
                 <Col span={17}>
                   <ScrollContainer className="text-select-none d-flex requestsList--scrollContainer">
-                    {items.map((category, index) => {
+                    {items?.map((category, index) => {
                       return (
                         <Col key={category.category_id} span={9} className="categoriesMultiColumn--item">
-                          <a className="d-block h-100" href={ category.link }>
+                          <Link to={ `/categories/${category?.seo_name}` } className="d-block h-100">
                             <Row className="categoriesMultiColumn--item__row">
                               <Col span={24} className="categoriesMultiColumn--img text-center my-2">
                                 <div className="categoriesMultiColumn--img__wrapper">
@@ -150,7 +150,7 @@ const CategoriesMultiColumn = () => {
                                 />
                               </Col>
                             </Row>
-                          </a>
+                          </Link>
                         </Col>
                       );
                     })}

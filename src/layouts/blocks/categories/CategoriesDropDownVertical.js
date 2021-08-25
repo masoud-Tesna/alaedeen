@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 
 // import custom hooks:
 import { useGetApi } from "../../../functions";
+import { Link } from "react-router-dom";
 
 const CategoriesContent = () => {
   const categories = useGetApi(`home-categories-api`, '', 'categories');
@@ -21,10 +22,10 @@ const CategoriesContent = () => {
       {categories.load ?
         <>Loading...</> :
         <>
-          {categories.items.map((category) => {
+          {categories?.items.map((category) => {
             return(
-              <Menu.Item key={ category.category_id }>
-                <a href={ category.link }>{ category.category }</a>
+              <Menu.Item key={ category?.category_id }>
+                <Link to={ `/categories/${category?.seo_name}` }>{ category?.category }</Link>
               </Menu.Item>
             )
           })}
