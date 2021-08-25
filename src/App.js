@@ -46,7 +46,7 @@ function App() {
                 <Route path="/sign-in" component={SignIn} />
                 <Route path="/factories" component={Factories} />
                 <Route exact path="/categories" component={AllCategories} />
-                <Route path="/categories/:cat_path" component={Categories} />
+                <Route path="/categories/:category" component={Categories} />
               </Switch>
             </div>
           </Content>
