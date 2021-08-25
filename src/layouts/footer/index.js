@@ -12,7 +12,7 @@ const SiteFooter = () => {
   const pathName = useParsPathName();
 
   // Check pathName For Set Default Top Panel Or Not:
-  if (pathName === 'sign-in' || pathName === 'all-categories') {
+  if (pathName === 'sign-in' || pathName === 'categories') {
     return <></> // remove Footer
   }
 

@@ -34,7 +34,7 @@ const TopPanelWhitBackIcon = ({ scrolledClass, pathName }) => {
           }
 
           {/*if factories page show tag:*/}
-          { pathName === 'all-categories' &&
+          { pathName === 'categories' &&
           <Col className="my-auto text-white vv-font-size-2 font-weight-bold font-italic">
             { t(__('all categories')) }
           </Col>
