@@ -1,0 +1,44 @@
+// import Mixin:
+@import '../../styles/Mixins';
+
+.products--container {
+  .products-content {
+    .x-padding(1rem);
+    @media (min-width: @screen-md) {
+      .x-padding(6rem);
+    }
+  }
+
+  .products--pagination {
+    margin-top: 4rem;
+    padding-bottom: 10rem;
+    @media (min-width: @screen-md) {
+      padding-bottom: 4rem;
+    }
+
+    .ant-pagination-prev,
+    .ant-pagination-next {
+      color: #2D8327;
+      &.ant-pagination-disabled {
+        color: #707070;
+      }
+    }
+
+    .ant-pagination-item {
+      border: none;
+
+      a {
+        font-size: 1.8rem;
+        color: #707070;
+      }
+
+      &.ant-pagination-item-active {
+        border-bottom: 3px solid #3ba949;
+        a {
+          color: #474747;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
