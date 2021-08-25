@@ -23,7 +23,7 @@ const RecommendedProducts = () => {
   const { width } = useWindowSize();
 
   const product_items_per_page = width >= 768 ? 20 : 12;
-  const url = `items_per_page=${product_items_per_page}&company_id=181&page=1`;
+  const url = `items_per_page=${product_items_per_page}&page=1`;
 
   const { load, products } = useGetProductApi(url);
 
