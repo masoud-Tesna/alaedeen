@@ -19,25 +19,31 @@ import SkeletonMultiColumnVertical from "../layouts/blocks/product_list_template
 
 const Categories = () => {
 
+  // get initial language
   const { language } = useGetLanguageState();
 
+  // get window width
   const { width } = useWindowSize();
 
+  // initial for work in URL
   const history = useHistory();
   const query = useQueryString();
   const location = useLocation();
-
+  // get category path from url:
   const { category: categorySeoName } = useParams();
 
+  // set initial page:
   const initialPage = query.get("cat_path");
 
+  // create page state for paging
   const [page, setPage] = useState(initialPage || 1);
 
+  // get products from API:
   const { isLoading, data, isFetching } = useGetApiQuery(`products-api`, `category_path=${categorySeoName}&items_per_page=20&page=${page}`, `category_product_${categorySeoName}_${page}`);
 
   const { products, params } = data || [];
 
-
+  // pagination render:
   const paginationItemRender = (current, type, originalElement) => {
     if (type === 'prev') {
       return <i className ={ `fal fa-chevron-${language === 'en' ? 'left' : 'right'} vv-font-size-2` } />;
@@ -48,12 +54,17 @@ const Categories = () => {
     return originalElement;
   }
 
+  // scroll top if change page:
   useEffect(() => {
     if (isFetching) {
       window.scrollTo(0, 0);
     }
   }, [isFetching]);
 
+  // change title window:
+  document.title = `Alaedeen.com | ${params?.category_name || 'categories'}`;
+
+  // change page:
   const handleChangePage = pageNumber => {
     setPage(pageNumber);
 
@@ -62,6 +73,8 @@ const Categories = () => {
       search: `?page=${pageNumber}`
     })
   }
+
+  const productsMultiColumnVertical_items = width <= 991 ? { span: 12 } : { span: 6 };
 
   return (
     <Row className="mt-5 products--container">
@@ -80,10 +93,11 @@ const Categories = () => {
                 {products?.map((product, i) => {
                   return (
                     <ProductsMultiColumnVertical
-                      key = { i }
+                      key = { product.product_id }
                       className="bg-white rounded-5 shadow-bottom-lg"
                       product={product}
-                      productsPage
+                      allDetails
+                      grid={productsMultiColumnVertical_items}
                       widthProductImage={width >= 768 ? 280 : 170}
                       heightProductImage={width >= 768 ? 280 : 170}
                     />
