@@ -14,10 +14,14 @@ import { useGetLanguageState } from "../contexts/language/LanguageContext";
 import { useGetApiQuery, useQueryString, useWindowSize } from "../functions";
 
 // import product show and product skeleton show:
-import ProductsMultiColumnVertical from "../layouts/blocks/product_list_templates/ProductsMultiColumnVertical";
 import SkeletonMultiColumnVertical from "../layouts/blocks/product_list_templates/SkeletonMultiColumnVertical";
+import ProductsBoxForCategory from "../layouts/blocks/product_list_templates/ProductsBoxForCategory";
+import { useTranslation } from "react-i18next";
+import { __ } from "../functions/Helper";
 
 const Categories = () => {
+
+  const { t } = useTranslation();
 
   // get initial language
   const { language } = useGetLanguageState();
@@ -74,37 +78,46 @@ const Categories = () => {
     })
   }
 
-  const productsMultiColumnVertical_items = width <= 991 ? { span: 12 } : { span: 6 };
-
   return (
     <Row className="mt-5 products--container">
       <Col className="products-content" span={24}>
         <div className="h-100">
-          <Row className="h-100" justify="center" gutter={[ { xs: 16, md: 100 }, 22]}>
+          <Row gutter={20}>
 
-            {isLoading ?
-              <SkeletonMultiColumnVertical
-                skeleton = {true}
-                skeltonNumbers ={ 20 }
-                width = { width >= 768 ? 233 : 120 }
-                height = {width >= 768 ? 233 : 120}
-              /> :
-              <>
-                {products?.map((product, i) => {
-                  return (
-                    <ProductsMultiColumnVertical
-                      key = { product.product_id }
-                      className="bg-white rounded-5 shadow-bottom-lg"
-                      product={product}
-                      allDetails
-                      grid={productsMultiColumnVertical_items}
-                      widthProductImage={width >= 768 ? 280 : 170}
-                      heightProductImage={width >= 768 ? 280 : 170}
-                    />
-                  );
-                })}
-              </>
-            }
+            <Col span={6} className="productFilter">
+              <div className="mb-2 mt-2 mb-md-4">
+                <span className="text-47 font-weight-bold vv-font-size-1-7">{products?.length} {t(__('products'))}:</span> <span className="vv-font-size-1-7">{params?.category_name}</span>
+              </div>
+
+              <div className="text-33 font-weight-bold vv-font-size-2 border-bottom border-bc pb-3">
+                { t(__('Filter & Refine')) }
+              </div>
+            </Col>
+
+            <Col span={18}>
+              <Row className="h-100" justify="center" gutter={[ { xs: 16, md: 50 }, 22]}>
+
+                {isLoading ?
+                  <SkeletonMultiColumnVertical
+                    skeleton = {true}
+                    skeltonNumbers ={ 20 }
+                    width = { width >= 768 ? 233 : 120 }
+                    height = {width >= 768 ? 233 : 120}
+                  /> :
+                  <>
+                    {products?.map((product, i) => {
+                      return (
+                        <ProductsBoxForCategory
+                          key = { i }
+                          product={product}
+                        />
+                      );
+                    })}
+                  </>
+                }
+
+              </Row>
+            </Col>
           </Row>
         </div>
       </Col>
