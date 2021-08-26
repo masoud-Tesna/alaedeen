@@ -90,9 +90,9 @@ const Home = () => {
         </Row>
       </div>
 
-      <div className="topRankingProducts--section">
+      {/*<div className="topRankingProducts--section">
         <TopRankingProducts />
-      </div>
+      </div>*/}
 
       <div className="PremiumFactories--section">
         <PremiumFactories />

@@ -6,7 +6,7 @@ import SkeletonMultiColumnVertical from "../product_list_templates/SkeletonMulti
 import { Row } from "antd";
 
 // import Custom hooks:
-import { useGetProductApi, useWindowSize } from "../../../functions";
+import { useGetApiQuery, useGetProductApi, useWindowSize } from "../../../functions";
 
 const HomePageShowProducts = () => {
 
@@ -20,14 +20,17 @@ const HomePageShowProducts = () => {
     items_per_page = 2;
   }
 
-  let url = `items_per_page=${items_per_page}&company_id=181`;
+  //const { load, products } = useGetProductApi(url);
 
-  const { load, products } = useGetProductApi(url);
+  // get products from API:
+  const { isLoading, data } = useGetApiQuery(`products-api`, `items_per_page=${items_per_page}`, `shipProducts`);
+
+  const { products } = data || [];
 
   return (
     <Row className="h-100 productsMultiColumnVertical--items" justify="space-around">
 
-      {load ?
+      {isLoading ?
       <SkeletonMultiColumnVertical
         skeleton = {true}
         skeltonNumbers = {width >= 768 ? 3 : 2}
@@ -36,7 +39,7 @@ const HomePageShowProducts = () => {
         height = {width >= 768 ? 352.923 : 149.8}
       /> :
         <>
-          {products.map((product) => {
+          {products?.map((product) => {
             return (<ProductsMultiColumnVertical
               key = { product.product_id }
               product={product}

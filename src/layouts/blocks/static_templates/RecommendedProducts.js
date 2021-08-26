@@ -71,12 +71,12 @@ const RecommendedProducts = () => {
                 </>
               }
 
-              <div className="text-center mt-4 productsMultiColumnVertical--item__loadMore">
-                <Button className="text-47 rounded-md bg-transparent border-primary" size="large">
-                  { t(__('Show More')) }
-                </Button>
-              </div>
             </Row>
+            <div className="text-center mt-4 productsMultiColumnVertical--item__loadMore">
+              <Button className="text-47 rounded-md bg-transparent border-primary" size="large">
+                { t(__('Show More')) }
+              </Button>
+            </div>
           </div>
         </Col>
       </Row>
