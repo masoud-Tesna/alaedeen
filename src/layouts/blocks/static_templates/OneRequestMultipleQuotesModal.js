@@ -101,7 +101,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
       <>
         {country_code.items.map((item, index) => {
           return (
-            <Option key={index + 20} value={item.code_number} >{ `${item.description} ${item.code_number}` }</Option>
+            <Option key={ `country_code_${ index +20 }` } value={item.code_number} >{ `${item.description} ${item.code_number}` }</Option>
           );
         })}
       </>
@@ -304,7 +304,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                               <>
                                 {country_lists.items.map((item) => {
                                   return (
-                                    <Option key={item.code} value={item.code} >{ item.country }</Option>
+                                    <Option key={ `country_lists_${ item.code }` } value={item.code} >{ item.country }</Option>
                                   );
                                 })}
                               </>
@@ -335,7 +335,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                               <>
                                 {cityLists.items.map((item) => {
                                   return (
-                                    <Option key={item.code} value={item.code} >{ item.state }</Option>
+                                    <Option key={ `cityLists_${ item.code }` } value={item.code} >{ item.state }</Option>
                                   );
                                 })}
                               </>
@@ -398,7 +398,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                             >
                               {quantity_units.items.map((item) => {
                                 return (
-                                  <Option value={item.key} >{ item.value }</Option>
+                                  <Option key={ `quantity_units_${ item.key }` } value={ item.key } >{ item.value }</Option>
                                 );
                               })}
                             </Select>
@@ -455,7 +455,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                               <>
                                 {order_values.items.map((item, index) => {
                                   return (
-                                    <Option key={index * 20} value={item.key} >{ item.name }</Option>
+                                    <Option key={ `order_values_${ index * 20 }` } value={item.key} >{ item.name }</Option>
                                   );
                                 })}
                               </>
@@ -490,7 +490,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                               <>
                                 {supp_locations.items.map((item, index) => {
                                   return (
-                                    <Option key={index * 20} value={item.key} >{ item.value }</Option>
+                                    <Option key={ `supp_locations_${ index * 20 }` } value={item.key} >{ item.value }</Option>
                                   );
                                 })}
                               </>
@@ -521,7 +521,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                               <>
                                 {requirement_urgencies.items.map((item, index) => {
                                   return (
-                                    <Option key={index * 20} value={item.key} >{ item.value }</Option>
+                                    <Option key={ `requirement_urgencies_${ index * 20 }` } value={item.key} >{ item.value }</Option>
                                   );
                                 })}
                               </>
@@ -580,7 +580,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                               <>
                                 {regular_types.items.map((item, index) => {
                                   return (
-                                    <Option key={index * 25} value={item.key} >{ item.value }</Option>
+                                    <Option key={ `regular_types_${ index * 25 }` } value={item.key} >{ item.value }</Option>
                                   );
                                 })}
                               </>

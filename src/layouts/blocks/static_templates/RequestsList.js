@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, Fragment } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 
 // import style file:
@@ -100,8 +100,8 @@ const RequestsList = () => {
                     let timestamp = requestList.timestamp;
 
                     return (
-                      <>
-                        <div key={ requestList.request_id } className="d-inline requestsList--item__content" onClick={() => { showRequestModal(requestList.request_id) }}>
+                      <Fragment key={ `requestLists_${ requestList.request_id }` }>
+                        <div className="d-inline requestsList--item__content" onClick={() => { showRequestModal(requestList.request_id) }}>
                           <Row className="p-3 bg-white rounded-lg requestsList--item">
                             <Col span={24}>
                               <Row className="requestsList--item__first">
@@ -240,7 +240,7 @@ const RequestsList = () => {
                             </Col>
                           </Row>
                         </Modal>
-                      </>
+                      </Fragment>
                     );
                   })}
                 </>
