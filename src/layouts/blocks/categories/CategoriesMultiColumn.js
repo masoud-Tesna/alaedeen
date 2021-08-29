@@ -8,7 +8,7 @@ import { Col, Row, Image } from "antd";
 import ScrollContainer from 'react-indiana-drag-scroll';
 
 // import custom hooks:
-import { useGetApi, useWindowSize } from "../../../functions";
+import { useGetApi, useGetApiQuery, useWindowSize } from "../../../functions";
 
 // import responsive image show component:
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
@@ -29,31 +29,36 @@ const CategoriesMultiColumn = () => {
 
   const { width } = useWindowSize();
 
-  const { load, items } = useGetApi(`home-categories-api`, '', 'categories');
+  //const { load, items } = useGetApi(`home-categories-api`, '', 'categories');
+
+  // get products from API:
+  const { isLoading, data } = useGetApiQuery(`home-categories-api`, '', `categories_multiColumn`);
+
+  const { categories } = data || [];
 
   return (
     <div className={ `${width >= 768 ? 'categoriesMultiColumn--container' : 'categoriesMultiColumn--containerXs my-4'} h-100` }>
-      <Row className="h-100">
+      <Row className={ isLoading ? 'h-100' : (categories?.length >= 7 && 'h-100') }>
 
         {/* if Screen Width >= 768px (Desktop) Show Component: */}
         {width >= 768 ?
           <>
 
-            { load ?
+            { isLoading ?
               <CategoriesMultiColumnSkeleton
                 skeleton = {true}
                 skeltonNumbers = {8}
               /> :
               <>
-                {items?.map((category, index) => {
+                {categories?.map((category, index) => {
                   return (
-                    <Col key={category?.category_id} className="categoriesMultiColumn--item" span={12}>
-                      <Link to={ `/categories/${category?.seo_name}` } className="d-block h-100" >
+                    <Col key={ `categoriesMultiColumn_${ category?.category_id }` } className="categoriesMultiColumn--item" span={12}>
+                      <Link to={ `/categories/${category?.seo_name}` } className="d-block" >
                         <Row className={`categoriesMultiColumn--item__row ${ index !== 6 ? 'categoriesMultiColumn--item__borderBottom': '' }`}>
                           <Col span={24} className="categoriesMultiColumn--img text-center py-2">
                             <div className="categoriesMultiColumn--img__wrapper">
-                              { (category.main_pair.detailed && category.main_pair.detailed.image_path) ?
-                                <ShowResponsiveImage imagePath={ category.main_pair.detailed.image_path } imageFolder='detailed' width={80} height={80} imageAlt={ category.category }/> :
+                              { category?.main_pair?.detailed ?
+                                <ShowResponsiveImage imagePath={ category?.main_pair?.detailed?.image_path } imageFolder='detailed' width={80} height={80} imageAlt={ category?.category }/> :
                                 <Image
                                   width={80}
                                   height={80}
@@ -65,7 +70,7 @@ const CategoriesMultiColumn = () => {
                             </div>
                           </Col>
                           <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2 text-truncate px-3">
-                            { category.category }
+                            { category?.category }
                           </Col>
                         </Row>
                       </Link>
@@ -96,7 +101,7 @@ const CategoriesMultiColumn = () => {
           /* if Screen Width <= 768px (Mobile) Show Component: */
           <>
 
-            { load ?
+            { isLoading ?
               <CategoriesMultiColumnSkeleton
                 skeleton = {true}
                 skeltonNumbers = {7}
@@ -121,15 +126,15 @@ const CategoriesMultiColumn = () => {
                 </Col>
                 <Col span={17}>
                   <ScrollContainer className="text-select-none d-flex requestsList--scrollContainer">
-                    {items?.map((category, index) => {
+                    {categories?.map((category, index) => {
                       return (
-                        <Col key={category.category_id} span={9} className="categoriesMultiColumn--item">
+                        <Col key={ `categoriesMultiColumnXS_${ category?.category_id }` } span={9} className="categoriesMultiColumn--item">
                           <Link to={ `/categories/${category?.seo_name}` } className="d-block h-100">
                             <Row className="categoriesMultiColumn--item__row">
                               <Col span={24} className="categoriesMultiColumn--img text-center my-2">
                                 <div className="categoriesMultiColumn--img__wrapper">
-                                  { (category.main_pair.detailed && category.main_pair.detailed.image_path) ?
-                                    <ShowResponsiveImage imagePath={ category.main_pair.detailed.image_path } imageFolder='detailed' width={73} height={73} imageAlt={ category.category }/> :
+                                  { category?.main_pair?.detailed ?
+                                    <ShowResponsiveImage imagePath={ category?.main_pair?.detailed?.image_path } imageFolder='detailed' width={73} height={73} imageAlt={ category?.category }/> :
                                     <Image
                                       width={73}
                                       height={73}
@@ -146,7 +151,7 @@ const CategoriesMultiColumn = () => {
                                   line={2}
                                   element="span"
                                   truncateText=" …"
-                                  text={category.category}
+                                  text={category?.category}
                                 />
                               </Col>
                             </Row>

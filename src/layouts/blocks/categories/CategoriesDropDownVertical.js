@@ -16,7 +16,6 @@ const CategoriesContent = () => {
   return(
     <Menu
       style={{ minWidth: 250 }}
-      mode="inline"
       triggerSubMenuAction={"click"}
     >
       {categories.load ?
