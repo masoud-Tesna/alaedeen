@@ -18,6 +18,8 @@ import SkeletonMultiColumnVertical from "../layouts/blocks/product_list_template
 import ProductsBoxForCategory from "../layouts/blocks/product_list_templates/ProductsBoxForCategory";
 import { useTranslation } from "react-i18next";
 import { __ } from "../functions/Helper";
+import ProductFilters from "../layouts/blocks/product_filters";
+import axios from "axios";
 
 const Categories = () => {
 
@@ -37,15 +39,41 @@ const Categories = () => {
   const { category: categorySeoName } = useParams();
 
   // set initial page:
-  const initialPage = query.get("cat_path");
+  const initialPage = query.get("page");
 
   // create page state for paging
   const [page, setPage] = useState(initialPage || 1);
 
-  // get products from API:
-  const { isLoading, data, isFetching } = useGetApiQuery(`products-api`, `category_path=${categorySeoName}&items_per_page=20&page=${page}`, `category_product_${categorySeoName}_${page}`);
+  const [featuresHash, setFeaturesHash] = useState("");
+  const [featuresHashContainer, setFeaturesHashContainer] = useState("");
 
-  const { products, params } = data || [];
+  const featureHandleClick = (filter_id = "", variant_id = "") => {
+
+    async function getApi() {
+      const url = `https://alaedeen.com/horn/products-filter-to-hash-api/?features_hash=${featuresHash}&filter_id=${filter_id}&variant_id=${variant_id}`;
+      return await axios.get(url);
+    }
+
+    getApi()
+      .then(res => {
+        setFeaturesHashContainer(res.data);
+      });
+
+  }
+
+  const handleConfirmFilters = () => {
+    setFeaturesHash(featuresHashContainer);
+
+    history.push({
+      pathname: `${location.pathname}/${location.search}`,
+      search: `features_hash=${featuresHashContainer}`
+    })
+  }
+
+  // get products from API:
+  const { isLoading, data } = useGetApiQuery(`products-api`, `category_path=${categorySeoName}&items_per_page=20&page=${page}&features_hash=${featuresHash}`, `category_product_${categorySeoName}_${page}_${featuresHash}`);
+
+  const { products, params, subCategories, filters } = data || [];
 
   // pagination render:
   const paginationItemRender = (current, type, originalElement) => {
@@ -60,10 +88,8 @@ const Categories = () => {
 
   // scroll top if change page:
   useEffect(() => {
-    if (isFetching) {
-      window.scrollTo(0, 0);
-    }
-  }, [isFetching]);
+    window.scrollTo(0, 0);
+  }, [products, categorySeoName]);
 
   // change title window:
   document.title = `Alaedeen.com | ${params?.category_name || 'categories'}`;
@@ -74,7 +100,7 @@ const Categories = () => {
 
     history.push({
       pathname: location.pathname,
-      search: `?page=${pageNumber}`
+      search: `page=${pageNumber}`
     })
   }
 
@@ -84,17 +110,21 @@ const Categories = () => {
         <div className="h-100">
           <Row gutter={20}>
 
-            <Col span={6} className="productFilter">
-              <div className="mb-2 mt-2 mb-md-4">
-                <span className="text-47 font-weight-bold vv-font-size-1-7">{products?.length} {t(__('products'))}:</span> <span className="vv-font-size-1-7">{params?.category_name}</span>
-              </div>
+            {filters &&
+              <ProductFilters
+                filters = {filters}
+                category_id = {params?.category_id || ""}
+                category_seo_name = {categorySeoName || ""}
+                category_name = {params.category_name || ""}
+                subCategories = {subCategories || []}
+                product_length = {products?.length || ""}
+                featuresHashContainer = {featuresHashContainer}
+                featureHandleClick={featureHandleClick}
+                handleConfirmFilters={handleConfirmFilters}
+              />
+            }
 
-              <div className="text-33 font-weight-bold vv-font-size-2 border-bottom border-bc pb-3">
-                { t(__('Filter & Refine')) }
-              </div>
-            </Col>
-
-            <Col span={18}>
+            <Col span={filters ? 18 : 24}>
               <Row className="h-100" justify="center" gutter={[ { xs: 16, md: 50 }, 22]}>
 
                 {isLoading ?
