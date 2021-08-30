@@ -7,8 +7,6 @@ const AllCategories = () => {
 
   const categories = useGetApi(`home-categories-api`, '', 'categories');
 
-  console.log(categories)
-
   return (
     <Row className="allCategories--container">
       {categories.load ?

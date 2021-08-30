@@ -47,7 +47,7 @@ export function UserProvider ({ children }) {
 
     if (userLoginCookie && userPasswordCookie && language) {
       dispatch(checkSignInLoadingAction());
-      console.log('start with local storage');
+
       signIn(userLoginCookie, userPasswordCookie, language)
         .then(res => {
           dispatch(signInAction(res?.data?.auth, userLoginCookie, userPasswordCookie, false));
