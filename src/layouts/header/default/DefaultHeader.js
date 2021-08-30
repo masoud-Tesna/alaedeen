@@ -191,9 +191,9 @@ const DefaultHeader = () => {
                                   </Link>
                                 </Col>
                                 <Col span={24}>
-                                  <a className="text-70 vv-font-size-2" href="https://alaedeen.com/horn/register/">
+                                  <Link className="text-70 vv-font-size-2" to={"/register"} >
                                     {t(__('Join Free'))}
-                                  </a>
+                                  </Link>
                                 </Col>
                               </Row>
                             </Col>

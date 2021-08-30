@@ -3,7 +3,7 @@ import { useEffect } from "react";
 // import style file:
 import './styles/SignIn.less';
 
-import { useHistory  } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 // import Design:
 import { Button, Checkbox, Col, Form, Input, Row } from "antd";
@@ -165,7 +165,7 @@ const SignIn = () => {
 
                 <Col span={24} className="dontHaveAccountContainer">
                   <span className="text-92 vv-font-size-1-6">{ t(__('Don\'t have an account')) } ?</span>
-                  <a href="https://alaedeen.com/horn/register/" className="text-primary-darken mx-2 vv-font-size-1-8 font-weight-600">{ t(__('Join Free')) }</a>
+                  <Link to={ "/register" } className="text-primary-darken mx-2 vv-font-size-1-8 font-weight-600">{ t(__('Join Free')) }</Link>
                 </Col>
               </Row>
             </Col>

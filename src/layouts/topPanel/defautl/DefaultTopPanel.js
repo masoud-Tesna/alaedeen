@@ -191,9 +191,9 @@ const DefaultTopPanel = () => {
                                   {t(__(' Sign in'))}
                                 </Link>
                                 <Divider type="vertical" className="border-70"/>
-                                <a className="text-white vv-font-size-1-7 font-weight-600" href="https://alaedeen.com/horn/register/">
+                                <Link className="text-white vv-font-size-1-7 font-weight-600" to={"/register"} >
                                   {t(__('Join Free'))}
-                                </a>
+                                </Link>
                               </Col>
                             </Row>
                           </Col>
