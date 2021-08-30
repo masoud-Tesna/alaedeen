@@ -14,7 +14,14 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ConfigProvider, Layout } from 'antd';
 
 // Pages:
-import { Home, Factories, SignIn, AllCategories, Categories } from "./components";
+import {
+  Home,
+  Factories,
+  SignIn,
+  AllCategories,
+  Categories,
+  Register
+} from "./components";
 
 // import language context:
 import { useGetLanguageState } from "./contexts/language/LanguageContext";
@@ -44,6 +51,7 @@ function App() {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/sign-in" component={SignIn} />
+                <Route path="/register" component={Register} />
                 <Route path="/factories" component={Factories} />
                 <Route exact path="/categories" component={AllCategories} />
                 <Route path="/categories/:category" component={Categories} />
