@@ -40,6 +40,20 @@ const TopPanelWhitBackIcon = ({ scrolledClass, pathName }) => {
           </Col>
           }
 
+          {/*if factories page show tag:*/}
+          { pathName === 'sign-in' &&
+          <Col className="my-auto text-white vv-font-size-2 font-weight-bold font-italic">
+            { t(__('sign-in')) }
+          </Col>
+          }
+
+          {/*if factories page show tag:*/}
+          { pathName === 'register' &&
+          <Col className="my-auto text-white vv-font-size-2 font-weight-bold font-italic">
+            { t(__('register')) }
+          </Col>
+          }
+
         </Row>
       </Col>
     </Row>
