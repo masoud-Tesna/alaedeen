@@ -1,5 +1,8 @@
+// import Style LESS File:
+import './styles/CategoriesMultiColumn.less';
+
 import { Dropdown, Menu } from "antd";
-import { AppstoreOutlined, DownOutlined, MailOutlined, SettingOutlined } from "@ant-design/icons";
+import { DownOutlined } from "@ant-design/icons";
 
 // import helper functions:
 import { __ } from "../../../functions/Helper";
@@ -17,6 +20,7 @@ const CategoriesContent = () => {
     <Menu
       style={{ minWidth: 250 }}
       triggerSubMenuAction={"click"}
+      className="dropDownCategories--content"
     >
       {categories.load ?
         <>Loading...</> :
@@ -24,7 +28,7 @@ const CategoriesContent = () => {
           {categories?.items.map((category) => {
             return(
               <Menu.Item key={ category?.category_id }>
-                <Link to={ `/categories/${category?.seo_name}` }>{ category?.category }</Link>
+                <Link to={ `/categories/${category?.seo_name}` } className={ `d-block ${category?.disable_home === 'Y' && 'categoryLink--disable'}` }>{ category?.category }</Link>
               </Menu.Item>
             )
           })}
