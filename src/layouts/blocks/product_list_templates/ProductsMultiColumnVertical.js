@@ -109,8 +109,13 @@ const ProductsMultiColumnVertical = (props) => {
           <Col span={24} className={ `${ !allDetails && 'd-none d-lg-block' } px-4 mb-2 align-self-end productsMultiColumnVertical--item__location-detailIcon` }>
             <Row justify="space-between" align="bottom">
               <Col className="productsMultiColumnVertical--item__location">
-                <i className="fal fa-map-marker-alt text-red-a0 mr-2 mr-lg-3" />
-                <span className="text-47">{ product.wk_location }</span>
+                {product?.wk_location &&
+                  <>
+                    <i className="fal fa-map-marker-alt text-red-a0 mr-2 mr-lg-3" />
+                    <span className="text-47">{ product.wk_location }</span>
+                  </>
+                }
+
               </Col>
               <Col className="align-self-end productsMultiColumnVertical--item__detailIcon">
                 {detailIcon === 'default' ?
