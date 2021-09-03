@@ -1,0 +1,251 @@
+// import Mixin:
+@import '../../styles/Mixins';
+
+html:lang(fa),
+html:lang(ar) {
+  .ant-tabs-nav-list .ant-tabs-tab + .ant-tabs-tab {
+    margin: 0 !important;
+  }
+
+  .register--loginExtra {
+
+    @media (min-width: @screen-md) {
+      border-left: 0;
+      border-right: 1px solid #707070;
+    }
+  }
+}
+
+.register--container {
+
+  .register-tab__container {
+    .ant-tabs-nav {
+      margin-bottom: 3rem;
+
+      &::before {
+        border: 0;
+      }
+    }
+
+    .ant-tabs-nav-wrap {
+      .ant-tabs-nav-list {
+        width: 100%;
+
+        @media (min-width: @screen-md) {
+          width: 80%;
+        }
+
+        height: 45px;
+        border: 2px solid #2D8327;
+        border-radius: 50rem !important;
+
+        .ant-tabs-tab {
+          width: 50%;
+          justify-content: center;
+
+          &.ant-tabs-tab-active {
+            .ant-tabs-tab-btn {
+              color: #FFFFFF;
+            }
+          }
+
+          .ant-tabs-tab-btn {
+            color: rgb(188, 188, 188);
+            font-weight: 600;
+            font-size: 2.1rem;
+          }
+        }
+
+        .ant-tabs-ink-bar.ant-tabs-ink-bar-animated {
+          height: 100%; // 36px
+          z-index: -1;
+          border-radius: 50rem;
+          background-color: #2e8339;
+          top: 0; // 2.8px
+        }
+      }
+    }
+
+    .register--loginContent {
+      .ant-form-item {
+        margin-bottom: 2rem;
+      }
+
+      .register--formContent__item {
+        border-bottom: .5px solid #707070;
+
+        &.for--businessType {
+          border: 0 !important;
+        }
+
+        .ant-row.ant-form-item {
+          margin: 0;
+
+          .ant-select-selection-placeholder {
+            color: #BCBCBC;
+            font-size: 1.9rem;
+          }
+
+          .ant-select-arrow,
+          .ant-input-suffix {
+            svg {
+              font-size: 1.9rem;
+            }
+          }
+
+          .ant-form-item-explain.ant-form-item-explain-error {
+            display: none;
+          }
+
+          .ant-input.ant-input-borderless {
+            &::placeholder {
+              opacity: 1;
+              color: #BCBCBC;
+              font-size: 1.9rem;
+            }
+          }
+        }
+
+        .ant-checkbox-inner {
+          //border: 1px solid #BCBCBC;
+        }
+
+        .ant-checkbox + span {
+          padding: 0 1.5rem;;
+        }
+      }
+
+      .ant-form-item-has-error {
+        border-bottom: 2px solid #f5222d !important;
+      }
+
+      .register--rememberMe {
+        .ant-checkbox-wrapper {
+          color: #929191;
+
+          &:hover {
+            color: #5f5e5e;
+          }
+        }
+      }
+
+      .register--registerBtn {
+        margin-bottom: 0 !important;
+
+        .ant-btn {
+          border-radius: 6px;
+
+          span {
+            font-size: 2rem;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+
+  .register--loginExtra {
+    text-align: center;
+
+    .register--loginExtra__content {
+      margin-top: 2rem;
+
+      @media (min-width: @screen-md) {
+        margin-top: 8rem;
+      }
+    }
+
+    @media (min-width: @screen-md) {
+      border-left: 1px solid #707070;
+    }
+
+    .registerWithGoogleTxt {
+      margin-bottom: 3rem;
+    }
+
+    .registerWithGoogleBtn {
+      margin-bottom: 4rem;
+      div.shadow-circle {
+        width: 54px;
+        height: 54px;
+        line-height: 49px;
+
+        img {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+  }
+}
+
+.registerDone--message {
+  .ant-message-notice-content {
+    background-color: @primary-color;
+    color: white;
+    padding: 1.2rem 4rem;
+
+    .ant-message-custom-content.ant-message-success {
+      &> span {
+        svg {
+          color: #FFFFFF;
+          font-size: 1.8rem;
+        }
+      }
+
+      span + span {
+        font-size: 1.8rem;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.registerDone--warning {
+  .ant-message-notice-content {
+    background-color: #eea21e;
+    color: white;
+    padding: 1.2rem 4rem;
+
+    .ant-message-custom-content.ant-message-warning {
+      &> span {
+        svg {
+          color: #FFFFFF;
+          font-size: 1.8rem;
+        }
+      }
+
+      span + span {
+        font-size: 1.8rem;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .register--container {
+    .register--content {
+      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.17);
+      border-radius: 10px;
+      margin-top: 10rem;
+      margin-bottom: 2rem;
+    }
+
+
+  }
+
+  /*.ant-layout.layout {
+    min-height: 100vh;
+  }*/
+
+  .site-layout-content.siteLayoutContent__register--page {
+    height: calc(100vh - 41px);
+  }
+
+  .register--container {
+    .register--content {
+      align-self: center;
+    }
+  }
+}
