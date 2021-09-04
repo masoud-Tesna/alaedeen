@@ -32,11 +32,23 @@ export function UserReducer(state, action) {
       };
     case AUTH_LOGOUT:
       // remove remember_me cookie:
-      Cookie.remove("remember_me");
+      Cookie.remove("remember_me",
+        {
+          path: "/",
+          domain: ".alaedeen.com"
+        });
       // remove user_login cookie:
-      Cookie.remove("user_login");
+      Cookie.remove("user_login",
+        {
+          path: "/",
+          domain: ".alaedeen.com"
+        });
       // remove user_password cookie:
-      Cookie.remove("user_password");
+      Cookie.remove("user_password",
+        {
+          path: "/",
+          domain: ".alaedeen.com"
+        });
       return {
         ...state, auth: [], load: false
       };
