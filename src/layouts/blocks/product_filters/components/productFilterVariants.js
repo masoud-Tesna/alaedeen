@@ -16,9 +16,10 @@ const ProductFilterVariants = (props) => {
         return(
           <Col key={`${featureKey}_${feature?.variant_id}`} span={24} className="feature--item">
             <span
-              className={ `py-2 px-4 text-primary vv-font-size-1-7 d-block cursor-pointer ${feature?.variant_id}` }
+              className={ `py-2 px-4 ${feature.disabled ? 'text-bc' : 'text-primary cursor-pointer'} vv-font-size-1-7 d-block ${feature?.variant_id}` }
               onClick={() => {
-                props.featureHandleClick(filter_id, feature?.variant_id)
+                !feature.disabled &&
+                  props.featureHandleClick(filter_id, feature?.variant_id)
               }}
             >
               { feature?.variant }
