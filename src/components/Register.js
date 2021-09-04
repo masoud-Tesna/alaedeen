@@ -51,7 +51,7 @@ const Register = () => {
 
       message.warning({
         content: t(__('passwords is not equal')),
-        duration: 240,
+        duration: 4,
         className: 'registerDone--warning',
       })
     } else {
@@ -81,7 +81,7 @@ const Register = () => {
 
       { registerIsLoading && <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/> }
 
-      <Col xs={24} lg={20} className="register--content bg-white p-5">
+      <Col xs={24} lg={15} className="register--content bg-white p-5">
         <Row gutter={{ xs: 0, lg: 32 }}>
           <Col xs={24} md={12}>
             <Tabs
