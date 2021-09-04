@@ -64,7 +64,7 @@ const SignIn = () => {
 
   return (
     <Row justify={"center"} className="signIn--container h-100">
-      <Col xs={24} lg={12} className="signIn--content bg-white p-5">
+      <Col xs={24} lg={15} className="signIn--content bg-white p-5">
         <Form
           className="h-100 signIn--formContent"
           name="request-form"

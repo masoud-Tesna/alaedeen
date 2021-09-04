@@ -1,3 +1,17 @@
+// import Mixin:
+@import '../../styles/Mixins';
+
+html:lang(fa),
+html:lang(ar) {
+  .signIn--loginExtra {
+
+    @media (min-width: @screen-md) {
+      border-left: 0 !important;
+      border-right: 1px solid #707070;
+    }
+  }
+}
+
 .signIn--container {
   .signIn--formContent {
     .signIn--loginContent {
@@ -68,6 +82,10 @@
     .signIn--loginExtra {
       text-align: center;
 
+      @media (min-width: @screen-md) {
+        border-left: 1px solid #707070;
+      }
+
       .signInWithGoogleTxt {
         margin-bottom: 3rem;
       }
@@ -96,12 +114,6 @@
       border-radius: 10px;
       margin-top: 4rem;
       margin-bottom: 2rem;
-    }
-
-    .signIn--formContent {
-      .signIn--loginContent {
-        border-right: 1px solid #707070;
-      }
     }
   }
 
