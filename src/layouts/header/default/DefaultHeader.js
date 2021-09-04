@@ -38,6 +38,8 @@ const DefaultHeader = () => {
 
   const { user_data } = useGetAuthState();
 
+  console.log(user_data)
+
   const { AuthDispatch } = useDispatchAuthState();
 
   // function for handle sign out
@@ -158,7 +160,7 @@ const DefaultHeader = () => {
 
                               <Row className="w-100" align="middle" gutter={12} onClick={e => e.preventDefault()}>
                                 <Col>
-                                  { user_data.auth.company_logo ?
+                                  { (user_data?.auth?.company_logo && user_data?.auth?.company_logo.length !== 0) ?
                                     <span className="content--account__companyLogo">
                                   <img src={user_data.auth.company_logo.logo_path} alt=""/>
                                 </span> :
