@@ -20,7 +20,7 @@ import verifiedIcon from "../../../assets/images/verified.png";
 import TextTruncate from "react-text-truncate";
 
 // import Skeleton used:
-import SkeletonFactoriesShow from "./SkeletonFactoriesShow";
+import SkeletonFactoriesShow from "./skeletons/SkeletonFactoriesShow";
 
 // import Show responsive image:
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";

@@ -11,7 +11,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import ProductsMultiColumnVertical from "../product_list_templates/ProductsMultiColumnVertical";
 
-import SkeletonMultiColumnVertical from "../product_list_templates/SkeletonMultiColumnVertical";
+import SkeletonMultiColumnVertical from "../product_list_templates/skeletons/SkeletonMultiColumnVertical";
 
 // import custom hooks:
 import { useGetProductApi, useWindowSize } from '../../../functions';

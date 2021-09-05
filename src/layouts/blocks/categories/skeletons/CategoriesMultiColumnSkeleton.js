@@ -1,5 +1,5 @@
 // import style file:
-import './styles/CategoriesMultiColumn.less';
+import '../styles/CategoriesMultiColumn.less';
 
 // import Ant Design Components:
 import { Col, Image, Row, Skeleton } from "antd";

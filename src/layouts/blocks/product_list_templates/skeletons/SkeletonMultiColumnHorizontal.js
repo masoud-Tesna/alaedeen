@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // import style file:
-import './styles/ProductsMultiColumnHorizontal.less';
+import '../styles/ProductsMultiColumnHorizontal.less';
 
 // import Ant Design Components:
 import { Col, Skeleton, Space } from "antd";

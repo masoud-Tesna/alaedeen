@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // import style file:
-import './styles/SkeletonTopBrands.less';
+import '../styles/SkeletonTopBrands.less';
 
 // import Ant Design Components:
 import { Col, Row, Skeleton } from "antd";

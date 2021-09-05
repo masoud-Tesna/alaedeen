@@ -8,7 +8,7 @@ import { Col, Row } from "antd";
 
 // import Another Components Used:
 import ScrollContainer from 'react-indiana-drag-scroll';
-import SkeletonTopBrands from "./SkeletonTopBrands";
+import SkeletonTopBrands from "./skeletons/SkeletonTopBrands";
 
 // import custom hooks:
 import { useGetPremiumFactories, useWindowSize } from "../../../functions";

@@ -14,10 +14,8 @@ import { useGetLanguageState } from "../contexts/language/LanguageContext";
 import { useGetApiQuery, useQueryString, useWindowSize } from "../functions";
 
 // import product show and product skeleton show:
-import SkeletonMultiColumnVertical from "../layouts/blocks/product_list_templates/SkeletonMultiColumnVertical";
+import SkeletonMultiColumnVertical from "../layouts/blocks/product_list_templates/skeletons/SkeletonMultiColumnVertical";
 import ProductsBoxForCategory from "../layouts/blocks/product_list_templates/ProductsBoxForCategory";
-import { useTranslation } from "react-i18next";
-import { __ } from "../functions/Helper";
 import ProductFilters from "../layouts/blocks/product_filters";
 import axios from "axios";
 

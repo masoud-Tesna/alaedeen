@@ -8,7 +8,7 @@ import { Col, Row, Skeleton } from "antd";
 
 // import Another Components used:
 import ProductsMultiColumnHorizontal from "../product_list_templates/ProductsMultiColumnHorizontal";
-import SkeletonMultiColumnHorizontal from "../product_list_templates/SkeletonMultiColumnHorizontal";
+import SkeletonMultiColumnHorizontal from "../product_list_templates/skeletons/SkeletonMultiColumnHorizontal";
 
 // import polygon images:
 import polygon_1 from '../../../assets/images/polygon1.png';

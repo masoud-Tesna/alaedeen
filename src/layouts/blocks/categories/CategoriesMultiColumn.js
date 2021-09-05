@@ -13,7 +13,7 @@ import { useGetApi, useGetApiQuery, useWindowSize } from "../../../functions";
 // import responsive image show component:
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 
-import CategoriesMultiColumnSkeleton from "./CategoriesMultiColumnSkeleton";
+import CategoriesMultiColumnSkeleton from "./skeletons/CategoriesMultiColumnSkeleton";
 
 import TextTruncate from "react-text-truncate";
 

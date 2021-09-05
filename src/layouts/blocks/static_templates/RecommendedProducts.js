@@ -6,7 +6,7 @@ import { Button, Col, Row } from "antd";
 
 // import Another Components Used:
 import ProductsMultiColumnVertical from "../product_list_templates/ProductsMultiColumnVertical";
-import SkeletonMultiColumnVertical from "../product_list_templates/SkeletonMultiColumnVertical";
+import SkeletonMultiColumnVertical from "../product_list_templates/skeletons/SkeletonMultiColumnVertical";
 
 // import Custom hooks:
 import { useGetProductApi, useWindowSize } from "../../../functions";

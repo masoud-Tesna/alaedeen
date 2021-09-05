@@ -10,7 +10,7 @@ import { Col, Row, Skeleton } from "antd";
 import verifiedIcon from '../../../assets/images/verified.png';
 
 // import another components used:
-import SkeletonTopBrands from "./SkeletonTopBrands";
+import SkeletonTopBrands from "./skeletons/SkeletonTopBrands";
 
 // import get language context:
 import { useGetLanguageState } from "../../../contexts/language/LanguageContext";

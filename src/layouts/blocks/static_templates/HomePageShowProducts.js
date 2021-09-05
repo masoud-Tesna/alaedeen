@@ -1,6 +1,6 @@
 // import Layouts:
 import ProductsMultiColumnVertical from "../product_list_templates/ProductsMultiColumnVertical";
-import SkeletonMultiColumnVertical from "../product_list_templates/SkeletonMultiColumnVertical";
+import SkeletonMultiColumnVertical from "../product_list_templates/skeletons/SkeletonMultiColumnVertical";
 
 // import ANT Design components used:
 import { Row } from "antd";
