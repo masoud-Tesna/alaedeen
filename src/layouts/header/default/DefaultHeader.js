@@ -38,8 +38,6 @@ const DefaultHeader = () => {
 
   const { user_data } = useGetAuthState();
 
-  console.log(user_data)
-
   const { AuthDispatch } = useDispatchAuthState();
 
   // function for handle sign out
