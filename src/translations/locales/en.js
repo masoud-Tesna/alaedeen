@@ -140,7 +140,12 @@ const en = {
   "download_the_alaedeen_app": "Download the Alaedeen app",
   "buy_and_sell_safely_and_cheaply": "Buy and sell safely and cheaply",
   "footer_reserved_msg": "Alaedeen company, All right reserved",
-  "alaedeen_slug_section": "Iranian manufacturers & products"
+  "piece_and_pieces": "Piece \/ Pieces",
+  "profile_settings": "Profile settings",
+  "sign_out": "Sign out",
+  "alaedeen_slug_section": "Iranian manufacturers & products",
+  "language": "Language",
+  "currency": "Currency"
 };
 
 export default en;

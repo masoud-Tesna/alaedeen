@@ -140,7 +140,12 @@ const ar = {
   "download_the_alaedeen_app": "تحميل تطبيق علاءالدین",
   "buy_and_sell_safely_and_cheaply": "شراء آمن وسهل",
   "footer_reserved_msg": "جميع الحقوق محفوظة لموقع علاءالدین",
-  "alaedeen_slug_section": "المنتجات الايرانية و المنتجين"
+  "piece_and_pieces": "قطعة \/ قطع",
+  "profile_settings": "إعدادات الملف الشخصي",
+  "sign_out": "خروج",
+  "alaedeen_slug_section": "المنتجات الایرانیة و المنتجين",
+  "language": "اللغة",
+  "currency": "العملة"
 };
 
 export default ar;
