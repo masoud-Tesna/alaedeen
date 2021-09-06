@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2019 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="20mm" height="20mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 2000 2000"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str2 {stroke:#3BAA33;stroke-width:33.87;stroke-miterlimit:2.61313}
+    .str1 {stroke:#3BAA33;stroke-width:67.73;stroke-miterlimit:2.61313}
+    .str4 {stroke:#3BAA33;stroke-width:29.63;stroke-miterlimit:2.61313}
+    .str0 {stroke:#3BAA33;stroke-width:17.64;stroke-miterlimit:2.61313}
+    .str3 {stroke:#3BAA33;stroke-width:25.4;stroke-miterlimit:2.61313}
+    .str5 {stroke:#3BAA33;stroke-width:29.63;stroke-linejoin:round;stroke-miterlimit:2.61313}
+    .fil0 {fill:none}
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <circle class="fil0 str0" cx="1753.15" cy="1444.09" r="101.74"/>
+  <path class="fil0 str1" d="M1943.16 527.1l0 920.95m-379.61 -14.45l-0.27 -913.73c-0.28,-97.75 84.82,-182.84 189.8,-182.84 104.98,0 190.08,85.09 190.08,190.07m-190.08 730.88c-99.36,0 -180.88,76.21 -189.33,173.37l-0.2 2.25c-0.36,4.77 -0.55,9.59 -0.55,14.45 0,105 85.09,190.09 190.08,190.09 105,0 190.08,-85.09 190.08,-190.09 0,-104.97 -85.08,-190.07 -190.08,-190.07z"/>
+  <polyline class="fil0 str1" points="1765.09,1638.13 302.18,1638.13 302.18,527.11 1563,527.11 "/>
+  <line class="fil0 str2" x1="429.13" y1="527.11" x2="429.13" y2= "1638.13" />
+  <polyline class="fil0 str3" points="1563.54,669.37 593.9,669.37 593.9,1491.22 1563,1491.22 "/>
+  <polygon class="fil0 str3" points="1364.11,828.19 1217.42,828.19 1113.97,724.17 1009.38,828.19 861.89,828.19 861.89,974.89 757.88,1078.34 861.89,1182.91 861.89,1330.42 1008.6,1330.42 1112.05,1434.42 1216.62,1330.42 1364.11,1330.42 1364.11,1183.71 1468.13,1080.26 1364.11,975.67 "/>
+  <g id="_1867672789632">
+   <circle class="fil0 str4" cx="223.94" cy="537.37" r="50.61"/>
+   <path class="fil0 str5" d="M102.3 596.1c32.73,0.02 60.34,-27.59 60.34,-61.62 0,-34.04 -27.61,-61.65 -61.64,-61.65l-76.86 0 0 123.29 78.16 -0.02z"/>
+   <circle class="fil0 str4" cx="223.94" cy="801.47" r="50.61"/>
+   <path class="fil0 str5" d="M102.3 860.19c32.73,0.03 60.34,-27.58 60.34,-61.62 0,-34.03 -27.61,-61.64 -61.64,-61.64l-76.86 0 0 123.29 78.16 -0.03z"/>
+   <circle class="fil0 str4" cx="223.94" cy="1077.57" r="50.61"/>
+   <path class="fil0 str5" d="M102.3 1136.29c32.73,0.03 60.34,-27.58 60.34,-61.62 0,-34.03 -27.61,-61.64 -61.64,-61.64l-76.86 0 0 123.29 78.16 -0.03z"/>
+   <circle class="fil0 str4" cx="223.94" cy="1365.67" r="50.61"/>
+   <path class="fil0 str5" d="M102.3 1424.4c32.73,0.02 60.34,-27.59 60.34,-61.62 0,-34.03 -27.61,-61.64 -61.64,-61.64l-76.86 0 0 123.28 78.16 -0.02z"/>
+   <circle class="fil0 str4" cx="223.94" cy="1629.77" r="50.61"/>
+   <path class="fil0 str5" d="M102.3 1688.5c32.73,0.02 60.34,-27.59 60.34,-61.62 0,-34.04 -27.61,-61.65 -61.64,-61.65l-76.86 0 0 123.29 78.16 -0.02z"/>
+  </g>
+ </g>
+</svg>
