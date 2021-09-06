@@ -335,7 +335,7 @@ const DefaultTopPanel = () => {
                 </div>
                 <div className="d-inline-block">
                   <div className="text-white vv-font-size-1-5 font-weight-bold">
-                    {t(__('Download the Horn app'))}
+                    {t(__('Download the alaedeen app'))}
                   </div>
                   <div className="text-white vv-font-size-1-2 mt-2">
                     {t(__('For 10x Faster'))}

@@ -47,12 +47,12 @@ const HomeLogisticsBanner = () => {
         }
 
         {/*for Desktop And Fa Language*/}
-        {(width >= 768 && language === 'fa') &&
+        {/*{(width >= 768 && language === 'fa') &&
          <img className="homeLogisticsBanner--img" src={ logisticsBannerFa } alt={ t(__('Logistics Services')) }/>
         }
-
+*/}
         {/*for Desktop And Ar Language*/}
-        {(width >= 768 && language === 'ar') &&
+        {(width >= 768 && (language === 'ar' || language === 'fa')) &&
           <img className="homeLogisticsBanner--img" src={ logisticsBannerRtl } alt={ t(__('Logistics Services')) }/>
         }
 
