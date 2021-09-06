@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useHistory, useLocation, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 //import style file:
 import './styles/Categories.less';
@@ -30,13 +30,12 @@ const Categories = () => {
   // initial for work in URL
   const history = useHistory();
   const query = useQueryString();
-  const location = useLocation();
 
   // get category path from url:
   const { category: categorySeoName } = useParams();
 
   // create page state for paging
-  const [page, setPage] = useState(query.get("page") || 1);
+  const [page, setPage] = useState();
 
   // create initial filters state:
   const [filtersApi, setFiltersApi] = useState([]);
@@ -45,14 +44,18 @@ const Categories = () => {
   const [featuresHashContainer, setFeaturesHashContainer] = useState("");
   const [featuresHash, setFeaturesHash] = useState("");
 
-  // if change category path remove reset page, filtersApi, featuresHash and featuresHashContainer & remove page and features_hash from url:
+  // if change category path => remove page and features_hash from URL & reset page, filtersApi, featuresHash and featuresHashContainer state:
   useEffect(() => {
 
-    setPage(1);
-    setFiltersApi([]);
-    setFeaturesHash([]);
-    setFeaturesHashContainer([]);
+    // remove param from URL:
+    query.delete('page');
     query.delete('features_hash');
+
+    // reset states:
+    setPage(query.get("page") || 1);
+    setFiltersApi([]);
+    setFeaturesHash(query.get("features_hash") || "");
+    setFeaturesHashContainer("");
 
   }, [categorySeoName]);
 
