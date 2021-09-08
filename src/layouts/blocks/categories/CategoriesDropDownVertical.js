@@ -32,7 +32,8 @@ const CategoriesContent = () => {
           {categories?.map((category) => {
             return(
               <Menu.Item key={ category?.category_id }>
-                <Link to={ `/categories/${category?.seo_name}` } className={ `d-block ${category?.disable_home === 'Y' && 'categoryLink--disable'}` }>{ category?.category }</Link>
+                {/*link: /categories/${category?.seo_name}*/}
+                <Link to={ `/` } className={ `d-block ${category?.disable_home === 'Y' && 'categoryLink--disable'}` }>{ category?.category }</Link>
               </Menu.Item>
             )
           })}

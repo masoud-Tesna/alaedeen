@@ -154,7 +154,8 @@ const DefaultFooter = () => {
               {categories?.map((category) => {
                 return (
                   <Col key={category?.category_id} className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                    <Link to={ `/categories/${category?.seo_name}` }>
+                    {/*link: /categories/${category?.seo_name}*/}
+                    <Link to={ `/` }>
                       { category.category }
                     </Link>
                   </Col>

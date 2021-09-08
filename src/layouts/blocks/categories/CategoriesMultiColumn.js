@@ -48,7 +48,8 @@ const CategoriesMultiColumn = () => {
                 {categories?.map((category, index) => {
                   return (
                     <Col key={ `categoriesMultiColumn_${ category?.category_id }` } className="categoriesMultiColumn--item" span={12}>
-                      <Link to={ `/categories/${category?.seo_name}` } className={ `d-block ${category?.disable_home === 'Y' && 'categoryLink--disable'}` } >
+                      {/*link: /categories/${category?.seo_name}*/}
+                      <Link to={ `/` } className={ `d-block ${category?.disable_home === 'Y' && 'categoryLink--disable'}` } >
                         <Row className={`categoriesMultiColumn--item__row ${ index !== 6 ? 'categoriesMultiColumn--item__borderBottom': '' }`}>
                           <Col span={24} className="categoriesMultiColumn--img text-center py-2">
                             <div className="categoriesMultiColumn--img__wrapper">
@@ -126,7 +127,8 @@ const CategoriesMultiColumn = () => {
                     {categories?.map((category, index) => {
                       return (
                         <Col key={ `categoriesMultiColumnXS_${ category?.category_id }` } span={9} className="categoriesMultiColumn--item">
-                          <Link to={ `/categories/${category?.seo_name}` } className={ `d-block h-100 ${category?.disable_home === 'Y' && 'categoryLink--disable'}` }>
+                          {/*link: /categories/${category?.seo_name}*/}
+                          <Link to={ `/` } className={ `d-block h-100 ${category?.disable_home === 'Y' && 'categoryLink--disable'}` }>
                             <Row className="categoriesMultiColumn--item__row">
                               <Col span={24} className="categoriesMultiColumn--img text-center my-2">
                                 <div className="categoriesMultiColumn--img__wrapper">
