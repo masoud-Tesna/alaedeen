@@ -16,7 +16,7 @@ import polygon_2 from '../../../assets/images/polygon2.png';
 import polygon_3 from '../../../assets/images/polygon3.png';
 
 // import custom hooks:
-import { useGetTopRankingProducts, useWindowSize } from "../../../functions";
+import { useWindowSize } from "../../../functions";
 
 // import helper functions:
 import { __ } from '../../../functions/Helper';
@@ -25,6 +25,8 @@ import { useTranslation } from "react-i18next";
 
 // import language context:
 import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
+import { useQueries } from "react-query";
+import axios from "axios";
 
 const TopRankingProducts = () => {
 
@@ -35,15 +37,33 @@ const TopRankingProducts = () => {
 
   const { width } = useWindowSize();
 
-  const urlCarpets = `items_per_page=3&company_id=181&page=1`;
-  const urlHandmadeCarpet = `items_per_page=3&company_id=181&page=2`;
-  const urlBabyCarpet = `items_per_page=3&page=4company_id=181`;
+  const urlCarpets = `items_per_page=3&category_path=fabric-and-textile-raw-material-home-textiles&page=1`;
+  const urlHandmadeCarpet = `items_per_page=3&category_path=electrical-and-electronic&page=1`;
+  const urlBabyCarpet = `items_per_page=3&category_path=electrical-and-electronic&page=1`;
 
-  const { load, productsCat1, productsCat2, productsCat3 } = useGetTopRankingProducts(urlCarpets, urlHandmadeCarpet, urlBabyCarpet);
+  //const { load, productsCat1, productsCat2, productsCat3 } = useGetTopRankingProducts(urlCarpets, urlHandmadeCarpet, urlBabyCarpet);
+
+
+  async function getTopRankingProductsApi(param) {
+    const { data } = await axios.get(`https://alaedeen.com/horn/products-api/?${param}&lang_code=${language}`);
+    return data;
+  }
+
+  const topRankingProducts = useQueries([
+
+    { queryKey: ['topRanking', `fabric-and-textile-raw-material-home-textiles_${language}`], queryFn: () => getTopRankingProductsApi(urlCarpets), enabled: !!language },
+
+    { queryKey: ['topRanking', `electrical-and-electronic_${language}`], queryFn: () => getTopRankingProductsApi(urlHandmadeCarpet), enabled: !!language },
+
+    { queryKey: ['topRanking', `electrical-and-electronic_${language}`], queryFn: () => getTopRankingProductsApi(urlBabyCarpet), enabled: !!language },
+
+  ])
+
+  //console.log(topRankingProducts)
 
   return (
     <div className="topRankingProducts--container">
-      <Row>
+      {/*<Row>
         <Col className="topRankingProducts--caption__content" span={24}>
           <Row justify="space-between">
             <Col className={ `text-33 text-uppercase ${ width >= 768 ? 'vv-font-size-3' : 'vv-font-size-1-6' } font-weight-bold` }>
@@ -298,7 +318,7 @@ const TopRankingProducts = () => {
           }
 
         </Col>
-      </Row>
+      </Row>*/}
     </div>
   );
 };

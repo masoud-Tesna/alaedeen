@@ -19,6 +19,7 @@ import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const DefaultFooter = () => {
 
@@ -37,7 +38,10 @@ const DefaultFooter = () => {
   // initial state for language:
   const { language } = useGetLanguageState();
 
-  const { items } = useGetApi(`home-categories-api`, '', 'categories');
+  // get categories from API:
+  const { data } = useGetApi(`home-categories-api`, '', `allCategories`);
+
+  const { categories } = data || [];
 
   // set initial link for instagram related to each language:
   let instagramLink = language === 'en' ? "https://instagram.com/hornb2b" : language === 'fa' ? "https://instagram.com/hornb2b.ir" : language === 'ar' ? "https://instagram.com/horn.ar" : "https://instagram.com/hornb2b";
@@ -147,12 +151,12 @@ const DefaultFooter = () => {
                 { t(__('Explore')) }
               </Col>
 
-              {items.map((category, index) => {
+              {categories?.map((category) => {
                 return (
-                  <Col key={category.category_id} className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                    <a href={ category.link }>
+                  <Col key={category?.category_id} className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
+                    <Link to={ `/categories/${category?.seo_name}` }>
                       { category.category }
-                    </a>
+                    </Link>
                   </Col>
                 );
               })}

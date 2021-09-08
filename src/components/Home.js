@@ -102,9 +102,9 @@ const Home = () => {
         <RecommendedProducts />
       </div>
 
-      <div className="visitsProducts--section">
+      {/*<div className="visitsProducts--section">
         <RecentlyProductsView />
-      </div>
+      </div>*/}
 
       <div className="topBrands--section">
         <TopBrands/>

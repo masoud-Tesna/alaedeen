@@ -32,7 +32,8 @@ const OneRequestMultipleQuotes = () => {
   };
 
 
-  const { items } = useGetApi('request-content-api', 'variant=quantity_units', 'request_contents', false);
+  // get country lists from API:
+  const { data: quantityUnits } = useGetApi(`request-content-api`, 'variant=quantity_units', `quantityUnits`);
 
   return (
     <div className="px-4 border border-secondary-2 border-w-5 rounded-lg h-100 oneRequest--container">
@@ -80,9 +81,9 @@ const OneRequestMultipleQuotes = () => {
                     }
                   >
                     <>
-                      {items.map((item, index) => {
+                      {quantityUnits?.request_contents?.map((quantityUnit, index) => {
                         return (
-                          <Option key={(index + 2) * 4} value={item.key} >{ item.value }</Option>
+                          <Option key={(index + 2) * 4} value={quantityUnit?.key} >{ quantityUnit?.value }</Option>
                         );
                       })}
                     </>

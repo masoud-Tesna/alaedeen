@@ -11,7 +11,7 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import SkeletonTopBrands from "./skeletons/SkeletonTopBrands";
 
 // import custom hooks:
-import { useGetPremiumFactories, useWindowSize } from "../../../functions";
+import { useGetApi, useWindowSize } from "../../../functions";
 
 // get current language from context:
 import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
@@ -49,7 +49,10 @@ const TopBrands = () => {
 
   const { width } = useWindowSize();
 
-  const { factories, load } = useGetPremiumFactories('items_per_page=5');
+  // get top brands from API:
+  const { isLoading, data } = useGetApi(`premium-factories-api`, `items_per_page=5`, `topBrandsHomePage`);
+
+  const { factories } = data || [];
 
   return (
     <div className="topBrands--container">
@@ -67,7 +70,7 @@ const TopBrands = () => {
             {width >= 768 ?
               <>
 
-                {load ?
+                {isLoading ?
                   <SkeletonTopBrands
                     skeleton = {true}
                     skeltonNumbers = {5}
@@ -76,7 +79,7 @@ const TopBrands = () => {
 
                   /> :
                   <>
-                    {factories.map((brand) => {
+                    {factories?.map((brand) => {
                       return (
                         <Col className="topBrands--item" key={ brand.company_id * 10 }>
                           <a className="d-block h-100" href={`https://store.alaedeen.com/?store_id=${brand.company_id}`}>
@@ -103,14 +106,14 @@ const TopBrands = () => {
               <Col className="topBrands--scroll" span={24}>
                 <ScrollContainer className="text-select-none d-flex topBrands--scrollContainer">
 
-                  {load ?
+                  {isLoading ?
                     <SkeletonTopBrands
                       skeleton = {true}
                       skeltonNumbers = {5}
                       swiper
                     /> :
                     <>
-                      {factories.map((brand) => {
+                      {factories?.map((brand) => {
                         return (
                           <div className="d-inline topBrandsScroll--item__content" key={brand.company_id}>
                             <a className="d-block h-100" href={`https://store.alaedeen.com/?store_id=${brand.company_id}`}>

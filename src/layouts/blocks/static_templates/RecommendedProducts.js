@@ -9,7 +9,7 @@ import ProductsMultiColumnVertical from "../product_list_templates/ProductsMulti
 import SkeletonMultiColumnVertical from "../product_list_templates/skeletons/SkeletonMultiColumnVertical";
 
 // import Custom hooks:
-import { useGetProductApi, useWindowSize } from "../../../functions";
+import { useGetApi, useWindowSize } from "../../../functions";
 
 // import helper functions:
 import { __ } from '../../../functions/Helper';
@@ -23,9 +23,11 @@ const RecommendedProducts = () => {
   const { width } = useWindowSize();
 
   const product_items_per_page = width >= 768 ? 20 : 12;
-  const url = `items_per_page=${product_items_per_page}&page=1`;
 
-  const { load, products } = useGetProductApi(url);
+  // get products from API:
+  const { isLoading, data } = useGetApi(`products-api`, `items_per_page=${product_items_per_page}&page=1`, `recommendedProducts`);
+
+  const { products } = data || [];
 
   let productsMultiColumnVertical_items = { span: 8 };
 
@@ -47,7 +49,7 @@ const RecommendedProducts = () => {
           <div className="h-100 productsMultiColumnVertical--container">
             <Row className="h-100 productsMultiColumnVertical--items row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5" justify="space-around" gutter={[16, 20]}>
 
-              {load ?
+              {isLoading ?
                 <SkeletonMultiColumnVertical
                   skeleton = {true}
                   skeltonNumbers = {width >= 768 ? 20 : 12}
@@ -56,7 +58,7 @@ const RecommendedProducts = () => {
                   height = {width >= 768 ? 363.933 : 273.05}
                 /> :
                 <>
-                  {products.map((product, i) => {
+                  {products?.map((product, i) => {
                     return (
                       <ProductsMultiColumnVertical
                         key = { i }

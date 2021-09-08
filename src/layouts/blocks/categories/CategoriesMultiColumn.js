@@ -2,16 +2,13 @@
 import './styles/CategoriesMultiColumn.less';
 
 // import ANT Design Components used:
-import { Col, Row, Image } from "antd";
+import { Col, Row } from "antd";
 
 // import another components used:
 import ScrollContainer from 'react-indiana-drag-scroll';
 
 // import custom hooks:
-import { useGetApiQuery, useWindowSize } from "../../../functions";
-
-// import responsive image show component:
-import ShowResponsiveImage from "../../common/ShowResponsiveImage";
+import { useGetApi, useWindowSize } from "../../../functions";
 
 import CategoriesMultiColumnSkeleton from "./skeletons/CategoriesMultiColumnSkeleton";
 
@@ -29,10 +26,8 @@ const CategoriesMultiColumn = () => {
 
   const { width } = useWindowSize();
 
-  //const { load, items } = useGetApi(`home-categories-api`, '', 'categories');
-
-  // get products from API:
-  const { isLoading, data } = useGetApiQuery(`home-categories-api`, '', `categories_multiColumn`);
+  // get categories from API:
+  const { isLoading, data } = useGetApi(`home-categories-api`, '', `allCategories`);
 
   const { categories } = data || [];
 

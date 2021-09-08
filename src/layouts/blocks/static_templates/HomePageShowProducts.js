@@ -6,7 +6,7 @@ import SkeletonMultiColumnVertical from "../product_list_templates/skeletons/Ske
 import { Row } from "antd";
 
 // import Custom hooks:
-import { useGetApiQuery, useGetProductApi, useWindowSize } from "../../../functions";
+import { useGetApi, useWindowSize } from "../../../functions";
 
 const HomePageShowProducts = () => {
 
@@ -20,10 +20,8 @@ const HomePageShowProducts = () => {
     items_per_page = 2;
   }
 
-  //const { load, products } = useGetProductApi(url);
-
   // get products from API:
-  const { isLoading, data } = useGetApiQuery(`products-api`, `items_per_page=${items_per_page}`, `shipProducts`);
+  const { isLoading, data } = useGetApi(`products-api`, `items_per_page=${items_per_page}`, `shipProducts`);
 
   const { products } = data || [];
 

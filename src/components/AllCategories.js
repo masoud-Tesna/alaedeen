@@ -1,21 +1,25 @@
 // import style file:
 import './styles/AllCategories.less';
 import { useGetApi } from "../functions";
-import { Col, Menu, Row } from "antd";
+import { Col, Row } from "antd";
+import { Link } from "react-router-dom";
 
 const AllCategories = () => {
 
-  const categories = useGetApi(`home-categories-api`, '', 'categories');
+  // get categories from API:
+  const { isLoading, data } = useGetApi(`home-categories-api`, '', `allCategories`);
+
+  const { categories } = data || [];
 
   return (
     <Row className="allCategories--container">
-      {categories.load ?
+      {isLoading ?
         <Col span={24} className="allCategories--loading">Loading...</Col> :
         <>
-          {categories.items.map((category) => {
+          {categories?.map((category) => {
             return(
-              <Col span={24} className="allCategories--item" style={{ paddingLeft: `${category.level - 2}rem` }} key={ category.category_id }>
-                <a href={ category.link } className="text-47 font-weight-600 d-block w-100 h-100">{ category.category }</a>
+              <Col span={24} className="allCategories--item" style={{ paddingLeft: `${category?.level - 2}rem` }} key={ category?.category_id }>
+                <Link to={ `/categories/${category?.seo_name}` } className="text-47 font-weight-600 d-block w-100 h-100">{ category?.category }</Link>
               </Col>
             )
           })}

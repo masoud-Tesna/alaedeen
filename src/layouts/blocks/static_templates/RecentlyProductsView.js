@@ -14,7 +14,7 @@ import ProductsMultiColumnVertical from "../product_list_templates/ProductsMulti
 import SkeletonMultiColumnVertical from "../product_list_templates/skeletons/SkeletonMultiColumnVertical";
 
 // import custom hooks:
-import { useGetProductApi, useWindowSize } from '../../../functions';
+import { useGetApi, useWindowSize } from '../../../functions';
 
 // import helper functions:
 import { __ } from '../../../functions/Helper';
@@ -29,9 +29,10 @@ const RecentlyProductsView = () => {
 
   const { width } = useWindowSize();
 
-  let url = `items_per_page=5&company_id=181`;
+  // get products from API:
+  const { isLoading, data } = useGetApi(`products-api`, `items_per_page=5`, `recentlyProducts`);
 
-  const { load, products } = useGetProductApi(url);
+  const { products } = data || [];
 
   return (
     <div className="recommendedProducts--container">
@@ -50,7 +51,7 @@ const RecentlyProductsView = () => {
               {width >= 768 ?
                 <>
 
-                  {load ?
+                  {isLoading ?
                   <SkeletonMultiColumnVertical
                     className = "bg-white rounded-10 shadow-y-2"
                     skeleton = {true}
@@ -58,7 +59,7 @@ const RecentlyProductsView = () => {
                     height = {width >= 768 ? 363.933 : 273.05}
                   /> :
                     <>
-                      {products.map((product, i) => {
+                      {products?.map((product, i) => {
                         return (
                           <ProductsMultiColumnVertical
                             key = { i }
@@ -89,7 +90,7 @@ const RecentlyProductsView = () => {
                               product={product}
                               allDetails
                               swiper
-                              load = { load }
+                              load = { isLoading }
                               widthProductImage={164}
                               heightProductImage={170}
                             />

@@ -11,7 +11,7 @@ import { Col, Pagination, Row } from "antd";
 import { useGetLanguageState } from "../contexts/language/LanguageContext";
 
 // import helper functions:
-import { useGetApiQuery, useQueryString, useWindowSize } from "../functions";
+import { useGetApi, useQueryString, useWindowSize } from "../functions";
 
 // import product show and product skeleton show:
 import SkeletonMultiColumnVertical from "../layouts/blocks/product_list_templates/skeletons/SkeletonMultiColumnVertical";
@@ -102,7 +102,7 @@ const Categories = () => {
   }
 
   // get products from API before selecting filters and after selecting filter:
-  const { isLoading, data: product_data } = useGetApiQuery(`products-api`, `category_path=${categorySeoName}&items_per_page=20&page=${page}&features_hash=${featuresHash}`, `category_product_${categorySeoName}_${page}_${featuresHash}`);
+  const { isLoading, data: product_data } = useGetApi(`products-api`, `category_path=${categorySeoName}&items_per_page=20&page=${page}&features_hash=${featuresHash}`, `category_product_${categorySeoName}_${page}_${featuresHash}`);
 
   // get products and params from product_data Or empty array:
   const { products, params} = product_data || [];

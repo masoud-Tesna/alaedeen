@@ -23,21 +23,26 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
 
   const { t } = useTranslation();
 
-  const quantity_units = useGetApi('request-content-api', 'variant=quantity_units', 'request_contents', false);
+  // get country lists from API:
+  const { data: quantityUnits } = useGetApi(`request-content-api`, 'variant=quantity_units', `quantityUnits`);
 
-  const country_lists = useGetApi('country-lists-api', '', 'country_lists', false);
+  // get quantity Units list from API:
+  const { data: countryLists } = useGetApi(`country-lists-api`, '', `countryLists`);
 
-  const order_values = useGetApi('request-content-api', 'variant=order_values', 'request_contents', false);
+  // get order values lists from API:
+  const { data: orderValues } = useGetApi(`request-content-api`, 'variant=order_values', `orderValues`);
 
-  const supp_locations = useGetApi('request-content-api', 'variant=supp_locations', 'request_contents', false);
+  // get supp Locations lists from API:
+  const { data: suppLocations } = useGetApi(`request-content-api`, 'variant=supp_locations', `suppLocations`);
 
-  const regular_types = useGetApi('request-content-api', 'variant=regular_types', 'request_contents', false);
+  // get regular Types lists from API:
+  const { data: regularTypes } = useGetApi(`request-content-api`, 'variant=regular_types', `regularTypes`);
 
-  const requirement_urgencies = useGetApi('request-content-api', 'variant=requirement_urgencies', 'request_contents', false);
+  // get requirement Urgencies lists from API:
+  const { data: requirementUrgencies } = useGetApi(`request-content-api`, 'variant=requirement_urgencies', `requirementUrgencies`);
 
-  const country_code = useGetApi('country-code-api', '', 'country_code', false, false);
-
-
+  // get country codes from API:
+  const { data: countryCodes } = useGetApi(`country-code-api`, '', `countryCodes`);
 
   const [isSpinSend, setIsSpinSend] = useState(false);
 
@@ -52,7 +57,8 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
 
   const [isRegularType, setIsRegularType] = useState(false);
 
-  const cityLists = useGetApi('city-lists-api', `country_code=${countryCode}`, 'city_lists', false);
+  // get cities list from API:
+  const { data: cityLists } = useGetApi(`city-lists-api`, `country_code=${countryCode}`, `citiesList_${countryCode}`);
 
   async function getRequestCheck() {
     return await axios.get("https://alaedeen.com/horn/request-check-api/?table=?:vv_products_request&column=request_check");
@@ -99,9 +105,9 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
       }}
     >
       <>
-        {country_code.items.map((item, index) => {
+        {countryCodes?.country_code?.map((countryCode, index) => {
           return (
-            <Option key={ `country_code_${ index +20 }` } value={item.code_number} >{ `${item.description} ${item.code_number}` }</Option>
+            <Option key={ `country_code_${ index +20 }` } value={countryCode?.code_number} >{ `${countryCode?.description} ${countryCode?.code_number}` }</Option>
           );
         })}
       </>
@@ -302,9 +308,9 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                               onChange={e => setCountryCode(e)}
                             >
                               <>
-                                {country_lists.items.map((item) => {
+                                {countryLists?.country_lists?.map((countryList) => {
                                   return (
-                                    <Option key={ `country_lists_${ item.code }` } value={item.code} >{ item.country }</Option>
+                                    <Option key={ `country_lists_${ countryList?.code }` } value={countryList?.code} >{ countryList?.country }</Option>
                                   );
                                 })}
                               </>
@@ -333,9 +339,9 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                               }
                             >
                               <>
-                                {cityLists.items.map((item) => {
+                                {cityLists?.city_lists?.map((cityList) => {
                                   return (
-                                    <Option key={ `cityLists_${ item.code }` } value={item.code} >{ item.state }</Option>
+                                    <Option key={ `cityLists_${ cityList?.code }` } value={cityList?.code} >{ cityList?.state }</Option>
                                   );
                                 })}
                               </>
@@ -396,9 +402,9 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                               }
                             >
-                              {quantity_units.items.map((item) => {
+                              {quantityUnits?.request_contents?.map((quantityUnit) => {
                                 return (
-                                  <Option key={ `quantity_units_${ item.key }` } value={ item.key } >{ item.value }</Option>
+                                  <Option key={ `quantity_units_${ quantityUnit?.key }` } value={ quantityUnit?.key } >{ quantityUnit?.value }</Option>
                                 );
                               })}
                             </Select>
@@ -453,9 +459,9 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                               }
                             >
                               <>
-                                {order_values.items.map((item, index) => {
+                                {orderValues?.request_contents?.map((orderValue, index) => {
                                   return (
-                                    <Option key={ `order_values_${ index * 20 }` } value={item.key} >{ item.name }</Option>
+                                    <Option key={ `order_values_${ index * 20 }` } value={orderValue?.key} >{ orderValue?.name }</Option>
                                   );
                                 })}
                               </>
@@ -488,9 +494,9 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                               }
                             >
                               <>
-                                {supp_locations.items.map((item, index) => {
+                                {suppLocations?.request_contents?.map((suppLocation, index) => {
                                   return (
-                                    <Option key={ `supp_locations_${ index * 20 }` } value={item.key} >{ item.value }</Option>
+                                    <Option key={ `supp_locations_${ index * 20 }` } value={suppLocation?.key} >{ suppLocation?.value }</Option>
                                   );
                                 })}
                               </>
@@ -519,9 +525,9 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                               }
                             >
                               <>
-                                {requirement_urgencies.items.map((item, index) => {
+                                {requirementUrgencies?.request_contents?.map((requirementUrgency, index) => {
                                   return (
-                                    <Option key={ `requirement_urgencies_${ index * 20 }` } value={item.key} >{ item.value }</Option>
+                                    <Option key={ `requirement_urgencies_${ index * 20 }` } value={requirementUrgency?.key} >{ requirementUrgency?.value }</Option>
                                   );
                                 })}
                               </>
@@ -578,9 +584,9 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                               disabled={isRegularType ? false : true}
                             >
                               <>
-                                {regular_types.items.map((item, index) => {
+                                {regularTypes?.request_contents?.map((regularType, index) => {
                                   return (
-                                    <Option key={ `regular_types_${ index * 25 }` } value={item.key} >{ item.value }</Option>
+                                    <Option key={ `regular_types_${ index * 25 }` } value={regularType?.key} >{ regularType?.value }</Option>
                                   );
                                 })}
                               </>

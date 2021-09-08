@@ -14,7 +14,11 @@ import { useGetApi } from "../../../functions";
 import { Link } from "react-router-dom";
 
 const CategoriesContent = () => {
-  const categories = useGetApi(`home-categories-api`, '', 'categories');
+
+  // get categories from API:
+  const { isLoading, data } = useGetApi(`home-categories-api`, '', `allCategories`);
+
+  const { categories } = data || [];
 
   return(
     <Menu
@@ -22,10 +26,10 @@ const CategoriesContent = () => {
       triggerSubMenuAction={"click"}
       className="dropDownCategories--content"
     >
-      {categories.load ?
+      {isLoading ?
         <>Loading...</> :
         <>
-          {categories?.items.map((category) => {
+          {categories?.map((category) => {
             return(
               <Menu.Item key={ category?.category_id }>
                 <Link to={ `/categories/${category?.seo_name}` } className={ `d-block ${category?.disable_home === 'Y' && 'categoryLink--disable'}` }>{ category?.category }</Link>

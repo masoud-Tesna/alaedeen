@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 // import style file:
 import './styles/Register.less';
 
@@ -9,7 +11,7 @@ import { useGetLanguageState } from "../contexts/language/LanguageContext";
 import { Link, useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useGetAuthState } from "../contexts/user/UserContext";
-import { useEffect, useState } from "react";
+
 import { useGetApi } from "../functions";
 import axios from "axios";
 import LoaderSpinner from "../layouts/blocks/static_templates/LoadSpinner";
@@ -31,7 +33,10 @@ const Register = () => {
 
   const [registerIsLoading, setRegisterIsLoading] = useState(false);
 
-  const cityLists = useGetApi('city-lists-api', `country_code=IR`, 'city_lists', false);
+  // get cities list from API:
+  const { data } = useGetApi(`city-lists-api`, 'country_code=IR', `citiesList_IR`);
+
+  const { city_lists: cityLists } = data || [];
 
   if (user_data.auth.user_id) {
     history.push('/');
@@ -137,7 +142,7 @@ const Register = () => {
                                           }
                                         >
                                           <>
-                                            {cityLists.items.map((item) => {
+                                            {cityLists?.map((item) => {
                                               return (
                                                 <Option key={ `cityLists_${ item.code }` } value={item.code} >{ item.state }</Option>
                                               );
@@ -372,7 +377,7 @@ const Register = () => {
                                           }
                                         >
                                           <>
-                                            {cityLists.items.map((item) => {
+                                            {cityLists?.map((item) => {
                                               return (
                                                 <Option key={ `cityLists_${ item.code }` } value={item.code} >{ item.state }</Option>
                                               );

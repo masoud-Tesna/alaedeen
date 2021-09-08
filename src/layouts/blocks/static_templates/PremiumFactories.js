@@ -17,7 +17,7 @@ import { useGetLanguageState } from "../../../contexts/language/LanguageContext"
 
 
 // import custom hook used:
-import { useGetPremiumFactories, useWindowSize } from '../../../functions';
+import { useGetApi, useWindowSize } from '../../../functions';
 
 // import helper functions:
 import { __ } from '../../../functions/Helper';
@@ -83,7 +83,10 @@ const PremiumFactories = () => {
 
   const { width } = useWindowSize();
 
-  const { factories, load } = useGetPremiumFactories("items_per_page=3");
+  // get premium factories from API:
+  const { isLoading, data } = useGetApi(`premium-factories-api`, `items_per_page=3`, `premiumFactoriesHomePage`);
+
+  const { factories } = data || [];
 
   return (
     <div className="premiumFactories--container">
@@ -104,7 +107,7 @@ const PremiumFactories = () => {
           <Row className="premiumFactories--items" justify="space-between" gutter={{ xs: 0, sm: 5, md: 5, lg: 8, xl: 10, xxl: 35 }}>
             {width >= 768 ?
               <>
-                {load ?
+                {isLoading ?
                   <SkeletonTopBrands
                     skeleton = {true}
                     skeltonNumbers = {3}
@@ -113,7 +116,7 @@ const PremiumFactories = () => {
 
                   /> :
                   <>
-                    {factories.map((factory, index) => {
+                    {factories?.map((factory, index) => {
                       return (
                         <Col span={8} key={index}>
                           <Link className="d-block h-100" to={ `/factories?factory=${factory.company_id}` }>
@@ -147,14 +150,14 @@ const PremiumFactories = () => {
               </>:
 
               <>
-                {load ?
+                {isLoading ?
                   <SkeletonTopBrands
                     skeleton = {true}
                     skeltonNumbers = {3}
                     grid={{ span: 8 }}
                   /> :
                   <>
-                    {factories.map((factory, index) => {
+                    {factories?.map((factory, index) => {
                       return (
                         <Col span={8} key={index}>
                           <Link className="d-block h-100" to={ `/factories?factory=${factory.company_id}` }>
