@@ -388,7 +388,7 @@ const FactoriesShow = () => {
                                 <TextTruncate
                                   className="vv-font-size-1-6 font-weight-600"
                                   line={6}
-                                  element="span"
+                                  element="div"
                                   truncateText=" …"
                                   text={`About Us: ${factory.company_introduction.fields.detailed_company_introduction}`}
                                 />
@@ -555,7 +555,7 @@ const FactoriesShow = () => {
                               <TextTruncate
                                 className="vv-font-size-1-6 font-weight-600"
                                 line={6}
-                                element="span"
+                                element="div"
                                 truncateText=" …"
                                 text={`About Us: ${factory.company_introduction.fields.detailed_company_introduction}`}
                               />

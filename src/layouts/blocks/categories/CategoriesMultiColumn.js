@@ -150,7 +150,7 @@ const CategoriesMultiColumn = () => {
                                 <TextTruncate
                                   className="vv-font-size-1-5"
                                   line={2}
-                                  element="span"
+                                  element="div"
                                   truncateText=" …"
                                   text={category?.category}
                                 />
