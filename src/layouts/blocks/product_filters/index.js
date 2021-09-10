@@ -100,32 +100,32 @@ const ProductFilters = (props) => {
       <Row gutter={[0, 16]} className="productFilter--items">
 
         {(subCategories && subCategories.length !== 0) &&
-        <Col span={24} className="productFilter--subCategories">
-          <Collapse
-            expandIconPosition={"right"}
-            ghost
-            expandIcon={({ isActive }) => <DownOutlined rotate={ language === 'en' ? (isActive ? 180 : 0) : (isActive ? 0 : 1)} />}
-          >
-            <Panel header={t(__('categories'))} key="subCategories_panel">
-              <Row gutter={[0, 10]} className="subCategories--items">
-                <Col span={24} className="subCategories--item">
-                  <Link className="py-2 px-4 text-primary vv-font-size-1-7 d-block" to={ `/categories/business` }>{ t(__('all categories')) }</Link>
-                </Col>
+          <Col span={24} className="productFilter--subCategories">
+            <Collapse
+              expandIconPosition={"right"}
+              ghost
+              expandIcon={({ isActive }) => <DownOutlined rotate={ language === 'en' ? (isActive ? 180 : 0) : (isActive ? 0 : 1)} />}
+            >
+              <Panel header={t(__('categories'))} key="subCategories_panel">
+                <Row gutter={[0, 10]} className="subCategories--items">
+                  <Col span={24} className="subCategories--item">
+                    <Link className="py-2 px-4 text-primary vv-font-size-1-7 d-block" to={ `/categories/business` }>{ t(__('all categories')) }</Link>
+                  </Col>
 
-                <Col span={24} className="subCategories--item">
-                  <Link className={ `py-2 ${language === 'en' ? 'subCategories--item--plLevel1' : 'subCategories--item--prLevel1'} px-4 text-primary vv-font-size-1-7 d-block` } to={ `/categories/${category_seo_name}` }>{ category_name }</Link>
-                </Col>
-                {subCategories?.map(subCategory => {
-                  return (
-                    <Col key={`subCategoriesFilter_${category_id}_${subCategory?.category_id}`} span={24} className="subCategories--item">
-                      <Link className={ `py-2 ${language === 'en' ? 'subCategories--item--plLevel2' : 'subCategories--item--prLevel2'} px-4 text-primary vv-font-size-1-7 d-block` } to={ `/categories/${subCategory?.seo_name}` }>{ subCategory?.category }</Link>
-                    </Col>
-                  )
-                })}
-              </Row>
-            </Panel>
-          </Collapse>
-        </Col>
+                  <Col span={24} className="subCategories--item">
+                    <Link className={ `py-2 ${language === 'en' ? 'subCategories--item--plLevel1' : 'subCategories--item--prLevel1'} px-4 text-primary vv-font-size-1-7 d-block` } to={ `/categories/${category_seo_name}` }>{ category_name }</Link>
+                  </Col>
+                  {subCategories?.map(subCategory => {
+                    return (
+                      <Col key={`subCategoriesFilter_${category_id}_${subCategory?.category_id}`} span={24} className="subCategories--item">
+                        <Link className={ `py-2 ${language === 'en' ? 'subCategories--item--plLevel2' : 'subCategories--item--prLevel2'} px-4 text-primary vv-font-size-1-7 d-block` } to={ `/categories/${subCategory?.seo_name}` }>{ subCategory?.category }</Link>
+                      </Col>
+                    )
+                  })}
+                </Row>
+              </Panel>
+            </Collapse>
+          </Col>
         }
 
         {(filters && filters.length !== 0) &&
