@@ -8,7 +8,7 @@ import './styles/App.less';
 import 'flag-icon-css/less/flag-icon.less';
 
 // Components:
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
 // Design:
 import { ConfigProvider, Layout } from 'antd';
@@ -54,6 +54,11 @@ function App() {
                 <Route path="/register" component={Register} />
                 <Route path="/factories" component={Factories} />
                 <Route path="/all-categories" component={AllCategories} />
+                <Route
+                  exact
+                  path="/categories"
+                  render={() => <Redirect to="/all-categories" />}
+                />
                 <Route path="/categories/:category" component={Categories} />
               </Switch>
             </div>
