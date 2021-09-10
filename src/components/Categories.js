@@ -5,7 +5,7 @@ import { useHistory, useParams } from "react-router-dom";
 import './styles/Categories.less';
 
 //  import ant design components:
-import { Col, Pagination, Row } from "antd";
+import { Col, Pagination, Row, Space } from "antd";
 
 // import language context:
 import { useGetLanguageState } from "../contexts/language/LanguageContext";
@@ -14,10 +14,10 @@ import { useGetLanguageState } from "../contexts/language/LanguageContext";
 import { useGetApi, useQueryString, useWindowSize } from "../functions";
 
 // import product show and product skeleton show:
-import SkeletonMultiColumnVertical from "../layouts/blocks/product_list_templates/skeletons/SkeletonMultiColumnVertical";
-import ProductsBoxForCategory from "../layouts/blocks/product_list_templates/ProductsBoxForCategory";
+import CategoryOneColumn from "../layouts/blocks/product_list_templates/CategoryOneColumn";
 import ProductFilters from "../layouts/blocks/product_filters";
 import axios from "axios";
+import CategoryMultiColumn from "../layouts/blocks/product_list_templates/CategoryMultiColumn";
 
 const Categories = () => {
 
@@ -33,6 +33,14 @@ const Categories = () => {
 
   // get category path from url:
   const { category: categorySeoName } = useParams();
+
+  // initial state show product column:
+  const [productShowType, setProductShowType] = useState(window.localStorage.getItem('productShowType') || "oneColumn");
+
+  const productShowTypeHandleClick = showType => {
+    window.localStorage.setItem("productShowType", showType);
+    setProductShowType(showType);
+  }
 
   // create page state for paging
   const [page, setPage] = useState();
@@ -141,6 +149,12 @@ const Categories = () => {
         <div className="h-100">
           <Row gutter={20}>
 
+            {isLoading &&
+              <Col span={6}>
+               {/* Loading...*/}
+              </Col>
+            }
+
             {(filters && filters.length !== 0) &&
               <ProductFilters
                 filters = {filters}
@@ -156,27 +170,51 @@ const Categories = () => {
             }
 
             <Col span={(filters && filters.length !== 0) ? 18 : 24}>
-              <Row className="h-100" justify="center" gutter={[ { xs: 16, md: 50 }, 22]}>
+              <Row className="h-100" align="top" gutter={[0, 22]}>
+                <Col span={24} className="text-right productShowType">
+                  <Space size={"large"}>
+                    <i className={ `icon-vv-list-without-options-business cursor-pointer display-6 ${productShowType === 'oneColumn' && 'active'}` } onClick={() => productShowTypeHandleClick('oneColumn')} />
+                    <i className={ `icon-vv-grid-list-business cursor-pointer display-6 ${productShowType === 'multiColumn' && 'active'}` } onClick={() => productShowTypeHandleClick('multiColumn')} />
+                  </Space>
+                </Col>
+                <Col span={24}>
+                  <Row className="h-100 bg-white shadow-y rounded-lg rounded-md-md" justify="center">
 
-                {isLoading ?
-                  <SkeletonMultiColumnVertical
-                    skeleton = {true}
-                    skeltonNumbers ={ 20 }
-                    width = { width >= 768 ? 233 : 120 }
-                    height = {width >= 768 ? 233 : 120}
-                  /> :
-                  <>
-                    {products?.map((product, i) => {
-                      return (
-                        <ProductsBoxForCategory
-                          key = { i }
-                          product={product}
-                        />
-                      );
-                    })}
-                  </>
-                }
+                    {isLoading ?
+                      <>
+                       {/* Loading...*/}
+                      </> :
+                      <>
 
+                        {/*if product show type === oneColumn*/}
+                        {productShowType === 'oneColumn' &&
+                          products?.map((product, i) => {
+                            return (
+                              <CategoryOneColumn
+                                key = { i }
+                                product={product}
+                              />
+                            );
+                          })
+                        }
+
+                        {/*if product show type === multiColumn*/}
+                        {productShowType === 'multiColumn' &&
+                        products?.map((product, i) => {
+                          return (
+                            <CategoryMultiColumn
+                              key = { i }
+                              product={product}
+                            />
+                          );
+                        })
+                        }
+
+                      </>
+                    }
+
+                  </Row>
+                </Col>
               </Row>
             </Col>
           </Row>
