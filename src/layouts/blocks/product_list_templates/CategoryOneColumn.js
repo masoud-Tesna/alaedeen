@@ -22,11 +22,11 @@ const CategoryOneColumn = (props) => {
   const productListPrice = parseFloat(product.list_price).toFixed(2);
 
   return (
-    <Col className="productsMultiColumnVertical--item" span={24}>
+    <Col className="productsOneColumnVertical--item" span={24}>
       <a className="d-block h-100 py-4 px-2 not-hover" href={ product.link }>
         <Row className="h-100 pb-3 pb-lg-0" justify="center">
 
-          <Col flex='160px' className="d-flex- align-items-center- justify-content-center- productsMultiColumnVertical--item__image">
+          <Col flex='160px' className="d-flex- align-items-center- justify-content-center- productsOneColumnVertical--item__image">
             {product.main_pair ?
               <ShowResponsiveImage imagePath={ product?.main_pair?.detailed?.image_path } imageFolder='detailed' width={ width >= 768 ? 160 : 154} height={ width >= 768 ? 160 : 140} imageAlt={ product.product }/> :
               <Image
@@ -40,12 +40,12 @@ const CategoryOneColumn = (props) => {
           </Col>
 
           <Col flex="1 1">
-            <div className="text-47 vv-font-size-1-8 font-weight-bold text-truncate productsMultiColumnVertical--item__title">
+            <div className="text-47 vv-font-size-1-8 font-weight-bold text-truncate productsOneColumnVertical--item__title">
               { product.product }
             </div>
 
             {productPrice != 0.000 &&
-              <div className="productsMultiColumnVertical--item__price">
+              <div className="productsOneColumnVertical--item__price">
               <span className={ `${ width >= 768 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }>${ productPrice } </span>
               { productListPrice != 0.00 &&
               <span className={ `${ width >= 768 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }> - ${productListPrice}</span>
@@ -56,7 +56,7 @@ const CategoryOneColumn = (props) => {
             </div>
             }
 
-            <div className="productsMultiColumnVertical--item__description">
+            <div className="productsOneColumnVertical--item__description">
               <TextTruncate
                 className="vv-font-size-1-5 text-47"
                 line={1}
@@ -66,7 +66,7 @@ const CategoryOneColumn = (props) => {
               />
             </div>
 
-            <Col span={24} className="border-bottom border-e6 productsMultiColumnVertical--item__location-sendRequestBtn">
+            <Col span={24} className="border-bottom border-e6 productsOneColumnVertical--item__location-sendRequestBtn">
               <Row justify={"space-between"}>
                 <Col className="text-92">
                   <Space size={"large"}>
@@ -87,7 +87,7 @@ const CategoryOneColumn = (props) => {
                   </Space>
                 </Col>
                 <Col className="text-47">
-                  <Button className="border border-primary p-0 productsMultiColumnVertical--item__sendRequestBtn" size="large">{t(__('send request'))}</Button>
+                  <Button className="border border-primary p-0 productsOneColumnVertical--item__sendRequestBtn" size="large">{t(__('send request'))}</Button>
                 </Col>
               </Row>
             </Col>
