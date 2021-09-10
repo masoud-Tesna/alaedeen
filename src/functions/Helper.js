@@ -1,11 +1,9 @@
-import { useLocation } from "react-router-dom";
-
-export function fn_stripHtml (strip) {
+export function fn_stripHtml(strip) {
   const regex = /(<([^>]+)>)/ig;
   return strip.replace(regex, '');
 }
 
-export function __ (world, prefix = "", sign = ".") {
+export function __(world, prefix = "", sign = ".") {
 
   let returnWord = world;
 
@@ -37,7 +35,7 @@ export function __ (world, prefix = "", sign = ".") {
 
 }
 
-export function fn_set_date_day (day) {
+export function fn_set_date_day(day) {
   const date = new Date();
 
   date.setTime(date.getTime() + (day*24*60*60*1000));
@@ -46,14 +44,6 @@ export function fn_set_date_day (day) {
 
 export const useParsPathName = () => {
   // Get Location pathName:
-  let pathName = useLocation().pathname;
-
-  if (pathName === '/') {
-    return 'homePage';
-  }
-
-  pathName = pathName.toString().trim().toLowerCase()
-    .replaceAll("/", "");
-
-  return pathName;
+  const pathNameExplode = (window.location.pathname.split("/").slice(1));
+  return pathNameExplode[ 0 ] || 'homePage';
 }

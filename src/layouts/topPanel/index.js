@@ -83,7 +83,7 @@ const TopPanel = () => {
   }, [handleScroll]);
 
   // Check pathName For Set Default Top Panel Or Not:
-  if (((pathName === 'factories') && width <= 991) || pathName === 'categories' || pathName === 'sign-in' || pathName === 'register') {
+  if (((pathName === 'factories') && width <= 991) || pathName === 'all-categories' || pathName === 'sign-in' || pathName === 'register') {
     return <TopPanelWhitBackIcon scrolledClass={ scrolled && 'scrolled' } pathName={pathName} />
   }
 

@@ -53,7 +53,7 @@ function App() {
                 <Route path="/sign-in" component={SignIn} />
                 <Route path="/register" component={Register} />
                 <Route path="/factories" component={Factories} />
-                <Route exact path="/categories" component={AllCategories} />
+                <Route path="/all-categories" component={AllCategories} />
                 <Route path="/categories/:category" component={Categories} />
               </Switch>
             </div>
