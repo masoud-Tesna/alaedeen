@@ -1,5 +1,5 @@
 // import style file:
-import './styles/ProductsBoxForCategory.less';
+import './styles/CategoryMultiColumn.less';
 import { Button, Col, Image, Row, Space } from "antd";
 import { useWindowSize } from "../../../functions";
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
@@ -8,7 +8,7 @@ import { __, fn_stripHtml } from "../../../functions/Helper";
 import { useTranslation } from "react-i18next";
 
 
-const ProductsBoxForCategory = (props) => {
+const CategoryMultiColumn = (props) => {
 
   const { t } = useTranslation();
 
@@ -44,15 +44,15 @@ const ProductsBoxForCategory = (props) => {
                   { product.product }
                 </div>
                 {productPrice != 0.000 &&
-                  <div className="productsMultiColumnVertical--item__price">
-                    <span className={ `${ width >= 768 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }>${ productPrice } </span>
-                    { productListPrice != 0.00 &&
-                    <span className={ `${ width >= 768 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }> - ${productListPrice}</span>
-                    }
-                    {product.quantity_unit &&
-                    <span className="vv-font-size-1-6 text-92"> / { product.quantity_unit }</span>
-                    }
-                  </div>
+                <div className="productsMultiColumnVertical--item__price">
+                  <span className={ `${ width >= 768 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }>${ productPrice } </span>
+                  { productListPrice != 0.00 &&
+                  <span className={ `${ width >= 768 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }> - ${productListPrice}</span>
+                  }
+                  {product.quantity_unit &&
+                  <span className="vv-font-size-1-6 text-92"> / { product.quantity_unit }</span>
+                  }
+                </div>
                 }
 
                 <div className="productsMultiColumnVertical--item__description">
@@ -93,4 +93,4 @@ const ProductsBoxForCategory = (props) => {
   );
 };
 
-export default ProductsBoxForCategory;
+export default CategoryMultiColumn;
