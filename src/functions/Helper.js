@@ -1,3 +1,5 @@
+import { useLocation } from "react-router-dom";
+
 export function fn_stripHtml(strip) {
   const regex = /(<([^>]+)>)/ig;
   return strip.replace(regex, '');
@@ -44,8 +46,9 @@ export function fn_set_date_day(day) {
 
 export const useParsPathName = () => {
   // Get Location pathName:
-  const pathNameExplode = (window.location.pathname.split("/").slice(1));
-  return pathNameExplode[ 0 ] || 'homePage';
+  const pathName = useLocation().pathname;
+  const pathNameExplode = (pathName.split("/").slice(1));
+  return pathNameExplode[0] || 'homePage';
 }
 
 // split array for example: $array=[1,2,3,4,5,6,7] splitArray($array, 2) = [[1,2],[3,4],[5,6],[7]] => 2-item arrays in an array :
