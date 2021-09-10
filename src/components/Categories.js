@@ -100,6 +100,21 @@ const Categories = () => {
       });
   }
 
+  // function for handle select feature:
+  const featureRemoveHandleClick = (filter_id = "", variant_id = "") => {
+    // send filter_id, variant_id and featuresHashContainer for remove feature from hash (377-2001 eg):
+    async function filterRemoveFromHash() {
+      const url = `https://alaedeen.com/horn/products-filter-delete-from-hash-api/?features_hash=${featuresHashContainer}&filter_id=${filter_id}&variant_id=${variant_id}`;
+      return await axios.get(url);
+    }
+
+    filterRemoveFromHash()
+      .then(res => {
+        // new filter hash add to featuresHashContainer state:
+        setFeaturesHashContainer(res.data);
+      });
+  }
+
   // function for handle confirm filter btn:
   const handleConfirmFilters = () => {
     // add feature hash from featuresHashContainer state to featuresHash state for get product equal filters select:
@@ -165,6 +180,8 @@ const Categories = () => {
                 product_length = {products?.length || ""}
                 featuresHashContainer = {featuresHashContainer}
                 featureHandleClick={featureHandleClick}
+                featureRemoveHandleClick={featureRemoveHandleClick}
+                featureResetHandleClick={setFeaturesHashContainer}
                 handleConfirmFilters={handleConfirmFilters}
               />
             }

@@ -20,6 +20,20 @@
     padding: 12px 0;
   }
 
+  .productFilter--selected {
+    .productFilter--selected__item {
+      border: 1px solid #bfbfbf;
+      padding: .5rem;
+      border-radius: 50rem;
+      background-color: #fff;
+      height: 42px;
+
+      &.reset {
+        background-color: transparent !important;
+      }
+    }
+  }
+
   .productFilter--items {
     .subCategories--items {
       .subCategories--item {
@@ -49,9 +63,23 @@
     .productFilter--item {
       .feature--items {
         .feature--item {
-          &:hover {
+          &:hover,
+          &.selected {
             background-color: #d4d4d4 !important;
             border-radius: 3px;
+          }
+
+          .feature--item__removeIcon {
+            i {
+              color: #707070;
+              font-weight: 500 !important;
+            }
+
+            &:hover {
+              i {
+                color: darken(#707070, 20%);
+              }
+            }
           }
         }
       }
@@ -61,6 +89,10 @@
       .productFilter--confirm__btn {
         width: 180px;
         line-height: 1.7rem;
+
+        &:disabled {
+          background-color: lighten(#3ba949, 20%) !important;
+        }
 
         span {
           color: #FFFFFF;
