@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, useHistory, useParams } from "react-router-dom";
 
 //import style file:
 import './styles/Categories.less';
 
 //  import ant design components:
-import { Col, Pagination, Row, Space } from "antd";
+import { Button, Carousel, Col, Pagination, Row, Space } from "antd";
 
 // import language context:
 import { useGetLanguageState } from "../contexts/language/LanguageContext";
@@ -18,11 +18,15 @@ import CategoryOneColumn from "../layouts/blocks/product_list_templates/Category
 import ProductFilters from "../layouts/blocks/product_filters";
 import axios from "axios";
 import CategoryMultiColumn from "../layouts/blocks/product_list_templates/CategoryMultiColumn";
+import { __, partitionArray, splitArray } from "../functions/Helper";
+import { useTranslation } from "react-i18next";
 
 const Categories = () => {
 
   // get initial language
   const { language } = useGetLanguageState();
+
+  const { t } = useTranslation();
 
   // get window width
   const { width } = useWindowSize();
@@ -158,8 +162,79 @@ const Categories = () => {
     return originalElement;
   }
 
+
+
+  // ref for access category slider:
+  const subCategorySliderRef = useRef();
+
+  // function for next sub category slider:
+  const handleSubCategorySliderNext = () => subCategorySliderRef.current.next();
+
+  // function for previous sub category slider:
+  const handleSubCategorySliderPrev = () => subCategorySliderRef.current.prev();
+
+  // split sub categories to 6 item:
+  let splitSubCategories = [];
+  if (subCategories) {
+    splitSubCategories = splitArray(subCategories, 6);
+  }
+
   return (
-    <Row className="mt-5 products--container">
+    <Row className="mt-4 products--container" gutter={[0, 23]}>
+
+      {params?.category_level && params?.category_level === 2 &&
+        <Col span={24}>
+          <Row gutter={20}>
+            <Col span={6}>
+              <Row className="bg-white shadow-y rounded-lg p-4 subCategoriesSlider">
+                <Col span={24}>
+                  <Row justify={"space-between"} align={"middle"}>
+                    <Col className="vv-font-size-2 font-weight-600 text-uppercase">
+                      { t(__('categories')) }
+                    </Col>
+                    <Col>
+                      <Space size={12}>
+                        <i className="fa fa-chevron-left text-47 vv-font-size-1-7 vv-cursor-pointer" onClick={handleSubCategorySliderPrev} />
+                        <i className="fa fa-chevron-right text-47 vv-font-size-1-7 vv-cursor-pointer" onClick={handleSubCategorySliderNext} />
+                      </Space>
+                    </Col>
+                  </Row>
+                </Col>
+                <Col span={24} className="mt-4">
+                  <Carousel
+                    dots={false}
+                    autoplay={false}
+                    ref={subCategorySliderRef}
+                  >
+                    {splitSubCategories?.map(splitSubCategory => {
+                      return (
+                        <div>
+                          <Row gutter={[0, 8]}>
+
+                            {splitSubCategory?.map(subCategory => {
+                              return(
+                                <Col key={`subCategoriesSlider_${subCategory?.category_id}`} span={24} className="subCategoriesSlider--item">
+                                  <Link to={ `/categories/${subCategory?.seo_name}` }>{ subCategory?.category }</Link>
+                                </Col>
+                              )
+                            })}
+
+                          </Row>
+                        </div>
+                      )
+                    })}
+                  </Carousel>
+                </Col>
+              </Row>
+            </Col>
+            <Col span={18}>
+              ttt
+            </Col>
+          </Row>
+        </Col>
+      }
+
+
       <Col className="products-content" span={24}>
         <div className="h-100">
           <Row gutter={20}>
