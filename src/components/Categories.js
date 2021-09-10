@@ -170,7 +170,7 @@ const Categories = () => {
             }
 
             <Col span={(filters && filters.length !== 0) ? 18 : 24}>
-              <Row className="h-100" align="top" gutter={[0, 22]}>
+              <Row  gutter={[0, 22]}>
                 <Col span={24} className="text-right productShowType">
                   <Space size={"large"}>
                     <i className={ `icon-vv-list-without-options-business cursor-pointer display-6 ${productShowType === 'oneColumn' && 'active'}` } onClick={() => productShowTypeHandleClick('oneColumn')} />
@@ -178,7 +178,7 @@ const Categories = () => {
                   </Space>
                 </Col>
                 <Col span={24}>
-                  <Row className="h-100 bg-white shadow-y rounded-lg rounded-md-md" justify="center">
+                  <Row className={ `h-100 ${productShowType === 'oneColumn' && 'bg-white shadow-y rounded-lg rounded-md-md'}` } justify="center">
 
                     {isLoading ?
                       <>
@@ -200,14 +200,21 @@ const Categories = () => {
 
                         {/*if product show type === multiColumn*/}
                         {productShowType === 'multiColumn' &&
-                        products?.map((product, i) => {
-                          return (
-                            <CategoryMultiColumn
-                              key = { i }
-                              product={product}
-                            />
-                          );
-                        })
+                          <Col span={24}>
+                            <Row className="h-100" gutter={[23, 23]}>
+                              { products?.map((product, i) => {
+                                return (
+                                  <CategoryMultiColumn
+                                    key={ i }
+                                    product={ product }
+                                    allDetails
+                                    widthProductImage={ width >= 768 ? 194 : 164 }
+                                    heightProductImage={ width >= 768 ? 194 : 170 }
+                                  />
+                                );
+                              }) }
+                            </Row>
+                          </Col>
                         }
 
                       </>
