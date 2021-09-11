@@ -15,14 +15,15 @@ const SubCategoriesSwiperDesktop = ({ subCategories }) => {
     <Row gutter={10} className="bg-white px-3 h-100">
       <Col span={24}>
         <Swiper
-          slidesPerView={5}
+          slidesPerView={"auto"}
+          spaceBetween={50}
           scrollbar={{
             "hide": true
           }}
         >
           {subCategories && subCategories.map(subCategory => {
             return(
-              <SwiperSlide key={ `subCategoriesSwiperDesktop_${subCategory?.category_id}` }>
+              <SwiperSlide key={ `subCategoriesSwiperDesktop_${subCategory?.category_id}` } style={{ width: 120 }}>
                 <div>
                   <Row className="py-4">
                     <Col span={24} className="text-center my-2">
