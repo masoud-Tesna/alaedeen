@@ -14,9 +14,8 @@ html:lang(ar) {
 
 .productsOneColumnVertical--item {
   .productsOneColumnVertical--item__image {
-    background-color: #FAFAFA;
 
-    @media (min-width: @screen-md) {
+    img {
       max-width: 100%;
     }
   }
@@ -57,6 +56,7 @@ html:lang(ar) {
     width: 105px;
     height: 31px;
     padding-bottom: 3px !important;
+    z-index: 2;
 
     span {
       color: #3ba949;
@@ -69,6 +69,14 @@ html:lang(ar) {
         color: #ffffff;
       }
     }
+  }
+
+  .productsOneColumnVertical--item__link {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
   }
 
 }
