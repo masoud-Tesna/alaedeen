@@ -197,11 +197,11 @@ const Categories = () => {
 
 
   return (
-    <Row className="mt-4 products--container" gutter={[0, 23]}>
+    <Row className="mt-0 mt-lg-4 products--container" gutter={[0, 23]}>
 
       {params?.category_level && params?.category_level === 2 &&
         <Col span={24}>
-          <Row gutter={20}>
+          <Row className="test" gutter={{ xs: 0, lg: 20 }}>
             {width >= 992 ?
             <>
               <Col span={6}>
@@ -265,7 +265,7 @@ const Categories = () => {
                 </Row>
               </Col>
             </> :
-              <SubCategoriesSwiperMobile subCategories={subCategories || []} />
+              <SubCategoriesSwiperMobile subCategories={subCategories || []} category_name = {params?.category_name || ""} />
             }
           </Row>
         </Col>
@@ -274,7 +274,7 @@ const Categories = () => {
 
       <Col className="products-content" span={24}>
         <div className="h-100">
-          <Row gutter={20}>
+          <Row gutter={{ xs: 0, lg: 20 }}>
 
             {isLoading &&
             <Col span={6}>

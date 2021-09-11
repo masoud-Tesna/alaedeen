@@ -10,14 +10,18 @@ import SwiperCore, { Scrollbar } from 'swiper';
 // install Swiper modules
 SwiperCore.use([Scrollbar]);
 
-const SubCategoriesSwiperMobile = ({ subCategories }) => {
+const SubCategoriesSwiperMobile = ({ subCategories, category_name }) => {
   return (
     <Col span={24} className="subCategoriesSwiper">
-      <Row gutter={10} className="bg-white px-3 h-100">
+      <Row className="bg-white px-3 pt-4 h-100 shadow-top" style={{ margin: "0 -1rem" }} gutter={[0, 15]}>
+        <Col span={24} className="text-33 vv-font-size-1-6 font-weight-bold text-truncate mt-2">
+          { category_name }
+        </Col>
         <Col span={24}>
           <Swiper
             slidesPerView={"auto"}
-            spaceBetween={15}
+            spaceBetween={18}
+            className="subCategoriesSwiperMobile"
             scrollbar={{
               "hide": true
             }}
@@ -26,7 +30,7 @@ const SubCategoriesSwiperMobile = ({ subCategories }) => {
               return(
                 <SwiperSlide key={ `subCategoriesSwiperMobile_${subCategory?.category_id}` } style={{ width: 80 }}>
                   <div>
-                    <Row>
+                    <Row className="pb-4 mb-2">
                       <Col span={24} className="text-center my-2">
                         <div className="subCategoriesRow--image">
                           { subCategory?.main_pair?.detailed ?
@@ -41,7 +45,7 @@ const SubCategoriesSwiperMobile = ({ subCategories }) => {
                           }
                         </div>
                       </Col>
-                      <Col span={24} className="text-center vv-font-size-1-3 text-47  pb-4 text-truncate px-3">
+                      <Col span={24} className="text-center vv-font-size-1-3 text-47 text-truncate px-3">
                         {subCategory?.category}
                       </Col>
                     </Row>
