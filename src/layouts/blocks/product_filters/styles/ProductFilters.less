@@ -2,6 +2,11 @@
 @import '../../../../styles/Mixins';
 
 .productFilter--container {
+  margin-bottom: 3rem;
+  @media (min-width: @screen-md) {
+    margin-bottom: 0;
+  }
+
   .ant-collapse-header {
     font-size: 1.7rem;
     font-weight: bold;
@@ -87,7 +92,11 @@
 
     .productFilter--confirm {
       .productFilter--confirm__btn {
-        width: 180px;
+        width: 130px;
+        height: 40px;
+        @media (min-width: @screen-md) {
+          width: 180px;
+        }
         line-height: 1.7rem;
 
         &:disabled {
@@ -98,6 +107,31 @@
           color: #FFFFFF;
           font-size: 1.7rem;
           font-weight: bold;
+        }
+      }
+
+      .productFilter--reset__btn {
+        width: 100px;
+        height: 40px;
+        line-height: 1.7rem;
+        margin-left: 1.5rem;
+        border-color: #d9d9d9;
+
+        &:hover {
+          border-color: darken(#d9d9d9, 10%);
+        }
+
+        &:disabled {
+          border-color: lighten(#d9d9d9, 5%);
+
+          span {
+            color: darken(#d9d9d9, 5%);
+          }
+        }
+
+        span {
+          color: #474747;
+          font-size: 1.7rem;
         }
       }
     }

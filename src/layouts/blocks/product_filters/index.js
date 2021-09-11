@@ -1,13 +1,14 @@
 // import style file:
 import './styles/ProductFilters.less';
 
-import { Button, Col, Collapse, Row, Space } from "antd";
+import { Button, Col, Collapse, Row } from "antd";
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../functions/Helper";
 import { DownOutlined } from "@ant-design/icons";
 import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
 import { Link } from "react-router-dom";
 import ProductFilterVariants from "./components/productFilterVariants";
+import { useWindowSize } from "../../../functions";
 
 const ProductFilters = (props) => {
 
@@ -16,6 +17,9 @@ const ProductFilters = (props) => {
   // get initial language
   const { language } = useGetLanguageState();
 
+  // get window width
+  const { width } = useWindowSize();
+
   const { filters, category_id, category_seo_name, category_name, subCategories, product_length, featuresHashContainer } = props;
 
   const { Panel } = Collapse;
@@ -23,76 +27,76 @@ const ProductFilters = (props) => {
   let selectedFilter = false;
 
   return (
-    <Col span={6} className="productFilter--container">
-      <div className="mb-2 mt-2 mb-md-4">
+    <Col xs={24} lg={6} className="productFilter--container">
+      <div className="mb-2 mt-2 mb-md-4 d-none d-lg-block">
         <span className="text-47 font-weight-bold vv-font-size-1-7">{product_length} {t(__('products'))}:</span> <span className="vv-font-size-1-7">{category_name}</span>
       </div>
 
-      <div className="text-33 font-weight-bold vv-font-size-2 border-bottom border-bc pb-3">
+      <div className="text-33 font-weight-bold vv-font-size-2 border-bottom border-bc pb-3 d-none d-lg-block">
         { t(__('Filter & Refine')) }
       </div>
 
-      <div className={ `productFilter--selected ${featuresHashContainer ? 'd-block py-3' : 'd-none'}` }>
+      <div className={ `productFilter--selected ${(width >= 992 && featuresHashContainer) ? 'd-block py-3' : 'd-none'}` }>
 
         {(filters && filters?.length !== 0) &&
 
-          <Row gutter={[6, 6]}>
+        <Row gutter={[6, 6]}>
 
-            { filters?.map(filter => {
+          { filters?.map(filter => {
 
-              if (filter?.selected_variants) {
-                selectedFilter = true;
+            if (filter?.selected_variants) {
+              selectedFilter = true;
 
-                return(
-                  Object.entries(filter?.selected_variants).map(([key, selected], index) => {
-                    return (
-                      <Col>
-                        <div className="productFilter--selected__item">
+              return(
+                Object.entries(filter?.selected_variants).map(([key, selected], index) => {
+                  return (
+                    <Col>
+                      <div className="productFilter--selected__item">
 
-                          <Row className="h-100" align={"middle"} >
-                            <Col flex="1 1" className="vv-font-size-1-7 text-70 px-3 text-truncate">
-                              {selected.variant}
-                            </Col>
+                        <Row className="h-100" align={"middle"} >
+                          <Col flex="1 1" className="vv-font-size-1-7 text-70 px-3 text-truncate">
+                            {selected.variant}
+                          </Col>
 
-                            <Col
-                              flex="26px"
-                              className="cursor-pointer"
-                              onClick={() => props.featureResetHandleClick("")}
-                            >
-                              <i className="far fa-times-circle display-5 font-weight-light text-bf" />
-                            </Col>
-                          </Row>
+                          <Col
+                            flex="26px"
+                            className="cursor-pointer"
+                            onClick={() => props.featureResetHandleClick("")}
+                          >
+                            <i className="far fa-times-circle display-5 font-weight-light text-bf" />
+                          </Col>
+                        </Row>
 
-                        </div>
-                      </Col>
-                    );
-                  })
-                )
+                      </div>
+                    </Col>
+                  );
+                })
+              )
 
-              }
-            }) }
+            }
+          }) }
 
-            <Col className={ !selectedFilter && 'd-none' }>
-              <div className="productFilter--selected__item reset">
+          <Col className={ !selectedFilter && 'd-none' }>
+            <div className="productFilter--selected__item reset">
 
-                <Row className="h-100" align={"middle"} >
-                  <Col flex="1 1" className="vv-font-size-1-7 text-70 px-3">
-                    { t(__('Reset All')) }
-                  </Col>
+              <Row className="h-100" align={"middle"} >
+                <Col flex="1 1" className="vv-font-size-1-7 text-70 px-3">
+                  { t(__('Reset All')) }
+                </Col>
 
-                  <Col
-                    flex="22px"
-                    className="cursor-pointer"
-                    onClick={() => props.featureResetHandleClick("")}
-                  >
-                    <i className="fad fa-undo display-6 mt-2 font-weight-light text-bf" />
-                  </Col>
-                </Row>
+                <Col
+                  flex="22px"
+                  className="cursor-pointer"
+                  onClick={() => props.featureResetHandleClick("")}
+                >
+                  <i className="fad fa-undo display-6 mt-2 font-weight-light text-bf" />
+                </Col>
+              </Row>
 
-              </div>
-            </Col>
+            </div>
+          </Col>
 
-          </Row>
+        </Row>
 
         }
       </div>
@@ -100,32 +104,32 @@ const ProductFilters = (props) => {
       <Row gutter={[0, 16]} className="productFilter--items">
 
         {(subCategories && subCategories.length !== 0) &&
-          <Col span={24} className="productFilter--subCategories">
-            <Collapse
-              expandIconPosition={"right"}
-              ghost
-              expandIcon={({ isActive }) => <DownOutlined rotate={ language === 'en' ? (isActive ? 180 : 0) : (isActive ? 0 : 1)} />}
-            >
-              <Panel header={t(__('categories'))} key="subCategories_panel">
-                <Row gutter={[0, 10]} className="subCategories--items">
-                  <Col span={24} className="subCategories--item">
-                    <Link className="py-2 px-4 text-primary vv-font-size-1-7 d-block" to={ `/categories/business` }>{ t(__('all categories')) }</Link>
-                  </Col>
+        <Col span={24} className="productFilter--subCategories">
+          <Collapse
+            expandIconPosition={"right"}
+            ghost
+            expandIcon={({ isActive }) => <DownOutlined rotate={ language === 'en' ? (isActive ? 180 : 0) : (isActive ? 0 : 1)} />}
+          >
+            <Panel header={t(__('categories'))} key="subCategories_panel">
+              <Row gutter={[0, 10]} className="subCategories--items">
+                <Col span={24} className="subCategories--item">
+                  <Link className="py-2 px-4 text-primary vv-font-size-1-7 d-block" to={ `/categories/business` }>{ t(__('all categories')) }</Link>
+                </Col>
 
-                  <Col span={24} className="subCategories--item">
-                    <Link className={ `py-2 ${language === 'en' ? 'subCategories--item--plLevel1' : 'subCategories--item--prLevel1'} px-4 text-primary vv-font-size-1-7 d-block` } to={ `/categories/${category_seo_name}` }>{ category_name }</Link>
-                  </Col>
-                  {subCategories?.map(subCategory => {
-                    return (
-                      <Col key={`subCategoriesFilter_${category_id}_${subCategory?.category_id}`} span={24} className="subCategories--item">
-                        <Link className={ `py-2 ${language === 'en' ? 'subCategories--item--plLevel2' : 'subCategories--item--prLevel2'} px-4 text-primary vv-font-size-1-7 d-block` } to={ `/categories/${subCategory?.seo_name}` }>{ subCategory?.category }</Link>
-                      </Col>
-                    )
-                  })}
-                </Row>
-              </Panel>
-            </Collapse>
-          </Col>
+                <Col span={24} className="subCategories--item">
+                  <Link className={ `py-2 ${language === 'en' ? 'subCategories--item--plLevel1' : 'subCategories--item--prLevel1'} px-4 text-primary vv-font-size-1-7 d-block` } to={ `/categories/${category_seo_name}` }>{ category_name }</Link>
+                </Col>
+                {subCategories?.map(subCategory => {
+                  return (
+                    <Col key={`subCategoriesFilter_${category_id}_${subCategory?.category_id}`} span={24} className="subCategories--item">
+                      <Link className={ `py-2 ${language === 'en' ? 'subCategories--item--plLevel2' : 'subCategories--item--prLevel2'} px-4 text-primary vv-font-size-1-7 d-block` } to={ `/categories/${subCategory?.seo_name}` }>{ subCategory?.category }</Link>
+                    </Col>
+                  )
+                })}
+              </Row>
+            </Panel>
+          </Collapse>
+        </Col>
         }
 
         {(filters && filters.length !== 0) &&
@@ -176,6 +180,15 @@ const ProductFilters = (props) => {
             disabled={!selectedFilter && true}
           >
             {t(__('confirm'))}
+          </Button>
+
+          <Button
+            className={ `bg-transparent rounded-md p-0 productFilter--reset__btn ${width >= 992 && 'd-none'}` }
+            size="middle"
+            onClick={() => props.featureResetHandleClick("")}
+            disabled={!featuresHashContainer && true}
+          >
+            {t(__('reset'))}
           </Button>
         </Col>
 

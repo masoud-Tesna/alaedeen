@@ -66,11 +66,41 @@
   }
 
   .products-content {
+    .filtersBtnCollapse {
+      background-color: #474747;
+      border: 1px solid #929191;
+      border-radius: 3px;
+      padding: 0;
+      min-width: 75px;
+
+      i,
+      span {
+        color: #FFFFFF;
+        margin-right: .5rem;
+        font-size: 1.7rem;
+      }
+
+      i {
+        margin-right: .5rem;
+      }
+    }
+
     .productShowType {
       i {
-        &:hover,
-        &.active {
+        &.cursor-pointer:hover,
+        &.cursor-pointer.active {
           color: @primary-color;
+        }
+      }
+    }
+
+    .filterMobileCollapse {
+      .filterMobileCollapse--panel {
+        &>.ant-collapse-header {
+          display: none;
+        }
+        & > .ant-collapse-content > .ant-collapse-content-box {
+          padding: 0 1rem;
         }
       }
     }
