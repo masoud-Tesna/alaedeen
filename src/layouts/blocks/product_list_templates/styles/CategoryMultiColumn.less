@@ -11,7 +11,9 @@ html:lang(ar) {
 .productsMultiColumnVertical--item {
   .productsMultiColumnVertical--item__image {
     img {
-
+      @media (min-width: @screen-md) {
+        max-width: 100%;
+      }
     }
   }
 }

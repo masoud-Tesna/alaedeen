@@ -1,11 +1,8 @@
 // import style file:
 import './styles/CategoryMultiColumn.less';
-import { Button, Col, Image, Row, Skeleton, Space } from "antd";
+import { Col, Image, Row } from "antd";
 import { useWindowSize } from "../../../functions";
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
-import TextTruncate from "react-text-truncate";
-import { __, fn_stripHtml } from "../../../functions/Helper";
-import { useTranslation } from "react-i18next";
 
 
 const CategoryMultiColumn = (props) => {
