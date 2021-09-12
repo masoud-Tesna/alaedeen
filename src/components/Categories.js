@@ -32,6 +32,7 @@ import "swiper/swiper.min.css";
 import "swiper/components/scrollbar/scrollbar.min.css";
 import SubCategoriesSwiperMobile from "./categories/SubCategoriesSwiperMobile";
 import SubCategoriesSwiperDesktop from "./categories/SubCategoriesSwiperDesktop";
+import LoaderSpinner from "../layouts/blocks/static_templates/LoadSpinner";
 
 
 
@@ -71,7 +72,7 @@ const Categories = () => {
   const [featuresHashContainer, setFeaturesHashContainer] = useState("");
   const [featuresHash, setFeaturesHash] = useState("");
 
-
+  const [isLoadingHandle, setIsLoadingHandle] = useState(false);
 
   // if change category path => remove page and features_hash from URL & reset page, filtersApi, featuresHash and featuresHashContainer state:
   useEffect(() => {
@@ -81,9 +82,11 @@ const Categories = () => {
     query.delete('features_hash');
 
     // reset states:
-    setPage(query.get("page") || 1);
+    /*setPage(query.get("page") || 1);*/
+    setPage(1);
     setFiltersApi([]);
-    setFeaturesHash(query.get("features_hash") || "");
+    /*setFeaturesHash(query.get("features_hash") || "");*/
+    setFeaturesHash("");
     setFeaturesHashContainer("");
 
   }, [categorySeoName]);
@@ -92,6 +95,7 @@ const Categories = () => {
   useEffect(() => {
     // function for get category filters::
     async function getProductFilters() {
+      setIsLoadingHandle(true);
       const url = `https://alaedeen.com/horn/product-filters-api/?category_path=${categorySeoName}&features_hash=${featuresHashContainer}`;
       return await axios.get(url);
     }
@@ -100,6 +104,7 @@ const Categories = () => {
       .then(res => {
         // category filters add to filtersApi state:
         setFiltersApi(res.data);
+        setIsLoadingHandle(false);
       });
 
   }, [featuresHashContainer, categorySeoName]);
@@ -110,6 +115,7 @@ const Categories = () => {
   const featureHandleClick = (filter_id = "", variant_id = "") => {
     // send filter_id, variant_id and featuresHashContainer for get feature hash (377-2001 eg):
     async function filterToHash() {
+      setIsLoadingHandle(true);
       const url = `https://alaedeen.com/horn/products-filter-to-hash-api/?features_hash=${featuresHashContainer}&filter_id=${filter_id}&variant_id=${variant_id}`;
       return await axios.get(url);
     }
@@ -118,6 +124,7 @@ const Categories = () => {
       .then(res => {
         // filter hash add to featuresHashContainer state:
         setFeaturesHashContainer(res.data);
+        setIsLoadingHandle(false);
       });
   }
 
@@ -133,7 +140,25 @@ const Categories = () => {
       .then(res => {
         // new filter hash add to featuresHashContainer state:
         setFeaturesHashContainer(res.data);
+
+        if (featuresHash) {
+          setFeaturesHash(res.data);
+        }
+
+        /*setFeaturesHash(prevState => {
+          if (prevState) {
+            return res.data
+          }
+        });*/
       });
+  }
+
+  const handleResetFilter = () => {
+    setFeaturesHashContainer("");
+
+    if (featuresHash) {
+      setFeaturesHash("");
+    }
   }
 
   // function for handle confirm filter btn:
@@ -141,8 +166,8 @@ const Categories = () => {
     // add feature hash from featuresHashContainer state to featuresHash state for get product equal filters select:
     setFeaturesHash(featuresHashContainer);
 
-    // attaching filter hash and page in to url:
-    history.push(`/categories/${categorySeoName}/?page=${page}&features_hash=${featuresHashContainer}`);
+    // attaching filter hash and page in to url: (fealan comment shod ta dorost konam)
+    //history.push(`/categories/${categorySeoName}/?page=${page}&features_hash=${featuresHashContainer}`);
   }
 
   // get products from API before selecting filters and after selecting filter:
@@ -151,9 +176,15 @@ const Categories = () => {
   // get products and params from product_data Or empty array:
   const { products, params} = product_data || [];
 
-  // scroll top if change categorySeoName, page and products state:
+  // scroll to productContentDesktop ref if desktop mode or productContentMobile ref if mobile mode (if change categorySeoName, page and products state):
+  const productContentDesktop = useRef(null);
+  const productContentMobile = useRef(null);
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (width >= 992) {
+      productContentDesktop.current.scrollIntoView({ behavior: "smooth" });
+    } else {
+      productContentMobile.current.scrollIntoView({ behavior: "smooth" });
+    }
   }, [categorySeoName, page, products]);
 
   // change document title if get params from API:
@@ -205,6 +236,10 @@ const Categories = () => {
 
   return (
     <Row className="mt-0 mt-lg-4 products--container" gutter={[0, 23]}>
+
+      {(isLoadingHandle || isLoading) &&
+        <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>
+      }
 
       {params?.category_level && params?.category_level === 2 &&
         <Col span={24}>
@@ -279,7 +314,7 @@ const Categories = () => {
       }
 
 
-      <Col className="products-content" span={24}>
+      <Col className="products-content" span={24} ref={productContentDesktop}>
         <div className="h-100">
           <Row gutter={{ xs: 0, lg: 20 }}>
             {width < 992 &&
@@ -311,17 +346,17 @@ const Categories = () => {
                     >
                       <Panel showArrow={ false } header={ "" } className="filterMobileCollapse--panel" key="filterMobileCollapse">
                         <ProductFilters
-                          filters={ filters }
-                          category_id={ params?.category_id || "" }
-                          category_seo_name={ categorySeoName || "" }
-                          category_name={ params?.category_name || "" }
-                          subCategories={ subCategories || [] }
-                          product_length={ products?.length || "" }
-                          featuresHashContainer={ featuresHashContainer }
-                          featureHandleClick={ featureHandleClick }
-                          featureRemoveHandleClick={ featureRemoveHandleClick }
-                          featureResetHandleClick={ setFeaturesHashContainer }
-                          handleConfirmFilters={ handleConfirmFilters }
+                          filters = {filters}
+                          category_id = {params?.category_id || ""}
+                          category_seo_name = {categorySeoName || ""}
+                          category_name = {params?.category_name || ""}
+                          subCategories = {subCategories || []}
+                          product_length = {products?.length || ""}
+                          featuresHashContainer = {featuresHashContainer}
+                          featureHandleClick={featureHandleClick}
+                          featureRemoveHandleClick={featureRemoveHandleClick}
+                          featureResetHandleClick={handleResetFilter}
+                          handleConfirmFilters={handleConfirmFilters}
                         />
                       </Panel>
                     </Collapse>
@@ -330,7 +365,7 @@ const Categories = () => {
               </Col>
             }
 
-            {isLoading &&
+            {(width >= 992 && (!filters || isLoading)) &&
             <Col span={6}>
               {/* Loading...*/}
             </Col>
@@ -347,12 +382,12 @@ const Categories = () => {
                 featuresHashContainer = {featuresHashContainer}
                 featureHandleClick={featureHandleClick}
                 featureRemoveHandleClick={featureRemoveHandleClick}
-                featureResetHandleClick={setFeaturesHashContainer}
+                featureResetHandleClick={handleResetFilter}
                 handleConfirmFilters={handleConfirmFilters}
               />
             }
 
-            <Col xs={24} lg={(filters && filters.length !== 0) ? 18 : 24}>
+            <Col xs={24} lg={18} ref={productContentMobile}>
               <Row  gutter={[0, 22]}>
                 {width >= 992 &&
                   <Col span={24} className="text-right productShowType">
@@ -386,14 +421,14 @@ const Categories = () => {
                         {/*if product show type === multiColumn*/}
                         {productShowType === 'multiColumn' &&
                           <Col span={24}>
-                            <Row className="h-100" gutter={[23, 23]}>
+                            <Row className="h-100" gutter={[ { xs:8, lg: 23 }, { xs:10, lg: 23 }]}>
                               { products?.map((product, i) => {
                                 return (
                                   <CategoryMultiColumn
                                     key={ i }
                                     product={ product }
                                     allDetails
-                                    widthProductImage={ width >= 768 ? 194 : 164 }
+                                    widthProductImage={ width >= 768 ? 194 : 170 }
                                     heightProductImage={ width >= 768 ? 194 : 170 }
                                   />
                                 );

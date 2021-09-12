@@ -61,7 +61,7 @@ const ProductFilters = (props) => {
                           <Col
                             flex="26px"
                             className="cursor-pointer"
-                            onClick={() => props.featureResetHandleClick("")}
+                            onClick={() => props.featureRemoveHandleClick(filter.filter_id, selected?.variant_id) }
                           >
                             <i className="far fa-times-circle display-5 font-weight-light text-bf" />
                           </Col>
@@ -87,7 +87,7 @@ const ProductFilters = (props) => {
                 <Col
                   flex="22px"
                   className="cursor-pointer"
-                  onClick={() => props.featureResetHandleClick("")}
+                  onClick={() => props.featureResetHandleClick()}
                 >
                   <i className="fad fa-undo display-6 mt-2 font-weight-light text-bf" />
                 </Col>
@@ -182,14 +182,17 @@ const ProductFilters = (props) => {
             {t(__('confirm'))}
           </Button>
 
-          <Button
-            className={ `bg-transparent rounded-md p-0 productFilter--reset__btn ${width >= 992 && 'd-none'}` }
-            size="middle"
-            onClick={() => props.featureResetHandleClick("")}
-            disabled={!featuresHashContainer && true}
-          >
-            {t(__('reset'))}
-          </Button>
+          {width < 992 &&
+            <Button
+              className={ `bg-transparent rounded-md p-0 productFilter--reset__btn` }
+              size="middle"
+              onClick={() => props.featureResetHandleClick()}
+              disabled={!featuresHashContainer && true}
+            >
+              {t(__('reset'))}
+            </Button>
+          }
+
         </Col>
 
       </Row>

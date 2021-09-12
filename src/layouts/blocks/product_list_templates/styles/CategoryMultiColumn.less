@@ -4,14 +4,46 @@
 html:lang(fa),
 html:lang(ar) {
   .productsMultiColumnVertical--item {
-
+    .productsMultiColumnVertical--item__title {
+      direction: rtl;
+    }
   }
 }
 
 .productsMultiColumnVertical--item {
+  & > .ant-row {
+    border-radius: 5px;
+    @media (min-width: @screen-md) {
+      border-radius: 10px;
+    }
+  }
+
   .productsMultiColumnVertical--item__image {
     img {
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      @media (min-width: @screen-md) {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
       max-width: 100%;
     }
+  }
+
+  .productsMultiColumnVertical--item__title {
+    font-size: 1.5rem;
+    margin-top: .5rem;
+    @media (min-width: @screen-md) {
+      font-size: 2rem;
+      margin-top: 1rem;
+    }
+  }
+
+  .productsMultiColumnVertical--item__link {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
   }
 }
