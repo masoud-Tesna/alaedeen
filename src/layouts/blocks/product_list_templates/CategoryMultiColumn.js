@@ -100,7 +100,7 @@ const CategoryMultiColumn = (props) => {
         </Col>
       </Row>
 
-      <a className="productsMultiColumnVertical--item__link-" href={ product.link } />
+      <a className="productsMultiColumnVertical--item__link" href={ product.link } />
     </Col>
   );
 };
