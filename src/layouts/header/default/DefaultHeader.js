@@ -112,7 +112,7 @@ const DefaultHeader = () => {
   return (
     <Header className="site--header">
       <Row className="h-100 header--container">
-        <Col span={24} className="header--col shadow-line- d-none d-lg-block">
+        <Col span={24} className="header--col shadow-line d-none d-lg-block">
           <Row className="h-100 " gutter={{ md: 8, lg: 16, xl: 50 }}>
             <Col className="header--content__left" md={ 15 } lg={ 15 } xl={ 16 }>
               <Row className="h-100">
