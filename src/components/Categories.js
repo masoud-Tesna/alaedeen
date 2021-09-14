@@ -176,7 +176,7 @@ const Categories = () => {
   const { isLoading, data: product_data } = useGetApi(`products-api`, `category_path=${categorySeoName}&items_per_page=20&page=${page}&features_hash=${featuresHash}`, `category_product_${categorySeoName}_${page}_${featuresHash}`);
 
   // get products and params from product_data Or empty array:
-  const { products, params} = product_data || [];
+  const { products, categoryBanners, params} = product_data || [];
 
   // scroll to productContentDesktop ref if desktop mode or productContentMobile ref if mobile mode (if change categorySeoName, page and products state):
   const productContentDesktop = useRef(null);
@@ -293,12 +293,21 @@ const Categories = () => {
                   <Col span={24} className="categoriesCarousel">
                     <Carousel draggable={true} pauseOnDotsHover={true} rtl={true}>
 
-                      <div className="categoriesCarousel--item">
-                        <img className="d-block w-100" src={`https://picsum.photos/1000/250`} alt="First slide" />
-                      </div>
-                      <div className="categoriesCarousel--item">
-                        <img className="d-block w-100" src={`https://picsum.photos/1000/250`} alt="Second slide" />
-                      </div>
+                      {isLoading ?
+                        <span>Loading!</span> :
+                        categoryBanners.length > 0 ?
+                          categoryBanners.map(categoryBanner => {
+                            return (
+                              <div className="categoriesCarousel--item" key={`category_banner${categoryBanner.object_id}`}>
+                                <img className="d-block w-100" src={categoryBanner.value} alt="" />
+                              </div>
+                            )
+                          }) :
+                          <div className="categoriesCarousel--item">
+                            <img className="d-block w-100" src={`https://picsum.photos/1000/250`} alt="" />
+                          </div>
+                      }
+
                     </Carousel>
                   </Col>
 
