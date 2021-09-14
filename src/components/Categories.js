@@ -96,18 +96,20 @@ const Categories = () => {
     // function for get category filters::
     async function getProductFilters() {
       setIsLoadingHandle(true);
-      const url = `https://alaedeen.com/horn/product-filters-api/?category_path=${categorySeoName}&features_hash=${featuresHashContainer}`;
+      const url = `https://alaedeen.com/horn/product-filters-api/?category_path=${categorySeoName}&features_hash=${featuresHashContainer}&lang_code=${language}`;
       return await axios.get(url);
     }
 
-    getProductFilters()
-      .then(res => {
-        // category filters add to filtersApi state:
-        setFiltersApi(res.data);
-        setIsLoadingHandle(false);
-      });
+    if (language) {
+      getProductFilters()
+        .then(res => {
+          // category filters add to filtersApi state:
+          setFiltersApi(res.data);
+          setIsLoadingHandle(false);
+        });
+    }
 
-  }, [featuresHashContainer, categorySeoName]);
+  }, [featuresHashContainer, categorySeoName, language]);
   // get filters and sub categories from filtersApi Or empty array:
   const {filters, subCategories} = filtersApi || [];
 
