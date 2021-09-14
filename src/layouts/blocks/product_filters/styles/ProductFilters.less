@@ -48,19 +48,32 @@
         }
 
         .subCategories--item--plLevel1 {
-          padding-left: 3rem !important;
+          padding-left: 3.5rem !important;
         }
 
         .subCategories--item--prLevel1 {
-          padding-right: 3rem !important;
+          padding-right: 3.5rem !important;
         }
 
         .subCategories--item--plLevel2 {
-          padding-left: 4.5rem !important;
+          padding-left: 5.5rem !important;
         }
 
         .subCategories--item--prLevel2 {
-          padding-right: 4.5rem !important;
+          padding-right: 5.5rem !important;
+        }
+
+        a {
+          color: @primary-color;
+
+          &:hover {
+            color: darken(@primary-color, 10%);
+          }
+
+          &.categoryLink--disable {
+            pointer-events: none;
+            color: lighten(#474747, 40%);
+          }
         }
       }
     }

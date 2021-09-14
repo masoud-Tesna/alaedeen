@@ -10,8 +10,15 @@
     }
 
     a {
+      color: #474747;
+
       @media (min-width: @screen-md) {
         font-size: 1.7rem;
+      }
+
+      &.categoryLink--disable {
+        pointer-events: none;
+        color: lighten(#474747, 40%);
       }
     }
   }
