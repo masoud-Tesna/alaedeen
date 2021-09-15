@@ -25,11 +25,10 @@ import ProductFilters from "../layouts/blocks/product_filters";
 import { __, splitArray } from "../functions/Helper";
 import { useTranslation } from "react-i18next";
 
-
-
 // Import Swiper styles
 import "swiper/swiper.min.css";
 import "swiper/components/scrollbar/scrollbar.min.css";
+
 import SubCategoriesSwiperMobile from "./categories/SubCategoriesSwiperMobile";
 import SubCategoriesSwiperDesktop from "./categories/SubCategoriesSwiperDesktop";
 import LoaderSpinner from "../layouts/blocks/static_templates/LoadSpinner";
