@@ -39,7 +39,22 @@
   }
 
   .subCategoriesSwiper {
-    .subCategoriesRow--image {
+
+    .categoryLink--disable {
+      pointer-events: none;
+
+      .subCategoriesSwiper--title {
+        color: lighten(#474747, 40%) !important;
+      }
+
+      .subCategoriesSwiper--image {
+        img {
+          opacity: .2;
+        }
+      }
+    }
+
+    .subCategoriesSwiper--image {
       border-radius: 50%;
       box-shadow: 0 0 1rem rgba(0, 0, 0, 0.38);
       display: inline-block;
@@ -67,6 +82,10 @@
       .swiper-scrollbar {
         opacity: 1 !important;
       }
+    }
+
+    a.categoryLink--disable {
+      pointer-events: none;
     }
   }
 

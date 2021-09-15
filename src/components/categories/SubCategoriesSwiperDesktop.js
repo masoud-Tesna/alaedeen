@@ -25,9 +25,9 @@ const SubCategoriesSwiperDesktop = ({ subCategories }) => {
             return(
               <SwiperSlide key={ `subCategoriesSwiperDesktop_${subCategory?.category_id}` } style={{ width: 120 }}>
                 <div>
-                  <Row className="py-4">
+                  <Row className={`py-4 ${subCategory?.p_count === 0 && 'categoryLink--disable'}`}>
                     <Col span={24} className="text-center my-2">
-                      <div className="subCategoriesRow--image">
+                      <div className="subCategoriesSwiper--image">
                         { subCategory?.main_pair?.detailed ?
                           <ShowResponsiveImage imagePath={ subCategory?.main_pair?.detailed?.image_path } imageFolder='detailed' width={92} height={92} imageAlt={ subCategory?.category }/> :
                           <Image
@@ -40,11 +40,11 @@ const SubCategoriesSwiperDesktop = ({ subCategories }) => {
                         }
                       </div>
                     </Col>
-                    <Col span={24} className="text-center vv-font-size-1-6 text-47 text-truncate px-3">
+                    <Col span={24} className="text-center vv-font-size-1-6 text-47 text-truncate px-3 subCategoriesSwiper--title">
                       {subCategory?.category}
                     </Col>
                   </Row>
-                  <Link to={ `/categories/${subCategory?.seo_name}` } className="subCategoriesRow--link"/>
+                  <Link to={ `/categories/${subCategory?.seo_name}` } className={`subCategoriesRow--link ${subCategory?.p_count === 0 && 'categoryLink--disable'}`}/>
                 </div>
               </SwiperSlide>
             )

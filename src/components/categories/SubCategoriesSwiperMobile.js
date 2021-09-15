@@ -30,9 +30,9 @@ const SubCategoriesSwiperMobile = ({ subCategories, category_name }) => {
               return(
                 <SwiperSlide key={ `subCategoriesSwiperMobile_${subCategory?.category_id}` } style={{ width: 80 }}>
                   <div>
-                    <Row className="pb-4 mb-2">
+                    <Row className={`pb-4 mb-2 ${subCategory?.p_count === 0 && 'categoryLink--disable'}`}>
                       <Col span={24} className="text-center my-2">
-                        <div className="subCategoriesRow--image">
+                        <div className="subCategoriesSwiper--image">
                           { subCategory?.main_pair?.detailed ?
                             <ShowResponsiveImage imagePath={ subCategory?.main_pair?.detailed?.image_path } imageFolder='detailed' width={65} height={65} imageAlt={ subCategory?.category }/> :
                             <Image
@@ -45,11 +45,11 @@ const SubCategoriesSwiperMobile = ({ subCategories, category_name }) => {
                           }
                         </div>
                       </Col>
-                      <Col span={24} className="text-center vv-font-size-1-3 text-47 text-truncate px-3">
+                      <Col span={24} className="text-center vv-font-size-1-3 text-47 text-truncate px-3 subCategoriesSwiper--title">
                         {subCategory?.category}
                       </Col>
                     </Row>
-                    <Link to={ `/categories/${subCategory?.seo_name}` } className="subCategoriesRow--link"/>
+                    <Link to={ `/categories/${subCategory?.seo_name}` } className={`subCategoriesRow--link ${subCategory?.p_count === 0 && 'categoryLink--disable'}`}/>
                   </div>
                 </SwiperSlide>
               )
