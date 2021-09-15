@@ -64,6 +64,8 @@ function App() {
                 <Route exact path="/categories" render={() => <Redirect to="/all-categories" />} />
                 {/*categories Route (categories/electronic)*/}
                 <Route path="/categories/:category" component={Categories} />
+                {/*if open product details page without product path, redirect to all-category route*/}
+                <Route exact path="/product" render={() => <Redirect to="/all-categories" />} />
                 {/*Product details Route*/}
                 <Route path="/product/:product" component={Product} />
               </Switch>
