@@ -20,7 +20,8 @@ import {
   SignIn,
   AllCategories,
   Categories,
-  Register
+  Register,
+  Product
 } from "./components";
 
 // import language context:
@@ -49,17 +50,22 @@ function App() {
           <Content>
             <div className="site-layout-content" id="siteLayoutContent">
               <Switch>
+                {/*Home Route*/}
                 <Route exact path="/" component={Home} />
+                {/*Sign in Route*/}
                 <Route path="/sign-in" component={SignIn} />
+                {/*Register Route*/}
                 <Route path="/register" component={Register} />
+                {/*Factories Route*/}
                 <Route path="/factories" component={Factories} />
+                {/*All Categories Route*/}
                 <Route path="/all-categories" component={AllCategories} />
-                <Route
-                  exact
-                  path="/categories"
-                  render={() => <Redirect to="/all-categories" />}
-                />
+                {/*if open categories page without category path, redirect to all-category route*/}
+                <Route exact path="/categories" render={() => <Redirect to="/all-categories" />} />
+                {/*categories Route (categories/electronic)*/}
                 <Route path="/categories/:category" component={Categories} />
+                {/*Product details Route*/}
+                <Route path="/product/:product" component={Product} />
               </Switch>
             </div>
           </Content>
