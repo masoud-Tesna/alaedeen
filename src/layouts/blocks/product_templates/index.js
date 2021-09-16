@@ -2,7 +2,7 @@
 import './styles/ProductTemplate.less';
 
 // import ant design components:
-import {Col, Row} from "antd";
+import {Button, Col, Row} from "antd";
 
 import {useGetLanguageState} from "../../../contexts/language/LanguageContext";
 import {useWindowSize} from "../../../functions";
@@ -68,6 +68,22 @@ const ProductTemplate = (props) => {
 
                     <Col span={24} className="productDetails--features">
                       <FeaturesGrid features={product?.product_features} />
+                    </Col>
+
+                    <Col span={24} className="productDetails--locationRequestBtn">
+                      <Row justify={"space-between"}>
+                        <Col className="productDetails--location">
+                          {product?.wk_location &&
+                            <>
+                              <i className="fal fa-map-marker-alt text-red-a0 mr-2 mr-lg-3" />
+                              <span className="text-47">{ product.wk_location }</span>
+                            </>
+                          }
+                        </Col>
+                        <Col className="productDetails--requestBtn">
+                          <Button className="border border-primary p-0 productsOneColumnVertical--item__sendRequestBtn" size="large">{t(__('send request'))}</Button>
+                        </Col>
+                      </Row>
                     </Col>
                   </Row>
                 </Col>
