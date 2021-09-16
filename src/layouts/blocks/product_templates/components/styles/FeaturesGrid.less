@@ -1,2 +1,17 @@
 // import Mixin:
 @import '../../../../../styles/Mixins';
+
+.features--variant {
+  font-weight: bold;
+}
+
+.features--value {
+  span {
+
+    &:not(:last-child) {
+      &:after {
+        content: ", ";
+      }
+    }
+  }
+}
