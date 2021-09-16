@@ -2,8 +2,10 @@
 @import '../../../../styles/Mixins';
 
 .productDetails--content {
+  margin-top: 5rem;
   .productDetails--topSection {
     box-shadow: 0 0 rgba(0,0,0,0), 0 0 rgba(0,0,0,0), 0 5px 7px -3px rgba(0,0,0,0.2);
+    padding: 3rem 0;
 
     &>div {
       padding: 0 4rem;
@@ -11,6 +13,35 @@
 
     .productDetails--imageContainer {
       border-right: 1px solid #E6E6E6;
+    }
+
+    .productDetails--title {
+      h1 {
+        margin-bottom: 0;
+        color: #414141;
+        font-weight: bold;
+        @media (min-width: @screen-md) {
+          font-size: 2.5rem;
+        }
+      }
+    }
+
+    .productDetails--price {
+
+    }
+
+    .productDetails--getLatestPrice {
+      color: #f00;
+      font-size: 1.6rem;
+      cursor: pointer;
+
+      &:hover {
+        color: darken(#f00, 10%);
+      }
+    }
+
+    .productDetails--features {
+      padding: 0 10px;
     }
   }
 

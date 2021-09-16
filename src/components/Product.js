@@ -13,7 +13,7 @@ const Product = () => {
   const { product: productSeoName } = useParams();
 
   // get products from API before selecting filters and after selecting filter:
-  const { isLoading, data: product } = useGetApi(`products-api`, `product_path=${productSeoName}&lang_code=${language}`, `product_details_${productSeoName}_${language}`);
+  const { isLoading, data: product } = useGetApi(`products-api`, `product_path=${productSeoName}`, `product_details_${productSeoName}`);
 
   return (
     <Row className="productDetails--container">
