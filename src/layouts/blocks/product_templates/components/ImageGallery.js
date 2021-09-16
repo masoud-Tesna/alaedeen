@@ -56,34 +56,34 @@ const ImageGallery = () => {
       <Swiper onSwiper={setThumbsSwiper} spaceBetween={10} slidesPerView={4} freeMode={true} watchSlidesProgress={true}
               className="mySwiper">
         <SwiperSlide>
-          <img src="https://picsum.photos/400/400"/>
+          <img src="https://picsum.photos/200/200"/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://picsum.photos/400/400"/>
+          <img src="https://picsum.photos/200/200"/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://picsum.photos/400/400"/>
+          <img src="https://picsum.photos/200/200"/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://picsum.photos/400/400"/>
+          <img src="https://picsum.photos/200/200"/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://picsum.photos/400/400"/>
+          <img src="https://picsum.photos/200/200"/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://picsum.photos/400/400"/>
+          <img src="https://picsum.photos/200/200"/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://picsum.photos/400/400"/>
+          <img src="https://picsum.photos/200/200"/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://picsum.photos/400/400"/>
+          <img src="https://picsum.photos/200/200"/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://picsum.photos/400/400"/>
+          <img src="https://picsum.photos/200/200"/>
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://picsum.photos/400/400g"/>
+          <img src="https://picsum.photos/200/200"/>
         </SwiperSlide>
       </Swiper>
     </div>
