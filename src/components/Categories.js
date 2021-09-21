@@ -32,6 +32,7 @@ import "swiper/components/scrollbar/scrollbar.min.css";
 import SubCategoriesSwiperMobile from "./categories/SubCategoriesSwiperMobile";
 import SubCategoriesSwiperDesktop from "./categories/SubCategoriesSwiperDesktop";
 import LoaderSpinner from "../layouts/blocks/static_templates/LoadSpinner";
+import { Helmet } from "react-helmet";
 
 
 
@@ -188,9 +189,6 @@ const Categories = () => {
     }
   }, [categorySeoName, page, products]);
 
-  // change document title if get params from API:
-  document.title = `Alaedeen.com | ${params?.category_name || 'categories'}`;
-
   // function for handle change page:
   const handleChangePage = pageNumber => {
     // add selecting page number in to page state (refetch for get products):
@@ -237,6 +235,12 @@ const Categories = () => {
 
   return (
     <Row className="mt-0 mt-lg-4 products--container" gutter={[0, 23]}>
+
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{ `Alaedeen.com | ${params?.category_name || t(__('categories'))}` }</title>
+        <link rel="canonical" href={ `https://alaedeen.com/categories/${categorySeoName}` } />
+      </Helmet>
 
       {(isLoadingHandle || isLoading) &&
         <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>

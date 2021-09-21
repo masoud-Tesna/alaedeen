@@ -38,7 +38,7 @@ const CategoryOneColumn = (props) => {
           }
         </Col>
 
-        <Col flex="1 1">
+        <Col flex="1 1" className="text-truncate">
           <Row className="h-100" gutter={[0, 5]}>
             <Col span={24} className="text-47 font-weight-bold text-truncate productsOneColumnVertical--item__title">
               { product.product }
@@ -82,27 +82,40 @@ const CategoryOneColumn = (props) => {
 
             <Col span={24} className="border-bottom border-e6 productsOneColumnVertical--item__location-sendRequestBtn">
               <Row justify={"space-between"} align={"middle"}>
-                <Col>
-                  <Space size={"large"}>
+                {width >= 992 ?
+                  <>
+                    <Col>
+                      <Space size={"large"}>
 
-                    {product?.wk_location &&
-                    <div className="productsOneColumnVertical--item__location">
+                        {product?.wk_location &&
+                        <div className="productsOneColumnVertical--item__location">
+                          <i className="icon-vv-location text-ab vv-font-size-2-2" /> { product?.wk_location }
+                        </div>
+                        }
+
+                        {product?.manufacturing_country &&
+                        <div className="productsOneColumnVertical--item__manufacturingLocation">
+                          <i className={ `flag-icon flag-icon-${product?.manufacturing_country?.toString().trim().toLowerCase()} vv-font-size-2 align-bottom` } /> { product?.manufacturing_country }
+                        </div>
+                        }
+
+
+                      </Space>
+                    </Col>
+                    <Col className="text-47">
+                      <Button className="border border-primary p-0 productsOneColumnVertical--item__sendRequestBtn" size="large">{t(__('send request'))}</Button>
+                    </Col>
+                  </> :
+                  <>
+                    <Col className="productsOneColumnVertical--item__location">
                       <i className="icon-vv-location text-ab vv-font-size-2-2" /> { product?.wk_location }
-                    </div>
-                    }
-
-                    {product?.manufacturing_country &&
-                    <div className="productsOneColumnVertical--item__sendRequestBtn">
+                    </Col>
+                    <Col className="productsOneColumnVertical--item__manufacturingLocation">
                       <i className={ `flag-icon flag-icon-${product?.manufacturing_country?.toString().trim().toLowerCase()} vv-font-size-2 align-bottom` } /> { product?.manufacturing_country }
-                    </div>
-                    }
+                    </Col>
+                  </>
+                }
 
-
-                  </Space>
-                </Col>
-                <Col className="text-47 d-none d-lg-block">
-                  <Button className="border border-primary p-0 productsOneColumnVertical--item__sendRequestBtn" size="large">{t(__('send request'))}</Button>
-                </Col>
               </Row>
             </Col>
           </Row>
