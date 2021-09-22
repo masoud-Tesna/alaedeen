@@ -8,8 +8,12 @@ import {useWindowSize} from "../../../functions";
 import {useTranslation} from "react-i18next";
 import {__} from "../../../functions/Helper";
 import FeaturesGrid from "./components/FeaturesGrid";
+import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 const ProductTemplate = (props) => {
+
+  // get initial config:
+  const { config } = useGetConfig();
 
   const { product } = props;
 
@@ -39,24 +43,26 @@ const ProductTemplate = (props) => {
                       <h1>{ product?.product }</h1>
                     </Col>
 
-                    <Col span={24} className="productDetails--price">
-                      <span className={ `${ width >= 768 ? 'vv-font-size-2-5' : 'vv-font-size-1-5' } text-primary font-weight-bold` }>
-                        ${ productPrice }
-                      </span>
+                    {(config.countryCode !== 'IR' && productPrice != 0.000) &&
+                      <Col span={24} className="productDetails--price">
+                        <span className={ `${ width >= 768 ? 'vv-font-size-2-5' : 'vv-font-size-1-5' } text-primary font-weight-bold` }>
+                          ${ productPrice }
+                        </span>
                         { productListPrice != 0.00 &&
-                          <span className={ `${ width >= 768 ? 'vv-font-size-2-5' : 'vv-font-size-1-5' } text-primary font-weight-bold` }> - ${productListPrice}</span>
+                        <span className={ `${ width >= 768 ? 'vv-font-size-2-5' : 'vv-font-size-1-5' } text-primary font-weight-bold` }> - ${productListPrice}</span>
                         }
                         {product?.quantity_unit &&
-                          <span className={ ` vv-font-size-1-9 text-90 font-weight-600` }>
+                        <span className={ ` vv-font-size-1-9 text-90 font-weight-600` }>
                             / { product?.quantity_unit }
                           </span>
                         }
                         {(product?.min_qty && product?.quantity_unit) &&
-                          <span className="vv-font-size-1-9 text-90 font-weight-600">
+                        <span className="vv-font-size-1-9 text-90 font-weight-600">
                             | {t(__('Minimum quantity'))}: { product?.min_qty } { product?.quantity_unit }
                           </span>
                         }
-                    </Col>
+                      </Col>
+                    }
 
                     <Col span={24} className="productDetails--getLatestPrice">
                       { t(__('get latest price')) }

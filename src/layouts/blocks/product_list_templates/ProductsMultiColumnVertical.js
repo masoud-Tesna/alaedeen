@@ -9,9 +9,13 @@ import { Col, Row, Skeleton, Image } from "antd";
 
 // import get image responsive from server and show:
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
+import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 
 const ProductsMultiColumnVertical = (props) => {
+
+  // get initial config:
+  const { config } = useGetConfig();
 
   // get screen width:
   const { width } = useWindowSize();
@@ -84,7 +88,7 @@ const ProductsMultiColumnVertical = (props) => {
             </Row>
           </Col>
 
-          {productPrice != 0.000 &&
+          {(config.countryCode !== 'IR' && productPrice != 0.000) &&
           <Col span={24} className="productsMultiColumnVertical--item__price">
             <span className={ `${ width >= 768 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }>${ productPrice } </span>
             { productListPrice != 0.00 &&

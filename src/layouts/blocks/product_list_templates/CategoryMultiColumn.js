@@ -3,9 +3,13 @@ import './styles/CategoryMultiColumn.less';
 import { Col, Image, Row } from "antd";
 import { useWindowSize } from "../../../functions";
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
+import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 
 const CategoryMultiColumn = (props) => {
+
+  // get initial config:
+  const { config } = useGetConfig();
 
   // get screen width:
   const { width } = useWindowSize();
@@ -46,7 +50,7 @@ const CategoryMultiColumn = (props) => {
               { product?.product }
             </Col>
 
-            {productPrice != 0.000 &&
+            {(config.countryCode !== 'IR' && productPrice != 0.000) &&
             <Col span={24} className="px-3 productsMultiColumnVertical--item__price">
                 <span className={ `${ width >= 768 ? 'vv-font-size-1-9' : 'vv-font-size-1-6' } text-primary font-weight-bold` }>
                     ${ productPrice }

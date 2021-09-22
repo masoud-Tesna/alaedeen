@@ -17,8 +17,12 @@ import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
+import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 const ProductsMultiColumnHorizontal = (props) => {
+
+  // get initial config:
+  const { config } = useGetConfig();
 
   const { t } = useTranslation();
 
@@ -35,7 +39,7 @@ const ProductsMultiColumnHorizontal = (props) => {
   const productListPrice = parseFloat(product.list_price).toFixed(2);
 
   let polygon;
-  if (width >= 768) {
+  if (width >= 992) {
     if (props.productKey + 1 === 1) {
       polygon = polygon_1;
     } else if (props.productKey + 1 === 2) {
@@ -66,7 +70,7 @@ const ProductsMultiColumnHorizontal = (props) => {
 
             </div>
             <div className="ProductsMultiColumnHorizontal--details">
-              {productPrice != 0.000 &&
+              {(config.countryCode !== 'IR' && productPrice != 0.000) &&
               <div className="mb-3 ProductsMultiColumnHorizontal--details__price">
                 <span className="vv-font-size-1-9 text-primary font-weight-bold">${ productPrice } </span>
                 { productListPrice != 0.00 &&
@@ -111,7 +115,7 @@ const ProductsMultiColumnHorizontal = (props) => {
           </div>
 
           <div className="w-100 align-self-end ProductsMultiColumnHorizontal--details">
-            {productPrice != 0.000 &&
+            {(config.countryCode !== 'IR' && productPrice != 0.000) &&
             <div className="text-center ProductsMultiColumnHorizontal--details__price">
               <span className="vv-font-size-1-1rem text-primary font-weight-bold">${ productPrice } </span>
               { productListPrice != 0.00 &&
