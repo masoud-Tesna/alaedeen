@@ -18,7 +18,7 @@ import { CategoriesDropDownVertical as Categories } from "../../blocks/categorie
 import LoaderSpinner from '../../blocks/static_templates/LoadSpinner';
 
 // import language context:
-import { changeLanguageAction, useGetLanguageState, useDispatchLanguageState } from '../../../contexts/language/LanguageContext';
+import { changeLanguageAction, useGetConfig, useConfigDispatch } from '../../../contexts/config/ConfigContext';
 
 // import Custom hooks:
 import { useWindowSize } from "../../../functions";
@@ -50,8 +50,8 @@ const DefaultTopPanel = () => {
   const { width } = useWindowSize();
 
   // initial state for language:
-  const { language } = useGetLanguageState();
-  const { languageDispatch } = useDispatchLanguageState();
+  const { config } = useGetConfig();
+  const { configDispatch } = useConfigDispatch();
 
   // initial state for currency:
   const [currency, setCurrency] = useState('USD');
@@ -64,10 +64,10 @@ const DefaultTopPanel = () => {
 
   // function for change language:
   const handleChangeLanguage = (lang) => {
-    if (lang !== language) {
+    if (lang !== config.language) {
       setShowLoadSpinner(true);
 
-      languageDispatch(changeLanguageAction(lang));
+      configDispatch(changeLanguageAction(lang));
       setTimeout(() => {
         setShowLoadSpinner(false);
         closeTopPanelMenuXs();
@@ -230,7 +230,7 @@ const DefaultTopPanel = () => {
                             <Collapse
                               expandIconPosition={"right"}
                               ghost
-                              expandIcon={({ isActive }) => <DownOutlined rotate={ language === 'en' ? (isActive ? 180 : 0) : (isActive ? 0 : 1)} />}
+                              expandIcon={({ isActive }) => <DownOutlined rotate={ config.language === 'en' ? (isActive ? 180 : 0) : (isActive ? 0 : 1)} />}
                             >
                               <Panel header={t(__('Language & Currency'))} key="1">
                                 <div className="mb-4">
@@ -240,7 +240,7 @@ const DefaultTopPanel = () => {
                                     </Col>
                                     <Col className="my-auto" span={12}>
                                       <select
-                                        value={language}
+                                        value={config.language}
                                         onChange={e => handleChangeLanguage(e.target.value)}
                                         className="w-100 text-red-a0 select-box-remove-arrow border-0 vv-font-size-1-5 p-0 mobileChangeLangSelect">
                                         <option value="en">English</option>
@@ -322,7 +322,7 @@ const DefaultTopPanel = () => {
                 <Divider className="border-bc" />
                 <Col className="px-4 menuXs--sideNavBtn__items" span={24}>
                   <Space direction="vertical" size={15}>
-                    <a href={`https://calendar.iranfair.com/${language === 'ar'? '' : language}`} target="_blank" rel="noreferrer" className="border border-primary text-primary w-100 d-block text-center">{t(__('International Exhibition'))}</a>
+                    <a href={`https://calendar.iranfair.com/${config.language === 'ar'? '' : config.language}`} target="_blank" rel="noreferrer" className="border border-primary text-primary w-100 d-block text-center">{t(__('International Exhibition'))}</a>
                   </Space>
                 </Col>
               </Row>
@@ -366,7 +366,7 @@ const DefaultTopPanel = () => {
                 </span>
               </a>*/}
 
-              <a className="topPanel--content__item hover" href={`https://calendar.iranfair.com/${language === 'ar'? '' : language}`} target="_blank" rel="noreferrer">
+              <a className="topPanel--content__item hover" href={`https://calendar.iranfair.com/${config.language === 'ar'? '' : config.language}`} target="_blank" rel="noreferrer">
                 <span className="topPanel--item__text">
                   {t(__('International Exhibition'))}
                 </span>
@@ -376,7 +376,7 @@ const DefaultTopPanel = () => {
           <Col span={9} className="topPanel--content__right my-auto">
             <Space size={0.5}>
               <span
-                className={ `vv-cursor-pointer topPanel--content__item ${ language === 'ar' ? 'active' : 'hover' }` }
+                className={ `vv-cursor-pointer topPanel--content__item ${ config.language === 'ar' ? 'active' : 'hover' }` }
                 onClick={() => handleChangeLanguage('ar')}>
                 <span className="topPanel--item__text">
                   عربی
@@ -384,7 +384,7 @@ const DefaultTopPanel = () => {
               </span>
               <Divider type="vertical" className="border-70"/>
               <span
-                className={ `vv-cursor-pointer topPanel--content__item ${ language === 'en' ? 'active' : 'hover' }` }
+                className={ `vv-cursor-pointer topPanel--content__item ${ config.language === 'en' ? 'active' : 'hover' }` }
                 onClick={() => handleChangeLanguage('en')}>
                 <span className="topPanel--item__text">
                   English
@@ -392,7 +392,7 @@ const DefaultTopPanel = () => {
               </span>
               <Divider type="vertical" className="border-70"/>
               <span
-                className={ `vv-cursor-pointer topPanel--content__item ${ language === 'fa' ? 'active' : 'hover' }` }
+                className={ `vv-cursor-pointer topPanel--content__item ${ config.language === 'fa' ? 'active' : 'hover' }` }
                 onClick={() => handleChangeLanguage('fa')}>
                 <span className="topPanel--item__text">
                   فارسی
