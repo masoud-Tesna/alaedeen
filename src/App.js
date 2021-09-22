@@ -24,19 +24,20 @@ import {
   Product
 } from "./components";
 
-// import language context:
-import { useGetLanguageState } from "./contexts/language/LanguageContext";
+// import Config context:
+import { useGetConfig } from "./contexts/config/ConfigContext";
 
 // Layouts:
 import TopPanel from "./layouts/topPanel";
 import { Header as SiteHeader } from "./layouts/header";
 import { SiteFooter } from "./layouts/footer";
 
+
 function App() {
 
-  const { language } = useGetLanguageState();
+  const { config } = useGetConfig();
 
-  const directionTheme = language === 'en' ? 'ltr' : 'rtl';
+  const directionTheme = config.language === 'en' ? 'ltr' : 'rtl';
 
   const { Footer, Content } = Layout;
 

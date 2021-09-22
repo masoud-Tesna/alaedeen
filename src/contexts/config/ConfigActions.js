@@ -1,0 +1,10 @@
+// Actions Const
+export const CHANGE_IP = "CHANGE_IP";
+
+export const CHANGE_COUNTRY = "CHANGE_COUNTRY";
+
+export const CHANGE_COUNTRY_CODE = "CHANGE_COUNTRY_CODE";
+
+export const CHANGE_LANGUAGE = "CHANGE_LANGUAGE";
+
+export const CHANGE_CLIENT_LANGUAGE = "CHANGE_CLIENT_LANGUAGE";
