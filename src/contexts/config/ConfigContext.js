@@ -6,7 +6,7 @@ import { ConfigReducer } from './ConfigReducer';
 // import Config initial state:
 import { ConfigInitialState } from './ConfigInitialState';
 
-import { changeIpAction, changeCountryAction, changeCountryCodeAction, changeClientLanguageAction } from './ConfigActionCreators';
+import { changeIpAction, changeCountryAction, changeCountryCodeAction, changeLanguageAction, changeClientLanguageAction } from './ConfigActionCreators';
 import axios from "axios";
 
 import LoaderSpinner from '../../layouts/blocks/static_templates/LoadSpinner';
@@ -39,6 +39,14 @@ function ConfigProvider({ children }) {
       configDispatch(changeClientLanguageAction(data?.client_language));
     }
   });
+
+  useEffect(() => {
+    const clientLangLocalStorage = window.localStorage.getItem('client_lang');
+
+    if (clientLangLocalStorage) {
+      configDispatch(changeLanguageAction(clientLangLocalStorage));
+    }
+  }, [])
 
   return (
     <configContext.Provider value={{ config, configDispatch }}>
