@@ -18,7 +18,7 @@ import { CategoriesDropDownVertical as Categories } from "../../blocks/categorie
 import LoaderSpinner from '../../blocks/static_templates/LoadSpinner';
 
 // import language context:
-import { changeLanguageAction, useGetConfig, useConfigDispatch } from '../../../contexts/config/ConfigContext';
+import { useGetConfig, useConfigDispatch, changeLanguageAction, changeCurrencyAction } from '../../../contexts/config/ConfigContext';
 
 // import Custom hooks:
 import { useWindowSize } from "../../../functions";
@@ -53,9 +53,6 @@ const DefaultTopPanel = () => {
   const { config } = useGetConfig();
   const { configDispatch } = useConfigDispatch();
 
-  // initial state for currency:
-  const [currency, setCurrency] = useState('USD');
-
   // initial state for drawer Menu (mobile version):
   const [visibleTopPanelMenuXs, setVisibleTopPanelMenuXs] = useState(false);
 
@@ -78,11 +75,10 @@ const DefaultTopPanel = () => {
 
   // function for change currency:
   const handleChangeCurrency = (e) => {
-    setCurrency(e.target.value);
-    if (e.target.value !== currency) {
+    if (e.target.value !== config.currency) {
       setShowLoadSpinner(true);
 
-      setCurrency(e.target.value);
+      configDispatch(changeCurrencyAction(e.target.value));
       setTimeout(() => {
         setShowLoadSpinner(false);
         closeTopPanelMenuXs();
@@ -258,7 +254,7 @@ const DefaultTopPanel = () => {
                                     </Col>
                                     <Col className="my-auto" span={12}>
                                       <select
-                                        value={currency}
+                                        value={config.currency}
                                         onChange={e => handleChangeCurrency(e)}
                                         className="w-100 text-red-a0 select-box-remove-arrow border-0 vv-font-size-1-5 p-0 mobileChangeCurrencySelect">
                                         <option value="USD">US dollars</option>
