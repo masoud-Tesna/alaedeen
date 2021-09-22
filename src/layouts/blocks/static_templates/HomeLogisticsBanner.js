@@ -6,9 +6,6 @@ import { Col, Row } from "antd";
 import { __ } from '../../../functions/Helper';
 import { useWindowSize } from "../../../functions";
 
-// get language context:
-import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
-
 import { useTranslation } from "react-i18next";
 
 // import banner images
@@ -17,11 +14,12 @@ import logisticsBannerRtl from '../../../assets/images/logisticsBanner-rtl.png';
 import logisticsBannerRtlXs from '../../../assets/images/logisticsBannerXs-rtl.png';
 import logisticsBannerLtr from '../../../assets/images/logisticsBanner-ltr.png';
 import logisticsBannerLtrXs from '../../../assets/images/logisticsBannerXs-rtl.png';
+import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 const HomeLogisticsBanner = () => {
 
-  // initial state for language:
-  const { language } = useGetLanguageState();
+  // get initial config:
+  const { config } = useGetConfig();
 
   const { width } = useWindowSize();
 
@@ -32,27 +30,27 @@ const HomeLogisticsBanner = () => {
       <div className="homeLogisticsBanner--content h-100">
 
         {/*for Mobile And Fa Or Ar Language*/}
-        {(width < 768 && (language === 'fa' || language === 'ar')) &&
+        {(width < 768 && (config.language === 'fa' || config.language === 'ar')) &&
           <img className="homeLogisticsBanner--img" src={ logisticsBannerRtlXs } alt={ t(__('Logistics Services')) }/>
         }
 
         {/*for Mobile And En Language*/}
-        {(width < 768 && language === 'en') &&
+        {(width < 768 && config.language === 'en') &&
           <img className="homeLogisticsBanner--img" src={ logisticsBannerLtrXs } alt={ t(__('Logistics Services')) }/>
         }
 
         {/*for Desktop And En Language*/}
-        {(width >= 768 && language === 'en') &&
+        {(width >= 768 && config.language === 'en') &&
           <img className="homeLogisticsBanner--img" src={ logisticsBannerLtr } alt={ t(__('Logistics Services')) }/>
         }
 
         {/*for Desktop And Fa Language*/}
-        {/*{(width >= 768 && language === 'fa') &&
+        {/*{(width >= 768 && config.language === 'fa') &&
          <img className="homeLogisticsBanner--img" src={ logisticsBannerFa } alt={ t(__('Logistics Services')) }/>
         }
 */}
         {/*for Desktop And Ar Language*/}
-        {(width >= 768 && (language === 'ar' || language === 'fa')) &&
+        {(width >= 768 && (config.language === 'ar' || config.language === 'fa')) &&
           <img className="homeLogisticsBanner--img" src={ logisticsBannerRtl } alt={ t(__('Logistics Services')) }/>
         }
 

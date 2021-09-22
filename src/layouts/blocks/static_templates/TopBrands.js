@@ -13,25 +13,24 @@ import SkeletonTopBrands from "./skeletons/SkeletonTopBrands";
 // import custom hooks:
 import { useGetApi, useWindowSize } from "../../../functions";
 
-// get current language from context:
-import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
-
 // import helper functions:
 import { __, fn_stripHtml } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
+import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 const FactoriesLogo = ({ logo, alt }) => {
 
-  const { language } = useGetLanguageState();
+  // get initial config:
+  const { config } = useGetConfig();
 
-  if (language === 'en' && logo.en) {
+  if (config.language === 'en' && logo.en) {
     return (
       <img src={ logo.en } alt={ alt }/>
     );
   }
 
-  if (language === 'fa' && logo.fa) {
+  if (config.language === 'fa' && logo.fa) {
     return (
       <img src={ logo.fa } alt={ alt }/>
     );

@@ -1,13 +1,13 @@
 import {useGetApi} from "../functions";
-import {useGetLanguageState} from "../contexts/language/LanguageContext";
 import {useParams} from "react-router-dom";
 import {Col, Row} from "antd";
 import ProductTemplate from "../layouts/blocks/product_templates";
+import { useGetConfig } from "../contexts/config/ConfigContext";
 
 const Product = () => {
 
-  // get initial language
-  const { language } = useGetLanguageState();
+  // get initial config
+  const { config } = useGetConfig();
 
   // get product path from url:
   const { product: productSeoName } = useParams();

@@ -4,7 +4,6 @@ import './styles/ProductTemplate.less';
 // import ant design components:
 import {Button, Col, Row} from "antd";
 
-import {useGetLanguageState} from "../../../contexts/language/LanguageContext";
 import {useWindowSize} from "../../../functions";
 import {useTranslation} from "react-i18next";
 import {__} from "../../../functions/Helper";
@@ -16,9 +15,6 @@ const ProductTemplate = (props) => {
 
   // get screen width:
   const { width } = useWindowSize();
-
-  // get initial language
-  const { language } = useGetLanguageState();
 
   const { t } = useTranslation();
 

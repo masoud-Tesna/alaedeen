@@ -7,7 +7,6 @@ import { message, Button, Checkbox, Col, Form, Input, Row, Select, Tabs } from "
 import { __ } from "../functions/Helper";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import googlePic from "../assets/images/google.png";
-import { useGetLanguageState } from "../contexts/language/LanguageContext";
 import { Link, useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useGetAuthState } from "../contexts/user/UserContext";
@@ -15,14 +14,15 @@ import { useGetAuthState } from "../contexts/user/UserContext";
 import { useGetApi } from "../functions";
 import axios from "axios";
 import LoaderSpinner from "../layouts/blocks/static_templates/LoadSpinner";
+import { useGetConfig } from "../contexts/config/ConfigContext";
 
 const Register = () => {
 
   const { TabPane } = Tabs;
   const { Option } = Select;
 
-  // initial state for language:
-  const { language } = useGetLanguageState();
+  // get initial config:
+  const { config } = useGetConfig();
 
   const { t } = useTranslation();
 
@@ -43,7 +43,7 @@ const Register = () => {
   }
 
   async function Register(values) {
-    return await axios.post(`https://alaedeen.com/horn/register-api/?lang_code=${language}`, { user_data: values });
+    return await axios.post(`https://alaedeen.com/horn/register-api/?lang_code=${config.language}`, { user_data: values });
   }
 
   const onRegisterFormHandle = values => {

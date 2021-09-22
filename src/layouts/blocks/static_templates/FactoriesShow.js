@@ -3,9 +3,6 @@ import React, { useEffect, useState } from "react";
 // import Style File:
 import './styles/FactoriesShow.less';
 
-// import language context:
-import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
-
 // import ANT Design Components Used:
 import { Button, Col, Row, Space, Image, Skeleton } from "antd";
 import { CommentOutlined } from "@ant-design/icons";
@@ -29,18 +26,20 @@ import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
+import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 const FactoriesLogo = ({ logo, imageAlt }) => {
 
-  const { language } = useGetLanguageState();
+  // get initial config:
+  const { config } = useGetConfig();
 
-  if (language === 'en' && logo.en) {
+  if (config.language === 'en' && logo.en) {
     return (
       <img src={ logo.en } alt={ imageAlt }/>
     );
   }
 
-  if (language === 'fa' && logo.fa) {
+  if (config.language === 'fa' && logo.fa) {
     return (
       <img src={ logo.fa } alt={ imageAlt }/>
     );

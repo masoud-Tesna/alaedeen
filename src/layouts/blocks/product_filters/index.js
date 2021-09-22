@@ -5,17 +5,17 @@ import { Button, Col, Collapse, Row } from "antd";
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../functions/Helper";
 import { DownOutlined } from "@ant-design/icons";
-import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
 import { Link } from "react-router-dom";
 import ProductFilterVariants from "./components/productFilterVariants";
 import { useWindowSize } from "../../../functions";
+import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 const ProductFilters = (props) => {
 
   const { t } = useTranslation();
 
-  // get initial language
-  const { language } = useGetLanguageState();
+  // get initial config:
+  const { config } = useGetConfig();
 
   // get window width
   const { width } = useWindowSize();
@@ -108,7 +108,7 @@ const ProductFilters = (props) => {
           <Collapse
             expandIconPosition={"right"}
             ghost
-            expandIcon={({ isActive }) => <DownOutlined rotate={ language === 'en' ? (isActive ? 180 : 0) : (isActive ? 0 : 1)} />}
+            expandIcon={({ isActive }) => <DownOutlined rotate={ config.language === 'en' ? (isActive ? 180 : 0) : (isActive ? 0 : 1)} />}
           >
             <Panel header={t(__('categories'))} key="subCategories_panel">
               <Row gutter={[0, 10]} className="subCategories--items">
@@ -117,12 +117,12 @@ const ProductFilters = (props) => {
                 </Col>
 
                 <Col span={24} className="subCategories--item">
-                  <Link className={ `py-2 ${language === 'en' ? 'subCategories--item--plLevel1' : 'subCategories--item--prLevel1'} px-4 vv-font-size-1-7 d-block` } to={ `/categories/${category_seo_name}` }>{ category_name }</Link>
+                  <Link className={ `py-2 ${config.language === 'en' ? 'subCategories--item--plLevel1' : 'subCategories--item--prLevel1'} px-4 vv-font-size-1-7 d-block` } to={ `/categories/${category_seo_name}` }>{ category_name }</Link>
                 </Col>
                 {subCategories?.map(subCategory => {
                   return (
                     <Col key={`subCategoriesFilter_${category_id}_${subCategory?.category_id}`} span={24} className="subCategories--item">
-                      <Link className={ `py-2 ${language === 'en' ? 'subCategories--item--plLevel2' : 'subCategories--item--prLevel2'} px-4 vv-font-size-1-7 d-block ${subCategory?.p_count === 0 && 'categoryLink--disable'}` } to={ `/categories/${subCategory?.seo_name}` }>{ subCategory?.category }</Link>
+                      <Link className={ `py-2 ${config.language === 'en' ? 'subCategories--item--plLevel2' : 'subCategories--item--prLevel2'} px-4 vv-font-size-1-7 d-block ${subCategory?.p_count === 0 && 'categoryLink--disable'}` } to={ `/categories/${subCategory?.seo_name}` }>{ subCategory?.category }</Link>
                     </Col>
                   )
                 })}
@@ -145,7 +145,7 @@ const ProductFilters = (props) => {
                 defaultActiveKey={filterCollapseShow}
                 expandIconPosition={"right"}
                 ghost
-                expandIcon={({ isActive }) => <DownOutlined rotate={ language === 'en' ? (isActive ? 180 : 0) : (isActive ? 0 : 1)} />}
+                expandIcon={({ isActive }) => <DownOutlined rotate={ config.language === 'en' ? (isActive ? 180 : 0) : (isActive ? 0 : 1)} />}
               >
                 <Panel
                   header={t(__(filter?.filter))}

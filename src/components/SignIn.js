@@ -19,12 +19,12 @@ import googlePic from '../assets/images/google.png';
 // import language context:
 import { signInAction, useGetAuthState, useDispatchAuthState, signIn, checkSignInLoadingAction, checkRememberAction } from '../contexts/user/UserContext';
 
-import { useGetLanguageState } from "../contexts/language/LanguageContext";
+import { useGetConfig } from "../contexts/config/ConfigContext";
 
 const SignIn = () => {
 
-  // initial state for language:
-  const { language } = useGetLanguageState();
+  // get initial config:
+  const { config } = useGetConfig();
 
   const history = useHistory();
 
@@ -40,7 +40,7 @@ const SignIn = () => {
 
   const onFinish = values => {
     AuthDispatch(checkSignInLoadingAction());
-    signIn(values.user_login, values.password, language)
+    signIn(values.user_login, values.password, config.language)
       .then(res => {
         if (values.remember_me) {
           AuthDispatch(signInAction(res.data.auth, values.user_login, values.password, false));

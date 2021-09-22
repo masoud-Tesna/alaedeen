@@ -23,15 +23,14 @@ import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
 
-// import language context:
-import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
 import { useQueries } from "react-query";
 import axios from "axios";
+import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 const TopRankingProducts = () => {
 
-  // initial state for language:
-  const { language } = useGetLanguageState();
+  // get initial config:
+  const { config } = useGetConfig();
 
   const { t } = useTranslation();
 
@@ -45,17 +44,17 @@ const TopRankingProducts = () => {
 
 
   async function getTopRankingProductsApi(param) {
-    const { data } = await axios.get(`https://alaedeen.com/horn/products-api/?${param}&lang_code=${language}`);
+    const { data } = await axios.get(`https://alaedeen.com/horn/products-api/?${param}&lang_code=${config.language}`);
     return data;
   }
 
   const topRankingProducts = useQueries([
 
-    { queryKey: ['topRanking', `fabric-and-textile-raw-material-home-textiles_${language}`], queryFn: () => getTopRankingProductsApi(urlCarpets), enabled: !!language },
+    { queryKey: ['topRanking', `fabric-and-textile-raw-material-home-textiles_${config.language}`], queryFn: () => getTopRankingProductsApi(urlCarpets), enabled: !!config.language },
 
-    { queryKey: ['topRanking', `electrical-and-electronic_${language}`], queryFn: () => getTopRankingProductsApi(urlHandmadeCarpet), enabled: !!language },
+    { queryKey: ['topRanking', `electrical-and-electronic_${config.language}`], queryFn: () => getTopRankingProductsApi(urlHandmadeCarpet), enabled: !!config.language },
 
-    { queryKey: ['topRanking', `electrical-and-electronic_${language}`], queryFn: () => getTopRankingProductsApi(urlBabyCarpet), enabled: !!language },
+    { queryKey: ['topRanking', `electrical-and-electronic_${config.language}`], queryFn: () => getTopRankingProductsApi(urlBabyCarpet), enabled: !!config.language },
 
   ])
 

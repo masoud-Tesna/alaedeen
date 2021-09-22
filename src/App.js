@@ -35,6 +35,7 @@ import { SiteFooter } from "./layouts/footer";
 
 function App() {
 
+  // get initial config:
   const { config } = useGetConfig();
 
   const directionTheme = config.language === 'en' ? 'ltr' : 'rtl';

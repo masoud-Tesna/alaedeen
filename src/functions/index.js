@@ -4,19 +4,20 @@ import { useLocation } from 'react-router-dom';
 
 import axios from "axios";
 
-import { useGetLanguageState } from "../contexts/language/LanguageContext";
 import { useQuery } from "react-query";
+import { useGetConfig } from "../contexts/config/ConfigContext";
 
 export function useGetApi (mode, params, useQueryKey) {
 
-  const { language } = useGetLanguageState();
+  // get initial config:
+  const { config } = useGetConfig();
 
   let useQueryKeyClone,
     url;
 
-  if (language) {
-    url = `https://alaedeen.com/horn/${ mode }/?${ params }&lang_code=${ language }`;
-    useQueryKeyClone = `${useQueryKey}_${language}`;
+  if (config.language) {
+    url = `https://alaedeen.com/horn/${ mode }/?${ params }&lang_code=${ config.language }`;
+    useQueryKeyClone = `${useQueryKey}_${config.language}`;
   }
 
 
@@ -27,7 +28,7 @@ export function useGetApi (mode, params, useQueryKey) {
   }
 
   return useQuery(['getApi', useQueryKeyClone], getApi, {
-    enabled: !!language
+    enabled: !!config.language
   });
 }
 
@@ -37,16 +38,17 @@ export function useGetFactories (params) {
   const [parameters, setParameters] = useState([]);
   const [error, setError] = useState(null);
 
-  const { language } = useGetLanguageState();
+  // get initial config:
+  const { config } = useGetConfig();
 
   useEffect(() => {
     let mounted  = true;
     setLoad(true);
 
-    if (mounted && language) {
+    if (mounted && config.language) {
 
       // async function for get API:
-      const url = `https://alaedeen.com/horn/factories-api/?${params}&lang_code=${language}`;
+      const url = `https://alaedeen.com/horn/factories-api/?${params}&lang_code=${config.language}`;
       async function getFactories() {
         return await axios.get(url);
       }
@@ -66,7 +68,7 @@ export function useGetFactories (params) {
     }
 
     return () => mounted = false;
-  }, [params, language]);
+  }, [params, config.language]);
 
   return { factories, parameters, load, error }
 }

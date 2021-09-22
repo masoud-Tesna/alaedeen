@@ -8,8 +8,8 @@ import './styles/Categories.less';
 //  import ant design components:
 import { Button, Carousel, Col, Collapse, Image, Pagination, Row, Space } from "antd";
 
-// import language context:
-import { useGetLanguageState } from "../contexts/language/LanguageContext";
+// import config context:
+import { useGetConfig } from "../contexts/config/ConfigContext";
 
 // import helper functions:
 import { useGetApi, useQueryString, useWindowSize } from "../functions";
@@ -34,13 +34,10 @@ import SubCategoriesSwiperDesktop from "./categories/SubCategoriesSwiperDesktop"
 import LoaderSpinner from "../layouts/blocks/static_templates/LoadSpinner";
 import { Helmet } from "react-helmet";
 
-
-
-
 const Categories = () => {
 
-  // get initial language
-  const { language } = useGetLanguageState();
+  // get initial config
+  const { config } = useGetConfig();
 
   const { t } = useTranslation();
 
@@ -96,11 +93,11 @@ const Categories = () => {
     // function for get category filters::
     async function getProductFilters() {
       setIsLoadingHandle(true);
-      const url = `https://alaedeen.com/horn/product-filters-api/?category_path=${categorySeoName}&features_hash=${featuresHashContainer}&lang_code=${language}`;
+      const url = `https://alaedeen.com/horn/product-filters-api/?category_path=${categorySeoName}&features_hash=${featuresHashContainer}&lang_code=${config.language}`;
       return await axios.get(url);
     }
 
-    if (language) {
+    if (config.language) {
       getProductFilters()
         .then(res => {
           // category filters add to filtersApi state:
@@ -109,7 +106,7 @@ const Categories = () => {
         });
     }
 
-  }, [featuresHashContainer, categorySeoName, language]);
+  }, [featuresHashContainer, categorySeoName, config.language]);
   // get filters and sub categories from filtersApi Or empty array:
   const {filters, subCategories} = filtersApi || [];
 
@@ -201,10 +198,10 @@ const Categories = () => {
   // pagination render element:
   const paginationItemRender = (current, type, originalElement) => {
     if (type === 'prev') {
-      return <i className ={ `fal fa-chevron-${language === 'en' ? 'left' : 'right'} vv-font-size-2` } />;
+      return <i className ={ `fal fa-chevron-${config.language === 'en' ? 'left' : 'right'} vv-font-size-2` } />;
     }
     if (type === 'next') {
-      return <i className ={ `fal fa-chevron-${language === 'en' ? 'right' : 'left'} vv-font-size-2` } />;
+      return <i className ={ `fal fa-chevron-${config.language === 'en' ? 'right' : 'left'} vv-font-size-2` } />;
     }
     return originalElement;
   }
@@ -260,8 +257,8 @@ const Categories = () => {
                       </Col>
                       <Col>
                         <Space size={12}>
-                          <i className={ `fa fa-chevron-${language === 'en' ? 'left' : 'right'} text-47 vv-font-size-1-7 vv-cursor-pointer` } onClick={handleSubCategorySliderPrev} />
-                          <i className={ `fa fa-chevron-${language === 'en' ? 'right' : 'left'} text-47 vv-font-size-1-7 vv-cursor-pointer` } onClick={handleSubCategorySliderNext} />
+                          <i className={ `fa fa-chevron-${config.language === 'en' ? 'left' : 'right'} text-47 vv-font-size-1-7 vv-cursor-pointer` } onClick={handleSubCategorySliderPrev} />
+                          <i className={ `fa fa-chevron-${config.language === 'en' ? 'right' : 'left'} text-47 vv-font-size-1-7 vv-cursor-pointer` } onClick={handleSubCategorySliderNext} />
                         </Space>
                       </Col>
                     </Row>

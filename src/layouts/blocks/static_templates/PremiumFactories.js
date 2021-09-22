@@ -12,10 +12,6 @@ import verifiedIcon from '../../../assets/images/verified.png';
 // import another components used:
 import SkeletonTopBrands from "./skeletons/SkeletonTopBrands";
 
-// import get language context:
-import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
-
-
 // import custom hook used:
 import { useGetApi, useWindowSize } from '../../../functions';
 
@@ -23,18 +19,20 @@ import { useGetApi, useWindowSize } from '../../../functions';
 import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
+import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 const FactoriesLogo = ({ logo, alt }) => {
 
-  const { language } = useGetLanguageState();
+  // get initial config:
+  const { config } = useGetConfig();
 
-  if (language === 'en' && logo.en) {
+  if (config.language === 'en' && logo.en) {
     return (
       <img src={ logo.en } alt={ alt }/>
     );
   }
 
-  if (language === 'fa' && logo.fa) {
+  if (config.language === 'fa' && logo.fa) {
     return (
       <img src={ logo.fa } alt={ alt }/>
     );
@@ -76,8 +74,8 @@ const FactoriesImages = ({ images, alt }) => {
 
 const PremiumFactories = () => {
 
-  // initial state for language:
-  const { language } = useGetLanguageState();
+// get initial config:
+  const { config } = useGetConfig();
 
   const { t } = useTranslation();
 
@@ -98,7 +96,7 @@ const PremiumFactories = () => {
             </Col>
             <Col className="my-auto">
               <Link to="/factories" className={ `${ width >= 768 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } text-33` } >
-                { t(__('View More')) } <i className={ `far fa-chevron-${language === 'en' ? 'right' : 'left'} ${ width >= 768 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } ${language === 'en' ? '' : 'align-middle'}` } />
+                { t(__('View More')) } <i className={ `far fa-chevron-${config.language === 'en' ? 'right' : 'left'} ${ width >= 768 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } ${config.language === 'en' ? '' : 'align-middle'}` } />
               </Link>
             </Col>
           </Row>

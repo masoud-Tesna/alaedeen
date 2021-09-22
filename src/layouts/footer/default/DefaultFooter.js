@@ -7,9 +7,6 @@ import { Row, Col, Space, Button, Tooltip } from 'antd';
 // import Custom Hooks:
 import { useGetApi, useWindowSize } from '../../../functions';
 
-// import language context:
-import { useGetLanguageState } from "../../../contexts/language/LanguageContext";
-
 // import logo:
 import appleStore from "../../../assets/images/appleStore.svg";
 import googlePlay from "../../../assets/images/googlePlay.svg";
@@ -20,6 +17,7 @@ import { __ } from '../../../functions/Helper';
 import { useTranslation } from "react-i18next";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 const DefaultFooter = () => {
 
@@ -35,8 +33,8 @@ const DefaultFooter = () => {
     spaceSize = 'small';
   }
 
-  // initial state for language:
-  const { language } = useGetLanguageState();
+  // get initial config:
+  const { config } = useGetConfig();
 
   // get categories from API:
   const { data } = useGetApi(`home-categories-api`, '', `allCategories`);
@@ -44,7 +42,7 @@ const DefaultFooter = () => {
   const { categories } = data || [];
 
   // set initial link for instagram related to each language:
-  let instagramLink = language === 'en' ? "https://instagram.com/hornb2b" : language === 'fa' ? "https://instagram.com/hornb2b.ir" : language === 'ar' ? "https://instagram.com/horn.ar" : "https://instagram.com/hornb2b";
+  let instagramLink = config.language === 'en' ? "https://instagram.com/hornb2b" : config.language === 'fa' ? "https://instagram.com/hornb2b.ir" : config.language === 'ar' ? "https://instagram.com/horn.ar" : "https://instagram.com/hornb2b";
 
   // Mobile Application Coming Son Tooltip Text:
   const comingSonTooltipText = <span>{ t(__('coming son')) }</span>;
@@ -59,7 +57,7 @@ const DefaultFooter = () => {
               <div className="d-inline my-auto">
                 <div className="d-none d-lg-inline">
                   <div className="vv-font-size-2-2 font-weight-600 text-white d-inline">{ t(__('Download the Alaedeen App for iOS or Android')) }</div>
-                  <i className={ `fas fa-angle-${language === 'en' ? 'right' : 'left'} text-bc vv-font-size-1-7 ${language === 'en' ? '' : 'align-middle'}` } />
+                  <i className={ `fas fa-angle-${config.language === 'en' ? 'right' : 'left'} text-bc vv-font-size-1-7 ${config.language === 'en' ? '' : 'align-middle'}` } />
                 </div>
 
                 <span className="d-block d-lg-none vv-font-size-1-4 font-weight-bold text-white">{ t(__('Download the Alaedeen app')) }</span>
