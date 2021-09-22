@@ -31,18 +31,14 @@ function ConfigProvider({ children }) {
     return data;
   }
 
-  const { isLoading, data, status } =  useQuery('config', getConfigApi);
-
-  useEffect(() => {
-
-    if (status && data) {
+  const { isLoading } =  useQuery('config', getConfigApi, {
+    onSuccess: (data) => {
       configDispatch(changeIpAction(data?.ip));
       configDispatch(changeCountryAction(data?.country));
       configDispatch(changeCountryCodeAction(data?.country_code));
       configDispatch(changeClientLanguageAction(data?.client_language));
     }
-
-  }, [status]);
+  });
 
   return (
     <configContext.Provider value={{ config, configDispatch }}>
