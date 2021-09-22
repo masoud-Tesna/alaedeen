@@ -13,12 +13,11 @@ import { signInAction, logOutAction, checkSignInLoadingAction, signInLoadingFals
 // import LoaderSpinner:
 import LoaderSpinner from '../../layouts/blocks/static_templates/LoadSpinner';
 
-// import language state:
-import { useGetLanguageState } from "../language/LanguageContext";
+// import config context:
+import { useGetConfig } from "../config/ConfigContext";
 
 // import Cookies Package:
 import { Cookies } from "react-cookie";
-
 
 // User Context Create:
 const userContext = createContext();
@@ -29,8 +28,8 @@ export function UserProvider ({ children }) {
   // use Cookies Class:
   const Cookie = new Cookies();
 
-  // initial state for language:
-  const { language } = useGetLanguageState();
+  // get initial config:
+  const { config } = useGetConfig();
 
   // useReducer For Language use in app
   const [auth, dispatch] = useReducer(
@@ -43,31 +42,27 @@ export function UserProvider ({ children }) {
 
   useEffect(() => {
 
-    let mounted  = true;
-
-    if (userLoginCookie && userPasswordCookie && language) {
+    if (userLoginCookie && userPasswordCookie && config.language) {
       dispatch(checkSignInLoadingAction());
 
-      signIn(userLoginCookie, userPasswordCookie, language)
+      signIn(userLoginCookie, userPasswordCookie, config.language)
         .then(res => {
           dispatch(signInAction(res?.data?.auth, userLoginCookie, userPasswordCookie, false));
         });
 
-    }
-
-    return () => {
-      mounted = false;
+    }else {
       dispatch(signInLoadingFalseAction());
     }
 
-  }, [language, userLoginCookie, userPasswordCookie]);
-
+  }, [config.language, userLoginCookie, userPasswordCookie]);
 
   return (
     <userContext.Provider value={{ auth, dispatch }}>
-      <div className={ `${ auth.load ? 'd-block' : 'd-none' }` }>
+
+      {auth.load &&
         <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>
-      </div>
+      }
+
       {children}
     </userContext.Provider>
   );
