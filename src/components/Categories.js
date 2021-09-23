@@ -435,7 +435,7 @@ const Categories = () => {
                         {/*if product show type === multiColumn*/}
                         {productShowType === 'multiColumn' &&
                           <Col span={24}>
-                            <Row className="h-100" gutter={[ { xs:8, lg: 23 }, { xs:10, lg: 23 }]}>
+                            <Row className="h-100" gutter={[ { xs:8, lg: 23 }, { xs:10, lg: 23 }]} justify={"center"}>
                               { products?.map((product, i) => {
                                 return (
                                   <CategoryMultiColumn
