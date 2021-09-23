@@ -26,7 +26,7 @@ const FactoriesLogo = ({ logo, alt }) => {
   // get initial config:
   const { config } = useGetConfig();
 
-  if (config.language === 'en' && logo.en) {
+  if ((config.language === 'en' || config.language === 'ar') && logo.en) {
     return (
       <img src={ logo.en } alt={ alt }/>
     );
