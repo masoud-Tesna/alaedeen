@@ -255,12 +255,16 @@ const Categories = () => {
                       <Col className="vv-font-size-2 font-weight-600 text-uppercase">
                         { t(__('categories')) }
                       </Col>
-                      <Col>
-                        <Space size={12}>
-                          <i className={ `fa fa-chevron-${config.language === 'en' ? 'left' : 'right'} text-47 vv-font-size-1-7 vv-cursor-pointer` } onClick={handleSubCategorySliderPrev} />
-                          <i className={ `fa fa-chevron-${config.language === 'en' ? 'right' : 'left'} text-47 vv-font-size-1-7 vv-cursor-pointer` } onClick={handleSubCategorySliderNext} />
-                        </Space>
-                      </Col>
+
+                      {subCategories?.length > 6 &&
+                        <Col>
+                          <Space size={12}>
+                            <i className={ `fa fa-chevron-${config.language === 'en' ? 'left' : 'right'} text-47 vv-font-size-1-7 vv-cursor-pointer` } onClick={handleSubCategorySliderPrev} />
+                            <i className={ `fa fa-chevron-${config.language === 'en' ? 'right' : 'left'} text-47 vv-font-size-1-7 vv-cursor-pointer` } onClick={handleSubCategorySliderNext} />
+                          </Space>
+                        </Col>
+                      }
+
                     </Row>
                   </Col>
                   <Col span={24} className="mt-4">
