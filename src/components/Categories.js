@@ -343,10 +343,10 @@ const Categories = () => {
                       <i className={ `icon-vv-list-without-options-business cursor-pointer display-6 ${productShowType === 'oneColumn' && 'active'}` } onClick={() => productShowTypeHandleClick('oneColumn')} />
                       <i className={ `icon-vv-grid-list-business cursor-pointer display-6 ${productShowType === 'multiColumn' && 'active'}` } onClick={() => productShowTypeHandleClick('multiColumn')} />
                       <Button
-                        className="filtersBtnCollapse"
+                        className={ `filtersBtnCollapse ${filterContentMobileToggle === 'filterMobileCollapse' ? 'openFilter' : 'closeFilter'}` }
                         icon={<i className="fal fa-filter" />}
                         onClick={() => setFilterContentMobileToggle(prevState => !prevState ? "filterMobileCollapse" : "")}>
-                        { t(__('filers')) } -
+                        { t(__('filters')) } {filterContentMobileToggle === 'filterMobileCollapse' && '-'}
                       </Button>
                     </Space>
                   </Col>

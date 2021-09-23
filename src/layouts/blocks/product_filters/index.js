@@ -1,7 +1,7 @@
 // import style file:
 import './styles/ProductFilters.less';
 
-import { Button, Col, Collapse, Row } from "antd";
+import { Button, Col, Collapse, Row, Space } from "antd";
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../functions/Helper";
 import { DownOutlined } from "@ant-design/icons";
@@ -173,16 +173,17 @@ const ProductFilters = (props) => {
         }
 
         <Col span={24} className="productFilter--confirm text-center">
-          <Button
-            className="bg-primary rounded-md p-0 productFilter--confirm__btn"
-            size="large"
-            onClick={() => { props.handleConfirmFilters() }}
-            disabled={!selectedFilter && true}
-          >
-            {t(__('confirm'))}
-          </Button>
+          <Space size={"middle"}>
+            <Button
+              className="bg-primary rounded-md p-0 productFilter--confirm__btn"
+              size="large"
+              onClick={() => { props.handleConfirmFilters() }}
+              disabled={!selectedFilter && true}
+            >
+              {t(__('confirm'))}
+            </Button>
 
-          {width < 992 &&
+            {width < 992 &&
             <Button
               className={ `bg-transparent rounded-md p-0 productFilter--reset__btn` }
               size="middle"
@@ -191,7 +192,8 @@ const ProductFilters = (props) => {
             >
               {t(__('reset'))}
             </Button>
-          }
+            }
+          </Space>
 
         </Col>
 

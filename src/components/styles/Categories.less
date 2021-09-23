@@ -91,21 +91,42 @@
 
   .products-content {
     .filtersBtnCollapse {
-      background-color: #474747;
-      border: 1px solid #929191;
-      border-radius: 3px;
-      padding: 0;
-      min-width: 75px;
+      &.openFilter {
+        background-color: #474747;
+        border: 1px solid #929191;
+        border-radius: 3px;
+        padding: 0;
+        min-width: 75px;
 
-      i,
-      span {
-        color: #FFFFFF;
-        margin-right: .5rem;
-        font-size: 1.7rem;
+        i,
+        span {
+          color: #FFFFFF;
+          margin-right: .5rem;
+          font-size: 1.7rem;
+        }
+
+        i {
+          margin-right: .5rem;
+        }
       }
 
-      i {
-        margin-right: .5rem;
+      &.closeFilter {
+        background-color: transparent;
+        border: 1px solid #929191;
+        border-radius: 3px;
+        padding: 0;
+        min-width: 75px;
+
+        i,
+        span {
+          color: #919191;
+          margin-right: .5rem;
+          font-size: 1.7rem;
+        }
+
+        i {
+          margin-right: .5rem;
+        }
       }
     }
 
