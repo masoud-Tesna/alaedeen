@@ -23,17 +23,23 @@ import RecentlyProductsView from "../layouts/blocks/static_templates/RecentlyPro
 import TopBrands from "../layouts/blocks/static_templates/TopBrands";
 import WhatHorn from "../layouts/blocks/static_templates/WhatHorn";
 import HomePageShowProducts from "../layouts/blocks/static_templates/HomePageShowProducts";
+import { __ } from "../functions/Helper";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
 
   const { width } = useWindowSize();
 
-  useEffect(() => {
-    document.title = "alaedeen.com: Iranian Exporters, Manufacturers, Logistics, Suppliers Directory, B2B Business Directory"
-  }, []);
-
   return (
     <>
+
+      {/*set Title and description*/}
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{ `Alaedeen.com | Iranian Exporters, Manufacturers, Logistics, Suppliers Directory, B2B Business Directory` }</title>
+        <link rel="canonical" href={ `https://alaedeen.com` } />
+      </Helmet>
+
       <div className="top--section bg-white">
         <Row gutter={width >= 768 && 24}>
           {/* if Screen Width >= 768px (Desktop) Show Component: */}
