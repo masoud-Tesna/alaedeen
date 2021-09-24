@@ -145,7 +145,11 @@ const en = {
   "sign_out": "Sign out",
   "alaedeen_slug_section": "Iranian manufacturers & products",
   "language": "Language",
-  "currency": "Currency"
+  "currency": "Currency",
+  "brands": "Brands",
+  "filter_and_refine": "Filter & Refine",
+  "warranty": "Warranty",
+  "nominal_voltage": "Nominal voltage"
 };
 
 export default en;

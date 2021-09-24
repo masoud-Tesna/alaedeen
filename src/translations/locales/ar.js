@@ -145,7 +145,11 @@ const ar = {
   "sign_out": "خروج",
   "alaedeen_slug_section": "المنتجات الایرانیة و المنتجين",
   "language": "اللغة",
-  "currency": "العملة"
+  "currency": "العملة",
+  "brands": "منتج",
+  "filter_and_refine": "فلتر",
+  "warranty": "ضمان",
+  "nominal_voltage": "الجهد الاسمي"
 };
 
 export default ar;

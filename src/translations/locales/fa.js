@@ -145,7 +145,11 @@ const fa = {
   "sign_out": "خروج از حساب کاربری",
   "alaedeen_slug_section": "تولید‌کنندگان و تولیدات ایرانی",
   "language": "زبان",
-  "currency": "واحد پول"
+  "currency": "واحد پول",
+  "brands": "تولیدکننده",
+  "filter_and_refine": "فیلتر کردن",
+  "warranty": "گارانتی",
+  "nominal_voltage": "ولتاژ"
 };
 
 export default fa;
