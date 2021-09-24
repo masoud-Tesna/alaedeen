@@ -32,6 +32,8 @@ import TopPanel from "./layouts/topPanel";
 import { Header as SiteHeader } from "./layouts/header";
 import { SiteFooter } from "./layouts/footer";
 
+import "@babel/polyfill";
+
 
 function App() {
 
