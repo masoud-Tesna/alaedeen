@@ -9,13 +9,14 @@ import {useTranslation} from "react-i18next";
 import {__} from "../../../functions/Helper";
 import FeaturesGrid from "./components/FeaturesGrid";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
+import ProductTab from "../product_tabs";
 
 const ProductTemplate = (props) => {
 
   // get initial config:
   const { config } = useGetConfig();
 
-  const { product } = props;
+  const { product, isLoading } = props;
 
   // get screen width:
   const { width } = useWindowSize();
@@ -95,11 +96,7 @@ const ProductTemplate = (props) => {
 
           <Col span={24} className="productDetails--bottomSection">
             <div>
-              <Row gutter={20}>
-                <Col span={24}>
-                  Bottom
-                </Col>
-              </Row>
+              <ProductTab features={product?.product_features} product_description={product?.full_description} />
             </div>
           </Col>
         </Row>

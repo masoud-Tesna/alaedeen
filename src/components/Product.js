@@ -2,12 +2,8 @@ import {useGetApi} from "../functions";
 import {useParams} from "react-router-dom";
 import {Col, Row} from "antd";
 import ProductTemplate from "../layouts/blocks/product_templates";
-import { useGetConfig } from "../contexts/config/ConfigContext";
 
 const Product = () => {
-
-  // get initial config
-  const { config } = useGetConfig();
 
   // get product path from url:
   const { product: productSeoName } = useParams();
@@ -18,7 +14,7 @@ const Product = () => {
   return (
     <Row className="productDetails--container">
       <Col span={24}>
-        <ProductTemplate product={product} />
+        <ProductTemplate product={product} isLoading={isLoading} />
       </Col>
     </Row>
   );
