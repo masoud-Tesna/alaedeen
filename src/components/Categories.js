@@ -6,7 +6,7 @@ import axios from "axios";
 import './styles/Categories.less';
 
 //  import ant design components:
-import { Button, Carousel, Col, Collapse, Image, Pagination, Row, Space } from "antd";
+import { Button, Carousel, Col, Collapse, Pagination, Row, Space } from "antd";
 
 // import config context:
 import { useGetConfig } from "../contexts/config/ConfigContext";
@@ -60,7 +60,7 @@ const Categories = () => {
   }
 
   // create page state for paging
-  const [page, setPage] = useState();
+  const [page, setPage] = useState(1);
 
   // create initial filters state:
   const [filtersApi, setFiltersApi] = useState([]);
