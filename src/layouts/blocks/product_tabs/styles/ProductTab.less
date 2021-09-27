@@ -1,0 +1,45 @@
+// import Mixin:
+@import '../../../../styles/Mixins';
+
+.ProductTab--container {
+  .ProductTab--tab {
+    overflow: unset !important;
+
+    .ant-tabs-nav {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+
+      .ant-tabs-nav-list {
+        width: 100%;
+        background-color: #eaeaea;
+
+        .ant-tabs-tab {
+          width: 20%;
+          height: 50px;
+          background-color: transparent;
+          justify-content: center;
+
+          &.ant-tabs-tab-active {
+            background-color: #ffffff;
+
+            .ant-tabs-tab-btn {
+              color: @primary-color;
+              font-weight: 600;
+            }
+          }
+
+          .ant-tabs-tab-btn {
+            font-size: 1.75rem;
+            color: #474747;
+            display: block;
+          }
+        }
+      }
+    }
+
+    .ant-tabs-content-holder {
+      padding: 0 4rem;
+    }
+  }
+}
