@@ -6,7 +6,7 @@ import axios from "axios";
 import './styles/Categories.less';
 
 //  import ant design components:
-import { Button, Carousel, Col, Collapse, Pagination, Row, Space } from "antd";
+import { Button, Carousel, Col, Collapse, Pagination, Row, Space, Typography } from "antd";
 
 // import config context:
 import { useGetConfig } from "../contexts/config/ConfigContext";
@@ -226,12 +226,14 @@ const Categories = () => {
     splitSubCategories = splitArray(subCategories, 6);
   }
 
-
-
   // filter show or hide in mobile device by filter btn:
   const [filterContentMobileToggle, setFilterContentMobileToggle] = useState("");
 
   const { Panel } = Collapse;
+
+  const [ellipsis, setEllipsis] = useState(true);
+
+  const { Paragraph } = Typography;
 
   return (
     <Row className="mt-0 mt-lg-4 products--container" gutter={[0, 23]}>
@@ -243,13 +245,13 @@ const Categories = () => {
       </Helmet>
 
       {(isLoadingHandle || isLoading) &&
-        <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>
+      <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>
       }
 
       {params?.category_level && params?.category_level === 2 &&
-        <Col span={24}>
-          <Row className="test" gutter={{ xs: 0, lg: 20 }}>
-            {width >= 992 ?
+      <Col span={24}>
+        <Row className="test" gutter={{ xs: 0, lg: 20 }}>
+          {width >= 992 ?
             <>
               <Col span={6}>
                 <Row className="bg-white shadow-y rounded-lg p-4 subCategoriesSlider">
@@ -260,12 +262,12 @@ const Categories = () => {
                       </Col>
 
                       {subCategories?.length > 6 &&
-                        <Col>
-                          <Space size={12}>
-                            <i className={ `fa fa-chevron-${config.language === 'en' ? 'left' : 'right'} text-47 vv-font-size-1-7 vv-cursor-pointer` } onClick={handleSubCategorySliderPrev} />
-                            <i className={ `fa fa-chevron-${config.language === 'en' ? 'right' : 'left'} text-47 vv-font-size-1-7 vv-cursor-pointer` } onClick={handleSubCategorySliderNext} />
-                          </Space>
-                        </Col>
+                      <Col>
+                        <Space size={12}>
+                          <i className={ `fa fa-chevron-${config.language === 'en' ? 'left' : 'right'} text-47 vv-font-size-1-7 vv-cursor-pointer` } onClick={handleSubCategorySliderPrev} />
+                          <i className={ `fa fa-chevron-${config.language === 'en' ? 'right' : 'left'} text-47 vv-font-size-1-7 vv-cursor-pointer` } onClick={handleSubCategorySliderNext} />
+                        </Space>
+                      </Col>
                       }
 
                     </Row>
@@ -324,62 +326,80 @@ const Categories = () => {
                 </Row>
               </Col>
             </> :
-              <SubCategoriesSwiperMobile subCategories={subCategories || []} category_name = {params?.category_name || ""} />
-            }
-          </Row>
-        </Col>
+            <SubCategoriesSwiperMobile subCategories={subCategories || []} category_name = {params?.category_name || ""} />
+          }
+        </Row>
+      </Col>
       }
 
+      {params?.category_description !== "" &&
+      <Col span={24} className="category-description">
+
+        <div className="text-70 font-weight-bold vv-font-size-2-3 mb-4">
+          { t(__('Description')) }
+        </div>
+
+
+        <Paragraph ellipsis={ellipsis ? { rows: 4 } : false} className="vv-font-size-2 text-70 font-weight-500">
+          <div dangerouslySetInnerHTML={ { __html: params?.category_description }} />
+        </Paragraph>
+
+        <div className="text-center">
+          <i className="fas fa-grip-lines text-primary display-6 d-block cursor-pointer" onClick={() => setEllipsis(!ellipsis)} />
+          <i className={ `fas fa-angle-${ellipsis ? 'down' : 'up'} open-desc text-primary display-6 d-block cursor-pointer` } onClick={() => setEllipsis(!ellipsis)} />
+        </div>
+      </Col>
+      }
 
       <Col className="products-content" span={24} ref={productContentDesktop}>
         <div className="h-100">
           <Row gutter={{ xs: 0, lg: 20 }}>
             {width < 992 &&
-              <Col span={24} className="mb-4">
-                <Row gutter={5} align={"middle"}>
-                  <Col span={13} className="text-truncate">
-                    <span className="text-47 vv-font-size-1-2rem">{products?.length} {t(__('products'))}:</span>
-                    <span className="text-91 vv-font-size-1-2rem">{params?.category_name}</span>
-                  </Col>
-                  <Col span={11} className="productShowType text-right">
-                    <Space size={15}>
-                      <i className={ `icon-vv-list-without-options-business cursor-pointer display-6 ${productShowType === 'oneColumn' && 'active'}` } onClick={() => productShowTypeHandleClick('oneColumn')} />
-                      <i className={ `icon-vv-grid-list-business cursor-pointer display-6 ${productShowType === 'multiColumn' && 'active'}` } onClick={() => productShowTypeHandleClick('multiColumn')} />
-                      <Button
-                        className={ `filtersBtnCollapse ${filterContentMobileToggle === 'filterMobileCollapse' ? 'openFilter' : 'closeFilter'}` }
-                        icon={<i className="fal fa-filter" />}
-                        onClick={() => setFilterContentMobileToggle(prevState => !prevState ? "filterMobileCollapse" : "")}>
-                        { t(__('filters')) } {filterContentMobileToggle === 'filterMobileCollapse' && '-'}
-                      </Button>
-                    </Space>
-                  </Col>
-                </Row>
-                <div>
-                  { (filters && filters.length !== 0) &&
-                    <Collapse
-                      ghost
-                      activeKey={ filterContentMobileToggle }
-                      className="filterMobileCollapse"
-                    >
-                      <Panel showArrow={ false } header={ "" } className="filterMobileCollapse--panel" key="filterMobileCollapse">
-                        <ProductFilters
-                          filters = {filters}
-                          category_id = {params?.category_id || ""}
-                          category_seo_name = {categorySeoName || ""}
-                          category_name = {params?.category_name || ""}
-                          subCategories = {subCategories || []}
-                          product_length = {products?.length || ""}
-                          featuresHashContainer = {featuresHashContainer}
-                          featureHandleClick={featureHandleClick}
-                          featureRemoveHandleClick={featureRemoveHandleClick}
-                          featureResetHandleClick={handleResetFilter}
-                          handleConfirmFilters={handleConfirmFilters}
-                        />
-                      </Panel>
-                    </Collapse>
-                  }
-                </div>
-              </Col>
+            <Col span={24} className="mb-4">
+              <Row gutter={5} align={"middle"}>
+                <Col span={13} className="text-truncate">
+                  <span className="text-47 vv-font-size-1-2rem">{products?.length} {t(__('products'))}:</span>
+                  <span className="text-91 vv-font-size-1-2rem">{params?.category_name}</span>
+                </Col>
+                <Col span={11} className="productShowType text-right">
+                  <Space size={15}>
+                    <i className={ `icon-vv-list-without-options-business cursor-pointer display-6 ${productShowType === 'oneColumn' && 'active'}` } onClick={() => productShowTypeHandleClick('oneColumn')} />
+                    <i className={ `icon-vv-grid-list-business cursor-pointer display-6 ${productShowType === 'multiColumn' && 'active'}` } onClick={() => productShowTypeHandleClick('multiColumn')} />
+                    <Button
+                      className={ `filtersBtnCollapse ${filterContentMobileToggle === 'filterMobileCollapse' ? 'openFilter' : 'closeFilter'}` }
+                      icon={<i className="fal fa-filter" />}
+                      onClick={() => setFilterContentMobileToggle(prevState => !prevState ? "filterMobileCollapse" : "")}>
+                      { t(__('filters')) } {filterContentMobileToggle === 'filterMobileCollapse' && '-'}
+                    </Button>
+                  </Space>
+                </Col>
+              </Row>
+              <div>
+                { (filters && filters.length !== 0) &&
+                <Collapse
+                  ghost
+                  activeKey={ filterContentMobileToggle }
+                  className="filterMobileCollapse"
+                >
+                  <Panel showArrow={ false } header={ "" } className="filterMobileCollapse--panel" key="filterMobileCollapse">
+                    <ProductFilters
+                      filters = {filters}
+                      category_id = {params?.category_id || ""}
+                      category_seo_name = {categorySeoName || ""}
+                      category_name = {params?.category_name || ""}
+                      subCategories = {subCategories || []}
+                      product_length = {products?.length || ""}
+                      featuresHashContainer = {featuresHashContainer}
+                      featureHandleClick={featureHandleClick}
+                      featureRemoveHandleClick={featureRemoveHandleClick}
+                      featureResetHandleClick={handleResetFilter}
+                      handleConfirmFilters={handleConfirmFilters}
+                    />
+                  </Panel>
+                </Collapse>
+                }
+              </div>
+            </Col>
             }
 
             {(width >= 992 && (filters?.length === 0 && !isLoading)) &&
@@ -389,30 +409,30 @@ const Categories = () => {
             }
 
             {(width >= 992 && filters && filters.length !== 0) &&
-              <ProductFilters
-                filters = {filters}
-                category_id = {params?.category_id || ""}
-                category_seo_name = {categorySeoName || ""}
-                category_name = {params?.category_name || ""}
-                subCategories = {subCategories || []}
-                product_length = {products?.length || ""}
-                featuresHashContainer = {featuresHashContainer}
-                featureHandleClick={featureHandleClick}
-                featureRemoveHandleClick={featureRemoveHandleClick}
-                featureResetHandleClick={handleResetFilter}
-                handleConfirmFilters={handleConfirmFilters}
-              />
+            <ProductFilters
+              filters = {filters}
+              category_id = {params?.category_id || ""}
+              category_seo_name = {categorySeoName || ""}
+              category_name = {params?.category_name || ""}
+              subCategories = {subCategories || []}
+              product_length = {products?.length || ""}
+              featuresHashContainer = {featuresHashContainer}
+              featureHandleClick={featureHandleClick}
+              featureRemoveHandleClick={featureRemoveHandleClick}
+              featureResetHandleClick={handleResetFilter}
+              handleConfirmFilters={handleConfirmFilters}
+            />
             }
 
             <Col xs={24} lg={18} ref={productContentMobile}>
               <Row  gutter={[0, 22]}>
                 {width >= 992 &&
-                  <Col span={24} className="text-right productShowType">
-                    <Space size={"large"}>
-                      <i className={ `icon-vv-list-without-options-business cursor-pointer display-6 ${productShowType === 'oneColumn' && 'active'}` } onClick={() => productShowTypeHandleClick('oneColumn')} />
-                      <i className={ `icon-vv-grid-list-business cursor-pointer display-6 ${productShowType === 'multiColumn' && 'active'}` } onClick={() => productShowTypeHandleClick('multiColumn')} />
-                    </Space>
-                  </Col>
+                <Col span={24} className="text-right productShowType">
+                  <Space size={"large"}>
+                    <i className={ `icon-vv-list-without-options-business cursor-pointer display-6 ${productShowType === 'oneColumn' && 'active'}` } onClick={() => productShowTypeHandleClick('oneColumn')} />
+                    <i className={ `icon-vv-grid-list-business cursor-pointer display-6 ${productShowType === 'multiColumn' && 'active'}` } onClick={() => productShowTypeHandleClick('multiColumn')} />
+                  </Space>
+                </Col>
                 }
                 <Col span={24}>
                   <Row className={ `h-100 ${productShowType === 'oneColumn' && 'bg-white shadow-y rounded-lg rounded-md-md'}` } justify="center">
@@ -425,33 +445,33 @@ const Categories = () => {
 
                         {/*if product show type === oneColumn*/}
                         {productShowType === 'oneColumn' &&
-                          products?.map((product, i) => {
-                            return (
-                              <CategoryOneColumn
-                                key = { i }
-                                product={product}
-                              />
-                            );
-                          })
+                        products?.map((product, i) => {
+                          return (
+                            <CategoryOneColumn
+                              key = { i }
+                              product={product}
+                            />
+                          );
+                        })
                         }
 
                         {/*if product show type === multiColumn*/}
                         {productShowType === 'multiColumn' &&
-                          <Col span={24}>
-                            <Row className="h-100" gutter={[ { xs:8, lg: 23 }, { xs:10, lg: 23 }]} justify={"center"}>
-                              { products?.map((product, i) => {
-                                return (
-                                  <CategoryMultiColumn
-                                    key={ i }
-                                    product={ product }
-                                    allDetails
-                                    widthProductImage={ width >= 768 ? 194 : 170 }
-                                    heightProductImage={ width >= 768 ? 194 : 170 }
-                                  />
-                                );
-                              }) }
-                            </Row>
-                          </Col>
+                        <Col span={24}>
+                          <Row className="h-100" gutter={[ { xs:8, lg: 23 }, { xs:10, lg: 23 }]} justify={"center"}>
+                            { products?.map((product, i) => {
+                              return (
+                                <CategoryMultiColumn
+                                  key={ i }
+                                  product={ product }
+                                  allDetails
+                                  widthProductImage={ width >= 768 ? 194 : 170 }
+                                  heightProductImage={ width >= 768 ? 194 : 170 }
+                                />
+                              );
+                            }) }
+                          </Row>
+                        </Col>
                         }
 
                       </>
