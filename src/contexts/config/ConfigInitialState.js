@@ -1,10 +1,10 @@
 // Initial State:
-const clientLangLocalStorage = window.localStorage.getItem('client_lang');
+const clientLangLocalStorage = window.localStorage.getItem('lang_code');
 
 const clientCurrencyLocalStorage = window.localStorage.getItem('client_currency');
 
 if (!clientLangLocalStorage) {
-  window.localStorage.setItem("client_lang", "en");
+  window.localStorage.setItem("lang_code", "en");
 }
 
 if (!clientCurrencyLocalStorage) {

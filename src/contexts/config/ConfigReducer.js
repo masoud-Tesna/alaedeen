@@ -22,7 +22,7 @@ export function ConfigReducer(state, action) {
       i18n
         .changeLanguage(action.payload)
         .then(() => {
-          window.localStorage.setItem("client_lang", action.payload);
+          window.localStorage.setItem("lang_code", action.payload);
         })
         .then(() => {
           document.documentElement.lang = action.payload;

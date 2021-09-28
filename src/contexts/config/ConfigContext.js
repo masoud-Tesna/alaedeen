@@ -42,7 +42,7 @@ function ConfigProvider({ children }) {
 
   useEffect(() => {
     // get language from local storage in client browser:
-    const clientLangLocalStorage = window.localStorage.getItem('client_lang');
+    const clientLangLocalStorage = window.localStorage.getItem('lang_code');
 
     // get currency from local storage in client browser:
     const clientCurrencyLocalStorage = window.localStorage.getItem('client_currency');
