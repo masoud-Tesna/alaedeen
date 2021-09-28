@@ -254,46 +254,50 @@ const Categories = () => {
           {width >= 992 ?
             <>
               <Col span={6}>
-                <Row className="bg-white shadow-y rounded-lg p-4 subCategoriesSlider">
+                <Row className="bg-white shadow-y rounded-lg p-4 h-100 subCategoriesSlider">
                   <Col span={24}>
-                    <Row justify={"space-between"} align={"middle"}>
-                      <Col className="vv-font-size-2 font-weight-600 text-uppercase">
-                        { t(__('categories')) }
-                      </Col>
+                    <Row>
+                      <Col span={24}>
+                        <Row justify={"space-between"} align={"middle"}>
+                          <Col className="vv-font-size-2 font-weight-600 text-uppercase">
+                            { t(__('categories')) }
+                          </Col>
 
-                      {subCategories?.length > 6 &&
-                      <Col>
-                        <Space size={12}>
-                          <i className={ `fa fa-chevron-${config.language === 'en' ? 'left' : 'right'} text-47 vv-font-size-1-7 vv-cursor-pointer` } onClick={handleSubCategorySliderPrev} />
-                          <i className={ `fa fa-chevron-${config.language === 'en' ? 'right' : 'left'} text-47 vv-font-size-1-7 vv-cursor-pointer` } onClick={handleSubCategorySliderNext} />
-                        </Space>
-                      </Col>
-                      }
+                          {subCategories?.length > 6 &&
+                          <Col>
+                            <Space size={12}>
+                              <i className={ `fa fa-chevron-${config.language === 'en' ? 'left' : 'right'} text-47 vv-font-size-1-7 vv-cursor-pointer` } onClick={handleSubCategorySliderPrev} />
+                              <i className={ `fa fa-chevron-${config.language === 'en' ? 'right' : 'left'} text-47 vv-font-size-1-7 vv-cursor-pointer` } onClick={handleSubCategorySliderNext} />
+                            </Space>
+                          </Col>
+                          }
 
+                        </Row>
+                      </Col>
+                      <Col span={24} className="mt-4">
+                        <Carousel
+                          dots={false}
+                          autoplay={false}
+                          ref={subCategorySliderRef}
+                        >
+                          {splitSubCategories?.map((splitSubCategory, index) => {
+                            return (
+                              <div key={ `splitSubCategory_${index}` }>
+                                <Row gutter={[0, 8]}>
+                                  {splitSubCategory?.map(subCategory => {
+                                    return(
+                                      <Col key={`subCategoriesSlider_${subCategory?.category_id}`} span={24} className="subCategoriesSlider--item">
+                                        <Link to={ `/categories/${subCategory?.seo_name}` } className={subCategory?.p_count === 0 && 'categoryLink--disable'}>{ subCategory?.category }</Link>
+                                      </Col>
+                                    )
+                                  })}
+                                </Row>
+                              </div>
+                            )
+                          })}
+                        </Carousel>
+                      </Col>
                     </Row>
-                  </Col>
-                  <Col span={24} className="mt-4">
-                    <Carousel
-                      dots={false}
-                      autoplay={false}
-                      ref={subCategorySliderRef}
-                    >
-                      {splitSubCategories?.map((splitSubCategory, index) => {
-                        return (
-                          <div key={ `splitSubCategory_${index}` }>
-                            <Row gutter={[0, 8]}>
-                              {splitSubCategory?.map(subCategory => {
-                                return(
-                                  <Col key={`subCategoriesSlider_${subCategory?.category_id}`} span={24} className="subCategoriesSlider--item">
-                                    <Link to={ `/categories/${subCategory?.seo_name}` } className={subCategory?.p_count === 0 && 'categoryLink--disable'}>{ subCategory?.category }</Link>
-                                  </Col>
-                                )
-                              })}
-                            </Row>
-                          </div>
-                        )
-                      })}
-                    </Carousel>
                   </Col>
                 </Row>
               </Col>
