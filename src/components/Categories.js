@@ -351,6 +351,7 @@ const Categories = () => {
       </Col>
       }
 
+
       <Col className="products-content" span={24} ref={productContentDesktop}>
         <div className="h-100">
           <Row gutter={{ xs: 0, lg: 20 }}>
