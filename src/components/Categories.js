@@ -96,7 +96,7 @@ const Categories = () => {
     // function for get category filters::
     async function getProductFilters() {
       setIsLoadingHandle(true);
-      const url = `https://alaedeen.com/horn/product-filters-api/?category_path=${categorySeoName}&features_hash=${featuresHashContainer}&lang_code=${config.language}${storeId && `&store_id=${storeId}`}`;
+      const url = `https://alaedeen.com/horn/product-filters-api/?category_path=${categorySeoName}&features_hash=${featuresHashContainer}&lang_code=${config.language}${storeId ? `&store_id=${storeId}` : ''}`;
       return await axios.get(url);
     }
 
@@ -173,7 +173,7 @@ const Categories = () => {
   }
 
   // get products from API before selecting filters and after selecting filter:
-  const { isLoading, data: product_data } = useGetApi(`products-api`, `category_path=${categorySeoName}&items_per_page=20&page=${page}&features_hash=${featuresHash}${storeId && `&store_id=${storeId}`}`, `category_product_${categorySeoName}_${page}_${featuresHash}${storeId && `_${storeId}`}`);
+  const { isLoading, data: product_data } = useGetApi(`products-api`, `category_path=${categorySeoName}&items_per_page=20&page=${page}&features_hash=${featuresHash}${storeId ? `&store_id=${storeId}` : ''}`, `category_product_${categorySeoName}_${page}_${featuresHash}${storeId && `_${storeId}`}`);
 
   // get products and params from product_data Or empty array:
   const { products, categoryBanners, params} = product_data || [];
@@ -195,7 +195,7 @@ const Categories = () => {
     setPage(pageNumber);
 
     // attaching filter hash and page in to url:
-    history.push(`/categories/${categorySeoName}/?page=${pageNumber}${featuresHashContainer && `&features_hash=${featuresHashContainer}`}${storeId && `&store_id=${storeId}`}`);
+    history.push(`/categories/${categorySeoName}/?page=${pageNumber}${featuresHashContainer && `&features_hash=${featuresHashContainer}`}${storeId ? `&store_id=${storeId}` : ''}`);
   }
 
   // pagination render element:
