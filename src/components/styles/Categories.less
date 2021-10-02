@@ -91,7 +91,23 @@
 
   .category-description {
     background-color: #FFFFFF;
-    padding: 2rem 3rem;
+    padding: 1rem 2rem;
+    margin-top: 1.5rem;
+
+    @media (min-width: @screen-md) {
+      padding: 2rem 3rem;
+      margin-top: 0;
+    }
+
+    .category-description__title {
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+
+      @media (min-width: @screen-md) {
+        font-size: 2.35rem;
+        margin-bottom: 1.5rem;
+      }
+    }
 
     .ant-typography {
       a {
@@ -100,7 +116,11 @@
     }
 
     .open-desc {
-      margin-top: -15px;
+      margin-top: -11px;
+
+      @media (min-width: @screen-md) {
+        margin-top: -15px;
+      }
     }
   }
 

@@ -12,7 +12,7 @@ SwiperCore.use([Scrollbar]);
 
 const SubCategoriesSwiperDesktop = ({ subCategories }) => {
   return (
-    <Row gutter={10} className="bg-white px-3 h-100">
+    <Row className="bg-white px-3 h-100">
       <Col span={24}>
         <Swiper
           slidesPerView={"auto"}

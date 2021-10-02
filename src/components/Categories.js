@@ -63,7 +63,7 @@ const Categories = () => {
   const [page, setPage] = useState(query.get("page"));
 
   // create page state for paging
-  const [storeId, setStoreId] = useState(query.get("store_id"));
+  const storeId = useState(query.get("store_id"));
 
   // create initial filters state:
   const [filtersApi, setFiltersApi] = useState([]);
@@ -173,7 +173,7 @@ const Categories = () => {
   }
 
   // get products from API before selecting filters and after selecting filter:
-  const { isLoading, data: product_data } = useGetApi(`products-api`, `category_path=${categorySeoName}&items_per_page=20&page=${page}&features_hash=${featuresHash}${storeId ? `&store_id=${storeId}` : ''}`, `category_product_${categorySeoName}_${page}_${featuresHash}${storeId && `_${storeId}`}`);
+  const { isLoading, data: product_data } = useGetApi(`products-api`, `category_path=${categorySeoName}&items_per_page=20&page=${page}&features_hash=${featuresHash}${storeId ? `&store_id=${storeId}` : ''}`, `category_product_${categorySeoName}_${page}${featuresHash ? `_${featuresHash}` : ''}${storeId ? `_${storeId}` : ''}`);
 
   // get products and params from product_data Or empty array:
   const { products, categoryBanners, params} = product_data || [];
@@ -187,7 +187,7 @@ const Categories = () => {
     } else {
       productContentMobile.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [categorySeoName, page, products]);
+  }, [page]);
 
   // function for handle change page:
   const handleChangePage = pageNumber => {
@@ -231,9 +231,28 @@ const Categories = () => {
 
   const { Panel } = Collapse;
 
-  const [ellipsis, setEllipsis] = useState(true);
+
+  const [ellipsisCategoryDesc, setEllipsisCategoryDesc] = useState(true);
 
   const { Paragraph } = Typography;
+
+  const categoryDescWithSubCategory = useRef();
+
+  const categoryDescWithSubCategoryHandle = () => {
+    setEllipsisCategoryDesc(prevState => !prevState);
+    if (!ellipsisCategoryDesc) {
+      return categoryDescWithSubCategory.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
+  const categoryDescWithoutSubCategory = useRef();
+
+  const categoryDescWithoutSubCategoryHandle = () => {
+    setEllipsisCategoryDesc(prevState => !prevState);
+    if (!ellipsisCategoryDesc) {
+      return categoryDescWithoutSubCategory.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }
 
   return (
     <Row className="mt-0 mt-lg-4 products--container" gutter={[0, 23]}>
@@ -245,16 +264,16 @@ const Categories = () => {
       </Helmet>
 
       {(isLoadingHandle || isLoading) &&
-      <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>
+        <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>
       }
 
-      {params?.category_level && params?.category_level === 2 &&
-      <Col span={24}>
-        <Row className="test" gutter={{ xs: 0, lg: 20 }}>
+      {subCategories?.length > 0 &&
+        <Col span={24}>
+          <Row className="test" gutter={{ xs: 0, lg: 20 }}>
           {width >= 992 ?
             <>
               <Col span={6}>
-                <Row className="bg-white shadow-y rounded-lg p-4 h-100 subCategoriesSlider">
+                <Row className="bg-white shadow-y rounded-lg p-4 subCategoriesSlider" style={{ height: categoryBanners?.length > 0 ? '100%' : 410.767 }}>
                   <Col span={24}>
                     <Row>
                       <Col span={24}>
@@ -303,112 +322,138 @@ const Categories = () => {
               </Col>
               <Col span={18}>
                 <Row className="h-100" gutter={[0, 10]}>
+
+                  {categoryBanners?.length > 0 &&
                   <Col span={24} className="categoriesCarousel">
                     <Carousel draggable={true} pauseOnDotsHover={true} rtl={true}>
 
                       {isLoading ?
                         <span>Loading!</span> :
-                        categoryBanners.length > 0 ?
-                          categoryBanners.map(categoryBanner => {
-                            return (
-                              <div className="categoriesCarousel--item" key={`category_banner${categoryBanner.object_id}`}>
-                                <img className="d-block w-100" src={categoryBanner.value} alt="" />
-                              </div>
-                            )
-                          }) :
-                          <div className="categoriesCarousel--item">
-                            <img className="d-block w-100" src={`https://picsum.photos/1000/250`} alt="" />
-                          </div>
+                        categoryBanners.map(categoryBanner => {
+                          return (
+                            <div className="categoriesCarousel--item" key={`category_banner${categoryBanner.object_id}`}>
+                              <img className="d-block w-100" src={categoryBanner.value} alt="" />
+                            </div>
+                          )
+                        })
                       }
 
                     </Carousel>
                   </Col>
+                  }
 
                   <Col span={24} className="subCategoriesSwiper">
                     <SubCategoriesSwiperDesktop subCategories={subCategories || []} />
                   </Col>
+
+                  { (params?.category_description !== "" && categoryBanners?.length === 0) &&
+                    <Col span={24} className="category-description" ref={categoryDescWithSubCategory}>
+
+                      <Paragraph ellipsis={ellipsisCategoryDesc ? { rows: 4 } : false} className="vv-font-size-2 text-70 font-weight-500">
+                        <div dangerouslySetInnerHTML={ { __html: params?.category_description }} />
+                      </Paragraph>
+
+                      <div className="text-center" onClick={() => categoryDescWithSubCategoryHandle()}>
+                        <i className="fas fa-grip-lines text-primary display-6 d-block cursor-pointer" />
+                        <i className={ `fas fa-angle-${ellipsisCategoryDesc ? 'down' : 'up'} open-desc text-primary display-6 d-block cursor-pointer` } />
+                      </div>
+                    </Col>
+                  }
                 </Row>
               </Col>
             </> :
-            <SubCategoriesSwiperMobile subCategories={subCategories || []} category_name = {params?.category_name || ""} />
+            <>
+              <SubCategoriesSwiperMobile subCategories={subCategories || []} category_name = {params?.category_name || ""} />
+
+              { (params?.category_description !== "" && categoryBanners?.length === 0) &&
+                <Col span={24} className="category-description" ref={categoryDescWithSubCategory}>
+
+                  <Paragraph ellipsis={ellipsisCategoryDesc ? { rows: 4 } : false} className="vv-font-size-2 text-70 font-weight-500">
+                    <div dangerouslySetInnerHTML={ { __html: params?.category_description }} />
+                  </Paragraph>
+
+                  <div className="text-center" onClick={() => categoryDescWithSubCategoryHandle()}>
+                    <i className="fas fa-grip-lines text-primary display-6 d-block cursor-pointer" />
+                    <i className={ `fas fa-angle-${ellipsisCategoryDesc ? 'down' : 'up'} open-desc text-primary display-6 d-block cursor-pointer` } />
+                  </div>
+                </Col>
+              }
+            </>
+
           }
         </Row>
-      </Col>
+        </Col>
       }
-
-      {params?.category_description !== "" &&
-      <Col span={24} className="category-description">
-
-        <div className="text-70 font-weight-bold vv-font-size-2-3 mb-4">
-          { t(__('Description')) }
-        </div>
-
-
-        <Paragraph ellipsis={ellipsis ? { rows: 4 } : false} className="vv-font-size-2 text-70 font-weight-500">
-          <div dangerouslySetInnerHTML={ { __html: params?.category_description }} />
-        </Paragraph>
-
-        <div className="text-center">
-          <i className="fas fa-grip-lines text-primary display-6 d-block cursor-pointer" onClick={() => setEllipsis(!ellipsis)} />
-          <i className={ `fas fa-angle-${ellipsis ? 'down' : 'up'} open-desc text-primary display-6 d-block cursor-pointer` } onClick={() => setEllipsis(!ellipsis)} />
-        </div>
-      </Col>
-      }
-
 
       <Col className="products-content" span={24} ref={productContentDesktop}>
         <div className="h-100">
           <Row gutter={{ xs: 0, lg: 20 }}>
             {width < 992 &&
-            <Col span={24} className="mb-4">
-              <Row gutter={5} align={"middle"}>
-                <Col span={13} className="text-truncate">
-                  <span className="text-47 vv-font-size-1-2rem">{products?.length} {t(__('products'))}:</span>
-                  <span className="text-91 vv-font-size-1-2rem">{params?.category_name}</span>
+              <>
+                {(params?.category_description !== "" && subCategories?.length === 0) &&
+                  <Col span={24} className="category-description" ref={categoryDescWithoutSubCategory}>
+
+                  <Paragraph ellipsis={ellipsisCategoryDesc ? { rows: 4 } : false} className="vv-font-size-2 text-70 font-weight-500">
+                    <div dangerouslySetInnerHTML={ { __html: params?.category_description }} />
+                  </Paragraph>
+
+                  <div className="text-center" onClick={() => categoryDescWithoutSubCategoryHandle()}>
+                    <i className="fas fa-grip-lines text-primary display-6 d-block cursor-pointer" />
+                    <i className={ `fas fa-angle-${ellipsisCategoryDesc ? 'down' : 'up'} open-desc text-primary display-6 d-block cursor-pointer` } />
+                  </div>
                 </Col>
-                <Col span={11} className="productShowType text-right">
-                  <Space size={15}>
-                    <i className={ `icon-vv-list-without-options-business cursor-pointer display-6 ${productShowType === 'oneColumn' && 'active'}` } onClick={() => productShowTypeHandleClick('oneColumn')} />
-                    <i className={ `icon-vv-grid-list-business cursor-pointer display-6 ${productShowType === 'multiColumn' && 'active'}` } onClick={() => productShowTypeHandleClick('multiColumn')} />
-                    <Button
-                      className={ `filtersBtnCollapse ${filterContentMobileToggle === 'filterMobileCollapse' ? 'openFilter' : 'closeFilter'}` }
-                      icon={<i className="fal fa-filter" />}
-                      onClick={() => setFilterContentMobileToggle(prevState => !prevState ? "filterMobileCollapse" : "")}>
-                      { t(__('filters')) } {filterContentMobileToggle === 'filterMobileCollapse' && '-'}
-                    </Button>
-                  </Space>
-                </Col>
-              </Row>
-              <div>
-                { (filters && filters.length !== 0) &&
-                <Collapse
-                  ghost
-                  activeKey={ filterContentMobileToggle }
-                  className="filterMobileCollapse"
-                >
-                  <Panel showArrow={ false } header={ "" } className="filterMobileCollapse--panel" key="filterMobileCollapse">
-                    <ProductFilters
-                      filters = {filters}
-                      category_id = {params?.category_id || ""}
-                      category_seo_name = {categorySeoName || ""}
-                      category_name = {params?.category_name || ""}
-                      subCategories = {subCategories || []}
-                      product_length = {products?.length || ""}
-                      featuresHashContainer = {featuresHashContainer}
-                      featureHandleClick={featureHandleClick}
-                      featureRemoveHandleClick={featureRemoveHandleClick}
-                      featureResetHandleClick={handleResetFilter}
-                      handleConfirmFilters={handleConfirmFilters}
-                    />
-                  </Panel>
-                </Collapse>
                 }
-              </div>
-            </Col>
+
+                <Col span={24} className="mb-4">
+                  <Row gutter={5} align={"middle"}>
+                    <Col span={13} className="text-truncate">
+                      <span className="text-47 vv-font-size-1-2rem">{products?.length} {t(__('products'))}:</span>
+                      <span className="text-91 vv-font-size-1-2rem">{params?.category_name}</span>
+                    </Col>
+                    <Col span={11} className="productShowType text-right">
+                      <Space size={15}>
+                        <i className={ `icon-vv-list-without-options-business cursor-pointer display-6 ${productShowType === 'oneColumn' && 'active'}` } onClick={() => productShowTypeHandleClick('oneColumn')} />
+                        <i className={ `icon-vv-grid-list-business cursor-pointer display-6 ${productShowType === 'multiColumn' && 'active'}` } onClick={() => productShowTypeHandleClick('multiColumn')} />
+                        <Button
+                          className={ `filtersBtnCollapse ${filterContentMobileToggle === 'filterMobileCollapse' ? 'openFilter' : 'closeFilter'}` }
+                          icon={<i className="fal fa-filter" />}
+                          onClick={() => setFilterContentMobileToggle(prevState => !prevState ? "filterMobileCollapse" : "")}>
+                          { t(__('filters')) } {filterContentMobileToggle === 'filterMobileCollapse' && '-'}
+                        </Button>
+                      </Space>
+                    </Col>
+                  </Row>
+                  <div>
+                    { (filters && filters.length !== 0) &&
+                    <Collapse
+                      ghost
+                      activeKey={ filterContentMobileToggle }
+                      className="filterMobileCollapse"
+                    >
+                      <Panel showArrow={ false } header={ "" } className="filterMobileCollapse--panel" key="filterMobileCollapse">
+                        <ProductFilters
+                          filters = {filters}
+                          category_id = {params?.category_id || ""}
+                          category_seo_name = {categorySeoName || ""}
+                          category_name = {params?.category_name || ""}
+                          subCategories = {subCategories || []}
+                          product_length = {products?.length || ""}
+                          featuresHashContainer = {featuresHashContainer}
+                          featureHandleClick={featureHandleClick}
+                          featureRemoveHandleClick={featureRemoveHandleClick}
+                          featureResetHandleClick={handleResetFilter}
+                          handleConfirmFilters={handleConfirmFilters}
+                        />
+                      </Panel>
+                    </Collapse>
+                    }
+                  </div>
+                </Col>
+              </>
             }
 
             {(width >= 992 && (filters?.length === 0 && !isLoading)) &&
-            <Col span={6}>
+              <Col span={6}>
               {/* Loading...*/}
             </Col>
             }
@@ -431,6 +476,21 @@ const Categories = () => {
 
             <Col xs={24} lg={18} ref={productContentMobile}>
               <Row  gutter={[0, 22]}>
+
+                {(params?.category_description !== "" && subCategories?.length === 0 && width >= 992) &&
+                  <Col span={24} className="category-description" ref={categoryDescWithoutSubCategory}>
+
+                    <Paragraph ellipsis={ellipsisCategoryDesc ? { rows: 4 } : false} className="vv-font-size-2 text-70 font-weight-500">
+                      <div dangerouslySetInnerHTML={ { __html: params?.category_description }} />
+                    </Paragraph>
+
+                    <div className="text-center" onClick={() => categoryDescWithoutSubCategoryHandle()}>
+                      <i className="fas fa-grip-lines text-primary display-6 d-block cursor-pointer" />
+                      <i className={ `fas fa-angle-${ellipsisCategoryDesc ? 'down' : 'up'} open-desc text-primary display-6 d-block cursor-pointer` } />
+                    </div>
+                  </Col>
+                }
+
                 {width >= 992 &&
                 <Col span={24} className="text-right productShowType">
                   <Space size={"large"}>
@@ -491,18 +551,18 @@ const Categories = () => {
       </Col>
 
       {params?.total_items > 20 &&
-      <Col span={24} className="text-center products--pagination">
-        { (params && params.length !== 0) &&
-        <Pagination
-          size="default"
-          total={ params.total_items }
-          pageSize={20}
-          defaultCurrent={page || 1}
-          showSizeChanger={false}
-          itemRender={paginationItemRender}
-          onChange={(page) => {handleChangePage(page)}}
-        />
-        }
+        <Col span={24} className="text-center products--pagination">
+          { (params && params.length !== 0) &&
+          <Pagination
+            size="default"
+            total={ params.total_items }
+            pageSize={20}
+            defaultCurrent={page || 1}
+            showSizeChanger={false}
+            itemRender={paginationItemRender}
+            onChange={(page) => {handleChangePage(page)}}
+          />
+          }
       </Col>
       }
 
