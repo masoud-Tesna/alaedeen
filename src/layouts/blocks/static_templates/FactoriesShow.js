@@ -6,7 +6,7 @@ import { Button, Col, Row, Space, Image, Skeleton } from "antd";
 import { CommentOutlined } from "@ant-design/icons";
 
 // import Custom hooks:
-import { useGetApi, useQueryString, useWindowSize } from "../../../functions";
+import { useWindowSize } from "../../../functions";
 
 // import Verified
 import verifiedIcon from "../../../assets/images/verified.png";
