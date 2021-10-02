@@ -42,39 +42,35 @@ const ProductFilters = (props) => {
 
         <Row gutter={[6, 6]}>
 
-          { filters?.map(filter => {
+          {filters?.filter(filter => filter.selected_variants).map(filter => {
+            selectedFilter = true;
 
-            if (filter?.selected_variants) {
-              selectedFilter = true;
+            return(
+              Object.entries(filter?.selected_variants).map(([key, selected], index) => {
+                return (
+                  <Col>
+                    <div className="productFilter--selected__item">
 
-              return(
-                Object.entries(filter?.selected_variants).map(([key, selected], index) => {
-                  return (
-                    <Col>
-                      <div className="productFilter--selected__item">
+                      <Row className="h-100" align={"middle"} >
+                        <Col flex="1 1" className="vv-font-size-1-7 text-70 px-3 text-truncate">
+                          {selected.variant}
+                        </Col>
 
-                        <Row className="h-100" align={"middle"} >
-                          <Col flex="1 1" className="vv-font-size-1-7 text-70 px-3 text-truncate">
-                            {selected.variant}
-                          </Col>
+                        <Col
+                          flex="26px"
+                          className="cursor-pointer"
+                          onClick={() => props.featureRemoveHandleClick(filter.filter_id, selected?.variant_id) }
+                        >
+                          <i className="far fa-times-circle display-5 font-weight-light text-bf" />
+                        </Col>
+                      </Row>
 
-                          <Col
-                            flex="26px"
-                            className="cursor-pointer"
-                            onClick={() => props.featureRemoveHandleClick(filter.filter_id, selected?.variant_id) }
-                          >
-                            <i className="far fa-times-circle display-5 font-weight-light text-bf" />
-                          </Col>
-                        </Row>
-
-                      </div>
-                    </Col>
-                  );
-                })
-              )
-
-            }
-          }) }
+                    </div>
+                  </Col>
+                );
+              })
+            )
+          })}
 
           <Col className={ !selectedFilter && 'd-none' }>
             <div className="productFilter--selected__item reset">
