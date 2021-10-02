@@ -16,15 +16,15 @@ import polygon_2 from '../../../assets/images/polygon2.png';
 import polygon_3 from '../../../assets/images/polygon3.png';
 
 // import custom hooks:
-import { useWindowSize } from "../../../functions";
+import { useGetTopRankingProducts, useWindowSize } from "../../../functions";
 
 // import helper functions:
 import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
 
-import { useQueries } from "react-query";
-import axios from "axios";
+/*import { useQueries } from "react-query";
+import axios from "axios";*/
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 const TopRankingProducts = () => {
@@ -40,10 +40,10 @@ const TopRankingProducts = () => {
   const urlHandmadeCarpet = `items_per_page=3&category_path=electrical-and-electronic&page=1`;
   const urlBabyCarpet = `items_per_page=3&category_path=electrical-and-electronic&page=1`;
 
-  //const { load, productsCat1, productsCat2, productsCat3 } = useGetTopRankingProducts(urlCarpets, urlHandmadeCarpet, urlBabyCarpet);
+  const { load, productsCat1, productsCat2, productsCat3 } = useGetTopRankingProducts(urlCarpets, urlHandmadeCarpet, urlBabyCarpet);
 
 
-  async function getTopRankingProductsApi(param) {
+  /*async function getTopRankingProductsApi(param) {
     const { data } = await axios.get(`https://alaedeen.com/horn/products-api/?${param}&lang_code=${config.language}`);
     return data;
   }
@@ -58,11 +58,11 @@ const TopRankingProducts = () => {
 
   ])
 
-  //console.log(topRankingProducts)
+  console.log(topRankingProducts);*/
 
   return (
     <div className="topRankingProducts--container">
-      {/*<Row>
+      <Row>
         <Col className="topRankingProducts--caption__content" span={24}>
           <Row justify="space-between">
             <Col className={ `text-33 text-uppercase ${ width >= 768 ? 'vv-font-size-3' : 'vv-font-size-1-6' } font-weight-bold` }>
@@ -70,7 +70,7 @@ const TopRankingProducts = () => {
             </Col>
             <Col className="my-auto">
               <Link to="/top-rankings" className={ `${ width >= 768 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } text-33` } >
-                { t(__('View More')) } <i className={ `far fa-chevron-${language === 'en' ? 'right' : 'left'} ${ width >= 768 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } ${language === 'en' ? '' : 'align-middle'}` } />
+                { t(__('View More')) } <i className={ `far fa-chevron-${config.language === 'en' ? 'right' : 'left'} ${ width >= 768 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } ${config.language === 'en' ? '' : 'align-middle'}` } />
               </Link>
             </Col>
           </Row>
@@ -317,7 +317,7 @@ const TopRankingProducts = () => {
           }
 
         </Col>
-      </Row>*/}
+      </Row>
     </div>
   );
 };
