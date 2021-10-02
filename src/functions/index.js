@@ -84,40 +84,18 @@ export function useGetApi(mode, params, useQueryKey) {
   });
 }
 
-export function useResizeImage(image_path, image_folder, image_width, image_height) {
-  const [load, setLoad] = useState(true);
-  const [image, setImage] = useState([]);
-  const [error, setError] = useState(false);
+export function useResizeImage (image_path, image_folder, image_width, image_height, useQueryKey) {
 
-  useEffect(() => {
-    // async function for get API:
-    const url = `https://alaedeen.com/horn/image-resize-api/?image_path=${image_path}&image_folder=${image_folder}&image_width=${image_width}&image_height=${image_height}`;
-    async function getImageResized() {
-      return await axios.get(url);
-    }
+  // async function for get API:
+  const url = `https://alaedeen.com/horn/image-resize-api/?image_path=${image_path}&image_folder=${image_folder}&image_width=${image_width}&image_height=${image_height}`;
+  async function getImageResized() {
+    const { data } = await axios.get(url);
+    return data;
+  }
 
-    let mounted  = true;
-    setLoad(true);
-
-    if (mounted) {
-      getImageResized()
-        .then(res => {
-          setImage(res.data.image);
-        })
-        .then(() => {
-          setLoad(false);
-        })
-        .catch ((error) => {
-          setError((prev => !prev));
-          setLoad(false);
-        })
-    }
-
-    return () => mounted = false;
-
-  }, [image_path, image_folder, image_width, image_height, error]);
-
-  return { image, load, error }
+  return useQuery(['imageResponsive', useQueryKey], getImageResized, {
+    enabled: !!image_path
+  });
 }
 
 export function useWindowSize() {
