@@ -1,5 +1,5 @@
 // Components:
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 
 // import Custom Hooks:
 import { useWindowSize } from '../../functions';
