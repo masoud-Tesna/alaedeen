@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 // import Style LESS File:
 import './styles/Home.less';
@@ -23,7 +23,7 @@ import RecentlyProductsView from "../layouts/blocks/static_templates/RecentlyPro
 import TopBrands from "../layouts/blocks/static_templates/TopBrands";
 import WhatHorn from "../layouts/blocks/static_templates/WhatHorn";
 import HomePageShowProducts from "../layouts/blocks/static_templates/HomePageShowProducts";
-import { __ } from "../functions/Helper";
+
 import { Helmet } from "react-helmet";
 
 const Home = () => {
