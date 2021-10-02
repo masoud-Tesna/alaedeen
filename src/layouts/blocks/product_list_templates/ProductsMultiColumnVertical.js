@@ -88,10 +88,10 @@ const ProductsMultiColumnVertical = (props) => {
             </Row>
           </Col>
 
-          {(config.countryCode !== 'IR' && productPrice != 0.000) &&
+          {(config.countryCode !== 'IR' && productPrice !== "0.00") &&
           <Col span={24} className="productsMultiColumnVertical--item__price">
             <span className={ `${ width >= 768 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }>${ productPrice } </span>
-            { productListPrice != 0.00 &&
+            { productListPrice !== "0.00" &&
             <span className={ `${ width >= 768 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }> - ${productListPrice}</span>
             }
             {product.quantity_unit &&
