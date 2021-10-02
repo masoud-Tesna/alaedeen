@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 // import Style File:
 import './styles/TopBrands.less';
 
