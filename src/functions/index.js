@@ -7,6 +7,58 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import { useGetConfig } from "../contexts/config/ConfigContext";
 
+export function useGetTopRankingProducts(cat1, cat2, cat3) {
+  const [load, setLoad] = useState(true);
+  const [productsCat1, setProductsCat1] = useState([]);
+  const [productsCat2, setProductsCat2] = useState([]);
+  const [productsCat3, setProductsCat3] = useState([]);
+  const [parametersCat1, setParametersCat1] = useState([]);
+  const [parametersCat2, setParametersCat2] = useState([]);
+  const [parametersCat3, setParametersCat3] = useState([]);
+  const [error, setError] = useState(null);
+
+  // get initial config:
+  const { config } = useGetConfig();
+
+  useEffect(() => {
+    let mounted  = true;
+    setLoad(true);
+
+    if (mounted && config.language) {
+
+      // async function for get API:
+      async function getProduct() {
+        return await axios.all([
+          axios.get(`https://alaedeen.com/horn/products-api/?${cat1}&lang_code=${config.language}`),
+          axios.get(`https://alaedeen.com/horn/products-api/?${cat2}&lang_code=${config.language}`),
+          axios.get(`https://alaedeen.com/horn/products-api/?${cat3}&lang_code=${config.language}`)
+        ]);
+      }
+
+      getProduct()
+        .then(axios.spread((firstResponse, secondResponse, thirdResponse) => {
+          setProductsCat1(firstResponse.data.products);
+          setProductsCat2(secondResponse.data.products);
+          setProductsCat3(thirdResponse.data.products);
+
+          setParametersCat1(thirdResponse.data.params);
+          setParametersCat2(thirdResponse.data.params);
+          setParametersCat3(thirdResponse.data.params);
+        }))
+        .then(() => {
+          setLoad(false);
+        })
+        .catch ((error) => {
+          setError(error);
+          setLoad(false);
+        })
+    }
+    return () => mounted = false;
+  }, [cat1, cat2, cat3, config.language]);
+
+  return { productsCat1, productsCat2, productsCat3, parametersCat1, parametersCat2, parametersCat3, load, error }
+}
+
 export function useGetApi(mode, params, useQueryKey) {
 
   // get initial config:
