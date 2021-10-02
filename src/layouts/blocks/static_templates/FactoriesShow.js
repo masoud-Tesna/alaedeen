@@ -215,15 +215,9 @@ const FactoryProduct = ({ products }) => {
   );
 }
 
-const FactoriesShow = () => {
+const FactoriesShow = ({ factories, isLoading, factory_id }) => {
 
   const { t } = useTranslation();
-
-  const factory_id = useQueryString().get('factory');
-
-  // get factories from API:
-  const { isLoading, data } = useGetApi(`factories-api`, '', `factories`);
-  const { factories } = data || [];
 
   const { width } = useWindowSize();
 

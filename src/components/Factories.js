@@ -17,12 +17,20 @@ import FactoriesShow from "../layouts/blocks/static_templates/FactoriesShow";
 import { __ } from '../functions/Helper';
 
 import { useTranslation } from "react-i18next";
+import { useGetApi, useQueryString } from "../functions";
 
 const Factories = () => {
 
   const { t } = useTranslation();
 
   const { pathname } = useLocation();
+
+  const factory_id = useQueryString().get('factory');
+
+  // get factories from API:
+  const { isLoading, data } = useGetApi(`factories-api`, '', `factories`);
+  const { factories } = data || [];
+
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -63,7 +71,11 @@ const Factories = () => {
 
         <Col span={24} className="factories--bottomSection mb-5">
           <Row gutter={[0, 50]} className="factories--items">
-            <FactoriesShow />
+            <FactoriesShow
+              factories={factories}
+              isLoading={isLoading}
+              factory_id={factory_id}
+            />
           </Row>
         </Col>
       </Row>
