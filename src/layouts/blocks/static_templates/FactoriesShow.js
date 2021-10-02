@@ -1,5 +1,3 @@
-import React, { useEffect, useState } from "react";
-
 // import Style File:
 import './styles/FactoriesShow.less';
 
@@ -8,7 +6,7 @@ import { Button, Col, Row, Space, Image, Skeleton } from "antd";
 import { CommentOutlined } from "@ant-design/icons";
 
 // import Custom hooks:
-import { useGetApi, useGetFactories, useQueryString, useWindowSize } from "../../../functions";
+import { useGetApi, useQueryString, useWindowSize } from "../../../functions";
 
 // import Verified
 import verifiedIcon from "../../../assets/images/verified.png";
