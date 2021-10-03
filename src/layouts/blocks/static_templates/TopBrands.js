@@ -16,21 +16,38 @@ import { __, fn_stripHtml } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
+import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 
-const FactoriesLogo = ({ logo, alt }) => {
+const FactoriesLogo = ({ logo, alt, object_id, width }) => {
 
   // get initial config:
   const { config } = useGetConfig();
 
   if ((config.language === 'en' || config.language === 'ar') && logo.en) {
     return (
-      <img src={ logo.en } alt={ alt }/>
+    <ShowResponsiveImage
+      imagePath={ logo.en }
+      imageFolder='company_logo'
+      width={width >= 992 ? 150 : 65}
+      height={width >= 992 ? 150 : 65}
+      imageAlt={ alt }
+      object_id={object_id}
+      object_type={`company_logo_en`}
+    />
     );
   }
 
   if (config.language === 'fa' && logo.fa) {
     return (
-      <img src={ logo.fa } alt={ alt }/>
+      <ShowResponsiveImage
+        imagePath={ logo.fa }
+        imageFolder='company_logo'
+        width={width >= 992 ? 150 : 65}
+        height={width >= 992 ? 150 : 65}
+        imageAlt={ alt }
+        object_id={object_id}
+        object_type={`company_logo_fa`}
+      />
     );
   }
 
@@ -81,7 +98,12 @@ const TopBrands = () => {
                         <Col className="topBrands--item" key={ brand.company_id * 10 }>
                           <a className="d-block h-100" href={`https://store.alaedeen.com/?store_id=${brand.company_id}`}>
                             <div className="d-flex align-items-end justify-content-center topBrands--item__image">
-                              <FactoriesLogo logo={ brand.logo } alt={ brand.company }/>
+                              <FactoriesLogo
+                                logo={ brand.logo }
+                                alt={ brand.company }
+                                object_id={brand.company_id}
+                                width={width}
+                              />
                             </div>
                             <div className="vv-font-size-2-2 text-47 text-center mt-3 topBrands--item__name">
                               { brand.company }
@@ -116,7 +138,12 @@ const TopBrands = () => {
                             <a className="d-block h-100" href={`https://store.alaedeen.com/?store_id=${brand.company_id}`}>
                               <Row className="topBrandsScroll--item" justify="center">
                                 <div className="d-flex align-items-end justify-content-center w-100 topBrands--item__image">
-                                  <FactoriesLogo logo={ brand.logo } alt={ brand.company }/>
+                                  <FactoriesLogo
+                                    logo={ brand.logo }
+                                    alt={ brand.company }
+                                    object_id={brand.company_id}
+                                    width={width}
+                                  />
                                 </div>
                                 <div className="vv-font-size-1-4 font-weight-600 text-47 text-center text-truncate mt-1 w-100 topBrands--item__name">
                                   { brand.company }

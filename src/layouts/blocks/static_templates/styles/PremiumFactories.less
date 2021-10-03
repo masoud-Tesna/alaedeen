@@ -35,7 +35,6 @@ html:lang(ar) {
     .premiumFactories--items {
       .premiumFactories--item {
         .premiumFactories--item__image {
-          width: 58px;
           img {
             max-width: 100%;
             max-height: 100%;
@@ -62,11 +61,11 @@ html:lang(ar) {
         }
       }
       .premiumFactories--itemXs {
-        width: 105px;
+        width: 120px;
         .premiumFactories--factoryImages__Xs {
           img {
-            width: 105px;
-            height: 105px;
+            width: 120px;
+            height: 120px;
           }
         }
         .premiumFactories--factoryIcon__Xs {
@@ -74,6 +73,14 @@ html:lang(ar) {
             width: 100%;
           }
         }
+      }
+
+      .premiumFactories--item__link {
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        top: 0;
       }
     }
   }
@@ -86,9 +93,7 @@ html:lang(ar) {
       .premiumFactories--items {
         .premiumFactories--item {
           padding: 2rem!important;
-          .premiumFactories--item__detail {
-            height: 60px;
-          }
+
           .premiumFactories--item__detailImages {
             height: calc(100% - calc(60px + 1.5rem));
           }

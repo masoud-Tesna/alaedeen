@@ -34,7 +34,15 @@ const SubCategoriesSwiperMobile = ({ subCategories, category_name }) => {
                       <Col span={24} className="text-center my-2">
                         <div className="subCategoriesSwiper--image">
                           { subCategory?.main_pair?.detailed ?
-                            <ShowResponsiveImage imagePath={ subCategory?.main_pair?.detailed?.image_path } imageFolder='detailed' width={65} height={65} imageAlt={ subCategory?.category }/> :
+                            <ShowResponsiveImage
+                              imagePath={ subCategory?.main_pair?.detailed?.image_path }
+                              imageFolder='detailed'
+                              width={65}
+                              height={65}
+                              imageAlt={ subCategory?.category }
+                              object_id={subCategory?.category_id}
+                              object_type={`cat`}
+                            /> :
                             <Image
                               width={65}
                               height={65}

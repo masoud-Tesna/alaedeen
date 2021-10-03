@@ -20,21 +20,38 @@ import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
+import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 
-const FactoriesLogo = ({ logo, alt }) => {
+const FactoriesLogo = ({ logo, alt, object_id, width }) => {
 
   // get initial config:
   const { config } = useGetConfig();
 
   if ((config.language === 'en' || config.language === 'ar') && logo.en) {
     return (
-      <img src={ logo.en } alt={ alt }/>
+      <ShowResponsiveImage
+        imagePath={ logo.en }
+        imageFolder='company_logo'
+        width={width >= 992 ? 60 : 26}
+        height={width >= 992 ? 60 : 26}
+        imageAlt={ alt }
+        object_id={object_id}
+        object_type={`company_logo_en`}
+      />
     );
   }
 
   if (config.language === 'fa' && logo.fa) {
     return (
-      <img src={ logo.fa } alt={ alt }/>
+      <ShowResponsiveImage
+        imagePath={ logo.fa }
+        imageFolder='company_logo'
+        width={width >= 992 ? 60 : 26}
+        height={width >= 992 ? 60 : 26}
+        imageAlt={ alt }
+        object_id={object_id}
+        object_type={`company_logo_fa`}
+      />
     );
   }
 
@@ -44,26 +61,44 @@ const FactoriesLogo = ({ logo, alt }) => {
 
 }
 
-const FactoriesImages = ({ images, alt }) => {
+const FactoriesImages = ({ images, alt, object_id, width }) => {
 
   return(
     <div className="d-flex premiumFactories--item__detailImages">
       <div className="premiumFactories--factoryImages__item1">
-        {images[0] ?
-          <img src={ images[ 0 ] } alt={ alt }/> :
+        { images[0] ?
+          <ShowResponsiveImage
+            imagePath={ images[ 0 ] }
+            imageFolder='profiles'
+            imageAlt={ alt }
+            object_id={`img_0${object_id}`}
+            object_type={`factories_image_0`}
+          /> :
           <Skeleton.Image active={true} className="premiumFactories--skeletonImages__item1" />
         }
       </div>
       <Row className="premiumFactories--factoryImages__item_2_3">
         <Col span={24} className="premiumFactories--factoryImages__item2 mb-4 align-self-start">
-          {images[1] ?
-            <img src={ images[ 1 ] } alt={ alt }/> :
+          { images[1] ?
+            <ShowResponsiveImage
+              imagePath={ images[ 1 ] }
+              imageFolder='profiles'
+              imageAlt={ alt }
+              object_id={`img_1${object_id}`}
+              object_type={`factories_image_1`}
+            /> :
             <Skeleton.Image active={true} className="premiumFactories--skeletonImages__item_2_3" />
           }
         </Col>
         <Col span={24} className="premiumFactories--factoryImages__item3 align-self-end">
-          {images[2] ?
-            <img src={ images[ 2 ] } alt={ alt }/> :
+          { images[2] ?
+            <ShowResponsiveImage
+              imagePath={ images[ 2 ] }
+              imageFolder='profiles'
+              imageAlt={ alt }
+              object_id={`img_2${object_id}`}
+              object_type={`factories_image_2`}
+            /> :
             <Skeleton.Image active={true} className="premiumFactories--skeletonImages__item_2_3" />
           }
         </Col>
@@ -117,29 +152,35 @@ const PremiumFactories = () => {
                     {factories?.map((factory, index) => {
                       return (
                         <Col span={8} key={index}>
-                          <Link className="d-block h-100" to={ `/factories?factory=${factory.company_id}` }>
-                            <div className="premiumFactories--item rounded-10 shadow-y-2 bg-white h-100">
-                              <div className="mb-4 d-flex align-items-center premiumFactories--item__detail" style={{ height: '60px' }}>
-                                <div className="premiumFactories--item__image">
-                                  <FactoriesLogo logo={ factory.logo } alt={ factory.company }/>
+                          <div className="premiumFactories--item rounded-10 shadow-y-2 bg-white h-100">
+                            <Row className="mb-4 d-flex- align-items-center- premiumFactories--item__detail">
+                              <Col flex="70px" className="premiumFactories--item__image">
+                                <FactoriesLogo
+                                  logo={ factory.logo }
+                                  alt={ factory.company }
+                                  object_id={factory.company_id}
+                                  width={width}
+                                />
+                              </Col>
+                              <Col flex="1 1" className="w-100- premiumFactories--item__caption">
+                                <div className="vv-font-size-1-6 text-black text-truncate premiumFactories--item__name">
+                                  { factory.company }
                                 </div>
-                                <div className="w-100 premiumFactories--item__caption">
-                                  <div className="vv-font-size-1-6 text-black text-truncate premiumFactories--item__name">
-                                    { factory.company }
-                                  </div>
-                                  <div className="premiumFactories--item__verified">
-                                    <img src={ verifiedIcon } alt="Verified"/>
-                                  </div>
+                                <div className="premiumFactories--item__verified">
+                                  <img src={ verifiedIcon } alt="Verified"/>
                                 </div>
-                              </div>
+                              </Col>
+                            </Row>
 
-                              <FactoriesImages
-                                images={factory.images || ''}
-                                alt={ factory.company }
-                              />
+                            <FactoriesImages
+                              images={factory.images || ''}
+                              alt={ factory.company }
+                              object_id={factory.company_id}
+                              width={width}
+                            />
 
-                            </div>
-                          </Link>
+                          </div>
+                          <Link className="premiumFactories--item__link" to={ `/factories?factory=${factory.company_id}` } />
                         </Col>
                       );
                     })}
@@ -157,25 +198,36 @@ const PremiumFactories = () => {
                   <>
                     {factories?.map((factory, index) => {
                       return (
-                        <Col span={8} key={index}>
-                          <Link className="d-block h-100" to={ `/factories?factory=${factory.company_id}` }>
-                            <div className="premiumFactories--itemXs">
-                              <div className="premiumFactories--factoryImages__Xs">
-                                {factory?.images ?
-                                  <img src={ factory.images[0] } alt={factory.company}/> :
-                                  <Skeleton.Image active={true} className="premiumFactories--skeletonImages__item1" />
-                                }
-                              </div>
-                              <div className="mt-2">
-                                <Row className="premiumFactoriesXs--item__detail">
-                                  <Col className="text-truncate my-auto text-black" span={18}>{factory.company}</Col>
-                                  <Col className="text-right premiumFactories--factoryIcon__Xs" span={6}>
-                                    <FactoriesLogo logo={ factory.logo } alt={ factory.company }/>
-                                  </Col>
-                                </Row>
-                              </div>
+                        <Col key={index}>
+                          <div className="premiumFactories--itemXs">
+                            <div className="premiumFactories--factoryImages__Xs">
+
+                              { factory?.images ?
+                                <ShowResponsiveImage
+                                  imagePath={ factory?.images[ 0 ] }
+                                  imageFolder='profiles'
+                                  imageAlt={ factory?.company }
+                                  object_id={`img_0${factory.company_id}`}
+                                  object_type={`factories_image_0`}
+                                /> :
+                                <Skeleton.Image active={true} className="premiumFactories--skeletonImages__item1" style={{ width: 120, height: 120 }} />
+                              }
                             </div>
-                          </Link>
+                            <div className="mt-2">
+                              <Row className="premiumFactoriesXs--item__detail">
+                                <Col className="text-truncate my-auto text-black" span={18}>{factory.company}</Col>
+                                <Col className="text-right premiumFactories--factoryIcon__Xs" span={6}>
+                                  <FactoriesLogo
+                                    logo={ factory.logo }
+                                    alt={ factory.company }
+                                    object_id={factory.company_id}
+                                    width={width}
+                                  />
+                                </Col>
+                              </Row>
+                            </div>
+                          </div>
+                          <Link className="premiumFactories--item__link" to={ `/factories?factory=${factory.company_id}` } />
                         </Col>
                       );
                     })}

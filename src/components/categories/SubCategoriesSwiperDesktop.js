@@ -29,7 +29,15 @@ const SubCategoriesSwiperDesktop = ({ subCategories }) => {
                     <Col span={24} className="text-center my-2">
                       <div className="subCategoriesSwiper--image">
                         { subCategory?.main_pair?.detailed ?
-                          <ShowResponsiveImage imagePath={ subCategory?.main_pair?.detailed?.image_path } imageFolder='detailed' width={92} height={92} imageAlt={ subCategory?.category }/> :
+                          <ShowResponsiveImage
+                            imagePath={ subCategory?.main_pair?.detailed?.image_path }
+                            imageFolder='detailed'
+                            width={92}
+                            height={92}
+                            imageAlt={ subCategory?.category }
+                            object_id={subCategory?.category_id}
+                            object_type={`cat`}
+                          /> :
                           <Image
                             width={92}
                             height={92}
