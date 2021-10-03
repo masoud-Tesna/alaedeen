@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 
 //import style file:
@@ -47,6 +47,8 @@ const Categories = () => {
   // initial for work in URL
   const history = useHistory();
   const query = useQueryString();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
 
   // get category path from url:
   const { category: categorySeoName } = useParams();
@@ -60,10 +62,10 @@ const Categories = () => {
   }
 
   // create page state for paging
-  const [page, setPage] = useState(query.get("page"));
+  const [page, setPage] = useState(query.get("page") || 1);
 
   // create page state for paging
-  const storeId = useState(query.get("store_id"));
+  const storeId = query.get("store_id");
 
   // create initial filters state:
   const [filtersApi, setFiltersApi] = useState([]);
@@ -72,27 +74,29 @@ const Categories = () => {
   const [featuresHashContainer, setFeaturesHashContainer] = useState("");
   const [featuresHash, setFeaturesHash] = useState("");
 
+
   const [isLoadingHandle, setIsLoadingHandle] = useState(false);
 
   // if change category path => remove page and features_hash from URL & reset page, filtersApi, featuresHash and featuresHashContainer state:
   useEffect(() => {
 
     // remove param from URL:
-    query.delete('page');
-    query.delete('features_hash');
+    //query.delete('page');
+    //query.delete('features_hash');
 
     // reset states:
-    /*setPage(query.get("page") || 1);*/
+    setPage(query.get("page") || 1);
     //setPage(1);
     setFiltersApi([]);
-    /*setFeaturesHash(query.get("features_hash") || "");*/
+    setFeaturesHash(query.get("features_hash") || "");
     //setFeaturesHash("");
-    setFeaturesHashContainer("");
+    setFeaturesHashContainer(query.get("features_hash") || "");
 
   }, [categorySeoName]);
 
   // get category filters:
   useEffect(() => {
+    let mount = true;
     // function for get category filters::
     async function getProductFilters() {
       setIsLoadingHandle(true);
@@ -100,7 +104,7 @@ const Categories = () => {
       return await axios.get(url);
     }
 
-    if (config.language) {
+    if (config.language && mount) {
       getProductFilters()
         .then(res => {
           // category filters add to filtersApi state:
@@ -108,10 +112,17 @@ const Categories = () => {
           setIsLoadingHandle(false);
         });
     }
+    return () => {
+      mount = false;
+    }
 
-  }, [featuresHashContainer, categorySeoName, config.language]);
+  }, [featuresHashContainer, categorySeoName, config.language, storeId]);
   // get filters and sub categories from filtersApi Or empty array:
-  const {filters, subCategories} = filtersApi || [];
+ const {filters, subCategories} = filtersApi || [];
+
+/*  const { isLoading: load2, data: filter2 } = useGetApi(`product-filters-api`, `category_path=${categorySeoName}&features_hash=${featuresHashContainer}&lang_code=${config.language}${storeId ? `&store_id=${storeId}` : ''}`, `filter2_${categorySeoName}${page ? `_${page}` : ''}${featuresHashContainer ? `_${featuresHashContainer}` : ''}${storeId ? `_${storeId}` : ''}`);
+
+  const {filters, subCategories} = filter2 || [];*/
 
   // function for handle select feature:
   const featureHandleClick = (filter_id = "", variant_id = "") => {
@@ -147,6 +158,13 @@ const Categories = () => {
           setFeaturesHash(res.data);
         }
 
+        if (queryParams.has('features_hash')) {
+          queryParams.set('features_hash', res.data)
+          history.replace({
+            search: queryParams.toString(),
+          })
+        }
+
         /*setFeaturesHash(prevState => {
           if (prevState) {
             return res.data
@@ -157,6 +175,13 @@ const Categories = () => {
 
   const handleResetFilter = () => {
     setFeaturesHashContainer("");
+
+    if (queryParams.has('features_hash')) {
+      queryParams.delete('features_hash')
+      history.replace({
+        search: queryParams.toString(),
+      })
+    }
 
     if (featuresHash) {
       setFeaturesHash("");
@@ -169,11 +194,11 @@ const Categories = () => {
     setFeaturesHash(featuresHashContainer);
 
     // attaching filter hash and page in to url: (fealan comment shod ta dorost konam)
-    //history.push(`/categories/${categorySeoName}/?page=${page}&features_hash=${featuresHashContainer}`);
+    history.push(`/categories/${categorySeoName}/?page=${page}${featuresHashContainer && `&features_hash=${featuresHashContainer}`}${storeId ? `&store_id=${storeId}` : ''}`);
   }
 
   // get products from API before selecting filters and after selecting filter:
-  const { isLoading, data: product_data } = useGetApi(`products-api`, `category_path=${categorySeoName}&items_per_page=20&page=${page}&features_hash=${featuresHash}${storeId ? `&store_id=${storeId}` : ''}`, `category_product_${categorySeoName}_${page}${featuresHash ? `_${featuresHash}` : ''}${storeId ? `_${storeId}` : ''}`);
+  const { isLoading, data: product_data } = useGetApi(`products-api`, `category_path=${categorySeoName}&items_per_page=20&page=${page}&features_hash=${featuresHash}${storeId ? `&store_id=${storeId}` : ''}`, `category_product_${categorySeoName}${page ? `_${page}` : ''}${featuresHash ? `_${featuresHash}` : ''}${storeId ? `_${storeId}` : ''}`);
 
   // get products and params from product_data Or empty array:
   const { products, categoryBanners, params} = product_data || [];
@@ -182,11 +207,12 @@ const Categories = () => {
   const productContentDesktop = useRef(null);
   const productContentMobile = useRef(null);
   useEffect(() => {
-    if (width >= 992) {
+/*    if (width >= 992) {
       productContentDesktop.current.scrollIntoView({ behavior: "smooth" });
     } else {
       productContentMobile.current.scrollIntoView({ behavior: "smooth" });
-    }
+    }*/
+    window.scroll({ top: 0, behavior: 'smooth' });
   }, [page]);
 
   // function for handle change page:
