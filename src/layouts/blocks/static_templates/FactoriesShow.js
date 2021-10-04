@@ -70,18 +70,22 @@ const ShowMainMarket = ({ mainMarkets }) => {
   const length = mainMarkets.length;
   return (
     <Space>
+
+      {/* show market country */}
       {mainMarkets.map((mainMarket, i) => {
         return (
-          <>
-            { i <= 3 &&
+          i <= 3 &&
             <span key={i}>
-              { mainMarket.country }
+                  { mainMarket.country }
             </span>
-            }
-          </>
         );
       })}
-      { length > 3 && '...' }
+
+      {/* if length of market > 4 show ... dot */}
+      { length > 4 && '...' }
+
+      {/* if not country in market show ... dot */}
+      {length === 0 && '...'}
     </Space>
   );
 }
@@ -90,38 +94,43 @@ const FieldValues = ({ fieldValues, width }) => {
 
   if (width >= 991) { // For Desktop:
     return (
-      <>
-        {fieldValues.map((fieldValue, i) => {
-          return (
-            <Col className="factories--fieldItem" key={i}>
-              <Row className="factories--fieldRow">
-                <Col span={24} className="vv-font-size-1-5 text-black font-weight-bold">
-                  { fieldValue.field_id === 75 ?
-                    <ShowMainMarket mainMarkets={fieldValue.value} /> :
-                    <>{fieldValue.value}</>
-                  }
-                </Col>
-                <Col span={24} className="vv-font-size-1-4 text-92">{fieldValue.caption}</Col>
-              </Row>
-            </Col>
-          );
-        })}
-      </>
+      fieldValues?.map(({ field_id, caption, value }, i) => {
+        return (
+          <Col className="factories--fieldItem" key={i}>
+            <Row className="factories--fieldRow">
+              <Col span={24} className="vv-font-size-1-6 text-black font-weight-bold text-truncate">
+                { field_id === 75 ?
+                  <ShowMainMarket mainMarkets={value} /> :
+
+                  value || '...'
+                }
+              </Col>
+
+              <Col span={24} className="vv-font-size-1-5 text-92 text-truncate">
+                {caption}
+              </Col>
+            </Row>
+          </Col>
+        );
+      })
     );
-  }else { // For Mobile:
+  }
+  else { // For Mobile:
     return (
-      <>
-        {fieldValues.slice(0,2).map((fieldValue, i) => {
-          return (
-            <Col span={12} className="factories--fieldItem" key={i}>
-              <Row className="factories--fieldRow h-100">
-                <Col span={24} className="vv-font-size-1-2 text-black font-weight-bold align-self-start">{fieldValue.value}</Col>
-                <Col span={24} className="vv-font-size-1-2 text-92 align-self-end">{fieldValue.caption}</Col>
-              </Row>
-            </Col>
-          );
-        })}
-      </>
+      fieldValues?.slice(0,2)?.map(({ field_id, caption, value }, i) => {
+        return (
+          <Col span={12} className="factories--fieldItem" key={i}>
+            <Row className="factories--fieldRow" gutter={[0, 10]}>
+              <Col span={24} className="vv-font-size-1-2 text-black font-weight-bold text-truncate">
+                {value || '...'}
+              </Col>
+              <Col span={24} className="vv-font-size-1-2 text-92 text-truncate">
+                {caption}
+              </Col>
+            </Row>
+          </Col>
+        );
+      })
     );
   }
 }
@@ -132,45 +141,41 @@ const GroupFields = ({ groupFields, width }) => {
 
     if (width >= 991) { // For Desktop:
       return (
-        <>
-          {groupFields.map((groupField) => {
-            return (
-              <Col span={12} key = { groupField.group_id }>
-                <div className="py-2 px-3 factories--informationItem">
-                  <Row>
-                    <Col span={24} className="vv-font-size-1-4 text-33 factories--informationItem__caption">{groupField.caption}:</Col>
-                    <Col span={24} className="vv-font-size-1-4 text-33 factories--informationItem__details">
-                      <Row justify={"space-between"}>
-                        <FieldValues fieldValues = { groupField.values } width={width}/>
-                      </Row>
-                    </Col>
-                  </Row>
-                </div>
-              </Col>
-            );
-          })}
-        </>
+        groupFields?.map(({ group_id, caption, values }) => {
+          return (
+            <Col span={12} key = { group_id }>
+              <div className="py-2 px-3 factories--informationItem h-100">
+                <Row className="h-100">
+                  <Col span={24} className="vv-font-size-1-4 text-33 factories--informationItem__caption">{caption}:</Col>
+                  <Col span={24} className="vv-font-size-1-4 text-33 factories--informationItem__details">
+                    <Row className={ group_id === 10 ? 'row-cols-3' : 'factories--informationItem__cols-2' } gutter={10}>
+                      <FieldValues fieldValues = { values } width={width}/>
+                    </Row>
+                  </Col>
+                </Row>
+              </div>
+            </Col>
+          );
+        })
       );
     }
     else { // For Mobile:
       return (
-        <>
-          {groupFields.slice(0,1).map((groupField) => {
-            return (
-              <Col flex="1 1" key = { groupField.group_id }>
-                <div className="factories--informationItem">
-                  <Row>
-                    <Col span={24} className="vv-font-size-1-4 text-33">
-                      <Row justify={"space-between"}>
-                        <FieldValues fieldValues = { groupField.values } width={width} />
-                      </Row>
-                    </Col>
-                  </Row>
-                </div>
-              </Col>
-            );
-          })}
-        </>
+        groupFields?.slice(0,1)?.map(({ group_id, values }) => {
+          return (
+            <Col flex="1 1" key = { group_id }>
+              <div className="factories--informationItem h-100">
+                <Row className="">
+                  <Col span={24} className="vv-font-size-1-4 text-33">
+                    <Row justify={"space-between"}>
+                      <FieldValues fieldValues = { values } width={width} />
+                    </Row>
+                  </Col>
+                </Row>
+              </div>
+            </Col>
+          );
+        })
       );
     }
   }
@@ -267,49 +272,47 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
         {/* show selected factory in top level by shadow: */}
         { factories?.filter(factory => factory.company_id === factory_id).map(factory => {
 
-          let groupFields_1 = [];
-          let groupFields_2 = [];
           let factoryFields = [];
 
           if (factory) {
-            groupFields_1[ 'group_id' ] = factory.company_id * 2;
-            groupFields_1[ 'caption' ] = 'Production capability';
-            groupFields_1[ 'values' ] = [
-              {
-                'field_id': 68,
-                'caption': 'Total employees',
-                'value': factory.basic_company_details.fields.total_no_employees
-              },
-              {
-                'field_id': 69,
-                'caption': 'Factory size',
-                'value': factory.basic_company_details.fields.office_size
-              },
-              {
-                'field_id': 70,
-                'caption': 'R&D employees',
-                'value': factory.manufacturing_capability.fields.no_of_r_and_d_staff
-              }
-            ];
-
-            groupFields_2[ 'group_id' ] = factory.company_id * 4;
-            groupFields_2[ 'caption' ] = 'Export Capability';
-            groupFields_2[ 'values' ] = [
-              {
-                'field_id': 75,
-                'caption': 'Main Markets',
-                'value': factory.export_capability.fields.main_markets_and_distribution
-              },
-              {
-                'field_id': 78,
-                'caption': 'Export rate',
-                'value': factory.export_capability.fields.export_rate
-              }
-            ];
-
             factoryFields = [
-              groupFields_1,
-              groupFields_2
+              {
+                'group_id' : 10,
+                'caption': t(__('Production capability')),
+                'values': [
+                  {
+                    'field_id': 68,
+                    'caption': t(__('Total employees')),
+                    'value': factory.basic_company_details.fields.total_no_employees
+                  },
+                  {
+                    'field_id': 69,
+                    'caption': t(__('Factory size')),
+                    'value': factory.basic_company_details.fields.office_size
+                  },
+                  {
+                    'field_id': 70,
+                    'caption': t(__('R&D employees')),
+                    'value': factory.manufacturing_capability.fields.no_of_r_and_d_staff
+                  }
+                ]
+              },
+              {
+                'group_id' : 11,
+                'caption': t(__('Export Capability')),
+                'values': [
+                  {
+                    'field_id': 75,
+                    'caption': t(__('Main Markets')),
+                    'value': factory.export_capability.fields.main_markets_and_distribution
+                  },
+                  {
+                    'field_id': 78,
+                    'caption': t(__('Export rate')),
+                    'value': factory.export_capability.fields.export_rate
+                  }
+                ]
+              }
             ];
           }
 
@@ -468,49 +471,47 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
         {/* show another factory after selected: */}
         { factories?.filter(factory => factory.company_id !== factory_id).map(factory => {
 
-          let groupFields_1 = [];
-          let groupFields_2 = [];
           let factoryFields = [];
 
           if (factory) {
-            groupFields_1[ 'group_id' ] = factory.company_id * 2;
-            groupFields_1[ 'caption' ] = 'Production capability';
-            groupFields_1[ 'values' ] = [
-              {
-                'field_id': 68,
-                'caption': 'Total employees',
-                'value': factory.basic_company_details.fields.total_no_employees
-              },
-              {
-                'field_id': 69,
-                'caption': 'Factory size',
-                'value': factory.basic_company_details.fields.office_size
-              },
-              {
-                'field_id': 70,
-                'caption': 'R&D employees',
-                'value': factory.manufacturing_capability.fields.no_of_r_and_d_staff
-              }
-            ];
-
-            groupFields_2[ 'group_id' ] = factory.company_id * 4;
-            groupFields_2[ 'caption' ] = 'Export Capability';
-            groupFields_2[ 'values' ] = [
-              {
-                'field_id': 75,
-                'caption': 'Main Markets',
-                'value': factory.export_capability.fields.main_markets_and_distribution
-              },
-              {
-                'field_id': 78,
-                'caption': 'Export rate',
-                'value': factory.export_capability.fields.export_rate
-              }
-            ];
-
             factoryFields = [
-              groupFields_1,
-              groupFields_2
+              {
+                'group_id' : 10,
+                'caption': t(__('Production capability')),
+                'values': [
+                  {
+                    'field_id': 68,
+                    'caption': t(__('Total employees')),
+                    'value': factory.basic_company_details.fields.total_no_employees
+                  },
+                  {
+                    'field_id': 69,
+                    'caption': t(__('Factory size')),
+                    'value': factory.basic_company_details.fields.office_size
+                  },
+                  {
+                    'field_id': 70,
+                    'caption': t(__('R&D employees')),
+                    'value': factory.manufacturing_capability.fields.no_of_r_and_d_staff
+                  }
+                ]
+              },
+              {
+                'group_id' : 11,
+                'caption': t(__('Export Capability')),
+                'values': [
+                  {
+                    'field_id': 75,
+                    'caption': t(__('Main Markets')),
+                    'value': factory.export_capability.fields.main_markets_and_distribution
+                  },
+                  {
+                    'field_id': 78,
+                    'caption': t(__('Export rate')),
+                    'value': factory.export_capability.fields.export_rate
+                  }
+                ]
+              }
             ];
           }
 
@@ -659,49 +660,47 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
 
     factories?.map((factory) => {
 
-      let groupFields_1 = [];
-      let groupFields_2 = [];
       let factoryFields = [];
 
       if (factory) {
-        groupFields_1[ 'group_id' ] = factory.company_id * 2;
-        groupFields_1[ 'caption' ] = 'Production capability';
-        groupFields_1[ 'values' ] = [
-          {
-            'field_id': 68,
-            'caption': 'Total employees',
-            'value': factory.basic_company_details.fields.total_no_employees
-          },
-          {
-            'field_id': 69,
-            'caption': 'Factory size',
-            'value': factory.basic_company_details.fields.office_size
-          },
-          {
-            'field_id': 70,
-            'caption': 'R&D employees',
-            'value': factory.manufacturing_capability.fields.no_of_r_and_d_staff
-          }
-        ];
-
-        groupFields_2[ 'group_id' ] = factory.company_id * 4;
-        groupFields_2[ 'caption' ] = 'Export Capability';
-        groupFields_2[ 'values' ] = [
-          {
-            'field_id': 75,
-            'caption': 'Main Markets',
-            'value': factory.export_capability.fields.main_markets_and_distribution
-          },
-          {
-            'field_id': 78,
-            'caption': 'Export rate',
-            'value': factory.export_capability.fields.export_rate
-          }
-        ];
-
         factoryFields = [
-          groupFields_1,
-          groupFields_2
+          {
+            'group_id' : 10,
+            'caption': t(__('Production capability')),
+            'values': [
+              {
+                'field_id': 68,
+                'caption': t(__('Total employees')),
+                'value': factory.basic_company_details.fields.total_no_employees
+              },
+              {
+                'field_id': 69,
+                'caption': t(__('Factory size')),
+                'value': factory.basic_company_details.fields.office_size
+              },
+              {
+                'field_id': 70,
+                'caption': t(__('R&D employees')),
+                'value': factory.manufacturing_capability.fields.no_of_r_and_d_staff
+              }
+            ]
+          },
+          {
+            'group_id' : 11,
+            'caption': t(__('Export Capability')),
+            'values': [
+              {
+                'field_id': 75,
+                'caption': t(__('Main Markets')),
+                'value': factory.export_capability.fields.main_markets_and_distribution
+              },
+              {
+                'field_id': 78,
+                'caption': t(__('Export rate')),
+                'value': factory.export_capability.fields.export_rate
+              }
+            ]
+          }
         ];
       }
 
