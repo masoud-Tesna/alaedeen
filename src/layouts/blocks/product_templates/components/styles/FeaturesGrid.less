@@ -2,16 +2,32 @@
 @import '../../../../../styles/Mixins';
 
 .features--variant {
+  font-size: 1.7rem;
   font-weight: bold;
 }
 
 .features--value {
+  color: #999999;
   span {
-
+    font-size: 1.7rem;
+    font-weight: 600;
     &:not(:last-child) {
       &:after {
         content: ", ";
       }
+    }
+  }
+
+  .certificationImages--container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    row-gap: 10px;
+
+    .certificationImages--title {
+      width: 80px;
+      font-size: 1.7rem;
+      font-weight: 600;
     }
   }
 }
