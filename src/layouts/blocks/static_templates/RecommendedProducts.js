@@ -25,9 +25,9 @@ const RecommendedProducts = () => {
   const product_items_per_page = width >= 768 ? 20 : 12;
 
   // get products from API:
-  const { isLoading, data } = useGetApi(`products-api`, `items_per_page=${product_items_per_page}&page=1`, `recommendedProducts`);
+  const { isLoading, data } = useGetApi(`products-home-api`, `show_home=Y&items_per_page=${product_items_per_page}`, `recommendedProducts`);
 
-  const { products } = data || [];
+  const { products, show_more } = data || [];
 
   let productsMultiColumnVertical_items = { span: 8 };
 
@@ -74,11 +74,13 @@ const RecommendedProducts = () => {
               }
 
             </Row>
-            <div className="text-center mt-4 productsMultiColumnVertical--item__loadMore">
-              <Button className="text-47 rounded-md bg-transparent border-primary" size="large">
-                { t(__('Show More')) }
-              </Button>
-            </div>
+            {(!isLoading && show_more === 'Y') &&
+              <div className="text-center mt-4 productsMultiColumnVertical--item__loadMore">
+                <Button className="text-47 rounded-md bg-transparent border-primary" size="large">
+                  { t(__('Show More')) }
+                </Button>
+              </div>
+            }
           </div>
         </Col>
       </Row>
