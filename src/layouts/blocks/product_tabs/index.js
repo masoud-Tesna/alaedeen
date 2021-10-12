@@ -22,10 +22,10 @@ const ProductTab = (props) => {
   const { t } = useTranslation();
 
   return (
-    <Row className="ProductTab--container">
+    <Row className="productTab--container">
       <Col span={24}>
-        <Tabs defaultActiveKey="1" onChange={callback} type="card" className="ProductTab--tab" destroyInactiveTabPane={true}>
-          <TabPane tab={t(__('Product Specifications'))} key="1">
+        <Tabs defaultActiveKey="1" onChange={callback} type="card" className="productTab--tab" destroyInactiveTabPane={true}>
+          <TabPane tab={t(__('product Specifications'))} key="1">
             <ProductSpecifications feature={props.features} product_description={props.product_description} />
           </TabPane>
           <TabPane tab={t(__('company'))} key="2">
