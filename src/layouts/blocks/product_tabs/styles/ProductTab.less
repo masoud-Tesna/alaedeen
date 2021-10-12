@@ -1,14 +1,18 @@
 // import Mixin:
 @import '../../../../styles/Mixins';
 
-.ProductTab--container {
-  .ProductTab--tab {
+.productTab--container {
+  .productTab--tab {
     overflow: unset !important;
 
     .ant-tabs-nav {
       position: -webkit-sticky;
       position: sticky;
       top: 0;
+      z-index: 10;
+      margin: 0;
+      padding-bottom: 16px;
+      background-color: #F6F6F6;
 
       .ant-tabs-nav-list {
         width: 100%;
@@ -40,6 +44,49 @@
 
     .ant-tabs-content-holder {
       padding: 0 4rem;
+
+      .productSpecifications--container {
+        .productSpecifications--sectionAnchorLinks {
+          .ant-affix {
+            .ant-anchor-wrapper {
+              padding-bottom: 16px;
+              background-color: #F6F6F6;
+            }
+          }
+
+          .ant-anchor-wrapper {
+            .ant-anchor {
+              .ant-anchor-link {
+                display: inline-block;
+                min-width: 200px;
+
+                &.ant-anchor-link-active {
+                  a {
+                    color: #3ba949;
+                    font-weight: bold;
+                  }
+                }
+
+                a {
+                  font-size: 1.8rem;
+                  color: #8b8b8b;
+
+                  &:hover {
+                    color: #3ba949;
+                  }
+                }
+
+
+
+                .ant-anchor-ink-ball {
+                  //display: none;
+                }
+              }
+
+            }
+          }
+        }
+      }
     }
   }
 }
