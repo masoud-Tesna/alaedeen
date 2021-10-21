@@ -33,6 +33,8 @@ import { Header as SiteHeader } from "./layouts/header";
 import { SiteFooter } from "./layouts/footer";
 
 import "@babel/polyfill";
+import { appendQueryParameter } from "./functions/Helper";
+import { Helmet } from "react-helmet";
 
 
 function App() {
@@ -44,8 +46,34 @@ function App() {
 
   const { Footer, Content } = Layout;
 
+
+  // object for languages link tag:
+  const languageLinks = [
+    {title: "English", dir: 'ltr', hrefLang: 'x-default', href: appendQueryParameter("lang_code", "en")},
+    {title: "English", dir: 'ltr', hrefLang: 'en', href: appendQueryParameter("lang_code", "en")},
+    {title: "العربية", dir: 'rtl', hrefLang: 'ar', href: appendQueryParameter("lang_code", "ar")},
+    {title: "فارسی", dir: 'rtl', hrefLang: 'fa', href: appendQueryParameter("lang_code", "fa")},
+  ];
+
   return (
     <ConfigProvider direction={ directionTheme }>
+
+      <Helmet>
+        { languageLinks?.map(languageLink => {
+          return(
+            <link
+              title = { languageLink.title }
+              dir = { languageLink.dir }
+              type = "text/html"
+              rel = "alternate"
+              hrefLang = { languageLink.hrefLang }
+              href = { languageLink.href }
+            />
+          )
+        }) }
+
+      </Helmet>
+
       <Layout className="layout">
         <Router>
           <TopPanel />
