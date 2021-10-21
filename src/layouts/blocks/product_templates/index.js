@@ -114,7 +114,7 @@ const ProductTemplate = (props) => {
 
           <Col span={24} className="productDetails--bottomSection">
             <div>
-              <ProductTab features={product?.product_features} product_description={product?.full_description} />
+              <ProductTab features={product?.product_features} product_description={product?.full_description} isLoading={isLoading} />
             </div>
           </Col>
         </Row>
