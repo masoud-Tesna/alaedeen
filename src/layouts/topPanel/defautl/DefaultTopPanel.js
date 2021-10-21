@@ -66,10 +66,12 @@ const DefaultTopPanel = () => {
       setShowLoadSpinner(true);
 
       configDispatch(changeLanguageAction(lang));
-      setTimeout(() => {
+
+      const changeLanguageTimer = setTimeout(() => {
         setShowLoadSpinner(false);
         closeTopPanelMenuXs();
       }, 1000);
+      return () => clearTimeout(changeLanguageTimer);
 
     }
   }
@@ -80,10 +82,12 @@ const DefaultTopPanel = () => {
       setShowLoadSpinner(true);
 
       configDispatch(changeCurrencyAction(e.target.value));
-      setTimeout(() => {
+
+      const changeCurrencyTimer = setTimeout(() => {
         setShowLoadSpinner(false);
         closeTopPanelMenuXs();
       }, 1000);
+      return () => clearTimeout(changeCurrencyTimer);
 
     }
   }
