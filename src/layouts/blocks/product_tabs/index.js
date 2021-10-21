@@ -26,7 +26,7 @@ const ProductTab = (props) => {
       <Col span={24}>
         <Tabs defaultActiveKey="1" onChange={callback} type="card" className="productTab--tab" destroyInactiveTabPane={true}>
           <TabPane tab={t(__('product Specifications'))} key="1">
-            <ProductSpecifications feature={props.features} product_description={props.product_description} />
+            <ProductSpecifications features={props.features} product_description={props.product_description} isLoading={props.isLoading}/>
           </TabPane>
           <TabPane tab={t(__('company'))} key="2">
 
