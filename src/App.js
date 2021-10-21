@@ -51,8 +51,8 @@ function App() {
   const languageLinks = [
     {title: "English", dir: 'ltr', hrefLang: 'x-default', href: appendQueryParameter("lang_code", "en")},
     {title: "English", dir: 'ltr', hrefLang: 'en', href: appendQueryParameter("lang_code", "en")},
-    {title: "العربية", dir: 'rtl', hrefLang: 'ar', href: appendQueryParameter("lang_code", "ar")},
-    {title: "فارسی", dir: 'rtl', hrefLang: 'fa', href: appendQueryParameter("lang_code", "fa")},
+    {title: "العربية", dir: 'rtl', hrefLang: 'ar-IQ', href: appendQueryParameter("lang_code", "ar")},
+    {title: "فارسی", dir: 'rtl', hrefLang: 'fa-IR', href: appendQueryParameter("lang_code", "fa")},
   ];
 
   return (
