@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../../Project/CS-CART/file_for_edit/.idea/file_for_edit.iml" filepath="$PROJECT_DIR$/../../Project/CS-CART/file_for_edit/.idea/file_for_edit.iml" />
       <module fileurl="file://$PROJECT_DIR$/../horn/.idea/horn.iml" filepath="$PROJECT_DIR$/../horn/.idea/horn.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/horn-react.iml" filepath="$PROJECT_DIR$/.idea/horn-react.iml" />
       <module fileurl="file://$PROJECT_DIR$/../my-app/.idea/my-app.iml" filepath="$PROJECT_DIR$/../my-app/.idea/my-app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../my-app-copy/.idea/my-app-copy.iml" filepath="$PROJECT_DIR$/../my-app-copy/.idea/my-app-copy.iml" />
     </modules>
   </component>
 </project>

@@ -5,7 +5,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="my-app" />
-    <orderEntry type="module" module-name="my-app-copy" />
     <orderEntry type="module" module-name="horn" />
   </component>
 </module>
