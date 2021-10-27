@@ -3,8 +3,13 @@ import './styles/AllCategories.less';
 import { useGetApi } from "../functions";
 import { Col, Row } from "antd";
 import { Link } from "react-router-dom";
+import { __ } from "../functions/Helper";
+import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
 
 const AllCategories = () => {
+
+  const { t } = useTranslation();
 
   // get categories from API:
   const { isLoading, data } = useGetApi(`home-categories-api`, '', `allCategories`);
@@ -13,6 +18,9 @@ const AllCategories = () => {
 
   return (
     <Row className="allCategories--container">
+      <Helmet>
+        <title>{ `Alaedeen.com | ${ t(__('all categories')) }` }</title>
+      </Helmet>
       {isLoading ?
         <Col span={24} className="allCategories--loading">Loading...</Col> :
         <>

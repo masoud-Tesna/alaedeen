@@ -15,6 +15,7 @@ import { useGetApi } from "../functions";
 import axios from "axios";
 import LoaderSpinner from "../layouts/blocks/static_templates/LoadSpinner";
 import { useGetConfig } from "../contexts/config/ConfigContext";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
 
@@ -83,6 +84,10 @@ const Register = () => {
 
   return (
     <Row justify={"center"} className="register--container h-100">
+
+      <Helmet>
+        <title>{ `Alaedeen.com | ${ t(__('register')) }` }</title>
+      </Helmet>
 
       { registerIsLoading && <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/> }
 

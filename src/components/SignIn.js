@@ -20,6 +20,7 @@ import googlePic from '../assets/images/google.png';
 import { signInAction, useGetAuthState, useDispatchAuthState, signIn, checkSignInLoadingAction, checkRememberAction } from '../contexts/user/UserContext';
 
 import { useGetConfig } from "../contexts/config/ConfigContext";
+import { Helmet } from "react-helmet";
 
 const SignIn = () => {
 
@@ -64,6 +65,11 @@ const SignIn = () => {
 
   return (
     <Row justify={"center"} className="signIn--container h-100">
+
+      <Helmet>
+        <title>{ `Alaedeen.com | ${ t(__('sign in')) }` }</title>
+      </Helmet>
+
       <Col xs={24} lg={15} className="signIn--content bg-white p-5">
         <Form
           className="h-100 signIn--formContent"
