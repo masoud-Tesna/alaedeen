@@ -37,7 +37,6 @@ const Home = () => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>{ `Alaedeen.com | Iranian Exporters, Manufacturers, Logistics, Suppliers Directory, B2B Business Directory` }</title>
-        {/*<link rel="canonical" href={ `https://alaedeen.com` } />*/}
       </Helmet>
 
       <div className="top--section bg-white">

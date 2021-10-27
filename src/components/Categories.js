@@ -286,7 +286,7 @@ const Categories = () => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>{ `Alaedeen.com | ${params?.category_name || t(__('categories'))}` }</title>
-        {/*<link rel="canonical" href={ `https://alaedeen.com/categories/${categorySeoName}` } />*/}
+        <link rel="canonical" href={ `https://alaedeen.com/categories/${categorySeoName}` } />
       </Helmet>
 
       {(isLoadingHandle || isLoading) &&

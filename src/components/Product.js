@@ -2,6 +2,8 @@ import {useGetApi} from "../functions";
 import {useParams} from "react-router-dom";
 import {Col, Row} from "antd";
 import ProductTemplate from "../layouts/blocks/product_templates";
+import { __ } from "../functions/Helper";
+import { Helmet } from "react-helmet";
 
 const Product = () => {
 
@@ -13,6 +15,13 @@ const Product = () => {
 
   return (
     <Row className="productDetails--container">
+
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{ `Alaedeen.com | ${ product?.product }` }</title>
+        <link rel="canonical" href={ `https://alaedeen.com/product/${productSeoName}` } />
+      </Helmet>
+
       <Col span={24}>
         <ProductTemplate product={product} isLoading={isLoading} />
       </Col>

@@ -18,6 +18,7 @@ import { __ } from '../functions/Helper';
 
 import { useTranslation } from "react-i18next";
 import { useGetApi, useQueryString } from "../functions";
+import { Helmet } from "react-helmet";
 
 const Factories = () => {
 
@@ -38,6 +39,10 @@ const Factories = () => {
 
   return (
     <div className="bg-footer factories--pageSection">
+      <Helmet>
+        <title>{ `Alaedeen.com | ${ t(__('Premium OEM Factories')) }` }</title>
+        <link rel="canonical" href= "https://alaedeen.com/factories" />
+      </Helmet>
       <Row className="factories--container">
         <Col span={24} className="factories--topSection bottomShadow clipShadow">
           <Row justify={"space-between"}>
