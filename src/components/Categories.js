@@ -284,7 +284,6 @@ const Categories = () => {
     <Row className="mt-0 mt-lg-4 products--container" gutter={[0, 23]}>
 
       <Helmet>
-        <meta charSet="utf-8" />
         <title>{ `Alaedeen.com | ${params?.category_name || t(__('categories'))}` }</title>
         <link rel="canonical" href={ `https://alaedeen.com/categories/${categorySeoName}` } />
       </Helmet>

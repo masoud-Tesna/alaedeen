@@ -35,7 +35,6 @@ const Home = () => {
 
       {/*set Title and description*/}
       <Helmet>
-        <meta charSet="utf-8" />
         <title>{ `Alaedeen.com | Iranian Exporters, Manufacturers, Logistics, Suppliers Directory, B2B Business Directory` }</title>
       </Helmet>
 

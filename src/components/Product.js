@@ -17,7 +17,6 @@ const Product = () => {
     <Row className="productDetails--container">
 
       <Helmet>
-        <meta charSet="utf-8" />
         <title>{ `Alaedeen.com | ${ product?.product }` }</title>
         <link rel="canonical" href={ `https://alaedeen.com/product/${productSeoName}` } />
       </Helmet>
