@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 
 // import style file:
 import './styles/OneRequestMultipleQuotes.less';
@@ -13,7 +13,7 @@ import { useGetApi } from '../../../functions';
 // import ant design:
 import { Col, Row, Form, Input, Button, Select, InputNumber} from "antd";
 
-import OneRequestMultipleQuotesModal from "./OneRequestMultipleQuotesModal";
+const OneRequestMultipleQuotesModal = lazy(() => import('./OneRequestMultipleQuotesModal'));
 
 const { Option } = Select;
 
@@ -103,15 +103,17 @@ const OneRequestMultipleQuotes = () => {
         </Row>
       </div>
 
-      <OneRequestMultipleQuotesModal
-        isRequestModalVisible = {isRequestModalVisible}
-        setIsRequestModalVisible = {setIsRequestModalVisible}
-        productNameBefore = {productNameBefore}
-        quantityBefore = {quantityBefore}
-        pieceBefore = {pieceBefore}
-      />
+      <Suspense fallback="...">
+        <OneRequestMultipleQuotesModal
+          isRequestModalVisible = {isRequestModalVisible}
+          setIsRequestModalVisible = {setIsRequestModalVisible}
+          productNameBefore = {productNameBefore}
+          quantityBefore = {quantityBefore}
+          pieceBefore = {pieceBefore}
+        />
+      </Suspense>
     </div>
   );
 };
 
-export { OneRequestMultipleQuotes };
+export default OneRequestMultipleQuotes;

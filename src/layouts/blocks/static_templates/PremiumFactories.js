@@ -1,3 +1,5 @@
+import { lazy, Suspense } from "react";
+
 import { Link } from "react-router-dom";
 
 // import Style File:
@@ -20,7 +22,8 @@ import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
-import ShowResponsiveImage from "../../common/ShowResponsiveImage";
+
+const ShowResponsiveImage = lazy(() => import('../../common/ShowResponsiveImage'));
 
 const FactoriesLogo = ({ logo, alt, object_id, width }) => {
 
@@ -29,29 +32,33 @@ const FactoriesLogo = ({ logo, alt, object_id, width }) => {
 
   if ((config.language === 'en' || config.language === 'ar') && logo.en) {
     return (
-      <ShowResponsiveImage
-        imagePath={ logo.en }
-        imageFolder='company_logo'
-        width={width >= 992 ? 60 : 26}
-        height={width >= 992 ? 60 : 26}
-        imageAlt={ alt }
-        object_id={object_id}
-        object_type={`company_logo_en`}
-      />
+      <Suspense fallback="...">
+        <ShowResponsiveImage
+          imagePath={ logo.en }
+          imageFolder='company_logo'
+          width={width >= 992 ? 60 : 26}
+          height={width >= 992 ? 60 : 26}
+          imageAlt={ alt }
+          object_id={object_id}
+          object_type={`company_logo_en`}
+        />
+      </Suspense>
     );
   }
 
   if (config.language === 'fa' && logo.fa) {
     return (
-      <ShowResponsiveImage
-        imagePath={ logo.fa }
-        imageFolder='company_logo'
-        width={width >= 992 ? 60 : 26}
-        height={width >= 992 ? 60 : 26}
-        imageAlt={ alt }
-        object_id={object_id}
-        object_type={`company_logo_fa`}
-      />
+      <Suspense fallback="...">
+        <ShowResponsiveImage
+          imagePath={ logo.fa }
+          imageFolder='company_logo'
+          width={width >= 992 ? 60 : 26}
+          height={width >= 992 ? 60 : 26}
+          imageAlt={ alt }
+          object_id={object_id}
+          object_type={`company_logo_fa`}
+        />
+      </Suspense>
     );
   }
 
@@ -67,38 +74,44 @@ const FactoriesImages = ({ images, alt, object_id, width }) => {
     <div className="d-flex premiumFactories--item__detailImages">
       <div className="premiumFactories--factoryImages__item1">
         { images[0] ?
-          <ShowResponsiveImage
-            imagePath={ images[ 0 ] }
-            imageFolder='profiles'
-            imageAlt={ alt }
-            object_id={`img_0${object_id}`}
-            object_type={`factories_image_0`}
-          /> :
+          <Suspense fallback="...">
+            <ShowResponsiveImage
+              imagePath={ images[ 0 ] }
+              imageFolder='profiles'
+              imageAlt={ alt }
+              object_id={`img_0${object_id}`}
+              object_type={`factories_image_0`}
+            />
+          </Suspense> :
           <Skeleton.Image active={true} className="premiumFactories--skeletonImages__item1" />
         }
       </div>
       <Row className="premiumFactories--factoryImages__item_2_3">
         <Col span={24} className="premiumFactories--factoryImages__item2 mb-4 align-self-start">
           { images[1] ?
-            <ShowResponsiveImage
-              imagePath={ images[ 1 ] }
-              imageFolder='profiles'
-              imageAlt={ alt }
-              object_id={`img_1${object_id}`}
-              object_type={`factories_image_1`}
-            /> :
+            <Suspense fallback="...">
+              <ShowResponsiveImage
+                imagePath={ images[ 1 ] }
+                imageFolder='profiles'
+                imageAlt={ alt }
+                object_id={`img_1${object_id}`}
+                object_type={`factories_image_1`}
+              />
+            </Suspense> :
             <Skeleton.Image active={true} className="premiumFactories--skeletonImages__item_2_3" />
           }
         </Col>
         <Col span={24} className="premiumFactories--factoryImages__item3 align-self-end">
           { images[2] ?
-            <ShowResponsiveImage
-              imagePath={ images[ 2 ] }
-              imageFolder='profiles'
-              imageAlt={ alt }
-              object_id={`img_2${object_id}`}
-              object_type={`factories_image_2`}
-            /> :
+            <Suspense fallback="...">
+              <ShowResponsiveImage
+                imagePath={ images[ 2 ] }
+                imageFolder='profiles'
+                imageAlt={ alt }
+                object_id={`img_2${object_id}`}
+                object_type={`factories_image_2`}
+              />
+            </Suspense> :
             <Skeleton.Image active={true} className="premiumFactories--skeletonImages__item_2_3" />
           }
         </Col>
@@ -203,13 +216,15 @@ const PremiumFactories = () => {
                             <div className="premiumFactories--factoryImages__Xs">
 
                               { factory?.images ?
-                                <ShowResponsiveImage
-                                  imagePath={ factory?.images[ 0 ] }
-                                  imageFolder='profiles'
-                                  imageAlt={ factory?.company }
-                                  object_id={`img_0${factory.company_id}`}
-                                  object_type={`factories_image_0`}
-                                /> :
+                                <Suspense fallback="...">
+                                  <ShowResponsiveImage
+                                    imagePath={ factory?.images[ 0 ] }
+                                    imageFolder='profiles'
+                                    imageAlt={ factory?.company }
+                                    object_id={`img_0${factory.company_id}`}
+                                    object_type={`factories_image_0`}
+                                  />
+                                </Suspense> :
                                 <Skeleton.Image active={true} className="premiumFactories--skeletonImages__item1" style={{ width: 120, height: 120 }} />
                               }
                             </div>

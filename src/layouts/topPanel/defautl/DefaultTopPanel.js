@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { Link } from "react-router-dom";
 
 // import Styles For default:
@@ -34,7 +34,8 @@ import { logout, useDispatchAuthState, useGetAuthState } from "../../../contexts
 
 // import OneRequestMultipleQuotesModal component for show send request form modal:
 import OneRequestMultipleQuotesModal from "../../blocks/static_templates/OneRequestMultipleQuotesModal";
-import ShowResponsiveImage from "../../common/ShowResponsiveImage";
+
+const ShowResponsiveImage = lazy(() => import('../../common/ShowResponsiveImage'));
 
 const DefaultTopPanel = () => {
 
@@ -149,15 +150,17 @@ const DefaultTopPanel = () => {
                           <Col span={ user_data.auth.company_logo ? 7 : 5 }>
                             { user_data.auth.company_logo ?
                               <span className="content--account__companyLogo">
-                                <ShowResponsiveImage
-                                  imagePath={ user_data?.auth?.company_logo?.logo_path }
-                                  imageFolder='company_logo'
-                                  width={60}
-                                  height={60}
-                                  imageAlt={ user_data?.auth?.company ? user_data?.auth?.company : ` ${user_data?.auth?.firstname} ${user_data?.auth?.lastname} `}
-                                  object_id={user_data?.auth?.company_id}
-                                  object_type={`company_logo${config.language}`}
-                                />
+                                <Suspense fallback="...">
+                                  <ShowResponsiveImage
+                                    imagePath={ user_data?.auth?.company_logo?.logo_path }
+                                    imageFolder='company_logo'
+                                    width={60}
+                                    height={60}
+                                    imageAlt={ user_data?.auth?.company ? user_data?.auth?.company : ` ${user_data?.auth?.firstname} ${user_data?.auth?.lastname} `}
+                                    object_id={user_data?.auth?.company_id}
+                                    object_type={`company_logo${config.language}`}
+                                  />
+                                 </Suspense>
                               </span> :
                               <i className="fal fa-user text-white vv-font-size-4-5" />
                             }

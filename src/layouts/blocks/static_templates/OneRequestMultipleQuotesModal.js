@@ -14,10 +14,14 @@ import { useGetApi, useWindowSize } from '../../../functions';
 import { Col, Row, Form, Input, Button, Select, InputNumber, Modal, Checkbox, Radio, Result, Spin } from "antd";
 
 import axios from "axios";
+import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 const { Option } = Select;
 
 const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModalVisible, productNameBefore, quantityBefore, pieceBefore, section }) => {
+
+  // get initial config
+  const { config } = useGetConfig();
 
   const { width } = useWindowSize();
 
@@ -42,7 +46,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
   const { data: requirementUrgencies } = useGetApi(`request-content-api`, 'variant=requirement_urgencies', `requirementUrgencies`);
 
   // get country codes from API:
-  const { data: countryCodes } = useGetApi(`country-code-api`, '', `countryCodes`);
+  const { data: countryCodes } = useGetApi(`country-code-api`, `lang_code=${config.language}`, `countryCodes`);
 
   const [isSpinSend, setIsSpinSend] = useState(false);
 
@@ -107,7 +111,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
       <>
         {countryCodes?.country_code?.map((countryCode, index) => {
           return (
-            <Option key={ `country_code_${ index +20 }` } value={countryCode?.code_number} >{ `${countryCode?.description} ${countryCode?.code_number}` }</Option>
+            <Option key={ `country_code_${ index +20 }` } value={countryCode?.code_number} >{ `${countryCode?.country} ${countryCode?.code_number}` }</Option>
           );
         })}
       </>

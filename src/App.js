@@ -1,3 +1,5 @@
+import { Suspense, lazy } from 'react';
+
 // Custom Styles:
 import './styles/custom.less';
 
@@ -13,17 +15,6 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 // Design:
 import { ConfigProvider, Layout } from 'antd';
 
-// Pages:
-import {
-  Home,
-  Factories,
-  SignIn,
-  AllCategories,
-  Categories,
-  Register,
-  Product
-} from "./components";
-
 // import Config context:
 import { useGetConfig } from "./contexts/config/ConfigContext";
 
@@ -35,6 +26,16 @@ import { SiteFooter } from "./layouts/footer";
 import "@babel/polyfill";
 import { appendQueryParameter } from "./functions/Helper";
 import { Helmet } from "react-helmet";
+import LoadSpinner from "./layouts/blocks/static_templates/LoadSpinner";
+
+// Pages:
+const Home = lazy(() => import('./components/Home'));
+const Factories = lazy(() => import('./components/Factories'));
+const SignIn = lazy(() => import('./components/SignIn'));
+const AllCategories = lazy(() => import('./components/AllCategories'));
+const Categories = lazy(() => import('./components/Categories'));
+const Register = lazy(() => import('./components/Register'));
+const Product = lazy(() => import('./components/Product'));
 
 
 function App() {
@@ -81,26 +82,28 @@ function App() {
           <SiteHeader />
           <Content>
             <div className="site-layout-content" id="siteLayoutContent">
-              <Switch>
-                {/*Home Route*/}
-                <Route exact path="/" component={Home} />
-                {/*Sign in Route*/}
-                <Route path="/sign-in" component={SignIn} />
-                {/*Register Route*/}
-                <Route path="/register" component={Register} />
-                {/*Factories Route*/}
-                <Route path="/factories" component={Factories} />
-                {/*All Categories Route*/}
-                <Route path="/all-categories" component={AllCategories} />
-                {/*if open categories page without category path, redirect to all-category route*/}
-                <Route exact path="/categories" render={() => <Redirect to="/all-categories" />} />
-                {/*categories Route (categories/electronic)*/}
-                <Route path="/categories/:category" component={Categories} />
-                {/*if open product details page without product path, redirect to all-category route*/}
-                <Route exact path="/product" render={() => <Redirect to="/all-categories" />} />
-                {/*Product details Route*/}
-                <Route path="/product/:product" component={Product} />
-              </Switch>
+              <Suspense fallback={<LoadSpinner />}>
+                <Switch>
+                  {/*Home Route*/}
+                  <Route exact path="/" component={Home} />
+                  {/*Sign in Route*/}
+                  <Route path="/sign-in" component={SignIn} />
+                  {/*Register Route*/}
+                  <Route path="/register" component={Register} />
+                  {/*Factories Route*/}
+                  <Route path="/factories" component={Factories} />
+                  {/*All Categories Route*/}
+                  <Route path="/all-categories" component={AllCategories} />
+                  {/*if open categories page without category path, redirect to all-category route*/}
+                  <Route exact path="/categories" render={() => <Redirect to="/all-categories" />} />
+                  {/*categories Route (categories/electronic)*/}
+                  <Route path="/categories/:category" component={Categories} />
+                  {/*if open product details page without product path, redirect to all-category route*/}
+                  <Route exact path="/product" render={() => <Redirect to="/all-categories" />} />
+                  {/*Product details Route*/}
+                  <Route path="/product/:product" component={Product} />
+                </Switch>
+              </Suspense>
             </div>
           </Content>
           <Footer>

@@ -1,3 +1,5 @@
+import { lazy, Suspense } from "react";
+
 // import Style File:
 import './styles/FactoriesShow.less';
 
@@ -17,14 +19,13 @@ import TextTruncate from "react-text-truncate";
 // import Skeleton used:
 import SkeletonFactoriesShow from "./skeletons/SkeletonFactoriesShow";
 
-// import Show responsive image:
-import ShowResponsiveImage from "../../common/ShowResponsiveImage";
-
 // import helper functions:
 import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
+
+const ShowResponsiveImage = lazy(() => import('../../common/ShowResponsiveImage'));
 
 const FactoriesLogo = ({ logo, imageAlt, object_id, width }) => {
 
@@ -33,29 +34,33 @@ const FactoriesLogo = ({ logo, imageAlt, object_id, width }) => {
 
   if ((config.language === 'en' || config.language === 'ar') && logo.en) {
     return (
-      <ShowResponsiveImage
-        imagePath={ logo.en }
-        imageFolder='company_logo'
-        width={width >= 992 ? 65 : 65}
-        height={width >= 992 ? 65 : 65}
-        imageAlt={ imageAlt }
-        object_id={object_id}
-        object_type={`company_logo_en`}
-      />
+      <Suspense fallback="...">
+        <ShowResponsiveImage
+          imagePath={ logo.en }
+          imageFolder='company_logo'
+          width={width >= 992 ? 65 : 65}
+          height={width >= 992 ? 65 : 65}
+          imageAlt={ imageAlt }
+          object_id={object_id}
+          object_type={`company_logo_en`}
+        />
+      </Suspense>
     );
   }
 
   if (config.language === 'fa' && logo.fa) {
     return (
-      <ShowResponsiveImage
-        imagePath={ logo.fa }
-        imageFolder='company_logo'
-        width={width >= 992 ? 65 : 65}
-        height={width >= 992 ? 65 : 65}
-        imageAlt={ imageAlt }
-        object_id={object_id}
-        object_type={`company_logo_fa`}
-      />
+      <Suspense fallback="...">
+        <ShowResponsiveImage
+          imagePath={ logo.fa }
+          imageFolder='company_logo'
+          width={width >= 992 ? 65 : 65}
+          height={width >= 992 ? 65 : 65}
+          imageAlt={ imageAlt }
+          object_id={object_id}
+          object_type={`company_logo_fa`}
+        />
+      </Suspense>
     );
   }
 
@@ -196,15 +201,17 @@ const FactoryProduct = ({ products }) => {
                   <div className="rounded-10 shadow-y-2 text-center factories--productImage">
 
                     { product.main_pair ?
-                      <ShowResponsiveImage
-                        imagePath={ product?.main_pair?.detailed?.image_path }
-                        imageFolder='detailed'
-                        width={imageWidth}
-                        height={imageHeight}
-                        imageAlt={ product?.product }
-                        object_id={product?.product_id}
-                        object_type={`prd`}
-                      /> :
+                      <Suspense fallback="...">
+                        <ShowResponsiveImage
+                          imagePath={ product?.main_pair?.detailed?.image_path }
+                          imageFolder='detailed'
+                          width={imageWidth}
+                          height={imageHeight}
+                          imageAlt={ product?.product }
+                          object_id={product?.product_id}
+                          object_type={`prd`}
+                        />
+                      </Suspense> :
                       <Image
                         width={imageWidth}
                         height={imageHeight}
@@ -324,15 +331,17 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
                   <a className="d-block w-100 h-100"
                      href={ `https://store.alaedeen.com/?store_id=${ factory?.company_id }` }>
                     { factory.images ?
-                      <ShowResponsiveImage
-                        imagePath={ factory?.images[0] }
-                        imageFolder='profiles'
-                        width={400}
-                        height={313}
-                        imageAlt={ factory?.general?.company }
-                        object_id={`img_0_${factory?.company_id}`}
-                        object_type={`factories_image_0`}
-                      /> :
+                      <Suspense fallback="...">
+                        <ShowResponsiveImage
+                          imagePath={ factory?.images[0] }
+                          imageFolder='profiles'
+                          width={400}
+                          height={313}
+                          imageAlt={ factory?.general?.company }
+                          object_id={`img_0_${factory?.company_id}`}
+                          object_type={`factories_image_0`}
+                        />
+                      </Suspense> :
                       <Image
                         width={400}
                         height={313}
@@ -521,15 +530,17 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
                 <Col flex='400px' className="d-none d-lg-block h-100 factories--imageContainer">
                   <a className="d-block w-100 h-100" href={`https://store.alaedeen.com/?store_id=${factory.company_id}`}>
                     { factory.images ?
-                      <ShowResponsiveImage
-                        imagePath={ factory?.images[0] }
-                        imageFolder='profiles'
-                        width={400}
-                        height={313}
-                        imageAlt={ factory?.general?.company }
-                        object_id={`img_0_${factory?.company_id}`}
-                        object_type={`factories_image_0`}
-                      /> :
+                      <Suspense fallback="...">
+                        <ShowResponsiveImage
+                          imagePath={ factory?.images[0] }
+                          imageFolder='profiles'
+                          width={400}
+                          height={313}
+                          imageAlt={ factory?.general?.company }
+                          object_id={`img_0_${factory?.company_id}`}
+                          object_type={`factories_image_0`}
+                        />
+                      </Suspense> :
                       <Image
                         width={400}
                         height={313}
@@ -710,15 +721,17 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
             <Col flex='400px' className="d-none d-lg-block h-100 factories--imageContainer">
               <a className="d-block w-100 h-100" href={`https://store.alaedeen.com/?store_id=${factory?.company_id}`}>
                 { factory.images ?
-                  <ShowResponsiveImage
-                    imagePath={ factory?.images[0] }
-                    imageFolder='profiles'
-                    width={400}
-                    height={313}
-                    imageAlt={ factory?.general?.company }
-                    object_id={`img_0_${factory?.company_id}`}
-                    object_type={`factories_image_0`}
-                  /> :
+                  <Suspense fallback="...">
+                    <ShowResponsiveImage
+                      imagePath={ factory?.images[0] }
+                      imageFolder='profiles'
+                      width={400}
+                      height={313}
+                      imageAlt={ factory?.general?.company }
+                      object_id={`img_0_${factory?.company_id}`}
+                      object_type={`factories_image_0`}
+                    />
+                  </Suspense> :
                   <Image
                     width={400}
                     height={313}

@@ -38,4 +38,4 @@ const AllCategories = () => {
   );
 };
 
-export { AllCategories };
+export default AllCategories;

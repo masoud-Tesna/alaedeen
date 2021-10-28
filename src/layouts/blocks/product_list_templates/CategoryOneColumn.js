@@ -1,13 +1,15 @@
+import { lazy, Suspense } from "react";
+
 // import style file:
 import './styles/CategoryOneColumn.less';
 import { Button, Col, Image, Row, Space } from "antd";
 import { useWindowSize } from "../../../functions";
-import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 import TextTruncate from "react-text-truncate";
 import { __, fn_stripHtml } from "../../../functions/Helper";
 import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
+const ShowResponsiveImage = lazy(() => import('../../common/ShowResponsiveImage'));
 
 const CategoryOneColumn = (props) => {
 
@@ -31,15 +33,17 @@ const CategoryOneColumn = (props) => {
 
         <Col flex={ width >= 992 ? '195px' : '128px' } className="d-flex- align-items-center- justify-content-center- productsOneColumnVertical--item__image">
           { product.main_pair ?
-            <ShowResponsiveImage
-              imagePath={ product?.main_pair?.detailed?.image_path }
-              imageFolder='detailed'
-              width={width >= 768 ? 160 : 115}
-              height={width >= 768 ? 160 : 115}
-              imageAlt={ product?.product }
-              object_id={product?.product_id}
-              object_type={`prd`}
-            /> :
+            <Suspense fallback="...">
+              <ShowResponsiveImage
+                imagePath={ product?.main_pair?.detailed?.image_path }
+                imageFolder='detailed'
+                width={width >= 768 ? 160 : 115}
+                height={width >= 768 ? 160 : 115}
+                imageAlt={ product?.product }
+                object_id={product?.product_id}
+                object_type={`prd`}
+              />
+            </Suspense> :
             <Image
               width={width >= 768 ? 160 : 115}
               height={width >= 768 ? 160 : 115}

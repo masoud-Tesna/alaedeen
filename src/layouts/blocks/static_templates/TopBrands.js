@@ -1,3 +1,5 @@
+import { lazy, Suspense } from "react";
+
 // import Style File:
 import './styles/TopBrands.less';
 
@@ -16,7 +18,8 @@ import { __, fn_stripHtml } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
-import ShowResponsiveImage from "../../common/ShowResponsiveImage";
+
+const ShowResponsiveImage = lazy(() => import('../../common/ShowResponsiveImage'));
 
 const FactoriesLogo = ({ logo, alt, object_id, width }) => {
 
@@ -25,29 +28,33 @@ const FactoriesLogo = ({ logo, alt, object_id, width }) => {
 
   if ((config.language === 'en' || config.language === 'ar') && logo.en) {
     return (
-    <ShowResponsiveImage
-      imagePath={ logo.en }
-      imageFolder='company_logo'
-      width={width >= 992 ? 150 : 65}
-      height={width >= 992 ? 150 : 65}
-      imageAlt={ alt }
-      object_id={object_id}
-      object_type={`company_logo_en`}
-    />
+      <Suspense fallback="...">
+        <ShowResponsiveImage
+          imagePath={ logo.en }
+          imageFolder='company_logo'
+          width={width >= 992 ? 150 : 65}
+          height={width >= 992 ? 150 : 65}
+          imageAlt={ alt }
+          object_id={object_id}
+          object_type={`company_logo_en`}
+        />
+      </Suspense>
     );
   }
 
   if (config.language === 'fa' && logo.fa) {
     return (
-      <ShowResponsiveImage
-        imagePath={ logo.fa }
-        imageFolder='company_logo'
-        width={width >= 992 ? 150 : 65}
-        height={width >= 992 ? 150 : 65}
-        imageAlt={ alt }
-        object_id={object_id}
-        object_type={`company_logo_fa`}
-      />
+      <Suspense fallback="...">
+        <ShowResponsiveImage
+          imagePath={ logo.fa }
+          imageFolder='company_logo'
+          width={width >= 992 ? 150 : 65}
+          height={width >= 992 ? 150 : 65}
+          imageAlt={ alt }
+          object_id={object_id}
+          object_type={`company_logo_fa`}
+        />
+      </Suspense>
     );
   }
 

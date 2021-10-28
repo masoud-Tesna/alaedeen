@@ -1,11 +1,12 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, lazy, Suspense } from 'react';
 
 // import style file:
 import './styles/FeaturesGrid.less';
 import { Col, Image, Row, Skeleton, Space } from "antd";
 import {useTranslation} from "react-i18next";
 import {__} from "../../../../functions/Helper";
-import ShowResponsiveImage from "../../../common/ShowResponsiveImage";
+
+const ShowResponsiveImage = lazy(() => import('../../../common/ShowResponsiveImage'));
 
 const FeaturesGrid = (props) => {
 
@@ -81,17 +82,20 @@ const FeaturesGrid = (props) => {
                                   .map(([key, variant]) => {
                                     return (
                                       <div key={`features_variants_${key}`} className="certificationImages--container">
-                                        <div className="certificationImages--image">
+                                        <div className="certifi
+                                        cationImages--image">
                                           { variant?.image ?
-                                            <ShowResponsiveImage
-                                              imagePath={ variant?.image }
-                                              imageFolder='detailed'
-                                              width={50}
-                                              height={50}
-                                              imageAlt={ variant?.variant }
-                                              object_id={variant?.variant_id}
-                                              object_type={`feature_img`}
-                                            /> :
+                                            <Suspense fallback="...">
+                                              <ShowResponsiveImage
+                                                imagePath={ variant?.image }
+                                                imageFolder='detailed'
+                                                width={50}
+                                                height={50}
+                                                imageAlt={ variant?.variant }
+                                                object_id={variant?.variant_id}
+                                                object_type={`feature_img`}
+                                              />
+                                            </Suspense> :
                                             <Image
                                               width={50}
                                               height={50}

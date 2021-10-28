@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 // import Style File:
@@ -10,15 +10,15 @@ import { Col, Row, Space } from "antd";
 // import bg image:
 import topSectionBg from '../assets/images/factoriezTopSectionBg.png';
 
-// import Factories Show Component:
-import FactoriesShow from "../layouts/blocks/static_templates/FactoriesShow";
-
 // import helper functions:
 import { __ } from '../functions/Helper';
 
 import { useTranslation } from "react-i18next";
 import { useGetApi, useQueryString } from "../functions";
 import { Helmet } from "react-helmet";
+
+// import Factories Show Component:
+const FactoriesShow = lazy(() => import('../layouts/blocks/static_templates/FactoriesShow'));
 
 const Factories = () => {
 
@@ -76,11 +76,13 @@ const Factories = () => {
 
         <Col span={24} className="factories--bottomSection mb-5">
           <Row gutter={[0, 50]} className="factories--items">
-            <FactoriesShow
-              factories={factories}
-              isLoading={isLoading}
-              factory_id={factory_id}
-            />
+            <Suspense fallback="...">
+              <FactoriesShow
+                factories={factories}
+                isLoading={isLoading}
+                factory_id={factory_id}
+              />
+            </Suspense>
           </Row>
         </Col>
       </Row>
@@ -88,4 +90,4 @@ const Factories = () => {
   );
 };
 
-export { Factories };
+export default Factories;

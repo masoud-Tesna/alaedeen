@@ -1,3 +1,5 @@
+import { lazy, Suspense } from "react";
+
 // import Custom Hooks:
 import { useWindowSize } from "../../../functions";
 
@@ -11,13 +13,14 @@ import polygon_3 from '../../../assets/images/polygon3.png';
 
 // import ANT Design Components used:
 import { Col, Row, Space, Image } from "antd";
-import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 
 // import helper functions:
 import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
+
+const ShowResponsiveImage = lazy(() => import('../../common/ShowResponsiveImage'));
 
 const ProductsMultiColumnHorizontal = (props) => {
 
@@ -58,15 +61,17 @@ const ProductsMultiColumnHorizontal = (props) => {
             <div className="rounded-10 shadow-y-2 d-flex align-items-center justify-content-center ProductsMultiColumnHorizontal--image">
 
               { product.main_pair ?
-                <ShowResponsiveImage
-                  imagePath={ product?.main_pair?.detailed?.image_path }
-                  imageFolder='detailed'
-                  width={widthProductImage || 140}
-                  height={heightProductImage || 140}
-                  imageAlt={ product?.product }
-                  object_id={product?.product_id}
-                  object_type={`prd`}
-                /> :
+                <Suspense fallback="...">
+                  <ShowResponsiveImage
+                    imagePath={ product?.main_pair?.detailed?.image_path }
+                    imageFolder='detailed'
+                    width={widthProductImage || 140}
+                    height={heightProductImage || 140}
+                    imageAlt={ product?.product }
+                    object_id={product?.product_id}
+                    object_type={`prd`}
+                  />
+                </Suspense> :
                 <Image
                   width={widthProductImage || 140}
                   height={heightProductImage || 140}

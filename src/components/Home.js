@@ -1,4 +1,4 @@
-import React from 'react';
+import { Suspense, lazy } from 'react';
 
 // import Style LESS File:
 import './styles/Home.less';
@@ -9,22 +9,23 @@ import { useWindowSize } from '../functions';
 // import Design:
 import { Col, Row } from "antd";
 
-// import blocks:
-import CategoriesMultiColumn from "../layouts/blocks/categories/CategoriesMultiColumn";
-import HomeLogisticsBanner from "../layouts/blocks/static_templates/HomeLogisticsBanner";
-import { OneRequestMultipleQuotes as RequestForm } from "../layouts/blocks/static_templates/OneRequestMultipleQuotes";
-import RequestsList from "../layouts/blocks/static_templates/RequestsList";
-import Stats from "../layouts/blocks/static_templates/Stats";
-import ShipProductsBanner from "../layouts/blocks/static_templates/ShipProductsBanner";
-import TopRankingProducts from "../layouts/blocks/static_templates/TopRankingProducts";
-import PremiumFactories from "../layouts/blocks/static_templates/PremiumFactories";
-import RecommendedProducts from "../layouts/blocks/static_templates/RecommendedProducts";
-import RecentlyProductsView from "../layouts/blocks/static_templates/RecentlyProductsView";
-import TopBrands from "../layouts/blocks/static_templates/TopBrands";
-import WhatHorn from "../layouts/blocks/static_templates/WhatHorn";
-import HomePageShowProducts from "../layouts/blocks/static_templates/HomePageShowProducts";
-
 import { Helmet } from "react-helmet";
+
+// import component blocks:
+const CategoriesMultiColumn = lazy(() => import('../layouts/blocks/categories/CategoriesMultiColumn'));
+const HomeLogisticsBanner = lazy(() => import('../layouts/blocks/static_templates/HomeLogisticsBanner'));
+const RequestForm = lazy(() => import('../layouts/blocks/static_templates/OneRequestMultipleQuotes'));
+const RequestsList = lazy(() => import('../layouts/blocks/static_templates/RequestsList'));
+const Stats = lazy(() => import('../layouts/blocks/static_templates/Stats'));
+const ShipProductsBanner = lazy(() => import('../layouts/blocks/static_templates/ShipProductsBanner'));
+const HomePageShowProducts = lazy(() => import('../layouts/blocks/static_templates/HomePageShowProducts'));
+const PremiumFactories = lazy(() => import('../layouts/blocks/static_templates/PremiumFactories'));
+const RecommendedProducts = lazy(() => import('../layouts/blocks/static_templates/RecommendedProducts'));
+const TopBrands = lazy(() => import('../layouts/blocks/static_templates/TopBrands'));
+const WhatHorn = lazy(() => import('../layouts/blocks/static_templates/WhatHorn'));
+// add after:
+/*const TopRankingProducts = lazy(() => import('../layouts/blocks/static_templates/TopRankingProducts'));
+const RecentlyProductsView = lazy(() => import('../layouts/blocks/static_templates/RecentlyProductsView'));*/
 
 const Home = () => {
 
@@ -43,12 +44,16 @@ const Home = () => {
           {/* if Screen Width >= 768px (Desktop) Show Component: */}
           {width >= 768 &&
             <Col span={6}>
-              <CategoriesMultiColumn />
+              <Suspense fallback="...">
+                <CategoriesMultiColumn />
+              </Suspense>
             </Col>
           }
 
           <Col span={width >= 768 ? 12 : 24}>
-            <HomeLogisticsBanner />
+            <Suspense fallback="...">
+              <HomeLogisticsBanner />
+            </Suspense>
           </Col>
 
           {/* if Screen Width <= 991px (Mobile) Show Component: */}
@@ -63,16 +68,22 @@ const Home = () => {
             <Col span={6}>
               <Row className="h-100">
                 <Col className="topSection--requestForm" span={24}>
-                  <RequestForm />
+                  <Suspense fallback="...">
+                    <RequestForm />
+                  </Suspense>
                 </Col>
                 <Col className="topSection--requestsList" span={24}>
-                  <RequestsList />
+                  <Suspense fallback="...">
+                    <RequestsList />
+                  </Suspense>
                 </Col>
               </Row>
             </Col> :
             /* if Screen Width <= 991px (Mobile) Show Component: */
             <Col span={24} className="px-3">
-              <RequestsList />
+              <Suspense fallback="...">
+                <RequestsList />
+              </Suspense>
             </Col>
           }
 
@@ -80,16 +91,22 @@ const Home = () => {
       </div>
 
       <div className="stats--section">
-        <Stats />
+        <Suspense fallback="...">
+          <Stats />
+        </Suspense>
       </div>
 
       <div className="shipProductsBanner--section product--section">
         <Row className="rounded-10 shadow-y-2 bg-white section--row" gutter={{ xs: 0, lg: 16 }}>
           <Col className="pl-0" span={10}>
-            <ShipProductsBanner />
+            <Suspense fallback="...">
+              <ShipProductsBanner />
+            </Suspense>
           </Col>
           <Col className="pr-0" span={14}>
-            <HomePageShowProducts />
+            <Suspense fallback="...">
+              <HomePageShowProducts />
+            </Suspense>
           </Col>
         </Row>
       </div>
@@ -99,11 +116,15 @@ const Home = () => {
       </div>*/}
 
       <div className="PremiumFactories--section">
-        <PremiumFactories />
+        <Suspense fallback="...">
+          <PremiumFactories />
+        </Suspense>
       </div>
 
       <div className="recommended--section">
-        <RecommendedProducts />
+        <Suspense fallback="...">
+          <RecommendedProducts />
+        </Suspense>
       </div>
 
       {/*<div className="visitsProducts--section">
@@ -111,14 +132,18 @@ const Home = () => {
       </div>*/}
 
       <div className="topBrands--section">
-        <TopBrands/>
+        <Suspense fallback="...">
+          <TopBrands />
+        </Suspense>
       </div>
 
       <div className="d-none d-lg-block whatHorn--section">
-        <WhatHorn />
+        <Suspense fallback="...">
+          <WhatHorn />
+        </Suspense>
       </div>
     </>
   );
 };
 
-export { Home };
+export default Home;

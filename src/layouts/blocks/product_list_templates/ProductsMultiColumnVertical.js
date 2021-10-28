@@ -1,3 +1,5 @@
+import { lazy, Suspense } from "react";
+
 // import Custom Hooks:
 import { useWindowSize } from "../../../functions";
 
@@ -7,10 +9,9 @@ import './styles/ProductsMultiColumnVertical.less';
 // import Ant Design Components:
 import { Col, Row, Skeleton, Image } from "antd";
 
-// import get image responsive from server and show:
-import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
+const ShowResponsiveImage = lazy(() => import('../../common/ShowResponsiveImage'));
 
 const ProductsMultiColumnVertical = (props) => {
 
@@ -71,15 +72,17 @@ const ProductsMultiColumnVertical = (props) => {
             <Row>
               <Col span={24} className="d-flex align-items-center justify-content-center productsMultiColumnVertical--item__image">
                 { product.main_pair ?
-                  <ShowResponsiveImage
-                    imagePath={ product?.main_pair?.detailed?.image_path }
-                    imageFolder='detailed'
-                    width={widthProductImage || 150}
-                    height={heightProductImage || 150}
-                    imageAlt={ product?.product }
-                    object_id={product?.product_id}
-                    object_type={`prd`}
-                  /> :
+                  <Suspense fallback="...">
+                    <ShowResponsiveImage
+                      imagePath={ product?.main_pair?.detailed?.image_path }
+                      imageFolder='detailed'
+                      width={widthProductImage || 150}
+                      height={heightProductImage || 150}
+                      imageAlt={ product?.product }
+                      object_id={product?.product_id}
+                      object_type={`prd`}
+                    />
+                  </Suspense> :
                   <Image
                     width={widthProductImage || 150}
                     height={heightProductImage || 150}
@@ -130,6 +133,7 @@ const ProductsMultiColumnVertical = (props) => {
                 {detailIcon === 'default' ?
                   <><i className={ `flag-icon flag-icon-${ manufacturing_country.toLowerCase() } vv-font-size-1-9` } /> <span className="vv-font-size-1-5 text-92">{ manufacturing_country }</span></> :
                   product?.company_logo &&
+                  <Suspense fallback="...">
                     <ShowResponsiveImage
                       imagePath={ `https://alaedeen.com/horn/images/company_logo/${product.company_logo}` }
                       imageFolder='company_logo'
@@ -139,6 +143,7 @@ const ProductsMultiColumnVertical = (props) => {
                       object_id={product?.company_id}
                       object_type={`prd_company_logo`}
                     />
+                  </Suspense>
                 }
               </Col>
             </Row>
