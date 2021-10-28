@@ -9,7 +9,7 @@ import './styles/Categories.less';
 import { Button, Carousel, Col, Collapse, Pagination, Row, Space, Typography } from "antd";
 
 // import config context:
-import { useGetConfig } from "../contexts/config/ConfigContext";
+import { changeLanguageAction, useConfigDispatch, useGetConfig } from "../contexts/config/ConfigContext";
 
 // import helper functions:
 import { useGetApi, useQueryString, useWindowSize } from "../functions";
@@ -38,6 +38,7 @@ const Categories = () => {
 
   // get initial config
   const { config } = useGetConfig();
+  //const { configDispatch } = useConfigDispatch();
 
   const { t } = useTranslation();
 
@@ -52,6 +53,15 @@ const Categories = () => {
 
   // get category path from url:
   const { category: categorySeoName } = useParams();
+
+  // get url data lang:
+  /*const { data: urlData } = useGetApi(`url-lang-api`, `path=${categorySeoName}&type=c`, `url_data_${categorySeoName}`);
+
+  if (urlData && urlData?.lang_code) {
+    if (urlData?.lang_code !== config.language) {
+      configDispatch(changeLanguageAction(urlData?.lang_code));
+    }
+  }*/
 
   // initial state show product column:
   const [productShowType, setProductShowType] = useState(window.localStorage.getItem('productShowType') || "oneColumn");
