@@ -59,18 +59,13 @@ export function useGetTopRankingProducts(cat1, cat2, cat3) {
   return { productsCat1, productsCat2, productsCat3, parametersCat1, parametersCat2, parametersCat3, load, error }
 }
 
-export function useGetApi(mode, params, useQueryKey) {
+export function useGetApi(mode, params, key) {
 
-  // get initial config:
+  // get initial config from context:
   const { config } = useGetConfig();
 
-  let useQueryKeyClone,
-    url;
-
-  if (config.language) {
-    url = `https://alaedeen.com/horn/${ mode }/?${ params }&lang_code=${ config.language }`;
-    useQueryKeyClone = `${useQueryKey}_${config.language}`;
-  }
+  const url = `https://alaedeen.com/horn/${ mode }/?${ params }&lang_code=${ config.language }`;
+  const queryKey = `${key}_${config.language}`;
 
 
   // async function for get API:
@@ -79,7 +74,7 @@ export function useGetApi(mode, params, useQueryKey) {
     return data;
   }
 
-  return useQuery(['getApi', useQueryKeyClone], getApi, {
+  return useQuery(['getApi', queryKey], getApi, {
     enabled: !!config.language
   });
 }
