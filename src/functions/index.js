@@ -75,7 +75,8 @@ export function useGetApi(mode, params, key) {
   }
 
   return useQuery(['getApi', queryKey], getApi, {
-    enabled: !!config.language
+    enabled: !!config.language,
+    initialData: []
   });
 }
 
