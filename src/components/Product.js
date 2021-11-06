@@ -2,7 +2,6 @@ import {useGetApi} from "../functions";
 import {useParams} from "react-router-dom";
 import {Col, Row} from "antd";
 import ProductTemplate from "../layouts/blocks/product_templates";
-import { __ } from "../functions/Helper";
 import { Helmet } from "react-helmet";
 
 const Product = () => {
