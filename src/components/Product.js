@@ -17,9 +17,12 @@ const Product = () => {
     <Row className="productDetails--container">
 
       <Helmet>
-        <title>{ `Alaedeen.com | ${ product?.product }` }</title>
+        <title>{ !isLoading && ( product?.page_title || product?.product ) }</title>
+        <meta name="description" content={ !isLoading && product?.meta_description } />
+        <meta name="keywords" content={ !isLoading && product?.meta_keywords } />
         <link rel="canonical" href={ `https://alaedeen.com/product/${productSeoName}` } />
       </Helmet>
+
 
       <Col span={24}>
         <ProductTemplate product={product} isLoading={isLoading} />
