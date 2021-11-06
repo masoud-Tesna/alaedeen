@@ -28,25 +28,25 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
   const { t } = useTranslation();
 
   // get country lists from API:
-  const { data: quantityUnits } = useGetApi(`request-content-api`, 'variant=quantity_units', `quantityUnits`);
+  const { data: quantityUnits } = useGetApi(`request-content-api`, 'variant=quantity_units', `quantityUnits`, { enabled: isRequestModalVisible });
 
   // get quantity Units list from API:
-  const { data: countryLists } = useGetApi(`country-lists-api`, '', `countryLists`);
+  const { data: countryLists } = useGetApi(`country-lists-api`, '', `countryLists`, { enabled: isRequestModalVisible });
 
   // get order values lists from API:
-  const { data: orderValues } = useGetApi(`request-content-api`, 'variant=order_values', `orderValues`);
+  const { data: orderValues } = useGetApi(`request-content-api`, 'variant=order_values', `orderValues`, { enabled: isRequestModalVisible });
 
   // get supp Locations lists from API:
-  const { data: suppLocations } = useGetApi(`request-content-api`, 'variant=supp_locations', `suppLocations`);
+  const { data: suppLocations } = useGetApi(`request-content-api`, 'variant=supp_locations', `suppLocations`, { enabled: isRequestModalVisible });
 
   // get regular Types lists from API:
-  const { data: regularTypes } = useGetApi(`request-content-api`, 'variant=regular_types', `regularTypes`);
+  const { data: regularTypes } = useGetApi(`request-content-api`, 'variant=regular_types', `regularTypes`, { enabled: isRequestModalVisible });
 
   // get requirement Urgencies lists from API:
-  const { data: requirementUrgencies } = useGetApi(`request-content-api`, 'variant=requirement_urgencies', `requirementUrgencies`);
+  const { data: requirementUrgencies } = useGetApi(`request-content-api`, 'variant=requirement_urgencies', `requirementUrgencies`, { enabled: isRequestModalVisible });
 
   // get country codes from API:
-  const { data: countryCodes } = useGetApi(`country-code-api`, `lang_code=${config.language}`, `countryCodes`);
+  const { data: countryCodes } = useGetApi(`country-code-api`, `lang_code=${config.language}`, `countryCodes`, { enabled: isRequestModalVisible });
 
   const [isSpinSend, setIsSpinSend] = useState(false);
 

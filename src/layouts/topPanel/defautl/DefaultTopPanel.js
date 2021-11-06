@@ -33,9 +33,11 @@ import { useTranslation } from "react-i18next";
 import { logout, useDispatchAuthState, useGetAuthState } from "../../../contexts/user/UserContext";
 
 // import OneRequestMultipleQuotesModal component for show send request form modal:
-import OneRequestMultipleQuotesModal from "../../blocks/static_templates/OneRequestMultipleQuotesModal";
+//import OneRequestMultipleQuotesModal from "../../blocks/static_templates/OneRequestMultipleQuotesModal";
 
 const ShowResponsiveImage = lazy(() => import('../../common/ShowResponsiveImage'));
+
+const OneRequestMultipleQuotesModal = lazy(() => import('../../blocks/static_templates/OneRequestMultipleQuotesModal'));
 
 const DefaultTopPanel = () => {
 
@@ -456,11 +458,13 @@ const DefaultTopPanel = () => {
         </Row>
       </Col>
 
-      <OneRequestMultipleQuotesModal
-        isRequestModalVisible = {isRequestModalVisible}
-        setIsRequestModalVisible = {setIsRequestModalVisible}
-        section = "topPanel"
-      />
+      <Suspense fallback="...">
+        <OneRequestMultipleQuotesModal
+          isRequestModalVisible = {isRequestModalVisible}
+          setIsRequestModalVisible = {setIsRequestModalVisible}
+          section = "topPanel"
+        />
+      </Suspense>
     </Row>
   );
 };

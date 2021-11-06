@@ -21,10 +21,11 @@ import { useTranslation } from "react-i18next";
 import { logout, useDispatchAuthState, useGetAuthState } from '../../../contexts/user/UserContext';
 
 // import OneRequestMultipleQuotesModal component for show send request form modal:
-import OneRequestMultipleQuotesModal from "../../blocks/static_templates/OneRequestMultipleQuotesModal";
+//import OneRequestMultipleQuotesModal from "../../blocks/static_templates/OneRequestMultipleQuotesModal";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 const ShowResponsiveImage = lazy(() => import('../../common/ShowResponsiveImage'));
+const OneRequestMultipleQuotesModal = lazy(() => import('../../blocks/static_templates/OneRequestMultipleQuotesModal'));
 
 const DefaultHeader = () => {
 
@@ -229,11 +230,12 @@ const DefaultHeader = () => {
           <Input placeholder={ t(__('What are you looking for...')) } prefix={searchTextPrefix} onChange={e => {setSearchValue(e.target.value)}} onPressEnter={() => { handleSubmitSearch() }} />
         </Col>
       </Row>
-
-      <OneRequestMultipleQuotesModal
-        isRequestModalVisible = {isRequestModalVisible}
-        setIsRequestModalVisible = {setIsRequestModalVisible}
-      />
+      <Suspense fallback="...">
+        <OneRequestMultipleQuotesModal
+          isRequestModalVisible = {isRequestModalVisible}
+          setIsRequestModalVisible = {setIsRequestModalVisible}
+        />
+      </Suspense>
 
     </Header>
   );

@@ -59,7 +59,7 @@ export function useGetTopRankingProducts(cat1, cat2, cat3) {
   return { productsCat1, productsCat2, productsCat3, parametersCat1, parametersCat2, parametersCat3, load, error }
 }
 
-export function useGetApi(mode, params, key) {
+export function useGetApi(mode, params, key, options) {
 
   // get initial config from context:
   const { config } = useGetConfig();
@@ -75,7 +75,7 @@ export function useGetApi(mode, params, key) {
   }
 
   return useQuery(['getApi', queryKey], getApi, {
-    enabled: !!config.language,
+    ...options,
     initialData: []
   });
 }
