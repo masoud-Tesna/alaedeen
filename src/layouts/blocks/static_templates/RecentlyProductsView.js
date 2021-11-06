@@ -30,9 +30,7 @@ const RecentlyProductsView = () => {
   const { width } = useWindowSize();
 
   // get products from API:
-  const { isLoading, data } = useGetApi(`products-api`, `items_per_page=5`, `recentlyProducts`);
-
-  const { products } = data || [];
+  const { isLoading, data: { products } } = useGetApi(`products-api`, `items_per_page=5`, `recentlyProducts`);
 
   return (
     <div className="recommendedProducts--container">

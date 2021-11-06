@@ -21,9 +21,7 @@ const HomePageShowProducts = () => {
   }
 
   // get products from API:
-  const { isLoading, data } = useGetApi(`products-api`, `items_per_page=${items_per_page}`, `shipProducts`);
-
-  const { products } = data || [];
+  const { isLoading, data: { products } } = useGetApi(`products-api`, `items_per_page=${items_per_page}`, `shipProducts`);
 
   return (
     <Row className="h-100 productsMultiColumnVertical--items" justify="space-around">

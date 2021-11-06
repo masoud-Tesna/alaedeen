@@ -37,9 +37,7 @@ const DefaultFooter = () => {
   const { config } = useGetConfig();
 
   // get categories from API:
-  const { data } = useGetApi(`home-categories-api`, '', `allCategories`);
-
-  const { categories } = data || [];
+  const { data: { categories } } = useGetApi(`home-categories-api`, '', `allCategories`);
 
   // set initial link for instagram related to each language:
   let instagramLink = config.language === 'en' ? "https://instagram.com/hornb2b" : config.language === 'fa' ? "https://instagram.com/hornb2b.ir" : config.language === 'ar' ? "https://instagram.com/horn.ar" : "https://instagram.com/hornb2b";
@@ -153,7 +151,7 @@ const DefaultFooter = () => {
                 return (
                   <Col key={category?.category_id} className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
                     {/*link: /categories/${category?.seo_name}*/}
-                    <Link to={ `/` }>
+                    <Link to={ `/categories/${category?.seo_name}` } className={category?.p_count === 0 && 'categoryLink--disable'}>
                       { category.category }
                     </Link>
                   </Col>
