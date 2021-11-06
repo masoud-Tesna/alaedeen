@@ -44,25 +44,25 @@ const Factories = () => {
       <Row className="factories--container">
         <Col span={24} className="factories--topSection bottomShadow clipShadow">
           <Row justify={"space-between"}>
-            <Col span={14} className="text-white">
-              <div className="font-weight-bold font-italic factories--topSection__caption1">{ t(__('Premium OEM Factories')) }</div>
-              <div className="font-weight-600 mt-3 factories--topSection__caption2">{ t(__('Manufacturers assessed by independent third parties')) }</div>
+            <Col span={14}>
+              <div><h1 className="text-white font-weight-bold font-italic factories--topSection__caption1">{ t(__('Premium OEM Factories')) }</h1></div>
+              <div className="text-white font-weight-600 mt-3 factories--topSection__caption2">{ t(__('Manufacturers assessed by independent third parties')) }</div>
               <div className="d-none d-lg-block mt-4">
                 <Space size={"middle"} >
-                  <i className="fas fa-lightbulb display-3 font-weight-bold" />
-                  <span className="vv-font-size-2 font-weight-600">{ t(__('High-performance manufacturing capacity')) }</span>
+                  <i className="fas fa-lightbulb text-white display-3 font-weight-bold" />
+                  <span className="text-white vv-font-size-2 font-weight-600">{ t(__('High-performance manufacturing capacity')) }</span>
                 </Space>
               </div>
               <div className="d-none d-lg-block mt-4">
                 <Space size={"middle"} >
-                  <i className="fas fa-cog display-3 font-weight-bold" />
-                  <span className="vv-font-size-2 font-weight-600">{ t(__('R&D capability for customization')) }</span>
+                  <i className="fas fa-cog text-white display-3 font-weight-bold" />
+                  <span className="text-white vv-font-size-2 font-weight-600">{ t(__('R&D capability for customization')) }</span>
                 </Space>
               </div>
               <div className="d-none d-lg-block mt-4">
                 <Space size={"middle"} >
-                  <i className="fas fa-file-certificate display-3 font-weight-bold" />
-                  <span className="vv-font-size-2 font-weight-600">{ t(__('Professional certifications and approvals')) }</span>
+                  <i className="fas fa-file-certificate text-white display-3 font-weight-bold" />
+                  <span className="text-white vv-font-size-2 font-weight-600">{ t(__('Professional certifications and approvals')) }</span>
                 </Space>
               </div>
             </Col>
