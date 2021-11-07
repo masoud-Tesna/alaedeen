@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Creator: CorelDRAW 2019 (64-Bit) -->
-<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16.757mm" height="16.757mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-viewBox="0 0 1675.7 1675.7"
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="20mm" height="20mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 2000 2000"
  xmlns:xlink="http://www.w3.org/1999/xlink">
  <defs>
   <style type="text/css">
    <![CDATA[
-    .str1 {stroke:#3BAA33;stroke-width:67.73;stroke-miterlimit:2.61313}
-    .str0 {stroke:#3BAA33;stroke-width:67.73;stroke-linecap:round;stroke-miterlimit:2.61313}
+    .str1 {stroke:#3BAA33;stroke-width:67.73;stroke-linejoin:round;stroke-miterlimit:2.61313}
+    .str0 {stroke:#3BAA33;stroke-width:67.73;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2.61313}
     .fil0 {fill:none}
    ]]>
   </style>
  </defs>
  <g id="Layer_x0020_1">
   <metadata id="CorelCorpID_0Corel-Layer"/>
-  <g id="_2247683950176">
-   <path class="fil0 str0" d="M590.34 818.65c213.92,0 387.32,173.4 387.32,387.32 0,213.91 -173.4,387.31 -387.32,387.31 -213.91,0 -387.32,-173.4 -387.32,-387.31 0,-213.92 173.41,-387.32 387.32,-387.32z"/>
-   <path class="fil0 str0" d="M1213.87 1597.47c-79.34,0 -143.67,-64.33 -143.67,-143.67 0,-79.35 64.33,-143.68 143.67,-143.68 79.35,0 143.68,64.33 143.68,143.68 0,79.34 -64.33,143.67 -143.68,143.67z"/>
-   <polyline class="fil0 str0" points="354.69,98.98 408.36,98.98 482.46,315.4 434.99,347.04 "/>
-   <polyline class="fil0 str0" points="446.53,739.07 245.42,80.73 67.2,80.73 "/>
-   <line class="fil0 str0" x1="1341.39" y1="957.25" x2="1014.54" y2= "957.25" />
-   <line class="fil0 str0" x1="1341.39" y1="1209.1" x2="1086.4" y2= "1209.1" />
-   <path class="fil0 str0" d="M424.69 631.79c186.8,0.13 375.24,-1.49 561.84,0.46 137.15,1.58 262.22,20.75 326.55,159.35 37.77,81.45 28.17,160.66 27.55,246.9 -0.47,66.81 0.89,151.93 0.95,218.8"/>
-   <line class="fil0 str0" x1="1450.09" y1="1453.8" x2="1620.92" y2= "1453.8" />
+  <g id="_2247878868432">
+   <path class="fil0 str0" d="M739.34 961.51c207.84,0 376.32,168.48 376.32,376.32 0,207.84 -168.48,376.31 -376.32,376.31 -207.84,0 -376.31,-168.47 -376.31,-376.31 0,-207.84 168.47,-376.32 376.31,-376.32z"/>
+   <path class="fil0 str0" d="M1345.17 1718.22c-77.09,0 -139.6,-62.51 -139.6,-139.6 0,-77.09 62.51,-139.6 139.6,-139.6 77.09,0 139.59,62.51 139.59,139.6 0,77.09 -62.5,139.6 -139.59,139.6z"/>
+   <polyline class="fil0 str0" points="510.38,262.28 562.53,262.28 634.52,472.55 588.4,503.29 "/>
+   <polyline class="fil0 str0" points="599.62,884.19 404.22,244.55 231.06,244.55 "/>
+   <line class="fil0 str0" x1="1469.06" y1="1096.17" x2="1151.5" y2= "1096.17" />
+   <line class="fil0 str0" x1="1469.06" y1="1340.87" x2="1221.31" y2= "1340.87" />
+   <path class="fil0 str0" d="M578.4 779.95c181.49,0.13 364.58,-1.44 545.88,0.45 133.25,1.54 254.77,20.16 317.27,154.82 36.71,79.15 27.38,156.11 26.77,239.9 -0.45,64.91 0.86,147.61 0.93,212.58"/>
+   <line class="fil0 str0" x1="1574.68" y1="1578.62" x2="1740.65" y2= "1578.62" />
    <g>
-    <circle class="fil0 str1" cx="590.34" cy="1202.77" r="129.09"/>
-    <line class="fil0 str0" x1="828.21" y1="1339.98" x2="702.21" y2= "1267.23" />
-    <line class="fil0 str0" x1="828.21" y1="1065.59" x2="702.21" y2= "1138.33" />
-    <line class="fil0 str0" x1="590.34" y1="939.1" x2="590.34" y2= "1051.07" />
-    <line class="fil0 str0" x1="352.44" y1="1065.59" x2="478.47" y2= "1138.33" />
-    <line class="fil0 str0" x1="352.44" y1="1339.98" x2="478.47" y2= "1267.23" />
-    <line class="fil0 str0" x1="590.34" y1="1472.83" x2="590.34" y2= "1331.86" />
+    <circle class="fil0 str1" cx="739.34" cy="1334.72" r="125.43"/>
+    <line class="fil0 str0" x1="970.45" y1="1468.03" x2="848.04" y2= "1397.35" />
+    <line class="fil0 str0" x1="970.45" y1="1201.44" x2="848.04" y2= "1272.12" />
+    <line class="fil0 str0" x1="739.34" y1="1078.54" x2="739.34" y2= "1187.33" />
+    <line class="fil0 str0" x1="508.2" y1="1201.44" x2="630.65" y2= "1272.12" />
+    <line class="fil0 str0" x1="508.2" y1="1468.03" x2="630.65" y2= "1397.35" />
+    <line class="fil0 str0" x1="739.34" y1="1597.11" x2="739.34" y2= "1460.15" />
    </g>
   </g>
  </g>
