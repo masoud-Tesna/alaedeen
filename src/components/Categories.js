@@ -9,7 +9,7 @@ import './styles/Categories.less';
 import { Button, Carousel, Col, Collapse, Pagination, Row, Space, Typography } from "antd";
 
 // import config context:
-import { changeLanguageAction, useConfigDispatch, useGetConfig } from "../contexts/config/ConfigContext";
+import { useGetConfig } from "../contexts/config/ConfigContext";
 
 // import helper functions:
 import { useGetApi, useQueryString, useWindowSize } from "../functions";
