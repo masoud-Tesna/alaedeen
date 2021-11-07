@@ -12,17 +12,15 @@ html:lang(ar) {
     margin-bottom: 1rem;
   }
 
-  .productsMultiColumnVertical--items {
+  .productsMultiColumnVertical--container {
     .productsMultiColumnVertical--item__loadMore {
-      .ant-btn {
+      a {
+        font-size: 1.7rem;
+        padding: 1.3rem 1.5rem;
+
         &:hover {
-          background-color: @primary-color !important;
-          span {
-            color: #FFFFFF!important;
-          }
-        }
-        span {
-          font-size: 1.7rem!important;
+          background-color: @primary-color;
+          color: #FFFFFF;
         }
       }
     }

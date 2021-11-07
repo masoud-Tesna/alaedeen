@@ -2,7 +2,7 @@
 import './styles/RecommendedProducts.less';
 
 // import ANT Design Components Used:
-import { Button, Col, Row } from "antd";
+import { Col, Row } from "antd";
 
 // import Another Components Used:
 import ProductsMultiColumnVertical from "../product_list_templates/ProductsMultiColumnVertical";
@@ -15,6 +15,7 @@ import { useGetApi, useWindowSize } from "../../../functions";
 import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const RecommendedProducts = () => {
 
@@ -25,7 +26,7 @@ const RecommendedProducts = () => {
   const product_items_per_page = width >= 768 ? 20 : 12;
 
   // get products from API:
-  const { isLoading, data: { products, show_more } } = useGetApi(`recommended-api`, `pShowHome=Y&items_per_page=${product_items_per_page}`, `recommendedHomeProducts`);
+  const { isLoading, data: { products } } = useGetApi(`recommended-api`, `pShowHome=Y&items_per_page=${product_items_per_page}`, `recommendedHomeProducts`);
 
   let productsMultiColumnVertical_items = { span: 8 };
 
@@ -72,13 +73,11 @@ const RecommendedProducts = () => {
               }
 
             </Row>
-            {(!isLoading && show_more === 'Y') &&
-              <div className="text-center mt-4 productsMultiColumnVertical--item__loadMore">
-                <Button className="text-47 rounded-md bg-transparent border-primary" size="large">
-                  { t(__('Show More')) }
-                </Button>
-              </div>
-            }
+            <div className="text-center mt-5 productsMultiColumnVertical--item__loadMore">
+              <Link className="text-47 rounded-md border border-primary d-inline-block" to={ "/recommended" }>
+                { t(__('Show More')) }
+              </Link>
+            </div>
           </div>
         </Col>
       </Row>
