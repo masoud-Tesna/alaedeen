@@ -61,9 +61,10 @@ function App() {
     <ConfigProvider direction={ directionTheme }>
 
       <Helmet>
-        { languageLinks?.map(languageLink => {
+        { languageLinks?.map((languageLink, i) => {
           return(
             <link
+              key={`langTag_${i}`}
               title = { languageLink.title }
               dir = { languageLink.dir }
               type = "text/html"
