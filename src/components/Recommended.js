@@ -1,12 +1,12 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
-import { Link, useHistory, useLocation, useParams } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 
 //import style file:
 import './styles/Categories.less';
 
 //  import ant design components:
-import { Button, Carousel, Col, Collapse, Pagination, Row, Space, Typography } from "antd";
+import { Button, Col, Collapse, Pagination, Row, Space, Typography } from "antd";
 
 // import config context:
 import { useGetConfig } from "../contexts/config/ConfigContext";
@@ -15,12 +15,8 @@ import { useGetConfig } from "../contexts/config/ConfigContext";
 import { useGetApi, useQueryString, useWindowSize } from "../functions";
 
 // import helpers function:
-import { __, splitArray } from "../functions/Helper";
+import { __ } from "../functions/Helper";
 import { useTranslation } from "react-i18next";
-
-// Import Swiper styles
-import "swiper/swiper.min.css";
-import "swiper/components/scrollbar/scrollbar.min.css";
 
 import { Helmet } from "react-helmet";
 
@@ -70,7 +66,7 @@ const Recommended = () => {
   const [isLoadingHandle, setIsLoadingHandle] = useState(false);
 
   // if change category path => remove page and features_hash from URL & reset page, filtersApi, featuresHash and featuresHashContainer state:
-  useEffect(() => {
+/*  useEffect(() => {
 
     // remove param from URL:
     //query.delete('page');
@@ -84,11 +80,10 @@ const Recommended = () => {
     //setFeaturesHash("");
     setFeaturesHashContainer(query.get("features_hash") || "");
 
-  }, []);
+  }, []);*/
 
-  // get category filters:
+  // get filters:
   useEffect(() => {
-    let mount = true;
     // function for get category filters::
     async function getProductFilters() {
       setIsLoadingHandle(true);
@@ -96,16 +91,13 @@ const Recommended = () => {
       return await axios.get(url);
     }
 
-    if (config.language && mount) {
+    if (config.language) {
       getProductFilters()
         .then(res => {
           // category filters add to filtersApi state:
           setFiltersApi(res.data);
           setIsLoadingHandle(false);
         });
-    }
-    return () => {
-      mount = false;
     }
 
   }, [featuresHashContainer, config.language]);
@@ -218,8 +210,6 @@ const Recommended = () => {
   const [filterContentMobileToggle, setFilterContentMobileToggle] = useState("");
 
   const { Panel } = Collapse;
-
-  const { Paragraph } = Typography;
 
   return (
     <Row className="mt-0 mt-lg-4 products--container" gutter={[0, 23]}>
