@@ -36,7 +36,7 @@ const AllCategories = lazy(() => import('./components/AllCategories'));
 const Categories = lazy(() => import('./components/Categories'));
 const Register = lazy(() => import('./components/Register'));
 const Product = lazy(() => import('./components/Product'));
-const RecommendedS = lazy(() => import('./components/RecommendedS'));
+const Recommended = lazy(() => import('./components/Recommended'));
 
 
 function App() {
@@ -104,7 +104,7 @@ function App() {
                   {/*Product details Route*/}
                   <Route path="/product/:product" component={Product} />
                   {/*RecommendedS details Route*/}
-                  <Route path="/recommendedS" component={RecommendedS} />
+                  <Route path="/recommended" component={Recommended} />
                 </Switch>
               </Suspense>
             </div>
