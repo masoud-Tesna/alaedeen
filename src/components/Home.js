@@ -42,6 +42,16 @@ const Home = () => {
         <title>{ t('alaedeen_title') }</title>
         <meta name="description" content={ t('alaedeen_description') } />
         <meta name="keywords" content={ t('alaedeen_keywords') } />
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "url": "https://alaedeen.com",
+              "logo": "https://alaedeen.com/alaedeen-xs.png"
+            }
+          `}
+        </script>
       </Helmet>
 
       <div className="top--section bg-white">
