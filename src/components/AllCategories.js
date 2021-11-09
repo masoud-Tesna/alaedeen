@@ -17,7 +17,9 @@ const AllCategories = () => {
   return (
     <Row className="allCategories--container">
       <Helmet>
-        <title>{ `Alaedeen.com | ${ t(__('all categories')) }` }</title>
+        <title>{ t(__('all categories')) }</title>
+        <meta name="description" content={ t('alaedeen_description') } />
+        <meta name="keywords" content={ t('alaedeen_keywords') } />
       </Helmet>
       {isLoading ?
         <Col span={24} className="allCategories--loading">Loading...</Col> :

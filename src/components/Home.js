@@ -10,6 +10,7 @@ import { useWindowSize } from '../functions';
 import { Col, Row } from "antd";
 
 import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
 
 // import component blocks:
 const CategoriesMultiColumn = lazy(() => import('../layouts/blocks/categories/CategoriesMultiColumn'));
@@ -29,6 +30,8 @@ const RecentlyProductsView = lazy(() => import('../layouts/blocks/static_templat
 
 const Home = () => {
 
+  const { t } = useTranslation();
+
   const { width } = useWindowSize();
 
   return (
@@ -36,7 +39,9 @@ const Home = () => {
 
       {/*set Title and description*/}
       <Helmet>
-        <title>{ `Alaedeen.com | Iranian Exporters, Manufacturers, Logistics, Suppliers Directory, B2B Business Directory` }</title>
+        <title>{ t('alaedeen_title') }</title>
+        <meta name="description" content={ t('alaedeen_description') } />
+        <meta name="keywords" content={ t('alaedeen_keywords') } />
       </Helmet>
 
       <div className="top--section bg-white">

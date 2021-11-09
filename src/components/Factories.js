@@ -38,7 +38,9 @@ const Factories = () => {
   return (
     <div className="bg-footer factories--pageSection">
       <Helmet>
-        <title>{ `Alaedeen.com | ${ t(__('Premium OEM Factories')) }` }</title>
+        <title>{ t(__('Premium OEM Factories')) }</title>
+        <meta name="description" content={ t('factories_description') } />
+        <meta name="keywords" content={ t('factories_keywords') } />
         <link rel="canonical" href= "https://alaedeen.com/factories" />
       </Helmet>
       <Row className="factories--container">

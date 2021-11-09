@@ -216,7 +216,9 @@ const Recommended = () => {
     <Row className="mt-0 mt-lg-4 products--container" gutter={[0, 23]}>
 
       <Helmet>
-        <title>{ `Alaedeen.com | ${t(__('recommended product'))}` }</title>
+        <title>{ t(__('recommended product')) }</title>
+        <meta name="description" content={ t('alaedeen_description') } />
+        <meta name="keywords" content={ t('alaedeen_keywords') } />
         <link rel="canonical" href={ `https://alaedeen.com/recommended` } />
       </Helmet>
 
