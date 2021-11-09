@@ -1,5 +1,7 @@
 import { useLocation } from "react-router-dom";
 
+
+
 export function fn_stripHtml(strip) {
   const regex = /(<([^>]+)>)/ig;
   return strip.replace(regex, '');
@@ -126,5 +128,23 @@ export function appendQueryParameter(key, value) {
   }
 
   return finalUrl + url.substring(hashIndex);
+
+}
+
+export const useAppendRouteParameter = (name, value) => {
+
+  const location = useLocation();
+
+  const queryParams = new URLSearchParams(location.search);
+  const pathName = location.pathname;
+
+  if (queryParams.has(name)) {
+    queryParams.delete(name);
+    queryParams.set(name, value);
+  } else {
+    queryParams.set(name, value);
+  }
+
+  return pathName+ "?"+ queryParams;
 
 }

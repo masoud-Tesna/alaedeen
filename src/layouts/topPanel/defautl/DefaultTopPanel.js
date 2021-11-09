@@ -232,68 +232,68 @@ const DefaultTopPanel = () => {
                     </Link>
 
                     <span className="menuXs--sideNavLinks__item languagesCurrencyCollapse d-block">
-                        <Row justify={"space-between"}>
-                          <Col className="text-center" span={5}>
-                            <i className="fal fa-globe text-primary vv-font-size-3" />
-                          </Col>
-                          <Col style={{ paddingTop: '0.9rem' }} span={18}>
-                            <Collapse
-                              expandIconPosition={"right"}
-                              ghost
-                              expandIcon={({ isActive }) => <DownOutlined rotate={ config.language === 'en' ? (isActive ? 180 : 0) : (isActive ? 0 : 1)} />}
-                            >
-                              <Panel header={t(__('Language & Currency'))} key="1">
-                                <div className="mb-4">
-                                  <Row justify="space-between">
-                                    <Col className="my-auto">
-                                      <span className="mr-2">{t(__('Language'))}</span>
-                                    </Col>
-                                    <Col className="my-auto" span={12}>
-                                      <select
-                                        value={config.language}
-                                        onChange={e => handleChangeLanguage(e.target.value)}
-                                        className="w-100 text-red-a0 select-box-remove-arrow border-0 vv-font-size-1-5 p-0 mobileChangeLangSelect">
-                                        <option value="en">English</option>
-                                        <option value="ar">عربی</option>
-                                        <option value="fa">فارسی</option>
-                                      </select>
-                                    </Col>
-                                  </Row>
-                                </div>
+                      <Row justify={"space-between"}>
+                        <Col className="text-center" span={5}>
+                          <i className="fal fa-globe text-primary vv-font-size-3" />
+                        </Col>
+                        <Col style={{ paddingTop: '0.9rem' }} span={18}>
+                          <Collapse
+                            expandIconPosition={"right"}
+                            ghost
+                            expandIcon={({ isActive }) => <DownOutlined rotate={ config.language === 'en' ? (isActive ? 180 : 0) : (isActive ? 0 : 1)} />}
+                          >
+                            <Panel header={t(__('Language & Currency'))} key="1">
+                              <div className="mb-4">
+                                <Row justify="space-between">
+                                  <Col className="my-auto">
+                                    <span className="mr-2">{t(__('Language'))}</span>
+                                  </Col>
+                                  <Col className="my-auto" span={12}>
+                                    <select
+                                      value={config.language}
+                                      onChange={e => handleChangeLanguage(e.target.value)}
+                                      className="w-100 text-red-a0 select-box-remove-arrow border-0 vv-font-size-1-5 p-0 mobileChangeLangSelect">
+                                      <option value="en">English</option>
+                                      <option value="ar">عربی</option>
+                                      <option value="fa">فارسی</option>
+                                    </select>
+                                  </Col>
+                                </Row>
+                              </div>
 
-                                <div>
-                                  <Row justify="space-between">
-                                    <Col className="my-auto" span={12}>
-                                      <span className="mr-2">{t(__('Currency'))}</span>
-                                    </Col>
-                                    <Col className="my-auto" span={12}>
-                                      <select
-                                        value={config.currency}
-                                        onChange={e => handleChangeCurrency(e)}
-                                        className="w-100 text-red-a0 select-box-remove-arrow border-0 vv-font-size-1-5 p-0 mobileChangeCurrencySelect">
-                                        <option value="USD">US dollars</option>
-                                        <option value="AED" selected="">United
-                                          arab emirates dirham
-                                        </option>
-                                        <option value="IQD">Iraqi dinar
-                                        </option>
-                                        <option value="SAR">Saudi riyal
-                                        </option>
-                                        <option value="KWD">Kuwaiti dinar
-                                        </option>
-                                        <option value="BHD">Bahraini dinar
-                                        </option>
-                                        <option value="QAR">Qatari riyal
-                                        </option>
-                                      </select>
-                                    </Col>
-                                  </Row>
-                                </div>
-                              </Panel>
-                            </Collapse>
-                          </Col>
-                        </Row>
-                      </span>
+                              <div>
+                                <Row justify="space-between">
+                                  <Col className="my-auto" span={12}>
+                                    <span className="mr-2">{t(__('Currency'))}</span>
+                                  </Col>
+                                  <Col className="my-auto" span={12}>
+                                    <select
+                                      value={config.currency}
+                                      onChange={e => handleChangeCurrency(e)}
+                                      className="w-100 text-red-a0 select-box-remove-arrow border-0 vv-font-size-1-5 p-0 mobileChangeCurrencySelect">
+                                      <option value="USD">US dollars</option>
+                                      <option value="AED" selected="">United
+                                        arab emirates dirham
+                                      </option>
+                                      <option value="IQD">Iraqi dinar
+                                      </option>
+                                      <option value="SAR">Saudi riyal
+                                      </option>
+                                      <option value="KWD">Kuwaiti dinar
+                                      </option>
+                                      <option value="BHD">Bahraini dinar
+                                      </option>
+                                      <option value="QAR">Qatari riyal
+                                      </option>
+                                    </select>
+                                  </Col>
+                                </Row>
+                              </div>
+                            </Panel>
+                          </Collapse>
+                        </Col>
+                      </Row>
+                    </span>
 
                     <a className="menuXs--sideNavLinks__item d-block" href="https://alaedeen.com/horn/wishlist/" >
                       <Row justify={"space-between"}>
