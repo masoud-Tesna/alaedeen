@@ -147,6 +147,8 @@ const en = {
   "alaedeen_title": "Alaedeen.com - Iranian manufacturers & products, Logistics",
   "alaedeen_description": "Alaedeen.com - Iranian manufacturers & products, Logistics, Suppliers Directory, B2B Business Directory",
   "alaedeen_keywords": "Alaedeen, Iranian manufacturers, Iranian products, Logistics Service, Suppliers Directory, B2B Business Directory",
+  "factories_description": "manufacturers assessed by independent third parties, manufacturing capacity, R&D capability for customization, certifications and approvals",
+  "factories_keywords": "Premium OEM Factories, manufacturing capacity, R&D capability, certifications, approvals",
   "language": "Language",
   "currency": "Currency",
   "brands": "Brands",
