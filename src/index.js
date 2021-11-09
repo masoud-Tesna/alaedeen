@@ -40,5 +40,5 @@ const Application = () => {
   );
 }
 
-ReactDOM.render( <Application />, document.getElementById('HornApp'));
+ReactDOM.render( <Application />, document.getElementById('AlaedeenApp'));
 
