@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from "react";
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 // import Style File:
@@ -18,7 +18,7 @@ import { useGetApi, useQueryString } from "../functions";
 import { Helmet } from "react-helmet";
 
 // import Factories Show Component:
-const FactoriesShow = lazy(() => import('../layouts/blocks/static_templates/FactoriesShow'));
+import FactoriesShow from "../layouts/blocks/static_templates/FactoriesShow";
 
 const Factories = () => {
 
@@ -74,13 +74,11 @@ const Factories = () => {
 
         <Col span={24} className="factories--bottomSection mb-5">
           <Row gutter={[0, 50]} className="factories--items">
-            <Suspense fallback="...">
-              <FactoriesShow
-                factories={factories}
-                isLoading={isLoading}
-                factory_id={factory_id}
-              />
-            </Suspense>
+            <FactoriesShow
+              factories={factories}
+              isLoading={isLoading}
+              factory_id={factory_id}
+            />
           </Row>
         </Col>
       </Row>

@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 
@@ -6,7 +6,7 @@ import axios from "axios";
 import './styles/Categories.less';
 
 //  import ant design components:
-import { Button, Col, Collapse, Pagination, Row, Space, Typography } from "antd";
+import { Button, Col, Collapse, Pagination, Row, Space } from "antd";
 
 // import config context:
 import { useGetConfig } from "../contexts/config/ConfigContext";
@@ -21,12 +21,13 @@ import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 
 // import product show and product skeleton show:
-const CategoryOneColumn = lazy(() => import('../layouts/blocks/product_list_templates/CategoryOneColumn'));
-const CategoryMultiColumn = lazy(() => import('../layouts/blocks/product_list_templates/CategoryMultiColumn'));
+import CategoryOneColumn from "../layouts/blocks/product_list_templates/CategoryOneColumn";
+import CategoryMultiColumn from "../layouts/blocks/product_list_templates/CategoryMultiColumn";
 
 // import filters show:
-const ProductFilters = lazy(() => import('../layouts/blocks/product_filters'));
-const LoaderSpinner = lazy(() => import('../layouts/blocks/static_templates/LoadSpinner'));
+import ProductFilters from "../layouts/blocks/product_filters";
+import LoaderSpinner from "../layouts/blocks/static_templates/LoadSpinner";
+
 
 const Recommended = () => {
 
@@ -220,9 +221,7 @@ const Recommended = () => {
       </Helmet>
 
       {(isLoadingHandle || isLoading) &&
-      <Suspense fallback="...">
         <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>
-      </Suspense>
       }
 
       <Col className="products-content" span={24} ref={productContentDesktop}>
@@ -257,17 +256,15 @@ const Recommended = () => {
                       className="filterMobileCollapse"
                     >
                       <Panel showArrow={ false } header={ "" } className="filterMobileCollapse--panel" key="filterMobileCollapse">
-                        <Suspense fallback="...">
-                          <ProductFilters
-                            filters = {filters}
-                            product_length = {products?.length || ""}
-                            featuresHashContainer = {featuresHashContainer}
-                            featureHandleClick={featureHandleClick}
-                            featureRemoveHandleClick={featureRemoveHandleClick}
-                            featureResetHandleClick={handleResetFilter}
-                            handleConfirmFilters={handleConfirmFilters}
-                          />
-                        </Suspense>
+                        <ProductFilters
+                          filters = {filters}
+                          product_length = {products?.length || ""}
+                          featuresHashContainer = {featuresHashContainer}
+                          featureHandleClick={featureHandleClick}
+                          featureRemoveHandleClick={featureRemoveHandleClick}
+                          featureResetHandleClick={handleResetFilter}
+                          handleConfirmFilters={handleConfirmFilters}
+                        />
                       </Panel>
                     </Collapse>
                     }
@@ -283,7 +280,6 @@ const Recommended = () => {
             }
 
             {(width >= 992 && filters && filters.length !== 0) &&
-            <Suspense fallback="...">
               <ProductFilters
                 filters = {filters}
                 product_length = {products?.length || ""}
@@ -293,7 +289,6 @@ const Recommended = () => {
                 featureResetHandleClick={handleResetFilter}
                 handleConfirmFilters={handleConfirmFilters}
               />
-            </Suspense>
             }
 
             <Col xs={24} lg={18} ref={productContentMobile}>
@@ -320,11 +315,9 @@ const Recommended = () => {
                         {productShowType === 'oneColumn' &&
                         products?.map((product, i) => {
                           return (
-                            <Suspense fallback="..." key = { i }>
-                              <CategoryOneColumn
-                                product={product}
-                              />
-                            </Suspense>
+                            <CategoryOneColumn
+                              product={product}
+                            />
                           );
                         })
                         }
@@ -335,14 +328,12 @@ const Recommended = () => {
                           <Row className="h-100" gutter={[ { xs:8, lg: 23 }, { xs:10, lg: 23 }]} justify={"center"}>
                             { products?.map((product, i) => {
                               return (
-                                <Suspense fallback="..." key={ i }>
-                                  <CategoryMultiColumn
-                                    product={ product }
-                                    allDetails
-                                    widthProductImage={ width >= 768 ? 194 : 170 }
-                                    heightProductImage={ width >= 768 ? 194 : 170 }
-                                  />
-                                </Suspense>
+                                <CategoryMultiColumn
+                                  product={ product }
+                                  allDetails
+                                  widthProductImage={ width >= 768 ? 194 : 170 }
+                                  heightProductImage={ width >= 768 ? 194 : 170 }
+                                />
                               );
                             }) }
                           </Row>

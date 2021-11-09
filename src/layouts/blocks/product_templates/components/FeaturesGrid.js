@@ -1,4 +1,4 @@
-import React, { Fragment, lazy, Suspense } from 'react';
+import React, { Fragment } from 'react';
 
 // import style file:
 import './styles/FeaturesGrid.less';
@@ -6,7 +6,7 @@ import { Col, Image, Row, Skeleton, Space } from "antd";
 import {useTranslation} from "react-i18next";
 import {__} from "../../../../functions/Helper";
 
-const ShowResponsiveImage = lazy(() => import('../../../common/ShowResponsiveImage'));
+import ShowResponsiveImage from "../../../common/ShowResponsiveImage";
 
 const FeaturesGrid = (props) => {
 
@@ -85,17 +85,15 @@ const FeaturesGrid = (props) => {
                                         <div className="certifi
                                         cationImages--image">
                                           { variant?.image ?
-                                            <Suspense fallback="...">
-                                              <ShowResponsiveImage
-                                                imagePath={ variant?.image }
-                                                imageFolder='detailed'
-                                                width={50}
-                                                height={50}
-                                                imageAlt={ variant?.variant }
-                                                object_id={variant?.variant_id}
-                                                object_type={`feature_img`}
-                                              />
-                                            </Suspense> :
+                                            <ShowResponsiveImage
+                                              imagePath={ variant?.image }
+                                              imageFolder='detailed'
+                                              width={50}
+                                              height={50}
+                                              imageAlt={ variant?.variant }
+                                              object_id={variant?.variant_id}
+                                              object_type={`feature_img`}
+                                            /> :
                                             <Image
                                               width={50}
                                               height={50}

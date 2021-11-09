@@ -1,5 +1,3 @@
-import { lazy, Suspense } from "react";
-
 // import Custom Hooks:
 import { useWindowSize } from "../../../functions";
 
@@ -11,7 +9,7 @@ import { Col, Row, Skeleton, Image } from "antd";
 
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
-const ShowResponsiveImage = lazy(() => import('../../common/ShowResponsiveImage'));
+import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 
 const ProductsMultiColumnVertical = (props) => {
 
@@ -72,17 +70,15 @@ const ProductsMultiColumnVertical = (props) => {
             <Row>
               <Col span={24} className="d-flex align-items-center justify-content-center productsMultiColumnVertical--item__image">
                 { product.main_pair ?
-                  <Suspense fallback="...">
-                    <ShowResponsiveImage
-                      imagePath={ product?.main_pair?.detailed?.image_path }
-                      imageFolder='detailed'
-                      width={widthProductImage || 150}
-                      height={heightProductImage || 150}
-                      imageAlt={ product?.product }
-                      object_id={product?.product_id}
-                      object_type={`prd`}
-                    />
-                  </Suspense> :
+                  <ShowResponsiveImage
+                    imagePath={ product?.main_pair?.detailed?.image_path }
+                    imageFolder='detailed'
+                    width={widthProductImage || 150}
+                    height={heightProductImage || 150}
+                    imageAlt={ product?.product }
+                    object_id={product?.product_id}
+                    object_type={`prd`}
+                  /> :
                   <Image
                     width={widthProductImage || 150}
                     height={heightProductImage || 150}
@@ -133,17 +129,15 @@ const ProductsMultiColumnVertical = (props) => {
                 {detailIcon === 'default' ?
                   <><i className={ `flag-icon flag-icon-${ manufacturing_country.toLowerCase() } vv-font-size-1-9` } /> <span className="vv-font-size-1-5 text-92">{ manufacturing_country }</span></> :
                   product?.company_logo &&
-                  <Suspense fallback="...">
-                    <ShowResponsiveImage
-                      imagePath={ `https://alaedeen.com/horn/images/company_logo/${product.company_logo}` }
-                      imageFolder='company_logo'
-                      width={33}
-                      height={33}
-                      imageAlt={ product.company_name }
-                      object_id={product?.company_id}
-                      object_type={`prd_company_logo`}
-                    />
-                  </Suspense>
+                  <ShowResponsiveImage
+                    imagePath={ `https://alaedeen.com/horn/images/company_logo/${product.company_logo}` }
+                    imageFolder='company_logo'
+                    width={33}
+                    height={33}
+                    imageAlt={ product.company_name }
+                    object_id={product?.company_id}
+                    object_type={`prd_company_logo`}
+                  />
                 }
               </Col>
             </Row>

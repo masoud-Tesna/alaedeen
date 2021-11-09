@@ -1,12 +1,9 @@
-import { lazy, Suspense } from "react";
-
 // import style file:
 import './styles/CategoryMultiColumn.less';
 import { Col, Image, Row } from "antd";
 import { useWindowSize } from "../../../functions";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
-
-const ShowResponsiveImage = lazy(() => import('../../common/ShowResponsiveImage'));
+import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 
 const CategoryMultiColumn = (props) => {
 
@@ -37,17 +34,15 @@ const CategoryMultiColumn = (props) => {
           <Row>
             <Col span={24} className="d-flex align-items-center justify-content-center productsMultiColumnVertical--item__image">
               { product?.main_pair ?
-                <Suspense fallback="...">
-                  <ShowResponsiveImage
-                    imagePath={ product?.main_pair?.detailed?.image_path }
-                    imageFolder='detailed'
-                    width={heightProductImage}
-                    height={heightProductImage}
-                    imageAlt={ product?.product }
-                    object_id={product?.product_id}
-                    object_type={`prd`}
-                  />
-                </Suspense> :
+                <ShowResponsiveImage
+                  imagePath={ product?.main_pair?.detailed?.image_path }
+                  imageFolder='detailed'
+                  width={heightProductImage}
+                  height={heightProductImage}
+                  imageAlt={ product?.product }
+                  object_id={product?.product_id}
+                  object_type={`prd`}
+                /> :
                 <Image
                   width={widthProductImage}
                   height={heightProductImage}

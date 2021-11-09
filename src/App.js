@@ -1,5 +1,3 @@
-import { Suspense, lazy } from 'react';
-
 // Custom Styles:
 import './styles/custom.less';
 
@@ -23,21 +21,20 @@ import TopPanel from "./layouts/topPanel";
 import { Header as SiteHeader } from "./layouts/header";
 import { SiteFooter } from "./layouts/footer";
 
-import "@babel/polyfill";
 import { appendQueryParameter } from "./functions/Helper";
 import { Helmet } from "react-helmet";
-import LoadSpinner from "./layouts/blocks/static_templates/LoadSpinner";
 
 // Pages:
-const Home = lazy(() => import('./components/Home'));
-const Factories = lazy(() => import('./components/Factories'));
-const SignIn = lazy(() => import('./components/SignIn'));
-const AllCategories = lazy(() => import('./components/AllCategories'));
-const Categories = lazy(() => import('./components/Categories'));
-const Register = lazy(() => import('./components/Register'));
-const Product = lazy(() => import('./components/Product'));
-const Recommended = lazy(() => import('./components/Recommended'));
+import Home from "./components/Home";
+import SignIn from "./components/SignIn";
+import Register from "./components/Register";
+import Factories from "./components/Factories";
+import AllCategories from "./components/AllCategories";
+import Categories from "./components/Categories";
+import Product from "./components/Product";
+import Recommended from "./components/Recommended";
 
+import "@babel/polyfill";
 
 function App() {
 
@@ -84,30 +81,28 @@ function App() {
           <SiteHeader />
           <Content>
             <div className="site-layout-content" id="siteLayoutContent">
-              <Suspense fallback={<LoadSpinner />}>
-                <Switch>
-                  {/*Home Route*/}
-                  <Route exact path="/" component={Home} />
-                  {/*Sign in Route*/}
-                  <Route path="/sign-in" component={SignIn} />
-                  {/*Register Route*/}
-                  <Route path="/register" component={Register} />
-                  {/*Factories Route*/}
-                  <Route path="/factories" component={Factories} />
-                  {/*All Categories Route*/}
-                  <Route path="/all-categories" component={AllCategories} />
-                  {/*if open categories page without category path, redirect to all-category route*/}
-                  <Route exact path="/categories" render={() => <Redirect to="/all-categories" />} />
-                  {/*categories Route (categories/electronic)*/}
-                  <Route path="/categories/:category" component={Categories} />
-                  {/*if open product details page without product path, redirect to all-category route*/}
-                  <Route exact path="/product" render={() => <Redirect to="/all-categories" />} />
-                  {/*Product details Route*/}
-                  <Route path="/product/:product" component={Product} />
-                  {/*RecommendedS details Route*/}
-                  <Route path="/recommended" component={Recommended} />
-                </Switch>
-              </Suspense>
+              <Switch>
+                {/*Home Route*/}
+                <Route exact path="/" component={Home} />
+                {/*Sign in Route*/}
+                <Route path="/sign-in" component={SignIn} />
+                {/*Register Route*/}
+                <Route path="/register" component={Register} />
+                {/*Factories Route*/}
+                <Route path="/factories" component={Factories} />
+                {/*All Categories Route*/}
+                <Route path="/all-categories" component={AllCategories} />
+                {/*if open categories page without category path, redirect to all-category route*/}
+                <Route exact path="/categories" render={() => <Redirect to="/all-categories" />} />
+                {/*categories Route (categories/electronic)*/}
+                <Route path="/categories/:category" component={Categories} />
+                {/*if open product details page without product path, redirect to all-category route*/}
+                <Route exact path="/product" render={() => <Redirect to="/all-categories" />} />
+                {/*Product details Route*/}
+                <Route path="/product/:product" component={Product} />
+                {/*RecommendedS details Route*/}
+                <Route path="/recommended" component={Recommended} />
+              </Switch>
             </div>
           </Content>
           <Footer>

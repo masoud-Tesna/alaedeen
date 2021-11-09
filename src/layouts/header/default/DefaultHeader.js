@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // import Styles For default:
@@ -20,12 +20,12 @@ import { useTranslation } from "react-i18next";
 // import user context:
 import { logout, useDispatchAuthState, useGetAuthState } from '../../../contexts/user/UserContext';
 
-// import OneRequestMultipleQuotesModal component for show send request form modal:
-//import OneRequestMultipleQuotesModal from "../../blocks/static_templates/OneRequestMultipleQuotesModal";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
-const ShowResponsiveImage = lazy(() => import('../../common/ShowResponsiveImage'));
-const OneRequestMultipleQuotesModal = lazy(() => import('../../blocks/static_templates/OneRequestMultipleQuotesModal'));
+import ShowResponsiveImage from "../../common/ShowResponsiveImage";
+
+// import OneRequestMultipleQuotesModal component for show send request form modal:
+import OneRequestMultipleQuotesModal from "../../blocks/static_templates/OneRequestMultipleQuotesModal";
 
 const DefaultHeader = () => {
 
@@ -166,17 +166,15 @@ const DefaultHeader = () => {
                                 <Col>
                                   { (user_data?.auth?.company_logo && user_data?.auth?.company_logo.length !== 0) ?
                                     <span className="content--account__companyLogo">
-                                      <Suspense fallback="...">
-                                        <ShowResponsiveImage
-                                          imagePath={ user_data?.auth?.company_logo?.logo_path }
-                                          imageFolder='company_logo'
-                                          width={50}
-                                          height={50}
-                                          imageAlt={ user_data?.auth?.company ? user_data?.auth?.company : ` ${user_data?.auth?.firstname} ${user_data?.auth?.lastname} `}
-                                          object_id={user_data?.auth?.company_id}
-                                          object_type={`company_logo${config.language}`}
-                                        />
-                                      </Suspense>
+                                      <ShowResponsiveImage
+                                        imagePath={ user_data?.auth?.company_logo?.logo_path }
+                                        imageFolder='company_logo'
+                                        width={50}
+                                        height={50}
+                                        imageAlt={ user_data?.auth?.company ? user_data?.auth?.company : ` ${user_data?.auth?.firstname} ${user_data?.auth?.lastname} `}
+                                        object_id={user_data?.auth?.company_id}
+                                        object_type={`company_logo${config.language}`}
+                                      />
                                     </span> :
                                     <i className="fal fa-user display-3 text-70 d-block" />
                                   }
@@ -230,12 +228,10 @@ const DefaultHeader = () => {
           <Input placeholder={ t(__('What are you looking for...')) } prefix={searchTextPrefix} onChange={e => {setSearchValue(e.target.value)}} onPressEnter={() => { handleSubmitSearch() }} />
         </Col>
       </Row>
-      <Suspense fallback="...">
-        <OneRequestMultipleQuotesModal
-          isRequestModalVisible = {isRequestModalVisible}
-          setIsRequestModalVisible = {setIsRequestModalVisible}
-        />
-      </Suspense>
+      <OneRequestMultipleQuotesModal
+        isRequestModalVisible = {isRequestModalVisible}
+        setIsRequestModalVisible = {setIsRequestModalVisible}
+      />
 
     </Header>
   );

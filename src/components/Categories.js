@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useHistory, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -25,14 +25,14 @@ import "swiper/components/scrollbar/scrollbar.min.css";
 import { Helmet } from "react-helmet";
 
 // import product show and product skeleton show:
-const CategoryOneColumn = lazy(() => import('../layouts/blocks/product_list_templates/CategoryOneColumn'));
-const CategoryMultiColumn = lazy(() => import('../layouts/blocks/product_list_templates/CategoryMultiColumn'));
+import CategoryOneColumn from "../layouts/blocks/product_list_templates/CategoryOneColumn";
+import CategoryMultiColumn from "../layouts/blocks/product_list_templates/CategoryMultiColumn";
 
 // import filters show:
-const ProductFilters = lazy(() => import('../layouts/blocks/product_filters'));
-const SubCategoriesSwiperMobile = lazy(() => import('./categories/SubCategoriesSwiperMobile'));
-const SubCategoriesSwiperDesktop = lazy(() => import('./categories/SubCategoriesSwiperDesktop'));
-const LoaderSpinner = lazy(() => import('../layouts/blocks/static_templates/LoadSpinner'));
+import ProductFilters from "../layouts/blocks/product_filters";
+import SubCategoriesSwiperMobile from "./categories/SubCategoriesSwiperMobile";
+import SubCategoriesSwiperDesktop from "./categories/SubCategoriesSwiperDesktop";
+import LoaderSpinner from "../layouts/blocks/static_templates/LoadSpinner";
 
 const Categories = () => {
 
@@ -299,9 +299,7 @@ const Categories = () => {
       </Helmet>
 
       {(isLoadingHandle || isLoading) &&
-      <Suspense fallback="...">
         <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>
-      </Suspense>
       }
 
       {subCategories?.length > 0 &&
@@ -380,9 +378,7 @@ const Categories = () => {
                   }
 
                   <Col span={24} className="subCategoriesSwiper">
-                    <Suspense fallback="...">
-                      <SubCategoriesSwiperDesktop subCategories={subCategories || []} />
-                    </Suspense>
+                    <SubCategoriesSwiperDesktop subCategories={subCategories || []} />
                   </Col>
 
                   { (params?.category_description !== "" && categoryBanners?.length === 0) &&
@@ -402,9 +398,7 @@ const Categories = () => {
               </Col>
             </> :
             <>
-              <Suspense fallback="...">
-                <SubCategoriesSwiperMobile subCategories={subCategories || []} category_name = {params?.category_name || ""} />
-              </Suspense>
+              <SubCategoriesSwiperMobile subCategories={subCategories || []} category_name = {params?.category_name || ""} />
 
               { (params?.category_description !== "" && categoryBanners?.length === 0) &&
                 <Col span={24} className="category-description" ref={categoryDescWithSubCategory}>
@@ -472,21 +466,19 @@ const Categories = () => {
                       className="filterMobileCollapse"
                     >
                       <Panel showArrow={ false } header={ "" } className="filterMobileCollapse--panel" key="filterMobileCollapse">
-                        <Suspense fallback="...">
-                          <ProductFilters
-                            filters = {filters}
-                            category_id = {params?.category_id || ""}
-                            category_seo_name = {categorySeoName || ""}
-                            category_name = {params?.category_name || ""}
-                            subCategories = {subCategories || []}
-                            product_length = {products?.length || ""}
-                            featuresHashContainer = {featuresHashContainer}
-                            featureHandleClick={featureHandleClick}
-                            featureRemoveHandleClick={featureRemoveHandleClick}
-                            featureResetHandleClick={handleResetFilter}
-                            handleConfirmFilters={handleConfirmFilters}
-                          />
-                        </Suspense>
+                        <ProductFilters
+                          filters = {filters}
+                          category_id = {params?.category_id || ""}
+                          category_seo_name = {categorySeoName || ""}
+                          category_name = {params?.category_name || ""}
+                          subCategories = {subCategories || []}
+                          product_length = {products?.length || ""}
+                          featuresHashContainer = {featuresHashContainer}
+                          featureHandleClick={featureHandleClick}
+                          featureRemoveHandleClick={featureRemoveHandleClick}
+                          featureResetHandleClick={handleResetFilter}
+                          handleConfirmFilters={handleConfirmFilters}
+                        />
                       </Panel>
                     </Collapse>
                     }
@@ -502,7 +494,6 @@ const Categories = () => {
             }
 
             {(width >= 992 && filters && filters.length !== 0) &&
-            <Suspense fallback="...">
               <ProductFilters
                 filters = {filters}
                 category_id = {params?.category_id || ""}
@@ -516,7 +507,6 @@ const Categories = () => {
                 featureResetHandleClick={handleResetFilter}
                 handleConfirmFilters={handleConfirmFilters}
               />
-            </Suspense>
             }
 
             <Col xs={24} lg={18} ref={productContentMobile}>
@@ -557,12 +547,10 @@ const Categories = () => {
                         {productShowType === 'oneColumn' &&
                         products?.map((product, i) => {
                           return (
-                            <Suspense fallback="...">
-                              <CategoryOneColumn
-                                key = { i }
-                                product={product}
-                              />
-                            </Suspense>
+                            <CategoryOneColumn
+                              key = { i }
+                              product={product}
+                            />
                           );
                         })
                         }
@@ -573,15 +561,13 @@ const Categories = () => {
                           <Row className="h-100" gutter={[ { xs:8, lg: 23 }, { xs:10, lg: 23 }]} justify={"center"}>
                             { products?.map((product, i) => {
                               return (
-                                <Suspense fallback="...">
-                                  <CategoryMultiColumn
-                                    key={ i }
-                                    product={ product }
-                                    allDetails
-                                    widthProductImage={ width >= 768 ? 194 : 170 }
-                                    heightProductImage={ width >= 768 ? 194 : 170 }
-                                  />
-                                </Suspense>
+                                <CategoryMultiColumn
+                                  key={ i }
+                                  product={ product }
+                                  allDetails
+                                  widthProductImage={ width >= 768 ? 194 : 170 }
+                                  heightProductImage={ width >= 768 ? 194 : 170 }
+                                />
                               );
                             }) }
                           </Row>

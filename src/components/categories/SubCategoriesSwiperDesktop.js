@@ -1,5 +1,3 @@
-import { lazy, Suspense } from "react";
-
 import { Col, Image, Row } from "antd";
 import { Link } from "react-router-dom";
 
@@ -7,8 +5,7 @@ import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 // import Swiper core and required modules
 import SwiperCore, { Scrollbar } from 'swiper';
-
-const ShowResponsiveImage = lazy(() => import('../../layouts/common/ShowResponsiveImage'));
+import ShowResponsiveImage from "../../layouts/common/ShowResponsiveImage";
 
 // install Swiper modules
 SwiperCore.use([Scrollbar]);
@@ -32,17 +29,15 @@ const SubCategoriesSwiperDesktop = ({ subCategories }) => {
                     <Col span={24} className="text-center my-2">
                       <div className="subCategoriesSwiper--image">
                         { subCategory?.main_pair?.detailed ?
-                          <Suspense fallback="...">
-                            <ShowResponsiveImage
-                              imagePath={ subCategory?.main_pair?.detailed?.image_path }
-                              imageFolder='detailed'
-                              width={92}
-                              height={92}
-                              imageAlt={ subCategory?.category }
-                              object_id={subCategory?.category_id}
-                              object_type={`cat`}
-                            />
-                          </Suspense> :
+                          <ShowResponsiveImage
+                            imagePath={ subCategory?.main_pair?.detailed?.image_path }
+                            imageFolder='detailed'
+                            width={92}
+                            height={92}
+                            imageAlt={ subCategory?.category }
+                            object_id={subCategory?.category_id}
+                            object_type={`cat`}
+                          /> :
                           <Image
                             width={92}
                             height={92}
