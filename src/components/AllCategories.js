@@ -28,7 +28,7 @@ const AllCategories = () => {
             return(
               <Col span={24} className="allCategories--item" style={{ paddingLeft: `${category?.level - 2}rem` }} key={ category?.category_id }>
                 {/*link: /categories/${category?.seo_name}*/}
-                <Link to={ `/categories/${category?.seo_name}` } className={`font-weight-600 d-block w-100 h-100 ${category?.p_count === 0 && 'categoryLink--disable'}`}>{ category?.category }</Link>
+                <Link to={ `/categories/${category?.seo_name}` } className={`font-weight-600 d-block w-100 h-100 ${category?.p_count === 0 ? 'categoryLink--disable': ''}`}>{ category?.category }</Link>
               </Col>
             )
           })}

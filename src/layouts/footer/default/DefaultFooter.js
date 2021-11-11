@@ -151,7 +151,7 @@ const DefaultFooter = () => {
                 return (
                   <Col key={category?.category_id} className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
                     {/*link: /categories/${category?.seo_name}*/}
-                    <Link to={ `/categories/${category?.seo_name}` } className={category?.p_count === 0 && 'categoryLink--disable'}>
+                    <Link to={ `/categories/${category?.seo_name}` } className={category?.p_count === 0 ? 'categoryLink--disable': ''}>
                       { category.category }
                     </Link>
                   </Col>

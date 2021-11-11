@@ -346,7 +346,7 @@ const Categories = () => {
                                   {splitSubCategory?.map(subCategory => {
                                     return(
                                       <Col key={`subCategoriesSlider_${subCategory?.category_id}`} span={24} className="subCategoriesSlider--item">
-                                        <Link to={ `/categories/${subCategory?.seo_name}` } className={subCategory?.p_count === 0 && 'categoryLink--disable'}>{ subCategory?.category }</Link>
+                                        <Link to={ `/categories/${subCategory?.seo_name}` } className={subCategory?.p_count === 0 ? 'categoryLink--disable': ''}>{ subCategory?.category }</Link>
                                       </Col>
                                     )
                                   })}
@@ -453,7 +453,7 @@ const Categories = () => {
                     <Col span={11} className="productShowType text-right">
                       <Space size={15}>
                         <i className={ `icon-vv-list-without-options-business cursor-pointer display-6 ${productShowType === 'oneColumn' && 'active'}` } onClick={() => productShowTypeHandleClick('oneColumn')} />
-                        <i className={ `icon-vv-grid-list-business cursor-pointer display-6 ${productShowType === 'multiColumn' && 'active'}` } onClick={() => productShowTypeHandleClick('multiColumn')} />
+                        <i className={ `icon-vv-grid-list-business cursor-pointer display-6 ${productShowType === 'multiColumn' ? 'active': ''}` } onClick={() => productShowTypeHandleClick('multiColumn')} />
                         <Button
                           className={ `filtersBtnCollapse ${filterContentMobileToggle === 'filterMobileCollapse' ? 'openFilter' : 'closeFilter'}` }
                           icon={<i className="fal fa-filter" />}
@@ -535,7 +535,7 @@ const Categories = () => {
                 <Col span={24} className="text-right productShowType">
                   <Space size={"large"}>
                     <i className={ `icon-vv-list-without-options-business cursor-pointer display-6 ${productShowType === 'oneColumn' && 'active'}` } onClick={() => productShowTypeHandleClick('oneColumn')} />
-                    <i className={ `icon-vv-grid-list-business cursor-pointer display-6 ${productShowType === 'multiColumn' && 'active'}` } onClick={() => productShowTypeHandleClick('multiColumn')} />
+                    <i className={ `icon-vv-grid-list-business cursor-pointer display-6 ${productShowType === 'multiColumn' ? 'active': ''}` } onClick={() => productShowTypeHandleClick('multiColumn')} />
                   </Space>
                 </Col>
                 }

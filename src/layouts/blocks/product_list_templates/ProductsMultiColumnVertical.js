@@ -89,7 +89,7 @@ const ProductsMultiColumnVertical = (props) => {
                 }
               </Col>
 
-              <Col span={24} className={ `${ !allDetails && 'd-none d-lg-block' } text-47 vv-font-size-1-8 text-truncate productsMultiColumnVertical--item__title` }>
+              <Col span={24} className={ `${ !allDetails ? 'd-none d-lg-block': '' } text-47 vv-font-size-1-8 text-truncate productsMultiColumnVertical--item__title` }>
                 { product.product }
               </Col>
             </Row>
@@ -114,7 +114,7 @@ const ProductsMultiColumnVertical = (props) => {
           </Col>
           }
 
-          <Col span={24} className={ `${ !allDetails && 'd-none d-lg-block' } px-4 mb-2 align-self-end productsMultiColumnVertical--item__location-detailIcon` }>
+          <Col span={24} className={ `${ !allDetails ? 'd-none d-lg-block': '' } px-4 mb-2 align-self-end productsMultiColumnVertical--item__location-detailIcon` }>
             <Row justify="space-between" align="bottom">
               <Col className="productsMultiColumnVertical--item__location">
                 {product?.wk_location &&
