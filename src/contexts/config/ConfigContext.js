@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 
 // import Config reducer:
 import { ConfigReducer } from './ConfigReducer';
@@ -6,7 +6,7 @@ import { ConfigReducer } from './ConfigReducer';
 // import Config initial state:
 import { ConfigInitialState } from './ConfigInitialState';
 
-import { changeIpAction, changeCountryAction, changeCountryCodeAction, changeLanguageAction, changeClientLanguageAction, changeCurrencyAction } from './ConfigActionCreators';
+import { changeIpAction, changeCountryAction, changeCountryCodeAction, changeClientLanguageAction } from './ConfigActionCreators';
 import axios from "axios";
 
 import LoaderSpinner from '../../layouts/blocks/static_templates/LoadSpinner';
