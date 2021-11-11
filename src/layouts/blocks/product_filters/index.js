@@ -118,7 +118,7 @@ const ProductFilters = (props) => {
                 {subCategories?.map(subCategory => {
                   return (
                     <Col key={`subCategoriesFilter_${category_id}_${subCategory?.category_id}`} span={24} className="subCategories--item">
-                      <Link className={ `py-2 ${config.language === 'en' ? 'subCategories--item--plLevel2' : 'subCategories--item--prLevel2'} px-4 vv-font-size-1-7 d-block ${subCategory?.p_count === 0 && 'categoryLink--disable'}` } to={ `/categories/${subCategory?.seo_name}` }>{ subCategory?.category }</Link>
+                      <Link className={ `py-2 ${config.language === 'en' ? 'subCategories--item--plLevel2' : 'subCategories--item--prLevel2'} px-4 vv-font-size-1-7 d-block ${subCategory?.p_count === 0 ? 'categoryLink--disable': ''}` } to={ `/categories/${subCategory?.seo_name}` }>{ subCategory?.category }</Link>
                     </Col>
                   )
                 })}
