@@ -25,16 +25,6 @@ function ConfigProvider({ children }) {
     ConfigInitialState
   );
 
-  // useState For Store_id use in app
-  const url = new URL(window.location.href);
-  const langCodeUrlParam = url.searchParams.get('lang_code');
-
-  // get language from url or local storage in client browser:
-  const langCode = langCodeUrlParam || window.localStorage.getItem("lang_code");
-
-  // get currency from local storage in client browser:
-  const clientCurrencyLocalStorage = window.localStorage.getItem('client_currency');
-
   async function getConfigApi() {
     const url = "https://alaedeen.com/horn/config-api";
     const { data } = await axios.get(url);
@@ -49,19 +39,6 @@ function ConfigProvider({ children }) {
       configDispatch(changeClientLanguageAction(data?.client_language));
     }
   });
-
-  useEffect(() => {
-
-    // if language client isset: language app isset from local storage
-    if (langCode) {
-      configDispatch(changeLanguageAction(langCode));
-    }
-
-    // if currency client isset: currency app isset from local storage
-    if (clientCurrencyLocalStorage) {
-      configDispatch(changeCurrencyAction(clientCurrencyLocalStorage));
-    }
-  }, []);
 
   return (
     <configContext.Provider value={{ config, configDispatch }}>
