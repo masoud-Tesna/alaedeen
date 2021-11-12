@@ -154,6 +154,7 @@ const en = {
   "brands": "Brands",
   "filter_and_refine": "Filter & Refine",
   "warranty": "Warranty",
+  "recommended_products": "Recommended Products",
   "nominal_voltage": "Nominal voltage"
 };
 

@@ -154,6 +154,7 @@ const ar = {
   "brands": "منتج",
   "filter_and_refine": "فلتر",
   "warranty": "ضمان",
+  "recommended_products": "المنتجات الموصى بها",
   "nominal_voltage": "الجهد الاسمي"
 };
 

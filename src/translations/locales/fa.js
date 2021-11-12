@@ -154,6 +154,7 @@ const fa = {
   "brands": "تولیدکننده",
   "filter_and_refine": "فیلتر کردن",
   "warranty": "گارانتی",
+  "recommended_products": "محصولات پیشنهادی",
   "nominal_voltage": "ولتاژ"
 };
 
