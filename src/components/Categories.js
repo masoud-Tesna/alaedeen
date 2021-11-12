@@ -294,10 +294,7 @@ const Categories = () => {
     <Row className="mt-0 mt-lg-4 products--container" gutter={[0, 23]}>
 
       <Helmet>
-        {!params?.category_name ?
-          <title>Loading...</title> :
-          <title>{ params?.category_name }</title>
-        }
+        <title>{ params?.category_name || '' }</title>
         <meta name="description" content={ t('alaedeen_description') } />
         <meta name="keywords" content={ t('alaedeen_keywords') } />
         <link rel="canonical" href={ `https://alaedeen.com/categories/${categorySeoName}` } />

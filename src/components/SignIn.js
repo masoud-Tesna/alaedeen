@@ -67,7 +67,7 @@ const SignIn = () => {
     <Row justify={"center"} className="signIn--container h-100">
 
       <Helmet>
-        <title>{ `Alaedeen.com - ${ t(__('sign in')) }` }</title>
+        <title>{ t(__('sign in')) }</title>
         <meta name="description" content={ t('alaedeen_description') } />
         <meta name="keywords" content={ t('alaedeen_keywords') } />
       </Helmet>

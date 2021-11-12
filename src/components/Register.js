@@ -84,7 +84,7 @@ const Register = () => {
     <Row justify={"center"} className="register--container h-100">
 
       <Helmet>
-        <title>{ `Alaedeen.com - ${ t(__('register')) }` }</title>
+        <title>{ t(__('register')) }</title>
         <meta name="description" content={ t('alaedeen_description') } />
         <meta name="keywords" content={ t('alaedeen_keywords') } />
       </Helmet>
