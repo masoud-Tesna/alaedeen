@@ -2,7 +2,6 @@
 import './styles/ProductTab.less';
 
 import { Col, Row, Tabs } from 'antd';
-import { useGetConfig } from "../../../contexts/config/ConfigContext";
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../functions/Helper";
 import ProductSpecifications from "./components/ProductSpecifications";
@@ -15,9 +14,6 @@ function callback(key) {
 }
 
 const ProductTab = (props) => {
-
-  // get initial config:
-  const { config } = useGetConfig();
 
   const { t } = useTranslation();
 
