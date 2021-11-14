@@ -71,7 +71,7 @@ function App() {
             />
           )
         }) }
-
+        <html lang={ config.language } />
       </Helmet>
 
       <Layout className="layout">
