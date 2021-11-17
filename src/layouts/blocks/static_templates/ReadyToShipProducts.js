@@ -8,7 +8,7 @@ import { Row } from "antd";
 // import Custom hooks:
 import { useGetApi, useWindowSize } from "../../../functions";
 
-const HomePageShowProducts = () => {
+const ReadyToShipProducts = () => {
 
   const { width } = useWindowSize();
 
@@ -21,7 +21,7 @@ const HomePageShowProducts = () => {
   }
 
   // get products from API:
-  const { isLoading, data: { products } } = useGetApi(`products-api`, `items_per_page=${items_per_page}`, `shipProducts`);
+  const { isLoading, data: { products } } = useGetApi(`products-api`, `rtsShowHome=Y&items_per_page=${items_per_page}`, `shipProducts`);
 
   return (
     <Row className="h-100 productsMultiColumnVertical--items" justify="space-around">
@@ -51,4 +51,4 @@ const HomePageShowProducts = () => {
   );
 };
 
-export default HomePageShowProducts;
+export default ReadyToShipProducts;

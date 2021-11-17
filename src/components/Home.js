@@ -17,7 +17,7 @@ import RequestForm from "../layouts/blocks/static_templates/OneRequestMultipleQu
 import RequestsList from "../layouts/blocks/static_templates/RequestsList";
 import Stats from "../layouts/blocks/static_templates/Stats";
 import ShipProductsBanner from "../layouts/blocks/static_templates/ShipProductsBanner";
-import HomePageShowProducts from "../layouts/blocks/static_templates/HomePageShowProducts";
+import ReadyToShipProducts from "../layouts/blocks/static_templates/ReadyToShipProducts";
 import PremiumFactories from "../layouts/blocks/static_templates/PremiumFactories";
 import RecommendedProducts from "../layouts/blocks/static_templates/RecommendedProducts";
 import TopBrands from "../layouts/blocks/static_templates/TopBrands";
@@ -104,7 +104,7 @@ const Home = () => {
             <ShipProductsBanner />
           </Col>
           <Col className="pr-0" span={14}>
-            <HomePageShowProducts />
+            <ReadyToShipProducts />
           </Col>
         </Row>
       </div>
