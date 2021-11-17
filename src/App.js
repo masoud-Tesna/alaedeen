@@ -33,6 +33,7 @@ import AllCategories from "./components/AllCategories";
 import Categories from "./components/Categories";
 import Product from "./components/Product";
 import Recommended from "./components/Recommended";
+import ReadyToShip from "./components/ReadyToShip";
 
 import "@babel/polyfill";
 
@@ -50,8 +51,8 @@ function App() {
   const languageLinks = [
     {title: "English", dir: 'ltr', hrefLang: 'x-default', href: window.location.href},
     {title: "English", dir: 'ltr', hrefLang: 'en', href: appendQueryParameter("lang_code", "en")},
-    {title: "العربية", dir: 'rtl', hrefLang: 'ar-IQ', href: appendQueryParameter("lang_code", "ar")},
-    {title: "فارسی", dir: 'rtl', hrefLang: 'fa-IR', href: appendQueryParameter("lang_code", "fa")},
+    {title: "العربية", dir: 'rtl', hrefLang: 'ar', href: appendQueryParameter("lang_code", "ar")},
+    {title: "فارسی", dir: 'rtl', hrefLang: 'fa', href: appendQueryParameter("lang_code", "fa")},
   ];
 
   return (
@@ -82,26 +83,38 @@ function App() {
           <Content>
             <div className="site-layout-content" id="siteLayoutContent">
               <Switch>
-                {/*Home Route*/}
+                {/* Home Route */}
                 <Route exact path="/" component={Home} />
-                {/*Sign in Route*/}
+
+                {/* Sign in Route */}
                 <Route path="/sign-in" component={SignIn} />
-                {/*Register Route*/}
+
+                {/* Register Route */}
                 <Route path="/register" component={Register} />
-                {/*Factories Route*/}
+
+                {/* Factories Route */}
                 <Route path="/factories" component={Factories} />
-                {/*All Categories Route*/}
+
+                {/* All Categories Route */}
                 <Route path="/all-categories" component={AllCategories} />
-                {/*if open categories page without category path, redirect to all-category route*/}
+
+                {/* if open categories page without category path, redirect to all-category route */}
                 <Route exact path="/categories" render={() => <Redirect to="/all-categories" />} />
-                {/*categories Route (categories/electronic)*/}
+
+                {/* categories Route (categories/electronic) */}
                 <Route path="/categories/:category" component={Categories} />
-                {/*if open product details page without product path, redirect to all-category route*/}
+
+                {/* if open product details page without product path, redirect to all-category route */}
                 <Route exact path="/product" render={() => <Redirect to="/all-categories" />} />
-                {/*Product details Route*/}
+
+                {/* Product details Route */}
                 <Route path="/product/:product" component={Product} />
-                {/*RecommendedS details Route*/}
+
+                {/* Recommended details Route */}
                 <Route path="/recommended" component={Recommended} />
+
+                {/* Ready To Ship details Route */}
+                <Route path="/ready-to-ship" component={ReadyToShip} />
               </Switch>
             </div>
           </Content>
