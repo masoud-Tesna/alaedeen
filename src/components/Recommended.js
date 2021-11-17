@@ -174,7 +174,7 @@ const Recommended = () => {
   }
 
   // get products from API before selecting filters and after selecting filter:
-  const { isLoading, data: product_data } = useGetApi(`recommended-api`, `items_per_page=20&page=${page}&features_hash=${featuresHash}&pShowMore=Y`, `recommendedMoreProducts_${page ? `_${page}` : ''}${featuresHash ? `_${featuresHash}` : ''}`);
+  const { isLoading, data: product_data } = useGetApi(`recommended-api`, `items_per_page=20&page=${page}&features_hash=${featuresHash}&recShowMore=Y`, `recommendedMoreProducts_${page ? `_${page}` : ''}${featuresHash ? `_${featuresHash}` : ''}`);
 
   // get products and params from product_data Or empty array:
   const { products, params} = product_data || [];

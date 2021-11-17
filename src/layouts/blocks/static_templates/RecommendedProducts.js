@@ -26,7 +26,7 @@ const RecommendedProducts = () => {
   const product_items_per_page = width >= 768 ? 20 : 12;
 
   // get products from API:
-  const { isLoading, data: { products } } = useGetApi(`recommended-api`, `pShowHome=Y&items_per_page=${product_items_per_page}`, `recommendedHomeProducts`);
+  const { isLoading, data: { products } } = useGetApi(`recommended-api`, `recShowHome=Y&items_per_page=${product_items_per_page}`, `recommendedHomeProducts`);
 
   let productsMultiColumnVertical_items = { span: 8 };
 
