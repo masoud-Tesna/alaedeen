@@ -217,8 +217,8 @@ const Recommended = () => {
 
       <Helmet>
         <title>{ t(__('recommended products')) }</title>
-        <meta name="description" content={ t('alaedeen_description') } />
-        <meta name="keywords" content={ t('alaedeen_keywords') } />
+        <meta name="description" content={ t(__('recommended products')) } />
+        <meta name="keywords" content={ `recommended_products, recommended, ${t('alaedeen_keywords')}` } />
         <link rel="canonical" href={ `https://alaedeen.com/recommended` } />
       </Helmet>
 
