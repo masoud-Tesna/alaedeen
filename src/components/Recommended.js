@@ -187,13 +187,12 @@ const Recommended = () => {
   const { Panel } = Collapse;
 
   useEffect(() => {
-    /*    if (width >= 992) {
-          productContentDesktop.current.scrollIntoView({ behavior: "smooth" });
-        } else {
-          productContentMobile.current.scrollIntoView({ behavior: "smooth" });
-        }*/
     window.scroll({ top: 0, behavior: 'smooth' });
   }, []);
+
+  useEffect(() => {
+    window.scroll({ top: 0, behavior: 'smooth' });
+  }, [featuresHash]);
 
   return (
     <Row className="mt-0 mt-lg-4 products--container category-products-list" gutter={[0, 23]}>
