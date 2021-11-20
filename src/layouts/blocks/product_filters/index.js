@@ -36,68 +36,68 @@ const ProductFilters = (props) => {
         { t(__('Filter & Refine')) }
       </div>
 
-      <div className={ `productFilter--selected ${(width >= 992 && featuresHashContainer) ? 'd-block py-3' : 'd-none'}` }>
-
-        {(filters && filters?.length !== 0) &&
-
-        <Row gutter={[6, 6]}>
-
-          {filters?.filter(filter => filter.selected_variants).map(filter => {
-            selectedFilter = true;
-
-            return(
-              Object.entries(filter?.selected_variants).map(([key, selected], index) => {
-                return (
-                  <Col>
-                    <div className="productFilter--selected__item">
-
-                      <Row className="h-100" align={"middle"} >
-                        <Col flex="1 1" className="vv-font-size-1-7 text-70 px-3 text-truncate">
-                          {selected.variant}
-                        </Col>
-
-                        <Col
-                          flex="26px"
-                          className="cursor-pointer"
-                          onClick={() => props.featureRemoveHandleClick(filter.filter_id, selected?.variant_id) }
-                        >
-                          <i className="far fa-times-circle display-5 font-weight-light text-bf" />
-                        </Col>
-                      </Row>
-
-                    </div>
-                  </Col>
-                );
-              })
-            )
-          })}
-
-          <Col className={ !selectedFilter && 'd-none' }>
-            <div className="productFilter--selected__item reset">
-
-              <Row className="h-100" align={"middle"} >
-                <Col flex="1 1" className="vv-font-size-1-7 text-70 px-3">
-                  { t(__('Reset All')) }
-                </Col>
-
-                <Col
-                  flex="22px"
-                  className="cursor-pointer"
-                  onClick={() => props.featureResetHandleClick()}
-                >
-                  <i className="fad fa-undo display-6 mt-2 font-weight-light text-bf" />
-                </Col>
-              </Row>
-
-            </div>
-          </Col>
-
-        </Row>
-
-        }
-      </div>
-
       <Row gutter={[0, 16]} className="productFilter--items">
+
+        <div className={ `productFilter--selected ${(width >= 992 && featuresHashContainer) ? 'd-block py-3' : 'd-none'}` }>
+
+          {(filters && filters?.length !== 0) &&
+
+          <Row gutter={[6, 6]}>
+
+            {filters?.filter(filter => filter.selected_variants).map(filter => {
+              selectedFilter = true;
+
+              return(
+                Object.entries(filter?.selected_variants).map(([key, selected], index) => {
+                  return (
+                    <Col>
+                      <div className="productFilter--selected__item">
+
+                        <Row className="h-100" align={"middle"} >
+                          <Col flex="1 1" className="vv-font-size-1-7 text-70 px-3 text-truncate">
+                            {selected.variant}
+                          </Col>
+
+                          <Col
+                            flex="26px"
+                            className="cursor-pointer"
+                            onClick={() => props.featureRemoveHandleClick(filter.filter_id, selected?.variant_id) }
+                          >
+                            <i className="far fa-times-circle display-5 font-weight-light text-bf" />
+                          </Col>
+                        </Row>
+
+                      </div>
+                    </Col>
+                  );
+                })
+              )
+            })}
+
+            <Col className={ !selectedFilter && 'd-none' }>
+              <div className="productFilter--selected__item reset">
+
+                <Row className="h-100" align={"middle"} >
+                  <Col flex="1 1" className="vv-font-size-1-7 text-70 px-3">
+                    { t(__('Reset All')) }
+                  </Col>
+
+                  <Col
+                    flex="22px"
+                    className="cursor-pointer"
+                    onClick={() => props.featureResetHandleClick()}
+                  >
+                    <i className="fad fa-undo display-6 mt-2 font-weight-light text-bf" />
+                  </Col>
+                </Row>
+
+              </div>
+            </Col>
+
+          </Row>
+
+          }
+        </div>
 
         {(subCategories && subCategories.length !== 0) &&
         <Col span={24} className="productFilter--subCategories">
