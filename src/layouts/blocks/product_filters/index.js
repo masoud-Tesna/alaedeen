@@ -28,9 +28,9 @@ const ProductFilters = (props) => {
 
   return (
     <Col xs={24} lg={6} className="productFilter--container">
-      <div className="mb-2 mt-2 mb-md-4 d-none d-lg-block">
+      {/*<div className="mb-2 mt-2 mb-md-4 d-none d-lg-block">
         <span className="text-47 font-weight-bold vv-font-size-1-7">{product_length} {t(__('products'))}:</span> <span className="vv-font-size-1-7">{category_name}</span>
-      </div>
+      </div>*/}
 
       <div className="text-33 font-weight-bold vv-font-size-2 border-bottom border-bc pb-3 d-none d-lg-block">
         { t(__('Filter & Refine')) }
