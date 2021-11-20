@@ -27,7 +27,7 @@ const ProductFilters = (props) => {
   let selectedFilter = false;
 
   return (
-    <Col xs={24} lg={6} className="productFilter--container">
+    <Col xs={24} lg={6} className="productFilter--container" style={{ position: "sticky" }}>
       {/*<div className="mb-2 mt-2 mb-md-4 d-none d-lg-block">
         <span className="text-47 font-weight-bold vv-font-size-1-7">{product_length} {t(__('products'))}:</span> <span className="vv-font-size-1-7">{category_name}</span>
       </div>*/}
