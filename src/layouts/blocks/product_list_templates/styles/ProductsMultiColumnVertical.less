@@ -1,3 +1,6 @@
+// import Mixin:
+@import '../.././../../styles/Mixins';
+
 html:lang(fa),
 html:lang(ar) {
   .productsMultiColumnVertical--item .ant-row-rtl {
@@ -102,6 +105,45 @@ html:lang(ar) {
 }
 .ant-skeleton-content .ant-skeleton-paragraph > li + li {
   margin-top: 10px!important;
+}
+
+.category-products-list {
+  .productsMultiColumnVertical--item {
+
+    .productsMultiColumnVertical--item__image {
+      height: 170px;
+
+      @media (min-width: @screen-md) {
+        height: 194px;
+      }
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+    .productsMultiColumnVertical--item__price,
+    .productsMultiColumnVertical--item__quantity {
+      padding: 0 0.5rem;
+    }
+    .productsMultiColumnVertical--item__location-detailIcon {
+      .productsMultiColumnVertical--item__location {
+        i {
+          font-size: calc(1.375rem + 1.5vw);
+          font-weight: 300;
+          line-height: 1.2;
+        }
+        span {
+          font-size: 1.4rem;
+        }
+      }
+      .productsMultiColumnVertical--item__detailIcon {
+        img {
+          width: 30px;
+        }
+      }
+    }
+  }
 }
 
 @media (min-width: 768px) {
