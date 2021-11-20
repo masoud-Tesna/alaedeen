@@ -289,7 +289,7 @@ const Recommended = () => {
                                 skeltonNumbers = {20}
                                 grid={{ span: 24 }}
                                 width={width}
-                                height = {width >= 992 ? 160 : 123}
+                                height = {width >= 992 ? 186 : 150}
                               />
                             </Row>
                           </Col> :
@@ -305,7 +305,7 @@ const Recommended = () => {
                                       skeltonNumbers = {1}
                                       grid={{ span: 24 }}
                                       width={width}
-                                      height = {width >= 992 ? 160 : 123}
+                                      height = {width >= 992 ? 186 : 150}
                                     />
                                   </Row>
                                 </Col>
