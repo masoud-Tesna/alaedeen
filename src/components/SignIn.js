@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // import style file:
 import './styles/SignIn.less';
@@ -21,8 +21,12 @@ import { signInAction, useGetAuthState, useDispatchAuthState, signIn, checkSignI
 
 import { useGetConfig } from "../contexts/config/ConfigContext";
 import { Helmet } from "react-helmet";
+import { signInLoadingFalseAction } from "../contexts/user/UserActionCreators";
 
 const SignIn = () => {
+
+  // initial State for Error Handle:
+  const [signInIncorrect, setSignInIncorrect] = useState(null);
 
   // get initial config:
   const { config } = useGetConfig();
@@ -39,22 +43,39 @@ const SignIn = () => {
     history.push('/');
   }
 
-  const onFinish = values => {
+  const signInHandle = values => {
     AuthDispatch(checkSignInLoadingAction());
     signIn(values.user_login, values.password, config.language)
       .then(res => {
-        if (values.remember_me) {
-          AuthDispatch(signInAction(res.data.auth, values.user_login, values.password, false));
-          AuthDispatch(checkRememberAction(values.user_login, values.password));
-        }else {
-          AuthDispatch(signInAction(res.data.auth, values.user_login, values.password));
+        if (res?.data === 'email_incorrect') {
+          setSignInIncorrect('email_incorrect');
+          AuthDispatch(signInLoadingFalseAction());
         }
-      })
-      .then(() => {
-        history.push('/');
-      })
-
+        else if (res?.data === 'password_incorrect') {
+          setSignInIncorrect('password_incorrect');
+          AuthDispatch(signInLoadingFalseAction());
+        }
+        else if (res?.data?.auth?.status) {
+          if (values.remember_me) {
+            AuthDispatch(signInAction(res.data.auth, values.user_login, values.password, false));
+            AuthDispatch(checkRememberAction(values.user_login, values.password));
+            history.push('/');
+          }
+          else {
+            AuthDispatch(signInAction(res.data.auth, values.user_login, values.password));
+            history.push('/');
+          }
+        }
+      });
   }
+
+  // handle sign in error:
+  const formEmailItemValidateStatus = signInIncorrect === 'email_incorrect' && { validateStatus : 'error' };
+  const formEmailItemValidateStatusMsg = signInIncorrect === 'email_incorrect' && { help : t(__('sign in email incorrect msg')) };
+
+  const formPasswordItemValidateStatus = signInIncorrect === 'password_incorrect' && { validateStatus : 'error' };
+  const formPasswordItemValidateStatusMsg = signInIncorrect === 'password_incorrect' && { help : t(__('sign in password incorrect msg')) };
+
 
   useEffect(() => {
     document.getElementById("siteLayoutContent").classList.add("siteLayoutContent__signIn--page");
@@ -76,20 +97,26 @@ const SignIn = () => {
         <Form
           className="h-100 signIn--formContent"
           name="request-form"
-          onFinish={onFinish}
+          onFinish={signInHandle}
         >
           <Row gutter={{ xs: 0, lg: 32 }}>
             <Col xs={24} lg={12} className="mb-4 mb-lg-0 signIn--loginContent">
               <Row className="h-100" align="middle">
                 <Col span={24}>
                   <Form.Item
+                    {...formEmailItemValidateStatus}
+                    {...formEmailItemValidateStatusMsg}
                     name="user_login"
                     className="signIn--formContent__userLogin"
                     rules={[
                       {
-                        required: true,
-                        type: 'email',
+                        type: "email",
+                        message: t(__("The input is not valid E-mail"))
                       },
+                      {
+                        required: true,
+                        message: t(__("Please enter your account E-mail"))
+                      }
                     ]}>
                     <Input
                       placeholder={ t(__('E-mail address')) }
@@ -101,11 +128,14 @@ const SignIn = () => {
 
                 <Col span={24}>
                   <Form.Item
+                    {...formPasswordItemValidateStatus}
+                    {...formPasswordItemValidateStatusMsg}
                     name="password"
                     className="signIn--formContent__password"
                     rules={[
                       {
                         required: true,
+                        message: t(__("Please enter your account Password"))
                       },
                     ]}>
                     <Input.Password
