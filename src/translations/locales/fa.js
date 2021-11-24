@@ -155,6 +155,11 @@ const fa = {
   "filter_and_refine": "فیلتر کردن",
   "warranty": "گارانتی",
   "recommended_products": "محصولات پیشنهادی",
+  "please_enter_your_account_e_mail": "لطفا ایمیل اکانت خود را وارد کنید",
+  "the_input_is_not_valid_e_mail": "ورودی ایمیل معتبر نیست",
+  "sign_in_email_incorrect_msg": "ایمیل وارد شده در سیستم موجود نیست",
+  "please_enter_your_account_password": "لطفا رمز عبور اکانت خود را وارد کنید",
+  "sign_in_password_incorrect_msg": "رمز عبور وارد شده اشتباه است",
   "nominal_voltage": "ولتاژ"
 };
 

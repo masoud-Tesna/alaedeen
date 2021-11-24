@@ -155,6 +155,11 @@ const en = {
   "filter_and_refine": "Filter & Refine",
   "warranty": "Warranty",
   "recommended_products": "Recommended Products",
+  "please_enter_your_account_e_mail": "Please Enter your Account E-mail",
+  "the_input_is_not_valid_e_mail": "The input is not valid E-mail",
+  "sign_in_email_incorrect_msg": "Email entered is not available",
+  "please_enter_your_account_password": "Please enter your Account Password",
+  "sign_in_password_incorrect_msg": "The password entered is incorrect",
   "nominal_voltage": "Nominal voltage"
 };
 
