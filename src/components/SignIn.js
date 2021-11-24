@@ -202,7 +202,7 @@ const SignIn = () => {
                 </Col>
 
                 <Col span={24} className="dontHaveAccountContainer">
-                  <span className="text-92 vv-font-size-1-6">{ t(__('Don\'t have an account')) } ?</span>
+                  <span className="text-92 vv-font-size-1-6">{ t(__('Don\'t have an account')) }</span>
                   <Link to={ "/register" } className="text-primary-darken mx-2 vv-font-size-1-8 font-weight-600">{ t(__('Join Free')) }</Link>
                 </Col>
               </Row>

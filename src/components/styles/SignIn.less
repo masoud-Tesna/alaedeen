@@ -6,9 +6,22 @@ html:lang(ar) {
   .signIn--loginExtra {
 
     @media (min-width: @screen-md) {
-      border-left: 0 !important;
-      border-right: 1px solid #707070;
+      //border-left: 0 !important;
+      //border-right: 1px solid #707070;
     }
+  }
+
+  .ant-row-rtl,
+  .ant-col-rtl,
+  .ant-input-affix-wrapper-rtl,
+  .ant-checkbox-rtl
+  {
+    direction: ltr;
+  }
+
+  .signIn--loginContent .ant-col-rtl .ant-form-item-explain-error
+  {
+    direction: rtl;
   }
 }
 
