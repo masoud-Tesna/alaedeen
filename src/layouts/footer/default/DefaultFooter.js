@@ -37,7 +37,8 @@ const DefaultFooter = () => {
   const { config } = useGetConfig();
 
   // get categories from API:
-  const { data: { categories } } = useGetApi(`home-categories-api`, '', `allCategories`);
+  const { data } = useGetApi(`home-categories-api`, '', `allCategories`);
+  const { categories } = data || [];
 
   // set initial link for instagram related to each language:
   let instagramLink = config.language === 'en' ? "https://instagram.com/hornb2b" : config.language === 'fa' ? "https://instagram.com/hornb2b.ir" : config.language === 'ar' ? "https://instagram.com/horn.ar" : "https://instagram.com/hornb2b";

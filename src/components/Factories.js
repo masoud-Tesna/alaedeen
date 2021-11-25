@@ -29,7 +29,8 @@ const Factories = () => {
   const factory_id = useQueryString().get('factory');
 
   // get factories from API:
-  const { isLoading, data: { factories } } = useGetApi(`factories-api`, '', `factories`);
+  const { isLoading, data } = useGetApi(`factories-api`, '', `factories`);
+  const { factories } = data || [];
 
   useEffect(() => {
     window.scroll({ top: 0, behavior: 'smooth' });

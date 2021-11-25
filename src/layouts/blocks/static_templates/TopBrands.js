@@ -65,7 +65,8 @@ const TopBrands = () => {
   const { width } = useWindowSize();
 
   // get top brands from API:
-  const { isLoading, data: { factories } } = useGetApi(`premium-factories-api`, `items_per_page=5`, `topBrandsHomePage`);
+  const { isLoading, data } = useGetApi(`premium-factories-api`, `items_per_page=5`, `topBrandsHomePage`);
+  const { factories } = data || [];
 
   return (
     <div className="topBrands--container">

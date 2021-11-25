@@ -21,7 +21,8 @@ const ReadyToShipProducts = () => {
   }
 
   // get products from API:
-  const { isLoading, data: { products } } = useGetApi(`products-api`, `rtsShowHome=Y&items_per_page=${items_per_page}`, `shipProducts_${items_per_page}`);
+  const { isLoading, data } = useGetApi(`products-api`, `rtsShowHome=Y&items_per_page=${items_per_page}`, `shipProducts_${items_per_page}`);
+  const { products } = data || [];
 
   return (
     <Row className="h-100 productsMultiColumnVertical--items" justify="space-around">

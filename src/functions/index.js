@@ -75,8 +75,7 @@ export function useGetApi(mode, params, key, options) {
   }
 
   return useQuery(['getApi', queryKey], getApi, {
-    ...options,
-    initialData: []
+    ...options
   });
 }
 
