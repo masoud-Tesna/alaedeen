@@ -7,12 +7,13 @@ import { useWindowSize } from "../../../functions";
 
 import { useTranslation } from "react-i18next";
 
-// import banner images:
-import logisticsBannerRtl from '../../../assets/images/logisticsBanner-rtl.png';
-import logisticsBannerRtlXs from '../../../assets/images/logisticsBannerXs-rtl.png';
-import logisticsBannerLtr from '../../../assets/images/logisticsBanner-ltr.png';
-import logisticsBannerLtrXs from '../../../assets/images/logisticsBannerXs-rtl.png';
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
+
+// import banner images:
+import logisticsBannerRtl from '../../../assets/images/logisticsBanner-rtl.avif';
+import logisticsBannerRtlXs from '../../../assets/images/logisticsBannerXs-rtl.avif';
+import logisticsBannerLtr from '../../../assets/images/logisticsBanner-ltr.avif';
+import logisticsBannerLtrXs from '../../../assets/images/logisticsBannerXs-rtl.avif';
 
 const HomeLogisticsBanner = () => {
 
