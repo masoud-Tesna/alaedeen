@@ -32,7 +32,7 @@ const CategoriesMultiColumn = () => {
 
   return (
     <div className={ `${width >= 768 ? 'categoriesMultiColumn--container' : 'categoriesMultiColumn--containerXs my-4'} h-100` }>
-      <Row className={ isLoading ? 'h-100' : (categories?.length >= 7 && 'h-100') }>
+      <Row className={ isLoading ? 'h-100' : (categories?.length >= 8 && 'h-100') }>
 
         {/* if Screen Width >= 768px (Desktop) Show Component: */}
         {width >= 992 ?
@@ -45,11 +45,11 @@ const CategoriesMultiColumn = () => {
                 width = {width}
               /> :
               <>
-                {categories?.map((category, index) => {
+                {categories?.slice(0, 8)?.map((category, index) => {
                   return (
                     <Col key={ `categoriesMultiColumn_${ category?.category_id }` } className="categoriesMultiColumn--item" span={12}>
                       <Link to={ `/categories/${category?.seo_name}` } className={ `d-block ${category?.p_count === 0 ? 'categoryLink--disable': ''}` } >
-                        <Row className={`categoriesMultiColumn--item__row ${ index !== 6 ? 'categoriesMultiColumn--item__borderBottom': '' }`}>
+                        <Row className={`categoriesMultiColumn--item__row ${ (index !== 6 && index !== 7) ? 'categoriesMultiColumn--item__borderBottom': '' }`}>
                           <Col span={24} className="categoriesMultiColumn--img text-center py-2">
                             <div className="categoriesMultiColumn--img__wrapper">
                               <img src={ `${process.env.PUBLIC_URL}/categories-image/category-${category?.category_id}.svg` } alt={ category?.category }/>
@@ -64,7 +64,7 @@ const CategoriesMultiColumn = () => {
                   );
                 })}
 
-                <Col className="categoriesMultiColumn--item" span={12}>
+                {/*<Col className="categoriesMultiColumn--item" span={12}>
                   <Link to="/categories/" className="d-block h-100">
                     <Row className="categoriesMultiColumn--item__row">
                       <Col span={24} className="categoriesMultiColumn--icon text-center my-2">
@@ -79,7 +79,7 @@ const CategoriesMultiColumn = () => {
                       </Col>
                     </Row>
                   </Link>
-                </Col>
+                </Col>*/}
               </>
             }
           </> :
@@ -112,7 +112,7 @@ const CategoriesMultiColumn = () => {
                 </Col>
                 <Col span={17}>
                   <ScrollContainer className="text-select-none d-flex requestsList--scrollContainer">
-                    {categories?.map((category, index) => {
+                    {categories?.slice(0, 7)?.map((category, index) => {
                       return (
                         <Col key={ `categoriesMultiColumnXS_${ category?.category_id }` } span={9} className="categoriesMultiColumn--item">
                           <Link to={ `/categories/${category?.seo_name}` } className={ `d-block h-100 ${category?.p_count === 0 ? 'categoryLink--disable': ''}` }>
