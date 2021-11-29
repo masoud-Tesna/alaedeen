@@ -169,7 +169,7 @@ const SignIn = () => {
                         name="remember_me"
                         valuePropName="checked"
                       >
-                        <a href="https://alaedeen.com/horn/index.php?dispatch=auth.recover_password" className="text-92 vv-font-size-1-2">{ t(__('Forgot Password')) } ?</a>
+                        <a href="https://alaedeen.com/horn/index.php?dispatch=auth.recover_password" className="text-92 vv-font-size-1-2">{ t(__('Forgot Password')) }</a>
                       </Form.Item>
                     </Col>
                   </Row>
