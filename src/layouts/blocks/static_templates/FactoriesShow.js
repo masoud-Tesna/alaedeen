@@ -434,13 +434,13 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
                       <a className="d-block w-100 h-100 vv-font-size-1-4 text-black font-weight-600"
                          href={ `https://store.alaedeen.com/?store_id=${ factory.company_id }` }>
                         <Row gutter={ 16 }>
-                          <Col className="d-none d-lg-block" span={ 6 }>
+                          <Col className="d-none d-lg-block aboutUsText" span={ 6 }>
                             <TextTruncate
                               className="vv-font-size-1-6 font-weight-600"
                               line={ 6 }
                               element="div"
                               truncateText=" …"
-                              text={ `About Us: ${ factory.company_introduction.fields.detailed_company_introduction }` }
+                              text={ factory?.company_introduction?.fields?.detailed_company_introduction && `${t(__('About Us'))}: ${factory?.company_introduction?.fields?.detailed_company_introduction}` }
                             />
                           </Col>
                           <Col xs={ 24 } lg={ 18 }>
@@ -616,15 +616,15 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
                     </Col>
 
                     <Col className="factories--data__middleSection" span={24}>
-                      <a className="d-block w-100 h-100 vv-font-size-1-4 text-black font-weight-600" href={`https://store.alaedeen.com/?store_id=${factory.company_id}`}>
+                      <a className="d-block w-100 h-100 vv-font-size-1-4 text-black font-weight-600" href={`https://store.alaedeen.com/?store_id=${factory?.company_id}`}>
                         <Row gutter={16}>
-                          <Col className="d-none d-lg-block" span={6}>
+                          <Col className="d-none d-lg-block aboutUsText" span={6}>
                             <TextTruncate
                               className="vv-font-size-1-6 font-weight-600"
                               line={6}
                               element="div"
                               truncateText=" …"
-                              text={`About Us: ${factory.company_introduction.fields.detailed_company_introduction}`}
+                              text={ factory?.company_introduction?.fields?.detailed_company_introduction && `${t(__('About Us'))}: ${factory?.company_introduction?.fields?.detailed_company_introduction}` }
                             />
                           </Col>
                           <Col xs={24} lg={18}>
@@ -808,13 +808,13 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
                     <Col className="factories--data__middleSection" span={24}>
                       <a className="d-block w-100 h-100 vv-font-size-1-4 text-black font-weight-600" href={`https://store.alaedeen.com/?store_id=${factory.company_id}`}>
                         <Row gutter={16}>
-                          <Col className="d-none d-lg-block" span={6}>
+                          <Col className="d-none d-lg-block aboutUsText" span={6}>
                             <TextTruncate
                               className="vv-font-size-1-6 font-weight-600"
                               line={6}
                               element="div"
                               truncateText=" …"
-                              text={`About Us: ${factory.company_introduction.fields.detailed_company_introduction}`}
+                              text={ factory?.company_introduction?.fields?.detailed_company_introduction && `${t(__('About Us'))}: ${factory?.company_introduction?.fields?.detailed_company_introduction}` }
                             />
                           </Col>
                           <Col xs={24} lg={18}>
