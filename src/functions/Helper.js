@@ -12,8 +12,8 @@ export function __(world, prefix = "", sign = ".") {
   let returnWord = world;
 
   returnWord = returnWord.toString().trim().toLowerCase()
-    .replaceAll(" / ", "_and_")
-    .replaceAll("/", "_and_")
+    .replaceAll(" / ", "_or_")
+    .replaceAll("/", "_or_")
     .replaceAll(" & ", "_and_")
     .replaceAll("&", "_and_")
     .replaceAll("(", "")
