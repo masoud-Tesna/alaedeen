@@ -138,7 +138,7 @@ const DefaultTopPanel = () => {
           <Row className="topPanel--menuXs__container">
             <Col span={24} className="align-self-start topPanel--menuXs__topSection">
               <Col span={24} className="menuXs--bgTopSection__container">
-                <Row className="h-100 px-4" align="middle" gutter={16}>
+                <Row className="h-100 px-4" align="middle">
 
                   { user_data.load ?
                     <>
