@@ -72,7 +72,7 @@ const OneRequestMultipleQuotes = () => {
                   className="oneRequest--formContent__piece"
                   name="piece_before">
                   <Select
-                    placeholder={ t(__('Piece/Pieces')) }
+                    placeholder={ t(__('Piece')) }
                     onChange={e => setPieceBefore(e)}
                     allowClear
                     showSearch

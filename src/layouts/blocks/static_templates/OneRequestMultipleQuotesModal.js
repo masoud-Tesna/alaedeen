@@ -399,7 +399,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                             ]}
                           >
                             <Select
-                              placeholder={ t(__('Piece/Pieces')) }
+                              placeholder={ t(__('Piece')) }
                               allowClear
                               showSearch
                               filterOption={(input, option) =>
