@@ -147,7 +147,7 @@ const DefaultTopPanel = () => {
                     <>
                       { user_data.auth.user_id ?
                         <>
-                          <Col span={ user_data.auth.company_logo ? 7 : 5 }>
+                          <Col flex={ user_data?.auth?.company_logo ? "76px" : "51px" }>
                             { user_data.auth.company_logo ?
                               <span className="content--account__companyLogo">
                                 <ShowResponsiveImage
@@ -164,7 +164,7 @@ const DefaultTopPanel = () => {
                             }
                           </Col>
 
-                          <Col span={ user_data.auth.company_logo ? 17 : 19 }>
+                          <Col flex="1 1">
                             <Row gutter={[0, 5]}>
                               <Col span={24} className="text-white vv-font-size-1-7 font-weight-bolder">
                                 {t(__('Hello'))}
@@ -187,11 +187,11 @@ const DefaultTopPanel = () => {
                           </Col>
                         </> :
                         <>
-                          <Col>
+                          <Col flex="51px">
                             <i className="fal fa-user text-white vv-font-size-4-5" />
                           </Col>
 
-                          <Col>
+                          <Col flex="1 1">
                             <Row gutter={[0, 5]}>
                               <Col span={24} className="text-white vv-font-size-1-7 font-weight-bolder">
                                 {t(__('Hello'))}
@@ -348,7 +348,7 @@ const DefaultTopPanel = () => {
                     {t(__('Download the alaedeen app'))}
                   </div>
                   <div className="text-white vv-font-size-1-2 mt-2">
-                    {t(__('For 10x Faster'))}
+                    {t('app_msg.mobile_menu')}
                   </div>
                 </div>
               </Space>
