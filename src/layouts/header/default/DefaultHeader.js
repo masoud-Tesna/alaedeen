@@ -196,12 +196,12 @@ const DefaultHeader = () => {
                             </Col>
                             <Col span={16}>
                               <Row gutter={[0, 24]}>
-                                <Col span={24}>
+                                <Col span={24} className="header--account__link">
                                   <Link className="text-70 vv-font-size-2" to={"/sign-in"} >
                                     {t(__('Sign in'))}
                                   </Link>
                                 </Col>
-                                <Col span={24}>
+                                <Col span={24} className="header--account__link">
                                   <Link className="text-70 vv-font-size-2" to={"/register"} >
                                     {t(__('Join Free'))}
                                   </Link>

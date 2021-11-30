@@ -4,10 +4,11 @@ html:lang(ar) {
     direction: ltr;
   }
 
-  .header--content__account .ant-row-rtl {
+  .header--content__account .header--account__link {
     direction: rtl;
   }
 
+  .header--left__searchBox > .ant-input-affix-wrapper.ant-input-affix-wrapper-rtl,
   .header--left__searchBox input,
   .header--mobile__searchBox input,
   .header--content__account {
@@ -65,8 +66,11 @@ html:lang(ar) {
         }
 
         .ant-input-suffix {
+          min-width: 105px;
           background-color: darken(@primary-color, 10%) !important;
-          padding: 0 1.5rem !important;
+          text-align: center;
+          display: block;
+          line-height: 4rem;
           cursor: pointer;
           color: white;
         }

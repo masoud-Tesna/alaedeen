@@ -1,12 +1,20 @@
 html:lang(fa),
 html:lang(ar) {
-  .footer--container__topSection {
-    direction: rtl;
+  .footer--container__topSection,
+  .footer--container__middleSection,
+  .footer--container__bottomSection {
+    * {
+      direction: rtl !important;
+    }
   }
 
   .footer--container__topSection {
     i.fas.fa-angle-left {
       margin-right: 1rem;
+    }
+
+    .d-none.d-lg-inline > div {
+      vertical-align: middle;
     }
   }
 }
