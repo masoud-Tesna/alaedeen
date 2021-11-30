@@ -132,7 +132,7 @@ const en = {
   "buyer_is_looking_for": "Buyer is looking for",
   "production_capability": "Production Capability",
   "iran": "Iran",
-  "view_more_r_and_d_capability": "View more R & D capability",
+  "view_more_r_and_d_capability": "View more R&D capability",
   "download_the_alaedeen_app": "Download the Alaedeen app",
   "buy_and_sell_safely_and_cheaply": "Buy and sell safely and cheaply",
   "footer_reserved_msg": "Alaedeen company, All right reserved",
