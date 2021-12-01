@@ -121,9 +121,9 @@ const DefaultTopPanel = () => {
     <Row className="bg-top-panel topPanel--container">
 
       {/*Show Loading Spinner if Change language*/}
-      <div className={ `${ showLoadSpinner ? 'd-block' : 'd-none' }` }>
+      { showLoadSpinner &&
         <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>
-      </div>
+      }
 
       {/* if Screen Width <= 768px (Mobile) render drawer Menu: */}
       {width < 992 &&
