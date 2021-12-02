@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // import Styles For TopPanelWhitBackIcon:
 import './styles/styles.less';
@@ -12,10 +12,10 @@ import { __ } from "../../../functions/Helper";
 const TopPanelWhitBackIcon = ({ scrolledClass, pathName }) => {
   const { t } = useTranslation();
 
-  const history = useHistory()
+  const navigate = useNavigate();
 
   const goBack = () => {
-    history.goBack()
+    navigate(-1);
   }
 
   return (

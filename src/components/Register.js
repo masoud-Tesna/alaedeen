@@ -7,7 +7,7 @@ import { message, Button, Checkbox, Col, Form, Input, Row, Select, Tabs } from "
 import { __ } from "../functions/Helper";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import googlePic from "../assets/images/google.png";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useGetAuthState } from "../contexts/user/UserContext";
 
@@ -27,7 +27,7 @@ const Register = () => {
 
   const { t } = useTranslation();
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   //initial state and dispatch for auth context:
   const { user_data } = useGetAuthState();
@@ -38,7 +38,7 @@ const Register = () => {
   const { data : { city_lists: cityLists } } = useGetApi(`city-lists-api`, 'country_code=IR', `citiesList_IR`);
 
   if (user_data.auth.user_id) {
-    history.push('/');
+    navigate('/');
   }
 
   async function Register(values) {
@@ -71,7 +71,7 @@ const Register = () => {
               duration: 4,
               className: 'registerDone--message',
             }).then(() => {
-              history.push('/sign-in');
+              navigate('/sign-in');
             })
           }
         });

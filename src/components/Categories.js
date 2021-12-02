@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useHistory, useLocation, useParams } from "react-router-dom";
+import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 
 //import style file:
@@ -19,8 +19,8 @@ import { __, splitArray } from "../functions/Helper";
 import { useTranslation } from "react-i18next";
 
 // Import Swiper styles
-import "swiper/swiper.min.css";
-import "swiper/components/scrollbar/scrollbar.min.css";
+import "swiper/swiper.less";
+import "swiper/modules/scrollbar/scrollbar.less";
 
 import { Helmet } from "react-helmet";
 
@@ -46,7 +46,7 @@ const Categories = () => {
   const { width } = useWindowSize();
 
   // initial for work in URL
-  const history = useHistory();
+  const navigate = useNavigate();
   const query = useQueryString();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -170,7 +170,7 @@ const Categories = () => {
 
         if (queryParams.has('features_hash')) {
           queryParams.set('features_hash', res.data)
-          history.replace({
+          navigate({
             search: queryParams.toString(),
           })
         }
@@ -188,7 +188,7 @@ const Categories = () => {
 
     if (queryParams.has('features_hash')) {
       queryParams.delete('features_hash')
-      history.replace({
+      navigate({
         search: queryParams.toString(),
       })
     }
@@ -204,7 +204,7 @@ const Categories = () => {
     setFeaturesHash(featuresHashContainer);
 
     // attaching filter hash and page in to url: (fealan comment shod ta dorost konam)
-    history.push(`/categories/${categorySeoName}/?page=${page}${featuresHashContainer && `&features_hash=${featuresHashContainer}`}${storeId ? `&store_id=${storeId}` : ''}`);
+    navigate(`/categories/${categorySeoName}/?page=${page}${featuresHashContainer && `&features_hash=${featuresHashContainer}`}${storeId ? `&store_id=${storeId}` : ''}`);
   }
 
   // get products from API before selecting filters and after selecting filter:
@@ -231,7 +231,7 @@ const Categories = () => {
     setPage(pageNumber);
 
     // attaching filter hash and page in to url:
-    history.push(`/categories/${categorySeoName}/?page=${pageNumber}${featuresHashContainer && `&features_hash=${featuresHashContainer}`}${storeId ? `&store_id=${storeId}` : ''}`);
+    navigate(`/categories/${categorySeoName}/?page=${pageNumber}${featuresHashContainer && `&features_hash=${featuresHashContainer}`}${storeId ? `&store_id=${storeId}` : ''}`);
   }
 
   // pagination render element:

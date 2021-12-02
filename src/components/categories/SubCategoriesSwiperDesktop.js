@@ -2,7 +2,8 @@ import { Col, Image, Row } from "antd";
 import { Link } from "react-router-dom";
 
 // import swiper:
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
+
 // import Swiper core and required modules
 import SwiperCore, { Scrollbar } from 'swiper';
 import ShowResponsiveImage from "../../layouts/common/ShowResponsiveImage";

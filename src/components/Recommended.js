@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 //import style file:
@@ -47,7 +47,7 @@ const Recommended = () => {
   const { width } = useWindowSize();
 
   // initial for work in URL
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
 
@@ -154,7 +154,7 @@ const Recommended = () => {
 
         if (queryParams.has('features_hash')) {
           queryParams.set('features_hash', res.data)
-          history.replace({
+          navigate.replace({
             search: queryParams.toString(),
           })
         }

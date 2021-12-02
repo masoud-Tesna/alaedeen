@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 // import style file:
 import './styles/SignIn.less';
 
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // import Design:
 import { Button, Checkbox, Col, Form, Input, Row } from "antd";
@@ -31,7 +31,7 @@ const SignIn = () => {
   // get initial config:
   const { config } = useGetConfig();
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const { t } = useTranslation();
 
@@ -40,7 +40,7 @@ const SignIn = () => {
   const { AuthDispatch } = useDispatchAuthState();
 
   if (user_data.auth.user_id) {
-    history.push('/');
+    navigate('/');
   }
 
   const signInHandle = values => {
@@ -59,11 +59,11 @@ const SignIn = () => {
           if (values.remember_me) {
             AuthDispatch(signInAction(res.data.auth, values.user_login, values.password, false));
             AuthDispatch(checkRememberAction(values.user_login, values.password));
-            history.push('/');
+            navigate('/');
           }
           else {
             AuthDispatch(signInAction(res.data.auth, values.user_login, values.password));
-            history.push('/');
+            navigate('/');
           }
         }
       });

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useHistory, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 //import style file:
@@ -40,7 +40,7 @@ const ReadyToShip = () => {
   const { width } = useWindowSize();
 
   // initial for work in URL
-  const history = useHistory();
+  const navigate = useNavigate();
   const query = useQueryString();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -141,7 +141,7 @@ const ReadyToShip = () => {
 
         if (queryParams.has('features_hash')) {
           queryParams.set('features_hash', res.data)
-          history.replace({
+          navigate.replace({
             search: queryParams.toString(),
           })
         }
@@ -154,7 +154,7 @@ const ReadyToShip = () => {
 
     if (queryParams.has('features_hash')) {
       queryParams.delete('features_hash')
-      history.replace({
+      navigate.replace({
         search: queryParams.toString(),
       })
     }
@@ -170,7 +170,7 @@ const ReadyToShip = () => {
     setFeaturesHash(featuresHashContainer);
 
     // attaching filter hash and page in to url: (fealan comment shod ta dorost konam)
-    history.push(`/ready-to-ship/?page=${page}${featuresHashContainer && `&features_hash=${featuresHashContainer}`}`);
+    navigate(`/ready-to-ship/?page=${page}${featuresHashContainer && `&features_hash=${featuresHashContainer}`}`);
   }
 
   // get products from API before selecting filters and after selecting filter:
@@ -192,7 +192,7 @@ const ReadyToShip = () => {
     setPage(pageNumber);
 
     // attaching filter hash and page in to url:
-    history.push(`/ready-to-ship/?page=${pageNumber}${featuresHashContainer && `&features_hash=${featuresHashContainer}`}`);
+    navigate(`/ready-to-ship/?page=${pageNumber}${featuresHashContainer && `&features_hash=${featuresHashContainer}`}`);
   }
 
   // pagination render element:

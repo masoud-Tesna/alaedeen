@@ -8,7 +8,7 @@ import './styles/App.less';
 import 'flag-icon-css/less/flag-icon.less';
 
 // Components:
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 
 // Design:
 import { ConfigProvider, Layout } from 'antd';
@@ -82,40 +82,40 @@ function App() {
           <SiteHeader />
           <Content>
             <div className="site-layout-content" id="siteLayoutContent">
-              <Switch>
+              <Routes>
                 {/* Home Route */}
-                <Route exact path="/" component={Home} />
+                <Route exact path="/" element={<Home />} />
 
                 {/* Sign in Route */}
-                <Route path="/sign-in" component={SignIn} />
+                <Route path="/sign-in" element={<SignIn />} />
 
                 {/* Register Route */}
-                <Route path="/register" component={Register} />
+                <Route path="/register" element={<Register />} />
 
                 {/* Factories Route */}
-                <Route path="/factories" component={Factories} />
+                <Route path="/factories" element={<Factories />} />
 
                 {/* All Categories Route */}
-                <Route path="/all-categories" component={AllCategories} />
+                <Route path="/all-categories" element={<AllCategories />} />
 
                 {/* if open categories page without category path, redirect to all-category route */}
-                <Route exact path="/categories" render={() => <Redirect to="/all-categories" />} />
+                <Route exact path="/categories" element={<Navigate to="/all-categories" />} />
 
                 {/* categories Route (categories/electronic) */}
-                <Route path="/categories/:category" component={Categories} />
+                <Route path="/categories/:category" element={<Categories />} />
 
                 {/* if open product details page without product path, redirect to all-category route */}
-                <Route exact path="/product" render={() => <Redirect to="/all-categories" />} />
+                <Route exact path="/product" element={<Navigate to="/all-categories" />} />
 
                 {/* Product details Route */}
-                <Route path="/product/:product" component={Product} />
+                <Route path="/product/:product" element={<Product />} />
 
                 {/* Recommended details Route */}
-                <Route path="/recommended" component={Recommended} />
+                <Route path="/recommended" element={<Recommended />} />
 
                 {/* Ready To Ship details Route */}
-                <Route path="/ready-to-ship" component={ReadyToShip} />
-              </Switch>
+                <Route path="/ready-to-ship" element={<ReadyToShip />} />
+              </Routes>
             </div>
           </Content>
           <Footer>
