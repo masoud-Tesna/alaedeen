@@ -19,6 +19,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "flag-icon-css": "^3.5.0",
     "i18next": "^20.6.0",
+    "keen-slider": "^6.2.0",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-combine-reducers": "^1.1.1",
