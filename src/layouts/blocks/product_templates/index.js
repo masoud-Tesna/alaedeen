@@ -7,12 +7,12 @@ import { Button, Col, Row, Skeleton } from "antd";
 import {useWindowSize} from "../../../functions";
 import {useTranslation} from "react-i18next";
 import {__} from "../../../functions/Helper";
-import FeaturesGrid from "./components/FeaturesGrid";
+import FeaturesGrid from "./../../common/FeaturesGrid";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 import ProductTab from "../product_tabs";
 import React from "react";
 
-const ProductTemplate = (props) => {
+const ProductDetail = (props) => {
 
   // get initial config:
   const { config } = useGetConfig();
@@ -123,4 +123,4 @@ const ProductTemplate = (props) => {
   );
 };
 
-export default ProductTemplate;
+export default ProductDetail;

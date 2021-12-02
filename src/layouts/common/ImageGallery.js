@@ -1,5 +1,5 @@
 // import style file:
-import './ImageGallery.less';
+import './styles/ImageGallery.less';
 
 // Import Swiper React components
 import {Swiper, SwiperSlide} from "swiper/react";

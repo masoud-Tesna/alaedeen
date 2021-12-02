@@ -4,9 +4,9 @@ import React, { Fragment } from 'react';
 import './styles/FeaturesGrid.less';
 import { Col, Image, Row, Skeleton, Space } from "antd";
 import {useTranslation} from "react-i18next";
-import {__} from "../../../../functions/Helper";
+import {__} from "../../functions/Helper";
 
-import ShowResponsiveImage from "../../../common/ShowResponsiveImage";
+import ShowResponsiveImage from "./ShowResponsiveImage";
 
 const FeaturesGrid = (props) => {
 

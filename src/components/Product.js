@@ -1,7 +1,7 @@
 import {useGetApi} from "../functions";
 import {useParams} from "react-router-dom";
 import {Col, Row} from "antd";
-import ProductTemplate from "../layouts/blocks/product_templates";
+import ProductDetail from "../layouts/blocks/product_templates";
 import { Helmet } from "react-helmet";
 
 const Product = () => {
@@ -17,15 +17,14 @@ const Product = () => {
     <Row className="productDetails--container">
 
       <Helmet>
-        <title>{ !isLoading && ( product?.page_title || product?.product ) }</title>
-        <meta name="description" content={ !isLoading && product?.meta_description } />
-        <meta name="keywords" content={ !isLoading && product?.meta_keywords } />
+        <title>{  product?.page_title || product?.product }</title>
+        <meta name="description" content={ product?.meta_description } />
+        <meta name="keywords" content={ product?.meta_keywords } />
         <link rel="canonical" href={ `https://alaedeen.com/product/${productSeoName}` } />
       </Helmet>
 
-
       <Col span={24}>
-        <ProductTemplate product={product} isLoading={isLoading} />
+        <ProductDetail product={product} isLoading={isLoading} />
       </Col>
     </Row>
   );
