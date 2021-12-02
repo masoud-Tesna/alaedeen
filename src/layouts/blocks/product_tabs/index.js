@@ -10,7 +10,7 @@ import ProductSpecifications from "./components/ProductSpecifications";
 const { TabPane } = Tabs;
 
 function callback(key) {
-  console.log(key);
+  //console.log(key);
 }
 
 const ProductTab = (props) => {
