@@ -15,7 +15,7 @@ const ProductSpecifications = ({ features, product_description, isLoading }) => 
 
   if (features) {
     showFeatures = true;
-  console.log("showFeatures");
+  //console.log("showFeatures");
   }
 
 
