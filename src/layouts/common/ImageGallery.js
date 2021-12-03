@@ -35,10 +35,6 @@ const ImageGallery = ({ mainPair, imagePairs }) => {
       <Col span={24}>
         <Image.PreviewGroup>
           <Swiper
-            style={{
-              '--swiper-navigation-color': '#fff',
-              '--swiper-pagination-color': '#fff',
-            }}
             spaceBetween={5}
             navigation={false}
             thumbs={{ swiper: thumbsSwiper }}
@@ -64,8 +60,8 @@ const ImageGallery = ({ mainPair, imagePairs }) => {
         </Image.PreviewGroup>
         <Swiper
           onSwiper={setThumbsSwiper}
-          spaceBetween={5}
-          slidesPerView={5}
+          spaceBetween={15}
+          slidesPerView={"auto"}
           freeMode={true}
           watchSlidesProgress={true}
           className="imageGallery--thumbnailsSwiper">
