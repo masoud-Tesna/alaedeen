@@ -11,7 +11,7 @@
     background-color: #FFFFFF;
 
     .productDetails--imageContainer {
-      padding: .7rem;
+      padding: 0 .7rem;
 
       @media (min-width: @screen-md) {
         padding: 3rem 0;
@@ -20,14 +20,14 @@
 
     .productDetail {
 
-      padding: 1.2rem;
+      padding: 0 1.2rem;
 
       @media (min-width: @screen-md) {
         padding: 3rem 0;
       }
 
       .productDetails--title {
-        margin-top: 1rem;
+        margin-top: .5rem;
 
         h1 {
           margin-bottom: 0;
@@ -37,10 +37,6 @@
             font-size: 2.5rem;
           }
         }
-      }
-
-      .productDetails--price {
-
       }
 
       .productDetails--getLatestPrice {
@@ -83,36 +79,20 @@
         }
       }
 
-      .productDetails--features {
-        padding-bottom: 1rem;
-      }
+      .productDetails--locationManufacture {
+        margin-bottom: 1.3vh;
 
-      .productDetails--locationRequestBtn {
-        border-top: 1px solid #E6E6E6;
-        padding-top: 1rem;
+        .productDetails--location {
+          i {
+            font-size: 3rem;
+            font-weight: 300;
+            line-height: 1.2;
+          }
+        }
 
-        .productDetails--requestBtn {
-          .ant-btn {
-            width: 230px;
-            height: 50px;
-            background-color: @primary-color;
-            border-color: @primary-color !important;
-            line-height: .5px;
-
-            &:hover {
-              background-color: #ffffff;
-              border-color: #999 !important;
-
-              span {
-                color: @primary-color;
-              }
-            }
-
-            span {
-              color: #fff;
-              font-size: 2rem;
-              font-weight: 700;
-            }
+        .productDetails--Manufacture {
+          i {
+            vertical-align: bottom;
           }
         }
       }
