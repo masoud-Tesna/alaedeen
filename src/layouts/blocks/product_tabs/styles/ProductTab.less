@@ -16,25 +16,34 @@
 
       .ant-tabs-nav-list {
         width: 100%;
-        background-color: #eaeaea;
+        background-color: #EFEFEF;
 
         .ant-tabs-tab {
-          width: 20%;
-          height: 50px;
+          width: 50%;
+          height: 30px;
           background-color: transparent;
           justify-content: center;
+          border: 1px solid #707070;
+          margin: 0;
+          &:first-of-type {
+            border-left: none;
+          }
+
+          &:nth-last-of-type(2) {
+            border-right: none !important;
+          }
 
           &.ant-tabs-tab-active {
             background-color: #ffffff;
+            border: none;
 
             .ant-tabs-tab-btn {
               color: @primary-color;
-              font-weight: 600;
             }
           }
 
           .ant-tabs-tab-btn {
-            font-size: 1.75rem;
+            font-size: 1.3rem;
             color: #474747;
             display: block;
           }
