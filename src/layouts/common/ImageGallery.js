@@ -26,7 +26,6 @@ const ImageGallery = ({ mainPair, imagePairs }) => {
   if (Object.values(imagePairs).length) {
     imagePairs[0] = mainPair;
   }
-  //console.log(Object.values(imagePairs))
 
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
