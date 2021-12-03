@@ -7,11 +7,19 @@ const ShowResponsiveImage = (props) => {
 
   const preview = props.preview || false;
 
-  const { isLoading, data } = useResizeImage( imagePath, imageFolder, width, height, `${object_type}_${object_id}_${width}_${height}` );
+  const { isLoading, data } = useResizeImage({
+    image_path: imagePath,
+    image_folder: imageFolder,
+    image_width: width,
+    image_height: height,
+    useQueryKey: `${object_type}_${object_id}_${width}_${height}`
+  });
+
   const { image } = data || "";
+  console.log(isLoading)
   return (
     <>
-      { (isLoading || !imagePath) ?
+      { (isLoading || !image) ?
         <Image
           width={width}
           height={height}

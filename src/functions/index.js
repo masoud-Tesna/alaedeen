@@ -79,7 +79,7 @@ export function useGetApi(mode, params, key, options) {
   });
 }
 
-export function useResizeImage (image_path, image_folder, image_width, image_height, useQueryKey) {
+export function useResizeImage({ image_path, image_folder, image_width, image_height, useQueryKey }) {
 
   // async function for get API:
   const url = `https://alaedeen.com/horn/image-resize-api/?image_path=${image_path}&image_folder=${image_folder}&image_width=${image_width}&image_height=${image_height}`;
