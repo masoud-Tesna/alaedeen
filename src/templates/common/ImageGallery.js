@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 
 // import style file:
 import './styles/ImageGallery.less';
@@ -19,66 +19,66 @@ import SwiperCore, { FreeMode, Thumbs } from 'swiper';
 import ShowResponsiveImage from "./ShowResponsiveImage";
 
 // install Swiper modules
-SwiperCore.use([FreeMode, Thumbs]);
+SwiperCore.use([ FreeMode, Thumbs ]);
 
 const ImageGallery = ({ mainPair, imagePairs }) => {
 
   if (Object.values(imagePairs).length) {
-    imagePairs[0] = mainPair;
+    imagePairs[ 0 ] = mainPair;
   }
 
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [ thumbsSwiper, setThumbsSwiper ] = useState(null);
 
   return (
     <Row className="imageGallery--container">
-      <Col span={24}>
+      <Col span={ 24 }>
         <Image.PreviewGroup>
           <Swiper
-            spaceBetween={5}
-            navigation={false}
-            thumbs={{ swiper: thumbsSwiper }}
+            spaceBetween={ 5 }
+            navigation={ false }
+            thumbs={ { swiper: thumbsSwiper } }
             className="imageGallery--swiper"
           >
-            {Object.values(imagePairs)?.map(image => {
+            { Object.values(imagePairs)?.map(image => {
               return (
-                <SwiperSlide key={image?.pair_id}>
+                <SwiperSlide key={ image?.pair_id }>
                   <ShowResponsiveImage
                     imagePath={ image?.detailed?.image_path }
                     imageFolder='detailed'
-                    width={350}
-                    height={350}
+                    width={ 350 }
+                    height={ 350 }
                     imageAlt={ image?.detailed?.alt }
-                    object_id={image?.pair_id}
-                    object_type={`prd`}
+                    object_id={ image?.pair_id }
+                    object_type="prd"
                     preview
                   />
                 </SwiperSlide>
               );
-            })}
+            }) }
           </Swiper>
         </Image.PreviewGroup>
         <Swiper
-          onSwiper={setThumbsSwiper}
-          spaceBetween={15}
-          slidesPerView={"auto"}
-          freeMode={true}
-          watchSlidesProgress={true}
+          onSwiper={ setThumbsSwiper }
+          spaceBetween={ 15 }
+          slidesPerView={ "auto" }
+          freeMode={ true }
+          watchSlidesProgress={ true }
           className="imageGallery--thumbnailsSwiper">
-          {Object.values(imagePairs)?.map(image => {
+          { Object.values(imagePairs)?.map(image => {
             return (
-              <SwiperSlide key={image?.pair_id}>
+              <SwiperSlide key={ image?.pair_id }>
                 <ShowResponsiveImage
                   imagePath={ image?.detailed?.image_path }
                   imageFolder='detailed'
-                  width={68}
-                  height={68}
+                  width={ 68 }
+                  height={ 68 }
                   imageAlt={ image?.detailed?.alt }
-                  object_id={`thumbs_${image?.pair_id}`}
-                  object_type={`prd`}
+                  object_id={ `thumbs_${ image?.pair_id }` }
+                  object_type="prd"
                 />
               </SwiperSlide>
             );
-          })}
+          }) }
         </Swiper>
       </Col>
     </Row>
