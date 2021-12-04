@@ -231,6 +231,28 @@ const DefaultTopPanel = () => {
                       </Row>
                     </Link>
 
+                    <a className="menuXs--sideNavLinks__item d-block" href="https://alaedeen.com/horn/profile-settings/" >
+                      <Row justify={"space-between"}>
+                        <Col className="text-center" span={5}>
+                          <i className="fal fa-user-cog text-primary vv-font-size-3" />
+                        </Col>
+                        <Col span={18} className="my-auto">
+                          <span className="text-70 vv-font-size-1-6">{t(__('profile settings'))}</span>
+                        </Col>
+                      </Row>
+                    </a>
+
+                    <a className="menuXs--sideNavLinks__item d-block" href="https://alaedeen.com/horn/my-tickets/" >
+                      <Row justify={"space-between"}>
+                        <Col className="text-center" span={5}>
+                          <i className="fal fa-user-headset text-primary vv-font-size-3" />
+                        </Col>
+                        <Col span={18} className="my-auto">
+                          <span className="text-70 vv-font-size-1-6">{t(__('my tickets'))}</span>
+                        </Col>
+                      </Row>
+                    </a>
+
                     <span className="menuXs--sideNavLinks__item languagesCurrencyCollapse d-block">
                       <Row justify={"space-between"}>
                         <Col className="text-center" span={5}>

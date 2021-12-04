@@ -67,6 +67,12 @@ const DefaultHeader = () => {
       </Menu.Item>
 
       <Menu.Item>
+        <a href="https://alaedeen.com/horn/my-tickets/">
+          { t(__('my_tickets')) }
+        </a>
+      </Menu.Item>
+
+      <Menu.Item>
         <a href="https://alaedeen.com/horn/compare/">
           { t(__('Comparison')) }
         </a>
