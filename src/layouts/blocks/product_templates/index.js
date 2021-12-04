@@ -154,7 +154,7 @@ const ProductDetail = (props) => {
 
           <Col span={24} className="productDetails--bottomSection">
             <div>
-              <ProductTab features={product?.product_features} />
+              <ProductTab features={product?.product_features} isLoading={isLoading} />
             </div>
           </Col>
         </Row>
