@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
 // import Swiper core and required modules
 import SwiperCore, { Scrollbar } from 'swiper';
 
-import ShowResponsiveImage from "../../layouts/common/ShowResponsiveImage";
+import ShowResponsiveImage from "../../templates/common/ShowResponsiveImage";
 
 // install Swiper modules
 SwiperCore.use([Scrollbar]);

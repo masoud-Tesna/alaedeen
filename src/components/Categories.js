@@ -25,14 +25,14 @@ import "swiper/modules/scrollbar/scrollbar.less";
 import { Helmet } from "react-helmet";
 
 // import product show and product skeleton show:
-import CategoryOneColumn from "../layouts/blocks/product_list_templates/CategoryOneColumn";
-import CategoryMultiColumn from "../layouts/blocks/product_list_templates/CategoryMultiColumn";
+import CategoryOneColumn from "../templates/blocks/product_list_templates/CategoryOneColumn";
+import CategoryMultiColumn from "../templates/blocks/product_list_templates/CategoryMultiColumn";
 
 // import filters show:
-import ProductFilters from "../layouts/blocks/product_filters";
+import ProductFilters from "../templates/blocks/product_filters";
 import SubCategoriesSwiperMobile from "./categories/SubCategoriesSwiperMobile";
 import SubCategoriesSwiperDesktop from "./categories/SubCategoriesSwiperDesktop";
-import LoaderSpinner from "../layouts/blocks/static_templates/LoadSpinner";
+import LoaderSpinner from "../templates/blocks/static_templates/LoadSpinner";
 
 const Categories = () => {
 

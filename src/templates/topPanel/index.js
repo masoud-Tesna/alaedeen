@@ -4,7 +4,7 @@ import { useLayoutEffect, useState } from 'react';
 // import Custom Hooks:
 import { useWindowSize } from '../../functions';
 
-// Layouts:
+// Templates:
 import DefaultTopPanel from "./defautl/DefaultTopPanel";
 import TopPanelWhitBackIcon from "./defautl/TopPanelWhitBackIcon";
 import { useParsPathName } from "../../functions/Helper";

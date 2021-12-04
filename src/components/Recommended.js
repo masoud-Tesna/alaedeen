@@ -23,17 +23,17 @@ import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 
 // import product show and product skeleton show:
-import CategoryOneColumn from "../layouts/blocks/product_list_templates/CategoryOneColumn";
-import CategoryMultiColumn from "../layouts/blocks/product_list_templates/CategoryMultiColumn";
+import CategoryOneColumn from "../templates/blocks/product_list_templates/CategoryOneColumn";
+import CategoryMultiColumn from "../templates/blocks/product_list_templates/CategoryMultiColumn";
 
 // import filters show:
-import ProductFilters from "../layouts/blocks/product_filters";
-import LoaderSpinner from "../layouts/blocks/static_templates/LoadSpinner";
+import ProductFilters from "../templates/blocks/product_filters";
+import LoaderSpinner from "../templates/blocks/static_templates/LoadSpinner";
 import { useInfiniteQuery } from "react-query";
 
 
-import SkeletonCategoryMultiColumn from "../layouts/blocks/product_list_templates/skeletons/SkeletonCategoryMultiColumn";
-import SkeletonCategoryOneColumn from "../layouts/blocks/product_list_templates/skeletons/SkeletonCategoryOneColumn";
+import SkeletonCategoryMultiColumn from "../templates/blocks/product_list_templates/skeletons/SkeletonCategoryMultiColumn";
+import SkeletonCategoryOneColumn from "../templates/blocks/product_list_templates/skeletons/SkeletonCategoryOneColumn";
 
 
 const Recommended = () => {

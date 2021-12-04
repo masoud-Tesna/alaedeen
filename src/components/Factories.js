@@ -18,7 +18,7 @@ import { useGetApi, useQueryString } from "../functions";
 import { Helmet } from "react-helmet";
 
 // import Factories Show Component:
-import FactoriesShow from "../layouts/blocks/static_templates/FactoriesShow";
+import FactoriesShow from "../templates/blocks/static_templates/FactoriesShow";
 
 const Factories = () => {
 

@@ -2,7 +2,7 @@
 import { useWindowSize } from '../../functions';
 import { useParsPathName } from "../../functions/Helper";
 
-// Layouts:
+// Templates:
 import DefaultHeader from "./default/DefaultHeader";
 
 const Header = () => {

@@ -13,7 +13,7 @@ import { useGetAuthState } from "../contexts/user/UserContext";
 
 import { useGetApi } from "../functions";
 import axios from "axios";
-import LoaderSpinner from "../layouts/blocks/static_templates/LoadSpinner";
+import LoaderSpinner from "../templates/blocks/static_templates/LoadSpinner";
 import { useGetConfig } from "../contexts/config/ConfigContext";
 import { Helmet } from "react-helmet";
 

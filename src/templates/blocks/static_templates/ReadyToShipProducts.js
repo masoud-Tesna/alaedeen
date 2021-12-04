@@ -1,4 +1,4 @@
-// import Layouts:
+// import Templates:
 import ProductsMultiColumnVertical from "../product_list_templates/ProductsMultiColumnVertical";
 import SkeletonMultiColumnVertical from "../product_list_templates/skeletons/SkeletonMultiColumnVertical";
 

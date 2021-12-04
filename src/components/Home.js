@@ -11,21 +11,21 @@ import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 
 // import component blocks:
-import CategoriesMultiColumn from "../layouts/blocks/categories/CategoriesMultiColumn";
-import HomeLogisticsBanner from "../layouts/blocks/static_templates/HomeLogisticsBanner";
-import RequestForm from "../layouts/blocks/static_templates/OneRequestMultipleQuotes";
-import RequestsList from "../layouts/blocks/static_templates/RequestsList";
-import Stats from "../layouts/blocks/static_templates/Stats";
-import ShipProductsBanner from "../layouts/blocks/static_templates/ShipProductsBanner";
-import ReadyToShipProducts from "../layouts/blocks/static_templates/ReadyToShipProducts";
-import PremiumFactories from "../layouts/blocks/static_templates/PremiumFactories";
-import RecommendedProducts from "../layouts/blocks/static_templates/RecommendedProducts";
-import TopBrands from "../layouts/blocks/static_templates/TopBrands";
-import WhatHorn from "../layouts/blocks/static_templates/WhatHorn";
+import CategoriesMultiColumn from "../templates/blocks/categories/CategoriesMultiColumn";
+import HomeLogisticsBanner from "../templates/blocks/static_templates/HomeLogisticsBanner";
+import RequestForm from "../templates/blocks/static_templates/OneRequestMultipleQuotes";
+import RequestsList from "../templates/blocks/static_templates/RequestsList";
+import Stats from "../templates/blocks/static_templates/Stats";
+import ShipProductsBanner from "../templates/blocks/static_templates/ShipProductsBanner";
+import ReadyToShipProducts from "../templates/blocks/static_templates/ReadyToShipProducts";
+import PremiumFactories from "../templates/blocks/static_templates/PremiumFactories";
+import RecommendedProducts from "../templates/blocks/static_templates/RecommendedProducts";
+import TopBrands from "../templates/blocks/static_templates/TopBrands";
+import WhatHorn from "../templates/blocks/static_templates/WhatHorn";
 
 // add after:
-//import TopRankingProducts from "../layouts/blocks/static_templates/TopRankingProducts";
-//import RecentlyProductsView from "../layouts/blocks/static_templates/RecentlyProductsView";
+//import TopRankingProducts from "../templates/blocks/static_templates/TopRankingProducts";
+//import RecentlyProductsView from "../templates/blocks/static_templates/RecentlyProductsView";
 
 const Home = () => {
 

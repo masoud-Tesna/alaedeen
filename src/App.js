@@ -16,10 +16,10 @@ import { ConfigProvider, Layout } from 'antd';
 // import Config context:
 import { useGetConfig } from "./contexts/config/ConfigContext";
 
-// Layouts:
-import TopPanel from "./layouts/topPanel";
-import { Header as SiteHeader } from "./layouts/header";
-import { SiteFooter } from "./layouts/footer";
+// Templates:
+import TopPanel from "./templates/topPanel";
+import { Header as SiteHeader } from "./templates/header";
+import { SiteFooter } from "./templates/footer";
 
 import { appendQueryParameter } from "./functions/Helper";
 import { Helmet } from "react-helmet";

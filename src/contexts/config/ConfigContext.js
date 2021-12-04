@@ -9,7 +9,7 @@ import { ConfigInitialState } from './ConfigInitialState';
 import { changeIpAction, changeCountryAction, changeCountryCodeAction, changeClientLanguageAction } from './ConfigActionCreators';
 import axios from "axios";
 
-import LoaderSpinner from '../../layouts/blocks/static_templates/LoadSpinner';
+import LoaderSpinner from '../../templates/blocks/static_templates/LoadSpinner';
 import { useQuery } from "react-query";
 
 

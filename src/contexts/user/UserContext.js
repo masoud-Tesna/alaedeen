@@ -11,7 +11,7 @@ import { UserInitialState } from './UserInitialState';
 import { signInAction, logOutAction, checkSignInLoadingAction, signInLoadingFalseAction } from './UserActionCreators';
 
 // import LoaderSpinner:
-import LoaderSpinner from '../../layouts/blocks/static_templates/LoadSpinner';
+import LoaderSpinner from '../../templates/blocks/static_templates/LoadSpinner';
 
 // import config context:
 import { useGetConfig } from "../config/ConfigContext";

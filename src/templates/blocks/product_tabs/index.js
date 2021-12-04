@@ -22,11 +22,10 @@ const ProductTab = (props) => {
       <Col span={24}>
         <Tabs defaultActiveKey="1" onChange={callback} type="card" className="productTab--tab" destroyInactiveTabPane={true}>
           <TabPane tab={t(__('product Specifications'))} key="1">
-            <ProductSpecifications features={props.features} product_description={props.product_description} isLoading={props.isLoading}/>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores obcaecati quae ratione. Eligendi laboriosam libero minima nihil nostrum officia vel voluptas! Cum fugit illo ipsum quas qui quod repellendus sint ullam vero? Consequatur ex illo omnis provident sunt? Ab deleniti nesciunt recusandae repellendus tempore. Aliquid amet dolore doloribus dolorum eligendi ex laborum nemo obcaecati porro quo recusandae sint soluta, vero.
+            <ProductSpecifications features={props.features} isLoading={props.isLoading}/>
           </TabPane>
           <TabPane tab={t(__('company'))} key="2">
-
+            Company Profile
           </TabPane>
         </Tabs>
       </Col>

@@ -1,5 +1,5 @@
 // import ant design components:
-import { Anchor, Button, Col, Row, Skeleton, Space } from "antd";
+import { Button, Col, Row, Skeleton, Space } from "antd";
 
 import { useGetConfig } from "../../../../contexts/config/ConfigContext";
 import { useTranslation } from "react-i18next";
@@ -18,6 +18,8 @@ const ProductSpecifications = ({ features, product_description, isLoading }) => 
   //console.log("showFeatures");
   }
 
+  console.log(features)
+
 
   // get initial config:
   const { config } = useGetConfig();
@@ -27,40 +29,10 @@ const ProductSpecifications = ({ features, product_description, isLoading }) => 
   // get screen width:
   const { width } = useWindowSize();
 
-  const { Link } = Anchor;
-
   return (
     <Row className="productSpecifications--container">
-      {/* This Commit Only For Backup ProductSpecifications use Anchor */}
-      <Col span={24} className="productSpecifications--sectionAnchorLinks">
-        <Anchor offsetTop={66} targetOffset={135}>
-          {isLoading ?
-            <Skeleton.Input style={{ width: 150, height: 20 }} active={true} size={"small"} /> :
-
-            (features && features?.length !== 0) &&
-              <Link href="#features-section" title={ t(__('Technical Specifications')) } />
-          }
-
-          {isLoading ?
-            <Skeleton.Input style={{ width: 120, height: 20 }} active={true} size={"small"} /> :
-
-            product_description &&
-            <Link href="#description-section" title={ t(__('Product Description')) } />
-          }
-
-          {isLoading ?
-            <Skeleton.Input style={{ width: 100, height: 20 }} active={true} size={"small"} /> :
-
-            showFeatures &&
-              <Link href="#certifications-section" title={ t(__('Certifications')) } />
-          }
-
-
-        </Anchor>
-      </Col>
-
       <Col span={24} className="productSpecifications--sections">
-        <div style={{ marginTop: 30 }}>
+        <div>
 
           {/*if product features isset*/}
           {isLoading ?
