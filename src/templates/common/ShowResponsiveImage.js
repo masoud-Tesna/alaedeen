@@ -16,7 +16,6 @@ const ShowResponsiveImage = (props) => {
   });
 
   const { image } = data || "";
-  console.log(isLoading)
   return (
     <>
       { (isLoading || !image) ?
