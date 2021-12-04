@@ -31,6 +31,7 @@ const ProductSpecifications = ({ features, product_description, isLoading }) => 
 
   return (
     <Row className="productSpecifications--container">
+      {/* This Commit Only For Backup ProductSpecifications use Anchor */}
       <Col span={24} className="productSpecifications--sectionAnchorLinks">
         <Anchor offsetTop={66} targetOffset={135}>
           {isLoading ?
