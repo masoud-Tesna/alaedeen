@@ -153,7 +153,7 @@ export const useAppendRouteParameter = (name, value) => {
 
 }
 
-export const SeoGenerator = ({ title, description, keywords, canonical, children }) => {
+export const SeoGenerator = ({ title, description, keywords, ogImage, canonical, children }) => {
 
   // get initial config:
   const { config } = useGetConfig();
@@ -192,6 +192,10 @@ export const SeoGenerator = ({ title, description, keywords, canonical, children
           content: description,
         },
         {
+          property: `og:image`,
+          content: ogImage,
+        },
+        {
           property: `og:type`,
           content: `website`,
         },
@@ -210,6 +214,10 @@ export const SeoGenerator = ({ title, description, keywords, canonical, children
         {
           name: `twitter:description`,
           content: description,
+        },
+        {
+          property: `twitter:image`,
+          content: ogImage,
         },
       ]}
     >
