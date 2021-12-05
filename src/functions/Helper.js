@@ -216,7 +216,7 @@ export const SeoGenerator = ({ title, description, keywords, ogImage = "https://
           content: description,
         },
         {
-          property: `twitter:image`,
+          name: `twitter:image`,
           content: ogImage,
         },
       ]}
