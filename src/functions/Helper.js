@@ -153,7 +153,7 @@ export const useAppendRouteParameter = (name, value) => {
 
 }
 
-export const SeoGenerator = ({ title, description, keywords, ogImage, canonical, children }) => {
+export const SeoGenerator = ({ title, description, keywords, ogImage = "https://alaedeen.com/alaedeen-xs.png", canonical, children }) => {
 
   // get initial config:
   const { config } = useGetConfig();
