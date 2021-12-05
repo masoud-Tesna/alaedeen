@@ -17,10 +17,8 @@ import { useGetConfig } from "../contexts/config/ConfigContext";
 import { useWindowSize } from "../functions";
 
 // import helpers function:
-import { __ } from "../functions/Helper";
+import { __, SeoGenerator } from "../functions/Helper";
 import { useTranslation } from "react-i18next";
-
-import { Helmet } from "react-helmet";
 
 // import product show and product skeleton show:
 import CategoryOneColumn from "../templates/blocks/product_list_templates/CategoryOneColumn";
@@ -196,13 +194,12 @@ const Recommended = () => {
 
   return (
     <Row className="mt-0 mt-lg-4 products--container category-products-list" gutter={[0, 23]}>
-
-      <Helmet>
-        <title>{ t(__('recommended products')) }</title>
-        <meta name="description" content={ t(__('recommended products')) } />
-        <meta name="keywords" content={ `recommended_products, recommended, ${t('alaedeen_keywords')}` } />
-        <link rel="canonical" href={ `https://alaedeen.com/recommended` } />
-      </Helmet>
+      <SeoGenerator
+        title={ t(__('recommended products')) }
+        description={ t(__('recommended products')) }
+        keywords={ `recommended products, recommended, ${t('alaedeen_keywords')}` }
+        canonical="https://alaedeen.com/recommended"
+      />
 
       {(isLoadingHandle || productsIsLoading) &&
         <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>

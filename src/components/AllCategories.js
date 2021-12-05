@@ -3,8 +3,7 @@ import './styles/AllCategories.less';
 import { useGetApi } from "../functions";
 import { Col, Row } from "antd";
 import { Link } from "react-router-dom";
-import { __ } from "../functions/Helper";
-import { Helmet } from "react-helmet";
+import { __, SeoGenerator } from "../functions/Helper";
 import { useTranslation } from "react-i18next";
 
 const AllCategories = () => {
@@ -18,11 +17,11 @@ const AllCategories = () => {
 
   return (
     <Row className="allCategories--container">
-      <Helmet>
-        <title>{ t(__('all categories')) }</title>
-        <meta name="description" content={ t('alaedeen_description') } />
-        <meta name="keywords" content={ t('alaedeen_keywords') } />
-      </Helmet>
+      <SeoGenerator
+        title={ t(__('all categories')) }
+        description={ t('alaedeen_description') }
+        keywords={ t('alaedeen_keywords') }
+      />
       {isLoading ?
         <Col span={24} className="allCategories--loading">Loading...</Col> :
         <>

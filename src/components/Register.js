@@ -4,7 +4,7 @@ import { useState } from "react";
 import './styles/Register.less';
 
 import { message, Button, Checkbox, Col, Form, Input, Row, Select, Tabs } from "antd";
-import { __ } from "../functions/Helper";
+import { __, SeoGenerator } from "../functions/Helper";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import googlePic from "../assets/images/google.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -15,7 +15,6 @@ import { useGetApi } from "../functions";
 import axios from "axios";
 import LoaderSpinner from "../templates/blocks/static_templates/LoadSpinner";
 import { useGetConfig } from "../contexts/config/ConfigContext";
-import { Helmet } from "react-helmet";
 
 const Register = () => {
 
@@ -84,12 +83,11 @@ const Register = () => {
 
   return (
     <Row justify={"center"} className="register--container h-100">
-
-      <Helmet>
-        <title>{ t(__('register')) }</title>
-        <meta name="description" content={ t('alaedeen_description') } />
-        <meta name="keywords" content={ t('alaedeen_keywords') } />
-      </Helmet>
+      <SeoGenerator
+        title={ t('register') }
+        description={ t('alaedeen_description') }
+        keywords={ t('alaedeen_keywords') }
+      />
 
       { registerIsLoading && <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/> }
 

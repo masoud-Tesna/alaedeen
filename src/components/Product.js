@@ -2,7 +2,7 @@ import {useGetApi} from "../functions";
 import {useParams} from "react-router-dom";
 import {Col, Row} from "antd";
 import ProductDetail from "../templates/blocks/product_templates";
-import { Helmet } from "react-helmet";
+import { SeoGenerator } from "../functions/Helper";
 
 const Product = () => {
 
@@ -15,13 +15,12 @@ const Product = () => {
 
   return (
     <Row className="productDetails--container">
-
-      <Helmet>
-        <title>{  product?.page_title || product?.product }</title>
-        <meta name="description" content={ product?.meta_description } />
-        <meta name="keywords" content={ product?.meta_keywords } />
-        <link rel="canonical" href={ `https://alaedeen.com/product/${productSeoName}` } />
-      </Helmet>
+      <SeoGenerator
+        title={  product?.page_title || product?.product }
+        description={ product?.meta_description }
+        keywords={ product?.meta_keywords }
+        canonical={ `https://alaedeen.com/product/${productSeoName}` }
+      />
 
       <Col span={24}>
         <ProductDetail product={product} isLoading={isLoading} />

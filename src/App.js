@@ -21,9 +21,6 @@ import TopPanel from "./templates/topPanel";
 import { Header as SiteHeader } from "./templates/header";
 import { SiteFooter } from "./templates/footer";
 
-import { appendQueryParameter } from "./functions/Helper";
-import { Helmet } from "react-helmet";
-
 // Pages:
 import Home from "./components/Home";
 import SignIn from "./components/SignIn";
@@ -46,35 +43,8 @@ function App() {
 
   const { Footer, Content } = Layout;
 
-
-  // object for languages link tag:
-  const languageLinks = [
-    {title: "English", dir: 'ltr', hrefLang: 'x-default', href: window.location.href},
-    {title: "English", dir: 'ltr', hrefLang: 'en', href: appendQueryParameter("lang_code", "en")},
-    {title: "العربية", dir: 'rtl', hrefLang: 'ar', href: appendQueryParameter("lang_code", "ar")},
-    {title: "فارسی", dir: 'rtl', hrefLang: 'fa', href: appendQueryParameter("lang_code", "fa")},
-  ];
-
   return (
     <ConfigProvider direction={ directionTheme }>
-
-      <Helmet>
-        { languageLinks?.map((languageLink, i) => {
-          return(
-            <link
-              key={`langTag_${i}`}
-              title = { languageLink.title }
-              dir = { languageLink.dir }
-              type = "text/html"
-              rel = "alternate"
-              hrefLang = { languageLink.hrefLang }
-              href = { languageLink.href }
-            />
-          )
-        }) }
-        <html lang={ config.language } />
-      </Helmet>
-
       <Layout className="layout">
         <Router>
           <TopPanel />

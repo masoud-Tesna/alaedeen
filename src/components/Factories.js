@@ -11,11 +11,10 @@ import { Col, Row, Space } from "antd";
 import topSectionBg from '../assets/images/factoriezTopSectionBg.png';
 
 // import helper functions:
-import { __ } from '../functions/Helper';
+import { __, SeoGenerator } from '../functions/Helper';
 
 import { useTranslation } from "react-i18next";
 import { useGetApi, useQueryString } from "../functions";
-import { Helmet } from "react-helmet";
 
 // import Factories Show Component:
 import FactoriesShow from "../templates/blocks/static_templates/FactoriesShow";
@@ -38,12 +37,12 @@ const Factories = () => {
 
   return (
     <div className="bg-footer factories--pageSection">
-      <Helmet>
-        <title>{ t(__('Premium OEM Factories')) }</title>
-        <meta name="description" content={ t('factories_description') } />
-        <meta name="keywords" content={ t('factories_keywords') } />
-        <link rel="canonical" href= "https://alaedeen.com/factories" />
-      </Helmet>
+      <SeoGenerator
+        title={ t(__('Premium OEM Factories')) }
+        description={ t('factories_description') }
+        keywords={ t('factories_keywords') }
+        canonical="https://alaedeen.com/factories"
+      />
       <Row className="factories--container">
         <Col span={24} className="factories--topSection bottomShadow clipShadow">
           <Row justify={"space-between"}>

@@ -15,10 +15,8 @@ import { useGetConfig } from "../contexts/config/ConfigContext";
 import { useGetApi, useQueryString, useWindowSize } from "../functions";
 
 // import helpers function:
-import { __ } from "../functions/Helper";
+import { __, SeoGenerator } from "../functions/Helper";
 import { useTranslation } from "react-i18next";
-
-import { Helmet } from "react-helmet";
 
 // import product show and product skeleton show:
 import CategoryOneColumn from "../templates/blocks/product_list_templates/CategoryOneColumn";
@@ -214,13 +212,12 @@ const ReadyToShip = () => {
 
   return (
     <Row className="mt-0 mt-lg-4 products--container" gutter={[0, 23]}>
-
-      <Helmet>
-        <title>{ t(__('ready to ship products')) }</title>
-        <meta name="description" content={ t(__('ready to ship products')) } />
-        <meta name="keywords" content={ `ready_to_ship_products, ship, ${t('alaedeen_keywords')}` } />
-        <link rel="canonical" href={ `https://alaedeen.com/ready-to-ship` } />
-      </Helmet>
+      <SeoGenerator
+        title={ t(__('ready to ship products')) }
+        description={ t(__('ready to ship products')) }
+        keywords={ `ready to ship products, ship, ${t('alaedeen_keywords')}` }
+        canonical="https://alaedeen.com/ready-to-ship"
+      />
 
       {(isLoadingHandle || isLoading) &&
       <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>

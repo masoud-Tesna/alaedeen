@@ -10,7 +10,7 @@ import { Button, Checkbox, Col, Form, Input, Row } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone, LockOutlined, UserOutlined } from "@ant-design/icons";
 
 // import helper functions:
-import { __ } from "../functions/Helper";
+import { __, SeoGenerator } from "../functions/Helper";
 import { useTranslation } from "react-i18next";
 
 // import google pic:
@@ -20,7 +20,7 @@ import googlePic from '../assets/images/google.png';
 import { signInAction, useGetAuthState, useDispatchAuthState, signIn, checkSignInLoadingAction, checkRememberAction } from '../contexts/user/UserContext';
 
 import { useGetConfig } from "../contexts/config/ConfigContext";
-import { Helmet } from "react-helmet";
+
 import { signInLoadingFalseAction } from "../contexts/user/UserActionCreators";
 
 const SignIn = () => {
@@ -86,12 +86,11 @@ const SignIn = () => {
 
   return (
     <Row justify={"center"} className="signIn--container h-100">
-
-      <Helmet>
-        <title>{ t(__('sign in')) }</title>
-        <meta name="description" content={ t('alaedeen_description') } />
-        <meta name="keywords" content={ t('alaedeen_keywords') } />
-      </Helmet>
+      <SeoGenerator
+        title={ t("sign_in") }
+        description={ t('alaedeen_description') }
+        keywords={ t('alaedeen_keywords') }
+      />
 
       <Col xs={24} lg={15} className="signIn--content bg-white p-5">
         <Form

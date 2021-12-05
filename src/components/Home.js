@@ -7,7 +7,6 @@ import { useWindowSize } from '../functions';
 // import Design:
 import { Col, Row } from "antd";
 
-import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 
 // import component blocks:
@@ -22,6 +21,7 @@ import PremiumFactories from "../templates/blocks/static_templates/PremiumFactor
 import RecommendedProducts from "../templates/blocks/static_templates/RecommendedProducts";
 import TopBrands from "../templates/blocks/static_templates/TopBrands";
 import WhatHorn from "../templates/blocks/static_templates/WhatHorn";
+import { SeoGenerator } from "../functions/Helper";
 
 // add after:
 //import TopRankingProducts from "../templates/blocks/static_templates/TopRankingProducts";
@@ -37,7 +37,7 @@ const Home = () => {
     <>
 
       {/*set Title and description*/}
-      <Helmet>
+      {/*<Helmet>
         <title>{ t('alaedeen_title') }</title>
         <meta name="description" content={ t('alaedeen_description') } />
         <meta name="keywords" content={ t('alaedeen_keywords') } />
@@ -51,7 +51,24 @@ const Home = () => {
             }
           `}
         </script>
-      </Helmet>
+      </Helmet>*/}
+
+      <SeoGenerator
+        title={ t('alaedeen_title') }
+        description={ t('alaedeen_description') }
+        keywords={ t('alaedeen_keywords') }
+      >
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "url": "https://alaedeen.com",
+              "logo": "https://alaedeen.com/alaedeen-xs.png"
+            }
+          `}
+        </script>
+      </SeoGenerator>
 
       <div className="top--section bg-white">
         <Row gutter={width >= 768 && 24}>
