@@ -1,4 +1,6 @@
 import { useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import { useGetConfig } from "../contexts/config/ConfigContext";
 
 
 
@@ -149,4 +151,87 @@ export const useAppendRouteParameter = (name, value) => {
 
   return pathName+ "?"+ queryParams;
 
+}
+
+export const SeoGenerator = ({ title, description, keywords, canonical, children }) => {
+
+  // get initial config:
+  const { config } = useGetConfig();
+
+  const lang = config.language;
+
+  // object for languages link tag:
+  const languageLinks = [
+    {title: "English", dir: 'ltr', hrefLang: 'x-default', href: window.location.href},
+    {title: "English", dir: 'ltr', hrefLang: 'en', href: appendQueryParameter("lang_code", "en")},
+    {title: "العربية", dir: 'rtl', hrefLang: 'ar', href: appendQueryParameter("lang_code", "ar")},
+    {title: "فارسی", dir: 'rtl', hrefLang: 'fa', href: appendQueryParameter("lang_code", "fa")},
+  ];
+
+  return (
+    <Helmet
+      htmlAttributes={{
+        lang,
+      }}
+      title={title}
+      meta={[
+        {
+          name: `description`,
+          content: description,
+        },
+        {
+          name: `keywords`,
+          content: keywords,
+        },
+        {
+          property: `og:title`,
+          content: title,
+        },
+        {
+          property: `og:description`,
+          content: description,
+        },
+        {
+          property: `og:type`,
+          content: `website`,
+        },
+        {
+          name: `twitter:card`,
+          content: `summary`,
+        },
+        {
+          name: `twitter:creator`,
+          content: "Alaedeen Teams",
+        },
+        {
+          name: `twitter:title`,
+          content: title,
+        },
+        {
+          name: `twitter:description`,
+          content: description,
+        },
+      ]}
+    >
+      {children}
+
+      {canonical &&
+        <link rel="canonical" href={ canonical } />
+      }
+
+      { languageLinks?.map((languageLink, i) => {
+        return(
+          <link
+            key={`langTag_${i}`}
+            title = { languageLink.title }
+            dir = { languageLink.dir }
+            type = "text/html"
+            rel = "alternate"
+            hrefLang = { languageLink.hrefLang }
+            href = { languageLink.href }
+          />
+        )
+      }) }
+    </Helmet>
+  );
 }
