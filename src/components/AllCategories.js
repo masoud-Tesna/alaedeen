@@ -12,7 +12,9 @@ const AllCategories = () => {
   const { t } = useTranslation();
 
   // get categories from API:
-  const { isLoading, data : { categories } } = useGetApi(`home-categories-api`, '', `allCategories`);
+  const { isLoading, data } = useGetApi(`home-categories-api`, '', `allCategories`);
+
+  const { categories } = data || [];
 
   return (
     <Row className="allCategories--container">

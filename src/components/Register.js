@@ -35,7 +35,9 @@ const Register = () => {
   const [registerIsLoading, setRegisterIsLoading] = useState(false);
 
   // get cities list from API:
-  const { data : { city_lists: cityLists } } = useGetApi(`city-lists-api`, 'country_code=IR', `citiesList_IR`);
+  const { data } = useGetApi(`city-lists-api`, 'country_code=IR', `citiesList_IR`);
+
+  const { city_lists: cityLists } = data || [];
 
   if (user_data.auth.user_id) {
     navigate('/');
