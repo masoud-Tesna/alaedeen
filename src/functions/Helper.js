@@ -162,7 +162,7 @@ export const SeoGenerator = ({ title, description, keywords, canonical, children
 
   // object for languages link tag:
   const languageLinks = [
-    {title: "English", dir: 'ltr', hrefLang: 'x-default', href: window.location.href},
+    {title: "English", dir: 'ltr', hrefLang: 'x-default', href: window.location.origin + window.location.pathname},
     {title: "English", dir: 'ltr', hrefLang: 'en', href: appendQueryParameter("lang_code", "en")},
     {title: "العربية", dir: 'rtl', hrefLang: 'ar', href: appendQueryParameter("lang_code", "ar")},
     {title: "فارسی", dir: 'rtl', hrefLang: 'fa', href: appendQueryParameter("lang_code", "fa")},
