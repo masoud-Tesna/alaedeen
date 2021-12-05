@@ -20,6 +20,7 @@ const Product = () => {
         description={ product?.meta_description }
         keywords={ product?.meta_keywords }
         canonical={ `https://alaedeen.com/product/${productSeoName}` }
+        ogImage={product?.main_pair?.detailed?.image_path || ""}
       />
 
       <Col span={24}>
