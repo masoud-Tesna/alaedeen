@@ -328,7 +328,7 @@ const DefaultTopPanel = () => {
                       </Row>
                     </a>
 
-                    <a className="menuXs--sideNavLinks__item d-block" href="https://alaedeen.com/horn/compare/">
+                    {/*<a className="menuXs--sideNavLinks__item d-block" href="https://alaedeen.com/horn/compare/">
                       <Row justify={"space-between"}>
                         <Col className="text-center" span={5}>
                           <i className="icon-vv-compare text-primary vv-font-size-2-5" />
@@ -337,7 +337,7 @@ const DefaultTopPanel = () => {
                           <span className="text-70 vv-font-size-1-6">{t(__('Comparison'))}</span>
                         </Col>
                       </Row>
-                    </a>
+                    </a>*/}
 
                     <a className="menuXs--sideNavLinks__item d-block" href="https://alaedeen.com/horn/index.php?dispatch=vendor_communication.threads">
                       <Row justify={"space-between"}>

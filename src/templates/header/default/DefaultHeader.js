@@ -72,11 +72,11 @@ const DefaultHeader = () => {
         </a>
       </Menu.Item>
 
-      <Menu.Item>
+      {/*<Menu.Item>
         <a href="https://alaedeen.com/horn/compare/">
           { t(__('Comparison')) }
         </a>
-      </Menu.Item>
+      </Menu.Item>*/}
 
       <Menu.Item>
         <a href="https://alaedeen.com/horn/index.php?dispatch=vendor_communication.threads">
