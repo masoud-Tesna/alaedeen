@@ -184,6 +184,26 @@ export const SeoGenerator = ({ title, description, keywords, ogImage = "https://
           content: keywords,
         },
         {
+          itemprop: `name`,
+          content: title,
+        },
+        {
+          itemprop: `description`,
+          content: description,
+        },
+        {
+          itemprop: `image`,
+          content: ogImage,
+        },
+        {
+          property: `og:url`,
+          content: window.location.origin + window.location.pathname,
+        },
+        {
+          property: `og:type`,
+          content: `website`,
+        },
+        {
           property: `og:title`,
           content: title,
         },
@@ -196,16 +216,16 @@ export const SeoGenerator = ({ title, description, keywords, ogImage = "https://
           content: ogImage,
         },
         {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary_large_image`,
         },
         {
-          name: `twitter:creator`,
-          content: "Alaedeen Teams",
+          name: `twitter:domain`,
+          content: window.location.host,
+        },
+        {
+          name: `twitter:url`,
+          content: window.location.origin + window.location.pathname,
         },
         {
           name: `twitter:title`,
