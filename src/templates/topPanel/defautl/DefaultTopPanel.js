@@ -155,6 +155,10 @@ const DefaultTopPanel = () => {
                                   imageFolder='company_logo'
                                   width={60}
                                   height={60}
+                                  skeletonWidth="60px"
+                                  skeletonHeight="60px"
+                                  skeletonRadius="50%"
+                                  skeletonSvgWidth="4rem"
                                   imageAlt={ user_data?.auth?.company ? user_data?.auth?.company : ` ${user_data?.auth?.firstname} ${user_data?.auth?.lastname} `}
                                   object_id={user_data?.auth?.company_id}
                                   object_type={`company_logo${config.language}`}

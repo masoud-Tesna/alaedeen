@@ -25,9 +25,16 @@ html:lang(ar) {
   }
 
   .productsOneColumnVertical--item__image {
+    .imageContent {
+      height: 115px;
+      background-color: #FAFAFA;
+      @media (min-width: @screen-md) {
+        height: 160px;
+      }
 
-    img {
-      max-width: 100%;
+      img {
+        max-width: 100%;
+      }
     }
   }
 

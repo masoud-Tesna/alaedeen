@@ -177,6 +177,10 @@ const DefaultHeader = () => {
                                         imageFolder='company_logo'
                                         width={50}
                                         height={50}
+                                        skeletonWidth="50px"
+                                        skeletonHeight="50px"
+                                        skeletonRadius="50%"
+                                        skeletonSvgWidth="30px"
                                         imageAlt={ user_data?.auth?.company ? user_data?.auth?.company : ` ${user_data?.auth?.firstname} ${user_data?.auth?.lastname} `}
                                         object_id={user_data?.auth?.company_id}
                                         object_type={`company_logo${config.language}`}

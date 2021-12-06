@@ -38,6 +38,8 @@ const FactoriesLogo = ({ logo, alt, object_id, width }) => {
         imageAlt={ alt }
         object_id={object_id}
         object_type={`company_logo_en`}
+        skeletonWidth={width >= 992 ? "60px" : "26px"}
+        skeletonHeight={width >= 992 ? "60px" : "26px"}
       />
     );
   }
@@ -52,6 +54,8 @@ const FactoriesLogo = ({ logo, alt, object_id, width }) => {
         imageAlt={ alt }
         object_id={object_id}
         object_type={`company_logo_fa`}
+        skeletonWidth={width >= 992 ? "60px" : "26px"}
+        skeletonHeight={width >= 992 ? "60px" : "26px"}
       />
     );
   }
@@ -67,41 +71,36 @@ const FactoriesImages = ({ images, alt, object_id, width }) => {
   return(
     <div className="d-flex premiumFactories--item__detailImages">
       <div className="premiumFactories--factoryImages__item1">
-        { images[0] ?
-          <ShowResponsiveImage
-            imagePath={ images[ 0 ] }
-            imageFolder='profiles'
-            imageAlt={ alt }
-            object_id={`img_0${object_id}`}
-            object_type={`factories_image_0`}
-          /> :
-          <Skeleton.Image active={true} className="premiumFactories--skeletonImages__item1" />
-        }
+        <ShowResponsiveImage
+          imagePath={ images[ 0 ] }
+          imageFolder='profiles'
+          imageAlt={ alt }
+          object_id={`img_0${object_id}`}
+          object_type={`factories_image_0`}
+        />
       </div>
       <Row className="premiumFactories--factoryImages__item_2_3">
         <Col span={24} className="premiumFactories--factoryImages__item2 mb-4 align-self-start">
-          { images[1] ?
-            <ShowResponsiveImage
-              imagePath={ images[ 1 ] }
-              imageFolder='profiles'
-              imageAlt={ alt }
-              object_id={`img_1${object_id}`}
-              object_type={`factories_image_1`}
-            /> :
-            <Skeleton.Image active={true} className="premiumFactories--skeletonImages__item_2_3" />
-          }
+          <ShowResponsiveImage
+            imagePath={ images[ 1 ] }
+            imageFolder='profiles'
+            imageAlt={ alt }
+            object_id={`img_1${object_id}`}
+            object_type={`factories_image_1`}
+            skeletonWidth="136px"
+            skeletonHeight="101px"
+          />
         </Col>
         <Col span={24} className="premiumFactories--factoryImages__item3 align-self-end">
-          { images[2] ?
-            <ShowResponsiveImage
-              imagePath={ images[ 2 ] }
-              imageFolder='profiles'
-              imageAlt={ alt }
-              object_id={`img_2${object_id}`}
-              object_type={`factories_image_2`}
-            /> :
-            <Skeleton.Image active={true} className="premiumFactories--skeletonImages__item_2_3" />
-          }
+          <ShowResponsiveImage
+            imagePath={ images[ 2 ] }
+            imageFolder='profiles'
+            imageAlt={ alt }
+            object_id={`img_2${object_id}`}
+            object_type={`factories_image_2`}
+            skeletonWidth="136px"
+            skeletonHeight="101px"
+          />
         </Col>
       </Row>
     </div>
@@ -201,17 +200,15 @@ const PremiumFactories = () => {
                         <Col key={index}>
                           <div className="premiumFactories--itemXs">
                             <div className="premiumFactories--factoryImages__Xs">
-
-                              { factory?.images ?
-                                <ShowResponsiveImage
-                                  imagePath={ factory?.images[ 0 ] }
-                                  imageFolder='profiles'
-                                  imageAlt={ factory?.company }
-                                  object_id={`img_0${factory.company_id}`}
-                                  object_type={`factories_image_0`}
-                                /> :
-                                <Skeleton.Image active={true} className="premiumFactories--skeletonImages__item1" style={{ width: 120, height: 120 }} />
-                              }
+                              <ShowResponsiveImage
+                                imagePath={ factory?.images[ 0 ] }
+                                imageFolder='profiles'
+                                imageAlt={ factory?.company }
+                                object_id={`img_0${factory.company_id}`}
+                                object_type={`factories_image_0`}
+                                skeletonWidth="120px"
+                                skeletonHeight="120px"
+                              />
                             </div>
                             <div className="mt-2">
                               <Row className="premiumFactoriesXs--item__detail">

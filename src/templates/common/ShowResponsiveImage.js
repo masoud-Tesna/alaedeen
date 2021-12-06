@@ -6,13 +6,17 @@ import styled from 'styled-components';
 
 const SkeletonImage = styled.div`
   
-  
   &.skeletonImage--custom,
-   &.skeletonImage--custom .ant-skeleton.image--skeleton__error,
-     &.skeletonImage--custom .ant-skeleton-image.image--skeleton__error {
-      width: ${props => props.skeletonWidth}px;
-    height: ${props => props.skeletonHeight}px;
-    }
+  &.skeletonImage--custom .ant-skeleton.image--skeleton__error,
+  &.skeletonImage--custom .ant-skeleton-image.image--skeleton__error {
+    width: ${props => props.skeletonWidth};
+    height: ${props => props.skeletonHeight};
+    border-radius: ${props => props.skeletonRadius};
+  }
+  
+  &.skeletonImage--custom .ant-skeleton-image.image--skeleton__error .ant-skeleton-image-svg {
+    width: ${props => props.skeletonSvgWidth};
+  }
   
   &.skeletonImage-default {
     width: 100%;
@@ -34,6 +38,8 @@ const ShowResponsiveImage = (
     height,
     skeletonWidth,
     skeletonHeight,
+    skeletonRadius,
+    skeletonSvgWidth,
     imageAlt,
     object_id,
     object_type,
@@ -53,8 +59,16 @@ const ShowResponsiveImage = (
   const { image } = data || "";
   return (
     <>
-      { (isLoading || !image || imagePath) ?
-        <SkeletonImage className={(skeletonWidth || skeletonHeight) ? 'skeletonImage--custom' : 'skeletonImage-default'} skeletonWidth={skeletonWidth} skeletonHeight={skeletonHeight}><Skeleton.Image className="image--skeleton__error"/></SkeletonImage> :
+      { (isLoading || !image || !imagePath) ?
+        <SkeletonImage
+          className={(skeletonWidth || skeletonHeight || skeletonRadius) ? 'skeletonImage--custom' : 'skeletonImage-default'}
+          skeletonWidth={skeletonWidth}
+          skeletonHeight={skeletonHeight}
+          skeletonRadius={skeletonRadius}
+          skeletonSvgWidth={skeletonSvgWidth}
+        >
+          <Skeleton.Image className="image--skeleton__error"/>
+        </SkeletonImage> :
         image &&
         <Image
           className={ className }
