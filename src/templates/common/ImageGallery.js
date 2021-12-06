@@ -45,8 +45,8 @@ const ImageGallery = ({ mainPair, imagePairs }) => {
                   <ShowResponsiveImage
                     imagePath={ image?.detailed?.image_path }
                     imageFolder='detailed'
-                    width={ 350 }
-                    height={ 350 }
+                    width={ 300 }
+                    height={ 300 }
                     imageAlt={ image?.detailed?.alt }
                     object_id={ image?.pair_id }
                     object_type="prd"
