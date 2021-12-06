@@ -48,22 +48,22 @@ const CategoryMultiColumn = (props) => {
               { product?.product }
             </Col>
 
-            {(config.countryCode !== 'IR' && productPrice !== "0.00") &&
-            <Col span={24} className="px-3 productsMultiColumnVertical--item__price">
+            {(productPrice !== "0.00") &&
+              <Col span={24} className="px-3 productsMultiColumnVertical--item__price">
+                  <span className={ `${ width >= 768 ? 'vv-font-size-1-9' : 'vv-font-size-1-6' } text-primary font-weight-bold` }>
+                      ${ productPrice }
+                    </span>
+                { productListPrice !== "0.00" &&
                 <span className={ `${ width >= 768 ? 'vv-font-size-1-9' : 'vv-font-size-1-6' } text-primary font-weight-bold` }>
-                    ${ productPrice }
-                  </span>
-              { productListPrice !== "0.00" &&
-              <span className={ `${ width >= 768 ? 'vv-font-size-1-9' : 'vv-font-size-1-6' } text-primary font-weight-bold` }>
-                    - ${productListPrice}
-                  </span>
-              }
-              {product.quantity_unit &&
-              <span className={ `${ !allDetails && 'd-none d-lg-inline' } vv-font-size-1-4 text-92` }>
-                    / { product.quantity_unit }
-                  </span>
-              }
-            </Col>
+                      - ${productListPrice}
+                    </span>
+                }
+                {product.quantity_unit &&
+                <span className={ `${ !allDetails && 'd-none d-lg-inline' } vv-font-size-1-4 text-92` }>
+                      / { product.quantity_unit }
+                    </span>
+                }
+              </Col>
             }
 
             {(product?.min_qty && product?.quantity_unit) &&

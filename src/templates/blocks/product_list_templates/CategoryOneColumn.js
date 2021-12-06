@@ -49,7 +49,7 @@ const CategoryOneColumn = (props) => {
               { product.product }
             </Col>
 
-            {(config.countryCode !== 'IR' && productPrice !== "0.00") &&
+            {(productPrice !== "0.00") &&
             <Col span={24} className="productsOneColumnVertical--item__price">
               <span className={ `${ width >= 992 ? 'vv-font-size-1-9' : 'vv-font-size-1-3' } text-primary font-weight-bold` }>${ productPrice } </span>
 

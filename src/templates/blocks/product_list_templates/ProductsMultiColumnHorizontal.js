@@ -68,7 +68,7 @@ const ProductsMultiColumnHorizontal = (props) => {
               />
             </div>
             <div className="ProductsMultiColumnHorizontal--details">
-              {(config.countryCode !== 'IR' && productPrice !== "0.00") &&
+              {(productPrice !== "0.00") &&
               <div className="mb-3 ProductsMultiColumnHorizontal--details__price">
                 <span className="vv-font-size-1-9 text-primary font-weight-bold">${ productPrice } </span>
                 { productListPrice !== "0.00" &&
@@ -112,7 +112,7 @@ const ProductsMultiColumnHorizontal = (props) => {
           </div>
 
           <div className="w-100 align-self-end ProductsMultiColumnHorizontal--details">
-            {(config.countryCode !== 'IR' && productPrice !== "0.00") &&
+            {(productPrice !== "0.00") &&
             <div className="text-center ProductsMultiColumnHorizontal--details__price">
               <span className="vv-font-size-1-1rem text-primary font-weight-bold">${ productPrice } </span>
               { productListPrice !== "0.00" &&
