@@ -2,7 +2,7 @@
 import './styles/ProductDetail.less';
 
 // import ant design components:
-import { Button, Col, Divider, Row, Skeleton, Typography } from "antd";
+import { Col, Divider, Row, Skeleton, Typography } from "antd";
 
 import {useWindowSize} from "../../../functions";
 import {useTranslation} from "react-i18next";
@@ -63,7 +63,7 @@ const ProductDetail = (props) => {
 
                   {(isLoading) ?
                     <Skeleton.Input className="productSkeleton--text" style={{ "--text-width": "40vw", "--text-height": "2.55vh" }} active={true} size={"small"} /> :
-                    (config.countryCode !== 'IR' && productPrice !== "0.00") ?
+                    (productPrice !== "0.00") &&
                       <Col span={24} className="productDetails--price">
                             <span className={ `${ width >= 768 ? 'vv-font-size-2-5' : 'vv-font-size-1-6' } text-primary font-weight-bold` }>${ productPrice }</span>
 
@@ -80,12 +80,6 @@ const ProductDetail = (props) => {
                             <span className={ ` ${ width >= 768 ? 'vv-font-size-1-9 ml-4' : 'vv-font-size-1-3 ml-5' } text-47 font-weight-600` }>{ product?.min_qty } { product?.quantity_unit }</span>
                             <span className={ ` ${ width >= 768 ? 'vv-font-size-1-9' : 'vv-font-size-1-2' } text-92 font-weight-600 ml-2` }>({t('MOQ')})</span>
                           </>
-                        }
-                      </Col> :
-                      <Col span={24} className="productDetails--getLatestPrice">
-                        {(isLoading || !product.product) ?
-                          <Skeleton.Input style={{ width: 70, height: 22 }} active={true} size={"small"} /> :
-                          t(__('get latest price'))
                         }
                       </Col>
                   }
@@ -106,10 +100,10 @@ const ProductDetail = (props) => {
                         {ellipsisProductDescription ?
                           <>
                             <span className="cursor-pointer">{t('more')}</span>
-                            <i className="fas fa-long-arrow-right cursor-pointer" />
+                            <i className={ `fas fa-long-arrow-${config.language === 'en' ? 'right' : 'left'} cursor-pointer` } />
                           </> :
                           <>
-                            <i className="fas fa-long-arrow-left cursor-pointer" />
+                            <i className={ `fas fa-long-arrow-${config.language === 'en' ? 'left' : 'right'} cursor-pointer` } />
                             <span className="cursor-pointer">{t('less')}</span>
                           </>
                         }

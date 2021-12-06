@@ -1,6 +1,23 @@
 // import Mixin:
 @import '../../../../styles/Mixins';
 
+html:lang(fa),
+html:lang(ar) {
+  .productDetail {
+    .ant-row-rtl,
+    .ant-col-rtl {
+      direction: rtl !important;
+    }
+  }
+
+  .productDetails--locationManufacture {
+    .ant-row-rtl,
+    .ant-col-rtl {
+      direction: ltr !important;
+    }
+  }
+}
+
 .productDetails--content {
   @media (min-width: @screen-md) {
     margin: 5rem 0;
@@ -59,9 +76,8 @@
         .product--description__ellipse {
           span,
           i {
-            font-size: calc(1.1rem + 1.5vw);
-            font-weight: 500;
-            line-height: 1.2;
+            font-size: 1.5rem;
+            font-weight: 600;
             color: #0675ea;
           }
 

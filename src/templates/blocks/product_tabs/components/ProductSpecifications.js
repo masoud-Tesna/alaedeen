@@ -1,7 +1,5 @@
-import React, { Fragment } from "react";
-
 // import ant design components:
-import { Col, Image, Row, Skeleton, Space } from "antd";
+import { Col, Row, Skeleton } from "antd";
 
 import { useGetConfig } from "../../../../contexts/config/ConfigContext";
 import { useTranslation } from "react-i18next";
@@ -32,32 +30,6 @@ const ProductSpecifications = ({ product, isLoading }) => {
 
   const FeatureVariant = (feature) => {
 
-    {/*{feature.feature_type === PrdFeatures_TEXT_FIELD &&
-          <span className="textField">{feature.value}</span>
-        }
-
-        {feature.feature_type === PrdFeatures_SINGLE_CHECKBOX &&
-          <span className="singleCheckbox">{feature.value === 'Y' ? t('yes') : t('no')}</span>
-        }
-
-        {feature.feature_type === PrdFeatures_NUMBER_FIELD &&
-          <span className="singleCheckbox">{feature.value_int && parseFloat(feature?.value_int).toFixed(0)}</span>
-        }
-
-        {PrdFeatures_SELECTABLE.includes(feature.feature_type) &&
-          <span className="textField">
-            {
-              feature.variants[feature.variant_id].variant
-            }
-          </span>
-        }
-
-        {feature.feature_type === PrdFeatures_MULTIPLE_CHECKBOX &&
-          ((feature.feature_id === 3221 || feature.feature_id === 3260) && ) ?
-            <>certificate</> :
-            <>baghy</>
-        }*/}
-
     switch (feature.feature_type) {
       case PrdFeatures_TEXT_FIELD :
         return(
@@ -82,15 +54,15 @@ const ProductSpecifications = ({ product, isLoading }) => {
               {
                 Object.values(feature?.variants).map(variant => {
                   return(
-                    <Col key={`features_variants_${variant.variant_id}`} className="certificationImages--container2">
-                      <div className="certificationImages--image">
+                    <Col key={`features_variants_${variant.variant_id}`}>
+                      <div className="certificationImages--image text-center">
                         <ShowResponsiveImage
                           imagePath={ variant?.image }
                           imageFolder='detailed'
                           width={35}
                           height={35}
-                          skeletonWidth={35}
-                          skeletonHeight={35}
+                          skeletonWidth="35px"
+                          skeletonHeight="35px"
                           imageAlt={ variant?.variant }
                           object_id={variant?.variant_id}
                           object_type={`feature_img`}
@@ -105,13 +77,45 @@ const ProductSpecifications = ({ product, isLoading }) => {
               }
             </Row>
           )
-        } else {
-          return <span>Multiple</span>
+        }
+        else if (feature.feature_id === "3247") {
+          return (
+            <Row gutter={[16, 16]}>
+              {
+                Object.values(feature?.variants).map(variant => {
+                  const featureColor = (variant.variant).toString().trim().toLowerCase().replaceAll(" ", "-")
+                  return(
+                    <Col key={`features_variants_${variant.variant_id}`}>
+                      <span className={`colorFeature--icon ${featureColor} align-middle`} /> <span className="colorFeature--title align-middle">{variant.variant}</span>
+                    </Col>
+                  );
+                })
+              }
+            </Row>
+          )
+        }
+        else {
+          return (
+            <Row gutter={[16, 16]}>
+              {
+                Object.values(feature?.variants).map(variant => {
+                  const featureColor = (variant.variant).toString().trim().toLowerCase().replaceAll(" ", "-")
+                  return(
+                    <Col key={`features_variants_${variant.variant_id}`}>
+                      <span className="colorFeature--title align-middle">{variant.variant}</span>
+                    </Col>
+                  );
+                })
+              }
+            </Row>
+          )
         }
       default: return <span className="textField">--</span>
     }
 
   }
+
+  const featureTableHeafer = isLoading ? [] : product?.variants_product[0]?.product_features;
 
   return (
     <Row className="productSpecifications--container">
@@ -186,27 +190,90 @@ const ProductSpecifications = ({ product, isLoading }) => {
 
             {(product?.variants_product.length) &&
               <Col span={24} className="variationsProducts--feature">
-                <h1>Table</h1>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>{t(__('product / code'))}</th>
+                      <th>{t(__('price'))}</th>
+                      {
+                        Object.values(featureTableHeafer).map(feature => {
+                          return (
+                            <th key={`featureTableHeader_${feature.feature_id}`}>
+                              {feature.description} &nbsp;
+                              { Object.values(feature.subfeatures).filter(sub => sub.feature_code === 'S').map(sub => {
+                                return(
+                                  <span>({sub.variants[sub.variant_id].variant})</span>
+                                );
+                              }) }
+                            </th>
+                          );
+                        })
+                      }
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {
+                      product?.variants_product.map(product_variant => {
+
+                        const productVariantPrice = parseFloat(product_variant?.price).toFixed(2);
+
+                        return(
+                          <tr>
+                            <td>
+                              {product_variant.product_code}
+                            </td>
+
+                            <td>
+                              {productVariantPrice}
+                            </td>
+
+                            {
+                              Object.values(product_variant.product_features).map(feature => {
+
+                                return (
+                                  <td key={`featureTableData_${feature.feature_id}`}>
+                                    { Object.values(feature.subfeatures).filter(sub => sub.feature_code === 'P').map(sub => {
+
+                                      const toFloatInt = parseFloat(sub?.value_int).toFixed(0);
+
+                                      return(
+                                        <span>{toFloatInt}</span>
+                                      );
+                                    }) }
+                                  </td>
+                                );
+                              })
+                            }
+
+                          </tr>
+                        );
+                      })
+                    }
+                  </tbody>
+                </table>
               </Col>
             }
 
             {Object.values(product?.product_features).length &&
               <Col span={24} className="products--features">
-                <Row className="row-cols-2 row-cols-md-4" gutter={[7, 20]}>
+                <Row className="row-cols-1 row-cols-md-2" gutter={[0, 20]}>
 
                   {
                     Object.values(product?.product_features).filter(f => f.variations_product !== 'Y' && f.feature_type !== PrdFeatures_GROUP).map(feature => {
 
                       return(
-                        <Fragment key={`features_${feature.feature_id}`}>
-                          <Col className="features--variant">
-                            { t(__(feature?.description)) }{ feature?.suffix && ` (${feature?.suffix})` } : {feature.feature_type}
-                          </Col>
+                        <Col key={`features_${feature.feature_id}`}>
+                          <Row gutter={12}>
+                            <Col className="features--variant">
+                              { t(__(feature?.description)) }{ feature?.suffix && ` (${feature?.suffix})` } :
+                            </Col>
 
-                          <Col className="features--value">
-                            {FeatureVariant(feature)}
-                          </Col>
-                        </Fragment>
+                            <Col className="features--value">
+                              {FeatureVariant(feature)}
+                            </Col>
+                          </Row>
+                        </Col>
                       );
 
                     })

@@ -1,9 +1,20 @@
 // import Mixin:
 @import '../../../../styles/Mixins';
 
+html:lang(fa),
+html:lang(ar) {
+  .productTab--container {
+    .ant-row-rtl,
+    .ant-col-rtl {
+      direction: rtl !important;
+    }
+  }
+}
+
 .productTab--container {
   .productTab--tab {
     overflow: unset !important;
+    background-color: #FFFFFF;
 
     .ant-tabs-nav {
       position: -webkit-sticky;
@@ -11,8 +22,6 @@
       top: 0;
       z-index: 10;
       margin: 0;
-      padding-bottom: 16px;
-      background-color: #F6F6F6;
 
       .ant-tabs-nav-list {
         width: 100%;
@@ -52,38 +61,89 @@
     }
 
     .ant-tabs-content-holder {
-      padding: 0 1.2rem;
+      padding-top: 2.5rem;
 
       .productSpecifications--container {
+        margin-bottom: 6.5rem;
+
         .productSpecifications--title {
           font-size: 1.4rem;
+          padding: 0 1.3rem;
+        }
+
+        .variationsProducts--feature {
+          table {
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding-bottom: 1.5rem;
+          }
+
+          thead th,
+          tbody td {
+            color: #474747;
+            font-size: 1.4rem;
+          }
+
+          thead tr th {
+            text-align: center;
+          }
+
+          th, td {
+            text-align: left;
+            padding: 8px;
+          }
+
+          tbody {
+            tr:nth-child(odd) {
+              background-color: #F6F6F6
+            }
+
+            td {
+              font-weight: bold;
+              text-align: center;
+
+              &:first-child {
+                //padding-left: 2rem;
+              }
+
+              &:last-child {
+                //padding-right: 2rem;
+              }
+            }
+          }
         }
 
         .products--features {
+          padding: 0 1.3rem;
+
           .features--variant,
-          .features--value span {
+          .features--value span,
+          .features--value .certificationImages--title {
             font-size: 1.4rem;
           }
 
           .features--variant {
             font-weight: bold;
             color: #707070;
+            flex: 0 0 auto;
           }
 
           .features--value {
             color: #474747;
+            flex: 1 1;
 
-            .certificationImages--container {
-              display: flex;
-              flex-flow: row wrap;
-              justify-content: center;
-              row-gap: 10px;
+            .certificationImages--image {
+              margin-bottom: .6rem;
+              height: 35px;
+            }
 
-              .certificationImages--title {
-                width: 80px;
-                font-size: 1.7rem;
-                font-weight: 600;
-              }
+            .colorFeature--icon {
+              border-radius: 50%;
+              height: 20px;
+              width: 20px;
+              display: inline-block;
+              border: 2px solid #BCBCBC;
             }
           }
         }
