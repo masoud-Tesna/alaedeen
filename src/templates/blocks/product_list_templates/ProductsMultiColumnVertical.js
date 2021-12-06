@@ -134,6 +134,8 @@ const ProductsMultiColumnVertical = (props) => {
                     imageFolder='company_logo'
                     width={33}
                     height={33}
+                    skeletonWidth={33}
+                    skeletonHeight={33}
                     imageAlt={ product.company_name }
                     object_id={product?.company_id}
                     object_type={`prd_company_logo`}
