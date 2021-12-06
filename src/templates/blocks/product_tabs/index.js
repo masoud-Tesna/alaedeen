@@ -13,7 +13,7 @@ function callback(key) {
   //console.log(key);
 }
 
-const ProductTab = (props) => {
+const ProductTab = ({ product, isLoading }) => {
 
   const { t } = useTranslation();
 
@@ -22,7 +22,7 @@ const ProductTab = (props) => {
       <Col span={24}>
         <Tabs defaultActiveKey="1" onChange={callback} type="card" className="productTab--tab" destroyInactiveTabPane={true}>
           <TabPane tab={t(__('product Specifications'))} key="1">
-            <ProductSpecifications features={props.features} isLoading={props.isLoading}/>
+            <ProductSpecifications product={product} isLoading={isLoading}/>
           </TabPane>
           <TabPane tab={t(__('company'))} key="2">
             Company Profile

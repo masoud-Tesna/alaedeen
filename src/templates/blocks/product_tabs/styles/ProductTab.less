@@ -52,10 +52,41 @@
     }
 
     .ant-tabs-content-holder {
-      padding: 0 4rem;
+      padding: 0 1.2rem;
 
       .productSpecifications--container {
+        .productSpecifications--title {
+          font-size: 1.4rem;
+        }
 
+        .products--features {
+          .features--variant,
+          .features--value span {
+            font-size: 1.4rem;
+          }
+
+          .features--variant {
+            font-weight: bold;
+            color: #707070;
+          }
+
+          .features--value {
+            color: #474747;
+
+            .certificationImages--container {
+              display: flex;
+              flex-flow: row wrap;
+              justify-content: center;
+              row-gap: 10px;
+
+              .certificationImages--title {
+                width: 80px;
+                font-size: 1.7rem;
+                font-weight: 600;
+              }
+            }
+          }
+        }
       }
     }
   }

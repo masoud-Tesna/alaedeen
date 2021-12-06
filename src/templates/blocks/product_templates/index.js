@@ -7,7 +7,6 @@ import { Button, Col, Divider, Row, Skeleton, Typography } from "antd";
 import {useWindowSize} from "../../../functions";
 import {useTranslation} from "react-i18next";
 import {__} from "../../../functions/Helper";
-import FeaturesGrid from "./../../common/FeaturesGrid";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 import ProductTab from "../product_tabs";
 import React, { useRef, useState } from "react";
@@ -154,7 +153,7 @@ const ProductDetail = (props) => {
 
           <Col span={24} className="productDetails--bottomSection">
             <div>
-              <ProductTab features={product?.product_features} isLoading={isLoading} />
+              <ProductTab product={product} isLoading={isLoading} />
             </div>
           </Col>
         </Row>
