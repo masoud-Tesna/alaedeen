@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
+import { Link } from "react-router-dom";
 
 const CategoryOneColumn = (props) => {
 
@@ -127,7 +128,7 @@ const CategoryOneColumn = (props) => {
         </Col>
 
       </Row>
-      <a className="productsOneColumnVertical--item__link" href={ product.link } />
+      <Link className="productsOneColumnVertical--item__link" to={`/product/${product?.seo_name}`} />
     </Col>
   );
 };

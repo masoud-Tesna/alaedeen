@@ -19,6 +19,7 @@ import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
+import { Link } from "react-router-dom";
 
 const ProductsMultiColumnHorizontal = (props) => {
 
@@ -51,7 +52,7 @@ const ProductsMultiColumnHorizontal = (props) => {
 
     return (
       <Col className={ `ProductsMultiColumnHorizontal--item ${props.className}` } {...props.grid}>
-        <a className="d-block" href={ product.link }>
+        <Link className="d-block" to={`/product/${product?.seo_name}`}>
           <Space size={16}>
             <div className="ProductsMultiColumnHorizontal--polygon">
               <img src={ polygon } alt="polygon 1"/>
@@ -89,7 +90,7 @@ const ProductsMultiColumnHorizontal = (props) => {
               </div>
             </div>
           </Space>
-        </a>
+        </Link>
       </Col>
     );
 
@@ -97,7 +98,7 @@ const ProductsMultiColumnHorizontal = (props) => {
 
   return (
     <Col className={ `ProductsMultiColumnHorizontal--item ${props.className}` } {...props.grid}>
-      <a className="d-block h-100" href={ product.link }>
+      <Link className="d-block h-100" to={`/product/${product?.seo_name}`}>
         <Row className="h-100" justify="center">
           <div className="rounded-10 shadow-y-2 d-flex align-items-center justify-content-center ProductsMultiColumnHorizontal--image">
             <ShowResponsiveImage
@@ -126,7 +127,7 @@ const ProductsMultiColumnHorizontal = (props) => {
             </div>
           </div>
         </Row>
-      </a>
+      </Link>
     </Col>
   );
 

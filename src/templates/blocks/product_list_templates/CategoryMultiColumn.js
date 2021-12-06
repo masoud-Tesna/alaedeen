@@ -4,6 +4,7 @@ import { Col, Image, Row } from "antd";
 import { useWindowSize } from "../../../functions";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
+import { Link } from "react-router-dom";
 
 const CategoryMultiColumn = (props) => {
 
@@ -102,7 +103,7 @@ const CategoryMultiColumn = (props) => {
         </Col>
       </Row>
 
-      <a className="productsMultiColumnVertical--item__link" href={ product.link } />
+      <Link className="productsMultiColumnVertical--item__link" to={`/product/${product?.seo_name}`} />
     </Col>
   );
 };

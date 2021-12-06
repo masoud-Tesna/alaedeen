@@ -10,6 +10,7 @@ import { Col, Row, Skeleton, Image } from "antd";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
+import { Link } from "react-router-dom";
 
 const ProductsMultiColumnVertical = (props) => {
 
@@ -64,7 +65,7 @@ const ProductsMultiColumnVertical = (props) => {
 
   return (
     <Col className={ `productsMultiColumnVertical--item` } {...props.grid}>
-      <a className="d-block h-100" href={ product.link }>
+      <Link className="d-block h-100" to={`/product/${product?.seo_name}`}>
         <Row className={ `h-100 pb-3 pb-lg-0 ${props.className}` } justify="center">
           <Col className="align-self-start" span={24}>
             <Row>
@@ -137,7 +138,7 @@ const ProductsMultiColumnVertical = (props) => {
           </Col>
 
         </Row>
-      </a>
+      </Link>
     </Col>
   );
 };

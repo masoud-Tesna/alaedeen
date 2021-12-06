@@ -99,7 +99,6 @@ const ProductSpecifications = ({ product, isLoading }) => {
             <Row gutter={[16, 16]}>
               {
                 Object.values(feature?.variants).map(variant => {
-                  const featureColor = (variant.variant).toString().trim().toLowerCase().replaceAll(" ", "-")
                   return(
                     <Col key={`features_variants_${variant.variant_id}`}>
                       <span className="colorFeature--title align-middle">{variant.variant}</span>
@@ -266,7 +265,7 @@ const ProductSpecifications = ({ product, isLoading }) => {
                         <Col key={`features_${feature.feature_id}`}>
                           <Row gutter={12}>
                             <Col className="features--variant">
-                              { t(__(feature?.description)) }{ feature?.suffix && ` (${feature?.suffix})` } :
+                              { feature?.description }{ feature?.suffix && ` (${feature?.suffix})` } :
                             </Col>
 
                             <Col className="features--value">
