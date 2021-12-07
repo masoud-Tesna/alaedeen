@@ -138,7 +138,7 @@ const CategoryOneColumn = (props) => {
               />
             </Col>
 
-            <Col className="productsOneColumnVertical--item__features d-none d-lg-block">
+            <Col span={24} className="productsOneColumnVertical--item__features d-none d-lg-block">
               <Row className="row-cols-2" gutter={[12, 2]}>
 
                 {
@@ -160,7 +160,7 @@ const CategoryOneColumn = (props) => {
               </Row>
             </Col>
 
-            <Col className="productsOneColumnVertical--item__features d-lg-none d-block my-3">
+            <Col span={24} className="productsOneColumnVertical--item__features d-lg-none d-block my-3">
               <Row className="row-cols-1" gutter={[0, 5]}>
 
                 {
