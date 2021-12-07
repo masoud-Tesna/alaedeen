@@ -1,3 +1,5 @@
+import { Fragment } from 'react';
+
 // import style file:
 import './styles/CategoryOneColumn.less';
 import { Button, Col, Row, Space } from "antd";
@@ -8,6 +10,12 @@ import { useTranslation } from "react-i18next";
 
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 import { Link } from "react-router-dom";
+import {
+  PrdFeatures_MULTIPLE_CHECKBOX,
+  PrdFeatures_NUMBER_FIELD, PrdFeatures_SELECTABLE,
+  PrdFeatures_SINGLE_CHECKBOX,
+  PrdFeatures_TEXT_FIELD
+} from "../product_templates/components/FeatureTypeConst";
 
 const CategoryOneColumn = (props) => {
 
@@ -22,11 +30,59 @@ const CategoryOneColumn = (props) => {
   const productPrice = parseFloat(product.price).toFixed(2);
   const productListPrice = parseFloat(product.list_price).toFixed(2);
 
+  const FeatureVariant = (feature) => {
+
+    switch (feature.feature_type) {
+      case PrdFeatures_TEXT_FIELD :
+        return(
+          <span className="textField">{feature.value}</span>
+        )
+      case PrdFeatures_SINGLE_CHECKBOX :
+        return(
+          <span className="singleCheckbox">{feature.value === 'Y' ? t('yes') : t('no')}</span>
+        )
+      case PrdFeatures_NUMBER_FIELD :
+        return(
+          <span className="singleCheckbox">{feature.value_int && parseFloat(feature?.value_int).toFixed(0)}</span>
+        )
+      case PrdFeatures_SELECTABLE.find(type => type === feature.feature_type) :
+        return(
+          <span className="singleCheckbox">{ feature.variants[feature.variant_id].variant }</span>
+        )
+      case PrdFeatures_MULTIPLE_CHECKBOX :
+        if (feature.feature_id === "3247") {
+          return (
+            Object.values(feature?.variants).map(variant => {
+              const featureColor = (variant.variant_color).toString().trim().toLowerCase().replaceAll(" ", "-")
+              return(
+                <span key={`features_variants_${variant.variant_id}`}>
+                  <span className={`colorFeature--icon ${featureColor} align-middle`} /> <span className="colorFeature--title align-middle">{variant.variant}</span> &nbsp;&nbsp;
+                </span>
+              );
+            })
+          )
+        }
+        else {
+          return (
+            Object.values(feature?.variants).map(variant => {
+              return(
+                <span key={`features_variants_${variant.variant_id}`} className="feature--multiple">
+                  {variant.variant}
+                </span>
+              );
+            })
+          )
+        }
+      default: return <span className="textField">--</span>
+    }
+
+  }
+
   return (
-    <Col className="productsOneColumnVertical--item py-4 px-2" span={24}>
+    <Col className="productsOneColumnVertical--item px-2" span={24}>
       <Row className="h-100 pb-3 pb-lg-0" justify="center" gutter={{ xs: 13, lg: 35 }}>
 
-        <Col flex={ width >= 992 ? '195px' : '128px' } className="d-flex- align-items-center- justify-content-center- productsOneColumnVertical--item__image">
+        <Col flex={ width >= 992 ? '195px' : '128px' } className="d-flex align-items-center justify-content-center productsOneColumnVertical--item__image">
           <div className="imageContent">
             <ShowResponsiveImage
               imagePath={ product?.main_pair?.detailed?.image_path }
@@ -40,7 +96,7 @@ const CategoryOneColumn = (props) => {
           </div>
         </Col>
 
-        <Col flex="1 1" className="text-truncate">
+        <Col flex="1 1" className="text-truncate pt-4">
           <Row className="h-100" gutter={[0, 5]}>
             <Col span={24} className="text-47 font-weight-bold text-truncate productsOneColumnVertical--item__title">
               { product.product }
@@ -80,6 +136,50 @@ const CategoryOneColumn = (props) => {
                 truncateText="…"
                 text={fn_stripHtml(product.full_description)}
               />
+            </Col>
+
+            <Col className="productsOneColumnVertical--item__features d-none d-lg-block">
+              <Row className="row-cols-2" gutter={[12, 2]}>
+
+                {
+                  (product?.product_features && product?.product_features?.length !== 0) &&
+                  Object.entries(product?.product_features)
+                    .filter(([key]) => key !== "3231" && key !== "3260" && key !== "3274" && key !== "3276")
+                    .slice(0, 6)
+                    .map(([key, feature]) => {
+                      return(
+                        <Col key={`features_${key}`}>
+                          <div className="w-100 text-truncate">
+                            <span className="features--variant">{ feature?.description }{ feature?.suffix && ` (${feature?.suffix})` } :</span> <span className="features--value">{FeatureVariant(feature)}</span>
+                          </div>
+                        </Col>
+                      );
+                    })
+                }
+
+              </Row>
+            </Col>
+
+            <Col className="productsOneColumnVertical--item__features d-lg-none d-block my-3">
+              <Row className="row-cols-1" gutter={[0, 5]}>
+
+                {
+                  (product?.product_features && product?.product_features?.length !== 0) &&
+                  Object.entries(product?.product_features)
+                    .filter(([key]) => key !== "3231" && key !== "3260" && key !== "3274" && key !== "3276")
+                    .slice(0, 4)
+                    .map(([key, feature]) => {
+                      return(
+                        <Col key={`features_${key}`}>
+                          <div className="w-100 text-truncate">
+                            <span className="features--variant">{ feature?.description }{ feature?.suffix && ` (${feature?.suffix})` } :</span> <span className="features--value">{FeatureVariant(feature)}</span>
+                          </div>
+                        </Col>
+                      );
+                    })
+                }
+
+              </Row>
             </Col>
 
             <Col span={24} className="border-bottom border-e6 productsOneColumnVertical--item__location-sendRequestBtn">
