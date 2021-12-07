@@ -186,7 +186,7 @@ const CategoryOneColumn = (props) => {
               <Row justify={"space-between"} align={"middle"}>
                 {width >= 992 ?
                   <>
-                    <Col>
+                    <Col span={12}>
                       <Space size={"large"}>
 
                         {product?.wk_location &&
@@ -204,8 +204,21 @@ const CategoryOneColumn = (props) => {
 
                       </Space>
                     </Col>
-                    <Col className="text-47">
-                      <Button className="border border-primary p-0 productsOneColumnVertical--item__sendRequestBtn" size="large">{t(__('send request'))}</Button>
+                    <Col span={12} className="productsOneColumnVertical--item__sendRequestBtn-phoneNumber text-right">
+                      <div>
+                        {product?.agent_whatsApp_number ?
+                          <a className="text-primary" href={ `whatsapp://send?abid=${product?.agent_whatsApp_number}&text=` }>
+                            <i className="fab fa-whatsapp vv-font-size-2" style={{ verticalAlign: "sub", marginRight: ".5rem" }} /> {product?.agent_whatsApp_number}
+                          </a> :
+                          product?.agent_phone_number &&
+                          <a className="text-primary" href={ `tel:${product?.agent_phone_number}` }>
+                            <i className="fal fa-phone vv-font-size-2" style={{ marginRight: ".5rem" }}/> {product?.agent_phone_number}
+                          </a>
+                        }
+
+                        <Button className="border border-primary p-0 productsOneColumnVertical--item__sendRequestBtn" size="large">{t(__('send request'))}</Button>
+                      </div>
+
                     </Col>
                   </> :
                   <>
