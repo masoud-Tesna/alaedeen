@@ -9,7 +9,7 @@ import { CommentOutlined } from "@ant-design/icons";
 import { useWindowSize } from "../../../functions";
 
 // import Verified
-import verifiedIcon from "../../../assets/images/verified.png";
+import verifiedIcon from "../../assets/images/verified.png";
 
 // import Another Package used:
 import TextTruncate from "react-text-truncate";

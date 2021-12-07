@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import './styles/PremiumFactories.less';
 
 // import ANT Design Components Used:
-import { Col, Row, Skeleton } from "antd";
+import { Col, Row } from "antd";
 
 // import Verified
-import verifiedIcon from '../../../assets/images/verified.png';
+import verifiedIcon from '../../assets/images/verified.png';
 
 // import another components used:
 import SkeletonTopBrands from "./skeletons/SkeletonTopBrands";

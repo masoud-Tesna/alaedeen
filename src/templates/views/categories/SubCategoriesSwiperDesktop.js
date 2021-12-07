@@ -1,4 +1,4 @@
-import { Col, Image, Row } from "antd";
+import { Col, Row } from "antd";
 import { Link } from "react-router-dom";
 
 // import swiper:
@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
 
 // import Swiper core and required modules
 import SwiperCore, { Scrollbar } from 'swiper';
-import ShowResponsiveImage from "../../templates/common/ShowResponsiveImage";
+import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 
 // install Swiper modules
 SwiperCore.use([Scrollbar]);

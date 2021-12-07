@@ -1,9 +1,7 @@
 // import ant design components:
 import { Col, Row, Skeleton } from "antd";
 
-import { useGetConfig } from "../../../../contexts/config/ConfigContext";
 import { useTranslation } from "react-i18next";
-import { useWindowSize } from "../../../../functions";
 import { __ } from "../../../../functions/Helper";
 
 //import feature type const:
@@ -19,14 +17,7 @@ import ShowResponsiveImage from "../../../common/ShowResponsiveImage";
 
 const ProductSpecifications = ({ product, isLoading }) => {
 
-
-  // get initial config:
-  const { config } = useGetConfig();
-
   const { t } = useTranslation();
-
-  // get screen width:
-  const { width } = useWindowSize();
 
   const FeatureVariant = (feature) => {
 

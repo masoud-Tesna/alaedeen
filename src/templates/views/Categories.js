@@ -9,13 +9,13 @@ import './styles/Categories.less';
 import { Button, Carousel, Col, Collapse, Pagination, Row, Space, Typography } from "antd";
 
 // import config context:
-import { useGetConfig } from "../contexts/config/ConfigContext";
+import { useGetConfig } from "../../contexts/config/ConfigContext";
 
 // import helper functions:
-import { useGetApi, useQueryString, useWindowSize } from "../functions";
+import { useGetApi, useQueryString, useWindowSize } from "../../functions";
 
 // import helpers function:
-import { __, SeoGenerator, splitArray } from "../functions/Helper";
+import { __, SeoGenerator, splitArray } from "../../functions/Helper";
 import { useTranslation } from "react-i18next";
 
 // Import Swiper styles
@@ -23,14 +23,14 @@ import "swiper/swiper.less";
 import "swiper/modules/scrollbar/scrollbar.less";
 
 // import product show and product skeleton show:
-import CategoryOneColumn from "../templates/blocks/product_list_templates/CategoryOneColumn";
-import CategoryMultiColumn from "../templates/blocks/product_list_templates/CategoryMultiColumn";
+import CategoryOneColumn from "../blocks/product_list_templates/CategoryOneColumn";
+import CategoryMultiColumn from "../blocks/product_list_templates/CategoryMultiColumn";
 
 // import filters show:
-import ProductFilters from "../templates/blocks/product_filters";
+import ProductFilters from "../blocks/product_filters";
 import SubCategoriesSwiperMobile from "./categories/SubCategoriesSwiperMobile";
 import SubCategoriesSwiperDesktop from "./categories/SubCategoriesSwiperDesktop";
-import LoaderSpinner from "../templates/blocks/static_templates/LoadSpinner";
+import LoaderSpinner from "../common/LoadSpinner";
 
 const Categories = () => {
 

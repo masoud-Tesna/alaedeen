@@ -10,18 +10,18 @@ import { Button, Checkbox, Col, Form, Input, Row } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone, LockOutlined, UserOutlined } from "@ant-design/icons";
 
 // import helper functions:
-import { __, SeoGenerator } from "../functions/Helper";
+import { __, SeoGenerator } from "../../functions/Helper";
 import { useTranslation } from "react-i18next";
 
 // import google pic:
 import googlePic from '../assets/images/google.png';
 
 // import language context:
-import { signInAction, useGetAuthState, useDispatchAuthState, signIn, checkSignInLoadingAction, checkRememberAction } from '../contexts/user/UserContext';
+import { signInAction, useGetAuthState, useDispatchAuthState, signIn, checkSignInLoadingAction, checkRememberAction } from '../../contexts/user/UserContext';
 
-import { useGetConfig } from "../contexts/config/ConfigContext";
+import { useGetConfig } from "../../contexts/config/ConfigContext";
 
-import { signInLoadingFalseAction } from "../contexts/user/UserActionCreators";
+import { signInLoadingFalseAction } from "../../contexts/user/UserActionCreators";
 
 const SignIn = () => {
 

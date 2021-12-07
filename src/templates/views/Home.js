@@ -2,7 +2,7 @@
 import './styles/Home.less';
 
 // import Custom Hooks:
-import { useWindowSize } from '../functions';
+import { useWindowSize } from '../../functions';
 
 // import Design:
 import { Col, Row } from "antd";
@@ -10,18 +10,18 @@ import { Col, Row } from "antd";
 import { useTranslation } from "react-i18next";
 
 // import component blocks:
-import CategoriesMultiColumn from "../templates/blocks/categories/CategoriesMultiColumn";
-import HomeLogisticsBanner from "../templates/blocks/static_templates/HomeLogisticsBanner";
-import RequestForm from "../templates/blocks/static_templates/OneRequestMultipleQuotes";
-import RequestsList from "../templates/blocks/static_templates/RequestsList";
-import Stats from "../templates/blocks/static_templates/Stats";
-import ShipProductsBanner from "../templates/blocks/static_templates/ShipProductsBanner";
-import ReadyToShipProducts from "../templates/blocks/static_templates/ReadyToShipProducts";
-import PremiumFactories from "../templates/blocks/static_templates/PremiumFactories";
-import RecommendedProducts from "../templates/blocks/static_templates/RecommendedProducts";
-import TopBrands from "../templates/blocks/static_templates/TopBrands";
-import WhatHorn from "../templates/blocks/static_templates/WhatHorn";
-import { SeoGenerator } from "../functions/Helper";
+import CategoriesMultiColumn from "../blocks/categories/CategoriesMultiColumn";
+import HomeLogisticsBanner from "../blocks/static_templates/HomeLogisticsBanner";
+import RequestForm from "../blocks/static_templates/OneRequestMultipleQuotes";
+import RequestsList from "../blocks/static_templates/RequestsList";
+import Stats from "../blocks/static_templates/Stats";
+import ShipProductsBanner from "../blocks/static_templates/ShipProductsBanner";
+import ReadyToShipProducts from "../blocks/static_templates/ReadyToShipProducts";
+import PremiumFactories from "../blocks/static_templates/PremiumFactories";
+import RecommendedProducts from "../blocks/static_templates/RecommendedProducts";
+import TopBrands from "../blocks/static_templates/TopBrands";
+import WhatHorn from "../blocks/static_templates/WhatHorn";
+import { SeoGenerator } from "../../functions/Helper";
 
 // add after:
 //import TopRankingProducts from "../templates/blocks/static_templates/TopRankingProducts";

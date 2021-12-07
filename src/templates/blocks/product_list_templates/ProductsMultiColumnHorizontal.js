@@ -10,21 +10,17 @@ import polygon_2 from '../../../assets/images/polygon2.png';
 import polygon_3 from '../../../assets/images/polygon3.png';
 
 // import ANT Design Components used:
-import { Col, Row, Space, Image } from "antd";
+import { Col, Row, Space } from "antd";
 
 // import helper functions:
 import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
-import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 import { Link } from "react-router-dom";
 
 const ProductsMultiColumnHorizontal = (props) => {
-
-  // get initial config:
-  const { config } = useGetConfig();
 
   const { t } = useTranslation();
 

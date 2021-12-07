@@ -4,17 +4,17 @@ import { useState } from "react";
 import './styles/Register.less';
 
 import { message, Button, Checkbox, Col, Form, Input, Row, Select, Tabs } from "antd";
-import { __, SeoGenerator } from "../functions/Helper";
+import { __, SeoGenerator } from "../../functions/Helper";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import googlePic from "../assets/images/google.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useGetAuthState } from "../contexts/user/UserContext";
+import { useGetAuthState } from "../../contexts/user/UserContext";
 
-import { useGetApi } from "../functions";
+import { useGetApi } from "../../functions";
 import axios from "axios";
-import LoaderSpinner from "../templates/blocks/static_templates/LoadSpinner";
-import { useGetConfig } from "../contexts/config/ConfigContext";
+import LoaderSpinner from "../common/LoadSpinner";
+import { useGetConfig } from "../../contexts/config/ConfigContext";
 
 const Register = () => {
 

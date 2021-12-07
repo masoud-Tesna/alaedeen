@@ -13,7 +13,7 @@ import { __ } from '../../../functions/Helper';
 import { useTranslation } from "react-i18next";
 import { useGetApi, useWindowSize } from "../../../functions";
 
-// ikport Moment for show date:
+// import Moment for show date:
 import Moment from 'react-moment';
 
 const RequestSkeleton = () => {

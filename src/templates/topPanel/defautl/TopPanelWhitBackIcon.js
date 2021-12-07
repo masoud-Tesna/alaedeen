@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 // import Styles For TopPanelWhitBackIcon:
-import './styles/styles.less';
+import './styles/DefaultTopPanel.less';
 
 // Ant Design Import:
 import { Row, Col } from 'antd';

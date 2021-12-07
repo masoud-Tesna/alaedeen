@@ -11,9 +11,9 @@ import ProductsMultiColumnHorizontal from "../product_list_templates/ProductsMul
 import SkeletonMultiColumnHorizontal from "../product_list_templates/skeletons/SkeletonMultiColumnHorizontal";
 
 // import polygon images:
-import polygon_1 from '../../../assets/images/polygon1.png';
-import polygon_2 from '../../../assets/images/polygon2.png';
-import polygon_3 from '../../../assets/images/polygon3.png';
+import polygon_1 from '../../assets/images/polygon1.png';
+import polygon_2 from '../../assets/images/polygon2.png';
+import polygon_3 from '../../assets/images/polygon3.png';
 
 // import custom hooks:
 import { useGetTopRankingProducts, useWindowSize } from "../../../functions";

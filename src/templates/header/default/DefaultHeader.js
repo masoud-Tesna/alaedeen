@@ -2,14 +2,14 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // import Styles For default:
-import './styles/styles.less';
+import './styles/DefaultHeader.less';
 
 // Ant Design Import:
 import { Button, Col, Dropdown, Input, Layout, Menu, Row, Skeleton } from 'antd';
 import { DownOutlined } from "@ant-design/icons";
 
 // import alaedeen character:
-import alaedeenChar from '../../../assets/images/alaedeen-char.svg';
+import alaedeenChar from '../../assets/images/alaedeen-char.svg';
 
 // import helper functions:
 import { __ } from "../../../functions/Helper";

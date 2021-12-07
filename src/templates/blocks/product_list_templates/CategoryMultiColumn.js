@@ -1,15 +1,11 @@
 // import style file:
 import './styles/CategoryMultiColumn.less';
-import { Col, Image, Row } from "antd";
+import { Col, Row } from "antd";
 import { useWindowSize } from "../../../functions";
-import { useGetConfig } from "../../../contexts/config/ConfigContext";
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 import { Link } from "react-router-dom";
 
 const CategoryMultiColumn = (props) => {
-
-  // get initial config:
-  const { config } = useGetConfig();
 
   // get screen width:
   const { width } = useWindowSize();

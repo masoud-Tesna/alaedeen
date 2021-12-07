@@ -1,8 +1,8 @@
 // Custom Styles:
-import './styles/custom.less';
+import './templates/styles/custom.less';
 
 //import Style File:
-import './styles/App.less';
+import './templates/styles/App.less';
 
 // flag icons:
 import 'flag-icon-css/less/flag-icon.less';
@@ -22,15 +22,15 @@ import { Header as SiteHeader } from "./templates/header";
 import { SiteFooter } from "./templates/footer";
 
 // Pages:
-import Home from "./components/Home";
-import SignIn from "./components/SignIn";
-import Register from "./components/Register";
-import Factories from "./components/Factories";
-import AllCategories from "./components/AllCategories";
-import Categories from "./components/Categories";
-import Product from "./components/Product";
-import Recommended from "./components/Recommended";
-import ReadyToShip from "./components/ReadyToShip";
+import Home from "./templates/views/Home";
+import SignIn from "./templates/views/SignIn";
+import Register from "./templates/views/Register";
+import Factories from "./templates/views/Factories";
+import AllCategories from "./templates/views/AllCategories";
+import Categories from "./templates/views/Categories";
+import Product from "./templates/views/Product";
+import Recommended from "./templates/views/Recommended";
+import ReadyToShip from "./templates/views/ReadyToShip";
 
 import "@babel/polyfill";
 

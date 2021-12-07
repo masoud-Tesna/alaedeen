@@ -5,17 +5,12 @@ import { useWindowSize } from "../../../functions";
 import './styles/ProductsMultiColumnVertical.less';
 
 // import Ant Design Components:
-import { Col, Row, Skeleton, Image } from "antd";
-
-import { useGetConfig } from "../../../contexts/config/ConfigContext";
+import { Col, Row, Skeleton } from "antd";
 
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 import { Link } from "react-router-dom";
 
 const ProductsMultiColumnVertical = (props) => {
-
-  // get initial config:
-  const { config } = useGetConfig();
 
   // get screen width:
   const { width } = useWindowSize();

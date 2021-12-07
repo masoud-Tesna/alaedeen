@@ -2,20 +2,20 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // import Styles For default:
-import './styles/styles.less';
+import './styles/DefaultTopPanel.less';
 
 // Ant Design Import:
 import { Row, Col, Divider, Space, Button, Collapse, Drawer, Skeleton } from 'antd';
 import { DownOutlined } from "@ant-design/icons";
 
 // import alaedeen character:
-import alaedeenChar from '../../../assets/images/alaedeen-char.svg'
+import alaedeenChar from '../../assets/images/alaedeen-char.svg'
 
 // import categories drop down:
 import { CategoriesDropDownVertical as Categories } from "../../blocks/categories/CategoriesDropDownVertical";
 
 // import another components used:
-import LoaderSpinner from '../../blocks/static_templates/LoadSpinner';
+import LoaderSpinner from '../../common/LoadSpinner';
 
 // import language context:
 import { useGetConfig, useConfigDispatch, changeLanguageAction, changeCurrencyAction } from '../../../contexts/config/ConfigContext';

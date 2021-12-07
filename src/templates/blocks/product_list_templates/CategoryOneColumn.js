@@ -1,19 +1,15 @@
 // import style file:
 import './styles/CategoryOneColumn.less';
-import { Button, Col, Image, Row, Space } from "antd";
+import { Button, Col, Row, Space } from "antd";
 import { useWindowSize } from "../../../functions";
 import TextTruncate from "react-text-truncate";
 import { __, fn_stripHtml } from "../../../functions/Helper";
 import { useTranslation } from "react-i18next";
-import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 import { Link } from "react-router-dom";
 
 const CategoryOneColumn = (props) => {
-
-  // get initial config:
-  const { config } = useGetConfig();
 
   const { t } = useTranslation();
 

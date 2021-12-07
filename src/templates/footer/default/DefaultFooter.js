@@ -1,5 +1,5 @@
 // import Styles For default:
-import './styles.less';
+import './styles/DefaultFooter.less';
 
 // Ant Design Import:
 import { Row, Col, Space, Button, Tooltip } from 'antd';
@@ -8,8 +8,8 @@ import { Row, Col, Space, Button, Tooltip } from 'antd';
 import { useGetApi, useWindowSize } from '../../../functions';
 
 // import logo:
-import appleStore from "../../../assets/images/appleStore.svg";
-import googlePlay from "../../../assets/images/googlePlay.svg";
+import appleStore from "../../assets/images/appleStore.svg";
+import googlePlay from "../../assets/images/googlePlay.svg";
 
 // import helper functions:
 import { __ } from '../../../functions/Helper';
