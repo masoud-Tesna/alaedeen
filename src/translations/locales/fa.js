@@ -1,5 +1,6 @@
 const fa = {
   "categories": "دسته بندی‌ها",
+  "free_consultation": "مشاوره رایگان",
   "stores": "فروشگاه",
   "logistics": "حمل و نقل",
   "sign_in": "ورود",

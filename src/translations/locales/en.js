@@ -1,5 +1,6 @@
 const en = {
   "categories": "Categories",
+  "free_consultation": "Free consultation",
   "stores": "Stores",
   "logistics": "Logistics",
   "sign_in": "Sign in",

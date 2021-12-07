@@ -1,5 +1,6 @@
 const ar = {
   "categories": "فئات",
+  "free_consultation": "إستشارة مجانية",
   "stores": "المخازن",
   "logistics": "الخدمات اللوجستية",
   "sign_in": "تسجيل الدخول",
