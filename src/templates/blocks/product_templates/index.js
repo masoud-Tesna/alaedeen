@@ -48,7 +48,7 @@ const ProductDetail = (props) => {
               <Col xs={24} lg={10} className="productDetails--imageContainer">
                 {isLoading ?
                   <>Loading...</> :
-                  <ImageGallery mainPair={product?.main_pair} imagePairs={product?.image_pairs} />
+                  <ImageGallery images={product?.product_images} />
                 }
               </Col>
               <Col xs={24} lg={14} className="productDetail">
