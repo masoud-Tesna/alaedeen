@@ -10,6 +10,7 @@ import { useGetConfig } from "../../../contexts/config/ConfigContext";
 import ProductTab from "../product_tabs";
 import React, { useRef, useState } from "react";
 import ImageGallery from "../../common/ImageGallery";
+import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 
 const ProductDetail = (props) => {
 
@@ -47,7 +48,11 @@ const ProductDetail = (props) => {
             <Row>
               <Col xs={24} lg={10} className="productDetails--imageContainer">
                 {isLoading ?
-                  <>Loading...</> :
+                  <ShowResponsiveImage
+                    imagePath=""
+                    skeletonWidth="100%"
+                    skeletonHeight="350px"
+                  /> :
                   <ImageGallery images={product?.product_images} />
                 }
               </Col>
