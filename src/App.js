@@ -20,9 +20,10 @@ import { useGetConfig } from "./contexts/config/ConfigContext";
 import TopPanel from "./templates/topPanel";
 import { Header as SiteHeader } from "./templates/header";
 import { SiteFooter } from "./templates/footer";
+import { asyncComponent } from "./functions/Helper";
 
 // Pages:
-import Home from "./templates/views/Home";
+/*import Home from "./templates/views/Home";
 import SignIn from "./templates/views/SignIn";
 import Register from "./templates/views/Register";
 import Factories from "./templates/views/Factories";
@@ -30,9 +31,45 @@ import AllCategories from "./templates/views/AllCategories";
 import Categories from "./templates/views/Categories";
 import Product from "./templates/views/Product";
 import Recommended from "./templates/views/Recommended";
-import ReadyToShip from "./templates/views/ReadyToShip";
+import ReadyToShip from "./templates/views/ReadyToShip";*/
 
 import "@babel/polyfill";
+
+const Home = asyncComponent(() =>
+  import('./templates/views/Home').then(module => module.default)
+);
+
+const SignIn = asyncComponent(() =>
+  import('./templates/views/SignIn').then(module => module.default)
+);
+
+const Register = asyncComponent(() =>
+  import('./templates/views/Register').then(module => module.default)
+);
+
+const Factories = asyncComponent(() =>
+  import('./templates/views/Factories').then(module => module.default)
+);
+
+const AllCategories = asyncComponent(() =>
+  import('./templates/views/AllCategories').then(module => module.default)
+);
+
+const Categories = asyncComponent(() =>
+  import('./templates/views/Categories').then(module => module.default)
+);
+
+const Product = asyncComponent(() =>
+  import('./templates/views/Product').then(module => module.default)
+);
+
+const Recommended = asyncComponent(() =>
+  import('./templates/views/Recommended').then(module => module.default)
+);
+
+const ReadyToShip = asyncComponent(() =>
+  import('./templates/views/ReadyToShip').then(module => module.default)
+);
 
 function App() {
 
@@ -57,16 +94,16 @@ function App() {
                 <Route exact path="/" element={<Home />} />
 
                 {/* Sign in Route */}
-                <Route path="/sign-in" element={<SignIn />} />
+                <Route exact exact path="/sign-in" element={<SignIn />} />
 
                 {/* Register Route */}
-                <Route path="/register" element={<Register />} />
+                <Route exact path="/register" element={<Register />} />
 
                 {/* Factories Route */}
-                <Route path="/factories" element={<Factories />} />
+                <Route exact path="/factories" element={<Factories />} />
 
                 {/* All Categories Route */}
-                <Route path="/all-categories" element={<AllCategories />} />
+                <Route exact path="/all-categories" element={<AllCategories />} />
 
                 {/* if open categories page without category path, redirect to all-category route */}
                 <Route exact path="/categories" element={<Navigate to="/all-categories" />} />
@@ -75,16 +112,16 @@ function App() {
                 <Route path="/categories/:category" element={<Categories />} />
 
                 {/* if open product details page without product path, redirect to all-category route */}
-                <Route exact path="/product" element={<Navigate to="/all-categories" />} />
+                <Route exact exact path="/product" element={<Navigate to="/all-categories" />} />
 
                 {/* Product details Route */}
                 <Route path="/product/:product" element={<Product />} />
 
                 {/* Recommended details Route */}
-                <Route path="/recommended" element={<Recommended />} />
+                <Route exact path="/recommended" element={<Recommended />} />
 
                 {/* Ready To Ship details Route */}
-                <Route path="/ready-to-ship" element={<ReadyToShip />} />
+                <Route exact path="/ready-to-ship" element={<ReadyToShip />} />
               </Routes>
             </div>
           </Content>
