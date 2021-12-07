@@ -74,7 +74,7 @@ const ProductSpecifications = ({ product, isLoading }) => {
             <Row gutter={[16, 16]}>
               {
                 Object.values(feature?.variants).map(variant => {
-                  const featureColor = (variant.variant).toString().trim().toLowerCase().replaceAll(" ", "-")
+                  const featureColor = (variant.variant_color).toString().trim().toLowerCase().replaceAll(" ", "-")
                   return(
                     <Col key={`features_variants_${variant.variant_id}`}>
                       <span className={`colorFeature--icon ${featureColor} align-middle`} /> <span className="colorFeature--title align-middle">{variant.variant}</span>
