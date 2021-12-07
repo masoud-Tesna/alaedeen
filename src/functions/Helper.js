@@ -1,8 +1,8 @@
+import { Component } from "react";
+
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { useGetConfig } from "../contexts/config/ConfigContext";
-
-
 
 export function fn_stripHtml(strip) {
   const regex = /(<([^>]+)>)/ig;
@@ -262,4 +262,28 @@ export const SeoGenerator = ({ title, description, keywords, ogImage = "https://
       }) }
     </Helmet>
   );
+}
+
+export function asyncComponent(getComponent) {
+  class AsyncComponent extends Component {
+    static Component = null;
+    state = { Component: AsyncComponent.Component };
+
+    componentWillMount() {
+      if (!this.state.Component) {
+        getComponent().then(Component => {
+          AsyncComponent.Component = Component
+          this.setState({ Component })
+        })
+      }
+    }
+    render() {
+      const { Component } = this.state
+      if (Component) {
+        return <Component {...this.props} />
+      }
+      return null
+    }
+  }
+  return AsyncComponent;
 }
