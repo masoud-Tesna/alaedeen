@@ -402,9 +402,15 @@ const DefaultTopPanel = () => {
                 </span>
               </a>*/}
 
-              <a className="topPanel--content__item hover" href={`https://calendar.iranfair.com/${config.language === 'ar'? '' : config.language}`} target="_blank" rel="noreferrer">
+              <a className="topPanel--content__item hover" href={`https://calendar.iranfair.com/${config.language === 'ar'? '' : config.language}`} target="_blank">
                 <span className="topPanel--item__text">
                   {t(__('International Exhibition'))}
+                </span>
+              </a>
+
+              <a className="topPanel--content__item hover" href="https://alaedeen.com/horn/create-ticket" target="_blank" >
+                <span className="topPanel--item__text">
+                  {t(__('Free consultation'))}
                 </span>
               </a>
             </Space>
