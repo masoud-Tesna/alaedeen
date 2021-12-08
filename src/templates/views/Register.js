@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // import style file:
 import './styles/Register.less';
@@ -19,7 +19,7 @@ import {
 import { useGetApi, useWindowSize } from "../../functions";
 import axios from "axios";
 import LoaderSpinner from "../common/LoadSpinner";
-import { useGetConfig } from "../../contexts/config/ConfigContext";
+import { changeLanguageAction, useConfigDispatch, useGetConfig } from "../../contexts/config/ConfigContext";
 
 // import alaedeen character:
 import alaedeenChar from '../assets/images/alaedeen-char.svg';
@@ -33,6 +33,8 @@ const Register = () => {
 
   // get initial config:
   const { config } = useGetConfig();
+
+  const { configDispatch } = useConfigDispatch();
 
   // get window width
   const { width } = useWindowSize();
@@ -125,6 +127,10 @@ const Register = () => {
         });
     }
 
+  }
+
+  if (config.language !== "fa") {
+    configDispatch(changeLanguageAction("fa"));
   }
 
   return (

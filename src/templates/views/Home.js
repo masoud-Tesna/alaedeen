@@ -77,7 +77,7 @@ const Home = () => {
 
       {config.language === 'fa' &&
       <div className="fullHeightBanner">
-        <Link to="/register/?lang_code=fa"/>
+        <Link to="/register"/>
         <div className="banner" />
       </div>
       }
