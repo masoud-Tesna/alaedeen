@@ -22,6 +22,8 @@ import RecommendedProducts from "../blocks/static_templates/RecommendedProducts"
 import TopBrands from "../blocks/static_templates/TopBrands";
 import WhatHorn from "../blocks/static_templates/WhatHorn";
 import { SeoGenerator } from "../../functions/Helper";
+import { useGetConfig } from "../../contexts/config/ConfigContext";
+import { Link } from "react-router-dom";
 
 // add after:
 //import TopRankingProducts from "../templates/blocks/static_templates/TopRankingProducts";
@@ -32,6 +34,9 @@ const Home = () => {
   const { t } = useTranslation();
 
   const { width } = useWindowSize();
+
+  // get initial config:
+  const { config } = useGetConfig();
 
   return (
     <>
@@ -70,13 +75,20 @@ const Home = () => {
         </script>
       </SeoGenerator>
 
+      {config.language === 'fa' &&
+      <div className="fullHeightBanner">
+        <Link to="/register/?lang_code=fa"/>
+        <div className="banner" />
+      </div>
+      }
+
       <div className="top--section bg-white">
         <Row gutter={width >= 768 && 24}>
           {/* if Screen Width >= 768px (Desktop) Show Component: */}
           {width > 991 &&
-            <Col span={6}>
-              <CategoriesMultiColumn />
-            </Col>
+          <Col span={6}>
+            <CategoriesMultiColumn />
+          </Col>
           }
 
           <Col span={width > 991 ? 12 : 24}>
@@ -85,9 +97,9 @@ const Home = () => {
 
           {/* if Screen Width <= 991px (Mobile) Show Component: */}
           {width <= 991 &&
-            <Col span={24}>
-              <CategoriesMultiColumn />
-            </Col>
+          <Col span={24}>
+            <CategoriesMultiColumn />
+          </Col>
           }
 
           {/* if Screen Width >= 768px (Desktop) Show Component: */}
