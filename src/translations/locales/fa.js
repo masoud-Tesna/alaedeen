@@ -1,6 +1,11 @@
 const fa = {
   "categories": "دسته بندی‌ها",
   "free_consultation": "مشاوره رایگان",
+  "initial_registration": "ثبت نام اولیه",
+  "registration_of_manufacturer_information": "ثبت اطلاعات تولید کننده",
+  "paying_the_subscription_fee": "پرداخت هزینه اشتراک",
+  "review_by_the_supporter": "بررسی توسط پشتیبان",
+  "publishing_an_online_exhibition": "انتشار نمایشگاه آنلاین",
   "stores": "فروشگاه",
   "logistics": "حمل و نقل",
   "sign_in": "ورود",

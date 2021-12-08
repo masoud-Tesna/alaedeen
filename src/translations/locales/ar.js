@@ -1,6 +1,11 @@
 const ar = {
   "categories": "فئات",
   "free_consultation": "إستشارة مجانية",
+  "initial_registration": "التسجيل المبدئي",
+  "registration_of_manufacturer_information": "تسجيل بيانات المصنع",
+  "paying_the_subscription_fee": "دفع مبلغ الإشتراك",
+  "review_by_the_supporter": "المراجعة عن طريق قسم الدعم",
+  "publishing_an_online_exhibition": "نشر معرض الكتروني",
   "stores": "المخازن",
   "logistics": "الخدمات اللوجستية",
   "sign_in": "تسجيل الدخول",

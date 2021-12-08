@@ -1,6 +1,11 @@
 const en = {
   "categories": "Categories",
   "free_consultation": "Free consultation",
+  "initial_registration": "Initial registration",
+  "registration_of_manufacturer_information": "Registration of manufacturer information",
+  "paying_the_subscription_fee": "Paying the subscription fee",
+  "review_by_the_supporter": "Review by the supporter",
+  "publishing_an_online_exhibition": "Publishing an online exhibition",
   "stores": "Stores",
   "logistics": "Logistics",
   "sign_in": "Sign in",
