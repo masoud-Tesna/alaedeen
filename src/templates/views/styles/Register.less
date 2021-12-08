@@ -14,9 +14,52 @@ html:lang(ar) {
       border-right: 1px solid #707070;
     }
   }
+
+  .sellerRegisterStep {
+    .ant-steps-item {
+      .ant-steps-item-tail {
+        margin-left: 0;
+        margin-right: 60px;
+        &:after {
+          margin-left: 0;
+          margin-right: 25px;
+        }
+      }
+
+      .ant-steps-item-icon {
+        margin-left: 0;
+        margin-right: 55px;
+      }
+
+      &.ant-steps-item-process,
+      &.ant-steps-item-finish {
+        .ant-steps-item-icon {
+          .ant-steps-icon-dot {
+            left: unset;
+            right: unset;
+          }
+        }
+      }
+    }
+  }
 }
 
 .register--container {
+
+  .register--topSection {
+    .logo-char img {
+      width: 52px;
+    }
+
+    .logo-text i {
+      font-size: 3.5rem;
+    }
+
+    .top-msg {
+      font-size: 2rem;
+      color: #333333;
+    }
+  }
 
   .register-tab__container {
     .ant-tabs-nav {
@@ -145,18 +188,15 @@ html:lang(ar) {
   }
 
   .register--loginExtra {
-    text-align: center;
+
 
     .register--loginExtra__content {
       margin-top: 2rem;
 
-      @media (min-width: @screen-md) {
-        margin-top: 8rem;
-      }
-    }
-
-    @media (min-width: @screen-md) {
-      border-left: 1px solid #707070;
+    .registerSellerRules {
+      font-size: 2rem;
+      color: #929191;
+      margin-bottom: 5rem;
     }
 
     .registerWithGoogleTxt {
@@ -175,6 +215,137 @@ html:lang(ar) {
           height: 40px;
         }
       }
+    }
+
+      .registerWithGoogleTxt,
+      .registerWithGoogleBtn,
+      .dontHaveAccountContainer {
+        text-align: center;
+      }
+
+      @media (min-width: @screen-md) {
+        margin-top: 8rem;
+      }
+    }
+
+    @media (min-width: @screen-md) {
+      border-left: 1px solid #707070;
+    }
+
+  }
+
+  .sellerRegisterStep {
+    margin-bottom: 4rem;
+
+    .ant-steps-item {
+      .ant-steps-item-tail {
+        margin-left: 60px;
+        &:after {
+          margin-left: 25px;
+          height: 5px;
+          background: #BCBCBC;
+          width: calc(100% - 27px);
+        }
+      }
+
+      .ant-steps-item-icon {
+        margin-left: 55px;
+        border: 3px solid #2D8327;
+        width: 30px;
+        height: 30px;
+        padding: .3rem;
+      }
+
+      .ant-steps-item-content {
+        width: 150px;
+        max-width: 150px;
+
+        .ant-steps-item-title {
+          display: none;
+        }
+
+        .ant-steps-item-description {
+          font-size: 1.5rem;
+          color: #929191;
+          font-weight: 600;
+        }
+      }
+
+      &.ant-steps-item-wait {
+        .ant-steps-item-icon {
+          border: 3px solid #BCBCBC;
+
+          .ant-steps-icon-dot {
+            display: none;
+          }
+        }
+      }
+
+      &.ant-steps-item-finish {
+        .ant-steps-item-tail {
+          &:after {
+            background: #2D8327;
+          }
+        }
+
+
+      }
+
+      &.ant-steps-item-process,
+      &.ant-steps-item-finish {
+        .ant-steps-item-icon {
+          .ant-steps-icon-dot {
+            left: unset;
+          }
+        }
+
+        .ant-steps-item-content {
+          .ant-steps-item-description {
+            color: #2D8327;
+          }
+        }
+      }
+    }
+  }
+
+  .successFull-Register {
+    .anticon-check-circle svg {
+      font-size: 7rem;
+    }
+  }
+
+  .manufactureFormSection a {
+    font-size: 2rem;
+
+    i {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #2874F2;
+    }
+
+    &:hover {
+      i {
+        color: darken(#2874F2, 20)
+      }
+    }
+  }
+
+  .payingSubscriptionSection {
+    .payingSubscriptionSection--title {
+      font-size: 2rem;
+    }
+
+    .payingSubscriptionSection--payList {
+      .payingSubscriptionSection--payList__txt {
+        font-size: 1.7rem;
+        color: #333333;
+      }
+    }
+  }
+
+  .supporterReviewSection {
+    .supporterReviewSection--title {
+      font-size: 2rem;
     }
   }
 }
@@ -225,14 +396,16 @@ html:lang(ar) {
 
 @media (min-width: 768px) {
   .register--container {
+    .register--topSection {
+      margin-top: 4rem;
+    }
+
     .register--content {
       box-shadow: 0 0 1rem rgba(0, 0, 0, 0.17);
       border-radius: 10px;
-      margin-top: 10rem;
+      margin-top: 5rem;
       margin-bottom: 2rem;
     }
-
-
   }
 
   /*.ant-layout.layout {
