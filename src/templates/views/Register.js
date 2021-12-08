@@ -16,7 +16,7 @@ import {
   useGetAuthState
 } from "../../contexts/user/UserContext";
 
-import { useGetApi } from "../../functions";
+import { useGetApi, useWindowSize } from "../../functions";
 import axios from "axios";
 import LoaderSpinner from "../common/LoadSpinner";
 import { useGetConfig } from "../../contexts/config/ConfigContext";
@@ -33,6 +33,9 @@ const Register = () => {
 
   // get initial config:
   const { config } = useGetConfig();
+
+  // get window width
+  const { width } = useWindowSize();
 
   const { t } = useTranslation();
 
@@ -57,9 +60,9 @@ const Register = () => {
 
   const { city_lists: cityLists } = data || [];
 
-  /*if (user_data.auth.user_id && !isSignedIn) {
+  if (user_data.auth.user_id && registerType === 'buyer') {
     navigate('/');
-  }*/
+  }
 
   async function Register(values) {
     return await axios.post(`https://alaedeen.com/horn/register-api/?lang_code=${config.language}`, { user_data: values });
@@ -78,8 +81,8 @@ const Register = () => {
         duration: 4,
         className: 'registerDone--warning',
       })
-    } else {
-
+    }
+    else {
       Register(values)
         .then(res => {
           // disable loading spinner:
@@ -91,7 +94,8 @@ const Register = () => {
               duration: 4,
               className: 'registerDone--warning',
             })
-          } else {
+          }
+          else {
 
             signIn(values.email, values.password1, config.language)
               .then(res => {
@@ -107,7 +111,9 @@ const Register = () => {
                   duration: 2,
                   className: 'registerDone--message',
                 }).then(() => {
-                  setCurrentStep(1);
+                  registerType === 'buyer' ?
+                    navigate('/') :
+                    setCurrentStep(1);
                 })
               })
               .then(() => {
@@ -117,7 +123,6 @@ const Register = () => {
           }
 
         });
-
     }
 
   }
@@ -150,525 +155,525 @@ const Register = () => {
         <Row gutter={{ xs: 0, lg: 32 }}>
 
           {registerType === 'seller' ?
-            <>
-              {/* if Seller Tab Active */}
-              <Col span={24} className="sellerRegisterStep">
-                <Steps current={currentStep} onChange={current => setCurrentStep(current)} progressDot >
-                  <Step key="register"  description={ t(__('Initial registration')) } />
+            width > 991 ?
+              <>
+                <Col span={24} className="sellerRegisterStep">
+                  <Steps current={currentStep} onChange={current => setCurrentStep(current)} progressDot >
+                    <Step key="register"  description={ t(__('Initial registration')) } />
 
-                  <Step key="manufacturer_form" description={ t(__('Registration of manufacturer information')) } />
+                    <Step key="manufacturer_form" description={ t(__('Registration of manufacturer information')) } />
 
-                  <Step key="paying" description={ t(__('Paying subscription fee')) } />
+                    <Step key="paying" description={ t(__('Paying subscription fee')) } />
 
-                  <Step key="Review" description={ t(__('Review by the support team')) } />
+                    <Step key="Review" description={ t(__('Review by the support team')) } />
 
-                  <Step key="publish_exhibition" description={ t(__('Publishing online exhibition')) } />
-                </Steps>
-              </Col>
+                    <Step key="publish_exhibition" description={ t(__('Publishing online exhibition')) } />
+                  </Steps>
+                </Col>
 
-              <Col span={24} className="steps-content">
+                <Col span={24} className="steps-content">
 
-                {currentStep === 0 ?
-                  <Row gutter={{ xs: 0, lg: 32 }}>
-                    {isSignedIn ?
-                      <Col span={24} className="text-center successFull-Register">
-                        <Result
-                          status="success"
-                          title={ t(__("Registration Successful")) }
-                          subTitle={ t(__("You're Now Logged in")) }
-                        />
-                      </Col> :
-                      <>
-                        <Col xs={24} md={12}>
-                          <Tabs
-                            className="register-tab__container"
-                            defaultActiveKey="seller"
-                            centered={true}
-                            onTabClick={key => setRegisterType(key)}
-                          >
-                            <TabPane tab={ t(__('buyer')) } key="buyer" />
-                            <TabPane tab={ t(__('seller')) } key="seller">
-                              <Form
-                                className="h-100 register--formContent"
-                                name="register-seller-form"
-                                initialValues={{
-                                  registrant_type: 'seller'
-                                }}
-                                onFinish={onRegisterFormHandle}
-                              >
-                                <Row>
-                                  <Col span={24} className="mb-4 mb-lg-0 register--loginContent">
-                                    <Row className="h-100" align="middle" gutter={[0, 30]}>
+                  {currentStep === 0 ?
+                    <Row gutter={{ xs: 0, lg: 32 }}>
+                      {isSignedIn ?
+                        <Col span={24} className="text-center successFull-Register">
+                          <Result
+                            status="success"
+                            title={ t(__("Registration Successful")) }
+                            subTitle={ t(__("You're Now Logged in")) }
+                          />
+                        </Col> :
+                        <>
+                          <Col xs={24} md={12}>
+                            <Tabs
+                              className="register-tab__container"
+                              defaultActiveKey="seller"
+                              centered={true}
+                              onTabClick={key => setRegisterType(key)}
+                            >
+                              <TabPane tab={ t(__('buyer')) } key="buyer" />
+                              <TabPane tab={ t(__('seller')) } key="seller">
+                                <Form
+                                  className="h-100 register--formContent"
+                                  name="register-seller-form"
+                                  initialValues={{
+                                    registrant_type: 'seller'
+                                  }}
+                                  onFinish={onRegisterFormHandle}
+                                >
+                                  <Row>
+                                    <Col span={24} className="mb-4 mb-lg-0 register--loginContent">
+                                      <Row className="h-100" align="middle" gutter={[0, 30]}>
 
-                                      <Form.Item name="registrant_type" hidden>
-                                        <Input/>
-                                      </Form.Item>
+                                        <Form.Item name="registrant_type" hidden>
+                                          <Input/>
+                                        </Form.Item>
 
-                                      <Col span={24}>
-                                        <Row className="" align="middle">
-                                          <Col className="text-center" flex="46px">
-                                            <i className="fas fa-map-marker-alt text-bc vv-font-size-3" />
-                                          </Col>
-                                          <Col flex="1 1">
-                                            <Row className="register--formContent__item" align="middle">
-                                              <Col span={24}>
-                                                <Row>
-                                                  <Col className="my-auto vv-font-size-1-9 text-47">
-                                                    <i className="flag-icon flag-icon-ir vv-font-size-2-2" /> {t(__('iran'))} -
-                                                  </Col>
-                                                  <Col flex="1 1">
-                                                    <Form.Item
-                                                      name="auth_city"
-                                                      rules={[
-                                                        {
-                                                          required: true,
-                                                        },
-                                                      ]}
-                                                    >
-                                                      <Select
-                                                        placeholder={ t(__('select your city')) }
-                                                        allowClear
-                                                        showSearch
-                                                        bordered={false}
-                                                        filterOption={(input, option) =>
-                                                          option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                                                        }
+                                        <Col span={24}>
+                                          <Row className="" align="middle">
+                                            <Col className="text-center" flex="46px">
+                                              <i className="fas fa-map-marker-alt text-bc vv-font-size-3" />
+                                            </Col>
+                                            <Col flex="1 1">
+                                              <Row className="register--formContent__item" align="middle">
+                                                <Col span={24}>
+                                                  <Row>
+                                                    <Col className="my-auto vv-font-size-1-9 text-47">
+                                                      <i className="flag-icon flag-icon-ir vv-font-size-2-2" /> {t(__('iran'))} -
+                                                    </Col>
+                                                    <Col flex="1 1">
+                                                      <Form.Item
+                                                        name="auth_city"
+                                                        rules={[
+                                                          {
+                                                            required: true,
+                                                          },
+                                                        ]}
                                                       >
-                                                        <>
-                                                          {cityLists?.map((item) => {
-                                                            return (
-                                                              <Option key={ `cityLists_${ item.code }` } value={item.code} >{ item.state }</Option>
-                                                            );
-                                                          })}
-                                                        </>
-                                                      </Select>
-                                                    </Form.Item>
-                                                  </Col>
-                                                </Row>
-                                              </Col>
-                                            </Row>
-                                          </Col>
-                                        </Row>
-                                      </Col>
+                                                        <Select
+                                                          placeholder={ t(__('select your city')) }
+                                                          allowClear
+                                                          showSearch
+                                                          bordered={false}
+                                                          filterOption={(input, option) =>
+                                                            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                                          }
+                                                        >
+                                                          <>
+                                                            {cityLists?.map((item) => {
+                                                              return (
+                                                                <Option key={ `cityLists_${ item.code }` } value={item.code} >{ item.state }</Option>
+                                                              );
+                                                            })}
+                                                          </>
+                                                        </Select>
+                                                      </Form.Item>
+                                                    </Col>
+                                                  </Row>
+                                                </Col>
+                                              </Row>
+                                            </Col>
+                                          </Row>
+                                        </Col>
 
-                                      <Col span={24}>
-                                        <Row className="" align="middle">
-                                          <Col className="text-center" flex="46px">
-                                            <i className="fas fa-user-circle text-bc vv-font-size-3" />
-                                          </Col>
-                                          <Col flex="1 1">
-                                            <Row gutter={ { xs: 15, md: 30 }}>
-                                              <Col span={12}>
-                                                <Row className="register--formContent__item" align="middle">
-                                                  <Col span={24}>
-                                                    <Form.Item
-                                                      name="firstname"
-                                                      rules={[
-                                                        {
-                                                          required: true
-                                                        },
-                                                      ]}>
-                                                      <Input
-                                                        placeholder={ t(__('first name')) }
-                                                        bordered={false}
-                                                      />
-                                                    </Form.Item>
-                                                  </Col>
-                                                </Row>
-                                              </Col>
-                                              <Col span={12}>
-                                                <Row className="register--formContent__item" align="middle">
-                                                  <Col span={24}>
-                                                    <Form.Item
-                                                      name="lastname"
-                                                      rules={[
-                                                        {
-                                                          required: true
-                                                        },
-                                                      ]}>
-                                                      <Input
-                                                        placeholder={ t(__('last name')) }
-                                                        bordered={false}
-                                                      />
-                                                    </Form.Item>
-                                                  </Col>
-                                                </Row>
-                                              </Col>
-                                            </Row>
-                                          </Col>
-                                        </Row>
-                                      </Col>
+                                        <Col span={24}>
+                                          <Row className="" align="middle">
+                                            <Col className="text-center" flex="46px">
+                                              <i className="fas fa-user-circle text-bc vv-font-size-3" />
+                                            </Col>
+                                            <Col flex="1 1">
+                                              <Row gutter={ { xs: 15, md: 30 }}>
+                                                <Col span={12}>
+                                                  <Row className="register--formContent__item" align="middle">
+                                                    <Col span={24}>
+                                                      <Form.Item
+                                                        name="firstname"
+                                                        rules={[
+                                                          {
+                                                            required: true
+                                                          },
+                                                        ]}>
+                                                        <Input
+                                                          placeholder={ t(__('first name')) }
+                                                          bordered={false}
+                                                        />
+                                                      </Form.Item>
+                                                    </Col>
+                                                  </Row>
+                                                </Col>
+                                                <Col span={12}>
+                                                  <Row className="register--formContent__item" align="middle">
+                                                    <Col span={24}>
+                                                      <Form.Item
+                                                        name="lastname"
+                                                        rules={[
+                                                          {
+                                                            required: true
+                                                          },
+                                                        ]}>
+                                                        <Input
+                                                          placeholder={ t(__('last name')) }
+                                                          bordered={false}
+                                                        />
+                                                      </Form.Item>
+                                                    </Col>
+                                                  </Row>
+                                                </Col>
+                                              </Row>
+                                            </Col>
+                                          </Row>
+                                        </Col>
 
-                                      <Col span={24}>
-                                        <Row className="" align="middle">
-                                          <Col className="text-center" flex="46px">
-                                            <i className="fa fa-mobile text-bc vv-font-size-3" />
-                                          </Col>
-                                          <Col flex="1 1">
-                                            <Row className="register--formContent__item" align="middle">
-                                              <Col span={24}>
-                                                <Form.Item
-                                                  name="phone"
-                                                  rules={[
-                                                    {
-                                                      required: true
-                                                    },
-                                                  ]}>
-                                                  <Input
-                                                    placeholder={ t(__('phone_number')) }
-                                                    bordered={false}
-                                                  />
-                                                </Form.Item>
-                                              </Col>
-                                            </Row>
-                                          </Col>
-                                        </Row>
-                                      </Col>
+                                        <Col span={24}>
+                                          <Row className="" align="middle">
+                                            <Col className="text-center" flex="46px">
+                                              <i className="fa fa-mobile text-bc vv-font-size-3" />
+                                            </Col>
+                                            <Col flex="1 1">
+                                              <Row className="register--formContent__item" align="middle">
+                                                <Col span={24}>
+                                                  <Form.Item
+                                                    name="phone"
+                                                    rules={[
+                                                      {
+                                                        required: true
+                                                      },
+                                                    ]}>
+                                                    <Input
+                                                      placeholder={ t(__('phone_number')) }
+                                                      bordered={false}
+                                                    />
+                                                  </Form.Item>
+                                                </Col>
+                                              </Row>
+                                            </Col>
+                                          </Row>
+                                        </Col>
 
-                                      <Col span={24}>
-                                        <Row className="" align="middle">
-                                          <Col className="text-center" flex="46px">
-                                            <i className="fa fa-envelope text-bc vv-font-size-3" />
-                                          </Col>
-                                          <Col flex="1 1">
-                                            <Row className="register--formContent__item" align="middle">
-                                              <Col span={24}>
-                                                <Form.Item
-                                                  name="email"
-                                                  rules={[
-                                                    {
-                                                      required: true,
-                                                      type: 'email',
-                                                    },
-                                                  ]}>
-                                                  <Input
-                                                    placeholder={ t(__('email')) }
-                                                    bordered={false}
-                                                  />
-                                                </Form.Item>
-                                              </Col>
-                                            </Row>
-                                          </Col>
-                                        </Row>
-                                      </Col>
+                                        <Col span={24}>
+                                          <Row className="" align="middle">
+                                            <Col className="text-center" flex="46px">
+                                              <i className="fa fa-envelope text-bc vv-font-size-3" />
+                                            </Col>
+                                            <Col flex="1 1">
+                                              <Row className="register--formContent__item" align="middle">
+                                                <Col span={24}>
+                                                  <Form.Item
+                                                    name="email"
+                                                    rules={[
+                                                      {
+                                                        required: true,
+                                                        type: 'email',
+                                                      },
+                                                    ]}>
+                                                    <Input
+                                                      placeholder={ t(__('email')) }
+                                                      bordered={false}
+                                                    />
+                                                  </Form.Item>
+                                                </Col>
+                                              </Row>
+                                            </Col>
+                                          </Row>
+                                        </Col>
 
-                                      <Col span={24}>
-                                        <Row className="" align="middle">
-                                          <Col className="text-center" flex="46px">
-                                            <i className="fas fa-building text-bc vv-font-size-3" />
-                                          </Col>
-                                          <Col flex="1 1">
-                                            <Row className="register--formContent__item" align="middle">
-                                              <Col span={24}>
-                                                <Form.Item
-                                                  name="company"
-                                                  rules={[
-                                                    {
-                                                      required: true
-                                                    },
-                                                  ]}>
-                                                  <Input
-                                                    placeholder={ t(__('Company Name')) }
-                                                    bordered={false}
-                                                  />
-                                                </Form.Item>
-                                              </Col>
-                                            </Row>
-                                          </Col>
-                                        </Row>
-                                      </Col>
+                                        <Col span={24}>
+                                          <Row className="" align="middle">
+                                            <Col className="text-center" flex="46px">
+                                              <i className="fas fa-building text-bc vv-font-size-3" />
+                                            </Col>
+                                            <Col flex="1 1">
+                                              <Row className="register--formContent__item" align="middle">
+                                                <Col span={24}>
+                                                  <Form.Item
+                                                    name="company"
+                                                    rules={[
+                                                      {
+                                                        required: true
+                                                      },
+                                                    ]}>
+                                                    <Input
+                                                      placeholder={ t(__('Company Name')) }
+                                                      bordered={false}
+                                                    />
+                                                  </Form.Item>
+                                                </Col>
+                                              </Row>
+                                            </Col>
+                                          </Row>
+                                        </Col>
 
-                                      <Col span={24}>
-                                        <Row className="" align="middle">
-                                          <Col className="text-center" flex="46px">
-                                            <i className="fas fa-tag text-bc vv-font-size-3" />
-                                          </Col>
-                                          <Col flex="1 1">
-                                            <Row className="register--formContent__item" align="middle">
-                                              <Col span={24}>
-                                                <Form.Item
-                                                  name="brand"
-                                                  rules={[
-                                                    {
-                                                      required: true
-                                                    },
-                                                  ]}>
-                                                  <Input
-                                                    placeholder={ t(__('brand Name')) }
-                                                    bordered={false}
-                                                  />
-                                                </Form.Item>
-                                              </Col>
-                                            </Row>
-                                          </Col>
-                                        </Row>
-                                      </Col>
+                                        <Col span={24}>
+                                          <Row className="" align="middle">
+                                            <Col className="text-center" flex="46px">
+                                              <i className="fas fa-tag text-bc vv-font-size-3" />
+                                            </Col>
+                                            <Col flex="1 1">
+                                              <Row className="register--formContent__item" align="middle">
+                                                <Col span={24}>
+                                                  <Form.Item
+                                                    name="brand"
+                                                    rules={[
+                                                      {
+                                                        required: true
+                                                      },
+                                                    ]}>
+                                                    <Input
+                                                      placeholder={ t(__('brand Name')) }
+                                                      bordered={false}
+                                                    />
+                                                  </Form.Item>
+                                                </Col>
+                                              </Row>
+                                            </Col>
+                                          </Row>
+                                        </Col>
 
-                                      <Col span={24}>
-                                        <Row gutter={[0, 15]}>
-                                          <Col span={24} className="vv-font-size-2 text-70">
-                                            { t(__('Business Type')) }:
-                                          </Col>
-                                          <Col span={24}>
-                                            <Row className="register--formContent__item for--businessType" align="middle">
-                                              <Col span={24}>
-                                                <Form.Item name="business_type">
-                                                  <Checkbox.Group style={{ width: '100%' }} name="business_type">
-                                                    <Row gutter={[0, 20]}>
-                                                      <Col span={24}>
-                                                        <Checkbox value="manufacture"> { t(__('Manufacture')) } </Checkbox>
-                                                      </Col>
-                                                      {/*<Col span={24}>
+                                        <Col span={24}>
+                                          <Row gutter={[0, 15]}>
+                                            <Col span={24} className="vv-font-size-2 text-70">
+                                              { t(__('Business Type')) }:
+                                            </Col>
+                                            <Col span={24}>
+                                              <Row className="register--formContent__item for--businessType" align="middle">
+                                                <Col span={24}>
+                                                  <Form.Item name="business_type">
+                                                    <Checkbox.Group style={{ width: '100%' }} name="business_type">
+                                                      <Row gutter={[0, 20]}>
+                                                        <Col span={24}>
+                                                          <Checkbox value="manufacture"> { t(__('Manufacture')) } </Checkbox>
+                                                        </Col>
+                                                        {/*<Col span={24}>
                                                     <Checkbox value="wholesaler"> { t(__('Wholesaler')) } </Checkbox>
                                                   </Col>*/}
-                                                      <Col span={24}>
-                                                        <Checkbox value="trading_company"> { t(__('Trading Company')) } </Checkbox>
-                                                      </Col>
-                                                      <Col span={24}>
-                                                        <Checkbox value="business_type_business_service"> { t(__('Business Service (Transportation, finance, travel, Ads)')) } </Checkbox>
-                                                      </Col>
-                                                    </Row>
-                                                  </Checkbox.Group>
-                                                </Form.Item>
-                                              </Col>
-                                            </Row>
-                                          </Col>
-                                        </Row>
-                                      </Col>
+                                                        <Col span={24}>
+                                                          <Checkbox value="trading_company"> { t(__('Trading Company')) } </Checkbox>
+                                                        </Col>
+                                                        <Col span={24}>
+                                                          <Checkbox value="business_type_business_service"> { t(__('Business Service (Transportation, finance, travel, Ads)')) } </Checkbox>
+                                                        </Col>
+                                                      </Row>
+                                                    </Checkbox.Group>
+                                                  </Form.Item>
+                                                </Col>
+                                              </Row>
+                                            </Col>
+                                          </Row>
+                                        </Col>
 
-                                      <Col span={24}>
-                                        <Row className="" align="middle">
-                                          <Col className="text-center" flex="46px">
-                                            <i className="fa fa-lock text-bc vv-font-size-3" />
-                                          </Col>
-                                          <Col flex="1 1">
-                                            <Row className="register--formContent__item" align="middle">
-                                              <Col span={24}>
-                                                <Form.Item
-                                                  name="password1"
-                                                  rules={[
-                                                    {
-                                                      required: true,
-                                                    },
-                                                  ]}>
-                                                  <Input.Password
-                                                    placeholder={ t(__('password')) }
-                                                    bordered={false}
-                                                    iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-                                                  />
-                                                </Form.Item>
-                                              </Col>
-                                            </Row>
-                                          </Col>
-                                        </Row>
-                                      </Col>
+                                        <Col span={24}>
+                                          <Row className="" align="middle">
+                                            <Col className="text-center" flex="46px">
+                                              <i className="fa fa-lock text-bc vv-font-size-3" />
+                                            </Col>
+                                            <Col flex="1 1">
+                                              <Row className="register--formContent__item" align="middle">
+                                                <Col span={24}>
+                                                  <Form.Item
+                                                    name="password1"
+                                                    rules={[
+                                                      {
+                                                        required: true,
+                                                      },
+                                                    ]}>
+                                                    <Input.Password
+                                                      placeholder={ t(__('password')) }
+                                                      bordered={false}
+                                                      iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                                                    />
+                                                  </Form.Item>
+                                                </Col>
+                                              </Row>
+                                            </Col>
+                                          </Row>
+                                        </Col>
 
-                                      <Col span={24}>
-                                        <Row className="" align="middle">
-                                          <Col className="text-center" flex="46px">
-                                            <i className="fa fa-lock text-bc vv-font-size-3" />
-                                          </Col>
-                                          <Col flex="1 1">
-                                            <Row className="register--formContent__item" align="middle">
-                                              <Col span={24}>
-                                                <Form.Item
-                                                  name="password2"
-                                                  rules={[
-                                                    {
-                                                      required: true,
-                                                    },
-                                                  ]}>
-                                                  <Input.Password
-                                                    placeholder={ t(__('Confirm password')) }
-                                                    bordered={false}
-                                                    iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-                                                  />
-                                                </Form.Item>
-                                              </Col>
-                                            </Row>
-                                          </Col>
-                                        </Row>
-                                      </Col>
+                                        <Col span={24}>
+                                          <Row className="" align="middle">
+                                            <Col className="text-center" flex="46px">
+                                              <i className="fa fa-lock text-bc vv-font-size-3" />
+                                            </Col>
+                                            <Col flex="1 1">
+                                              <Row className="register--formContent__item" align="middle">
+                                                <Col span={24}>
+                                                  <Form.Item
+                                                    name="password2"
+                                                    rules={[
+                                                      {
+                                                        required: true,
+                                                      },
+                                                    ]}>
+                                                    <Input.Password
+                                                      placeholder={ t(__('Confirm password')) }
+                                                      bordered={false}
+                                                      iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                                                    />
+                                                  </Form.Item>
+                                                </Col>
+                                              </Row>
+                                            </Col>
+                                          </Row>
+                                        </Col>
 
-                                      <Col span={24}>
-                                        <Row gutter={[0, 15]}>
-                                          <Col span={24}>
-                                            <Row className="register--formContent__item for--businessType" align="middle">
-                                              <Col span={24}>
-                                                <Form.Item
-                                                  className="signIn--rememberMe"
-                                                  name="accept_rules"
-                                                  valuePropName="checked"
-                                                  rules={[
-                                                    {
-                                                      required: true,
-                                                    },
-                                                  ]}
-                                                >
-                                                  <Checkbox
-                                                    value="Y"
+                                        <Col span={24}>
+                                          <Row gutter={[0, 15]}>
+                                            <Col span={24}>
+                                              <Row className="register--formContent__item for--businessType" align="middle">
+                                                <Col span={24}>
+                                                  <Form.Item
+                                                    className="signIn--rememberMe"
+                                                    name="accept_rules"
+                                                    valuePropName="checked"
+                                                    rules={[
+                                                      {
+                                                        required: true,
+                                                      },
+                                                    ]}
                                                   >
-                                                    { t(__('I accept the terms of service')) }
-                                                  </Checkbox>
-                                                </Form.Item>
-                                              </Col>
-                                            </Row>
-                                          </Col>
-                                        </Row>
+                                                    <Checkbox
+                                                      value="Y"
+                                                    >
+                                                      { t(__('I accept the terms of service')) }
+                                                    </Checkbox>
+                                                  </Form.Item>
+                                                </Col>
+                                              </Row>
+                                            </Col>
+                                          </Row>
+                                        </Col>
+
+                                        <Col span={24} className="text-center">
+                                          <Form.Item
+                                            className="signIn--signInBtn"
+                                            valuePropName="checked"
+                                          >
+                                            <Button className="bg-primary w-75 text-white border-0 p-0" htmlType="submit">
+                                              { t(__('register')) }
+                                            </Button>
+                                          </Form.Item>
+                                        </Col>
+
+                                      </Row>
+                                    </Col>
+                                  </Row>
+                                </Form>
+                              </TabPane>
+                            </Tabs>
+                          </Col>
+
+                          <Col xs={24} md={12} className="register--loginExtra">
+                            <Row className="register--loginExtra__content">
+                              <Col span={24} className="registerSellerRules">
+                                { t('register_seller_rules') }
+                              </Col>
+
+                              <Col span={24} className="dontHaveAccountContainer">
+                                <span className="text-92 vv-font-size-1-9">{ t(__('Already have an account')) }</span>
+                                <Link to={ "/sign-in" } className="text-primary-darken mx-2 vv-font-size-1-9 font-weight-600">{ t(__('sign in')) }</Link>
+                              </Col>
+                            </Row>
+                          </Col>
+                        </>
+                      }
+                    </Row> :
+                    currentStep === 1 ?
+                      <Row>
+                        <Col span={24} className="text-center manufactureFormSection">
+                          <a href="https://alaedeen.com/horn/profile-settings/" className="text-33">
+                            <i className="fas fa-link" /> {t('fill_manufacture_detail_profile_edit')}
+                          </a>
+                        </Col>
+                      </Row> :
+                      currentStep === 2 ?
+                        <Row>
+                          <Col span={24} className="payingSubscriptionSection">
+                            <Row gutter={[0, 12]}>
+                              <Col span={24} className="text-33 payingSubscriptionSection--title">
+                                {t(__('Paying subscription fee'))}
+                              </Col>
+
+                              <Col span={24} className="text-33 payingSubscriptionSection--title">
+                                {t(__('support small businesses'))}
+                              </Col>
+
+                              <Col span={24} className="payingSubscriptionSection--payList">
+                                <Row gutter={15}>
+                                  <Col span={8}>
+                                    <Row gutter={[0, 9]}>
+                                      <Col span={24} className="payingSubscriptionSection--payList__img">
+                                        <ShowResponsiveImage
+                                          imagePath=""
+                                          skeletonWidth="100%"
+                                          skeletonHeight="250px"
+                                        />
+                                      </Col>
+                                      <Col span={24} className="text-center payingSubscriptionSection--payList__txt">
+                                        {t(__('small businesses'))}
                                       </Col>
 
-                                      <Col span={24} className="text-center">
-                                        <Form.Item
-                                          className="signIn--signInBtn"
-                                          valuePropName="checked"
-                                        >
-                                          <Button className="bg-primary w-75 text-white border-0 p-0" htmlType="submit">
-                                            { t(__('register')) }
-                                          </Button>
-                                        </Form.Item>
+                                      <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                        Lorem ipsum dolor sit amet.
                                       </Col>
 
+                                      <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                        Lorem ipsum dolor sit amet.
+                                      </Col>
+
+                                      <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                        Lorem ipsum dolor sit amet.
+                                      </Col>
+                                    </Row>
+                                  </Col>
+
+                                  <Col span={8}>
+                                    <Row gutter={[0, 9]}>
+                                      <Col span={24} className="payingSubscriptionSection--payList__img">
+                                        <ShowResponsiveImage
+                                          imagePath=""
+                                          skeletonWidth="100%"
+                                          skeletonHeight="250px"
+                                        />
+                                      </Col>
+                                      <Col span={24} className="text-center payingSubscriptionSection--payList__txt">
+                                        {t(__('small businesses'))}
+                                      </Col>
+
+                                      <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                        Lorem ipsum dolor sit amet.
+                                      </Col>
+
+                                      <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                        Lorem ipsum dolor sit amet.
+                                      </Col>
+
+                                      <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                        Lorem ipsum dolor sit amet.
+                                      </Col>
+                                    </Row>
+                                  </Col>
+
+                                  <Col span={8}>
+                                    <Row gutter={[0, 9]}>
+                                      <Col span={24} className="payingSubscriptionSection--payList__img">
+                                        <ShowResponsiveImage
+                                          imagePath=""
+                                          skeletonWidth="100%"
+                                          skeletonHeight="250px"
+                                        />
+                                      </Col>
+                                      <Col span={24} className="text-center payingSubscriptionSection--payList__txt">
+                                        {t(__('small businesses'))}
+                                      </Col>
+
+                                      <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                        Lorem ipsum dolor sit amet.
+                                      </Col>
+
+                                      <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                        Lorem ipsum dolor sit amet.
+                                      </Col>
+
+                                      <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                        Lorem ipsum dolor sit amet.
+                                      </Col>
                                     </Row>
                                   </Col>
                                 </Row>
-                              </Form>
-                            </TabPane>
-                          </Tabs>
-                        </Col>
-
-                        <Col xs={24} md={12} className="register--loginExtra">
-                          <Row className="register--loginExtra__content">
-                            <Col span={24} className="registerSellerRules">
-                              { t('register_seller_rules') }
-                            </Col>
-
-                            <Col span={24} className="dontHaveAccountContainer">
-                              <span className="text-92 vv-font-size-1-9">{ t(__('Already have an account')) }</span>
-                              <Link to={ "/sign-in" } className="text-primary-darken mx-2 vv-font-size-1-9 font-weight-600">{ t(__('sign in')) }</Link>
-                            </Col>
-                          </Row>
-                        </Col>
-                      </>
-                    }
-                  </Row> :
-                  currentStep === 1 ?
-                    <Row>
-                      <Col span={24} className="text-center manufactureFormSection">
-                        <a href="https://alaedeen.com/horn/profile-settings/" className="text-33">
-                          <i className="fas fa-link" /> {t('fill_manufacture_detail_profile_edit')}
-                        </a>
-                      </Col>
-                    </Row> :
-                    currentStep === 2 ?
-                      <Row>
-                        <Col span={24} className="payingSubscriptionSection">
-                          <Row gutter={[0, 12]}>
-                            <Col span={24} className="text-33 payingSubscriptionSection--title">
-                              {t(__('Paying subscription fee'))}
-                            </Col>
-
-                            <Col span={24} className="text-33 payingSubscriptionSection--title">
-                              {t(__('support small businesses'))}
-                            </Col>
-
-                            <Col span={24} className="payingSubscriptionSection--payList">
-                              <Row gutter={15}>
-                                <Col span={8}>
-                                  <Row gutter={[0, 9]}>
-                                    <Col span={24} className="payingSubscriptionSection--payList__img">
-                                      <ShowResponsiveImage
-                                        imagePath=""
-                                        skeletonWidth="100%"
-                                        skeletonHeight="250px"
-                                      />
-                                    </Col>
-                                    <Col span={24} className="text-center payingSubscriptionSection--payList__txt">
-                                      {t(__('small businesses'))}
-                                    </Col>
-
-                                    <Col span={24} className="payingSubscriptionSection--payList__txt">
-                                      Lorem ipsum dolor sit amet.
-                                    </Col>
-
-                                    <Col span={24} className="payingSubscriptionSection--payList__txt">
-                                      Lorem ipsum dolor sit amet.
-                                    </Col>
-
-                                    <Col span={24} className="payingSubscriptionSection--payList__txt">
-                                      Lorem ipsum dolor sit amet.
-                                    </Col>
-                                  </Row>
-                                </Col>
-
-                                <Col span={8}>
-                                  <Row gutter={[0, 9]}>
-                                    <Col span={24} className="payingSubscriptionSection--payList__img">
-                                      <ShowResponsiveImage
-                                        imagePath=""
-                                        skeletonWidth="100%"
-                                        skeletonHeight="250px"
-                                      />
-                                    </Col>
-                                    <Col span={24} className="text-center payingSubscriptionSection--payList__txt">
-                                      {t(__('small businesses'))}
-                                    </Col>
-
-                                    <Col span={24} className="payingSubscriptionSection--payList__txt">
-                                      Lorem ipsum dolor sit amet.
-                                    </Col>
-
-                                    <Col span={24} className="payingSubscriptionSection--payList__txt">
-                                      Lorem ipsum dolor sit amet.
-                                    </Col>
-
-                                    <Col span={24} className="payingSubscriptionSection--payList__txt">
-                                      Lorem ipsum dolor sit amet.
-                                    </Col>
-                                  </Row>
-                                </Col>
-
-                                <Col span={8}>
-                                  <Row gutter={[0, 9]}>
-                                    <Col span={24} className="payingSubscriptionSection--payList__img">
-                                      <ShowResponsiveImage
-                                        imagePath=""
-                                        skeletonWidth="100%"
-                                        skeletonHeight="250px"
-                                      />
-                                    </Col>
-                                    <Col span={24} className="text-center payingSubscriptionSection--payList__txt">
-                                      {t(__('small businesses'))}
-                                    </Col>
-
-                                    <Col span={24} className="payingSubscriptionSection--payList__txt">
-                                      Lorem ipsum dolor sit amet.
-                                    </Col>
-
-                                    <Col span={24} className="payingSubscriptionSection--payList__txt">
-                                      Lorem ipsum dolor sit amet.
-                                    </Col>
-
-                                    <Col span={24} className="payingSubscriptionSection--payList__txt">
-                                      Lorem ipsum dolor sit amet.
-                                    </Col>
-                                  </Row>
-                                </Col>
-                              </Row>
-                            </Col>
-                          </Row>
-                        </Col>
-                      </Row> :
-                      currentStep === 3 ?
-                        <Row>
-                          <Col span={24} className="supporterReviewSection">
-                            <Row gutter={[0, 12]}>
-                              <Col span={24} className="text-33 supporterReviewSection--title mb-7">
-                                { t(__('Review by the support team')) }
                               </Col>
                             </Row>
                           </Col>
                         </Row> :
-                        currentStep === 4 &&
+                        currentStep === 3 ?
+                          <Row>
+                            <Col span={24} className="supporterReviewSection">
+                              <Row gutter={[0, 12]}>
+                                <Col span={24} className="text-33 supporterReviewSection--title mb-7">
+                                  { t(__('Review by the support team')) }
+                                </Col>
+                              </Row>
+                            </Col>
+                          </Row> :
+                          currentStep === 4 &&
                           <Row>
                             <Col span={24} className="supporterReviewSection">
                               <Row gutter={[0, 12]}>
@@ -678,10 +683,392 @@ const Register = () => {
                               </Row>
                             </Col>
                           </Row>
-                }
+                  }
 
-              </Col>
-            </> :
+                </Col>
+              </>:
+              <>
+                {isSignedIn ?
+                  <Col span={24} className="text-center successFull-Register">
+                    <Result
+                      status="success"
+                      title={ t(__("Registration Successful")) }
+                      subTitle={ t(__("You're Now Logged in")) }
+                    />
+                  </Col> :
+                  <Row gutter={{ xs: 0, lg: 32 }}>
+                    <Col xs={24} md={12}>
+                      <Tabs
+                        className="register-tab__container"
+                        defaultActiveKey="seller"
+                        centered={true}
+                        onTabClick={key => setRegisterType(key)}
+                      >
+                        <TabPane tab={ t(__('buyer')) } key="buyer" />
+                        <TabPane tab={ t(__('seller')) } key="seller">
+                          <Form
+                            className="h-100 register--formContent"
+                            name="register-seller-form"
+                            initialValues={{
+                              registrant_type: 'seller'
+                            }}
+                            onFinish={onRegisterFormHandle}
+                          >
+                            <Row>
+                              <Col span={24} className="mb-4 mb-lg-0 register--loginContent">
+                                <Row className="h-100" align="middle" gutter={[0, 30]}>
+
+                                  <Form.Item name="registrant_type" hidden>
+                                    <Input/>
+                                  </Form.Item>
+
+                                  <Col span={24}>
+                                    <Row className="" align="middle">
+                                      <Col className="text-center" flex="46px">
+                                        <i className="fas fa-map-marker-alt text-bc vv-font-size-3" />
+                                      </Col>
+                                      <Col flex="1 1">
+                                        <Row className="register--formContent__item" align="middle">
+                                          <Col span={24}>
+                                            <Row>
+                                              <Col className="my-auto vv-font-size-1-9 text-47">
+                                                <i className="flag-icon flag-icon-ir vv-font-size-2-2" /> {t(__('iran'))} -
+                                              </Col>
+                                              <Col flex="1 1">
+                                                <Form.Item
+                                                  name="auth_city"
+                                                  rules={[
+                                                    {
+                                                      required: true,
+                                                    },
+                                                  ]}
+                                                >
+                                                  <Select
+                                                    placeholder={ t(__('select your city')) }
+                                                    allowClear
+                                                    showSearch
+                                                    bordered={false}
+                                                    filterOption={(input, option) =>
+                                                      option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                                    }
+                                                  >
+                                                    <>
+                                                      {cityLists?.map((item) => {
+                                                        return (
+                                                          <Option key={ `cityLists_${ item.code }` } value={item.code} >{ item.state }</Option>
+                                                        );
+                                                      })}
+                                                    </>
+                                                  </Select>
+                                                </Form.Item>
+                                              </Col>
+                                            </Row>
+                                          </Col>
+                                        </Row>
+                                      </Col>
+                                    </Row>
+                                  </Col>
+
+                                  <Col span={24}>
+                                    <Row className="" align="middle">
+                                      <Col className="text-center" flex="46px">
+                                        <i className="fas fa-user-circle text-bc vv-font-size-3" />
+                                      </Col>
+                                      <Col flex="1 1">
+                                        <Row gutter={ { xs: 15, md: 30 }}>
+                                          <Col span={12}>
+                                            <Row className="register--formContent__item" align="middle">
+                                              <Col span={24}>
+                                                <Form.Item
+                                                  name="firstname"
+                                                  rules={[
+                                                    {
+                                                      required: true
+                                                    },
+                                                  ]}>
+                                                  <Input
+                                                    placeholder={ t(__('first name')) }
+                                                    bordered={false}
+                                                  />
+                                                </Form.Item>
+                                              </Col>
+                                            </Row>
+                                          </Col>
+                                          <Col span={12}>
+                                            <Row className="register--formContent__item" align="middle">
+                                              <Col span={24}>
+                                                <Form.Item
+                                                  name="lastname"
+                                                  rules={[
+                                                    {
+                                                      required: true
+                                                    },
+                                                  ]}>
+                                                  <Input
+                                                    placeholder={ t(__('last name')) }
+                                                    bordered={false}
+                                                  />
+                                                </Form.Item>
+                                              </Col>
+                                            </Row>
+                                          </Col>
+                                        </Row>
+                                      </Col>
+                                    </Row>
+                                  </Col>
+
+                                  <Col span={24}>
+                                    <Row className="" align="middle">
+                                      <Col className="text-center" flex="46px">
+                                        <i className="fa fa-mobile text-bc vv-font-size-3" />
+                                      </Col>
+                                      <Col flex="1 1">
+                                        <Row className="register--formContent__item" align="middle">
+                                          <Col span={24}>
+                                            <Form.Item
+                                              name="phone"
+                                              rules={[
+                                                {
+                                                  required: true
+                                                },
+                                              ]}>
+                                              <Input
+                                                placeholder={ t(__('phone_number')) }
+                                                bordered={false}
+                                              />
+                                            </Form.Item>
+                                          </Col>
+                                        </Row>
+                                      </Col>
+                                    </Row>
+                                  </Col>
+
+                                  <Col span={24}>
+                                    <Row className="" align="middle">
+                                      <Col className="text-center" flex="46px">
+                                        <i className="fa fa-envelope text-bc vv-font-size-3" />
+                                      </Col>
+                                      <Col flex="1 1">
+                                        <Row className="register--formContent__item" align="middle">
+                                          <Col span={24}>
+                                            <Form.Item
+                                              name="email"
+                                              rules={[
+                                                {
+                                                  required: true,
+                                                  type: 'email',
+                                                },
+                                              ]}>
+                                              <Input
+                                                placeholder={ t(__('email')) }
+                                                bordered={false}
+                                              />
+                                            </Form.Item>
+                                          </Col>
+                                        </Row>
+                                      </Col>
+                                    </Row>
+                                  </Col>
+
+                                  <Col span={24}>
+                                    <Row className="" align="middle">
+                                      <Col className="text-center" flex="46px">
+                                        <i className="fas fa-building text-bc vv-font-size-3" />
+                                      </Col>
+                                      <Col flex="1 1">
+                                        <Row className="register--formContent__item" align="middle">
+                                          <Col span={24}>
+                                            <Form.Item
+                                              name="company"
+                                              rules={[
+                                                {
+                                                  required: true
+                                                },
+                                              ]}>
+                                              <Input
+                                                placeholder={ t(__('Company Name')) }
+                                                bordered={false}
+                                              />
+                                            </Form.Item>
+                                          </Col>
+                                        </Row>
+                                      </Col>
+                                    </Row>
+                                  </Col>
+
+                                  <Col span={24}>
+                                    <Row className="" align="middle">
+                                      <Col className="text-center" flex="46px">
+                                        <i className="fas fa-tag text-bc vv-font-size-3" />
+                                      </Col>
+                                      <Col flex="1 1">
+                                        <Row className="register--formContent__item" align="middle">
+                                          <Col span={24}>
+                                            <Form.Item
+                                              name="brand"
+                                              rules={[
+                                                {
+                                                  required: true
+                                                },
+                                              ]}>
+                                              <Input
+                                                placeholder={ t(__('brand Name')) }
+                                                bordered={false}
+                                              />
+                                            </Form.Item>
+                                          </Col>
+                                        </Row>
+                                      </Col>
+                                    </Row>
+                                  </Col>
+
+                                  <Col span={24}>
+                                    <Row gutter={[0, 15]}>
+                                      <Col span={24} className="vv-font-size-2 text-70">
+                                        { t(__('Business Type')) }:
+                                      </Col>
+                                      <Col span={24}>
+                                        <Row className="register--formContent__item for--businessType" align="middle">
+                                          <Col span={24}>
+                                            <Form.Item name="business_type">
+                                              <Checkbox.Group style={{ width: '100%' }} name="business_type">
+                                                <Row gutter={[0, 20]}>
+                                                  <Col span={24}>
+                                                    <Checkbox value="manufacture"> { t(__('Manufacture')) } </Checkbox>
+                                                  </Col>
+                                                  {/*<Col span={24}>
+                                                    <Checkbox value="wholesaler"> { t(__('Wholesaler')) } </Checkbox>
+                                                  </Col>*/}
+                                                  <Col span={24}>
+                                                    <Checkbox value="trading_company"> { t(__('Trading Company')) } </Checkbox>
+                                                  </Col>
+                                                  <Col span={24}>
+                                                    <Checkbox value="business_type_business_service"> { t(__('Business Service (Transportation, finance, travel, Ads)')) } </Checkbox>
+                                                  </Col>
+                                                </Row>
+                                              </Checkbox.Group>
+                                            </Form.Item>
+                                          </Col>
+                                        </Row>
+                                      </Col>
+                                    </Row>
+                                  </Col>
+
+                                  <Col span={24}>
+                                    <Row className="" align="middle">
+                                      <Col className="text-center" flex="46px">
+                                        <i className="fa fa-lock text-bc vv-font-size-3" />
+                                      </Col>
+                                      <Col flex="1 1">
+                                        <Row className="register--formContent__item" align="middle">
+                                          <Col span={24}>
+                                            <Form.Item
+                                              name="password1"
+                                              rules={[
+                                                {
+                                                  required: true,
+                                                },
+                                              ]}>
+                                              <Input.Password
+                                                placeholder={ t(__('password')) }
+                                                bordered={false}
+                                                iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                                              />
+                                            </Form.Item>
+                                          </Col>
+                                        </Row>
+                                      </Col>
+                                    </Row>
+                                  </Col>
+
+                                  <Col span={24}>
+                                    <Row className="" align="middle">
+                                      <Col className="text-center" flex="46px">
+                                        <i className="fa fa-lock text-bc vv-font-size-3" />
+                                      </Col>
+                                      <Col flex="1 1">
+                                        <Row className="register--formContent__item" align="middle">
+                                          <Col span={24}>
+                                            <Form.Item
+                                              name="password2"
+                                              rules={[
+                                                {
+                                                  required: true,
+                                                },
+                                              ]}>
+                                              <Input.Password
+                                                placeholder={ t(__('Confirm password')) }
+                                                bordered={false}
+                                                iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                                              />
+                                            </Form.Item>
+                                          </Col>
+                                        </Row>
+                                      </Col>
+                                    </Row>
+                                  </Col>
+
+                                  <Col span={24}>
+                                    <Row gutter={[0, 15]}>
+                                      <Col span={24}>
+                                        <Row className="register--formContent__item for--businessType" align="middle">
+                                          <Col span={24}>
+                                            <Form.Item
+                                              className="signIn--rememberMe"
+                                              name="accept_rules"
+                                              valuePropName="checked"
+                                              rules={[
+                                                {
+                                                  required: true,
+                                                },
+                                              ]}
+                                            >
+                                              <Checkbox
+                                                value="Y"
+                                              >
+                                                { t(__('I accept the terms of service')) }
+                                              </Checkbox>
+                                            </Form.Item>
+                                          </Col>
+                                        </Row>
+                                      </Col>
+                                    </Row>
+                                  </Col>
+
+                                  <Col span={24} className="text-center">
+                                    <Form.Item
+                                      className="signIn--signInBtn"
+                                      valuePropName="checked"
+                                    >
+                                      <Button className="bg-primary w-75 text-white border-0 p-0" htmlType="submit">
+                                        { t(__('register')) }
+                                      </Button>
+                                    </Form.Item>
+                                  </Col>
+
+                                </Row>
+                              </Col>
+                            </Row>
+                          </Form>
+                        </TabPane>
+                      </Tabs>
+                    </Col>
+
+                    <Col xs={24} md={12} className="register--loginExtra">
+                      <Row className="register--loginExtra__content">
+                        <Col span={24} className="registerSellerRules">
+                          { t('register_seller_rules') }
+                        </Col>
+
+                        <Col span={24} className="dontHaveAccountContainer">
+                          <span className="text-92">{ t(__('Already have an account')) }</span>
+                          <Link to={ "/sign-in" } className="text-primary-darken mx-2 font-weight-600">{ t(__('sign in')) }</Link>
+                        </Col>
+                      </Row>
+                    </Col>
+                  </Row>
+                }
+              </> :
 
             <>
               {/* if buyer Tab Active */}

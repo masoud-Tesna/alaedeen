@@ -46,18 +46,47 @@ html:lang(ar) {
 
 .register--container {
 
+  .register--content {
+    margin-top: 2rem;
+
+    @media (min-width: @screen-md) {
+      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.17);
+      border-radius: 10px;
+      margin-top: 5rem;
+      margin-bottom: 2rem;
+    }
+  }
+
   .register--topSection {
+    margin-top: 2.5rem;
+
+    @media (min-width: @screen-md) {
+      margin-top: 4rem;
+    }
+
     .logo-char img {
-      width: 52px;
+      width: 50px;
+
+      @media (min-width: @screen-md) {
+        width: 52px;
+      }
     }
 
     .logo-text i {
-      font-size: 3.5rem;
+      font-size: 2.8rem;
+
+      @media (min-width: @screen-md) {
+        font-size: 3.5rem;
+      }
     }
 
     .top-msg {
-      font-size: 2rem;
+      font-size: 1.5rem;
       color: #333333;
+
+      @media (min-width: @screen-md) {
+        font-size: 2rem;
+      }
     }
   }
 
@@ -194,9 +223,13 @@ html:lang(ar) {
       margin-top: 2rem;
 
     .registerSellerRules {
-      font-size: 2rem;
+      font-size: 1.5rem;
       color: #929191;
       margin-bottom: 5rem;
+
+      @media (min-width: @screen-md) {
+        font-size: 2rem;
+      }
     }
 
     .registerWithGoogleTxt {
@@ -221,6 +254,17 @@ html:lang(ar) {
       .registerWithGoogleBtn,
       .dontHaveAccountContainer {
         text-align: center;
+      }
+
+      .dontHaveAccountContainer {
+        span,
+        a {
+          font-size: 1.5rem;
+
+          @media (min-width: @screen-md) {
+            font-size: 1.9rem;
+          }
+        }
       }
 
       @media (min-width: @screen-md) {
@@ -395,18 +439,6 @@ html:lang(ar) {
 }
 
 @media (min-width: 768px) {
-  .register--container {
-    .register--topSection {
-      margin-top: 4rem;
-    }
-
-    .register--content {
-      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.17);
-      border-radius: 10px;
-      margin-top: 5rem;
-      margin-bottom: 2rem;
-    }
-  }
 
   /*.ant-layout.layout {
     min-height: 100vh;
