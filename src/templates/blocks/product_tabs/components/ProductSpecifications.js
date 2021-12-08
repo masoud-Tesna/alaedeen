@@ -105,12 +105,12 @@ const ProductSpecifications = ({ product, isLoading }) => {
 
   }
 
-  const featureTableHeafer = isLoading ? [] : product?.variants_product[0]?.product_features;
+  const featureTableHeader = (isLoading || product !== undefined) ? [] : product?.variants_product[0]?.product_features;
 
   return (
     <Row className="productSpecifications--container">
       <Col span={24} className="productSpecifications--sections">
-        {isLoading ?
+        {(isLoading || product !== undefined) ?
           <>
             <Skeleton active={true} paragraph={{ rows: 6 }} />
             <Row className="mt-4">
@@ -186,7 +186,7 @@ const ProductSpecifications = ({ product, isLoading }) => {
                       <th>{t(__('product / code'))}</th>
                       <th>{t(__('price'))}</th>
                       {
-                        Object.values(featureTableHeafer).map(feature => {
+                        Object.values(featureTableHeader).map(feature => {
                           return (
                             <th key={`featureTableHeader_${feature.feature_id}`}>
                               {feature.description} &nbsp;
