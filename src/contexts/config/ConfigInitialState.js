@@ -7,7 +7,7 @@ const url = new URL(window.location.href);
 const getLangFromUrlParam = url.searchParams.get('lang_code');
 
 // if language in url isset, in localstorage isset, else isset 'en
-const langCode = getLangFromUrlParam || getLangFromLocalStorage || 'en';
+const langCode = getLangFromUrlParam || getLangFromLocalStorage || 'fa';
 
 const clientCurrencyLocalStorage = window.localStorage.getItem('client_currency');
 

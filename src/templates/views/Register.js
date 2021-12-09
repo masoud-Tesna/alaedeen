@@ -53,8 +53,8 @@ const Register = () => {
   // state for set register type (if seller show step bar):
   const [registerType, setRegisterType] = useState("seller");
 
-  //const [currentStep, setCurrentStep] = useState(user_data?.auth?.user_id ? 1 : 0);
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(user_data?.auth?.user_id ? 1 : 0);
+  //const [currentStep, setCurrentStep] = useState(1);
 
   const [isSignedIn, setIsSignedIn] = useState(false);
 
