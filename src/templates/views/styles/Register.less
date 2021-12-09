@@ -42,6 +42,14 @@ html:lang(ar) {
       }
     }
   }
+
+  .supporterReviewSection,
+  .payingSubscriptionSection {
+    .ant-row-rtl,
+    .ant-col-rtl {
+      direction: rtl;
+    }
+  }
 }
 
 .register--container {
@@ -380,9 +388,62 @@ html:lang(ar) {
     }
 
     .payingSubscriptionSection--payList {
+      .payingSubscriptionSection--payList__img {
+        height: 200px;
+        text-align: center;
+        img {
+          height: 200px;
+          max-height: 200px;
+        }
+      }
+
       .payingSubscriptionSection--payList__txt {
         font-size: 1.7rem;
         color: #333333;
+      }
+
+
+    }
+
+    .paying--formContent {
+      .ant-form-item-has-error {
+        .ant-form-item-explain.ant-form-item-explain-connected {
+          margin-top: 2rem;
+
+          .ant-form-item-explain-error {
+            font-size: 1.7rem;
+          }
+        }
+      }
+
+      .ant-radio-wrapper {
+        .ant-radio {
+          .ant-radio-inner {
+            width: 18px;
+            height: 18px;
+            border-color: #BCBCBC;
+
+            &:after{
+              width: 10px;
+              height: 10px;
+            }
+          }
+
+          &.ant-radio-checked {
+            .ant-radio-inner {
+              border-color: #3ba949;
+
+              &:after{
+                width: 10px;
+                height: 10px;
+              }
+            }
+          }
+        }
+
+        span:nth-child(2) {
+          font-size: 1.7rem;
+        }
       }
     }
   }
@@ -390,6 +451,59 @@ html:lang(ar) {
   .supporterReviewSection {
     .supporterReviewSection--title {
       font-size: 2rem;
+    }
+
+    a {
+      font-size: 2rem;
+
+      i {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #2874F2;
+      }
+
+      &:hover {
+        i {
+          color: darken(#2874F2, 20)
+        }
+      }
+    }
+  }
+
+  .nextStep,
+  .prevStep {
+    width: 100px;
+    height: 35px;
+    border-radius: 5px;
+
+    span {
+      font-size: 2rem;
+    }
+  }
+
+  .nextStep {
+    background-color: #3ba949;
+
+    span {
+      color: darken(#333333, 12%);
+    }
+
+    &:hover {
+      span {
+        color: darken(#333333, 25%);
+      }
+    }
+  }
+
+  .prevStep {
+    span {
+      color: #333333;
+    }
+
+    &:hover {
+      span {
+        color: darken(#333333, 20);
+      }
     }
   }
 }

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 // import style file:
 import './styles/Register.less';
 
-import { message, Button, Checkbox, Col, Form, Input, Row, Select, Tabs, Steps, Result } from "antd";
+import { message, Button, Checkbox, Col, Form, Input, Row, Select, Tabs, Steps, Result, Space, Radio } from "antd";
 import { __, SeoGenerator } from "../../functions/Helper";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import googlePic from "../assets/images/google.png";
@@ -23,7 +23,9 @@ import { changeLanguageAction, useConfigDispatch, useGetConfig } from "../../con
 
 // import alaedeen character:
 import alaedeenChar from '../assets/images/alaedeen-char.svg';
-import ShowResponsiveImage from "../common/ShowResponsiveImage";
+import bronzePlanImg from '../assets/images/bronze-plan.png';
+import goldPlanImg from '../assets/images/gold-plan.png';
+import silverPlanImg from '../assets/images/silver-plan.png';
 
 const Register = () => {
 
@@ -51,7 +53,8 @@ const Register = () => {
   // state for set register type (if seller show step bar):
   const [registerType, setRegisterType] = useState("seller");
 
-  const [currentStep, setCurrentStep] = useState(0);
+  //const [currentStep, setCurrentStep] = useState(user_data?.auth?.user_id ? 1 : 0);
+  const [currentStep, setCurrentStep] = useState(1);
 
   const [isSignedIn, setIsSignedIn] = useState(false);
 
@@ -66,8 +69,13 @@ const Register = () => {
     navigate('/');
   }
 
+
   async function Register(values) {
     return await axios.post(`https://alaedeen.com/horn/register-api/?lang_code=${config.language}`, { user_data: values });
+  }
+
+  async function PayingApi({ paying_plan }) {
+    return await axios.post(`https://alaedeen.com/horn/register-api/?lang_code=${config.language}`, { mode: 'paying', plan: paying_plan, user_id: user_data?.auth?.user_id });
   }
 
   const onRegisterFormHandle = values => {
@@ -129,6 +137,30 @@ const Register = () => {
 
   }
 
+  const payingStepHandleNextClick = value => {
+    // enable loading spinner:
+    setRegisterIsLoading(true);
+
+    PayingApi(value)
+      .then(res => {
+        if (res?.data?.isset_plan) {
+          setRegisterIsLoading(false);
+        }
+      })
+      .then(() => {
+        message.success({
+          content: "ذخیره شد",
+          duration: 1,
+          className: 'registerDone--message',
+        }).then(() => {
+          setCurrentStep(prev => prev + 1);
+        })
+      })
+
+
+    //setCurrentStep(prev => prev + 1)
+  }
+
   if (config.language !== "fa") {
     configDispatch(changeLanguageAction("fa"));
   }
@@ -164,7 +196,7 @@ const Register = () => {
             width > 991 ?
               <>
                 <Col span={24} className="sellerRegisterStep">
-                  <Steps current={currentStep} onChange={current => setCurrentStep(current)} progressDot >
+                  <Steps current={currentStep} progressDot >
                     <Step key="register"  description={ t(__('Initial registration')) } />
 
                     <Step key="manufacturer_form" description={ t(__('Registration of manufacturer information')) } />
@@ -565,126 +597,214 @@ const Register = () => {
                     currentStep === 1 ?
                       <Row>
                         <Col span={24} className="text-center manufactureFormSection">
-                          <a href="https://alaedeen.com/horn/profile-settings/" className="text-33">
-                            <i className="fas fa-link" /> {t('fill_manufacture_detail_profile_edit')}
+                          <a href="https://alaedeen.com/horn/profile-settings/" className="text-33" target="_blank">
+                            تکمیل اطلاعات تولید کننده از طریق ادیت پروفایل&nbsp;<i className="fas fa-link" />
                           </a>
+                        </Col>
+                        <Col span={24} className="mt-5 text-center">
+                          <Space size="large">
+                            <Button className="border border-primary text-33 p-0 nextStep" size="large" onClick={() => setCurrentStep(prev => prev + 1)}>بعدی</Button>
+                          </Space>
                         </Col>
                       </Row> :
                       currentStep === 2 ?
                         <Row>
                           <Col span={24} className="payingSubscriptionSection">
-                            <Row gutter={[0, 12]}>
-                              <Col span={24} className="text-33 payingSubscriptionSection--title">
-                                {t(__('Paying subscription fee'))}
-                              </Col>
+                            <Form
+                              className="h-100 paying--formContent"
+                              name="paying-form"
+                              onFinish={payingStepHandleNextClick}
+                            >
+                              <Row gutter={[0, 12]}>
+                                <Col span={24} className="text-33 payingSubscriptionSection--title">
+                                  تعرفه های اشتراک
+                                </Col>
+                                <Form.Item name="paying_plan" rules={[{ required: true, message: 'لطفاً بسته‌ی مناسب کسب و کار خود را انتخاب کنید' }]}>
+                                  <Col span={24} className="payingSubscriptionSection--payList mt-4 pt-3">
 
-                              <Col span={24} className="text-33 payingSubscriptionSection--title">
-                                {t(__('support small businesses'))}
-                              </Col>
+                                    <Radio.Group>
+                                      <Row gutter={25}>
 
-                              <Col span={24} className="payingSubscriptionSection--payList">
-                                <Row gutter={15}>
-                                  <Col span={8}>
-                                    <Row gutter={[0, 9]}>
-                                      <Col span={24} className="payingSubscriptionSection--payList__img">
-                                        <ShowResponsiveImage
-                                          imagePath=""
-                                          skeletonWidth="100%"
-                                          skeletonHeight="250px"
-                                        />
-                                      </Col>
-                                      <Col span={24} className="text-center payingSubscriptionSection--payList__txt">
-                                        {t(__('small businesses'))}
-                                      </Col>
+                                        <Col span={8}>
+                                          <Row gutter={[0, 5]}>
+                                            <Col span={24} className="mb-4 text-center">
+                                                <Radio value="bronze" name="bronze">بسته برنزی</Radio>
+                                            </Col>
+                                            <Col span={24} className="payingSubscriptionSection--payList__img">
+                                              <img src={bronzePlanImg} alt=""/>
+                                            </Col>
+                                            <Col span={24} className="text-center payingSubscriptionSection--payList__txt">
+                                              مناسب کسب و کارهای کوچک
+                                            </Col>
 
-                                      <Col span={24} className="payingSubscriptionSection--payList__txt">
-                                        Lorem ipsum dolor sit amet.
-                                      </Col>
+                                            <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                              اشتراک شش ماهه
+                                            </Col>
 
-                                      <Col span={24} className="payingSubscriptionSection--payList__txt">
-                                        Lorem ipsum dolor sit amet.
-                                      </Col>
+                                            <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                              تعداد ثبت محصول 10 عدد
+                                            </Col>
 
-                                      <Col span={24} className="payingSubscriptionSection--payList__txt">
-                                        Lorem ipsum dolor sit amet.
-                                      </Col>
-                                    </Row>
-                                  </Col>
+                                            <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                              پشتیبان جهت مذاکره با تجار (محاسبه هزینه مشاوره بصورت ساعتی)
+                                            </Col>
 
-                                  <Col span={8}>
-                                    <Row gutter={[0, 9]}>
-                                      <Col span={24} className="payingSubscriptionSection--payList__img">
-                                        <ShowResponsiveImage
-                                          imagePath=""
-                                          skeletonWidth="100%"
-                                          skeletonHeight="250px"
-                                        />
-                                      </Col>
-                                      <Col span={24} className="text-center payingSubscriptionSection--payList__txt">
-                                        {t(__('small businesses'))}
-                                      </Col>
+                                            <Col span={24} className="payingSubscriptionSection--payList__txt" style={{ marginTop: 41 }}>
+                                              هزینه ثابت: مبلغ 695 هزار تومان
+                                            </Col>
 
-                                      <Col span={24} className="payingSubscriptionSection--payList__txt">
-                                        Lorem ipsum dolor sit amet.
-                                      </Col>
+                                            <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                              هزینه ماهانه: مبلغ 99 هزار تومان
+                                            </Col>
+                                          </Row>
+                                        </Col>
 
-                                      <Col span={24} className="payingSubscriptionSection--payList__txt">
-                                        Lorem ipsum dolor sit amet.
-                                      </Col>
+                                        <Col span={8}>
+                                          <Row gutter={[0, 5]}>
+                                            <Col span={24} className="mb-4 text-center">
+                                              <Radio value="silver" name="silver">بسته نقره ای</Radio>
+                                            </Col>
 
-                                      <Col span={24} className="payingSubscriptionSection--payList__txt">
-                                        Lorem ipsum dolor sit amet.
-                                      </Col>
-                                    </Row>
-                                  </Col>
+                                            <Col span={24} className="payingSubscriptionSection--payList__img">
+                                              <img src={silverPlanImg} alt=""/>
+                                            </Col>
+                                            <Col span={24} className="text-center payingSubscriptionSection--payList__txt">
+                                              مناسب کسب و کارهای متوسط
+                                            </Col>
 
-                                  <Col span={8}>
-                                    <Row gutter={[0, 9]}>
-                                      <Col span={24} className="payingSubscriptionSection--payList__img">
-                                        <ShowResponsiveImage
-                                          imagePath=""
-                                          skeletonWidth="100%"
-                                          skeletonHeight="250px"
-                                        />
-                                      </Col>
-                                      <Col span={24} className="text-center payingSubscriptionSection--payList__txt">
-                                        {t(__('small businesses'))}
-                                      </Col>
+                                            <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                              اشتراک یک ساله
+                                            </Col>
 
-                                      <Col span={24} className="payingSubscriptionSection--payList__txt">
-                                        Lorem ipsum dolor sit amet.
-                                      </Col>
+                                            <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                              تعداد ثبت محصول 30 عدد
+                                            </Col>
 
-                                      <Col span={24} className="payingSubscriptionSection--payList__txt">
-                                        Lorem ipsum dolor sit amet.
-                                      </Col>
+                                            <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                              اختصاصی سازی صفحه ی نمایشگاهی
+                                            </Col>
 
-                                      <Col span={24} className="payingSubscriptionSection--payList__txt">
-                                        Lorem ipsum dolor sit amet.
-                                      </Col>
-                                    </Row>
-                                  </Col>
-                                </Row>
-                              </Col>
-                            </Row>
+                                            <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                              پشتیبان جهت مذاکره با تجار (محاسبه هزینه مشاوره بصورت ساعتی)
+                                            </Col>
+
+                                            <Col span={24} className="payingSubscriptionSection--payList__txt mt-4">
+                                              هزینه ثابت: مبلغ 995 هزار تومان
+                                            </Col>
+
+                                            <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                              هزینه ماهانه: مبلغ 299 هزار تومان
+                                            </Col>
+                                          </Row>
+                                        </Col>
+
+                                        <Col span={8}>
+                                          <Row gutter={[0, 5]}>
+                                            <Col span={24} className="mb-4 text-center">
+                                              <Radio value="gold" name="gold">بسته طلایی</Radio>
+                                            </Col>
+
+                                            <Col span={24} className="payingSubscriptionSection--payList__img">
+                                              <img src={goldPlanImg} alt=""/>
+                                            </Col>
+                                            <Col span={24} className="text-center payingSubscriptionSection--payList__txt">
+                                              مناسب کسب و کارهای بزرگ
+                                            </Col>
+
+                                            <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                              اشتراک نامحدود
+                                            </Col>
+
+                                            <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                              تعداد ثبت محصول 100 عدد
+                                            </Col>
+
+                                            <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                              اختصاصی سازی صفحه ی نمایشگاهی
+                                            </Col>
+
+                                            <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                              پشتیبان جهت مذاکره با تجار (رایگان)
+                                            </Col>
+
+                                            <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                              درج لینک وب سایت شما
+                                            </Col>
+
+                                            <Col span={24} className="payingSubscriptionSection--payList__txt mt-4">
+                                              هزینه ثابت: مبلغ 1495 هزار تومان
+                                            </Col>
+
+                                            <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                              هزینه ماهانه: مبلغ 499 هزار تومان
+                                            </Col>
+                                          </Row>
+                                        </Col>
+
+                                      </Row>
+                                    </Radio.Group>
+
+                                </Col>
+
+                                </Form.Item>
+
+                                <Col span={24} className="mt-3 text-center">
+                                  <Space size="large">
+
+                                    <Button className="border border-primary text-33 p-0 nextStep" size="large" htmlType="submit">
+                                      بعدی
+                                    </Button>
+
+                                    <Button className="border border-primary text-33 p-0 prevStep" size="large" onClick={() => setCurrentStep(prev => prev - 1)}>قبلی</Button>
+                                  </Space>
+                                </Col>
+
+
+                                <Col span={24} className="payingSubscriptionSection--payList">
+                                  <Row gutter={[0, 7]}>
+                                    <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                      پس از انتخاب بسته مورد نظر دکمه‌ی "بعدی" را بزنید.
+                                    </Col>
+
+                                    <Col span={24} className="payingSubscriptionSection--payList__txt">
+                                      پس از بررسی اطلاعات از سوی کارشناس، ادامه فرایند پرداخت و ثبت در بخش تیکت به شما اطلاع داده میشود.
+                                    </Col>
+                                  </Row>
+                                </Col>
+                              </Row>
+                            </Form>
                           </Col>
                         </Row> :
                         currentStep === 3 ?
                           <Row>
-                            <Col span={24} className="supporterReviewSection">
+                            <Col span={24} className="supporterReviewSection text-center">
                               <Row gutter={[0, 12]}>
                                 <Col span={24} className="text-33 supporterReviewSection--title mb-7">
                                   { t(__('Review by the support team')) }
                                 </Col>
                               </Row>
                             </Col>
+
+                            <Col span={24} className="mt-5 text-center">
+                              <Space size="large">
+                                <Button className="border border-primary text-33 p-0 nextStep" size="large" onClick={() => setCurrentStep(prev => prev + 1)}>بعدی</Button>
+
+                                <Button className="border border-primary text-33 p-0 prevStep" size="large" onClick={() => setCurrentStep(prev => prev - 1)}>قبلی</Button>
+                              </Space>
+                            </Col>
                           </Row> :
                           currentStep === 4 &&
                           <Row>
-                            <Col span={24} className="supporterReviewSection">
+                            <Col span={24} className="supporterReviewSection text-center">
                               <Row gutter={[0, 12]}>
                                 <Col span={24} className="text-33 supporterReviewSection--title mb-7">
                                   { t('check_exhibition_pub_stat') }
+                                </Col>
+
+                                <Col span={24} className="mt-5 text-center">
+                                  <a href="https://alaedeen.com/horn/profile-settings/" className="text-33" target="_blank">
+                                    <i className="fas fa-link" />&nbsp;  مدیریت پروفایل
+                                  </a>
                                 </Col>
                               </Row>
                             </Col>
