@@ -25,7 +25,7 @@ import { useGetConfig } from "../../../contexts/config/ConfigContext";
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 
 // import OneRequestMultipleQuotesModal component for show send request form modal:
-import OneRequestMultipleQuotesModal from "../../blocks/static_templates/OneRequestMultipleQuotesModal";
+/*import OneRequestMultipleQuotesModal from "../../blocks/static_templates/OneRequestMultipleQuotesModal";*/
 
 const DefaultHeader = () => {
 
@@ -33,7 +33,7 @@ const DefaultHeader = () => {
   const { config } = useGetConfig();
 
   // state for request form modal:
-  const [isRequestModalVisible, setIsRequestModalVisible] = useState(false);
+  /*const [isRequestModalVisible, setIsRequestModalVisible] = useState(false);*/
 
   const [dropDownIsActive, setDropDownIsActive] = useState(false);
 
@@ -117,16 +117,16 @@ const DefaultHeader = () => {
   const searchTextPrefix = <i className="far fa-search text-primary vv-font-size-2 cursor-pointer" onClick={() => { handleSubmitSearch() }} />
 
   // show request form modal function:
-  const showRequestModalHeader = () => {
+  /*const showRequestModalHeader = () => {
     setIsRequestModalVisible(true);
-  }
+  }*/
 
   return (
     <Header className="site--header">
       <Row className="h-100 header--container">
         <Col span={24} className="header--col shadow-line d-none d-lg-block">
-          <Row className="h-100 " gutter={{ md: 8, lg: 16, xl: 50 }}>
-            <Col className="header--content__left" md={ 15 } lg={ 15 } xl={ 16 }>
+          <Row className="h-100 " gutter={{ md: 8, lg: 16, xl: 50 }} justify="space-between">
+            {/*<Col className="header--content__left" md={ 18 } lg={ 18 } xl={ 18 }>
               <Row className="h-100">
                 <Col className="my-auto" md={10} lg={10} xl={9} xxl={7}>
                   <div className="logo">
@@ -154,9 +154,9 @@ const DefaultHeader = () => {
                 </Col>
               </Row>
             </Col>
-            <Col className="header--content__right my-auto" md={ 9 } lg={ 9 } xl={ 8 }>
+            <Col className="header--content__right my-auto" md={ 6 } lg={ 6 } xl={ 5 }>
               <Row className="h-100" gutter={12}>
-                <Col span={11}>
+                <Col span={24}>
                   <Row className="header--content__account" align="middle" gutter={12}>
 
                     { user_data.load ?
@@ -231,6 +231,104 @@ const DefaultHeader = () => {
                   <Button className="border border-primary-darken border-w-2 text-primary-darken  font-weight-600 p-0" size="large" onClick={() => { showRequestModalHeader() }}>{t(__('Request a Quote'))}</Button>
                 </Col>
               </Row>
+            </Col>*/}
+
+            <Col span={6} className="my-auto">
+              <div className="logo">
+                <Link to={"/"} className="d-block">
+                  <Row>
+                    <Col flex="26px" className="logo--character">
+                      <img src={alaedeenChar} alt=""/>
+                    </Col>
+                    <Col flex="1 1" className="pl-2">
+                      <Row className="h-100">
+                        <Col span={24} className="logo--alaedeenCom">
+                          <i className="logo-icon-alaedeen-com" />
+                        </Col>
+                        <Col span={24} className="logo--alaedeenSlug">
+                          <p className={ `m-0 text-47 vv-font-size-1-4` }>{ t(__('Alaedeen Slug Section')) }</p>
+                        </Col>
+                      </Row>
+                    </Col>
+                  </Row>
+                </Link>
+              </div>
+            </Col>
+
+            <Col span={12} className="my-auto header--left__searchBox">
+              <Input placeholder={ t(__('What are you looking for...')) } suffix={searchTextSuffix(t(__('search')))} onChange={e => {setSearchValue(e.target.value)}} onPressEnter={() => { handleSubmitSearch() }} />
+            </Col>
+
+            <Col span={6} className="my-auto">
+              <Row className="header--content__account" align="middle" gutter={12}>
+
+                { user_data.load ?
+                  <>
+                    <Skeleton avatar paragraph={{ rows: 1 }} />
+                  </> :
+                  <>
+                    { user_data.auth.user_id ?
+                      <>
+                        <Dropdown overlay={menu} trigger={['click']} openClassName="content--account__DropDownIsOpen" onVisibleChange={visible => setDropDownIsActive(visible)} >
+
+                          <Row className="w-100" align="middle" gutter={12} onClick={e => e.preventDefault()}>
+                            <Col>
+                              { (user_data?.auth?.company_logo && user_data?.auth?.company_logo.length !== 0) ?
+                                <span className="content--account__companyLogo">
+                                      <ShowResponsiveImage
+                                        imagePath={ user_data?.auth?.company_logo?.logo_path }
+                                        imageFolder='company_logo'
+                                        width={50}
+                                        height={50}
+                                        skeletonWidth="50px"
+                                        skeletonHeight="50px"
+                                        skeletonRadius="50%"
+                                        skeletonSvgWidth="30px"
+                                        imageAlt={ user_data?.auth?.company ? user_data?.auth?.company : ` ${user_data?.auth?.firstname} ${user_data?.auth?.lastname} `}
+                                        object_id={user_data?.auth?.company_id}
+                                        object_type={`company_logo${config.language}`}
+                                      />
+                                    </span> :
+                                <i className="fal fa-user display-3 text-70 d-block" />
+                              }
+                            </Col>
+
+                            <Col span={16}>
+                                  <span className="font-weight-600 content--account__companyName">
+                                    { user_data?.auth?.company || `${user_data?.auth?.firstname} ${user_data?.auth?.lastname}` }
+                                  </span>
+                              <DownOutlined rotate={ dropDownIsActive ? 180 : 0} />
+                            </Col>
+                          </Row>
+
+                        </Dropdown>
+                      </> :
+                      <>
+                        <Col>
+                          <i className="fal fa-user display-3 text-70 d-block" />
+                        </Col>
+                        <Col span={16}>
+                          <Row gutter={[0, 24]}>
+                            <Col span={24} className="header--account__link">
+                              <Link className="text-70 vv-font-size-2" to={"/sign-in"} >
+                                {t(__('Sign in'))}
+                              </Link>
+                            </Col>
+                            <Col span={24} className="header--account__link">
+                              <Link className="text-70 vv-font-size-2" to={"/register"} >
+                                {t(__('Join Free'))}
+                              </Link>
+                            </Col>
+                          </Row>
+                        </Col>
+                      </>
+                    }
+
+                  </>
+                }
+
+
+              </Row>
             </Col>
           </Row>
         </Col>
@@ -238,10 +336,10 @@ const DefaultHeader = () => {
           <Input placeholder={ t(__('What are you looking for...')) } prefix={searchTextPrefix} onChange={e => {setSearchValue(e.target.value)}} onPressEnter={() => { handleSubmitSearch() }} />
         </Col>
       </Row>
-      <OneRequestMultipleQuotesModal
+      {/*<OneRequestMultipleQuotesModal
         isRequestModalVisible = {isRequestModalVisible}
         setIsRequestModalVisible = {setIsRequestModalVisible}
-      />
+      />*/}
 
     </Header>
   );

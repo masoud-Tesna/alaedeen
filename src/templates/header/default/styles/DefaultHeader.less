@@ -4,23 +4,32 @@ html:lang(ar) {
     direction: ltr;
   }
 
-  .header--content__account .header--account__link {
-    direction: rtl;
+  .header--content__account {
+    padding-right: 3rem;
   }
 
   .header--left__searchBox > .ant-input-affix-wrapper.ant-input-affix-wrapper-rtl,
   .header--left__searchBox input,
   .header--mobile__searchBox input,
-  .header--content__account {
+  .header--content__account,
+  .header--content__account .header--account__link {
     direction: rtl !important;
   }
 
-  .header--content__left {
+  /*.header--content__left {
     .header--left__searchBox {
       .ant-input-affix-wrapper {
         .ant-input {
           padding-right: 2rem;
         }
+      }
+    }
+  }*/
+
+  .header--left__searchBox {
+    .ant-input-affix-wrapper {
+      .ant-input {
+        padding-right: 2rem;
       }
     }
   }
@@ -50,7 +59,7 @@ html:lang(ar) {
     }
   }
 
-  .header--content__left {
+  /*.header--content__left {
     .header--left__searchBox {
       .ant-input-affix-wrapper {
         padding: 0 !important;
@@ -76,9 +85,35 @@ html:lang(ar) {
         }
       }
     }
+  }*/
+
+  .header--left__searchBox {
+    .ant-input-affix-wrapper {
+      padding: 0 !important;
+      border: 1px solid darken(@primary-color, 10%) !important;
+      height: 40px;
+
+      .ant-input {
+        padding-left: 2rem;
+        font-size: 1.8rem!important;
+        &::placeholder {
+          color: #929191 !important;
+        }
+      }
+
+      .ant-input-suffix {
+        min-width: 105px;
+        background-color: darken(@primary-color, 10%) !important;
+        text-align: center;
+        display: block;
+        line-height: 4rem;
+        cursor: pointer;
+        color: white;
+      }
+    }
   }
 
-  .header--content__right {
+  /*.header--content__right {
     .header--content__account {
       .content--account__companyLogo {
         display: inline-block;
@@ -130,6 +165,42 @@ html:lang(ar) {
           }
         }
       }
+    }
+  }*/
+
+  .header--content__account {
+    .content--account__companyLogo {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.38);
+      img {
+        border-radius: 50%;
+        width: 100%;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+      .content--account__companyName,
+      .anticon.anticon-down svg {
+        color: #2e8339;
+      }
+    }
+
+    .anticon.anticon-down {
+      margin: 0 1rem;
+
+      svg {
+        transition: all 0.1s 0.1s;
+        font-weight: bolder;
+      }
+    }
+
+    .content--account__companyName,
+    .anticon.anticon-down svg {
+      font-size: 1.5rem;
     }
   }
 

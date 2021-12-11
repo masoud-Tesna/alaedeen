@@ -457,14 +457,14 @@ const DefaultTopPanel = () => {
           </Col>
         </Row>
 
-        <Row className="h-100 d-lg-none" gutter={8} justify="space-around">
-          <Col span={10} className="my-auto vv-cursor-pointer topPanel--col__logoXS">
+        <Row className="h-100 d-lg-none" gutter={8} justify="space-between">
+          <Col span={16} className="my-auto vv-cursor-pointer topPanel--col__logoXS">
             <Link to={"/"} className="d-block">
               <Row className="topPanel--col__logoXSRow">
-                <Col span={ 4 } className="logo--character">
+                <Col flex="27px" className="logo--character">
                   <img src={alaedeenChar} alt=""/>
                 </Col>
-                <Col span={ 20 } className="logo-slug">
+                <Col flex="1 1" className="logo-slug">
                   <Row className="h-100">
                     <Col span={24} className="logo--alaedeenCom">
                       <i className="logo-icon-alaedeen-com vv-font-size-1-8" />
@@ -477,20 +477,20 @@ const DefaultTopPanel = () => {
               </Row>
             </Link>
           </Col>
-          <Col span={11} className="my-auto text-center topPanel--col__btnRequest">
+          {/*<Col span={11} className="my-auto text-center topPanel--col__btnRequest">
             <Button className="border border-secondary-2 bg-secondary-2 border-w-2 text-white font-weight-600 p-0" size="large" onClick={() => { showRequestModalHeader() }}>{t(__('Request a Quote'))}</Button>
-          </Col>
-          <Col span={3} className="my-auto vv-cursor-pointer" onClick={showTopPanelMenuXs}>
+          </Col>*/}
+          <Col span={4} className="my-auto vv-cursor-pointer text-right" onClick={showTopPanelMenuXs}>
             <i className="fas fa-grip-lines cursor-pointer text-white display-3" />
           </Col>
         </Row>
       </Col>
 
-      <OneRequestMultipleQuotesModal
+      {/*<OneRequestMultipleQuotesModal
         isRequestModalVisible = {isRequestModalVisible}
         setIsRequestModalVisible = {setIsRequestModalVisible}
         section = "topPanel"
-      />
+      />*/}
     </Row>
   );
 };
