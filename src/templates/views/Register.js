@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 // import style file:
 import './styles/Register.less';
@@ -121,7 +121,7 @@ const Register = () => {
                   duration: 2,
                   className: 'registerDone--message',
                 }).then(() => {
-                  registerType === 'buyer' ?
+                  (registerType === 'buyer' || width < 992) ?
                     navigate('/') :
                     setCurrentStep(1);
                 })
@@ -161,10 +161,6 @@ const Register = () => {
     //setCurrentStep(prev => prev + 1)
   }
 
-  if (config.language !== "fa") {
-    configDispatch(changeLanguageAction("fa"));
-  }
-
   return (
     <Row justify={"center"} className="register--container h-100">
       <SeoGenerator
@@ -193,7 +189,7 @@ const Register = () => {
         <Row gutter={{ xs: 0, lg: 32 }}>
 
           {registerType === 'seller' ?
-            width > 991 ?
+            width >= 992 ?
               <>
                 <Col span={24} className="sellerRegisterStep">
                   <Steps current={currentStep} progressDot >
