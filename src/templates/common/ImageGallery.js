@@ -27,7 +27,7 @@ const ImageGallery = ({ images }) => {
 
   return (
     <Row className="imageGallery--container">
-      {images !== undefined && Object.values(images)?.length > 1 ?
+      {Object.values(images)?.length > 1 ?
         <Col span={ 24 }>
           <Image.PreviewGroup>
             <Swiper
@@ -83,7 +83,7 @@ const ImageGallery = ({ images }) => {
           </Swiper>
         </Col> :
 
-        images !== undefined && Object.values(images)?.length === 1 ?
+        Object.values(images)?.length === 1 ?
           <Col span={24} className="imageGallery--oneImage">
             { images?.map(image => {
               return (
@@ -101,7 +101,7 @@ const ImageGallery = ({ images }) => {
             }) }
           </Col> :
 
-          images !== undefined && !Object.values(images)?.length &&
+          !Object.values(images)?.length &&
             <Col span={24} className="imageGallery--oneImage">
               <ShowResponsiveImage
                 imagePath=""

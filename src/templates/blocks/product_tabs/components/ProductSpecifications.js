@@ -105,12 +105,12 @@ const ProductSpecifications = ({ product, isLoading }) => {
 
   }
 
-  const featureTableHeader = (isLoading || product !== undefined) ? [] : product?.variants_product[0]?.product_features;
+  const featureTableHeader = isLoading ? [] : product?.variants_product[0]?.product_features;
 
   return (
     <Row className="productSpecifications--container">
       <Col span={24} className="productSpecifications--sections">
-        {(isLoading || product !== undefined) ?
+        {isLoading ?
           <>
             <Skeleton active={true} paragraph={{ rows: 6 }} />
             <Row className="mt-4">
