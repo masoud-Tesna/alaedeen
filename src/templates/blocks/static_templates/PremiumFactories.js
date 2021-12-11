@@ -77,6 +77,7 @@ const FactoriesImages = ({ images, alt, object_id, width }) => {
           imageAlt={ alt }
           object_id={`img_0${object_id}`}
           object_type={`factories_image_0`}
+          width={211}
         />
       </div>
       <Row className="premiumFactories--factoryImages__item_2_3">
@@ -89,6 +90,7 @@ const FactoriesImages = ({ images, alt, object_id, width }) => {
             object_type={`factories_image_1`}
             skeletonWidth="136px"
             skeletonHeight="101px"
+            width={131}
           />
         </Col>
         <Col span={24} className="premiumFactories--factoryImages__item3 align-self-end">
@@ -100,6 +102,7 @@ const FactoriesImages = ({ images, alt, object_id, width }) => {
             object_type={`factories_image_2`}
             skeletonWidth="136px"
             skeletonHeight="101px"
+            width={131}
           />
         </Col>
       </Row>
@@ -136,7 +139,7 @@ const PremiumFactories = () => {
           </Row>
         </Col>
         <Col className="premiumFactories--content" span={24}>
-          <Row className="premiumFactories--items" justify="space-between" gutter={{ xs: 0, sm: 5, md: 5, lg: 8, xl: 10, xxl: 35 }}>
+          <Row className="premiumFactories--items" justify="space-between" gutter={{ xs: 9, sm: 5, md: 5, lg: 8, xl: 10, xxl: 35 }}>
             {width >= 992 ?
               <>
                 {isLoading ?
@@ -195,9 +198,9 @@ const PremiumFactories = () => {
                     grid={{ span: 8 }}
                   /> :
                   <>
-                    {factories?.map((factory, index) => {
+                    {factories?.slice(0, 2)?.map((factory, index) => {
                       return (
-                        <Col key={index}>
+                        <Col key={index} span={12}>
                           <div className="premiumFactories--itemXs">
                             <div className="premiumFactories--factoryImages__Xs">
                               <ShowResponsiveImage
@@ -208,6 +211,7 @@ const PremiumFactories = () => {
                                 object_type={`factories_image_0`}
                                 skeletonWidth="120px"
                                 skeletonHeight="120px"
+                                width={160}
                               />
                             </div>
                             <div className="mt-2">

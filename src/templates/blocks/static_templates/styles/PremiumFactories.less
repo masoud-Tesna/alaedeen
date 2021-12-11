@@ -48,12 +48,13 @@ html:lang(ar) {
           width: 60%;
           img {
             width: 100%;
-            max-height: 215px;
+            //max-height: 215px;
           }
         }
         .premiumFactories--factoryImages__item_2_3 {
           width: 40%;
           padding-left: 1rem;
+
           img {
             // width: 136px;
             width: 100%;
@@ -62,11 +63,16 @@ html:lang(ar) {
         }
       }
       .premiumFactories--itemXs {
-        width: 120px;
+        //width: 120px;
         .premiumFactories--factoryImages__Xs {
-          img {
-            width: 120px;
-            height: 120px;
+
+          .ant-image {
+            width: 100%;
+
+            img {
+              width: 100%;
+              height: 150px;
+            }
           }
         }
         .premiumFactories--factoryIcon__Xs {
@@ -99,16 +105,22 @@ html:lang(ar) {
             height: calc(100% - calc(60px + 1.5rem));
           }
           .premiumFactories--factoryImages__item1 {
+            .ant-image,
             img,
             .premiumFactories--skeletonImages__item1 {
               width: 100%;
               height: 100%;
             }
+
           }
           .premiumFactories--factoryImages__item_2_3 {
+            .ant-image {
+              width: 100%;
+            }
+
             img,
             .premiumFactories--skeletonImages__item_2_3 {
-              width: 136px;
+              width: 100%;
               height: 101px;
             }
           }
