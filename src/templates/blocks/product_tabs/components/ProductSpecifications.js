@@ -105,7 +105,11 @@ const ProductSpecifications = ({ product, isLoading }) => {
 
   }
 
-  const featureTableHeader = isLoading ? [] : product?.variants_product[0]?.product_features;
+  let featureTableHeader = [];
+
+  if (!isLoading && product?.variants_product) {
+    featureTableHeader = product?.variants_product[0]?.product_features
+  }
 
   return (
     <Row className="productSpecifications--container">
@@ -174,11 +178,11 @@ const ProductSpecifications = ({ product, isLoading }) => {
             </Row>
           </> :
           <Row gutter={[0, 15]}>
-            {(product?.variants_product.length || Object.values(product?.product_features).length) &&
+            {(product?.variants_product?.length || Object?.values(product?.product_features)?.length) &&
               <Col span={24} className="text-70 font-weight-bold productSpecifications--title">{t(__('Technical Specifications'))}:</Col>
             }
 
-            {(product?.variants_product.length) &&
+            {(product?.variants_product?.length) &&
               <Col span={24} className="variationsProducts--feature">
                 <table>
                   <thead>
@@ -245,7 +249,7 @@ const ProductSpecifications = ({ product, isLoading }) => {
               </Col>
             }
 
-            {Object.values(product?.product_features).length &&
+            {Object.values(product?.product_features)?.length &&
               <Col span={24} className="products--features">
                 <Row className="row-cols-1 row-cols-md-2" gutter={[0, 20]}>
 

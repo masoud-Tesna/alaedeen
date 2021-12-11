@@ -45,7 +45,7 @@ const ProductDetail = (props) => {
       <Col span={24} className="productDetails--content">
         <Row gutter={[0, 15]}>
           <Col span={24} className="productDetails--topSection">
-            <Row>
+            <Row gutter={{ md: 17 }}>
               <Col xs={24} lg={10} className="productDetails--imageContainer">
                 {isLoading ?
                   <ShowResponsiveImage
