@@ -95,7 +95,7 @@ const ShowMainMarket = ({ mainMarkets }) => {
 
 const FieldValues = ({ fieldValues, width }) => {
 
-  if (width >= 991) { // For Desktop:
+  if (width >= 992) { // For Desktop:
     return (
       fieldValues?.map(({ field_id, caption, value }, i) => {
         return (
@@ -142,7 +142,7 @@ const GroupFields = ({ groupFields, width }) => {
 
   if (groupFields) {
 
-    if (width >= 991) { // For Desktop:
+    if (width >= 992) { // For Desktop:
       return (
         groupFields?.map(({ group_id, caption, values }) => {
           return (
@@ -186,11 +186,11 @@ const GroupFields = ({ groupFields, width }) => {
 
 const FactoryProduct = ({ products }) => {
   const { width } = useWindowSize();
-  const imageWidth = width >= 768 ? 133 : 98;
-  const imageHeight = width >= 768 ? 133 : 98;
+  const imageWidth = width >= 992 ? 133 : 98;
+  const imageHeight = width >= 992 ? 133 : 98;
   return(
     <Col span={24}>
-      <Row  className="row-cols-3 row-cols-lg-4" gutter={width < 768 ? 16 : 30}>
+      <Row  className="row-cols-3 row-cols-lg-4" gutter={width < 992 ? 16 : 30}>
         {products.length !== 0 ?
           <>
             {products.map((product, i) => {

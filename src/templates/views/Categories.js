@@ -565,8 +565,8 @@ const Categories = () => {
                                   key={ i }
                                   product={ product }
                                   allDetails
-                                  widthProductImage={ width >= 768 ? 194 : 170 }
-                                  heightProductImage={ width >= 768 ? 194 : 170 }
+                                  widthProductImage={ width >= 992 ? 194 : 170 }
+                                  heightProductImage={ width >= 992 ? 194 : 170 }
                                 />
                               );
                             }) }

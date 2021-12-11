@@ -8,7 +8,7 @@ const SkeletonGrid = (props) => {
   const { width } = props;
 
   let about_rows = { rows: 5 };
-  if (width <= 991) {
+  if (width < 992) {
     about_rows = { rows: 4 };
   }
 
@@ -112,7 +112,7 @@ const SkeletonGrid = (props) => {
                     <Skeleton active={true} paragraph={ about_rows } />
                   </Col>
                   <Col xs={24} lg={18}>
-                    <Row gutter={width < 768 ? 16 : 30} className="row-cols-3 row-cols-lg-4">
+                    <Row gutter={width < 992 ? 16 : 30} className="row-cols-3 row-cols-lg-4">
                       <Col className={ `factories--productImageContainer` }>
                         <div className="rounded-10 shadow-y-2 text-center factories--productImage">
                           <Skeleton.Image active={true} className="w-100 h-100 rounded-10" />

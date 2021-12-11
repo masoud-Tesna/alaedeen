@@ -31,10 +31,10 @@ const CategoriesMultiColumn = () => {
   const { categories } = data || [];
 
   return (
-    <div className={ `${width >= 768 ? 'categoriesMultiColumn--container' : 'categoriesMultiColumn--containerXs my-4'} h-100` }>
+    <div className={ `${width >= 992 ? 'categoriesMultiColumn--container' : 'categoriesMultiColumn--containerXs my-4'} h-100` }>
       <Row className={ isLoading ? 'h-100' : (categories?.length >= 8 && 'h-100') }>
 
-        {/* if Screen Width >= 768px (Desktop) Show Component: */}
+        {/* if Screen Width >= 992px (Desktop) Show Component: */}
         {width >= 992 ?
           <>
 
@@ -84,7 +84,7 @@ const CategoriesMultiColumn = () => {
             }
           </> :
 
-          /* if Screen Width <= 768px (Mobile) Show Component: */
+          /* if Screen Width <= 992px (Mobile) Show Component: */
           <>
 
             { isLoading ?

@@ -130,7 +130,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
   return (
     <Modal
       title={ t(__('Post Your buy Requirement')) }
-      style={{ top: width < 768 && 10 }}
+      style={{ top: width < 992 && 10 }}
       visible={isRequestModalVisible}
       onCancel={handleClosRequestModal}
       destroyOnClose={true}

@@ -10,7 +10,7 @@ const SkeletonGrid = (props) => {
   const { width } = props;
   const { height } = props;
   let paragraph_rows = { rows: 2 };
-  if (width <= 991) {
+  if (width < 992) {
     paragraph_rows = { rows: 1 };
   }
   return (

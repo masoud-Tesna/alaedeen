@@ -28,24 +28,20 @@ const HomeLogisticsBanner = () => {
     <div className="homeLogisticsBanner--container">
       <div className="homeLogisticsBanner--content h-100">
 
-        {/* for Mobile And persian Or arabic Language */}
-        {(width < 992 && (config.language === 'fa' || config.language === 'ar')) &&
-          <img className="homeLogisticsBanner--img" src={ logisticsBannerRtlXs } alt={ t(__('Logistics Services')) }/>
-        }
+        {/* For Desktop ? code else for Mobile : code */}
+        {width >= 992 ?
+          <>
+            {(config.language === 'ar' || config.language === 'fa') ?
+              <img className="homeLogisticsBanner--img" src={ logisticsBannerRtl } alt={ t(__('Logistics Services')) }/> :
 
-        {/* for Mobile And English Language */}
-        {(width < 992 && config.language === 'en') &&
-          <img className="homeLogisticsBanner--img" src={ logisticsBannerLtrXs } alt={ t(__('Logistics Services')) }/>
-        }
-
-        {/* for Desktop And persian Or arabic Language */}
-        {(width >= 768 && (config.language === 'ar' || config.language === 'fa')) &&
-          <img className="homeLogisticsBanner--img" src={ logisticsBannerRtl } alt={ t(__('Logistics Services')) }/>
-        }
-
-        {/* for Desktop And English Language */}
-        {(width >= 992 && config.language === 'en') &&
-          <img className="homeLogisticsBanner--img" src={ logisticsBannerLtr } alt={ t(__('Logistics Services')) }/>
+              <img className="homeLogisticsBanner--img" src={ logisticsBannerLtr } alt={ t(__('Logistics Services')) }/>
+            }
+          </> :
+          /*For Mobile*/
+          (config.language === 'fa' || config.language === 'ar') ?
+            <img className="homeLogisticsBanner--img" src={ logisticsBannerRtlXs } alt={ t(__('Logistics Services')) }/> :
+            
+            <img className="homeLogisticsBanner--img" src={ logisticsBannerLtrXs } alt={ t(__('Logistics Services')) }/>
         }
 
       </div>

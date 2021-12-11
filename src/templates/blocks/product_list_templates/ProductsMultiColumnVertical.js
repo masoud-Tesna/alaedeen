@@ -28,7 +28,7 @@ const ProductsMultiColumnVertical = (props) => {
   const { widthProductImage, heightProductImage } = props;
 
   let paragraph_rows = { rows: 2 };
-  if (width <= 991) {
+  if (width < 992) {
     paragraph_rows = { rows: 1 };
   }
 
@@ -84,9 +84,9 @@ const ProductsMultiColumnVertical = (props) => {
 
           {(productPrice !== "0.00") &&
           <Col span={24} className="productsMultiColumnVertical--item__price">
-            <span className={ `${ width >= 768 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }>${ productPrice } </span>
+            <span className={ `${ width >= 992 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }>${ productPrice } </span>
             { productListPrice !== "0.00" &&
-            <span className={ `${ width >= 768 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }> - ${productListPrice}</span>
+            <span className={ `${ width >= 992 ? 'vv-font-size-1-9' : 'vv-font-size-1-5' } text-primary font-weight-bold` }> - ${productListPrice}</span>
             }
             {product.quantity_unit &&
             <span className={ `${ !allDetails && 'd-none d-lg-inline' } vv-font-size-1-6 text-92` }> / { product.quantity_unit }</span>
@@ -96,8 +96,8 @@ const ProductsMultiColumnVertical = (props) => {
 
           {(product.min_qty && product.quantity_unit) &&
           <Col span={24} className="productsMultiColumnVertical--item__quantity">
-            <span className={ `${ width >= 768 ? 'vv-font-size-1-4' : 'vv-font-size-1-2rem' } text-47` }>{ product.min_qty } { product.quantity_unit }</span>
-            <span className={` ${ width >= 768 ? 'vv-font-size-1-2rem' : 'vv-font-size-1' } text-92 `}> (MOQ)</span>
+            <span className={ `${ width >= 992 ? 'vv-font-size-1-4' : 'vv-font-size-1-2rem' } text-47` }>{ product.min_qty } { product.quantity_unit }</span>
+            <span className={` ${ width >= 992 ? 'vv-font-size-1-2rem' : 'vv-font-size-1' } text-92 `}> (MOQ)</span>
           </Col>
           }
 

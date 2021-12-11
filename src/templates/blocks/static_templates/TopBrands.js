@@ -73,7 +73,7 @@ const TopBrands = () => {
       <Row>
         <Col className="topBrands--caption__content" span={24}>
           <Row justify="space-between">
-            <Col className={ `text-33 text-uppercase ${ width >= 768 ? 'vv-font-size-3' : 'vv-font-size-1-6' } font-weight-bold` }>
+            <Col className={ `text-33 text-uppercase ${ width >= 992 ? 'vv-font-size-3' : 'vv-font-size-1-6' } font-weight-bold` }>
               { t(__('Top Brands')) }
             </Col>
           </Row>
@@ -81,7 +81,7 @@ const TopBrands = () => {
         <Col className="topBrands--items" span={24}>
           <Row className="h-100 bg-white rounded-10 shadow-y-2 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5" justify="space-around" gutter={ { xs: 0, lg: 16 }}>
 
-            {width >= 768 ?
+            {width >= 992 ?
               <>
 
                 {isLoading ?

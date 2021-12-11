@@ -65,19 +65,19 @@ const TopRankingProducts = () => {
       <Row>
         <Col className="topRankingProducts--caption__content" span={24}>
           <Row justify="space-between">
-            <Col className={ `text-33 text-uppercase ${ width >= 768 ? 'vv-font-size-3' : 'vv-font-size-1-6' } font-weight-bold` }>
+            <Col className={ `text-33 text-uppercase ${ width >= 992 ? 'vv-font-size-3' : 'vv-font-size-1-6' } font-weight-bold` }>
               { t(__('TOP-RANKING PRODUCTS')) }
             </Col>
             <Col className="my-auto">
-              <Link to="/top-rankings" className={ `${ width >= 768 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } text-33` } >
-                { t(__('View More')) } <i className={ `far fa-chevron-${config.language === 'en' ? 'right' : 'left'} ${ width >= 768 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } ${config.language === 'en' ? '' : 'align-middle'}` } />
+              <Link to="/top-rankings" className={ `${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } text-33` } >
+                { t(__('View More')) } <i className={ `far fa-chevron-${config.language === 'en' ? 'right' : 'left'} ${ width >= 992 ? 'vv-font-size-1-8' : 'vv-font-size-1-4' } ${config.language === 'en' ? '' : 'align-middle'}` } />
               </Link>
             </Col>
           </Row>
         </Col>
         <Col className="rounded-10 shadow-y-2 bg-white p px-3 px-0 pt-3 pb-4 py-lg-5 topRankingProducts--content" span={24}>
 
-          {width >= 768 ?
+          {width >= 992 ?
             <Row className="topRankingProducts--items">
               <Col className="topRankingProducts--item px-4" span={8}>
                 <div className="ProductsMultiColumnHorizontal--container">

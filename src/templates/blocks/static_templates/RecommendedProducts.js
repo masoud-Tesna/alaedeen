@@ -23,7 +23,7 @@ const RecommendedProducts = () => {
 
   const { width } = useWindowSize();
 
-  const product_items_per_page = width >= 768 ? 20 : 12;
+  const product_items_per_page = width >= 992 ? 20 : 12;
 
   // get products from API:
   const { isLoading, data } = useGetApi(`recommended-api`, `recShowHome=Y&items_per_page=${product_items_per_page}`, `recommendedHomeProducts_${product_items_per_page}`);
@@ -31,7 +31,7 @@ const RecommendedProducts = () => {
 
   let productsMultiColumnVertical_items = { span: 8 };
 
-  if (width <= 991) {
+  if (width < 992) {
     productsMultiColumnVertical_items = { span: 12 };
   }
 
@@ -40,7 +40,7 @@ const RecommendedProducts = () => {
       <Row>
         <Col className="recommendedProducts--caption__content" span={24}>
           <Row justify="space-between">
-            <Col className={ `text-33 text-uppercase ${ width >= 768 ? 'vv-font-size-3' : 'vv-font-size-1-6' } font-weight-bold` }>
+            <Col className={ `text-33 text-uppercase ${ width >= 992 ? 'vv-font-size-3' : 'vv-font-size-1-6' } font-weight-bold` }>
               { t(__('Recommended for you')) }
             </Col>
           </Row>
@@ -52,10 +52,10 @@ const RecommendedProducts = () => {
               {isLoading ?
                 <SkeletonMultiColumnVertical
                   skeleton = {true}
-                  skeltonNumbers = {width >= 768 ? 20 : 12}
+                  skeltonNumbers = {width >= 992 ? 20 : 12}
                   grid={productsMultiColumnVertical_items}
                   width = { width }
-                  height = {width >= 768 ? 363.933 : 273.05}
+                  height = {width >= 992 ? 363.933 : 273.05}
                 /> :
                 <>
                   {products?.map((product, i) => {
@@ -65,8 +65,8 @@ const RecommendedProducts = () => {
                         className="bg-white rounded-10 shadow-y-2"
                         product={product}
                         allDetails
-                        widthProductImage={width >= 768 ? 287 : 164}
-                        heightProductImage={width >= 768 ? 230 : 170}
+                        widthProductImage={width >= 992 ? 287 : 164}
+                        heightProductImage={width >= 992 ? 230 : 170}
                       />
                     );
                   })}

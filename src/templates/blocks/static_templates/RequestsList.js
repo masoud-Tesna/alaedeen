@@ -134,14 +134,14 @@ const RequestsList = () => {
                       </div>
                       <Modal
                         title={ requestList?.product_name }
-                        style={{ top: width < 768 && 10 }}
+                        style={{ top: width < 992 && 10 }}
                         visible={isRequestModal[requestList?.request_id] || false}
                         onCancel={() => { handleRequestModalClose(requestList?.request_id) }}
                         footer={false}
                       >
-                        <Row className="row-cols-1 row-cols-md-2 requestsList--item__modal" gutter={[width >= 768 ? 16 : 0, 30]}>
+                        <Row className="row-cols-1 row-cols-md-2 requestsList--item__modal" gutter={[width >= 992 ? 16 : 0, 30]}>
                           <Col>
-                            <Row gutter={width >= 768 ? 16 : 0}>
+                            <Row gutter={width >= 992 ? 16 : 0}>
                               <Col span={12} className="text-92 requestsList--modal__variable">
                                 { t(__('request name')) }:
                               </Col>
@@ -152,7 +152,7 @@ const RequestsList = () => {
                           </Col>
 
                           <Col>
-                            <Row gutter={width >= 768 ? 16 : 0}>
+                            <Row gutter={width >= 992 ? 16 : 0}>
                               <Col span={12} className="text-92 requestsList--modal__variable">
                                 { t(__('Applicant name')) }:
                               </Col>
@@ -163,7 +163,7 @@ const RequestsList = () => {
                           </Col>
 
                           <Col>
-                            <Row gutter={width >= 768 ? 16 : 0}>
+                            <Row gutter={width >= 992 ? 16 : 0}>
                               <Col span={12} className="text-92 requestsList--modal__variable">
                                 { t(__('location')) }:
                               </Col>
@@ -174,7 +174,7 @@ const RequestsList = () => {
                           </Col>
 
                           <Col>
-                            <Row gutter={width >= 768 ? 16 : 0}>
+                            <Row gutter={width >= 992 ? 16 : 0}>
                               <Col span={12} className="text-92 requestsList--modal__variable">
                                 { t(__('quantity')) }:
                               </Col>
@@ -185,7 +185,7 @@ const RequestsList = () => {
                           </Col>
 
                           <Col>
-                            <Row gutter={width >= 768 ? 16 : 0}>
+                            <Row gutter={width >= 992 ? 16 : 0}>
                               <Col span={12} className="text-92 requestsList--modal__variable">
                                 { t(__('order_value')) }:
                               </Col>
@@ -196,7 +196,7 @@ const RequestsList = () => {
                           </Col>
 
                           <Col>
-                            <Row gutter={width >= 768 ? 16 : 0}>
+                            <Row gutter={width >= 992 ? 16 : 0}>
                               <Col span={12} className="text-92 requestsList--modal__variable">
                                 { t(__('requirement_urgency')) }:
                               </Col>
@@ -207,7 +207,7 @@ const RequestsList = () => {
                           </Col>
 
                           <Col>
-                            <Row gutter={width >= 768 ? 16 : 0}>
+                            <Row gutter={width >= 992 ? 16 : 0}>
                               <Col span={12} className="text-92 requestsList--modal__variable">
                                 { t(__('supp_location')) }:
                               </Col>
@@ -218,7 +218,7 @@ const RequestsList = () => {
                           </Col>
 
                           <Col>
-                            <Row gutter={width >= 768 ? 16 : 0}>
+                            <Row gutter={width >= 992 ? 16 : 0}>
                               <Col span={12} className="text-92 requestsList--modal__variable">
                                 { t(__('requirement_frequency')) }:
                               </Col>
@@ -229,7 +229,7 @@ const RequestsList = () => {
                           </Col>
 
                           <Col>
-                            <Row gutter={width >= 768 ? 16 : 0}>
+                            <Row gutter={width >= 992 ? 16 : 0}>
                               <Col span={12} className="text-92 requestsList--modal__variable">
                                 { t(__('description')) }:
                               </Col>

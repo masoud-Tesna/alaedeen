@@ -69,20 +69,20 @@ const ProductDetail = (props) => {
                     <Skeleton.Input className="productSkeleton--text" style={{ "--text-width": "40vw", "--text-height": "2.55vh" }} active={true} size={"small"} /> :
                     (productPrice !== "0.00") &&
                       <Col span={24} className="productDetails--price">
-                            <span className={ `${ width >= 768 ? 'vv-font-size-2-5' : 'vv-font-size-1-6' } text-primary font-weight-bold` }>${ productPrice }</span>
+                            <span className={ `${ width >= 992 ? 'vv-font-size-2-5' : 'vv-font-size-1-6' } text-primary font-weight-bold` }>${ productPrice }</span>
 
                         { productListPrice !== "0.00" &&
-                        <span className={ `${ width >= 768 ? 'vv-font-size-2-5' : 'vv-font-size-1-6' } text-primary font-weight-bold` }> - ${productListPrice}</span>
+                        <span className={ `${ width >= 992 ? 'vv-font-size-2-5' : 'vv-font-size-1-6' } text-primary font-weight-bold` }> - ${productListPrice}</span>
                         }
 
                         {product?.quantity_unit &&
-                        <span className={ ` ${ width >= 768 ? 'vv-font-size-1-9' : 'vv-font-size-1-3' } text-92 font-weight-600` }>&nbsp; /&nbsp; { product?.quantity_unit }</span>
+                        <span className={ ` ${ width >= 992 ? 'vv-font-size-1-9' : 'vv-font-size-1-3' } text-92 font-weight-600` }>&nbsp; /&nbsp; { product?.quantity_unit }</span>
                         }
 
                         {(product?.min_qty && product?.quantity_unit) &&
                           <>
-                            <span className={ ` ${ width >= 768 ? 'vv-font-size-1-9 ml-4' : 'vv-font-size-1-3 ml-5' } text-47 font-weight-600` }>{ product?.min_qty } { product?.quantity_unit }</span>
-                            <span className={ ` ${ width >= 768 ? 'vv-font-size-1-9' : 'vv-font-size-1-2' } text-92 font-weight-600 ml-2` }>({t('MOQ')})</span>
+                            <span className={ ` ${ width >= 992 ? 'vv-font-size-1-9 ml-4' : 'vv-font-size-1-3 ml-5' } text-47 font-weight-600` }>{ product?.min_qty } { product?.quantity_unit }</span>
+                            <span className={ ` ${ width >= 992 ? 'vv-font-size-1-9' : 'vv-font-size-1-2' } text-92 font-weight-600 ml-2` }>({t('MOQ')})</span>
                           </>
                         }
                       </Col>

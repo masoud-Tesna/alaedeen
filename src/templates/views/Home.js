@@ -83,27 +83,27 @@ const Home = () => {
       }
 
       <div className="top--section bg-white">
-        <Row gutter={width >= 768 && 24}>
-          {/* if Screen Width >= 768px (Desktop) Show Component: */}
-          {width > 991 &&
+        <Row gutter={width >= 992 && 24}>
+          {/* if Screen Width >= 992 (Desktop) Show Component: */}
+          {width >= 992 &&
           <Col span={6}>
             <CategoriesMultiColumn />
           </Col>
           }
 
-          <Col span={width > 991 ? 12 : 24}>
+          <Col span={width >= 992 ? 12 : 24}>
             <HomeLogisticsBanner />
           </Col>
 
-          {/* if Screen Width <= 991px (Mobile) Show Component: */}
-          {width <= 991 &&
+          {/* if Screen Width < 992px (Mobile) Show Component: */}
+          {width < 992 &&
           <Col span={24}>
             <CategoriesMultiColumn />
           </Col>
           }
 
-          {/* if Screen Width >= 768px (Desktop) Show Component: */}
-          {width > 991 ?
+          {/* if Screen Width >= 992px (Desktop) Show Component: */}
+          {width >= 992 ?
             <Col span={6}>
               <Row className="h-100">
                 <Col className="topSection--requestForm" span={24}>
@@ -114,7 +114,7 @@ const Home = () => {
                 </Col>
               </Row>
             </Col> :
-            /* if Screen Width <= 991px (Mobile) Show Component: */
+            /* if Screen Width < 992px (Mobile) Show Component: */
             <Col span={24} className="px-3">
               <RequestsList />
             </Col>

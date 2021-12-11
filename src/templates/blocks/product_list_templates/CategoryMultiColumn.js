@@ -47,11 +47,11 @@ const CategoryMultiColumn = (props) => {
 
             {(productPrice !== "0.00") &&
               <Col span={24} className="px-3 productsMultiColumnVertical--item__price">
-                  <span className={ `${ width >= 768 ? 'vv-font-size-1-9' : 'vv-font-size-1-6' } text-primary font-weight-bold` }>
+                  <span className={ `${ width >= 992 ? 'vv-font-size-1-9' : 'vv-font-size-1-6' } text-primary font-weight-bold` }>
                       ${ productPrice }
                     </span>
                 { productListPrice !== "0.00" &&
-                <span className={ `${ width >= 768 ? 'vv-font-size-1-9' : 'vv-font-size-1-6' } text-primary font-weight-bold` }>
+                <span className={ `${ width >= 992 ? 'vv-font-size-1-9' : 'vv-font-size-1-6' } text-primary font-weight-bold` }>
                       - ${productListPrice}
                     </span>
                 }
@@ -65,10 +65,10 @@ const CategoryMultiColumn = (props) => {
 
             {(product?.min_qty && product?.quantity_unit) &&
             <Col span={24} className="px-3 productsMultiColumnVertical--item__quantity">
-                  <span className={ `${ width >= 768 ? 'vv-font-size-1-4' : 'vv-font-size-1-2rem' } text-47` }>
+                  <span className={ `${ width >= 992 ? 'vv-font-size-1-4' : 'vv-font-size-1-2rem' } text-47` }>
                     { product.min_qty } { product.quantity_unit }
                   </span>
-              <span className={` ${ width >= 768 ? 'vv-font-size-1-2rem' : 'vv-font-size-1' } text-92 `}>
+              <span className={` ${ width >= 992 ? 'vv-font-size-1-2rem' : 'vv-font-size-1' } text-92 `}>
                     (MOQ)
                   </span>
             </Col>
@@ -83,15 +83,15 @@ const CategoryMultiColumn = (props) => {
                 <Col className="productsMultiColumnVertical--item__location">
                   {product?.wk_location &&
                   <>
-                    <i className={ `fal fa-map-marker-alt text-red-a0 mr-2 mr-lg-3 ${ width >= 768 ? 'vv-font-size-2-2' : 'vv-font-size-2' }` } />
-                    <span className={ `text-47 ${ width >= 768 ? 'vv-font-size-1-7' : 'vv-font-size-1-4' } font-weight-500` }>{ product.wk_location }</span>
+                    <i className={ `fal fa-map-marker-alt text-red-a0 mr-2 mr-lg-3 ${ width >= 992 ? 'vv-font-size-2-2' : 'vv-font-size-2' }` } />
+                    <span className={ `text-47 ${ width >= 992 ? 'vv-font-size-1-7' : 'vv-font-size-1-4' } font-weight-500` }>{ product.wk_location }</span>
                   </>
                   }
 
                 </Col>
                 <Col className="align-self-end productsMultiColumnVertical--item__detailIcon">
-                  <i className={ `flag-icon flag-icon-${ manufacturing_country.toLowerCase() } ${ width >= 768 ? 'vv-font-size-2' : 'vv-font-size-1-8' } mr-2` } />
-                  <span className={ `${ width >= 768 ? 'vv-font-size-1-6' : 'vv-font-size-1-4' } text-92 font-weight-500` }>{ manufacturing_country }</span>
+                  <i className={ `flag-icon flag-icon-${ manufacturing_country.toLowerCase() } ${ width >= 992 ? 'vv-font-size-2' : 'vv-font-size-1-8' } mr-2` } />
+                  <span className={ `${ width >= 992 ? 'vv-font-size-1-6' : 'vv-font-size-1-4' } text-92 font-weight-500` }>{ manufacturing_country }</span>
                 </Col>
               </Row>
             </Col>

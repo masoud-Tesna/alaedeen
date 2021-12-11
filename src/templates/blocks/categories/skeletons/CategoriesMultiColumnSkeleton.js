@@ -95,7 +95,7 @@ const CategoriesMultiColumnSkeleton = (props) => {
   }
 
   return (
-    <div className={ `${props.width >= 768 ? 'categoriesMultiColumn--container' : 'categoriesMultiColumn--containerXs my-4'} h-100` }>
+    <div className={ `${props.width >= 992 ? 'categoriesMultiColumn--container' : 'categoriesMultiColumn--containerXs my-4'} h-100` }>
       <Row className={ 'h-100' }>
         <>{RowsSkeleton}</>
       </Row>
