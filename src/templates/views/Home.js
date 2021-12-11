@@ -1,6 +1,11 @@
 // import Style LESS File:
 import './styles/Home.less';
 
+import { Link } from "react-router-dom";
+
+import { SeoGenerator } from "../../functions/Helper";
+import { useGetConfig } from "../../contexts/config/ConfigContext";
+
 // import Custom Hooks:
 import { useWindowSize } from '../../functions';
 
@@ -15,15 +20,12 @@ import HomeLogisticsBanner from "../blocks/static_templates/HomeLogisticsBanner"
 import RequestForm from "../blocks/static_templates/OneRequestMultipleQuotes";
 import RequestsList from "../blocks/static_templates/RequestsList";
 import Stats from "../blocks/static_templates/Stats";
-import ShipProductsBanner from "../blocks/static_templates/ShipProductsBanner";
-import ReadyToShipProducts from "../blocks/static_templates/ReadyToShipProducts";
+/*import ShipProductsBanner from "../blocks/static_templates/ShipProductsBanner";
+import ReadyToShipProducts from "../blocks/static_templates/ReadyToShipProducts";*/
 import PremiumFactories from "../blocks/static_templates/PremiumFactories";
 import RecommendedProducts from "../blocks/static_templates/RecommendedProducts";
 import TopBrands from "../blocks/static_templates/TopBrands";
 import WhatHorn from "../blocks/static_templates/WhatHorn";
-import { SeoGenerator } from "../../functions/Helper";
-import { useGetConfig } from "../../contexts/config/ConfigContext";
-import { Link } from "react-router-dom";
 
 // add after:
 //import TopRankingProducts from "../templates/blocks/static_templates/TopRankingProducts";
@@ -127,7 +129,7 @@ const Home = () => {
         <Stats />
       </div>
 
-      <div className="shipProductsBanner--section product--section">
+      {/*<div className="shipProductsBanner--section product--section">
         <Row className="rounded-10 shadow-y-2 bg-white section--row" gutter={{ xs: 0, lg: 16 }}>
           <Col className="pl-0" span={10}>
             <ShipProductsBanner />
@@ -136,7 +138,7 @@ const Home = () => {
             <ReadyToShipProducts />
           </Col>
         </Row>
-      </div>
+      </div>*/}
 
       {/*<div className="topRankingProducts--section">
         <TopRankingProducts />
