@@ -12,12 +12,15 @@ const Product = () => {
   const navigate = useNavigate();
 
   // get products from API before selecting filters and after selecting filter:
-  const { isLoading, data } = useGetApi(`products-api`, `product_path=${productSeoName}`, `product_details_${productSeoName}`);
-  const product = data || "";
+  const { isLoading, data } = useGetApi(`products-api`, `product_path=${productSeoName}`, `product_details_${productSeoName}`, {
+    onSuccess: (data) => {
+      if (data === 'not_found') {
+        navigate('/');
+      }
+    }
+  });
 
-  if (product === 'not_found') {
-    navigate('/');
-  }
+  const product = data || "";
 
   return (
     <Row className="productDetails--container">
@@ -34,6 +37,7 @@ const Product = () => {
       </Col>
     </Row>
   );
+
 };
 
 export default Product;
