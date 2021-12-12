@@ -94,16 +94,16 @@ function App() {
                 <Route exact path="/" element={<Home />} />
 
                 {/* Sign in Route */}
-                <Route exact exact path="/sign-in" element={<SignIn />} />
+                <Route path="/sign-in" element={<SignIn />} />
 
                 {/* Register Route */}
-                <Route exact path="/register" element={<Register />} />
+                <Route path="/register" element={<Register />} />
 
                 {/* Factories Route */}
-                <Route exact path="/factories" element={<Factories />} />
+                <Route path="/factories" element={<Factories />} />
 
                 {/* All Categories Route */}
-                <Route exact path="/all-categories" element={<AllCategories />} />
+                <Route path="/all-categories" element={<AllCategories />} />
 
                 {/* if open categories page without category path, redirect to all-category route */}
                 <Route exact path="/categories" element={<Navigate to="/all-categories" />} />
@@ -112,19 +112,20 @@ function App() {
                 <Route path="/categories/:category" element={<Categories />} />
 
                 {/* if open product details page without product path, redirect to all-category route */}
-                <Route exact exact path="/product" element={<Navigate to="/all-categories" />} />
+                <Route exact path="/product" element={<Navigate to="/all-categories" />} />
 
                 {/* Product details Route */}
                 <Route path="/product/:product" element={<Product />} />
 
                 {/* Recommended details Route */}
-                <Route exact path="/recommended" element={<Recommended />} />
+                <Route path="/recommended" element={<Recommended />} />
 
                 {/* Ready To Ship details Route */}
-                <Route exact path="/ready-to-ship" element={<ReadyToShip />} />
+                <Route path="/ready-to-ship" element={<ReadyToShip />} />
               </Routes>
             </div>
           </Content>
+
           <Footer>
            <SiteFooter />
           </Footer>
