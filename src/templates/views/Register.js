@@ -87,7 +87,7 @@ const Register = () => {
       setRegisterIsLoading(false);
 
       message.warning({
-        content: t(__('passwords is not equal')),
+        content: "رمز های عبور باهم یکسان نیست",
         duration: 4,
         className: 'registerDone--warning',
       })
@@ -99,8 +99,9 @@ const Register = () => {
           //setRegisterIsLoading(false);
 
           if (!res.data.status && res.data.error === 'email_already_used') {
+            setRegisterIsLoading(false);
             message.error({
-              content: t('email_already_used'),
+              content: "ایمیل قبلا در سیستم ثبت شده است",
               duration: 4,
               className: 'registerDone--warning',
             })
@@ -117,7 +118,7 @@ const Register = () => {
                 setRegisterIsLoading(false);
 
                 message.success({
-                  content: t(__('complete_register_msg')),
+                  content: "ثبت نام شما با موفقیت انجام شد.",
                   duration: 2,
                   className: 'registerDone--message',
                 }).then(() => {
