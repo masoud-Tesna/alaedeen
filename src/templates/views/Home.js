@@ -26,6 +26,7 @@ import PremiumFactories from "../blocks/static_templates/PremiumFactories";
 import RecommendedProducts from "../blocks/static_templates/RecommendedProducts";
 import TopBrands from "../blocks/static_templates/TopBrands";
 import WhatHorn from "../blocks/static_templates/WhatHorn";
+import { Helmet } from "react-helmet";
 
 // add after:
 //import TopRankingProducts from "../templates/blocks/static_templates/TopRankingProducts";
@@ -43,11 +44,8 @@ const Home = () => {
   return (
     <>
 
-      {/*set Title and description*/}
-      {/*<Helmet>
-        <title>{ t('alaedeen_title') }</title>
-        <meta name="description" content={ t('alaedeen_description') } />
-        <meta name="keywords" content={ t('alaedeen_keywords') } />
+      {/* set schema Organization for home url */}
+      <Helmet>
         <script type="application/ld+json">
           {`
             {
@@ -58,7 +56,7 @@ const Home = () => {
             }
           `}
         </script>
-      </Helmet>*/}
+      </Helmet>
 
       <SeoGenerator
         title={ t('alaedeen_title') }
