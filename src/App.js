@@ -8,7 +8,7 @@ import './templates/styles/App.less';
 import 'flag-icon-css/less/flag-icon.less';
 
 // Components:
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 // Design:
 import { ConfigProvider, Layout } from 'antd';
@@ -21,6 +21,8 @@ import TopPanel from "./templates/topPanel";
 import { Header as SiteHeader } from "./templates/header";
 import { SiteFooter } from "./templates/footer";
 import { asyncComponent } from "./functions/Helper";
+
+//import { Helmet } from "react-helmet";
 
 // Pages:
 /*import Home from "./templates/views/Home";
@@ -82,6 +84,32 @@ function App() {
 
   return (
     <ConfigProvider direction={ directionTheme }>
+
+      {/* set schema Organization for home url */}
+      {/*<Helmet>
+
+        {config.language === 'en' &&
+
+          <script type="text/javascript">
+            {`
+              !function () {
+                function t() {
+                  var t = document.createElement("script");
+                  t.type = "text/javascript", t.async = !0, localStorage.getItem("rayToken") ? t.src = "https://app.raychat.io/scripts/js/" + o + "?rid=" + localStorage.getItem("rayToken") + "&href=" + window.location.href : t.src = "https://app.raychat.io/scripts/js/" + o + "?href=" + window.location.href;
+                  var e = document.getElementsByTagName("script")[ 0 ];
+                  e.parentNode.insertBefore(t, e)
+                }
+
+                var e = document, a = window, o = "2ec01bb9-7711-48ad-8967-ae9c7c728824";
+                "complete" == e.readyState ? t() : a.attachEvent ? a.attachEvent("onload", t) : a.addEventListener("load", t, !1)
+              }();
+            `}
+          </script>
+
+        }
+
+      </Helmet>*/}
+
       <Layout className="layout">
         <Router>
           <TopPanel />
