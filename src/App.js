@@ -22,7 +22,7 @@ import { Header as SiteHeader } from "./templates/header";
 import { SiteFooter } from "./templates/footer";
 import { asyncComponent } from "./functions/Helper";
 
-//import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet";
 
 // Pages:
 /*import Home from "./templates/views/Home";
@@ -34,6 +34,9 @@ import Categories from "./templates/views/Categories";
 import Product from "./templates/views/Product";
 import Recommended from "./templates/views/Recommended";
 import ReadyToShip from "./templates/views/ReadyToShip";*/
+
+
+import { useGetAuthState } from "./contexts/user/UserContext";
 
 import "@babel/polyfill";
 
@@ -78,9 +81,15 @@ function App() {
   // get initial config:
   const { config } = useGetConfig();
 
+  const { user_data } = useGetAuthState();
+
+  //console.log(user_data)
+
   const directionTheme = config.language === 'en' ? 'ltr' : 'rtl';
 
   const { Footer, Content } = Layout;
+
+
 
   return (
     <ConfigProvider direction={ directionTheme }>
@@ -109,6 +118,87 @@ function App() {
         }
 
       </Helmet>*/}
+
+      <Helmet>
+
+        {user_data?.auth?.user_id ?
+
+          <script type="text/javascript">
+            {`
+            
+              var frame = document.getElementById("raychatFrame");
+              var rayChatDiv = document.getElementById("raychat_automessage_preview_container");
+              var rayChatBtn = document.getElementById("raychatBtn");
+ 
+              frame.parentNode.removeChild(frame);
+              rayChatDiv.parentNode.removeChild(rayChatDiv);
+              rayChatBtn.parentNode.removeChild(rayChatBtn);
+ 
+              localStorage.removeItem("rayToken");
+              localStorage.removeItem("www.raychat.io");
+              
+              !function () {
+                function t() {
+                  let t = document.createElement("script");
+                  t.type = "text/javascript",
+                    t.async = !0,
+                    localStorage.getItem("rayToken") ?
+                      t.src = "https://app.raychat.io/scripts/js/" + o + "?rid=" + localStorage.getItem("rayToken") + "&href=" + window.location.href :
+                      t.src = "https://app.raychat.io/scripts/js/" + o + "?href=" + window.location.href;
+
+                  let e = document.getElementsByTagName("script")[ 0 ];
+                  e.parentNode.insertBefore(t, e)
+                }
+
+                let e = document,
+                  a = window,
+                  o = "2ec01bb9-7711-48ad-8967-ae9c7c728824";
+                "complete" === e.readyState ? t() : a.attachEvent ? a.attachEvent("onload", t) : a.addEventListener("load", t, !1)
+              }();
+
+
+              window.addEventListener('raychat_ready', function (ets) {
+                window.Raychat.setUser({
+                  email: '${user_data?.auth?.email}',
+                  name: '${user_data?.auth?.firstname} ${user_data?.auth?.lastname}',
+                  about: '${user_data?.auth?.company}',
+                  phone: '${user_data?.auth?.phone}',
+                  avatar: '${user_data?.auth?.company_logo?.logo_path}',
+                  updateOnce: true
+                });
+              });
+            
+            `}
+          </script> :
+
+          <script type="text/javascript">
+            {`
+              !function () {
+                function t() {
+                  let t = document.createElement("script");
+                  t.type = "text/javascript",
+                    t.async = !0,
+                    localStorage.getItem("rayToken") ?
+                      t.src = "https://app.raychat.io/scripts/js/" + o + "?rid=" + localStorage.getItem("rayToken") + "&href=" + window.location.href :
+                      t.src = "https://app.raychat.io/scripts/js/" + o + "?href=" + window.location.href;
+        
+                  let e = document.getElementsByTagName("script")[ 0 ];
+                  e.parentNode.insertBefore(t, e)
+                }
+        
+                let e = document,
+                  a = window,
+                  o = "2ec01bb9-7711-48ad-8967-ae9c7c728824";
+                "complete" === e.readyState ? t() : a.attachEvent ? a.attachEvent("onload", t) : a.addEventListener("load", t, !1)
+              }();
+            `}
+          </script>
+
+        }
+
+      </Helmet>
+
+
 
       <Layout className="layout">
         <Router>
