@@ -9,13 +9,13 @@ import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 // import banner images:
-import bannerXlEn from '../../assets/images/banner-xl-en.png';
-import bannerXlFa from '../../assets/images/banner-xl-fa.png';
-import bannerXlAr from '../../assets/images/banner-xl-ar.png';
+import bannerXlEn from '../../assets/images/banner-xl-en.jpg';
+import bannerXlFa from '../../assets/images/banner-xl-fa.jpg';
+import bannerXlAr from '../../assets/images/banner-xl-ar.jpg';
 
-import bannerXsEn from '../../assets/images/banner-xs-en.png';
-import bannerXsFa from '../../assets/images/banner-xs-fa.png';
-import bannerXsAr from '../../assets/images/banner-xs-ar.png';
+import bannerXsEn from '../../assets/images/banner-xs-en.jpg';
+import bannerXsFa from '../../assets/images/banner-xs-fa.jpg';
+import bannerXsAr from '../../assets/images/banner-xs-ar.jpg';
 
 const HomeLogisticsBanner = () => {
 
