@@ -1,10 +1,7 @@
 // import Style LESS File:
 import './styles/Home.less';
 
-import { Link } from "react-router-dom";
-
 import { SeoGenerator } from "../../functions/Helper";
-import { useGetConfig } from "../../contexts/config/ConfigContext";
 
 // import Custom Hooks:
 import { useWindowSize } from '../../functions';
@@ -17,11 +14,7 @@ import { useTranslation } from "react-i18next";
 // import component blocks:
 import CategoriesMultiColumn from "../blocks/categories/CategoriesMultiColumn";
 import HomeLogisticsBanner from "../blocks/static_templates/HomeLogisticsBanner";
-import RequestForm from "../blocks/static_templates/OneRequestMultipleQuotes";
-import RequestsList from "../blocks/static_templates/RequestsList";
 import Stats from "../blocks/static_templates/Stats";
-/*import ShipProductsBanner from "../blocks/static_templates/ShipProductsBanner";
-import ReadyToShipProducts from "../blocks/static_templates/ReadyToShipProducts";*/
 import PremiumFactories from "../blocks/static_templates/PremiumFactories";
 import RecommendedProducts from "../blocks/static_templates/RecommendedProducts";
 import TopBrands from "../blocks/static_templates/TopBrands";
@@ -31,15 +24,14 @@ import { Helmet } from "react-helmet";
 // add after:
 //import TopRankingProducts from "../templates/blocks/static_templates/TopRankingProducts";
 //import RecentlyProductsView from "../templates/blocks/static_templates/RecentlyProductsView";
+//import ShipProductsBanner from "../blocks/static_templates/ShipProductsBanner";
+//import ReadyToShipProducts from "../blocks/static_templates/ReadyToShipProducts";
 
 const Home = () => {
 
   const { t } = useTranslation();
 
   const { width } = useWindowSize();
-
-  // get initial config:
-  const { config } = useGetConfig();
 
   return (
     <>
@@ -75,49 +67,26 @@ const Home = () => {
         </script>
       </SeoGenerator>
 
-      {config.language === 'fa' &&
-      <div className="fullHeightBanner">
-        <Link to="/register"/>
-        <div className="banner" />
-      </div>
-      }
-
       <div className="top--section bg-white">
-        <Row gutter={width >= 992 && 24}>
-          {/* if Screen Width >= 992 (Desktop) Show Component: */}
-          {width >= 992 &&
-          <Col span={6}>
-            <CategoriesMultiColumn />
-          </Col>
-          }
+        <Row gutter={width >= 992 && 12}>
 
-          <Col span={width >= 992 ? 12 : 24}>
-            <HomeLogisticsBanner />
-          </Col>
-
-          {/* if Screen Width < 992px (Mobile) Show Component: */}
-          {width < 992 &&
-          <Col span={24}>
-            <CategoriesMultiColumn />
-          </Col>
-          }
-
-          {/* if Screen Width >= 992px (Desktop) Show Component: */}
           {width >= 992 ?
-            <Col span={6}>
-              <Row className="h-100">
-                <Col className="topSection--requestForm" span={24}>
-                  <RequestForm />
-                </Col>
-                <Col className="topSection--requestsList" span={24}>
-                  <RequestsList />
-                </Col>
-              </Row>
-            </Col> :
-            /* if Screen Width < 992px (Mobile) Show Component: */
-            <Col span={24} className="px-3">
-              <RequestsList />
-            </Col>
+            <>
+              <Col span={6}>
+                <CategoriesMultiColumn />
+              </Col>
+              <Col span={width >= 992 ? 18 : 24}>
+                <HomeLogisticsBanner />
+              </Col>
+            </> :
+            <>
+              <Col span={width >= 992 ? 18 : 24}>
+                <HomeLogisticsBanner />
+              </Col>
+              <Col span={24}>
+                <CategoriesMultiColumn />
+              </Col>
+            </>
           }
 
         </Row>
