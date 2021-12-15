@@ -31,7 +31,7 @@ const CategoriesMultiColumn = () => {
   const { categories } = data || [];
 
   return (
-    <div className={ `${width >= 992 ? 'categoriesMultiColumn--container' : 'categoriesMultiColumn--containerXs my-4'} h-100` }>
+    <div className={ `${width >= 992 ? 'categoriesMultiColumn--container h-100' : 'categoriesMultiColumn--containerXs mt-3'}` }>
       <Row className={ isLoading ? 'h-100' : (categories?.length >= 8 && 'h-100') }>
 
         {/* if Screen Width >= 992px (Desktop) Show Component: */}

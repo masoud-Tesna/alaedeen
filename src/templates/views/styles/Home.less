@@ -6,44 +6,15 @@ html:lang(ar) {
   .top--section > .ant-row-rtl,
   .shipProductsBanner--section.product--section .ant-row-rtl {
     direction: ltr;
-    margin-top: 1rem;
-  }
-}
-
-.fullHeightBanner {
-  position: relative;
-  height: calc(100vh - 100px);
-
-  a {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
-
-  @media (min-width: @screen-md) {
-    height: calc(100vh - calc(120px + 1.2rem));
-  }
-
-  .banner {
-    height: 100%;
-    background-image: url(../../assets/images/banner-xs.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-
-    @media (min-width: @screen-md) {
-      background-image: url(../../assets/images/banner-xl.png);
-    }
   }
 }
 
 .top--section{
-  overflow-x: hidden;
+  overflow: hidden;
   padding-bottom: 2rem;
 
   @media (min-width: @screen-md) {
-    padding: 1.5rem 18px 2rem;
+    padding: 1rem 5px 2rem;
     margin-bottom: 0;
     margin-top: 0;
   }
