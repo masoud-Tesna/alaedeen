@@ -16,6 +16,7 @@ import bannerXlAr from '../../assets/images/banner-xl-ar.jpg';
 import bannerXsEn from '../../assets/images/banner-xs-en.jpg';
 import bannerXsFa from '../../assets/images/banner-xs-fa.jpg';
 import bannerXsAr from '../../assets/images/banner-xs-ar.jpg';
+import { Link } from "react-router-dom";
 
 const HomeLogisticsBanner = () => {
 
@@ -60,6 +61,8 @@ const HomeLogisticsBanner = () => {
             }
           </>
         }
+
+        <Link to="/register"/>
 
       </div>
     </div>
