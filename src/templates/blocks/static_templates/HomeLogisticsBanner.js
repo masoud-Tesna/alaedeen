@@ -2,7 +2,6 @@
 import './styles/HomeLogisticsBanner.less';
 
 // import helper functions:
-import { __ } from '../../../functions/Helper';
 import { useWindowSize } from "../../../functions";
 
 import { useTranslation } from "react-i18next";
@@ -10,10 +9,13 @@ import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 // import banner images:
-import logisticsBannerRtl from '../../assets/images/logisticsBanner-rtl.png';
-import logisticsBannerRtlXs from '../../assets/images/logisticsBannerXs-rtl.png';
-import logisticsBannerLtr from '../../assets/images/logisticsBanner-ltr.png';
-import logisticsBannerLtrXs from '../../assets/images/logisticsBannerXs-rtl.png';
+import bannerXlEn from '../../assets/images/banner-xl-en.png';
+import bannerXlFa from '../../assets/images/banner-xl-fa.png';
+import bannerXlAr from '../../assets/images/banner-xl-ar.png';
+
+import bannerXsEn from '../../assets/images/banner-xs-en.png';
+import bannerXsFa from '../../assets/images/banner-xs-fa.png';
+import bannerXsAr from '../../assets/images/banner-xs-ar.png';
 
 const HomeLogisticsBanner = () => {
 
@@ -31,17 +33,32 @@ const HomeLogisticsBanner = () => {
         {/* For Desktop ? code else for Mobile : code */}
         {width >= 992 ?
           <>
-            {(config.language === 'ar' || config.language === 'fa') ?
-              <img className="homeLogisticsBanner--img" src={ logisticsBannerRtl } alt={ t(__('Logistics Services')) }/> :
+            {config.language === 'en' &&
+              <img className="homeLogisticsBanner--img" src={ bannerXlEn } alt={ t('alaedeen_title') }/>
+            }
 
-              <img className="homeLogisticsBanner--img" src={ logisticsBannerLtr } alt={ t(__('Logistics Services')) }/>
+            {config.language === 'fa' &&
+            <img className="homeLogisticsBanner--img" src={ bannerXlFa } alt={ t('alaedeen_title') }/>
+            }
+
+            {config.language === 'ar' &&
+            <img className="homeLogisticsBanner--img" src={ bannerXlAr } alt={ t('alaedeen_title') }/>
             }
           </> :
           /*For Mobile*/
-          (config.language === 'fa' || config.language === 'ar') ?
-            <img className="homeLogisticsBanner--img" src={ logisticsBannerRtlXs } alt={ t(__('Logistics Services')) }/> :
-            
-            <img className="homeLogisticsBanner--img" src={ logisticsBannerLtrXs } alt={ t(__('Logistics Services')) }/>
+          <>
+            {config.language === 'en' &&
+            <img className="homeLogisticsBanner--img" src={ bannerXsEn } alt={ t('alaedeen_title') }/>
+            }
+
+            {config.language === 'fa' &&
+            <img className="homeLogisticsBanner--img" src={ bannerXsFa } alt={ t('alaedeen_title') }/>
+            }
+
+            {config.language === 'ar' &&
+            <img className="homeLogisticsBanner--img" src={ bannerXsAr } alt={ t('alaedeen_title') }/>
+            }
+          </>
         }
 
       </div>
