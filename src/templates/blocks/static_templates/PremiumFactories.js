@@ -81,7 +81,7 @@ const FactoriesImages = ({ images, alt, object_id, width }) => {
         />
       </div>
       <Row className="premiumFactories--factoryImages__item_2_3">
-        <Col span={24} className="premiumFactories--factoryImages__item2 mb-4 align-self-start">
+        <Col span={24} className="premiumFactories--factoryImages__item2 align-self-start">
           <ShowResponsiveImage
             imagePath={ images[ 1 ] }
             imageFolder='profiles'
