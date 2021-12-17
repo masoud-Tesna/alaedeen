@@ -1,3 +1,5 @@
+import { StrictMode } from 'react';
+
 import ReactDOM from 'react-dom';
 
 // import i18n:
@@ -31,7 +33,9 @@ const Application = () => {
       <QueryClientProvider client={queryClient}>
         <ConfigProvider>
           <UserProvider>
-            <App />
+            <StrictMode>
+              <App />
+            </StrictMode>
             <ReactQueryDevtools />
           </UserProvider>
         </ConfigProvider>
