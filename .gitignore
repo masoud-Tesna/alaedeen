@@ -18,6 +18,7 @@
 .env.test.local
 .env.production.local
 .env
+package-lock.json
 .gitignore
 
 npm-debug.log*
