@@ -165,11 +165,12 @@ const DefaultFooter = () => {
       </Col>
 
       <Col className="bg-footer footer--container__bottomSection" span={24}>
-        <Row justify={ width >= 992 ? "space-between": 'center' }>
+        {/* justify={ width >= 992 ? "space-between": 'center' }: fealan shabake ejtemayi comment shod. */}
+        <Row justify="center">
           <Col xs={{ order: 2 }} lg={{ order: 1 }} className="vv-font-size-1-4 text-white mt-3 my-lg-auto">
             © 2018 - 2021 {t(__('footer_reserved_msg'))}
           </Col>
-          <Col xs={{ order: 1 }} lg={{ order: 2 }} className="my-lg-auto">
+          {/*<Col xs={{ order: 1 }} lg={{ order: 2 }} className="my-lg-auto">
             <Space size="middle">
               <div className="footer--bottomSection-socialLink facebook">
                 <a href="#" className="">
@@ -195,7 +196,7 @@ const DefaultFooter = () => {
                 </a>
               </div>
             </Space>
-          </Col>
+          </Col>*/}
         </Row>
       </Col>
     </Row>
