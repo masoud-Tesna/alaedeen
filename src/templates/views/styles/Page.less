@@ -1,0 +1,25 @@
+// import Mixin:
+@import '../../styles/Mixins';
+
+.page--container {
+  padding: 4.5rem;
+  @media (min-width: @screen-md) {
+    padding: 4.5rem calc(10.4rem + 70px);
+  }
+
+  .page--name {
+    font-size: 2.5rem;
+  }
+
+  .page--content  {
+    margin-top: 2rem;
+
+    * {
+      font-size: 2rem;
+    }
+    a {
+      text-decoration: none !important;
+    }
+  }
+
+}
