@@ -76,6 +76,10 @@ const ReadyToShip = asyncComponent(() =>
   import('./templates/views/ReadyToShip').then(module => module.default)
 );
 
+const Page = asyncComponent(() =>
+  import('./templates/views/Page').then(module => module.default)
+);
+
 function App() {
 
   // get initial config:
@@ -198,8 +202,6 @@ function App() {
 
       </Helmet>
 
-
-
       <Layout className="layout">
         <Router>
           <TopPanel />
@@ -240,6 +242,9 @@ function App() {
 
                 {/* Ready To Ship details Route */}
                 <Route path="/ready-to-ship" element={<ReadyToShip />} />
+
+                {/* Ready To Ship details Route */}
+                <Route path="/page/:page" element={<Page />} />
               </Routes>
             </div>
           </Content>
