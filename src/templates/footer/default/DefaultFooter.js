@@ -2,7 +2,7 @@
 import './styles/DefaultFooter.less';
 
 // Ant Design Import:
-import { Row, Col, Space, Button, Tooltip } from 'antd';
+import { Row, Col, Space, Button, Tooltip, Skeleton } from 'antd';
 
 // import Custom Hooks:
 import { useGetApi, useWindowSize } from '../../../functions';
@@ -37,11 +37,15 @@ const DefaultFooter = () => {
   const { config } = useGetConfig();
 
   // get categories from API:
-  const { data } = useGetApi(`home-categories-api`, '', `allCategories`);
-  const { categories } = data || [];
+  const { isLoading: categoriesIsLoading, data: categories_data } = useGetApi(`home-categories-api`, '', `allCategories`);
+  const { categories } = categories_data || [];
 
-  // set initial link for instagram related to each language:
-  let instagramLink = config.language === 'en' ? "https://instagram.com/hornb2b" : config.language === 'fa' ? "https://instagram.com/hornb2b.ir" : config.language === 'ar' ? "https://instagram.com/horn.ar" : "https://instagram.com/hornb2b";
+  const { isLoading: pagesIsLoading, data: pages_data } = useGetApi(`footer-pages-api`, "store_id=440", `footerPage`);
+
+  const pages = pages_data || [];
+
+  // set initial link for instagram related to each language: (comment now. because commented social networks link)
+  //let instagramLink = config.language === 'en' ? "https://instagram.com/hornb2b" : config.language === 'fa' ? "https://instagram.com/hornb2b.ir" : config.language === 'ar' ? "https://instagram.com/horn.ar" : "https://instagram.com/hornb2b";
 
   // Mobile Application Coming Son Tooltip Text:
   const comingSonTooltipText = <span>{ t(__('coming son')) }</span>;
@@ -95,50 +99,33 @@ const DefaultFooter = () => {
               <Col className="text-white vv-font-size-1-7 font-weight-600 mb-4" span={24}>
                 { t(__('Tips and Help')) }
               </Col>
-              <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                <a href="https://alaedeen.com/horn/about-horn/">
-                  { t(__('About alaedeen')) }
-                </a>
-              </Col>
-              <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                <a href="https://alaedeen.com/horn/horn-blog/">
-                  { t(__('Alaedeen Blog')) }
-                </a>
-              </Col>
-              <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                { t(__('Help')) }
-              </Col>
-              <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                { t(__('Contact us')) }
-              </Col>
-            </Row>
-          </Col>
 
-          <Col>
-            <Row gutter={[0, 5]}>
-              <Col className="text-white vv-font-size-1-7 font-weight-600 mb-4" span={24}>
-                { t(__('Legal Bits')) }
-              </Col>
-              <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                <a href="https://alaedeen.com/horn/terms-of-use/">
-                  { t(__('Terms of Use')) }
-                </a>
-              </Col>
-              <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                <a href="https://alaedeen.com/horn/privacy-policy/">
-                  { t(__('Privacy Policy')) }
-                </a>
-              </Col>
-              <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                <a href="https://alaedeen.com/horn/posting-policy/">
-                  { t(__('Posting Policy')) }
-                </a>
-              </Col>
-              <Col className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                <a href="https://alaedeen.com/horn/cookie-policy/">
-                  { t(__('Cookie Policy')) }
-                </a>
-              </Col>
+              {pagesIsLoading &&
+                <>
+                  <Col span={24} className="text-47">
+                    <Skeleton.Input style={{ width: "calc(.5 * 31vw + 50%)", height: "3vh" }} active={true} size={"small"} />
+                  </Col>
+                  <Col span={24} className="text-47">
+                    <Skeleton.Input style={{ width: "calc(.5 * 37vw + 50%)", height: "3vh" }} active={true} size={"small"} />
+                  </Col>
+                  <Col span={24} className="text-47">
+                    <Skeleton.Input style={{ width: "calc(.5 * 20vw + 50%)", height: "3vh" }} active={true} size={"small"} />
+                  </Col>
+                  <Col span={24} className="text-47">
+                    <Skeleton.Input style={{ width: "calc(.5 * 35vw + 50%)", height: "3vh" }} active={true} size={"small"} />
+                  </Col>
+                </>
+              }
+
+              {pages?.map(page => {
+                return(
+                  <Col key={`footerPage_${page.page_id}`} className="text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
+                    <Link to= {`/page/${page.seo_name}`} className={!page?.description ? 'link--disable': ''}>
+                      { page.page}
+                    </Link>
+                  </Col>
+                );
+              })}
             </Row>
           </Col>
 
@@ -148,17 +135,37 @@ const DefaultFooter = () => {
                 { t(__('Explore')) }
               </Col>
 
+              { categoriesIsLoading &&
+                <>
+                  <Col span={ 24 } className="text-47">
+                    <Skeleton.Input style={ { width: "calc(.5 * 31vw + 50%)", height: "3vh" } } active={ true }
+                                    size={ "small" }/>
+                  </Col>
+                  <Col span={ 24 } className="text-47">
+                    <Skeleton.Input style={ { width: "calc(.5 * 37vw + 50%)", height: "3vh" } } active={ true }
+                                    size={ "small" }/>
+                  </Col>
+                  <Col span={ 24 } className="text-47">
+                    <Skeleton.Input style={ { width: "calc(.5 * 20vw + 50%)", height: "3vh" } } active={ true }
+                                    size={ "small" }/>
+                  </Col>
+                  <Col span={ 24 } className="text-47">
+                    <Skeleton.Input style={ { width: "calc(.5 * 35vw + 50%)", height: "3vh" } } active={ true }
+                                    size={ "small" }/>
+                  </Col>
+                </>
+              }
+
               {categories?.slice(0, 6)?.map((category) => {
                 return (
-                  <Col key={category?.category_id} className="vv-cursor-pointer text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
+                  <Col key={category?.category_id} className="text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
                     {/*link: /categories/${category?.seo_name}*/}
-                    <Link to={ `/categories/${category?.seo_name}` } className={category?.p_count === 0 ? 'categoryLink--disable': ''}>
+                    <Link to={ `/categories/${category?.seo_name}` } className={category?.p_count === 0 ? 'link--disable': ''}>
                       { category.category }
                     </Link>
                   </Col>
                 );
               })}
-
             </Row>
           </Col>
         </Row>
