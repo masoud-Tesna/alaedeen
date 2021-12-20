@@ -341,7 +341,7 @@ const Categories = () => {
                                   {splitSubCategory?.map(subCategory => {
                                     return(
                                       <Col key={`subCategoriesSlider_${subCategory?.category_id}`} span={24} className="subCategoriesSlider--item">
-                                        <Link to={ `/categories/${subCategory?.seo_name}` } className={subCategory?.p_count === 0 ? 'categoryLink--disable': ''}>{ subCategory?.category }</Link>
+                                        <Link to={ `/categories/${subCategory?.seo_name}` } className={subCategory?.p_count === 0 ? 'link--disable': ''}>{ subCategory?.category }</Link>
                                       </Col>
                                     )
                                   })}

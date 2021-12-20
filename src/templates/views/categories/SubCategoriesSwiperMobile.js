@@ -31,7 +31,7 @@ const SubCategoriesSwiperMobile = ({ subCategories, category_name }) => {
               return(
                 <SwiperSlide key={ `subCategoriesSwiperMobile_${subCategory?.category_id}` } style={{ width: 80 }}>
                   <div>
-                    <Row className={`pb-4 mb-2 ${subCategory?.p_count === 0 ? 'categoryLink--disable': ''}`}>
+                    <Row className={`pb-4 mb-2 ${subCategory?.p_count === 0 ? 'link--disable': ''}`}>
                       <Col span={24} className="text-center my-2">
                         <div className="subCategoriesSwiper--image">
                           <ShowResponsiveImage
@@ -52,7 +52,7 @@ const SubCategoriesSwiperMobile = ({ subCategories, category_name }) => {
                         {subCategory?.category}
                       </Col>
                     </Row>
-                    <Link to={ `/categories/${subCategory?.seo_name}` } className={`subCategoriesRow--link ${subCategory?.p_count === 0 ? 'categoryLink--disable': ''}`}/>
+                    <Link to={ `/categories/${subCategory?.seo_name}` } className={`subCategoriesRow--link ${subCategory?.p_count === 0 ? 'link--disable': ''}`}/>
                   </div>
                 </SwiperSlide>
               )

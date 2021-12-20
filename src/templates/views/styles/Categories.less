@@ -23,11 +23,6 @@
         &:hover {
           color: @primary-color;
         }
-
-        &.categoryLink--disable {
-          pointer-events: none;
-          color: lighten(#474747, 40%);
-        }
       }
     }
   }
@@ -40,9 +35,7 @@
 
   .subCategoriesSwiper {
 
-    .categoryLink--disable {
-      pointer-events: none;
-
+    .link--disable {
       .subCategoriesSwiper--title {
         color: lighten(#474747, 40%) !important;
       }
@@ -89,10 +82,6 @@
       .swiper-scrollbar {
         opacity: 1 !important;
       }
-    }
-
-    a.categoryLink--disable {
-      pointer-events: none;
     }
   }
 

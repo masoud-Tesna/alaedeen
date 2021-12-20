@@ -31,7 +31,7 @@ const CategoriesContent = () => {
           {categories?.map((category) => {
             return(
               <Menu.Item key={ category?.category_id }>
-                <Link to={ `/categories/${category?.seo_name}` } className={ `d-block ${category?.p_count === 0 ? 'categoryLink--disable': ''}` }>{ category?.category }</Link>
+                <Link to={ `/categories/${category?.seo_name}` } className={ `d-block ${category?.p_count === 0 ? 'link--disable': ''}` }>{ category?.category }</Link>
               </Menu.Item>
             )
           })}
