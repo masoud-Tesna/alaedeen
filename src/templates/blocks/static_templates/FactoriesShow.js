@@ -313,7 +313,7 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
                  className="bg-white rounded-10 p-3 border border-70 factories--item byParam">
               <Row gutter={ 16 } className="h-100">
                 <Col flex='400px' className="d-none d-lg-block h-100 factories--imageContainer">
-                  <a className="d-block w-100 h-100"
+                  <a className="d-block w-100 h-100 link--disable"
                      href={ `https://store.alaedeen.com/?store_id=${ factory?.company_id }` }>
                     <ShowResponsiveImage
                       imagePath={ factory?.images[0] }
@@ -331,7 +331,7 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
                     <Col className="factories--data__topSection" span={ 24 }>
                       <Row className="d-none d-lg-flex" justify={ "space-between" }>
                         <Col span={ 14 }>
-                          <a className="d-block w-100 h-100"
+                          <a className="d-block w-100 h-100 link--disable"
                              href={ `https://store.alaedeen.com/?store_id=${ factory.company_id }` }>
                             <Row gutter={ 16 }>
                               <Col className="factories--iconContainer">
@@ -371,7 +371,7 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
 
                       <Row className="d-flex d-lg-none">
                         <Col flex='69px' className="factories--iconContainer">
-                          <a className="d-block w-100 h-100"
+                          <a className="d-block w-100 h-100 link--disable"
                              href={ `https://store.alaedeen.com/?store_id=${ factory?.company_id }` }>
                             <FactoriesLogo
                               logo={ factory?.company_introduction?.fields?.company_logo }
@@ -386,7 +386,7 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
                             <Col className="" span={ 24 }>
                               <Row justify={ "space-between" }>
                                 <Col span={ 15 }>
-                                  <a className="d-block w-100 h-100 vv-font-size-1-4 text-black font-weight-600"
+                                  <a className="d-block w-100 h-100 vv-font-size-1-4 text-black font-weight-600 link--disable"
                                      href={ `https://store.alaedeen.com/?store_id=${ factory.company_id }` }>
                                     { factory.general.company }
                                   </a>
@@ -399,7 +399,7 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
                               </Row>
                             </Col>
                             <Col className="" span={ 24 }>
-                              <a className="d-block w-100 h-100"
+                              <a className="d-block w-100 h-100 link--disable"
                                  href={ `https://store.alaedeen.com/?store_id=${ factory.company_id }` }>
                                 <Row>
                                   <Col flex='47px' className="">
@@ -415,12 +415,12 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
                     </Col>
 
                     <Col className="factories--data__middleSection" span={ 24 }>
-                      <a className="d-block w-100 h-100 vv-font-size-1-4 text-black font-weight-600"
+                      <a className="d-block w-100 h-100 vv-font-size-1-4 font-weight-600 link--disable"
                          href={ `https://store.alaedeen.com/?store_id=${ factory.company_id }` }>
                         <Row gutter={ 16 }>
                           <Col className="d-none d-lg-block aboutUsText" span={ 6 }>
                             <TextTruncate
-                              className="vv-font-size-1-6 font-weight-600"
+                              className="vv-font-size-1-6 font-weight-600 text-black"
                               line={ 6 }
                               element="div"
                               truncateText=" …"
@@ -436,7 +436,7 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
                       </a>
                     </Col>
                     <Col className="d-none d-lg-block factories--data__bottomSection" span={ 24 }>
-                      <a className="d-block w-100 h-100"
+                      <a className="d-block w-100 h-100 link--disable"
                          href={ `https://store.alaedeen.com/?store_id=${ factory.company_id }` }>
                         <Row gutter={ 16 } className="factories--informationContainer">
                           <GroupFields groupFields={ factoryFields } width={ width }/>
@@ -502,7 +502,7 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
             <Col span={24} key = { factory.company_id } className="bg-white rounded-10 p-3 border border-70 factories--item">
               <Row gutter={16} className="h-100">
                 <Col flex='400px' className="d-none d-lg-block h-100 factories--imageContainer">
-                  <a className="d-block w-100 h-100" href={`https://store.alaedeen.com/?store_id=${factory.company_id}`}>
+                  <a className="d-block w-100 h-100 link--disable" href={`https://store.alaedeen.com/?store_id=${factory.company_id}`}>
                     <ShowResponsiveImage
                       imagePath={ factory?.images[0] }
                       imageFolder='profiles'
@@ -519,7 +519,7 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
                     <Col className="factories--data__topSection" span={24}>
                       <Row className="d-none d-lg-flex" justify={"space-between"}>
                         <Col span={14}>
-                          <a className="d-block w-100 h-100" href={`https://store.alaedeen.com/?store_id=${factory.company_id}`}>
+                          <a className="d-block w-100 h-100 link--disable" href={`https://store.alaedeen.com/?store_id=${factory.company_id}`}>
                             <Row gutter={16}>
                               <Col className="factories--iconContainer">
                                 <FactoriesLogo
@@ -552,7 +552,7 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
 
                       <Row className="d-flex d-lg-none">
                         <Col flex='69px' className="factories--iconContainer">
-                          <a className="d-block w-100 h-100" href={`https://store.alaedeen.com/?store_id=${factory.company_id}`}>
+                          <a className="d-block w-100 h-100 link--disable" href={`https://store.alaedeen.com/?store_id=${factory.company_id}`}>
                             <FactoriesLogo
                               logo={ factory?.company_introduction?.fields?.company_logo }
                               imageAlt={ factory?.general?.company }
@@ -566,7 +566,7 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
                             <Col className="" span={24}>
                               <Row justify={"space-between"}>
                                 <Col span={15}>
-                                  <a className="d-block w-100 h-100 vv-font-size-1-4 text-black font-weight-600" href={`https://store.alaedeen.com/?store_id=${factory.company_id}`}>
+                                  <a className="d-block w-100 h-100 vv-font-size-1-4 text-black font-weight-600 link--disable" href={`https://store.alaedeen.com/?store_id=${factory.company_id}`}>
                                     { factory.general.company }
                                   </a>
                                 </Col>
@@ -576,7 +576,7 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
                               </Row>
                             </Col>
                             <Col className="" span={24}>
-                              <a className="d-block w-100 h-100" href={`https://store.alaedeen.com/?store_id=${factory.company_id}`}>
+                              <a className="d-block w-100 h-100 link--disable" href={`https://store.alaedeen.com/?store_id=${factory.company_id}`}>
                                 <Row>
                                   <Col flex='47px' className="">
                                     <img src={ verifiedIcon } alt="verified"/>
@@ -591,11 +591,11 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
                     </Col>
 
                     <Col className="factories--data__middleSection" span={24}>
-                      <a className="d-block w-100 h-100 vv-font-size-1-4 text-black font-weight-600" href={`https://store.alaedeen.com/?store_id=${factory?.company_id}`}>
+                      <a className="d-block w-100 h-100 vv-font-size-1-4 font-weight-600 link--disable" href={`https://store.alaedeen.com/?store_id=${factory?.company_id}`}>
                         <Row gutter={16}>
                           <Col className="d-none d-lg-block aboutUsText" span={6}>
                             <TextTruncate
-                              className="vv-font-size-1-6 font-weight-600"
+                              className="vv-font-size-1-6 font-weight-600 text-black"
                               line={6}
                               element="div"
                               truncateText=" …"
@@ -611,7 +611,7 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
                       </a>
                     </Col>
                     <Col className="d-none d-lg-block factories--data__bottomSection" span={24}>
-                      <a className="d-block w-100 h-100" href={`https://store.alaedeen.com/?store_id=${factory.company_id}`}>
+                      <a className="d-block w-100 h-100 link--disable" href={`https://store.alaedeen.com/?store_id=${factory.company_id}`}>
                         <Row gutter={16} className="factories--informationContainer">
                           <GroupFields groupFields = { factoryFields } width={width} />
                         </Row>
@@ -683,7 +683,7 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
             <Col span={24} key = { factory?.company_id } className="bg-white rounded-10 p-3 border border-70 factories--item">
               <Row gutter={16} className="h-100">
                 <Col flex='400px' className="d-none d-lg-block h-100 factories--imageContainer">
-                  <a className="d-block w-100 h-100" href={`https://store.alaedeen.com/?store_id=${factory?.company_id}`}>
+                  <a className="d-block w-100 h-100 link--disable" href={`https://store.alaedeen.com/?store_id=${factory?.company_id}`}>
                     <ShowResponsiveImage
                       imagePath={ factory?.images[0] }
                       imageFolder='profiles'
@@ -700,7 +700,7 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
                     <Col className="factories--data__topSection" span={24}>
                       <Row className="d-none d-lg-flex" justify={"space-between"}>
                         <Col span={14}>
-                          <a className="d-block w-100 h-100" href={`https://store.alaedeen.com/?store_id=${factory?.company_id}`}>
+                          <a className="d-block w-100 h-100 link--disable" href={`https://store.alaedeen.com/?store_id=${factory?.company_id}`}>
                             <Row gutter={16}>
                               <Col className="factories--iconContainer">
                                 <FactoriesLogo
@@ -733,7 +733,7 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
 
                       <Row className="d-flex d-lg-none">
                         <Col flex='69px' className="factories--iconContainer">
-                          <a className="d-block w-100 h-100" href={`https://store.alaedeen.com/?store_id=${factory?.company_id}`}>
+                          <a className="d-block w-100 h-100 link--disable" href={`https://store.alaedeen.com/?store_id=${factory?.company_id}`}>
                             <FactoriesLogo
                               logo={ factory?.company_introduction?.fields?.company_logo }
                               imageAlt={ factory?.general?.company }
@@ -747,7 +747,7 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
                             <Col className="" span={24}>
                               <Row justify={"space-between"}>
                                 <Col span={15}>
-                                  <a className="d-block w-100 h-100 vv-font-size-1-4 text-black font-weight-600" href={`https://store.alaedeen.com/?store_id=${factory.company_id}`}>
+                                  <a className="d-block w-100 h-100 vv-font-size-1-4 text-black font-weight-600 link--disable" href={`https://store.alaedeen.com/?store_id=${factory.company_id}`}>
                                     { factory.general.company }
                                   </a>
                                 </Col>
@@ -757,7 +757,7 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
                               </Row>
                             </Col>
                             <Col className="" span={24}>
-                              <a className="d-block w-100 h-100" href={`https://store.alaedeen.com/?store_id=${factory.company_id}`}>
+                              <a className="d-block w-100 h-100 link--disable" href={`https://store.alaedeen.com/?store_id=${factory.company_id}`}>
                                 <Row>
                                   <Col flex='47px' className="">
                                     <img src={ verifiedIcon } alt="verified"/>
@@ -772,11 +772,11 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
                     </Col>
 
                     <Col className="factories--data__middleSection" span={24}>
-                      <a className="d-block w-100 h-100 vv-font-size-1-4 text-black font-weight-600" href={`https://store.alaedeen.com/?store_id=${factory.company_id}`}>
+                      <a className="d-block w-100 h-100 vv-font-size-1-4 font-weight-600 link--disable" href={`https://store.alaedeen.com/?store_id=${factory.company_id}`}>
                         <Row gutter={16}>
                           <Col className="d-none d-lg-block aboutUsText" span={6}>
                             <TextTruncate
-                              className="vv-font-size-1-6 font-weight-600"
+                              className="vv-font-size-1-6 font-weight-600 text-black"
                               line={6}
                               element="div"
                               truncateText=" …"
@@ -792,7 +792,7 @@ const FactoriesShow = ({ factories, isLoading, factory_id }) => {
                       </a>
                     </Col>
                     <Col className="d-none d-lg-block factories--data__bottomSection" span={24}>
-                      <a className="d-block w-100 h-100" href={`https://store.alaedeen.com/?store_id=${factory.company_id}`}>
+                      <a className="d-block w-100 h-100 link--disable" href={`https://store.alaedeen.com/?store_id=${factory.company_id}`}>
                         <Row gutter={16} className="factories--informationContainer">
                           <GroupFields groupFields = { factoryFields } width={width} />
                         </Row>
