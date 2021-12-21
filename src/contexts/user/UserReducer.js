@@ -10,45 +10,27 @@ export function UserReducer(state, action) {
   switch (action.type) {
     case AUTH_SIGN_IN:
       if (action.update_expiration) {
-        // set user_login cookie:
-        Cookie.set("user_login", action.user_login,
+        // add _token cookie:
+        Cookie.set("_token", action.token,
           {
             path: "/",
             domain: ".alaedeen.com",
             expires: fn_set_date_day(1)
           }
-        );
-        // set user_password cookie:
-        Cookie.set("user_password", action.user_password,
-          {
-            path: "/",
-            domain: ".alaedeen.com",
-            expires: fn_set_date_day(1)
-          }
-        );
+        )
       }
       return {
-        ...state, auth: action.user_data, load: false
+        ...state, auth: action?.user_data, load: false
       };
     case AUTH_LOGOUT:
-      // remove remember_me cookie:
-      Cookie.remove("remember_me",
+
+      // remove _token cookie:
+      Cookie.remove("_token",
         {
           path: "/",
           domain: ".alaedeen.com"
         });
-      // remove user_login cookie:
-      Cookie.remove("user_login",
-        {
-          path: "/",
-          domain: ".alaedeen.com"
-        });
-      // remove user_password cookie:
-      Cookie.remove("user_password",
-        {
-          path: "/",
-          domain: ".alaedeen.com"
-        });
+
       return {
         ...state, auth: [], load: false
       };
@@ -61,22 +43,8 @@ export function UserReducer(state, action) {
         ...state, load: false
       };
     case CHECK_REMEMBER_ME:
-      // set remember_me cookie:
-      Cookie.set("remember_me", "true",
-        {
-          path: "/",
-          domain: ".alaedeen.com"
-        }
-      );
-      // set user_login cookie:
-      Cookie.set("user_login", action.user_login,
-        {
-          path: "/",
-          domain: ".alaedeen.com"
-        }
-      );
-      // set user_password cookie:
-      Cookie.set("user_password", action.user_password,
+      // set _token cookie:
+      Cookie.set("_token", action.token,
         {
           path: "/",
           domain: ".alaedeen.com"

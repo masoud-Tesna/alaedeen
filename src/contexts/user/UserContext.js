@@ -1,5 +1,9 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import axios from "axios";
+import { useMutation } from "react-query";
+
+// import Cookies Package:
+import { Cookies } from "react-cookie";
 
 // import use reducer:
 import { UserReducer } from './UserReducer';
@@ -15,9 +19,6 @@ import LoaderSpinner from '../../templates/common/LoadSpinner';
 
 // import config context:
 import { useGetConfig } from "../config/ConfigContext";
-
-// import Cookies Package:
-import { Cookies } from "react-cookie";
 
 // User Context Create:
 const userContext = createContext();
@@ -37,24 +38,30 @@ export function UserProvider ({ children }) {
     UserInitialState
   );
 
-  const userLoginCookie = Cookie.get('user_login');
-  const userPasswordCookie = Cookie.get('user_password');
+  const token = Cookie.get('_token');
 
-  useEffect(() => {
+  // function for sign in by token:
+  const signInByToken = async () => {
+    const { data } = await axios.post(`https://alaedeen.com/horn/login-api/?lang_code=${config.language}`, { token: token });
+    return data;
+  };
 
-    if (userLoginCookie && userPasswordCookie && config.language) {
+  const { mutate } = useMutation(signInByToken, {
+    onSuccess: res => {
+      dispatch(signInAction(res?.auth, token, true));
+    }
+  });
+
+  useEffect((() => {
+
+    if (token) {
       dispatch(checkSignInLoadingAction());
-
-      signIn(userLoginCookie, userPasswordCookie, config.language)
-        .then(res => {
-          dispatch(signInAction(res?.data?.auth, userLoginCookie, userPasswordCookie, false));
-        });
-
-    }else {
+      mutate();
+    } else {
       dispatch(signInLoadingFalseAction());
     }
 
-  }, [config.language, userLoginCookie, userPasswordCookie]);
+  }), [mutate, token]);
 
   return (
     <userContext.Provider value={{ auth, dispatch }}>
@@ -68,19 +75,14 @@ export function UserProvider ({ children }) {
   );
 }
 
-// function for sign in:
-export async function signIn(user_login, password, language) {
-  return await axios.post(`https://alaedeen.com/horn/login-api/?lang_code=${language}`, { user_login: user_login, password: password });
-}
-
-async function signOutAxios() {
+async function signOutApi() {
   return await axios.get(`https://alaedeen.com/horn/logout-api/`);
 }
 
 export async function logout(dispatch) {
   dispatch(checkSignInLoadingAction());
 
-  signOutAxios()
+  signOutApi()
     .then(() => {
       dispatch(logOutAction());
     });
