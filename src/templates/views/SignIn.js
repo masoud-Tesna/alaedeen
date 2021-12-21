@@ -22,7 +22,7 @@ import { signInAction, useGetAuthState, useDispatchAuthState, checkSignInLoading
 import { useGetConfig } from "../../contexts/config/ConfigContext";
 
 import { signInLoadingFalseAction } from "../../contexts/user/UserActionCreators";
-import axios from "axios";
+
 import { useMutation } from "react-query";
 import { signInApi } from "../../functions";
 
@@ -59,7 +59,6 @@ const SignIn = () => {
       }
       else if (res?.auth?.status) {
         AuthDispatch(signInAction(res.auth, res.token));
-        //window.location.href = "/";
       }
     }
   });
@@ -156,7 +155,7 @@ const SignIn = () => {
                   </Form.Item>
                 </Col>
 
-                <Col span={24}>
+                {/*<Col span={24}>
                   <Row justify={"space-between"}>
                     <Col>
                       <Form.Item
@@ -182,7 +181,7 @@ const SignIn = () => {
                       </Form.Item>
                     </Col>
                   </Row>
-                </Col>
+                </Col>*/}
 
                 <Col span={24}>
                   <Form.Item
