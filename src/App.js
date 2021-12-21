@@ -125,22 +125,8 @@ function App() {
 
       <Helmet>
 
-        {user_data?.auth?.user_id ?
-
-          <script type="text/javascript">
-            {`
-            
-              var frame = document.getElementById("raychatFrame");
-              var rayChatDiv = document.getElementById("raychat_automessage_preview_container");
-              var rayChatBtn = document.getElementById("raychatBtn");
- 
-              frame.parentNode.removeChild(frame);
-              rayChatDiv.parentNode.removeChild(rayChatDiv);
-              rayChatBtn.parentNode.removeChild(rayChatBtn);
- 
-              localStorage.removeItem("rayToken");
-              localStorage.removeItem("www.raychat.io");
-              
+        <script type="text/javascript">
+          {`
               !function () {
                 function t() {
                   let t = document.createElement("script");
@@ -149,19 +135,25 @@ function App() {
                     localStorage.getItem("rayToken") ?
                       t.src = "https://app.raychat.io/scripts/js/" + o + "?rid=" + localStorage.getItem("rayToken") + "&href=" + window.location.href :
                       t.src = "https://app.raychat.io/scripts/js/" + o + "?href=" + window.location.href;
-
+        
                   let e = document.getElementsByTagName("script")[ 0 ];
                   e.parentNode.insertBefore(t, e)
                 }
-
+        
                 let e = document,
                   a = window,
                   o = "2ec01bb9-7711-48ad-8967-ae9c7c728824";
                 "complete" === e.readyState ? t() : a.attachEvent ? a.attachEvent("onload", t) : a.addEventListener("load", t, !1)
               }();
+            `}
+        </script>
 
+        {user_data?.auth?.user_id &&
 
-              window.addEventListener('raychat_ready', function (ets) {
+          <script type="text/javascript">
+            {`
+            
+            window.addEventListener('raychat_ready', function (ets) {
                 window.Raychat.setUser({
                   email: '${user_data?.auth?.email}',
                   name: '${user_data?.auth?.firstname} ${user_data?.auth?.lastname}',
@@ -172,29 +164,8 @@ function App() {
                 });
               });
             
-            `}
-          </script> :
-
-          <script type="text/javascript">
-            {`
-              !function () {
-                function t() {
-                  let t = document.createElement("script");
-                  t.type = "text/javascript",
-                    t.async = !0,
-                    localStorage.getItem("rayToken") ?
-                      t.src = "https://app.raychat.io/scripts/js/" + o + "?rid=" + localStorage.getItem("rayToken") + "&href=" + window.location.href :
-                      t.src = "https://app.raychat.io/scripts/js/" + o + "?href=" + window.location.href;
-        
-                  let e = document.getElementsByTagName("script")[ 0 ];
-                  e.parentNode.insertBefore(t, e)
-                }
-        
-                let e = document,
-                  a = window,
-                  o = "2ec01bb9-7711-48ad-8967-ae9c7c728824";
-                "complete" === e.readyState ? t() : a.attachEvent ? a.attachEvent("onload", t) : a.addEventListener("load", t, !1)
-              }();
+             
+            
             `}
           </script>
 
