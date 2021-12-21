@@ -19,7 +19,7 @@ const Header = () => {
   }
 
   // if get default Top panel:
-  return <DefaultHeader />
+  return <DefaultHeader pathName={pathName} />
 };
 
 export { Header };

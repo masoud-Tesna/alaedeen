@@ -27,7 +27,7 @@ import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 // import OneRequestMultipleQuotesModal component for show send request form modal:
 /*import OneRequestMultipleQuotesModal from "../../blocks/static_templates/OneRequestMultipleQuotesModal";*/
 
-const DefaultHeader = () => {
+const DefaultHeader = ({ pathName }) => {
 
   // get initial config:
   const { config } = useGetConfig();
@@ -56,7 +56,7 @@ const DefaultHeader = () => {
     <Menu className="header--userMenu">
       <Menu.Item>
         <span className="font-weight-bold">
-          {` ${user_data.auth.firstname} ${user_data.auth.lastname} `}
+          {` ${user_data?.auth.firstname} ${user_data?.auth.lastname} `}
         </span>
       </Menu.Item>
 
@@ -256,7 +256,9 @@ const DefaultHeader = () => {
             </Col>
 
             <Col span={12} className="my-auto header--left__searchBox">
+              {pathName !== 'page' &&
               <Input placeholder={ t(__('What are you looking for...')) } suffix={searchTextSuffix(t(__('search')))} onChange={e => {setSearchValue(e.target.value)}} onPressEnter={() => { handleSubmitSearch() }} />
+              }
             </Col>
 
             <Col span={6} className="my-auto">
@@ -332,9 +334,12 @@ const DefaultHeader = () => {
             </Col>
           </Row>
         </Col>
-        <Col span={24} className="d-lg-none header--mobile__searchBox">
-          <Input placeholder={ t(__('What are you looking for...')) } prefix={searchTextPrefix} onChange={e => {setSearchValue(e.target.value)}} onPressEnter={() => { handleSubmitSearch() }} />
-        </Col>
+
+        {pathName !== 'page' &&
+          <Col span={24} className="d-lg-none header--mobile__searchBox">
+            <Input placeholder={ t(__('What are you looking for...')) } prefix={searchTextPrefix} onChange={e => {setSearchValue(e.target.value)}} onPressEnter={() => { handleSubmitSearch() }} />
+          </Col>
+        }
       </Row>
       {/*<OneRequestMultipleQuotesModal
         isRequestModalVisible = {isRequestModalVisible}
