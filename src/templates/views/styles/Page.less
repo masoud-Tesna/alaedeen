@@ -2,20 +2,26 @@
 @import '../../styles/Mixins';
 
 .page--container {
-  padding: 4.5rem;
+  padding: 0;
   @media (min-width: @screen-md) {
     padding: 4.5rem calc(10.4rem + 70px);
   }
 
   .page--name {
-    font-size: 2.5rem;
+    font-size: 1.7rem;
+    @media (min-width: @screen-md) {
+      font-size: 2.5rem;
+    }
   }
 
   .page--content  {
     margin-top: 2rem;
 
     * {
-      font-size: 2rem;
+      font-size: 1.5rem;
+      @media (min-width: @screen-md) {
+        font-size: 2rem;
+      }
     }
     a {
       text-decoration: none !important;
