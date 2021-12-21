@@ -79,6 +79,14 @@ export function useGetApi(mode, params, key, options) {
   });
 }
 
+// function for sign in by email and password:
+export const signInApi = async (values) => {
+
+  const { data } = await axios.post(`https://alaedeen.com/horn/login-api/?lang_code=${values.language}`, { user_login: values.user_login, password: values.password });
+  return data;
+
+};
+
 export function useResizeImage({ image_path, image_folder, image_width, image_height, useQueryKey }) {
 
   // async function for get API:
