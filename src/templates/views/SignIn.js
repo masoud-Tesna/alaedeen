@@ -17,16 +17,20 @@ import { useTranslation } from "react-i18next";
 import googlePic from '../assets/images/google.png';
 
 // import language context:
-import { signInAction, useGetAuthState, useDispatchAuthState, signIn, checkSignInLoadingAction, checkRememberAction } from '../../contexts/user/UserContext';
+import { signInAction, useGetAuthState, useDispatchAuthState, checkSignInLoadingAction } from '../../contexts/user/UserContext';
 
 import { useGetConfig } from "../../contexts/config/ConfigContext";
 
 import { signInLoadingFalseAction } from "../../contexts/user/UserActionCreators";
+import axios from "axios";
+import { useMutation } from "react-query";
+import { signInApi } from "../../functions";
 
 const SignIn = () => {
 
   // initial State for Error Handle:
   const [signInIncorrect, setSignInIncorrect] = useState(null);
+  const [isLogin, setIsLogin] = useState(true);
 
   // get initial config:
   const { config } = useGetConfig();
@@ -39,34 +43,40 @@ const SignIn = () => {
   const { user_data } = useGetAuthState();
   const { AuthDispatch } = useDispatchAuthState();
 
-  if (user_data.auth.user_id) {
+  if (isLogin && user_data.auth.user_id) {
     navigate('/');
   }
 
+  const { mutate } = useMutation(signInApi, {
+    onSuccess: res => {
+      if (res === 'email_incorrect') {
+        setSignInIncorrect('email_incorrect');
+        AuthDispatch(signInLoadingFalseAction());
+      }
+      else if (res === 'password_incorrect') {
+        setSignInIncorrect('password_incorrect');
+        AuthDispatch(signInLoadingFalseAction());
+      }
+      else if (res?.auth?.status) {
+        AuthDispatch(signInAction(res.auth, res.token));
+        //window.location.href = "/";
+      }
+    }
+  });
+
   const signInHandle = values => {
+    setIsLogin(false);
     AuthDispatch(checkSignInLoadingAction());
-    signIn(values.user_login, values.password, config.language)
-      .then(res => {
-        if (res?.data === 'email_incorrect') {
-          setSignInIncorrect('email_incorrect');
-          AuthDispatch(signInLoadingFalseAction());
-        }
-        else if (res?.data === 'password_incorrect') {
-          setSignInIncorrect('password_incorrect');
-          AuthDispatch(signInLoadingFalseAction());
-        }
-        else if (res?.data?.auth?.status) {
-          if (values.remember_me) {
-            AuthDispatch(signInAction(res.data.auth, values.user_login, values.password, false));
-            AuthDispatch(checkRememberAction(values.user_login, values.password));
-            navigate('/');
-          }
-          else {
-            AuthDispatch(signInAction(res.data.auth, values.user_login, values.password));
-            navigate('/');
-          }
-        }
-      });
+    const loginData = {
+      user_login: values.user_login,
+      password: values.password,
+      language: config.language
+    }
+    mutate(loginData, {
+      onSuccess: res => {
+        if (res?.auth?.status ) window.location.href = "/";
+      }
+    });
   }
 
   // handle sign in error:

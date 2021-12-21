@@ -10,22 +10,23 @@ import googlePic from "../assets/images/google.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
-  signIn,
   signInAction,
   useDispatchAuthState,
   useGetAuthState
 } from "../../contexts/user/UserContext";
 
-import { useGetApi, useWindowSize } from "../../functions";
+import { signInApi, useGetApi, useWindowSize } from "../../functions";
 import axios from "axios";
 import LoaderSpinner from "../common/LoadSpinner";
-import { changeLanguageAction, useConfigDispatch, useGetConfig } from "../../contexts/config/ConfigContext";
+import { useConfigDispatch, useGetConfig } from "../../contexts/config/ConfigContext";
 
 // import alaedeen character:
 import alaedeenChar from '../assets/images/alaedeen-char.svg';
 import bronzePlanImg from '../assets/images/bronze-plan.png';
 import goldPlanImg from '../assets/images/gold-plan.png';
 import silverPlanImg from '../assets/images/silver-plan.png';
+import { useMutation } from "react-query";
+import { signInLoadingFalseAction } from "../../contexts/user/UserActionCreators";
 
 const Register = () => {
 
@@ -78,6 +79,14 @@ const Register = () => {
     return await axios.post(`https://alaedeen.com/horn/register-api/?lang_code=${config.language}`, { mode: 'paying', plan: paying_plan, user_id: user_data?.auth?.user_id });
   }
 
+  const { mutate } = useMutation(signInApi, {
+    onSuccess: res => {
+      if (res?.auth?.status) {
+        AuthDispatch(signInAction(res.auth, res.token));
+      }
+    }
+  });
+
   const onRegisterFormHandle = values => {
     // enable loading spinner:
     setRegisterIsLoading(true);
@@ -108,15 +117,15 @@ const Register = () => {
           }
           else {
 
-            signIn(values.email, values.password1, config.language)
-              .then(res => {
-                if (res?.data?.auth?.status) {
-                  AuthDispatch(signInAction(res.data.auth, values.user_login, values.password));
-                }
-              })
-              .then(() => {
-                setRegisterIsLoading(false);
+            const loginData = {
+              user_login: values.email,
+              password: values.password1,
+              language: config.language
+            }
 
+            mutate(loginData, {
+              onSuccess: res => {
+                setRegisterIsLoading(false);
                 message.success({
                   content: "ثبت نام شما با موفقیت انجام شد.",
                   duration: 2,
@@ -125,11 +134,10 @@ const Register = () => {
                   (registerType === 'buyer' || width < 992) ?
                     navigate('/') :
                     setCurrentStep(1);
-                })
-              })
-              .then(() => {
+                });
                 setIsSignedIn(true);
-              });
+              }
+            });
 
           }
 
