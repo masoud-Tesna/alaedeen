@@ -48,7 +48,7 @@ const DefaultFooter = () => {
   //let instagramLink = config.language === 'en' ? "https://instagram.com/hornb2b" : config.language === 'fa' ? "https://instagram.com/hornb2b.ir" : config.language === 'ar' ? "https://instagram.com/horn.ar" : "https://instagram.com/hornb2b";
 
   // Mobile Application Coming Son Tooltip Text:
-  const comingSonTooltipText = <span>{ t(__('coming son')) }</span>;
+  //const comingSonTooltipText = <span>{ t(__('coming son')) }</span>;
 
   return (
     <Row className="footer--container">
@@ -120,7 +120,7 @@ const DefaultFooter = () => {
               {pages?.map(page => {
                 return(
                   <Col key={`footerPage_${page.page_id}`} className="text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
-                    <Link to= {`/page/${page.seo_name}`} className={!page?.description ? 'link--disable': ''}>
+                    <Link to= {`/page/${page.seo_name}`} className={(!page?.description && page?.page_id !== "30") ? 'link--disable': ''}>
                       { page.page}
                     </Link>
                   </Col>

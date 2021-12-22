@@ -11,14 +11,10 @@ import { SeoGenerator } from "../../functions/Helper";
 
 
 const Page = () => {
-  let { page: pageSeoName } = useParams();
+  const { page: pageSeoName } = useParams();
 
-  const { isLoading, data } = useGetApi(`page-api`, `page_seo=${pageSeoName}`, `storePage_${pageSeoName}`);
+  const { isLoading, data } = useGetApi(`page-api`, `page_seo=${pageSeoName}`, `page_${pageSeoName}`);
   const page = data || [];
-
-  useEffect(() => {
-    window.scroll({ top: 0, behavior: 'smooth' });
-  }, [pageSeoName]);
 
   return (
     <Row className={`page--container`}>
@@ -34,14 +30,12 @@ const Page = () => {
           <Skeleton  paragraph={{ rows: 25 }}  active />
         }
         {page?.page &&
-          <>
-            <Row>
-              <Col span={24} className={`page--name`}>
-                {page.page}
-              </Col>
-              <Col className="page--content" dangerouslySetInnerHTML={ {__html: page.description} } />
-            </Row>
-          </>
+          <Row>
+            <Col span={24} className={`page--name`}>
+              {page.page}
+            </Col>
+            <Col className="page--content" dangerouslySetInnerHTML={ {__html: page.description} } />
+          </Row>
         }
 
       </Col>
