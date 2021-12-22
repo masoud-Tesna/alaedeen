@@ -2,7 +2,6 @@ import { Component } from "react";
 
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { useGetConfig } from "../contexts/config/ConfigContext";
 
 export function fn_stripHtml(strip) {
   const regex = /(<([^>]+)>)/ig;
@@ -155,11 +154,6 @@ export const useAppendRouteParameter = (name, value) => {
 
 export const SeoGenerator = ({ title, description, keywords, ogImage = "https://alaedeen.com/alaedeen-xs.png", canonical, children }) => {
 
-  // get initial config:
-  const { config } = useGetConfig();
-
-  const lang = config.language;
-
   // object for languages link tag:
   const languageLinks = [
     {title: "فارسی", dir: 'rtl', hrefLang: 'x-default', href: window.location.origin + window.location.pathname},
@@ -170,9 +164,6 @@ export const SeoGenerator = ({ title, description, keywords, ogImage = "https://
 
   return (
     <Helmet
-      htmlAttributes={{
-        lang,
-      }}
       title={title}
       meta={[
         {
