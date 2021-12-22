@@ -80,6 +80,10 @@ const Page = asyncComponent(() =>
   import('./templates/views/Page').then(module => module.default)
 );
 
+const ContactUs = asyncComponent(() =>
+  import('./templates/views/ContactUs').then(module => module.default)
+);
+
 function App() {
 
   // get initial config:
@@ -90,6 +94,8 @@ function App() {
   //console.log(user_data)
 
   const directionTheme = config.language === 'en' ? 'ltr' : 'rtl';
+
+  const lang = config.language;
 
   const { Footer, Content } = Layout;
 
@@ -123,7 +129,11 @@ function App() {
 
       </Helmet>*/}
 
-      <Helmet>
+      <Helmet
+        htmlAttributes={{
+          lang,
+        }}
+      >
 
         <script type="text/javascript">
           {`
@@ -216,6 +226,9 @@ function App() {
 
                 {/* Ready To Ship details Route */}
                 <Route path="/page/:page" element={<Page />} />
+
+                {/* Ready To Ship details Route */}
+                <Route exact path="/page/alaedeen-contact-us" element={<ContactUs />} />
               </Routes>
             </div>
           </Content>
