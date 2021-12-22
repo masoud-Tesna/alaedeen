@@ -52,7 +52,7 @@ const DefaultFooter = () => {
 
   return (
     <Row className="footer--container">
-      <Col className="bg-footer footer--container__topSection" span={24}>
+      {/*<Col className="bg-footer footer--container__topSection" span={24}>
         <Row justify="space-between">
           <Col>
             <Space className="" size={ spaceSize }>
@@ -90,7 +90,7 @@ const DefaultFooter = () => {
             </Tooltip>
           </Col>
         </Row>
-      </Col>
+      </Col>*/}
 
       <Col className="bg-footer-light footer--container__middleSection" span={24}>
         <Row className="row-cols-2 row-cols-md-3" gutter={[8, 24]}>
