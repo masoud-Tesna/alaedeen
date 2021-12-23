@@ -6,7 +6,7 @@ import './styles/SignIn.less';
 import { Link, useNavigate } from "react-router-dom";
 
 // import Design:
-import { Button, Checkbox, Col, Form, Input, Row } from "antd";
+import { Button, Col, Form, Input, Row } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone, LockOutlined, UserOutlined } from "@ant-design/icons";
 
 // import helper functions:

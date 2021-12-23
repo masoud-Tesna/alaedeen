@@ -18,7 +18,7 @@ import {
 import { signInApi, useGetApi, useWindowSize } from "../../functions";
 import axios from "axios";
 import LoaderSpinner from "../common/LoadSpinner";
-import { useConfigDispatch, useGetConfig } from "../../contexts/config/ConfigContext";
+import { useGetConfig } from "../../contexts/config/ConfigContext";
 
 // import alaedeen character:
 import alaedeenChar from '../assets/images/alaedeen-char.svg';
@@ -36,8 +36,6 @@ const Register = () => {
 
   // get initial config:
   const { config } = useGetConfig();
-
-  const { configDispatch } = useConfigDispatch();
 
   // get window width
   const { width } = useWindowSize();
