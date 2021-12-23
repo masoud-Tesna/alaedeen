@@ -1,0 +1,138 @@
+// import Mixin:
+@import '../../styles/Mixins';
+
+.contactUs--container {
+  padding: 0;
+  @media (min-width: @screen-md) {
+    padding: 4.5rem calc(10.4rem + 70px);
+  }
+
+  .contactUs--section {
+    padding: 0 2rem;
+
+    .contactUs--map {
+      iframe {
+        border: 1px solid #707070;
+        border-radius: 1.2rem;
+      }
+    }
+  }
+
+  .comment--section {
+    padding: 1rem 3rem;
+    @media (min-width: @screen-md) {
+      padding: 1rem 2rem;
+    }
+
+    border-radius: 2rem;
+
+    .comment--description {
+      * {
+        color: #333333;
+        font-size: 1.5rem;
+        @media (min-width: @screen-md) {
+          font-size: 1.7rem;
+        }
+      }
+    }
+
+    .comment--form {
+      padding: 0 1.5rem;
+      @media (min-width: @screen-md) {
+        padding: 0 2.5rem;
+      }
+
+      .ant-form-item {
+        margin-bottom: 0;
+
+        input {
+          height:35px
+        }
+
+        input,
+        textarea {
+          border: 1px solid #707070;
+          border-radius: 1.2rem;
+
+          &::placeholder {
+            color: #707070;
+            font-size: 1.6rem;
+            @media (min-width: @screen-md) {
+              font-weight: 600;
+              font-size: 1.8rem;
+            }
+          }
+        }
+      }
+
+      .form-item-comment {
+        textarea {
+          height: 90px;
+        }
+      }
+
+      .comment--submit {
+        padding-top: 10px;
+
+        .ant-form-item-control-input-content {
+          text-align: center;
+
+          button {
+            width: 140px;
+            height: 43px;
+            border-radius: 3px;
+
+            span {
+              font-size: 1.6rem;
+              @media (min-width: @screen-md) {
+                font-weight: 600;
+                font-size: 1.8rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .contactUs--section,
+  .comment--section {
+    .title {
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: #333333;
+      @media (min-width: @screen-md) {
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  .contactUs--content {
+    .variable,
+    .value,
+    .value a{
+      color: #333333;
+    }
+
+    .variable {
+      font-size: 1.6rem;
+      font-weight: 600;
+      @media (min-width: @screen-md) {
+        font-size: 1.8rem;
+      }
+      &:after {
+        content: " ";
+        margin: 0 .3rem;
+      }
+    }
+
+    .value,
+    .value a {
+      font-size: 1.4rem;
+      font-weight: 600;
+      @media (min-width: @screen-md) {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
