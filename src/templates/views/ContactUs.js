@@ -1,12 +1,12 @@
 import { useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 //import style:
 import './styles/ContactUs.less';
 
 import { Button, Col, Form, Input, Row, Skeleton } from "antd";
 import { useGetApi, useWindowSize } from "../../functions";
-import { __, SeoGenerator } from "../../functions/Helper";
+import { SeoGenerator } from "../../functions/Helper";
 import { useTranslation } from "react-i18next";
 
 const ContactUs = () => {
@@ -21,9 +21,9 @@ const ContactUs = () => {
   const { isLoading, data } = useGetApi("page-api", "page_seo=alaedeen-contact-us", "page_alaedeen-contact-us");
   const page = data || [];
 
-/*  useEffect(() => {
+  useEffect(() => {
     window.scroll({ top: 0, behavior: 'smooth' });
-  }, [location?.pathname]);*/
+  }, [location?.pathname]);
 
   return (
     <Row className="contactUs--container" gutter={[0, 90]}>
@@ -71,6 +71,7 @@ const ContactUs = () => {
               </Col>
               <Col xs={24} lg={12} className="contactUs--map">
                 <iframe
+                  title="google map"
                   id="alaedeen-address-google-map"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.581486486049!2d51.5335913142773!3d35.73650998018139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7dd5870ed623270d!2zMzXCsDQ0JzExLjQiTiA1McKwMzInMDguOCJF!5e0!3m2!1sen!2snl!4v1640211949675!5m2!1sen!2snl"
                   width="90%"
@@ -146,10 +147,10 @@ const ContactUs = () => {
                   name="submit-comment-form"
                   onFinish={e => console.log(e)}
                 >
-                  <Row gutter={[10, 10]} justify="space-around">
-                    <Col xs={24} lg={11} className="form--items">
+                  <Row gutter={[10, 10]}>
+                    <Col xs={24} lg={9} className="form--items">
                       <Row gutter={[0, 20]}>
-                        <Col xs={24} lg={15}>
+                        <Col xs={24} lg={20}>
                           <Form.Item
                             name="fullName"
                             rules={[
@@ -163,7 +164,7 @@ const ContactUs = () => {
                           </Form.Item>
                         </Col>
 
-                        <Col xs={24} lg={15}>
+                        <Col xs={24} lg={20}>
                           <Form.Item
                             name="phone"
                             rules={[
@@ -177,7 +178,7 @@ const ContactUs = () => {
                           </Form.Item>
                         </Col>
 
-                        <Col xs={24} lg={15}>
+                        <Col xs={24} lg={20}>
                           <Form.Item
                             name="email"
                             rules={[
@@ -194,9 +195,9 @@ const ContactUs = () => {
                       </Row>
                     </Col>
 
-                    <Col xs={24} lg={11} className="form--items">
+                    <Col xs={24} lg={9} className="form--items">
                       <Row gutter={[0, 20]}>
-                        <Col xs={24} lg={15}>
+                        <Col xs={24} lg={20}>
                           <Form.Item
                             name="subject"
                             rules={[
@@ -210,7 +211,7 @@ const ContactUs = () => {
                           </Form.Item>
                         </Col>
 
-                        <Col xs={24} lg={15} className="form-item-comment">
+                        <Col xs={24} lg={24} className="form-item-comment">
                           <Form.Item
                             name="comment"
                             rules={[
@@ -227,7 +228,7 @@ const ContactUs = () => {
                       </Row>
                     </Col>
 
-                    <Col span={24} className="form--items">
+                    <Col span={18} className="form--items">
                       <Form.Item
                         className="comment--submit"
                         valuePropName="checked"
