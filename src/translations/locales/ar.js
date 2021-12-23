@@ -1,5 +1,11 @@
 const ar = {
   "categories": "فئات",
+  "whatsapp": "واتساب",
+  "submit_comments": "Submit Comments",
+  "firs_name_and_last_name": "First Name & Last Name",
+  "subject": "Subject",
+  "type_your_comment": "Type Your Comment...",
+  "contact_us_alaedeen_address": "تهرانپارس، خیابان شهید مهران سجده ای شمالی، خیابان شهید شهرام سیری، پلاک 40، واحد 29",
   "free_consultation": "إستشارة مجانية",
   "initial_registration": "التسجيل المبدئي",
   "registration_of_manufacturer_information": "تسجيل بيانات المصنع",

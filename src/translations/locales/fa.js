@@ -1,5 +1,11 @@
 const fa = {
   "categories": "دسته بندی‌ها",
+  "whatsapp": "واتساپ",
+  "submit_comments": "ثبت نظرات",
+  "firs_name_and_last_name": "نام و نام خانوادگی",
+  "subject": "موضوع",
+  "type_your_comment": "نظر خود را ثبت کنید...",
+  "contact_us_alaedeen_address": "تهرانپارس، خیابان شهید مهران سجده ای شمالی، خیابان شهید شهرام سیری، پلاک 40، واحد 29",
   "free_consultation": "مشاوره رایگان",
   "initial_registration": "ثبت نام اولیه",
   "registration_of_manufacturer_information": "ثبت اطلاعات تولید کننده",
