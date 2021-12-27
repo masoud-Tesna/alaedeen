@@ -124,7 +124,6 @@ html:lang(ar) {
     }
 
     .factory--name {
-      /*flex: 1 1 0;*/
       font-size: 1.4rem;
       font-weight: bold;
       @media (min-width: @screen-md) {
@@ -133,11 +132,6 @@ html:lang(ar) {
     }
 
     .factory--verified {
-      /*flex: 0 0 44px;
-      @media (min-width: @screen-md) {
-        flex: 0 0 54px;
-      }*/
-
       img {
         width: 40px;
         @media (min-width: @screen-md) {
@@ -158,10 +152,13 @@ html:lang(ar) {
           }
 
           .ant-skeleton-paragraph {
-            margin: 4px 0 0;
+            margin: 0;
 
             & > li + li {
-              margin-top: 8px;
+              margin-top: 10px;
+              @media (min-width: @screen-md) {
+                margin-top: 6.62px;
+              }
             }
           }
         }
