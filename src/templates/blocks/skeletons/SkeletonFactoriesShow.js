@@ -1,5 +1,5 @@
 // import style file:
-import '../styles/SkeletonFactoriesShow.less';
+import './styles/SkeletonFactoriesShow.less';
 
 // import Ant Design Components:
 import { Col, Row, Skeleton, Space } from "antd";

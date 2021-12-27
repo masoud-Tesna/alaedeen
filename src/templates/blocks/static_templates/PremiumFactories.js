@@ -182,7 +182,7 @@ const PremiumFactories = () => {
                             />
 
                           </div>
-                          <Link className="premiumFactories--item__link" to={ `/factories?factory=${factory.company_id}` } />
+                          <Link className="premiumFactories--item__link" to={ `/factories/?selected_store_id=${factory.company_id}` } />
                         </Col>
                       );
                     })}
@@ -228,7 +228,7 @@ const PremiumFactories = () => {
                               </Row>
                             </div>
                           </div>
-                          <Link className="premiumFactories--item__link" to={ `/factories?factory=${factory.company_id}` } />
+                          <Link className="premiumFactories--item__link" to={ `/factories/?selected_store_id=${factory.company_id}` } />
                         </Col>
                       );
                     })}

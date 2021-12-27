@@ -1,0 +1,311 @@
+// import Mixin:
+@import '../../../styles/Mixins';
+
+html:lang(fa),
+html:lang(ar) {
+  .factory--container {
+    .factory--topSection {
+      .factory--productImage {
+        .factory--logo {
+          left: 0 !important;
+          right: -7px;
+        }
+      }
+    }
+
+    .factory--middleSection {
+      .factory--profileDetails {
+        & > .ant-col {
+          border-right: 0;
+          &:not(:last-child) {
+            border-left: 1px solid #BCBCBC;
+          }
+        }
+      }
+    }
+
+    .factory--bottomSection {
+      .factory--profileDetail {
+        .profileDetail {
+          & .profileDetail--content > .ant-col {
+            border-right: 0;
+            &:not(:last-child) {
+              border-left: 1px solid #BCBCBC;
+            }
+          }
+        }
+      }
+
+      .factory--location {
+        i {
+          margin-right: 0;
+          margin-left: .5rem;
+        }
+      }
+
+      .factory--contacts {
+        i {
+          margin-right: 0;
+          margin-left: .9rem;
+        }
+      }
+
+    }
+
+    &.storeType--free {
+
+      .factory--bottomSection {
+        .factory--contacts {
+          i {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.factory--container {
+  & > .ant-row {
+    padding: 12px 12px 0;
+  }
+
+  .factory--imageContainer img {
+    width: 400px;
+    height: 100%;
+  }
+
+  .factory--topSection {
+    .factory--productImage {
+      position: relative;
+
+      &,
+      .product--image,
+      .product--image .skeletonImage--custom,
+      .product--image .skeletonImage--custom *,
+      .product--image .ant-image,
+      .product--image .ant-image img {
+        height: 100%;
+      }
+
+      .product--image {
+        min-height: 125px;
+        width: 100%;
+
+        .ant-image {
+          display: block;
+
+          img {
+            border-radius: 10px;
+          }
+        }
+      }
+
+      .factory--logo {
+        background-color: #FFFFFF;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        position: absolute;
+        top: -7px;
+        left: -7px;
+        box-shadow: 0 0 1rem rgba(0, 0, 0, 0.17) !important;
+
+        .ant-image {
+          display: block;
+          margin: 2.5px;
+          img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+
+    .factory--name {
+      /*flex: 1 1 0;*/
+      font-size: 1.4rem;
+      font-weight: bold;
+      @media (min-width: @screen-md) {
+        font-size: 1.6rem;
+      }
+    }
+
+    .factory--verified {
+      /*flex: 0 0 44px;
+      @media (min-width: @screen-md) {
+        flex: 0 0 54px;
+      }*/
+
+      img {
+        width: 40px;
+        @media (min-width: @screen-md) {
+          width: 50px;
+        }
+      }
+    }
+
+    .factory--aboutUs {
+      .factory--aboutUs__paragraph {
+        font-size: 1.3rem;
+      }
+
+      .factory--aboutUs__empty {
+        .ant-skeleton-content {
+          &> h3 {
+            display: none;
+          }
+
+          .ant-skeleton-paragraph {
+            margin: 4px 0 0;
+
+            & > li + li {
+              margin-top: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .factory--middleSection {
+    .factory--profileDetails {
+      margin: 0 !important;
+      background-color: #EFEFEF;
+      border-radius: 5px;
+      padding: .5rem .2rem;
+
+      & > .ant-col {
+        &:not(:last-child) {
+          border-right: 1px solid #BCBCBC;
+        }
+      }
+
+      .profileDetail--variable,
+      .profileDetail--value {
+        font-size: 1.2rem;
+      }
+    }
+
+    .factory--aboutUs {
+      .factory--aboutUs__paragraph {
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+
+      .factory--aboutUs__empty {
+        .ant-skeleton-content {
+          &> h3 {
+            display: none;
+          }
+
+          .ant-skeleton-paragraph {
+            margin: 4px 0 0;
+
+            & > li + li {
+              margin-top: 8px;
+            }
+          }
+        }
+      }
+    }
+
+    .factory--products {
+      .factory--productImage {
+        margin: 0 auto;
+
+        .ant-image {
+          display: block;
+          height: 100%;
+
+          img {
+            height: 100%;
+            border-radius: 10px;
+            width: 100%;
+            display: unset;
+          }
+        }
+      }
+    }
+  }
+
+  .factory--bottomSection {
+    .factory--profileDetail {
+      .profileDetail {
+        background-color: #EFEFEF;
+        border-radius: 5px;
+        padding: 1rem .7rem;
+
+        & .profileDetail--content > .ant-col {
+          &:not(:last-child) {
+            border-right: 1px solid #BCBCBC;
+          }
+        }
+      }
+    }
+
+    .factory--location {
+      i {
+        margin-right: .5rem;
+        font-size: 1.9rem;
+      }
+
+      span {
+        @media (min-width: @screen-md) {
+          font-size: 1.6rem;
+        }
+      }
+    }
+
+    .factory--contacts {
+      width: 130px;
+      height: 36px;
+      line-height: 16px;
+
+      i {
+        margin-right: .9rem;
+        transform: scale(1.3);
+        font-weight: 300;
+        color: #3ba949;
+      }
+
+      span:last-child {
+        @media (min-width: @screen-md) {
+          font-size: 1.6rem;
+        }
+
+        font-weight: 600;
+        color: #333333;
+      }
+    }
+  }
+
+  &.storeType--free {
+    .factory--topSection {
+      .factory--logo {
+        .skeletonImage--custom {
+          margin: 0 auto;
+        }
+      }
+    }
+
+    .factory--bottomSection {
+      .factory--contacts {
+        width: auto;
+        i {
+          margin-right: 0;
+        }
+      }
+    }
+
+    & > .ant-row {
+      padding: 7px 7px 0;
+    }
+
+  }
+
+  &.byParam {
+    box-shadow: 0 0 2rem rgb(172, 166, 166) !important;
+  }
+}

@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 import { useGetApi, useQueryString } from "../../functions";
 
 // import Factories Show Component:
-import FactoriesShow from "../blocks/static_templates/FactoriesShow";
+import FactoryOneColumn from "./factories/FactoryOneColumn";
 
 const Factories = () => {
 
@@ -25,10 +25,10 @@ const Factories = () => {
 
   const { pathname } = useLocation();
 
-  const factory_id = useQueryString().get('factory');
+  const selectedStoreId = useQueryString().get('selected_store_id');
 
   // get factories from API:
-  const { isLoading, data } = useGetApi(`factories-api`, '', `factories`);
+  const { isLoading, data } = useGetApi("factories-page-api", `selected_store_id=${selectedStoreId || ''}`, `factories`);
   const { factories } = data || [];
 
   useEffect(() => {
@@ -75,11 +75,11 @@ const Factories = () => {
         </Col>
 
         <Col span={24} className="factories--bottomSection mb-5">
-          <Row gutter={[0, 50]} className="factories--items">
-            <FactoriesShow
+          <Row gutter={[10, 10]} className="factories--items" justify="center">
+            <FactoryOneColumn
               factories={factories}
               isLoading={isLoading}
-              factory_id={factory_id}
+              selectedStoreId={selectedStoreId}
             />
           </Row>
         </Col>
