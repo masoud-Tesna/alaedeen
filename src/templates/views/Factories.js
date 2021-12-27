@@ -28,7 +28,7 @@ const Factories = () => {
   const selectedStoreId = useQueryString().get('selected_store_id');
 
   // get factories from API:
-  const { isLoading, data } = useGetApi("factories-page-api", `selected_store_id=${selectedStoreId || ''}`, `factories`);
+  const { isLoading, data } = useGetApi("factories-page-api", `selected_store_id=${selectedStoreId || ''}`, `factories_${selectedStoreId}`);
   const { factories } = data || [];
 
   useEffect(() => {
