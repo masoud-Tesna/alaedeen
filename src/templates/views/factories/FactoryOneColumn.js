@@ -134,7 +134,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
               </a>
             </Col>
             <Col flex="1 1">
-              <Row gutter={[0,17]}>
+              <Row gutter={[0,10]}>
                 <Col className="factory--topSection" span={24}>
                   <Row gutter={10}>
                     <Col span={9} className="product-xs d-lg-none">
@@ -399,7 +399,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
 
     return (
       <Col span={12} key = { factory?.company_id } className={ `factory--container storeType--free ${selectedStoreId === factory?.company_id ? "byParam" : ""}` }>
-        <Row className="bg-white rounded-10 border border-70">
+        <Row className="bg-white rounded-10 border border-70 h-100">
           <Col className="factory--topSection" span={24}>
             <Row>
               <Col span={24} className="factory--logo">
@@ -430,7 +430,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
             </Row>
           </Col>
 
-          <Col className="factory--bottomSection" span={24}>
+          <Col className="factory--bottomSection align-self-end" span={24}>
             <Row justify="space-between">
               <Col className="factory--location">
                 <i className="fal fa-map-marker-alt text-primary" />

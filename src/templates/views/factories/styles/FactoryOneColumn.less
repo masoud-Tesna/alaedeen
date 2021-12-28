@@ -89,7 +89,7 @@ html:lang(ar) {
       }
 
       .product--image {
-        min-height: 125px;
+        //min-height: 125px;
         width: 100%;
 
         .ant-image {
@@ -152,12 +152,12 @@ html:lang(ar) {
           }
 
           .ant-skeleton-paragraph {
-            margin: 0;
+            margin: 0 !important;
 
             & > li + li {
               margin-top: 10px;
               @media (min-width: @screen-md) {
-                margin-top: 6.62px;
+                margin-top: 6.62px !important;
               }
             }
           }
@@ -228,6 +228,8 @@ html:lang(ar) {
   }
 
   .factory--bottomSection {
+    margin-top: -10px;
+
     .factory--profileDetail {
       .profileDetail {
         background-color: #EFEFEF;
