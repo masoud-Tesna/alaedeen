@@ -8,8 +8,12 @@ import { Button, Col, Form, Input, Row, Skeleton } from "antd";
 import { useGetApi, useWindowSize } from "../../functions";
 import { SeoGenerator } from "../../functions/Helper";
 import { useTranslation } from "react-i18next";
+import { useGetConfig } from "../../contexts/config/ConfigContext";
 
 const ContactUs = () => {
+
+  // get initial config:
+  const { config } = useGetConfig();
 
   const location = useLocation();
 
@@ -73,7 +77,7 @@ const ContactUs = () => {
                 <iframe
                   title="google map"
                   id="alaedeen-address-google-map"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.581486486049!2d51.5335913142773!3d35.73650998018139!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7dd5870ed623270d!2zMzXCsDQ0JzExLjQiTiA1McKwMzInMDguOCJF!5e0!3m2!1sen!2snl!4v1640211949675!5m2!1sen!2snl"
+                  src={ `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2099.9821020427257!2d51.53655996785196!3d35.73568767633283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7dd5870ed623270d!2zMzXCsDQ0JzExLjQiTiA1McKwMzInMDguOCJF!5e0!3m2!1sfa!2s!4v1640693061162!5m2!1s${config.language}!2s` }
                   width="90%"
                   height="250"
                   frameBorder="0"
