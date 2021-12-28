@@ -15,7 +15,7 @@ import googlePlay from "../../assets/images/googlePlay.svg";
 import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
-import React from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import { Link } from "react-router-dom";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
@@ -25,13 +25,13 @@ const DefaultFooter = () => {
 
   const { width } = useWindowSize();
 
-  let spaceSize;
+  //let spaceSize;
 
-  if (width >= 992) {
+  /*if (width >= 992) {
     spaceSize = 'large';
   }else{
     spaceSize = 'small';
-  }
+  }*/
 
   // get initial config:
   const { config } = useGetConfig();
@@ -49,6 +49,41 @@ const DefaultFooter = () => {
 
   // Mobile Application Coming Son Tooltip Text:
   //const comingSonTooltipText = <span>{ t(__('coming son')) }</span>;
+
+
+  const handleRayChatPosition = () => {
+    if (document.querySelector('#raychatBtn')) {
+
+      const layout = document.querySelector('.ant-layout'),
+        footer = document.querySelector('.ant-layout-footer'),
+        footer2 = document.querySelector('.footer--container__bottomSection'),
+        rayChatBtn = document.querySelector('#raychatBtn'),
+        scrollToFooter = layout.scrollHeight - footer.clientHeight - footer.clientHeight + 100;
+
+      if (width < 993) {
+        if (window.scrollY > scrollToFooter) {
+          rayChatBtn.style.bottom = (footer2.clientHeight - 25)+ "px";
+        } else {
+          rayChatBtn.style.transition = "";
+          rayChatBtn.style.bottom = 0;
+        }
+      } else {
+        rayChatBtn.style.transition = "";
+        rayChatBtn.style.bottom = 0;
+      }
+    }
+  };
+
+  useLayoutEffect(() => {
+
+    window.addEventListener("scroll", handleRayChatPosition)
+
+    return () => {
+      window.removeEventListener("scroll", handleRayChatPosition)
+    }
+  }, [width]);
+
+
 
   return (
     <Row className="footer--container">
@@ -93,8 +128,8 @@ const DefaultFooter = () => {
       </Col>*/}
 
       <Col className="bg-footer-light footer--container__middleSection" span={24}>
-        <Row className="row-cols-2 row-cols-md-3" gutter={[8, 24]}>
-          <Col>
+        <Row gutter={[8, 24]}>
+          <Col xs={12} lg={8}>
             <Row gutter={[0, 5]}>
               <Col className="text-white vv-font-size-1-7 font-weight-600 mb-4" span={24}>
                 { t(__('Tips and Help')) }
@@ -126,10 +161,30 @@ const DefaultFooter = () => {
                   </Col>
                 );
               })}
+
+              {/* For Mobile */}
+              {width < 993 &&
+                <Col span={24} className="mt-4 eNamad--section">
+                  <a
+                    className="eNamad--link"
+                    referrerPolicy="origin"
+                    target="_blank"
+                    href="https://trustseal.enamad.ir/?id=249644&amp;code=rN4kSWtSgD84AymRm1Py"
+                  >
+                    <img
+                      referrerPolicy="origin"
+                      src="https://Trustseal.eNamad.ir/logo.aspx?id=249644&Code=rN4kSWtSgD84AymRm1Py"
+                      alt=""
+                      className="eNamad--img"
+                      id="rN4kSWtSgD84AymRm1Py"
+                    />
+                  </a>
+                </Col>
+              }
             </Row>
           </Col>
 
-          <Col>
+          <Col xs={12} lg={8}>
             <Row gutter={[0, 5]}>
               <Col className="text-white vv-font-size-1-7 font-weight-600 mb-4" span={24}>
                 { t(__('Explore')) }
@@ -156,7 +211,7 @@ const DefaultFooter = () => {
                 </>
               }
 
-              {categories?.slice(0, 6)?.map((category) => {
+              {categories?.slice(0, width < 993 ? 8 : 6)?.map((category) => {
                 return (
                   <Col key={category?.category_id} className="text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
                     {/*link: /categories/${category?.seo_name}*/}
@@ -168,6 +223,26 @@ const DefaultFooter = () => {
               })}
             </Row>
           </Col>
+
+          {/* For Desktop */}
+          {width > 992 &&
+            <Col span={8} className="eNamad--section">
+              <a
+                className="eNamad--link"
+                referrerPolicy="origin"
+                target="_blank"
+                href="https://trustseal.enamad.ir/?id=249644&amp;code=rN4kSWtSgD84AymRm1Py"
+              >
+                <img
+                  referrerPolicy="origin"
+                  src="https://Trustseal.eNamad.ir/logo.aspx?id=249644&Code=rN4kSWtSgD84AymRm1Py"
+                  alt=""
+                  className="eNamad--img"
+                  id="rN4kSWtSgD84AymRm1Py"
+                />
+              </a>
+            </Col>
+          }
         </Row>
       </Col>
 
