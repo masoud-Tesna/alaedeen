@@ -137,17 +137,17 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
               <Row gutter={[0,10]}>
                 <Col className="factory--topSection" span={24}>
                   <Row gutter={10}>
-                    <Col span={9} className="product-xs d-lg-none">
+                    <Col span={8} className="product-xs d-lg-none">
                       <div className="rounded-10 shadow-y-2 text-center factory--productImage">
                         {factory?.products.length ?
                           <div className="product--image">
                             <ShowResponsiveImage
                               imagePath={ factory?.products[0]?.main_pair?.detailed?.image_path }
                               imageFolder='detailed'
-                              width={100}
-                              height={125}
+                              width={120}
+                              height={150}
                               skeletonWidth="100%"
-                              skeletonHeight="125px"
+                              skeletonHeight="147px"
                               imageAlt={ factory?.products[0]?.product }
                               object_id={factory?.products[0]?.product_id}
                               object_type={`prd`}
@@ -156,7 +156,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                           <div className="product--image no--image">
                             <ShowResponsiveImage
                               skeletonWidth="100%"
-                              skeletonHeight="125px"
+                              skeletonHeight="147px"
                             />
                           </div>
                         }
@@ -169,7 +169,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                         </div>
                       </div>
                     </Col>
-                    <Col xs={15} lg={24}>
+                    <Col xs={16} lg={24}>
                       <Row gutter={[0, {xs:0, lg:5}]}>
                         <Col span={24}>
                           <Row gutter={{ xs:4, lg:10 }}>
@@ -186,7 +186,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                           {factory?.about_us ?
                             <TextTruncate
                               className="text-33 factory--aboutUs__paragraph"
-                              line={ 4 }
+                              line={ 5 }
                               element="div"
                               truncateText=" …"
                               text={ factory?.about_us && `${t(__('About Us'))}: ${factory?.about_us}` }
