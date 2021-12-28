@@ -35,7 +35,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
     // get initial config:
     const { config } = useGetConfig();
 
-    const logoSizeMobile = store_type === "F" ? 53 : 45;
+    const logoSizeMobile = 53;
 
     if ((config.language === 'en' || config.language === 'ar') && logo.en) {
       return (
@@ -75,8 +75,8 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
 
     return (
       <ShowResponsiveImage
-        skeletonWidth="50px"
-        skeletonHeight="50px"
+        skeletonWidth="53px"
+        skeletonHeight="53px"
         skeletonRadius="50%"
         skeletonSvgWidth="3rem"
       />
@@ -399,7 +399,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
 
     return (
       <Col span={12} key = { factory?.company_id } className={ `factory--container storeType--free ${selectedStoreId === factory?.company_id ? "byParam" : ""}` }>
-        <Row className="bg-white rounded-10 border border-70 h-100">
+        <Row className="bg-white rounded-10 border border-70 h-100" gutter={[0, 7]}>
           <Col className="factory--topSection" span={24}>
             <Row>
               <Col span={24} className="factory--logo">
