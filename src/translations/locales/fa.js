@@ -1,5 +1,6 @@
 const fa = {
   "categories": "دسته بندی‌ها",
+  "news_and_events": "اخبار و رویدادها",
   "whatsapp": "واتساپ",
   "submit_comments": "ثبت نظرات",
   "firs_name_and_last_name": "نام و نام خانوادگی",

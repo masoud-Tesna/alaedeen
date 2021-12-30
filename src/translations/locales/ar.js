@@ -1,5 +1,6 @@
 const ar = {
   "categories": "فئات",
+  "news_and_events": "أخبار وأحداث",
   "whatsapp": "واتساب",
   "submit_comments": "Submit Comments",
   "firs_name_and_last_name": "First Name & Last Name",
