@@ -1,23 +1,25 @@
+import React, { useLayoutEffect } from "react";
+import { Link } from "react-router-dom";
+
 // import Styles For default:
 import './styles/DefaultFooter.less';
 
 // Ant Design Import:
-import { Row, Col, Space, Button, Tooltip, Skeleton } from 'antd';
-
-// import Custom Hooks:
-import { useGetApi, useWindowSize } from '../../../functions';
-
-// import logo:
-import appleStore from "../../assets/images/appleStore.svg";
-import googlePlay from "../../assets/images/googlePlay.svg";
+import { Row, Col, Skeleton } from 'antd';
 
 // import helper functions:
 import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
-import React, { useEffect, useLayoutEffect } from "react";
-import { Link } from "react-router-dom";
+
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
+
+// import Custom Hooks:
+import { useGetApi, useWindowSize } from '../../../functions';
+
+// import logo:
+/*import appleStore from "../../assets/images/appleStore.svg";
+import googlePlay from "../../assets/images/googlePlay.svg";*/
 
 const DefaultFooter = () => {
 
@@ -40,6 +42,7 @@ const DefaultFooter = () => {
   const { isLoading: categoriesIsLoading, data: categories_data } = useGetApi(`home-categories-api`, '', `allCategories`);
   const { categories } = categories_data || [];
 
+  // get footer pages:
   const { isLoading: pagesIsLoading, data: pages_data } = useGetApi(`footer-pages-api`, "store_id=440", `footerPage`);
 
   const pages = pages_data || [];
