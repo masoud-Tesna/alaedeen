@@ -91,8 +91,6 @@ function App() {
 
   const { user_data } = useGetAuthState();
 
-  //console.log(user_data)
-
   const directionTheme = config.language === 'en' ? 'ltr' : 'rtl';
 
   const lang = config.language;
@@ -227,8 +225,15 @@ function App() {
                 {/* Ready To Ship details Route */}
                 <Route path="/page/:page" element={<Page />} />
 
-                {/* Ready To Ship details Route */}
+                {/* contact us */}
                 <Route exact path="/page/alaedeen-contact-us" element={<ContactUs />} />
+
+                {/* Dashboard Route (if user login and vendor detect) */}
+                <Route exact path="/dashboard" element={
+                  (user_data?.auth?.user_id && user_data?.auth?.plan_id === "8")
+                    ? <>Dashboard</>
+                    : <Navigate to="/" replace />
+                } />
               </Routes>
             </div>
           </Content>
