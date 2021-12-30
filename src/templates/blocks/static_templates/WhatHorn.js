@@ -10,6 +10,10 @@ import { __ } from '../../../functions/Helper';
 import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
+import driverService from "../../assets/images/alaedeen-driver-service.png";
+import brandsService from "../../assets/images/alaedeen-brands-service.png";
+import logisticsService from "../../assets/images/alaedeen-logistics-service.png";
+
 const WhatHorn = () => {
 
   // get initial config:
@@ -25,14 +29,12 @@ const WhatHorn = () => {
         </Col>
         <Col className="whatHorn--items" span={24}>
           <Row className="row-cols-1 row-cols-sm-1 row-cols-md-3 row-cols-lg-3 row-cols-xl-3" justify="space-between" gutter={ { xs: 16, sm: 16, md: 16, lg: 0, xl: 0, xxl: 0 }}>
-
-
             <Col className="d-flex align-items-center justify-content-center text-center ">
               <Row>
                 <Col className="whatHorn--item">
                   <div className="d-flex align-items-center justify-content-center">
                     <div className="bg-white d-flex align-items-center justify-content-center whatHorn--item__logo">
-                      <i className="icon-about-driver text-primary" />
+                      <img src={driverService} alt=""/>
                     </div>
                   </div>
                   <div className="vv-font-size-3 text-33 font-weight-bold text-center mt-2  whatHorn--item__caption1">
@@ -45,14 +47,12 @@ const WhatHorn = () => {
               </Row>
             </Col>
 
-
-
             <Col className="d-flex align-items-center justify-content-center text-center ">
               <Row>
                 <Col className="whatHorn--item">
                   <div className="d-flex align-items-center justify-content-center">
                     <div className="bg-white d-flex align-items-center justify-content-center whatHorn--item__logo">
-                      <i className="icon-about-packs text-primary" />
+                      <img src={brandsService} alt=""/>
                     </div>
                   </div>
                   <div className="vv-font-size-3 text-33 font-weight-bold text-center mt-2  whatHorn--item__caption1">
@@ -65,14 +65,12 @@ const WhatHorn = () => {
               </Row>
             </Col>
 
-
-
             <Col className="d-flex align-items-center justify-content-center text-center ">
               <Row>
                 <Col className="whatHorn--item">
                   <div className="d-flex align-items-center justify-content-center">
                     <div className="bg-white d-flex align-items-center justify-content-center whatHorn--item__logo">
-                      <i className="icon-about-logistics text-primary" />
+                      <img src={logisticsService} alt=""/>
                     </div>
                   </div>
                   <div className="vv-font-size-3 text-33 font-weight-bold text-center mt-2  whatHorn--item__caption1">
@@ -84,8 +82,6 @@ const WhatHorn = () => {
                 </Col>
               </Row>
             </Col>
-
-
           </Row>
         </Col>
       </Row>
