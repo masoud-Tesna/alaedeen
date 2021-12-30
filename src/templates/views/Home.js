@@ -1,6 +1,8 @@
 // import Style LESS File:
 import './styles/Home.less';
 
+import { Helmet } from "react-helmet";
+
 import { SeoGenerator } from "../../functions/Helper";
 
 // import Custom Hooks:
@@ -19,7 +21,7 @@ import PremiumFactories from "../blocks/static_templates/PremiumFactories";
 import RecommendedProducts from "../blocks/static_templates/RecommendedProducts";
 import TopBrands from "../blocks/static_templates/TopBrands";
 import WhatHorn from "../blocks/static_templates/WhatHorn";
-import { Helmet } from "react-helmet";
+import News from "../blocks/static_templates/News";
 
 // add after:
 //import TopRankingProducts from "../templates/blocks/static_templates/TopRankingProducts";
@@ -129,6 +131,10 @@ const Home = () => {
 
       <div className="d-none d-lg-block whatHorn--section">
         <WhatHorn />
+      </div>
+
+      <div className="d-none d-lg-block news--section">
+        <News />
       </div>
     </>
   );
