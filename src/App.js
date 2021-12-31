@@ -222,11 +222,14 @@ function App() {
                 {/* Ready To Ship details Route */}
                 <Route path="/ready-to-ship" element={<ReadyToShip />} />
 
-                {/* Ready To Ship details Route */}
+                {/* show page detail Route */}
                 <Route path="/page/:page" element={<Page />} />
 
                 {/* contact us */}
                 <Route exact path="/page/alaedeen-contact-us" element={<ContactUs />} />
+
+                {/* show blog detail Route */}
+                <Route path="/blog/:blog" element={<Page />} />
 
                 {/* Dashboard Route (if user login and vendor detect) */}
                 <Route exact path="/dashboard" element={
