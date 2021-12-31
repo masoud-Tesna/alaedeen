@@ -1,6 +1,19 @@
 // import Mixin:
 @import '../../styles/Mixins';
 
+
+html:lang(fa),
+html:lang(ar) {
+  .page--container {
+    .blog-date {
+      i {
+        padding-right: 0;
+        padding-left: .6rem;
+      }
+    }
+  }
+}
+
 .page--container {
   padding: 0;
   @media (min-width: @screen-md) {
@@ -11,15 +24,34 @@
     padding: 2rem;
   }
 
-  .page--name {
+  .page--name,
+  .blog--name {
     font-size: 1.7rem;
+    color: #000000;
     @media (min-width: @screen-md) {
       font-size: 2.5rem;
     }
   }
 
+  .blog-date {
+    font-weight: 600;
+
+    &,
+    i {
+      font-size: 1.8rem;
+    }
+
+    time {
+      font-size: 1.6rem;
+    }
+
+    i {
+      padding-right: .6rem;
+    }
+  }
+
   .page--content  {
-    margin-top: 2rem;
+    color: #333333;
 
     * {
       font-size: 1.5rem;
