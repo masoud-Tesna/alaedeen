@@ -1,6 +1,7 @@
 const en = {
   "categories": "Categories",
   "news_and_events": "News And Events",
+  "blog.read_more": "Read More",
   "whatsapp": "Whatsapp",
   "submit_comments": "Submit Comments",
   "firs_name_and_last_name": "First Name & Last Name",
