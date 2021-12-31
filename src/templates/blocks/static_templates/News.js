@@ -78,7 +78,7 @@ const News = () => {
                           <i className="fal fa-clock align-middle" />
                           {config.language !== 'en'
                             ? moment.unix(1640809800).format('jDD jMMM jYYYY')
-                            : <Moment format="DD MMM, YYYY" unix>{page?.timestamp}</Moment>
+                            : <Moment format="DD MMM, YYYY" unix locale="en">{page?.timestamp}</Moment>
                           }
                         </Col>
                       </Row>
@@ -97,6 +97,7 @@ const News = () => {
                   </Row>
               }
             </Col>
+            <Link className="news--link" to={`/blog/${page?.seo_name}`} />
           </Row>
         </Col>
       </Row>

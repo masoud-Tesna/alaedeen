@@ -11,6 +11,13 @@ html:lang(ar) {
         }
       }
     }
+
+    .news-date {
+      i {
+        padding-right: 0;
+        padding-left: .6rem;
+      }
+    }
   }
 }
 
@@ -85,8 +92,12 @@ html:lang(ar) {
         font-size: 1.8rem;
       }
 
+      time {
+        font-size: 1.6rem;
+      }
+
       i {
-        padding-left: .6rem;
+        padding-right: .6rem;
       }
     }
 
@@ -97,6 +108,20 @@ html:lang(ar) {
       .readMore--link {
         color: #2874F2;
         font-size: 2rem;
+      }
+    }
+
+    .news--link {
+      position: absolute;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      top: 0;
+    }
+
+    &:hover {
+      .readMore--link {
+        color: darken(#2874F2, 20%);
       }
     }
   }
