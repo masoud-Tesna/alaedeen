@@ -264,7 +264,7 @@ const DefaultHeader = ({ pathName }) => {
             </Col>
 
             <Col span={12} className="my-auto header--left__searchBox">
-              {pathName !== 'page' &&
+              {(pathName !== 'page' && pathName !== 'blog') &&
               <Input placeholder={ t(__('What are you looking for...')) } suffix={searchTextSuffix(t(__('search')))} onChange={e => {setSearchValue(e.target.value)}} onPressEnter={() => { handleSubmitSearch() }} />
               }
             </Col>
