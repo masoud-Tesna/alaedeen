@@ -8,7 +8,11 @@
   }
 
   .contactUs--section {
-    padding: 0 2rem;
+    padding: 2rem 2rem 0;
+
+    @media (min-width: @screen-md) {
+      padding: 0 2rem;
+    }
 
     .contactUs--map {
       iframe {

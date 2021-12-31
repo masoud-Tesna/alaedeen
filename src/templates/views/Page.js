@@ -25,7 +25,7 @@ const Page = () => {
         canonical={ `https://alaedeen.com/page/${page?.seo_name}` }
       />
 
-      <Col span={24} className="bg-white" style={{ padding: '2rem' }}>
+      <Col span={24} className="bg-white">
         {isLoading &&
           <Skeleton  paragraph={{ rows: 25 }}  active />
         }
