@@ -20,6 +20,8 @@
     "flag-icon-css": "^3.5.0",
     "i18next": "^20.6.0",
     "keen-slider": "^6.2.0",
+    "moment": "^2.29.1",
+    "moment-jalaali": "^0.9.4",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-combine-reducers": "^1.1.1",
