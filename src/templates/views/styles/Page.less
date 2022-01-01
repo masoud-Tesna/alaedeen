@@ -15,13 +15,13 @@ html:lang(ar) {
     .blog---images__scrolled {
       img {
         &:first-child {
-          padding-right: 0;
-          padding-left: 6px;
+          margin-right: 0;
+          margin-left: 8px;
         }
 
         &:last-child {
-          padding-left: 0;
-          padding-right: 6px;
+          margin-left: 0;
+          margin-right: 8px;
         }
       }
     }
@@ -81,16 +81,34 @@ html:lang(ar) {
       overflow-x: auto;
       display: flex;
       margin-top: 4rem;
+      padding-bottom: .6rem;
+
+      scrollbar-color: #3ba949 #F5F5F5;
+      scrollbar-width: thin;
+
+      &::-webkit-scrollbar
+      {
+        width: 6px;
+        height: 10px;
+        background-color: #F5F5F5;
+        border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: #3ba949;
+        border-radius: 10px;
+      }
 
       img {
-        padding: 0 6px;
+        margin: 0 8px;
+        border-radius: 10px;
 
         &:first-child {
-         padding-left: 0;
+          margin-left: 0;
         }
 
         &:last-child {
-          padding-right: 0;
+          margin-right: 0;
         }
       }
     }
