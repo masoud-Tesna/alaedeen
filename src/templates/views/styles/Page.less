@@ -11,6 +11,20 @@ html:lang(ar) {
         padding-left: .6rem;
       }
     }
+
+    .blog---images__scrolled {
+      img {
+        &:first-child {
+          padding-right: 0;
+          padding-left: 6px;
+        }
+
+        &:last-child {
+          padding-left: 0;
+          padding-right: 6px;
+        }
+      }
+    }
   }
 }
 
@@ -61,6 +75,24 @@ html:lang(ar) {
     }
     a {
       text-decoration: none !important;
+    }
+
+    .blog---images__scrolled {
+      overflow-x: auto;
+      display: flex;
+      margin-top: 4rem;
+
+      img {
+        padding: 0 6px;
+
+        &:first-child {
+         padding-left: 0;
+        }
+
+        &:last-child {
+          padding-right: 0;
+        }
+      }
     }
   }
 
