@@ -37,8 +37,6 @@ const News = () => {
   const { isLoading, data } = useGetApi("blogs-api", "category_path=news-and-events&items_per_page=1", `newsBlog`);
   const {sub_pages: page} = data || [];
 
-  const test = <Link to={`/blog/${page?.seo_name}`}>{t('read_more')}</Link>;
-
   return (
     <div className="news--container">
       <Row>
@@ -97,7 +95,9 @@ const News = () => {
                   </Row>
               }
             </Col>
-            <Link className="news--link" to={`/blog/${page?.seo_name}`} />
+            {!isLoading &&
+              <Link className="news--link" to={`/blog/${page?.seo_name}`} />
+            }
           </Row>
         </Col>
       </Row>

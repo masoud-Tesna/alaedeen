@@ -3,19 +3,31 @@
 
 html:lang(fa),
 html:lang(ar) {
-  .news--item {
-    .news--image {
-      .ant-image {
-        img {
-          border-radius: 0 15px 15px 0;
-        }
+  .news--container {
+    .dividerText {
+      span {
+        padding-left: 15px !important;
+        padding-right: 0 !important;
+      }
+      &:after {
+        margin-bottom: 18px;
       }
     }
 
-    .news-date {
-      i {
-        padding-right: 0;
-        padding-left: .6rem;
+    .news--item {
+      .news--image {
+        .ant-image {
+          img {
+            border-radius: 0 15px 15px 0;
+          }
+        }
+      }
+
+      .news-date {
+        i {
+          padding-right: 0;
+          padding-left: .6rem;
+        }
       }
     }
   }
@@ -42,7 +54,6 @@ html:lang(ar) {
         height: 9px!important;
         border: 3px solid #D4D4D4 !important;
         border-radius: 50rem !important;
-        //margin: auto 0;
         align-self: flex-end !important;
         margin-bottom: 13px;
       }
