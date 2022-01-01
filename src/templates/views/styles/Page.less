@@ -82,6 +82,9 @@ html:lang(ar) {
       display: flex;
       margin-top: 4rem;
       padding-bottom: .6rem;
+      @media (min-width: @screen-md) {
+        padding-bottom: 1.75rem;
+      }
 
       scrollbar-color: #3ba949 #F5F5F5;
       scrollbar-width: thin;
@@ -102,6 +105,10 @@ html:lang(ar) {
       img {
         margin: 0 8px;
         border-radius: 10px;
+        height: 300px;
+        @media (min-width: @screen-md) {
+          height: 355px;
+        }
 
         &:first-child {
           margin-left: 0;
