@@ -10,10 +10,6 @@ import { __ } from '../../../functions/Helper';
 import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
-import driverService from "../../assets/images/alaedeen-driver-service.png";
-import brandsService from "../../assets/images/alaedeen-brands-service.png";
-import logisticsService from "../../assets/images/alaedeen-logistics-service.png";
-
 const WhatHorn = () => {
 
   // get initial config:
@@ -33,8 +29,8 @@ const WhatHorn = () => {
               <Row>
                 <Col className="whatHorn--item">
                   <div className="d-flex align-items-center justify-content-center">
-                    <div className="bg-white d-flex align-items-center justify-content-center whatHorn--item__logo">
-                      <img src={driverService} alt=""/>
+                    <div className="d-flex align-items-center justify-content-center whatHorn--item__logo">
+                      <i className="icon-about-driver text-primary" />
                     </div>
                   </div>
                   <div className="vv-font-size-3 text-33 font-weight-bold text-center mt-2  whatHorn--item__caption1">
@@ -51,8 +47,8 @@ const WhatHorn = () => {
               <Row>
                 <Col className="whatHorn--item">
                   <div className="d-flex align-items-center justify-content-center">
-                    <div className="bg-white d-flex align-items-center justify-content-center whatHorn--item__logo">
-                      <img src={brandsService} alt=""/>
+                    <div className="d-flex align-items-center justify-content-center whatHorn--item__logo">
+                      <i className="icon-about-packs text-primary" />
                     </div>
                   </div>
                   <div className="vv-font-size-3 text-33 font-weight-bold text-center mt-2  whatHorn--item__caption1">
@@ -69,8 +65,8 @@ const WhatHorn = () => {
               <Row>
                 <Col className="whatHorn--item">
                   <div className="d-flex align-items-center justify-content-center">
-                    <div className="bg-white d-flex align-items-center justify-content-center whatHorn--item__logo">
-                      <img src={logisticsService} alt=""/>
+                    <div className="d-flex align-items-center justify-content-center whatHorn--item__logo">
+                      <i className="icon-about-logistics text-primary" />
                     </div>
                   </div>
                   <div className="vv-font-size-3 text-33 font-weight-bold text-center mt-2  whatHorn--item__caption1">
