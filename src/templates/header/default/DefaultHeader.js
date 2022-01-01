@@ -343,7 +343,7 @@ const DefaultHeader = ({ pathName }) => {
           </Row>
         </Col>
 
-        {pathName !== 'page' &&
+        {(pathName !== 'page' && pathName !== 'blog') &&
           <Col span={24} className="d-lg-none header--mobile__searchBox">
             <Input placeholder={ t(__('What are you looking for...')) } prefix={searchTextPrefix} onChange={e => {setSearchValue(e.target.value)}} onPressEnter={() => { handleSubmitSearch() }} />
           </Col>
