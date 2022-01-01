@@ -235,7 +235,7 @@ function App() {
                 <Route exact path="/dashboard" element={
                   (user_data?.auth?.user_id && user_data?.auth?.plan_id === "8")
                     ? <>Dashboard</>
-                    : <Navigate to="/" replace />
+                    : <Navigate to="/" />
                 } />
               </Routes>
             </div>
