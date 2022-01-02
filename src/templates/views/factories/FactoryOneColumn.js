@@ -2,8 +2,7 @@
 import "./styles/FactoryOneColumn.less";
 
 // import ANT Design Components Used:
-import { Button, Col, Row, Space, Image, Skeleton } from "antd";
-import { CommentOutlined } from "@ant-design/icons";
+import { Button, Col, Row, Space, Image, Skeleton, Modal } from "antd";
 
 // import Custom hooks:
 import { useWindowSize } from "../../../functions";
@@ -18,34 +17,54 @@ import TextTruncate from "react-text-truncate";
 import SkeletonFactoriesShow from "../../blocks/skeletons/SkeletonFactoriesShow";
 
 // import helper functions:
-import { __ } from '../../../functions/Helper';
+import { __, isOdd } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
-import React from "react";
+import React, { useState } from "react";
 
 const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
 
   const { t } = useTranslation();
   const { width } = useWindowSize();
 
+  const [isContactUsModal, setIsContactUsModal] = useState([]);
+
+  const showContactUsModal = (storeId) => {
+    setIsContactUsModal(prevState => {
+      return {
+        ...prevState,
+        [storeId]: true
+      }
+    });
+  }
+
+  const handleContactUsModalClose = (storeId) => {
+    setIsContactUsModal(prevState => {
+      return {
+        ...prevState,
+        [storeId]: false
+      }
+    });
+  }
+
   const FactoriesLogo = ({ logo, imageAlt, object_id, store_type }) => {
 
     // get initial config:
     const { config } = useGetConfig();
 
-    const logoSizeMobile = 53;
+    const logoSize = width >= 993 ? 80 : 53;
 
-    if ((config.language === 'en' || config.language === 'ar') && logo.en) {
+    if ((config.language === 'en' || config.language === 'ar') && logo?.en) {
       return (
         <ShowResponsiveImage
           imagePath={ logo?.en }
           imageFolder='company_logo'
-          width={logoSizeMobile}
-          height={logoSizeMobile}
-          skeletonWidth={ `${logoSizeMobile}px` }
-          skeletonHeight={ `${logoSizeMobile}px` }
+          width={logoSize}
+          height={logoSize}
+          skeletonWidth={ `${logoSize}px` }
+          skeletonHeight={ `${logoSize}px` }
           skeletonSvgWidth="3rem"
           skeletonRadius="50%"
           imageAlt={ imageAlt }
@@ -55,15 +74,15 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
       );
     }
 
-    if (config.language === 'fa' && logo.fa) {
+    if (config.language === 'fa' && logo?.fa) {
       return (
         <ShowResponsiveImage
           imagePath={ logo.fa }
           imageFolder='company_logo'
-          width={logoSizeMobile}
-          height={logoSizeMobile}
-          skeletonWidth={ `${logoSizeMobile}px` }
-          skeletonHeight={ `${logoSizeMobile}px` }
+          width={logoSize}
+          height={logoSize}
+          skeletonWidth={ `${logoSize}px` }
+          skeletonHeight={ `${logoSize}px` }
           skeletonSvgWidth="3rem"
           skeletonRadius="50%"
           imageAlt={ imageAlt }
@@ -75,8 +94,8 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
 
     return (
       <ShowResponsiveImage
-        skeletonWidth="53px"
-        skeletonHeight="53px"
+        skeletonWidth={ `${logoSize}px` }
+        skeletonHeight={ `${logoSize}px` }
         skeletonRadius="50%"
         skeletonSvgWidth="3rem"
       />
@@ -84,27 +103,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
 
   }
 
-  const ShowMainMarket = ({ mainMarkets }) => {
-
-    const length = mainMarkets.length;
-    return (
-      <Space>
-
-        {/* show market country */}
-        {mainMarkets.map((mainMarket, i) => {
-          return (
-            i <= 3 &&
-            <span key={i}>
-                  { mainMarket.country }
-            </span>
-          );
-        })}
-
-        {/* if length of market > 4 show ... dot */}
-        { length > 4 && '...' }
-      </Space>
-    );
-  }
+  const proCount = factories?.filter(factoryFilter => factoryFilter?.store_type === "A").length;
 
   // if loading for get data from api:
   if (isLoading) {
@@ -114,291 +113,320 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
     />
   }
 
-  return factories?.map(factory => {
+  return factories?.map((factory, i) => {
 
     if (factory?.store_type === "A") {
       return (
-        <Col span={24} key = { factory?.company_id } className={ `factory--container ${selectedStoreId === factory?.company_id ? "byParam" : ""}` }>
-          <Row gutter={width >= 992 ? 16 : 0} className="bg-white rounded-10 border border-70 h-100">
-            <Col flex='400px' className="d-none d-lg-block h-100 factory--imageContainer">
-              <a className="d-block w-100 h-100 link--disable" href={`https://store.alaedeen.com/?store_id=${factory?.company_id}`}>
-                <ShowResponsiveImage
-                  imagePath={ factory?.images && factory?.images[0] }
-                  imageFolder='profiles'
-                  width={400}
-                  height={313}
-                  imageAlt={ factory?.general?.company }
-                  object_id={`img_0_${factory?.company_id}`}
-                  object_type={`factory_image_0`}
-                />
-              </a>
-            </Col>
-            <Col flex="1 1">
-              <Row gutter={[0,10]}>
-                <Col className="factory--topSection" span={24}>
-                  <Row gutter={10}>
-                    <Col span={8} className="product-xs d-lg-none">
-                      <div className="rounded-10 shadow-y-2 text-center factory--productImage">
-                        {factory?.products.length ?
-                          <div className="product--image">
-                            <ShowResponsiveImage
-                              imagePath={ factory?.products[0]?.main_pair?.detailed?.image_path }
-                              imageFolder='detailed'
-                              width={120}
-                              height={150}
-                              skeletonWidth="100%"
-                              skeletonHeight="147px"
-                              imageAlt={ factory?.products[0]?.product }
-                              object_id={factory?.products[0]?.product_id}
-                              object_type={`prd`}
-                            />
-                          </div> :
-                          <div className="product--image no--image">
-                            <ShowResponsiveImage
-                              skeletonWidth="100%"
-                              skeletonHeight="147px"
+        <>
+          <Col xs={24} lg={12} key = { factory?.company_id } className={ `factory--container ${selectedStoreId === factory?.company_id ? "byParam" : ""}` }>
+            <Row gutter={width >= 992 ? 16 : 0} className="bg-white rounded-10 border border-70 h-100 m-0">
+              <Col span={24}>
+                <Row gutter={[0, 20]}>
+                  <Col className="factory--topSection" span={24}>
+                    <Row gutter={10}>
+                      <Col xs={8} lg={11} className="product-xs">
+                        <div className="d-lg-none rounded-10 shadow-y-2 text-center factory--productImage">
+                          {factory?.products.length ?
+                            <div className="product--image">
+                              <ShowResponsiveImage
+                                imagePath={ factory?.products[0]?.main_pair?.detailed?.image_path }
+                                imageFolder='detailed'
+                                width={120}
+                                height={150}
+                                skeletonWidth="100%"
+                                skeletonHeight="147px"
+                                imageAlt={ factory?.products[0]?.product }
+                                object_id={factory?.products[0]?.product_id}
+                                object_type={`prd`}
+                              />
+                            </div> :
+                            <div className="product--image no--image">
+                              <ShowResponsiveImage
+                                skeletonWidth="100%"
+                                skeletonHeight="147px"
+                              />
+                            </div>
+                          }
+                          <div className="factory--logo">
+                            <FactoriesLogo
+                              logo={ factory?.logo }
+                              imageAlt={ factory?.general?.company }
+                              object_id={factory?.company_id}
                             />
                           </div>
-                        }
-                        <div className="factory--logo">
-                          <FactoriesLogo
-                            logo={ factory?.logo }
-                            imageAlt={ factory?.general?.company }
-                            object_id={factory?.company_id}
-                          />
                         </div>
-                      </div>
-                    </Col>
-                    <Col xs={16} lg={24}>
-                      <Row gutter={[0, {xs:0, lg:5}]}>
-                        <Col span={24}>
-                          <Row gutter={{ xs:4, lg:10 }}>
-                            <Col flex="1 1" className="text-truncate text-33 factory--name">
-                              {factory?.general?.company}
-                            </Col>
-                            <Col flex="44px" className="factory--verified">
-                              <img src={ verifiedIcon } alt="verified"/>
-                            </Col>
-                          </Row>
-                        </Col>
 
-                        <Col span={24} className="factory--aboutUs d-lg-none">
-                          {factory?.about_us ?
-                            <TextTruncate
-                              className="text-33 factory--aboutUs__paragraph"
-                              line={ 5 }
-                              element="div"
-                              truncateText=" …"
-                              text={ factory?.about_us && `${t(__('About Us'))}: ${factory?.about_us}` }
-                            /> :
-                            <Skeleton className="factory--aboutUs__empty" active={false} paragraph={{ rows: 4 }} />
+                        <div className="d-none d-lg-block rounded-10 shadow-y-2 text-center factory--productImage">
+                          {(factory?.images && factory?.images[0]) ?
+                            <div className="product--image">
+                              <ShowResponsiveImage
+                                imagePath={ factory?.images[0] }
+                                imageFolder='profiles'
+                                width={150}
+                                height={150}
+                                skeletonWidth="100%"
+                                skeletonHeight="147px"
+                                imageAlt={ factory?.general?.company }
+                                object_id={`img_0_${factory?.company_id}`}
+                                object_type={`factory_image_0`}
+                              />
+                            </div> :
+                            <div className="product--image no--image">
+                              <ShowResponsiveImage
+                                skeletonWidth="100%"
+                                skeletonHeight="147px"
+                              />
+                            </div>
                           }
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
-                </Col>
-
-                <Col className="factory--middleSection" span={24}>
-                  <Row className="d-lg-none row-cols-3 factory--profileDetails" gutter={15}>
-                    <Col>
-                      <Row gutter={ [ 0, 5 ] }>
-                        <Col className="profileDetail--value text-black text-truncate" span={ 24 }>
-                          {factory?.production_capability?.total_employees || "..."}
-                        </Col>
-                        <Col className="profileDetail--variable text-92 font-weight-600 text-truncate" span={ 24 }>
-                          {t(__('Total employees'))}
-                        </Col>
-                      </Row>
-                    </Col>
-
-                    <Col>
-                      <Row gutter={ [ 0, 5 ] }>
-                        <Col className="profileDetail--value text-black text-truncate" span={ 24 }>
-                          {factory?.production_capability?.factory_size || "..."}
-                        </Col>
-                        <Col className="profileDetail--variable text-92 font-weight-600 text-truncate" span={ 24 }>
-                          {t(__('Factory size'))}
-                        </Col>
-                      </Row>
-                    </Col>
-
-                    <Col>
-                      <Row gutter={ [ 0, 5 ] }>
-                        <Col className="profileDetail--value text-black text-truncate" span={ 24 }>
-                          {factory?.production_capability?.r_and_d_employees || "..."}
-                        </Col>
-                        <Col className="profileDetail--variable text-92 font-weight-600 text-truncate" span={ 24 }>
-                          {t(__('R&D employees'))}
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
-
-                  <Row className="d-none d-lg-flex" gutter={12}>
-                    <Col span={7} className="factory--aboutUs">
-                      {factory?.about_us ?
-                        <TextTruncate
-                          className="text-33 factory--aboutUs__paragraph"
-                          line={ 5 }
-                          element="div"
-                          truncateText=" …"
-                          text={ factory?.about_us && `${t(__('About Us'))}: ${factory?.about_us}` }
-                        /> :
-                        <Skeleton className="factory--aboutUs__empty" active={false} paragraph={{ rows: 4 }} />
-                      }
-                    </Col>
-
-                    <Col span={17} className="factory--products">
-                      <Row className="row-cols-4" gutter={16}>
-                        {factory?.products.length ?
-                          factory?.products.map(product => {
-                            return (
-                              <Col key={product?.product_id}>
-                                <div className="rounded-10 shadow-y-2 text-center factory--productImage">
-                                  <ShowResponsiveImage
-                                    imagePath={ product?.main_pair?.detailed?.image_path }
-                                    imageFolder='detailed'
-                                    width={127}
-                                    height={131}
-                                    skeletonWidth="130px"
-                                    skeletonHeight="131px"
-                                    imageAlt={ product?.product }
-                                    object_id={product?.product_id}
-                                    object_type={`prd`}
-                                  />
-                                </div>
+                          <div className="factory--logo">
+                            <FactoriesLogo
+                              logo={ factory?.logo }
+                              imageAlt={ factory?.general?.company }
+                              object_id={factory?.company_id}
+                            />
+                          </div>
+                        </div>
+                      </Col>
+                      <Col xs={16} lg={13}>
+                        <Row gutter={[0, {xs:0, lg:10}]}>
+                          <Col span={24}>
+                            <Row gutter={{ xs:4, lg:10 }}>
+                              <Col flex="1 1" className="text-truncate text-33 factory--name">
+                                {factory?.general?.company}
                               </Col>
-                            );
-                          }) :
-                          new Array(4).fill("", 0, 4).map((_, i) => {
-                            return(
-                              <Col key={i}>
-                                <div className="rounded-10 shadow-y-2 text-center factory--productImage">
-                                  <ShowResponsiveImage
-                                    skeletonWidth="100%"
-                                    skeletonHeight="131px"
-                                  />
-                                </div>
+                              <Col flex="44px" className="factory--verified">
+                                <img src={ verifiedIcon } alt="verified"/>
                               </Col>
-                            );
-                          })
+                            </Row>
+                          </Col>
 
-                        }
-                      </Row>
-                    </Col>
-                  </Row>
-                </Col>
+                          <Col span={24} className="factory--aboutUs">
+                            {factory?.about_us ?
+                              <TextTruncate
+                                className="text-33 factory--aboutUs__paragraph"
+                                line={ width >= 993 ? 3 : 5 }
+                                element="div"
+                                truncateText=" …"
+                                text={ factory?.about_us && `${t(__('About Us'))}: ${factory?.about_us}` }
+                              /> :
+                              <Skeleton className="factory--aboutUs__empty" active={false} paragraph={{ rows: 4 }} />
+                            }
+                          </Col>
 
-                <Col className="factory--bottomSection" span={24}>
-                  <Row className="d-none d-lg-flex factory--profileDetail" gutter={15}>
-                    <Col span={12}>
-                      <Row className="profileDetail" gutter={[0, 4]}>
-                        <Col className="text-33 profileDetail--caption" span={24}>
-                          {t(__('Production capability'))}
-                        </Col>
-                        <Col span={24}>
-                          <Row className="row-cols-3 profileDetail--content" gutter={10}>
-                            <Col>
-                              <Row gutter={ [ 0, 2 ] }>
-                                <Col className="profileDetail--value text-black font-weight-bold text-truncate" span={ 24 }>
-                                  {factory?.production_capability?.total_employees || "..."}
-                                </Col>
-                                <Col className="profileDetail--variable text-92 font-weight-500 text-truncate" span={ 24 }>
-                                  {t(__('Total employees'))}
-                                </Col>
-                              </Row>
-                            </Col>
+                          <Col span={24} className="d-none d-lg-block factory--products">
+                            <Row className="row-cols-2" gutter={16}>
+                              {factory?.products.length ?
+                                factory?.products.map(product => {
+                                  return (
+                                    <Col key={product?.product_id}>
+                                      <div className="rounded-10 shadow-y-2 text-center factory--productImage">
+                                        <ShowResponsiveImage
+                                          imagePath={ product?.main_pair?.detailed?.image_path }
+                                          imageFolder='detailed'
+                                          width={127}
+                                          height={131}
+                                          skeletonWidth="130px"
+                                          skeletonHeight="131px"
+                                          imageAlt={ product?.product }
+                                          object_id={product?.product_id}
+                                          object_type={`prd`}
+                                        />
+                                      </div>
+                                    </Col>
+                                  );
+                                }) :
+                                new Array(4).fill("", 0, 4).map((_, i) => {
+                                  return(
+                                    <Col key={i}>
+                                      <div className="rounded-10 shadow-y-2 text-center factory--productImage">
+                                        <ShowResponsiveImage
+                                          skeletonWidth="100%"
+                                          skeletonHeight="131px"
+                                        />
+                                      </div>
+                                    </Col>
+                                  );
+                                })
 
-                            <Col>
-                              <Row gutter={ [ 0, 2 ] }>
-                                <Col className="profileDetail--value text-black font-weight-bold text-truncate" span={ 24 }>
-                                  {factory?.production_capability?.factory_size || "..."}
-                                </Col>
-                                <Col className="profileDetail--variable text-92 font-weight-500 text-truncate" span={ 24 }>
-                                  {t(__('Factory size'))}
-                                </Col>
-                              </Row>
-                            </Col>
+                              }
+                            </Row>
+                          </Col>
+                        </Row>
+                      </Col>
+                    </Row>
+                  </Col>
 
-                            <Col>
-                              <Row gutter={ [ 0, 2 ] }>
-                                <Col className="profileDetail--value text-black font-weight-bold text-truncate" span={ 24 }>
-                                  {factory?.production_capability?.r_and_d_employees || "..."}
-                                </Col>
-                                <Col className="profileDetail--variable text-92 font-weight-500 text-truncate" span={ 24 }>
-                                  {t(__('R&D employees'))}
-                                </Col>
-                              </Row>
-                            </Col>
-                          </Row>
-                        </Col>
-                      </Row>
-                    </Col>
+                  <Col className="factory--bottomSection" span={24}>
+                    <Row className="d-lg-none row-cols-3 factory--profileDetails" gutter={15}>
+                      <Col>
+                        <Row gutter={ [ 0, 5 ] }>
+                          <Col className="profileDetail--value text-black text-truncate" span={ 24 }>
+                            {factory?.production_capability?.total_employees || "..."}
+                          </Col>
+                          <Col className="profileDetail--variable text-92 font-weight-600 text-truncate" span={ 24 }>
+                            {t(__('Total employees'))}
+                          </Col>
+                        </Row>
+                      </Col>
 
-                    <Col span={12}>
-                      <Row className="profileDetail" gutter={[0, 4]}>
-                        <Col className="text-33 profileDetail--caption" span={24}>
-                          {t(__('Export Capability'))}
-                        </Col>
-                        <Col span={24}>
-                          <Row className="profileDetail--content" gutter={10}>
-                            <Col span={16}>
-                              <Row gutter={ [ 0, 2 ] }>
-                                <Col className="profileDetail--value text-black font-weight-bold text-truncate" span={ 24 }>
-                                  {factory?.export_capability?.main_markets ?
-                                    <ShowMainMarket mainMarkets={factory?.export_capability?.main_markets} />:
-                                    <>---</>
-                                  }
-                                </Col>
-                                <Col className="profileDetail--variable text-92 font-weight-500 text-truncate" span={ 24 }>
-                                  {t(__('Main markets'))}
-                                </Col>
-                              </Row>
-                            </Col>
+                      <Col>
+                        <Row gutter={ [ 0, 5 ] }>
+                          <Col className="profileDetail--value text-black text-truncate" span={ 24 }>
+                            {factory?.production_capability?.factory_size || "..."}
+                          </Col>
+                          <Col className="profileDetail--variable text-92 font-weight-600 text-truncate" span={ 24 }>
+                            {t(__('Factory size'))}
+                          </Col>
+                        </Row>
+                      </Col>
 
-                            <Col span={8}>
-                              <Row gutter={ [ 0, 2 ] }>
-                                <Col className="profileDetail--value text-black font-weight-bold text-truncate" span={ 24 }>
-                                  {factory?.export_capability?.export_rate || "..."}
-                                </Col>
-                                <Col className="profileDetail--variable text-92 font-weight-500 text-truncate" span={ 24 }>
-                                  {t(__('Export rate'))}
-                                </Col>
-                              </Row>
-                            </Col>
-                          </Row>
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
+                      <Col>
+                        <Row gutter={ [ 0, 5 ] }>
+                          <Col className="profileDetail--value text-black text-truncate" span={ 24 }>
+                            {factory?.production_capability?.r_and_d_employees || "..."}
+                          </Col>
+                          <Col className="profileDetail--variable text-92 font-weight-600 text-truncate" span={ 24 }>
+                            {t(__('R&D employees'))}
+                          </Col>
+                        </Row>
+                      </Col>
+                    </Row>
 
-                  <Row justify="space-between">
-                    <Col className="factory--location">
-                      <i className="fal fa-map-marker-alt text-primary" />
-                      <span className="text-47">{ factory?.general?.country }, { factory?.general?.state }</span>
-                    </Col>
+                    <Row className="d-none d-lg-flex factory--profileDetail">
+                      <Col span={24}>
+                        <Row className="profileDetail" gutter={[0, 4]}>
+                          <Col className="text-33 profileDetail--caption" span={24}>
+                            {t(__('Production capability'))}
+                          </Col>
+                          <Col span={24}>
+                            <Row className="row-cols-3 profileDetail--content" gutter={10}>
+                              <Col>
+                                <Row gutter={ [ 0, 2 ] }>
+                                  <Col className="profileDetail--value text-black font-weight-bold text-truncate" span={ 24 }>
+                                    {factory?.production_capability?.total_employees || "..."}
+                                  </Col>
+                                  <Col className="profileDetail--variable text-92 font-weight-500 text-truncate" span={ 24 }>
+                                    {t(__('Total employees'))}
+                                  </Col>
+                                </Row>
+                              </Col>
 
-                    <Col>
-                      <Button
-                        icon={ <i className="far fa-address-book vv-font-size-1-7"/> }
-                        className="p-0 bg-transparent border-0 factory--contacts"
-                        size={ "large" }
-                      >
-                        { t(__('Contacts')) }
-                      </Button>
-                    </Col>
-                  </Row>
-                </Col>
+                              <Col>
+                                <Row gutter={ [ 0, 2 ] }>
+                                  <Col className="profileDetail--value text-black font-weight-bold text-truncate" span={ 24 }>
+                                    {factory?.production_capability?.factory_size || "..."}
+                                  </Col>
+                                  <Col className="profileDetail--variable text-92 font-weight-500 text-truncate" span={ 24 }>
+                                    {t(__('Factory size'))}
+                                  </Col>
+                                </Row>
+                              </Col>
+
+                              <Col>
+                                <Row gutter={ [ 0, 2 ] }>
+                                  <Col className="profileDetail--value text-black font-weight-bold text-truncate" span={ 24 }>
+                                    {factory?.production_capability?.r_and_d_employees || "..."}
+                                  </Col>
+                                  <Col className="profileDetail--variable text-92 font-weight-500 text-truncate" span={ 24 }>
+                                    {t(__('R&D employees'))}
+                                  </Col>
+                                </Row>
+                              </Col>
+                            </Row>
+                          </Col>
+                        </Row>
+                      </Col>
+                    </Row>
+
+                    <Row justify="space-between">
+                      <Col className="factory--location">
+                        <i className="fal fa-map-marker-alt text-primary" />
+                        <span className="text-47">{ factory?.general?.country }, { factory?.general?.state }</span>
+                      </Col>
+
+                      <Col>
+                        <Button
+                          icon={ <i className="far fa-address-book vv-font-size-1-7"/> }
+                          className="p-0 bg-transparent border-0 factory--contacts"
+                          size={ "large" }
+                          onClick={() => { showContactUsModal(factory?.company_id) }}
+                        >
+                          { t(__('Contacts')) }
+                        </Button>
+                      </Col>
+                    </Row>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+
+            {/* Contact Us Modal: */}
+            <Modal
+              title={ factory?.general?.company }
+              style={{ top: width < 992 && 10 }}
+              visible={isContactUsModal[factory?.company_id] || false}
+              onCancel={() => { handleContactUsModalClose(factory?.company_id) }}
+              footer={false}
+            >
+              <Row className="row-cols-1" gutter={[0, 20]}>
+
+                {factory?.contact_us?.telephone &&
+                  <Col>
+                    <Row gutter={width >= 992 ? 16 : 0}>
+                      <Col xs={9} lg={6} className="text-92 contactUs--modal__variable">
+                        { t('telephone') }:
+                      </Col>
+                      <Col xs={15} lg={18} className="text-47 contactUs--modal__value">
+                        { factory?.contact_us?.telephone }
+                      </Col>
+                    </Row>
+                  </Col>
+                }
+
+                {factory?.contact_us?.whatsapp &&
+                  <Col>
+                    <Row gutter={width >= 992 ? 16 : 0}>
+                      <Col xs={9} lg={6} className="text-92 contactUs--modal__variable">
+                        { t('whatsapp') }:
+                      </Col>
+                      <Col xs={15} lg={18} className="text-47 contactUs--modal__value">
+                        { factory?.contact_us?.whatsapp }
+                      </Col>
+                    </Row>
+                  </Col>
+                }
+
+                {factory?.contact_us?.address &&
+                  <Col>
+                    <Row gutter={width >= 992 ? 16 : 0}>
+                      <Col xs={9} lg={6} className="text-92 contactUs--modal__variable">
+                        { t('address') }:
+                      </Col>
+                      <Col xs={15} lg={18} className="text-47 contactUs--modal__value">
+
+                        { factory?.contact_us?.country && `${factory?.contact_us?.country} - ` }
+
+                        { factory?.contact_us?.state && `${factory?.contact_us?.state} - ` }
+
+                        { factory?.contact_us?.address && factory?.contact_us?.address }
+
+                      </Col>
+                    </Row>
+                  </Col>
+                }
+
               </Row>
-            </Col>
-          </Row>
-        </Col>
+            </Modal>
+          </Col>
+          {((isOdd(proCount) && (i + 1) === proCount) && width >= 993) &&
+            <Col span={12} />
+          }
+        </>
       );
     }
 
     return (
-      <Col span={12} key = { factory?.company_id } className={ `factory--container storeType--free ${selectedStoreId === factory?.company_id ? "byParam" : ""}` }>
+      <Col xs={12} lg={8} key = { factory?.company_id } className={ `factory--container storeType--free ${selectedStoreId === factory?.company_id ? "byParam" : ""}` }>
         <Row className="bg-white rounded-10 border border-70 h-100" gutter={[0, 7]}>
           <Col className="factory--topSection" span={24}>
             <Row>

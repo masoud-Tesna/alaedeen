@@ -70,11 +70,6 @@ html:lang(ar) {
     padding: 12px 12px 0;
   }
 
-  .factory--imageContainer img {
-    width: 400px;
-    height: 100%;
-  }
-
   .factory--topSection {
     .factory--productImage {
       position: relative;
@@ -106,6 +101,10 @@ html:lang(ar) {
         background-color: #FFFFFF;
         width: 57px;
         height: 57px;
+        @media (min-width: @screen-md) {
+          width: 80px;
+          height: 80px;
+        }
         border-radius: 50%;
         position: absolute;
         top: -7px;
@@ -118,6 +117,10 @@ html:lang(ar) {
           img {
             width: 52px;
             height: 52px;
+            @media (min-width: @screen-md) {
+              width: 74px;
+              height: 74px;
+            }
             border-radius: 50%;
           }
         }
@@ -168,23 +171,7 @@ html:lang(ar) {
   }
 
   .factory--middleSection {
-    .factory--profileDetails {
-      margin: 0 !important;
-      background-color: #EFEFEF;
-      border-radius: 5px;
-      padding: .5rem .2rem;
 
-      & > .ant-col {
-        &:not(:last-child) {
-          border-right: 1px solid #BCBCBC;
-        }
-      }
-
-      .profileDetail--variable,
-      .profileDetail--value {
-        font-size: 1.2rem;
-      }
-    }
 
     .factory--aboutUs {
       .factory--aboutUs__paragraph {
@@ -230,6 +217,24 @@ html:lang(ar) {
 
   .factory--bottomSection {
     margin-top: -10px;
+
+    .factory--profileDetails {
+      margin: 0 !important;
+      background-color: #EFEFEF;
+      border-radius: 5px;
+      padding: .5rem .2rem;
+
+      & > .ant-col {
+        &:not(:last-child) {
+          border-right: 1px solid #BCBCBC;
+        }
+      }
+
+      .profileDetail--variable,
+      .profileDetail--value {
+        font-size: 1.2rem;
+      }
+    }
 
     .factory--profileDetail {
       .profileDetail {
@@ -303,7 +308,6 @@ html:lang(ar) {
     & > .ant-row {
       padding: 7px 7px 0;
     }
-
   }
 
   &.byParam {
