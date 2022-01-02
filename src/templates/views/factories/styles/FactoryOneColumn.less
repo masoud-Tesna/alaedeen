@@ -287,8 +287,14 @@ html:lang(ar) {
   }
 
   &.storeType--free {
+    @media (min-width: @screen-md) {
+      min-height: 277px;
+    }
+
     .factory--topSection {
       .factory--logo {
+        margin-bottom: 1.5rem;
+
         .skeletonImage--custom {
           margin: 0 auto;
         }

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 // import style file:
 import "./styles/FactoryOneColumn.less";
 
@@ -17,12 +19,11 @@ import TextTruncate from "react-text-truncate";
 import SkeletonFactoriesShow from "../../blocks/skeletons/SkeletonFactoriesShow";
 
 // import helper functions:
-import { __, isOdd } from '../../../functions/Helper';
+import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
-import React, { useState } from "react";
 
 const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
 
@@ -103,8 +104,6 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
 
   }
 
-  const proCount = factories?.filter(factoryFilter => factoryFilter?.store_type === "A").length;
-
   // if loading for get data from api:
   if (isLoading) {
     return <SkeletonFactoriesShow
@@ -113,7 +112,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
     />
   }
 
-  return factories?.map((factory, i) => {
+  return factories?.map(factory => {
 
     if (factory?.store_type === "A") {
       return (
@@ -121,7 +120,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
           <Col xs={24} lg={12} key = { factory?.company_id } className={ `factory--container ${selectedStoreId === factory?.company_id ? "byParam" : ""}` }>
             <Row gutter={width >= 992 ? 16 : 0} className="bg-white rounded-10 border border-70 h-100 m-0">
               <Col span={24}>
-                <Row className="h-100" gutter={[0, 20]}>
+                <Row className="h-100" gutter={[0, 12]}>
                   <Col className="align-self-start factory--topSection" span={24}>
                     <Row gutter={10}>
                       <Col xs={8} lg={11} className="product-xs">
@@ -162,10 +161,10 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                               <ShowResponsiveImage
                                 imagePath={ factory?.images[0] }
                                 imageFolder='profiles'
-                                width={150}
-                                height={150}
+                                width={250}
+                                height={210}
                                 skeletonWidth="100%"
-                                skeletonHeight="147px"
+                                skeletonHeight="210px"
                                 imageAlt={ factory?.general?.company }
                                 object_id={`img_0_${factory?.company_id}`}
                                 object_type={`factory_image_0`}
@@ -174,7 +173,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                             <div className="product--image no--image">
                               <ShowResponsiveImage
                                 skeletonWidth="100%"
-                                skeletonHeight="147px"
+                                skeletonHeight="210px"
                               />
                             </div>
                           }
@@ -188,7 +187,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                         </div>
                       </Col>
                       <Col xs={16} lg={13}>
-                        <Row gutter={[0, {xs:0, lg:10}]}>
+                        <Row gutter={[0, {xs:0, lg:7}]}>
                           <Col span={24}>
                             <Row gutter={{ xs:4, lg:10 }}>
                               <Col flex="1 1" className="text-truncate text-33 factory--name">
@@ -224,7 +223,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                                           imagePath={ product?.main_pair?.detailed?.image_path }
                                           imageFolder='detailed'
                                           width={127}
-                                          height={131}
+                                          height={100}
                                           skeletonWidth="130px"
                                           skeletonHeight="131px"
                                           imageAlt={ product?.product }
@@ -241,7 +240,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                                       <div className="rounded-10 shadow-y-2 text-center factory--productImage">
                                         <ShowResponsiveImage
                                           skeletonWidth="100%"
-                                          skeletonHeight="131px"
+                                          skeletonHeight="100px"
                                         />
                                       </div>
                                     </Col>
@@ -287,52 +286,6 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                           </Col>
                           <Col className="profileDetail--variable text-92 font-weight-600 text-truncate" span={ 24 }>
                             {t(__('R&D employees'))}
-                          </Col>
-                        </Row>
-                      </Col>
-                    </Row>
-
-                    <Row className="d-none d-lg-flex factory--profileDetail">
-                      <Col span={24}>
-                        <Row className="profileDetail" gutter={[0, 4]}>
-                          <Col className="text-33 profileDetail--caption" span={24}>
-                            {t(__('Production capability'))}
-                          </Col>
-                          <Col span={24}>
-                            <Row className="row-cols-3 profileDetail--content" gutter={10}>
-                              <Col>
-                                <Row gutter={ [ 0, 2 ] }>
-                                  <Col className="profileDetail--value text-black font-weight-bold text-truncate" span={ 24 }>
-                                    {factory?.production_capability?.total_employees || "..."}
-                                  </Col>
-                                  <Col className="profileDetail--variable text-92 font-weight-500 text-truncate" span={ 24 }>
-                                    {t(__('Total employees'))}
-                                  </Col>
-                                </Row>
-                              </Col>
-
-                              <Col>
-                                <Row gutter={ [ 0, 2 ] }>
-                                  <Col className="profileDetail--value text-black font-weight-bold text-truncate" span={ 24 }>
-                                    {factory?.production_capability?.factory_size || "..."}
-                                  </Col>
-                                  <Col className="profileDetail--variable text-92 font-weight-500 text-truncate" span={ 24 }>
-                                    {t(__('Factory size'))}
-                                  </Col>
-                                </Row>
-                              </Col>
-
-                              <Col>
-                                <Row gutter={ [ 0, 2 ] }>
-                                  <Col className="profileDetail--value text-black font-weight-bold text-truncate" span={ 24 }>
-                                    {factory?.production_capability?.r_and_d_employees || "..."}
-                                  </Col>
-                                  <Col className="profileDetail--variable text-92 font-weight-500 text-truncate" span={ 24 }>
-                                    {t(__('R&D employees'))}
-                                  </Col>
-                                </Row>
-                              </Col>
-                            </Row>
                           </Col>
                         </Row>
                       </Col>
@@ -422,14 +375,16 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
 
                         { factory?.contact_us?.state && `${factory?.contact_us?.state} - ` }
 
-                        { factory?.contact_us?.address && factory?.contact_us?.address }
+                        { factory?.contact_us?.address &&
+                          <span dangerouslySetInnerHTML={{ __html: factory?.contact_us?.address }} />
+                        }
 
                       </Col>
                     </Row>
                   </Col>
                 }
 
-                {(!factory?.contact_us?.full_name || !factory?.contact_us?.telephone || !factory?.contact_us?.whatsapp || !factory?.contact_us?.address) &&
+                {(!factory?.contact_us?.full_name && !factory?.contact_us?.telephone && !factory?.contact_us?.whatsapp && !factory?.contact_us?.address) &&
                   <Col>
                     <Row gutter={width >= 992 ? 16 : 0}>
                       <Col xs={9} lg={5} className="text-92 contactUs--modal__variable">
@@ -445,15 +400,12 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
               </Row>
             </Modal>
           </Col>
-          {((isOdd(proCount) && (i + 1) === proCount) && width >= 993) &&
-            <Col span={12} />
-          }
         </>
       );
     }
 
     return (
-      <Col xs={12} lg={8} key = { factory?.company_id } className={ `factory--container storeType--free ${selectedStoreId === factory?.company_id ? "byParam" : ""}` }>
+      <Col xs={12} lg={6} key = { factory?.company_id } className={ `factory--container storeType--free ${selectedStoreId === factory?.company_id ? "byParam" : ""}` }>
         <Row className="bg-white rounded-10 border border-70 h-100" gutter={[0, 7]}>
           <Col className="factory--topSection" span={24}>
             <Row>
@@ -474,7 +426,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                 {factory?.about_us ?
                   <TextTruncate
                     className="text-33 factory--aboutUs__paragraph"
-                    line={ 3 }
+                    line={ width >= 993 ? 4 : 3 }
                     element="div"
                     truncateText=" …"
                     text={ factory?.about_us && `${t(__('About Us'))}: ${factory?.about_us}` }
@@ -497,11 +449,98 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                   icon={ <i className="far fa-address-book vv-font-size-1-7"/> }
                   className="p-0 bg-transparent border-0 factory--contacts"
                   size={ "large" }
+                  onClick={() => showContactUsModal(factory?.company_id)}
                 />
               </Col>
             </Row>
           </Col>
         </Row>
+
+        <Modal
+          className="factory--contactUs__modal"
+          title={ factory?.general?.company }
+          style={{ top: width < 992 && 10 }}
+          visible={isContactUsModal[factory?.company_id] || false}
+          onCancel={() => { handleContactUsModalClose(factory?.company_id) }}
+          footer={false}
+        >
+          <Row className="row-cols-1" gutter={[0, 20]}>
+
+            {factory?.contact_us?.full_name &&
+            <Col>
+              <Row gutter={width >= 992 ? 16 : 0}>
+                <Col xs={9} lg={5} className="text-92 contactUs--modal__variable">
+                  { t('supervisor') }:
+                </Col>
+                <Col xs={15} lg={19} className="text-47 contactUs--modal__value">
+                  { factory?.contact_us?.full_name }
+                </Col>
+              </Row>
+            </Col>
+            }
+
+            {factory?.contact_us?.telephone &&
+            <Col>
+              <Row gutter={width >= 992 ? 16 : 0}>
+                <Col xs={9} lg={5} className="text-92 contactUs--modal__variable">
+                  { t('telephone') }:
+                </Col>
+                <Col xs={15} lg={19} className="text-47 contactUs--modal__value">
+                  { factory?.contact_us?.telephone }
+                </Col>
+              </Row>
+            </Col>
+            }
+
+            {factory?.contact_us?.whatsapp &&
+            <Col>
+              <Row gutter={width >= 992 ? 16 : 0}>
+                <Col xs={9} lg={5} className="text-92 contactUs--modal__variable">
+                  { t('whatsapp') }:
+                </Col>
+                <Col xs={15} lg={19} className="text-47 contactUs--modal__value">
+                  { factory?.contact_us?.whatsapp }
+                </Col>
+              </Row>
+            </Col>
+            }
+
+            {factory?.contact_us?.address &&
+            <Col>
+              <Row gutter={width >= 992 ? 16 : 0}>
+                <Col xs={9} lg={5} className="text-92 contactUs--modal__variable">
+                  { t('address') }:
+                </Col>
+                <Col xs={15} lg={19} className="text-47 contactUs--modal__value">
+
+                  { factory?.contact_us?.country && `${factory?.contact_us?.country} - ` }
+
+                  { factory?.contact_us?.state && `${factory?.contact_us?.state} - ` }
+
+                  { factory?.contact_us?.address &&
+                    <span dangerouslySetInnerHTML={{ __html: factory?.contact_us?.address }} />
+                  }
+
+                </Col>
+              </Row>
+            </Col>
+            }
+
+            {(!factory?.contact_us?.full_name && !factory?.contact_us?.telephone && !factory?.contact_us?.whatsapp && !factory?.contact_us?.address) &&
+            <Col>
+              <Row gutter={width >= 992 ? 16 : 0}>
+                <Col xs={9} lg={5} className="text-92 contactUs--modal__variable">
+                  { t('email') }:
+                </Col>
+                <Col xs={15} lg={19} className="text-47 contactUs--modal__value">
+                  { factory?.general?.email }
+                </Col>
+              </Row>
+            </Col>
+            }
+
+          </Row>
+        </Modal>
       </Col>
     );
 
