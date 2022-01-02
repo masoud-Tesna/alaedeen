@@ -31,6 +31,11 @@ html:lang(ar) {
     .ant-input-affix-wrapper {
       .ant-input {
         padding-right: 2rem;
+        border-radius: 0 10px 10px 0 !important;
+      }
+
+      .ant-input-suffix {
+        border-radius: 10px 0 0 10px !important;
       }
     }
   }
@@ -93,10 +98,12 @@ html:lang(ar) {
       padding: 0 !important;
       border: 1px solid darken(@primary-color, 10%) !important;
       height: 40px;
+      border-radius: 10px;
 
       .ant-input {
         padding-left: 2rem;
         font-size: 1.8rem!important;
+        border-radius: 10px 0 0 10px;
         &::placeholder {
           color: #929191 !important;
         }
@@ -110,6 +117,7 @@ html:lang(ar) {
         line-height: 4rem;
         cursor: pointer;
         color: white;
+        border-radius: 0 10px 10px 0;
       }
     }
   }
