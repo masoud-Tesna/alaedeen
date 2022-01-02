@@ -1,7 +1,9 @@
+@import '../../../styles/Mixins';
+
 html:lang(fa),
 html:lang(ar) {
-  .whatHorn--container {
-    .whatHorn--caption__content {
+  .AlaedeenServices--container {
+    .AlaedeenServices--caption__content {
       .dividerText {
         span {
           padding-left: 15px !important;
@@ -13,15 +15,23 @@ html:lang(ar) {
       }
     }
 
-    .whatHorn--items > .ant-row-rtl {
+    .AlaedeenServices--items > .ant-row-rtl {
       direction: ltr;
     }
   }
 }
 
-.whatHorn--container {
-  padding: 0 80px;
-  .whatHorn--caption__content {
+.AlaedeenServices--container {
+  padding: 0 8px;
+  @media (min-width: @screen-md) {
+    padding: 0 80px;
+  }
+
+  .AlaedeenServices--caption {
+    font-size: 1.6rem;
+    text-transform: uppercase !important;
+    font-weight: bold;
+
     padding: 0 10px;
     margin-bottom: 1rem;
     .dividerText {
@@ -45,15 +55,30 @@ html:lang(ar) {
     }
   }
 
-  .whatHorn--items {
-    padding: 0 20px;
-    .whatHorn--item {
-      .whatHorn--item__logo {
+  .AlaedeenServices--items {
+    padding: 0 8px;
+    @media (min-width: @screen-md) {
+      padding: 0 20px;
+    }
+
+    .AlaedeenServices--item {
+      .AlaedeenServices--item__logo {
         width: 174px;
         height: 157px;
         i {
           font-size: 14rem !important;
         }
+      }
+    }
+  }
+
+  .AlaedeenServices--items__xs {
+    .AlaedeenServices--item__logo {
+      i {
+        font-size: 9rem !important;
+        width: 104px;
+        display: inline-block;
+        text-align: center;
       }
     }
   }

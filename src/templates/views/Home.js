@@ -20,7 +20,7 @@ import Stats from "../blocks/static_templates/Stats";
 import PremiumFactories from "../blocks/static_templates/PremiumFactories";
 import RecommendedProducts from "../blocks/static_templates/RecommendedProducts";
 import TopBrands from "../blocks/static_templates/TopBrands";
-import WhatHorn from "../blocks/static_templates/WhatHorn";
+import AlaedeenServices from "../blocks/static_templates/AlaedeenServices";
 import News from "../blocks/static_templates/News";
 
 // add after:
@@ -129,11 +129,11 @@ const Home = () => {
         <TopBrands />
       </div>
 
-      <div className="d-none d-lg-block whatHorn--section">
-        <WhatHorn />
+      <div className="AlaedeenServices--section">
+        <AlaedeenServices />
       </div>
 
-      <div className="d-none d-lg-block news--section">
+      <div className="news--section">
         <News />
       </div>
     </>
