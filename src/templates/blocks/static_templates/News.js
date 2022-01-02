@@ -33,8 +33,6 @@ const News = () => {
 
   const { t } = useTranslation();
 
-  const { width } = useWindowSize();
-
   // get news one blog:
   const { isLoading, data } = useGetApi("blogs-api", "category_path=news-and-events&items_per_page=1", `newsBlog`);
   const {sub_pages: page} = data || [];
@@ -53,7 +51,7 @@ const News = () => {
         </Col>
 
         <Col span={24}>
-          <Row className="bg-white news--item">
+          <Row className="bg-white news--item" gutter={[0, {xs: 8, lg: 0}]}>
             <Col xs={24} lg={7} className="news--image">
               {isLoading
                 ? <ShowResponsiveImage
@@ -78,10 +76,10 @@ const News = () => {
                   <Row className="news--content" gutter={[0, { xs: 10, lg: 15 }]}>
                     <Col span={24}>
                       <Row justify="space-between">
-                        <Col  xs={24} lg={17} className="text-33 news--title">
+                        <Col span={17} className="text-33 news--title">
                           {page.page}
                         </Col>
-                        <Col xs={24} lg={7} className="text-8b news-date">
+                        <Col span={7} className="text-8b news-date">
                           <i className="fal fa-clock align-middle" />
                           {config.language === 'fa'
                             ? moment.unix(1640809800).format('jDD jMMM jYYYY')

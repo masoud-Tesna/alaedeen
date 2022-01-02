@@ -98,7 +98,7 @@ const AlaedeenServices = () => {
                     <i className="icon-about-driver text-primary" />
                   </Col>
                   <Col flex="1 1">
-                    <Row className="h-100" gutter={[0, 5]}>
+                    <Row gutter={[0, 5]}>
                       <Col span={24} className="vv-font-size-1-5 text-33 font-weight-bold AlaedeenServices--item__caption1">
                         { t(__('Experienced Guides')) }
                       </Col>
@@ -116,7 +116,7 @@ const AlaedeenServices = () => {
                     <i className="icon-about-packs text-primary" />
                   </Col>
                   <Col flex="1 1">
-                    <Row className="h-100" gutter={[0, 5]}>
+                    <Row gutter={[0, 5]}>
                       <Col span={24} className="vv-font-size-1-5 text-33 font-weight-bold AlaedeenServices--item__caption1">
                         { t(__('Introducing Top Brands')) }
                       </Col>
@@ -134,7 +134,7 @@ const AlaedeenServices = () => {
                     <i className="icon-about-logistics text-primary" />
                   </Col>
                   <Col flex="1 1">
-                    <Row className="h-100" gutter={[0, 5]}>
+                    <Row gutter={[0, 5]}>
                       <Col span={24} className="vv-font-size-1-5 text-33 font-weight-bold AlaedeenServices--item__caption1">
                         { t(__('Freight Service')) }
                       </Col>
