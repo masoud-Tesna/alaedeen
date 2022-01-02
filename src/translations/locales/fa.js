@@ -26,7 +26,7 @@ const fa = {
   "logistics": "حمل و نقل",
   "sign_in": "ورود",
   "international_exhibition": "نمایشگاه بین المللی",
-  "what_are_you_looking_for": "دنبال چی میگردی ...",
+  "what_are_you_looking_for": "جستوجو میان محصولات و تولید کنندگان",
   "join_free": "اشتراک رایگان",
   "request_a_quote": "ارسال درخواست",
   "quantity": "مقدار",
