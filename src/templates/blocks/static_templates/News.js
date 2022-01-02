@@ -102,9 +102,9 @@ const News = () => {
                   </Row>
               }
             </Col>
-            {/*{!isLoading &&
+            {!isLoading &&
               <Link className="news--link" to={`/blog/${page?.seo_name}`} />
-            }*/}
+            }
           </Row>
         </Col>
       </Row>
