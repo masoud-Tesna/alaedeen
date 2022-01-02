@@ -82,7 +82,7 @@ const fa = {
   "search": "جستجو",
   "home": "خانه",
   "product": "محصولات",
-  "about_us": "در باره ما",
+  "about_us": "درباره ما",
   "main_categories": "دسته بندی‌های اصلی",
   "popular_products_store": "محصولات پربازدید",
   "latest_products_store": "آخرین محصولات",
