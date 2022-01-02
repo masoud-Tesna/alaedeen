@@ -71,7 +71,7 @@ const News = () => {
             </Col>
             <Col xs={24} lg={17}>
               {isLoading
-                ? <Skeleton className="p-4" active={true} paragraph={{ rows: 8 }} />
+                ? <Skeleton active={true} paragraph={{ rows: 6 }} />
                 :
                   <Row className="news--content" gutter={[0, { xs: 10, lg: 15 }]}>
                     <Col span={24}>
