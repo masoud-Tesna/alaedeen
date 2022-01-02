@@ -12,8 +12,6 @@ import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
 
-import { useGetConfig } from "../../../contexts/config/ConfigContext";
-
 // import Custom Hooks:
 import { useGetApi, useWindowSize } from '../../../functions';
 
@@ -35,8 +33,8 @@ const DefaultFooter = () => {
     spaceSize = 'small';
   }*/
 
-  // get initial config:
-  const { config } = useGetConfig();
+  /*// get initial config:
+  const { config } = useGetConfig();*/
 
   // get categories from API:
   const { isLoading: categoriesIsLoading, data: categories_data } = useGetApi(`home-categories-api`, '', `allCategories`);

@@ -20,7 +20,7 @@ const ProductFilters = (props) => {
   // get window width
   const { width } = useWindowSize();
 
-  const { filters, category_id, category_seo_name, category_name, subCategories, product_length, featuresHashContainer } = props;
+  const { filters, category_id, category_seo_name, category_name, subCategories, featuresHashContainer } = props;
 
   const { Panel } = Collapse;
 

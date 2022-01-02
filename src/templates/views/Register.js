@@ -13,7 +13,6 @@ import {
   Row,
   Select,
   Tabs,
-  Steps,
   Modal
 } from "antd";
 import { __, SeoGenerator } from "../../functions/Helper";
@@ -27,7 +26,7 @@ import {
   useGetAuthState
 } from "../../contexts/user/UserContext";
 
-import { signInApi, useGetApi, useWindowSize } from "../../functions";
+import { signInApi, useGetApi } from "../../functions";
 import axios from "axios";
 import LoaderSpinner from "../common/LoadSpinner";
 import { useGetConfig } from "../../contexts/config/ConfigContext";
@@ -44,9 +43,6 @@ const Register = () => {
   // get initial config:
   const { config } = useGetConfig();
 
-  // get window width
-  const { width } = useWindowSize();
-
   const { t } = useTranslation();
 
   const navigate = useNavigate();
@@ -58,8 +54,6 @@ const Register = () => {
 
   // state for set register type (if seller show step bar):
   const [registerType, setRegisterType] = useState("seller");
-
-  const [isSignedIn, setIsSignedIn] = useState(false);
 
   const [isSignedInModal, setIsSignedInModal] = useState(false);
 
@@ -136,8 +130,6 @@ const Register = () => {
                     navigate('/');
                   }) :
                   setIsSignedInModal(true);
-
-                setIsSignedIn(true);
               }
             });
 

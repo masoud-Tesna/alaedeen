@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import './styles/DefaultTopPanel.less';
 
 // Ant Design Import:
-import { Row, Col, Divider, Space, Button, Collapse, Drawer, Skeleton } from 'antd';
+import { Row, Col, Divider, Space, Collapse, Drawer, Skeleton } from 'antd';
 import { DownOutlined } from "@ant-design/icons";
 
 // import alaedeen character:
@@ -33,14 +33,14 @@ import { useTranslation } from "react-i18next";
 import { logout, useDispatchAuthState, useGetAuthState } from "../../../contexts/user/UserContext";
 
 // import OneRequestMultipleQuotesModal component for show send request form modal:
-import OneRequestMultipleQuotesModal from "../../blocks/static_templates/OneRequestMultipleQuotesModal";
+/*import OneRequestMultipleQuotesModal from "../../blocks/static_templates/OneRequestMultipleQuotesModal";*/
 
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 
 const DefaultTopPanel = () => {
 
-  // state for request form modal:
-  const [isRequestModalVisible, setIsRequestModalVisible] = useState(false);
+  /*// state for request form modal:
+  const [isRequestModalVisible, setIsRequestModalVisible] = useState(false);*/
 
   const { user_data } = useGetAuthState();
 
@@ -113,9 +113,9 @@ const DefaultTopPanel = () => {
   const { Panel } = Collapse;
 
   // show request form modal function:
-  const showRequestModalHeader = () => {
+  /*const showRequestModalHeader = () => {
     setIsRequestModalVisible(true);
-  }
+  }*/
 
   return (
     <Row className="bg-top-panel topPanel--container">
@@ -402,7 +402,7 @@ const DefaultTopPanel = () => {
                 </span>
               </a>*/}
 
-              <a className="topPanel--content__item hover" href={`https://calendar.iranfair.com/${config.language === 'ar'? '' : config.language}`} target="_blank">
+              <a className="topPanel--content__item hover" href={`https://calendar.iranfair.com/${config.language === 'ar'? '' : config.language}`} target="_blank" rel="noreferrer">
                 <span className="topPanel--item__text">
                   {t(__('International Exhibition'))}
                 </span>

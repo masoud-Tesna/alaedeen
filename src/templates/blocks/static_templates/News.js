@@ -12,7 +12,7 @@ import { __, fn_stripHtml } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
-import { useGetApi, useWindowSize } from "../../../functions";
+import { useGetApi } from "../../../functions";
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 
 import fa from "moment/locale/fa";

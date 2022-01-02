@@ -14,7 +14,7 @@ const CategoryMultiColumn = (props) => {
   const { allDetails } = props;
 
   // get width and height product image:
-  const { widthProductImage, heightProductImage } = props;
+  const { heightProductImage } = props;
 
   // product data:
   const { product } = props;

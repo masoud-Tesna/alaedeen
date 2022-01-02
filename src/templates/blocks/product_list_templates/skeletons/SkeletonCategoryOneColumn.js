@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import '../styles/CategoryOneColumn.less';
 
 // import Ant Design Components:
-import { Col, Image, Row, Skeleton } from "antd";
+import { Col, Row, Skeleton } from "antd";
 import ShowResponsiveImage from "../../../common/ShowResponsiveImage";
 
 const SkeletonGrid = (props) => {
