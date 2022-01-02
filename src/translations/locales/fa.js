@@ -3,6 +3,7 @@ const fa = {
   "news_and_events": "اخبار و رویدادها",
   "blog.read_more": "ادامه مطلب",
   "whatsapp": "واتساپ",
+  "supervisor": "پشتیبان",
   "submit_comments": "ثبت نظرات",
   "firs_name_and_last_name": "نام و نام خانوادگی",
   "subject": "موضوع",
