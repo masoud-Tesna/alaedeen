@@ -18,12 +18,17 @@ html:lang(ar) {
       .news--image {
         .ant-image {
           img {
-            border-radius: 0 15px 15px 0;
+            border-radius: 15px 15px 0 0;
+            @media (min-width: @screen-md) {
+              border-radius: 0 15px 15px 0;
+            }
           }
         }
       }
 
       .news-date {
+        text-align: left;
+
         i {
           padding-right: 0;
           padding-left: .6rem;
@@ -34,9 +39,16 @@ html:lang(ar) {
 }
 
 .news--container {
-  padding: 0 80px;
+  padding: 0 8px;
+  @media (min-width: @screen-md) {
+    padding: 0 80px;
+  }
 
-  .news--caption__content {
+  .news--caption {
+    font-size: 1.6rem;
+    text-transform: uppercase !important;
+    font-weight: bold;
+
     padding: 0 10px;
     margin-bottom: 1rem;
     .dividerText {
@@ -85,26 +97,41 @@ html:lang(ar) {
         }
 
         img {
-          border-radius: 15px 0 0 15px;
+          border-radius: 15px 15px 0 0;
+          height: 310px;
+          @media (min-width: @screen-md) {
+            border-radius: 15px 0 0 15px;
+            height: 100%;
+          }
         }
       }
     }
 
     .news--title {
-      font-size: 2rem;
+      font-size: 1.45rem;
+      @media (min-width: @screen-md) {
+        font-size: 2rem;
+      }
       font-weight: bolder;
     }
 
     .news-date {
       font-weight: 600;
+      text-align: right;
 
       &,
       i {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
+        @media (min-width: @screen-md) {
+          font-size: 1.8rem;
+        }
       }
 
       time {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
+        @media (min-width: @screen-md) {
+          font-size: 1.6rem;
+        }
       }
 
       i {
@@ -112,22 +139,43 @@ html:lang(ar) {
       }
     }
 
-    .news--description {
-      text-align: justify;
-      line-height: 1.9;
-
-      .readMore--link {
-        color: #2874F2;
-        font-size: 2rem;
+    .news--content {
+      padding: 0 .5rem 1rem;
+      @media (min-width: @screen-md) {
+        padding: 1.5rem;
       }
-    }
 
-    .news--link {
-      position: absolute;
-      right: 0;
-      left: 0;
-      bottom: 0;
-      top: 0;
+      .news--description {
+        text-align: justify;
+        line-height: 1.6;
+        @media (min-width: @screen-md) {
+          line-height: 1.9;
+        }
+
+        & > div > span,
+        & > div > span > span {
+          font-size: 1.5rem;
+          @media (min-width: @screen-md) {
+            font-size: 2.2rem;
+          }
+        }
+
+        .readMore--link {
+          color: #2874F2;
+          font-size: 1.5rem;
+          @media (min-width: @screen-md) {
+            font-size: 2.2rem;
+          }
+        }
+      }
+
+      .news--link {
+        position: absolute;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        top: 0;
+      }
     }
 
     &:hover {

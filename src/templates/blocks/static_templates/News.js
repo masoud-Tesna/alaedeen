@@ -12,7 +12,7 @@ import { __, fn_stripHtml } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
-import { useGetApi } from "../../../functions";
+import { useGetApi, useWindowSize } from "../../../functions";
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 
 import fa from "moment/locale/fa";
@@ -33,6 +33,8 @@ const News = () => {
 
   const { t } = useTranslation();
 
+  const { width } = useWindowSize();
+
   // get news one blog:
   const { isLoading, data } = useGetApi("blogs-api", "category_path=news-and-events&items_per_page=1", `newsBlog`);
   const {sub_pages: page} = data || [];
@@ -40,9 +42,16 @@ const News = () => {
   return (
     <div className="news--container">
       <Row>
-        <Col className="news--caption__content" span={24}>
-          <Divider orientation={config.language === 'en' ? 'left' : 'right'} className="dividerText">{ t(__('news and events')) }</Divider>
+        <Col className="d-none d-lg-block news--caption" span={24}>
+          <Divider orientation={config.language === 'en' ? 'left' : 'right'} className="dividerText">
+            { t(__('news and events')) }
+          </Divider>
         </Col>
+
+        <Col className="d-lg-none news--caption" span={24}>
+          { t(__('news and events')) }
+        </Col>
+
         <Col span={24}>
           <Row className="bg-white news--item">
             <Col xs={24} lg={7} className="news--image">
@@ -66,15 +75,15 @@ const News = () => {
               {isLoading
                 ? <Skeleton className="p-4" active={true} paragraph={{ rows: 8 }} />
                 :
-                  <Row className="p-4" gutter={[0, 15]}>
+                  <Row className="news--content" gutter={[0, { xs: 10, lg: 15 }]}>
                     <Col span={24}>
                       <Row justify="space-between">
-                        <Col span={17} className="text-33 news--title">
+                        <Col  xs={24} lg={17} className="text-33 news--title">
                           {page.page}
                         </Col>
-                        <Col className="text-8b news-date">
+                        <Col xs={24} lg={7} className="text-8b news-date">
                           <i className="fal fa-clock align-middle" />
-                          {config.language !== 'en'
+                          {config.language === 'fa'
                             ? moment.unix(1640809800).format('jDD jMMM jYYYY')
                             : <Moment format="DD MMM, YYYY" unix locale="en">{page?.timestamp}</Moment>
                           }
@@ -84,7 +93,7 @@ const News = () => {
 
                     <Col span={24} className="news--description">
                       <TextTruncate
-                        className="vv-font-size-2-2 text-33"
+                        className="text-33"
                         line={4}
                         element="div"
                         truncateText=" …"
@@ -95,9 +104,9 @@ const News = () => {
                   </Row>
               }
             </Col>
-            {!isLoading &&
+            {/*{!isLoading &&
               <Link className="news--link" to={`/blog/${page?.seo_name}`} />
-            }
+            }*/}
           </Row>
         </Col>
       </Row>
