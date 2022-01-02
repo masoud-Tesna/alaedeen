@@ -2,7 +2,7 @@
 import "./styles/FactoryOneColumn.less";
 
 // import ANT Design Components Used:
-import { Button, Col, Row, Space, Image, Skeleton, Modal } from "antd";
+import { Button, Col, Row, Skeleton, Modal } from "antd";
 
 // import Custom hooks:
 import { useWindowSize } from "../../../functions";
@@ -362,6 +362,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
 
             {/* Contact Us Modal: */}
             <Modal
+              className="factory--contactUs__modal"
               title={ factory?.general?.company }
               style={{ top: width < 992 && 10 }}
               visible={isContactUsModal[factory?.company_id] || false}
