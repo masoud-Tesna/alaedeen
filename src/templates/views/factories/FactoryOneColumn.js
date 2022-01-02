@@ -121,8 +121,8 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
           <Col xs={24} lg={12} key = { factory?.company_id } className={ `factory--container ${selectedStoreId === factory?.company_id ? "byParam" : ""}` }>
             <Row gutter={width >= 992 ? 16 : 0} className="bg-white rounded-10 border border-70 h-100 m-0">
               <Col span={24}>
-                <Row gutter={[0, 20]}>
-                  <Col className="factory--topSection" span={24}>
+                <Row className="h-100" gutter={[0, 20]}>
+                  <Col className="align-self-start factory--topSection" span={24}>
                     <Row gutter={10}>
                       <Col xs={8} lg={11} className="product-xs">
                         <div className="d-lg-none rounded-10 shadow-y-2 text-center factory--productImage">
@@ -256,7 +256,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                     </Row>
                   </Col>
 
-                  <Col className="factory--bottomSection" span={24}>
+                  <Col className="align-self-end factory--bottomSection" span={24}>
                     <Row className="d-lg-none row-cols-3 factory--profileDetails" gutter={15}>
                       <Col>
                         <Row gutter={ [ 0, 5 ] }>
@@ -349,7 +349,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                           icon={ <i className="far fa-address-book vv-font-size-1-7"/> }
                           className="p-0 bg-transparent border-0 factory--contacts"
                           size={ "large" }
-                          onClick={() => { showContactUsModal(factory?.company_id) }}
+                          onClick={() => showContactUsModal(factory?.company_id)}
                         >
                           { t(__('Contacts')) }
                         </Button>
@@ -371,13 +371,26 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
             >
               <Row className="row-cols-1" gutter={[0, 20]}>
 
+                {factory?.contact_us?.full_name &&
+                  <Col>
+                    <Row gutter={width >= 992 ? 16 : 0}>
+                      <Col xs={9} lg={5} className="text-92 contactUs--modal__variable">
+                        { t('supervisor') }:
+                      </Col>
+                      <Col xs={15} lg={19} className="text-47 contactUs--modal__value">
+                        { factory?.contact_us?.full_name }
+                      </Col>
+                    </Row>
+                  </Col>
+                }
+
                 {factory?.contact_us?.telephone &&
                   <Col>
                     <Row gutter={width >= 992 ? 16 : 0}>
-                      <Col xs={9} lg={6} className="text-92 contactUs--modal__variable">
+                      <Col xs={9} lg={5} className="text-92 contactUs--modal__variable">
                         { t('telephone') }:
                       </Col>
-                      <Col xs={15} lg={18} className="text-47 contactUs--modal__value">
+                      <Col xs={15} lg={19} className="text-47 contactUs--modal__value">
                         { factory?.contact_us?.telephone }
                       </Col>
                     </Row>
@@ -387,10 +400,10 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                 {factory?.contact_us?.whatsapp &&
                   <Col>
                     <Row gutter={width >= 992 ? 16 : 0}>
-                      <Col xs={9} lg={6} className="text-92 contactUs--modal__variable">
+                      <Col xs={9} lg={5} className="text-92 contactUs--modal__variable">
                         { t('whatsapp') }:
                       </Col>
-                      <Col xs={15} lg={18} className="text-47 contactUs--modal__value">
+                      <Col xs={15} lg={19} className="text-47 contactUs--modal__value">
                         { factory?.contact_us?.whatsapp }
                       </Col>
                     </Row>
@@ -400,10 +413,10 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                 {factory?.contact_us?.address &&
                   <Col>
                     <Row gutter={width >= 992 ? 16 : 0}>
-                      <Col xs={9} lg={6} className="text-92 contactUs--modal__variable">
+                      <Col xs={9} lg={5} className="text-92 contactUs--modal__variable">
                         { t('address') }:
                       </Col>
-                      <Col xs={15} lg={18} className="text-47 contactUs--modal__value">
+                      <Col xs={15} lg={19} className="text-47 contactUs--modal__value">
 
                         { factory?.contact_us?.country && `${factory?.contact_us?.country} - ` }
 
@@ -411,6 +424,19 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
 
                         { factory?.contact_us?.address && factory?.contact_us?.address }
 
+                      </Col>
+                    </Row>
+                  </Col>
+                }
+
+                {(!factory?.contact_us?.full_name || !factory?.contact_us?.telephone || !factory?.contact_us?.whatsapp || !factory?.contact_us?.address) &&
+                  <Col>
+                    <Row gutter={width >= 992 ? 16 : 0}>
+                      <Col xs={9} lg={5} className="text-92 contactUs--modal__variable">
+                        { t('email') }:
+                      </Col>
+                      <Col xs={15} lg={19} className="text-47 contactUs--modal__value">
+                        { factory?.general?.email }
                       </Col>
                     </Row>
                   </Col>
