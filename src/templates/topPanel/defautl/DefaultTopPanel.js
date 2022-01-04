@@ -18,7 +18,7 @@ import { CategoriesDropDownVertical as Categories } from "../../blocks/categorie
 import LoaderSpinner from '../../common/LoadSpinner';
 
 // import language context:
-import { useGetConfig, useConfigDispatch, changeLanguageAction, changeCurrencyAction } from '../../../contexts/config/ConfigContext';
+import { useGetConfig, useConfigDispatch, changeLanguageAction, changeCurrencyAction, loadingTrue } from '../../../contexts/config/ConfigContext';
 
 // import Custom hooks:
 import { useWindowSize } from "../../../functions";
@@ -37,7 +37,7 @@ import { logout, useDispatchAuthState, useGetAuthState } from "../../../contexts
 
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 
-const DefaultTopPanel = () => {
+const DefaultTopPanel = ({ pathName }) => {
 
   /*// state for request form modal:
   const [isRequestModalVisible, setIsRequestModalVisible] = useState(false);*/
@@ -64,12 +64,14 @@ const DefaultTopPanel = () => {
   // function for change language:
   const handleChangeLanguage = (lang) => {
     if (lang !== config.language) {
-      setShowLoadSpinner(true);
-
-      configDispatch(changeLanguageAction(lang));
+      // true loading state:
+      configDispatch(loadingTrue());
 
       const changeLanguageTimer = setTimeout(() => {
-        setShowLoadSpinner(false);
+        // change language:
+        configDispatch(changeLanguageAction(lang));
+
+        // close top panel menu:
         closeTopPanelMenuXs();
       }, 1000);
       return () => clearTimeout(changeLanguageTimer);
@@ -120,7 +122,7 @@ const DefaultTopPanel = () => {
   return (
     <Row className="bg-top-panel topPanel--container">
 
-      {/*Show Loading Spinner if Change language*/}
+      {/*Show Loading Spinner if Change state*/}
       { showLoadSpinner &&
         <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>
       }
@@ -415,6 +417,7 @@ const DefaultTopPanel = () => {
               </a>
             </Space>
           </Col>
+
           <Col span={9} className="topPanel--content__right my-auto">
             <Space size={0.5}>
               <span

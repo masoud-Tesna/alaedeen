@@ -14,7 +14,21 @@ const Header = () => {
   const pathName = useParsPathName();
 
   // Check pathName For Set Default Header Or Not:
-  if (((pathName === 'factories' || pathName === 'categories' || pathName === 'recommended') && width < 992) || pathName === 'sign-in' || pathName === 'register' || pathName === 'all-categories' || pathName === 'product') {
+  if (
+      (
+        (
+          pathName === 'factories'
+          || pathName === 'categories'
+          || pathName === 'recommended'
+        )
+        && width < 992
+      )
+    || pathName === 'sign-in'
+    || pathName === 'register'
+    || pathName === 'all-categories'
+    || pathName === 'product'
+    || pathName === 'dashboard'
+  ) {
     return <></> // remove Footer
   }
 

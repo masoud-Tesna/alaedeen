@@ -7,12 +7,20 @@ const SiteFooter = (props) => {
   // Get Location:
   const pathName = useParsPathName();
 
-  // Check pathName For Set Default Top Panel Or Not:
-  if (pathName === 'sign-in' || pathName === 'all-categories' || pathName === 'categories' || pathName === 'product' || pathName === 'register' || pathName === 'recommended') {
+  // Check pathName For Set Default Footer Or Not:
+  if (
+    pathName === 'sign-in'
+    || pathName === 'all-categories'
+    || pathName === 'categories'
+    || pathName === 'product'
+    || pathName === 'register'
+    || pathName === 'recommended'
+    || pathName === 'dashboard'
+  ) {
     return <></> // remove Footer
   }
 
-  // if get default Top panel:
+  // if get default Footer:
   return <DefaultFooter />
 };
 

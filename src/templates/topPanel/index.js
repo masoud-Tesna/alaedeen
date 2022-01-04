@@ -37,12 +37,27 @@ const TopPanel = () => {
   }, [])
 
   // Check pathName For Set Default Top Panel Or Not:
-  if (((pathName === 'factories') && width < 992) || pathName === 'all-categories' || pathName === 'sign-in' || pathName === 'register') {
+  if (
+    pathName === 'dashboard'
+  ) {
+    return <></> // remove Footer
+  }
+
+  // Check pathName For Set Default Top Panel Or Not:
+  if (
+    (
+      (pathName === 'factories')
+      && width < 992
+    )
+    || pathName === 'all-categories'
+    || pathName === 'sign-in'
+    || pathName === 'register'
+  ) {
     return <TopPanelWhitBackIcon scrolledClass={ scrolled } pathName={pathName} />
   }
 
   // if get default Header:
-  return <DefaultTopPanel />
+  return <DefaultTopPanel pathName={pathName} />
 };
 
 export default TopPanel;
