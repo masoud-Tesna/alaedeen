@@ -74,7 +74,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   };
 
   return (
-    <Row gutter={[0, 30]} className="dashboard-side__container">
+    <Row gutter={[0, 20]} className="dashboard-side__container">
       <Col span={24} className="my-auto alaedeen-logo">
         <div className="logo">
           <Link to={"/"} className="d-block">
