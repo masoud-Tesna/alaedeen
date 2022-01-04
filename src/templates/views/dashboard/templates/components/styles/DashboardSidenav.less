@@ -1,0 +1,41 @@
+// import Mixin:
+@import '../../../../../styles/Mixins';
+
+html:lang(fa),
+html:lang(ar) {
+  .alaedeen-logo {
+    .ant-row-rtl,
+    .ant-col-rtl {
+      direction: ltr;
+    }
+  }
+}
+
+.dashboard-side__container {
+  .alaedeen-logo {
+    padding: 0 3rem;
+
+    @media (min-width: @screen-lg) {
+      padding: 0 1rem;
+    }
+
+    @media (min-width: 1310px) {
+      padding: 0 3rem !important;
+    }
+  }
+
+  .side--menu {
+    .ant-menu-title-content,
+    .side--link {
+      font-size: 1.5rem;
+    }
+
+    .anticon svg {
+      transform: scale(1.5);
+    }
+
+    i {
+      transform: scale(1.4);
+    }
+  }
+}
