@@ -5,8 +5,9 @@ import { useTranslation } from "react-i18next";
 import { __ } from "../../../../../functions/Helper";
 
 import {DashboardDrawerContext} from "../../templates/DashboardMain";
+import { Link } from "react-router-dom";
 
-const DashboardContentHeader = ({page}) => {
+const DashboardContentHeader = ({page, linkText, lnkHref, linkIcon}) => {
 
   const { t } = useTranslation();
 
@@ -25,6 +26,14 @@ const DashboardContentHeader = ({page}) => {
           )}
         </DashboardDrawerContext.Consumer>
 
+      </Col>
+
+      <Col className="d-none d-lg-block dashboardContentHeader--extraLink">
+        <Link to={lnkHref}>
+          <Button className="product--add__link" icon={linkIcon} >
+            {t(__(linkText))}
+          </Button>
+        </Link>
       </Col>
     </Row>
   );
