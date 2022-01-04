@@ -63,7 +63,7 @@ function useConfigDispatch() {
   return { configDispatch };
 }
 
-export { changeLanguageAction, changeCurrencyAction } from './ConfigActionCreators';
+export { changeLanguageAction, changeCurrencyAction, loadingTrue } from './ConfigActionCreators';
 
 export {
   ConfigProvider,
