@@ -1,4 +1,12 @@
-import { CHANGE_IP, CHANGE_COUNTRY, CHANGE_COUNTRY_CODE, CHANGE_LANGUAGE, CHANGE_CLIENT_LANGUAGE, CHANGE_CURRENCY } from './ConfigActions';
+import {
+  CHANGE_IP,
+  CHANGE_COUNTRY,
+  CHANGE_COUNTRY_CODE,
+  CHANGE_LANGUAGE,
+  CHANGE_CLIENT_LANGUAGE,
+  CHANGE_CURRENCY,
+  LOADING_TRUE
+} from './ConfigActions';
 
 // Actions Creator
 export const changeIpAction = (ip) => {
@@ -40,5 +48,11 @@ export const changeCurrencyAction = (currency) => {
   return {
     type: CHANGE_CURRENCY,
     payload: currency
+  };
+};
+
+export const loadingTrue = () => {
+  return {
+    type: LOADING_TRUE
   };
 };

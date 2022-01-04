@@ -1,21 +1,29 @@
-import { CHANGE_IP, CHANGE_COUNTRY, CHANGE_COUNTRY_CODE, CHANGE_LANGUAGE, CHANGE_CLIENT_LANGUAGE, CHANGE_CURRENCY } from "./ConfigActions";
+import {
+  CHANGE_IP,
+  CHANGE_COUNTRY,
+  CHANGE_COUNTRY_CODE,
+  CHANGE_LANGUAGE,
+  CHANGE_CLIENT_LANGUAGE,
+  CHANGE_CURRENCY,
+  LOADING_TRUE
+} from "./ConfigActions";
 import i18n from "../../translations";
 
 export function ConfigReducer(state, action) {
   switch (action.type) {
     case CHANGE_IP:
       return {
-        ...state, ip: action.payload
+        ...state, ip: action.payload, loading: false
       };
 
     case CHANGE_COUNTRY:
       return {
-        ...state, country: action.payload
+        ...state, country: action.payload, loading: false
       };
 
     case CHANGE_COUNTRY_CODE:
       return {
-        ...state, countryCode: action.payload
+        ...state, countryCode: action.payload, loading: false
       };
 
     case CHANGE_LANGUAGE:
@@ -28,18 +36,23 @@ export function ConfigReducer(state, action) {
           document.documentElement.lang = action.payload;
         });
       return {
-        ...state, language: action.payload
+        ...state, language: action.payload, loading: false
       };
 
     case CHANGE_CLIENT_LANGUAGE:
       return {
-        ...state, clientLanguage: action.payload
+        ...state, clientLanguage: action.payload, loading: false
       };
 
     case CHANGE_CURRENCY:
       window.localStorage.setItem("client_currency", action.payload);
       return {
-        ...state, currency: action.payload
+        ...state, currency: action.payload, loading: false
+      };
+
+    case LOADING_TRUE:
+      return {
+        ...state, loading: true
       };
 
     default:

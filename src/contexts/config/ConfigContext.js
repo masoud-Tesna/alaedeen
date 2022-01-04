@@ -43,7 +43,7 @@ function ConfigProvider({ children }) {
   return (
     <configContext.Provider value={{ config, configDispatch }}>
 
-      {isLoading &&
+      {(isLoading || config.loading) &&
         <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>
       }
 

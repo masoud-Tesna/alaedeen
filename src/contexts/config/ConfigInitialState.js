@@ -37,5 +37,6 @@ export const ConfigInitialState = {
   countryCode: null,
   language: langCode,
   clientLanguage: null,
-  currency: clientCurrencyLocalStorage || 'USD'
+  currency: clientCurrencyLocalStorage || 'USD',
+  loading: true
 }
