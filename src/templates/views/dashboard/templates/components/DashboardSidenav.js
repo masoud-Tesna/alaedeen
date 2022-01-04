@@ -1,19 +1,17 @@
+import { useState } from "react";
 
 import "./styles/DashboardSidenav.less";
 
 import { Col, Menu, Row } from 'antd';
 
-import { GlobalOutlined, LaptopOutlined, HomeOutlined, NotificationOutlined } from '@ant-design/icons';
+import { GlobalOutlined, HomeOutlined } from '@ant-design/icons';
 
 
 // import alaedeen character:
 import alaedeenChar from '../../../../assets/images/alaedeen-char.svg';
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { __ } from "../../../../../functions/Helper";
+import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useConfigDispatch, useGetConfig, changeLanguageAction, loadingTrue } from "../../../../../contexts/config/ConfigContext";
-import { useState } from "react";
-import LoaderSpinner from "../../../../common/LoadSpinner";
 import { useWindowSize } from "../../../../../functions";
 
 const DashboardSidenav = ({ dashboardToggleDrawer }) => {
@@ -98,7 +96,6 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
 
       <Col span={24}>
         <Menu
-          theme="dark"
           mode="inline"
           style={{ height: '100%', borderRight: 0 }}
           className="side--menu"
@@ -132,12 +129,12 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
           </SubMenu>
 
           <SubMenu key="product" icon={<i className="fab fa-product-hunt " />} title={ t('products') }>
-            <Item key="manufacturer-information">
+            <Item key="products">
               <Link to="/dashboard/product/products" className="side--link">
                 { t('manage_products') }
               </Link>
             </Item>
-            <Item key="password-reset">
+            <Item key="categories">
               <Link to="/dashboard/product/categories" className="side--link">
                 { t('manage_categories') }
               </Link>

@@ -39,6 +39,8 @@ import ReadyToShip from "./templates/views/ReadyToShip";*/
 import { useGetAuthState } from "./contexts/user/UserContext";
 
 import "@babel/polyfill";
+import DashboardRoutes from "./templates/views/DashboardRoutes";
+import DashboardMain from "./templates/views/dashboard/templates/DashboardMain";
 
 const Home = asyncComponent(() =>
   import('./templates/views/Home').then(module => module.default)
@@ -83,6 +85,8 @@ const Page = asyncComponent(() =>
 const ContactUs = asyncComponent(() =>
   import('./templates/views/ContactUs').then(module => module.default)
 );
+
+
 
 function App() {
 
@@ -188,56 +192,55 @@ function App() {
           <SiteHeader />
           <Content>
             <div className="site-layout-content" id="siteLayoutContent">
-              <Routes>
-                {/* Home Route */}
-                <Route exact path="/" element={<Home />} />
+              <DashboardMain>
+                <Routes>
+                  {/* Home Route */}
+                  <Route exact path="/" element={<Home />} />
 
-                {/* Sign in Route */}
-                <Route path="/sign-in" element={<SignIn />} />
+                  {/* Sign in Route */}
+                  <Route path="/sign-in" element={<SignIn />} />
 
-                {/* Register Route */}
-                <Route path="/register" element={<Register />} />
+                  {/* Register Route */}
+                  <Route path="/register" element={<Register />} />
 
-                {/* Factories Route */}
-                <Route path="/factories" element={<Factories />} />
+                  {/* Factories Route */}
+                  <Route path="/factories" element={<Factories />} />
 
-                {/* All Categories Route */}
-                <Route path="/all-categories" element={<AllCategories />} />
+                  {/* All Categories Route */}
+                  <Route path="/all-categories" element={<AllCategories />} />
 
-                {/* if open categories page without category path, redirect to all-category route */}
-                <Route exact path="/categories" element={<Navigate to="/all-categories" />} />
+                  {/* if open categories page without category path, redirect to all-category route */}
+                  <Route exact path="/categories" element={<Navigate to="/all-categories" />} />
 
-                {/* categories Route (categories/electronic) */}
-                <Route path="/categories/:category" element={<Categories />} />
+                  {/* categories Route (categories/electronic) */}
+                  <Route path="/categories/:category" element={<Categories />} />
 
-                {/* if open product details page without product path, redirect to all-category route */}
-                <Route exact path="/product" element={<Navigate to="/all-categories" />} />
+                  {/* if open product details page without product path, redirect to all-category route */}
+                  <Route exact path="/product" element={<Navigate to="/all-categories" />} />
 
-                {/* Product details Route */}
-                <Route path="/product/:product" element={<Product />} />
+                  {/* Product details Route */}
+                  <Route path="/product/:product" element={<Product />} />
 
-                {/* Recommended details Route */}
-                <Route path="/recommended" element={<Recommended />} />
+                  {/* Recommended details Route */}
+                  <Route path="/recommended" element={<Recommended />} />
 
-                {/* Ready To Ship details Route */}
-                <Route path="/ready-to-ship" element={<ReadyToShip />} />
+                  {/* Ready To Ship details Route */}
+                  <Route path="/ready-to-ship" element={<ReadyToShip />} />
 
-                {/* show page detail Route */}
-                <Route path="/page/:page" element={<Page />} />
+                  {/* show page detail Route */}
+                  <Route path="/page/:page" element={<Page />} />
 
-                {/* contact us */}
-                <Route exact path="/page/alaedeen-contact-us" element={<ContactUs />} />
+                  {/* contact us */}
+                  <Route exact path="/page/alaedeen-contact-us" element={<ContactUs />} />
 
-                {/* show blog detail Route */}
-                <Route path="/blog/:blog" element={<Page />} />
+                  {/* show blog detail Route */}
+                  <Route path="/blog/:blog" element={<Page />} />
 
-                {/* Dashboard Route (if user login and vendor detect) */}
-                <Route exact path="/dashboard" element={
-                  (user_data?.auth?.user_id && user_data?.auth?.plan_id === "8")
-                    ? <>Dashboard</>
-                    : <Navigate to="/" />
-                } />
-              </Routes>
+                  {/* Dashboard Routes */}
+                  {DashboardRoutes()}
+
+                </Routes>
+              </DashboardMain>
             </div>
           </Content>
 
