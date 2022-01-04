@@ -1,0 +1,72 @@
+// import Mixin:
+@import '../../../../styles/Mixins';
+
+html:lang(fa),
+html:lang(ar) {
+  .dashboard--side__lg {
+    left: auto;
+    right: 0;
+  }
+}
+
+.side--section {
+  @media (min-width: @screen-lg) {
+    flex: 0 0 22%;
+    max-width: 22%;
+  }
+
+  @media (min-width: 1310px) {
+    flex: 0 0 18.5%;
+    max-width: 18.5%;
+  }
+}
+
+.dashboard--side__lg {
+  overflow: auto;
+  height: 100vh;
+  position: fixed;
+  padding-top: 2rem;
+
+  @media (min-width: @screen-lg) {
+    flex: 0 0 22% !important;
+    max-width: 22% !important;
+    min-width: 22% !important;
+    width: 22% !important;
+  }
+
+  @media (min-width: 1310px) {
+    flex: 0 0 18.5% !important;
+    max-width: 18.5% !important;
+    min-width: 18.5% !important;
+    width: 18.5% !important;
+  }
+}
+
+.content--section {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 1rem 2rem;
+
+  @media (min-width: @screen-lg) {
+    flex: 0 0 77.99996667%;
+    max-width: 77.99996667%;
+  }
+
+  @media (min-width: 1310px) {
+    flex: 0 0 81.49996667%;
+    max-width: 81.49996667%;
+  }
+}
+
+.dashboard--drawer {
+.ant-drawer-body {
+  padding: 0;
+}
+
+  &.ant-drawer-right {
+    .dashboard--side__xs {
+      left: auto !important;
+      right: 0 !important;
+    }
+  }
+}
