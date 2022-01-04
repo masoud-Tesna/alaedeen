@@ -1,6 +1,6 @@
 import "./styles/ManageProducts.less";
 
-import { Button, Col, Empty, Popconfirm, Row, Skeleton, Space } from "antd";
+import { Button, Col, Empty, Popconfirm, Row, Skeleton } from "antd";
 import DashboardContentHeader from "../templates/components/DashboardContentHeader";
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../../functions/Helper";
