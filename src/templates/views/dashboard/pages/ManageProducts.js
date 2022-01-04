@@ -143,9 +143,11 @@ const ManageProducts = () => {
                     <Col className="my-auto product--actions" span={6}>
                       <Row justify="space-between" gutter={10}>
                         <Col>
-                          <Button type="primary" icon={<EditOutlined />} >
-                            {t('edit')}
-                          </Button>
+                          <Link to={`/dashboard/product/${productId}`}>
+                            <Button type="primary" icon={<EditOutlined />} >
+                              {t('edit')}
+                            </Button>
+                          </Link>
                         </Col>
 
                         <Col>
