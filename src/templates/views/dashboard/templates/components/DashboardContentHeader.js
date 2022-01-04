@@ -28,13 +28,15 @@ const DashboardContentHeader = ({page, linkText, lnkHref, linkIcon}) => {
 
       </Col>
 
-      <Col className="d-none d-lg-block dashboardContentHeader--extraLink">
-        <Link to={lnkHref}>
-          <Button className="product--add__link" icon={linkIcon} >
-            {t(__(linkText))}
-          </Button>
-        </Link>
-      </Col>
+      {(linkText || linkIcon) &&
+        <Col className="d-none d-lg-block dashboardContentHeader--extraLink">
+          <Link to={lnkHref}>
+            <Button className="product--add__link" icon={linkIcon} >
+              {t(__(linkText))}
+            </Button>
+          </Link>
+        </Col>
+      }
     </Row>
   );
 };

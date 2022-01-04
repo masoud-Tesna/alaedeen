@@ -34,7 +34,7 @@ const ManageProducts = () => {
   }
 
   return (
-    <Row gutter={[0, 30]}>
+    <Row>
       <Col span={24}>
         <DashboardContentHeader page={"manage products"} linkText={"create_product"} lnkHref={"/dashboard/product/add"} linkIcon={<PlusOutlined />} />
       </Col>
