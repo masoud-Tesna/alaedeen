@@ -286,3 +286,12 @@ export function isEven(n) {
 export function isOdd(n) {
   return Math.abs(n % 2) === 1;
 }
+
+export function fn_get_base64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
