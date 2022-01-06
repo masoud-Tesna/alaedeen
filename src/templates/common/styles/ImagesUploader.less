@@ -1,0 +1,36 @@
+.imageUploader--container {
+  .ant-upload.ant-upload-select.ant-upload-select-picture-card {
+    border-radius: 5px;
+
+    &:hover {
+      .uploadBtn {
+        .anticon {
+          svg {
+            color: @primary-color;
+          }
+        }
+
+        div {
+          color: @primary-color;
+        }
+      }
+    }
+  }
+
+  .uploadBtn {
+    .anticon {
+      svg {
+        transform: scale(2);
+        transition: color 0.3s;
+        color: #333333;
+      }
+    }
+
+    div {
+      font-size: 1.5rem;
+      font-weight: bold;
+      transition: color 0.3s;
+      color: #333333;
+    }
+  }
+}
