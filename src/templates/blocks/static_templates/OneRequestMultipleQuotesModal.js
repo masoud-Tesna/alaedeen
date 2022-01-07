@@ -27,10 +27,10 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
 
   const { t } = useTranslation();
 
-  // get country lists from API:
+  // get quantity Units list from API:
   const { data: quantityUnits } = useGetApi(`request-content-api`, 'variant=quantity_units', `quantityUnits`, { enabled: isRequestModalVisible });
 
-  // get quantity Units list from API:
+  // get country lists from API:
   const { data: countryLists } = useGetApi(`country-lists-api`, '', `countryLists`, { enabled: isRequestModalVisible });
 
   // get order values lists from API:
