@@ -15,7 +15,7 @@ import {
   PrdFeatures_NUMBER_FIELD, PrdFeatures_SELECTABLE,
   PrdFeatures_SINGLE_CHECKBOX,
   PrdFeatures_TEXT_FIELD
-} from "../product_templates/components/FeatureTypeConst";
+} from "../../common/FeatureTypeConst";
 
 const CategoryOneColumn = (props) => {
 
