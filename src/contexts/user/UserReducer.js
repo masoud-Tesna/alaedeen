@@ -14,7 +14,7 @@ export function UserReducer(state, action) {
         Cookie.set("_token", action.token,
           {
             path: "/",
-            domain: ".alaedeen.com",
+            //domain: ".alaedeen.com",
             expires: fn_set_date_day(1)
           }
         )
@@ -28,7 +28,7 @@ export function UserReducer(state, action) {
       Cookie.remove("_token",
         {
           path: "/",
-          domain: ".alaedeen.com"
+          //domain: ".alaedeen.com"
         });
 
       return {
@@ -47,7 +47,7 @@ export function UserReducer(state, action) {
       Cookie.set("_token", action.token,
         {
           path: "/",
-          domain: ".alaedeen.com"
+          //domain: ".alaedeen.com"
         }
       );
       return state;

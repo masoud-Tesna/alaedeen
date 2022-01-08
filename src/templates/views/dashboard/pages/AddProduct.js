@@ -1,5 +1,5 @@
 import "./styles/AddProduct.less";
-import { Button, Col, Form, Input, Row, Tabs, Modal, Skeleton, Upload } from "antd";
+import { Button, Col, Form, Input, Row, Tabs, Modal, Skeleton, Upload, InputNumber, Select } from "antd";
 import DashboardContentHeader from "../templates/components/DashboardContentHeader";
 import { useTranslation } from "react-i18next";
 import { __, fn_get_base64 } from "../../../../functions/Helper";
@@ -16,6 +16,8 @@ import ImagesUploader from "../../../common/ImagesUploader";
 const AddProduct = () => {
 
   const { TabPane } = Tabs;
+  const { Option } = Select;
+  const { TextArea } = Input;
 
   // get initial config:
   const { config } = useGetConfig();
@@ -33,6 +35,9 @@ const AddProduct = () => {
 
   // save image name in array state:
   const [imageFileList, setImageFileList] = useState({});
+
+  // state for save country code:
+  const [countryCode, setCountryCode] = useState("");
 
   // function for handle image upload change:
   const handleImageUploadChange = ({ fileList }) => setImageFileList({ fileList });
@@ -57,9 +62,9 @@ const AddProduct = () => {
       );
 
       onSuccess("Ok");
-      console.log("server res: ", res);
+      //console.log("server res: ", res);
     } catch (err) {
-      console.log("Eroor: ", err);
+      //console.log("Eroor: ", err);
       const error = new Error("Some error");
       onError({ err });
     }
@@ -70,8 +75,20 @@ const AddProduct = () => {
   }
 
   // get categories from API:
-  const {isLoading: categoryPickerIsLoading, data} = useGetApi('picker-categories-api', `category_id=${categoryId}`, `categoriesPicker_${categoryId}`);
-  const categories = data || [];
+  const {isLoading: categoryPickerIsLoading, data: categoryPickerData} = useGetApi('picker-categories-api', `category_id=${categoryId}`, `categoriesPicker_${categoryId}`);
+  const categories = categoryPickerData || [];
+
+  // get quantity Units list from API:
+  const { data: quantityUnitsData } = useGetApi(`request-content-api`, 'variant=quantity_units', `quantityUnits`);
+  const quantityUnits = quantityUnitsData || [];
+
+  // get country lists from API:
+  const { data: countryListsData } = useGetApi(`country-lists-api`, '', `countryLists`);
+  const countryLists = countryListsData || [];
+
+  // get cities list from API:
+  const { isLoading: cityListsIsLoading, data: cityListsData } = useGetApi(`city-lists-api`, `country_code=${countryCode}`, `citiesList_${countryCode}`, { enabled: !!countryCode });
+  const cityLists = cityListsData || [];
 
   // function for show category picker modal:
   const showCategoryPickerModal = () => {
@@ -119,7 +136,7 @@ const AddProduct = () => {
   // render tab bar for add new DIV before tab bar:
   const renderTabBar = (props, DefaultTabBar) => (
     <div className={scrolled}>
-      <DefaultTabBar {...props} className="tabBatForScrolled" />
+      <DefaultTabBar {...props} className="tabBarForScrolled" />
     </div>
   );
 
@@ -161,6 +178,33 @@ const AddProduct = () => {
     'clear'
   ];
 
+  // state for save page title:
+  const [productPageTitle, setProductPageTitle] = useState("");
+
+  // state for save product meta description:
+  const [productMetaDescription, setProductMetaDescription] = useState("");
+
+  // function for handle on change BraftEditor
+  const descriptionHandleChange = editorState => {
+    productForm?.current?.setFieldsValue({
+      full_description: editorState.toHTML(),
+      meta_description: editorState.toText().slice(0, 160),
+    });
+
+    setProductMetaDescription(editorState.toText().slice(0, 160));
+  }
+
+  //function for handle on change product name input:
+  const productNameHandleChange = data => {
+    if (!productPageTitle) {
+      productForm?.current?.setFieldsValue({
+        page_title: data.target.value.slice(0, 60),
+      });
+
+      setProductPageTitle(data.target.value.slice(0, 60));
+    }
+  }
+
 
   return (
     <Row>
@@ -179,10 +223,12 @@ const AddProduct = () => {
           <Tabs
             defaultActiveKey="general"
             cllassName="addProduct--tab"
-            tabBarExtraContent={<Button className="bg-primary text-white border-0" htmlType="submit">{t(__('create'))}</Button>}
+            tabBarExtraContent={
+              <Button className="bg-primary text-white border-0" htmlType="submit">{t(__('create'))}</Button>
+            }
             renderTabBar={renderTabBar}
           >
-            <TabPane tab={t('general')} key="general">
+            <TabPane tab={t('general')} key="general" forceRender={true}>
               <Row className="productForm--general" justify="center">
                 <Col xs={24} lg={19}>
                   <Form.Item
@@ -194,8 +240,12 @@ const AddProduct = () => {
                         message: t(__('Please input product name')),
                       },
                     ]}
+                    labelCol={{sm: 24, lg: 4}}
                   >
-                    <Input allowClear/>
+                    <Input
+                      allowClear
+                      onBlur={productNameHandleChange}
+                    />
                   </Form.Item>
 
                   <Form.Item
@@ -207,6 +257,7 @@ const AddProduct = () => {
                         message: t(__('Please select category')),
                       },
                     ]}
+                    labelCol={{sm: 24, lg: 4}}
                   >
                     <Input hidden/>
 
@@ -303,18 +354,15 @@ const AddProduct = () => {
                   <Form.Item
                     name="full_description"
                     label={t('description')}
+                    labelCol={{sm: 24, lg: 4}}
                   >
                     <BraftEditor
                       language="en"
                       controls={textEditorControls}
-                      placeholder={t('Description')}
+                      placeholder={t('input_product_description')}
                       className="text-editor"
                       contentStyle={{height: 300}}
-                      onChange={(editorState) => {
-                        productForm?.current?.setFieldsValue({
-                          full_description: editorState.toHTML(),
-                        })
-                      }}
+                      onChange={descriptionHandleChange}
                     />
                   </Form.Item>
 
@@ -322,6 +370,7 @@ const AddProduct = () => {
                     name="upload"
                     label="product images"
                     valuePropName="fileList"
+                    labelCol={{sm: 24, lg: 4}}
                   >
                     <ImagesUploader
                       handleCustomRequest={handleUploadImage}
@@ -333,19 +382,252 @@ const AddProduct = () => {
                       customClassName="addProduct--imageUploader"
                     />
                   </Form.Item>
+
+                  <Form.Item
+                    name="min_price"
+                    label={t(__('min price'))}
+                    labelCol={{sm: 24, lg: 4}}
+                  >
+                    <InputNumber
+                      className="w-30"
+                      step="0.0"
+                      formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                      parser={value => value.replace(/\$\s?|(,*)/g, '')}
+                    />
+                  </Form.Item>
+
+                  <Form.Item
+                    name="max_price"
+                    label={t(__('max price'))}
+                    labelCol={{sm: 24, lg: 4}}
+                  >
+                    <InputNumber
+                      className="w-30"
+                      step="0.0"
+                      formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                      parser={value => value.replace(/\$\s?|(,*)/g, '')}
+                    />
+                  </Form.Item>
+
+                  <Form.Item
+                    name="min_qty"
+                    label={t(__('Minimum order quantity'))}
+                    labelCol={{sm: 24, lg: 4}}
+                  >
+                    <InputNumber
+                      className="w-30"
+                    />
+                  </Form.Item>
+
+                  <Form.Item
+                    name="max_qty"
+                    label={t(__('Maximum order quantity'))}
+                    labelCol={{sm: 24, lg: 4}}
+                  >
+                    <InputNumber
+                      className="w-30"
+                    />
+                  </Form.Item>
+
+                  <Form.Item
+                    name="quantity_unit"
+                    label={ t(__('Quantity units')) }
+                    labelCol={{sm: 24, lg: 4}}
+                  >
+                    <Select
+                      placeholder={ t(__('Quantity units')) }
+                      className="w-30"
+                      allowClear
+                      showSearch
+                      filterOption={(input, option) =>
+                        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                      }
+                    >
+                      {quantityUnits?.request_contents?.map((quantityUnit) => {
+                        return (
+                          <Option key={ `quantity_units_${ quantityUnit?.key }` } value={ quantityUnit?.key } >{ quantityUnit?.value }</Option>
+                        );
+                      })}
+                    </Select>
+                  </Form.Item>
+
+                  <Form.Item
+                    label={ t(__('Location')) }
+                    labelCol={{sm: 24, lg: 4}}
+                    className="addProduct--location"
+                  >
+                    <Input.Group compact>
+                      <Form.Item
+                        name={['location', 'country']}
+                        className="w-30"
+                      >
+                        <Select
+                          placeholder={ t(__('select one country')) }
+                          className="w-100"
+                          optionLabelProp="label"
+                          allowClear
+                          showSearch
+                          filterOption={(input, option) =>
+                            option?.children.props?.children[1]?.toLowerCase()?.indexOf(input?.toLowerCase()) >= 0
+                          }
+                          onChange={e => {
+                            if (!e) {
+                              productForm?.current?.setFieldsValue({
+                                location: {
+                                  city: null
+                                },
+                              });
+                            } else {
+                              setCountryCode(e)
+                            }
+                          }}
+                        >
+                          {countryLists?.country_lists?.map((countryList) => {
+                            return (
+                              <Option key={ `country_lists_${ countryList?.code }` } value={countryList?.code} label={ countryList?.country }>
+                                <div className="demo-option-label-item">
+                                  <i className={ `flag-icon flag-icon-${ countryList.code.toLowerCase() } vv-font-size-1-9 country--lists__flagIcon` } />
+                                  { countryList?.country }
+                                </div>
+                              </Option>
+                            );
+                          })}
+                        </Select>
+                      </Form.Item>
+
+                      {cityListsIsLoading ?
+                        <span className="loadingCities">{t(__('loading cities'))}</span> :
+                        <Form.Item
+                          name={['location', 'city']}
+                          className="w-30"
+                        >
+                          <Select
+                            placeholder={ t(__('city')) }
+                            className="w-100"
+                            allowClear
+                            disabled={!!!cityLists?.city_lists?.length}
+                            showSearch
+                            filterOption={(input, option) =>
+                              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                            }
+                          >
+                            <>
+                              {cityLists?.city_lists?.map((cityList) => {
+                                return (
+                                  <Option key={ `cityLists_${ cityList?.code }` } value={cityList?.code} >{ cityList?.state }</Option>
+                                );
+                              })}
+                            </>
+                          </Select>
+                        </Form.Item>
+                      }
+
+                    </Input.Group>
+                  </Form.Item>
+
+                  <Form.Item
+                    name="manufacturing_country"
+                    label={ t(__('manufacturing_country')) }
+                    labelCol={{sm: 24, lg: 4}}
+                  >
+                    <Select
+                      placeholder={ t(__('select one country')) }
+                      className="w-30"
+                      optionLabelProp="label"
+                      allowClear
+                      showSearch
+                      filterOption={(input, option) =>
+                        option?.children.props?.children[1]?.toLowerCase()?.indexOf(input?.toLowerCase()) >= 0
+                      }
+                    >
+                      {countryLists?.country_lists?.map((countryList) => {
+                        return (
+                          <Option key={ `country_lists_${ countryList?.code }` } value={countryList?.code} label={ countryList?.country }>
+                            <div className="demo-option-label-item">
+                              <i className={ `flag-icon flag-icon-${ countryList.code.toLowerCase() } vv-font-size-1-9 country--lists__flagIcon` } />
+                              { countryList?.country }
+                            </div>
+                          </Option>
+                        );
+                      })}
+                    </Select>
+                  </Form.Item>
+
                 </Col>
               </Row>
             </TabPane>
 
-            <TabPane tab={t('seo')} key="seo">
-              Content of Tab Pane 2
+            <TabPane tab={t('seo')} key="seo" forceRender={true}>
+              <Row className="productForm--seo" justify="center">
+                <Col xs={24} lg={19}>
+                  <Form.Item
+                    name="page_title"
+                    label={t('page_title')}
+                    labelCol={{sm: 24, lg: 4}}
+                    tooltip={t(__('page title tooltip message'))}
+                  >
+                    <TextArea
+                      showCount
+                      maxLength={60}
+                      onChange={data => setProductPageTitle(data.target.value.slice(0, 60))}
+                      autoSize
+                    />
+                  </Form.Item>
+
+                  <Form.Item
+                    name="meta_description"
+                    label={t('Meta description')}
+                    labelCol={{sm: 24, lg: 4}}
+                    tooltip={t(__('Meta description tooltip message'))}
+                  >
+                    <TextArea
+                      placeholder={t('Meta description')}
+                      showCount
+                      maxLength={160}
+                      onChange={data =>  setProductMetaDescription(data.target.value.slice(0, 160))}
+                      autoSize={{ minRows: 3, maxRows: 3 }}
+                    />
+                  </Form.Item>
+
+                  <Form.Item
+                    name="meta_keywords"
+                    label={t('Meta keywords')}
+                    labelCol={{sm: 24, lg: 4}}
+                    tooltip={t(__('Meta keywords tooltip message'))}
+                    extra={t(__('Meta keywords example'))}
+                  >
+                    <Input allowClear/>
+                  </Form.Item>
+
+                  <Row className="googlePreview--content">
+                    <Col span={24} className="googlePreview--caption">
+                      {t(__('google preview'))}:
+                    </Col>
+
+                    <Col xs={24} lg={16} className="px-4">
+                      <Row  gutter={[0, 5]}>
+                        <Col span={24} className="googlePreview--pageTitle">
+                          {productPageTitle}
+                        </Col>
+
+                        {(productPageTitle || productMetaDescription) &&
+                        <Col span={24} className="googlePreview--productUrl">
+                          https://Alaedeen.com/product/your-product-url
+                        </Col>
+                        }
+
+                        <Col span={24} className="googlePreview--metaDescription">
+                          {productMetaDescription && `${productMetaDescription}...`}
+                        </Col>
+                      </Row>
+                    </Col>
+                  </Row>
+
+                </Col>
+              </Row>
             </TabPane>
 
-            <TabPane tab={t('feature')} key="feature">
-              Content of Tab Pane 3
-            </TabPane>
-
-            <TabPane tab={t('tags')} key="tags">
+            <TabPane tab={t('feature')} key="feature" forceRender={true}>
               Content of Tab Pane 3
             </TabPane>
           </Tabs>
