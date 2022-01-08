@@ -12,7 +12,7 @@ import {
   PrdFeatures_NUMBER_FIELD,
   PrdFeatures_TEXT_FIELD,
   PrdFeatures_SELECTABLE
-} from "../../product_templates/components/FeatureTypeConst";
+} from "../../../common/FeatureTypeConst";
 import ShowResponsiveImage from "../../../common/ShowResponsiveImage";
 
 const ProductSpecifications = ({ product, isLoading }) => {
