@@ -12,15 +12,13 @@ import BraftEditor from 'braft-editor';
 import 'braft-editor/dist/index.css';
 import axios from "axios";
 import ImagesUploader from "../../../common/ImagesUploader";
+import ProductAssignFeatures from "./components/ProductAssignFeatures";
 
 const AddProduct = () => {
 
   const { TabPane } = Tabs;
   const { Option } = Select;
   const { TextArea } = Input;
-
-  // get initial config:
-  const { config } = useGetConfig();
 
   const { t } = useTranslation();
 
@@ -143,10 +141,11 @@ const AddProduct = () => {
   // use ref for add product form:
   const productForm = useRef(null);
 
-  // useEffect for handle selected category in modal (insert selected category id in to form field):
+  // useEffect for handle selected category in modal (insert selected category id in to form field And Reset product_features array item):
   useEffect(()=>{
     productForm?.current?.setFieldsValue({
       category: issetCategory?.category_id,
+      product_features : [],
     })
   },[issetCategory?.category_id]);
 
@@ -205,7 +204,6 @@ const AddProduct = () => {
     }
   }
 
-
   return (
     <Row>
       <Col span={24}>
@@ -228,9 +226,9 @@ const AddProduct = () => {
             }
             renderTabBar={renderTabBar}
           >
-            <TabPane tab={t('general')} key="general" forceRender={true}>
+            <TabPane tab={t('general')} key="general" forceRender>
               <Row className="productForm--general" justify="center">
-                <Col xs={24} lg={19}>
+                <Col xs={24} lg={21}>
                   <Form.Item
                     name="product"
                     label={t('product_name')}
@@ -240,7 +238,7 @@ const AddProduct = () => {
                         message: t(__('Please input product name')),
                       },
                     ]}
-                    labelCol={{sm: 24, lg: 4}}
+                    labelCol={{sm: 24, lg: 5}}
                   >
                     <Input
                       allowClear
@@ -257,7 +255,7 @@ const AddProduct = () => {
                         message: t(__('Please select category')),
                       },
                     ]}
-                    labelCol={{sm: 24, lg: 4}}
+                    labelCol={{sm: 24, lg: 5}}
                   >
                     <Input hidden/>
 
@@ -354,7 +352,7 @@ const AddProduct = () => {
                   <Form.Item
                     name="full_description"
                     label={t('description')}
-                    labelCol={{sm: 24, lg: 4}}
+                    labelCol={{sm: 24, lg: 5}}
                   >
                     <BraftEditor
                       language="en"
@@ -370,7 +368,7 @@ const AddProduct = () => {
                     name="upload"
                     label="product images"
                     valuePropName="fileList"
-                    labelCol={{sm: 24, lg: 4}}
+                    labelCol={{sm: 24, lg: 5}}
                   >
                     <ImagesUploader
                       handleCustomRequest={handleUploadImage}
@@ -386,7 +384,7 @@ const AddProduct = () => {
                   <Form.Item
                     name="min_price"
                     label={t(__('min price'))}
-                    labelCol={{sm: 24, lg: 4}}
+                    labelCol={{sm: 24, lg: 5}}
                   >
                     <InputNumber
                       className="w-30"
@@ -399,7 +397,7 @@ const AddProduct = () => {
                   <Form.Item
                     name="max_price"
                     label={t(__('max price'))}
-                    labelCol={{sm: 24, lg: 4}}
+                    labelCol={{sm: 24, lg: 5}}
                   >
                     <InputNumber
                       className="w-30"
@@ -412,7 +410,7 @@ const AddProduct = () => {
                   <Form.Item
                     name="min_qty"
                     label={t(__('Minimum order quantity'))}
-                    labelCol={{sm: 24, lg: 4}}
+                    labelCol={{sm: 24, lg: 5}}
                   >
                     <InputNumber
                       className="w-30"
@@ -422,7 +420,7 @@ const AddProduct = () => {
                   <Form.Item
                     name="max_qty"
                     label={t(__('Maximum order quantity'))}
-                    labelCol={{sm: 24, lg: 4}}
+                    labelCol={{sm: 24, lg: 5}}
                   >
                     <InputNumber
                       className="w-30"
@@ -432,7 +430,7 @@ const AddProduct = () => {
                   <Form.Item
                     name="quantity_unit"
                     label={ t(__('Quantity units')) }
-                    labelCol={{sm: 24, lg: 4}}
+                    labelCol={{sm: 24, lg: 5}}
                   >
                     <Select
                       placeholder={ t(__('Quantity units')) }
@@ -453,7 +451,7 @@ const AddProduct = () => {
 
                   <Form.Item
                     label={ t(__('Location')) }
-                    labelCol={{sm: 24, lg: 4}}
+                    labelCol={{sm: 24, lg: 5}}
                     className="addProduct--location"
                   >
                     <Input.Group compact>
@@ -485,8 +483,8 @@ const AddProduct = () => {
                           {countryLists?.country_lists?.map((countryList) => {
                             return (
                               <Option key={ `country_lists_${ countryList?.code }` } value={countryList?.code} label={ countryList?.country }>
-                                <div className="demo-option-label-item">
-                                  <i className={ `flag-icon flag-icon-${ countryList.code.toLowerCase() } vv-font-size-1-9 country--lists__flagIcon` } />
+                                <div className="optionByIcon">
+                                  <i className={ `flag-icon flag-icon-${ countryList.code.toLowerCase() } vv-font-size-1-9` } />
                                   { countryList?.country }
                                 </div>
                               </Option>
@@ -528,7 +526,7 @@ const AddProduct = () => {
                   <Form.Item
                     name="manufacturing_country"
                     label={ t(__('manufacturing_country')) }
-                    labelCol={{sm: 24, lg: 4}}
+                    labelCol={{sm: 24, lg: 5}}
                   >
                     <Select
                       placeholder={ t(__('select one country')) }
@@ -557,13 +555,13 @@ const AddProduct = () => {
               </Row>
             </TabPane>
 
-            <TabPane tab={t('seo')} key="seo" forceRender={true}>
+            <TabPane tab={t('seo')} key="seo" forceRender>
               <Row className="productForm--seo" justify="center">
-                <Col xs={24} lg={19}>
+                <Col xs={24} lg={21}>
                   <Form.Item
                     name="page_title"
                     label={t('page_title')}
-                    labelCol={{sm: 24, lg: 4}}
+                    labelCol={{sm: 24, lg: 5}}
                     tooltip={t(__('page title tooltip message'))}
                   >
                     <TextArea
@@ -577,7 +575,7 @@ const AddProduct = () => {
                   <Form.Item
                     name="meta_description"
                     label={t('Meta description')}
-                    labelCol={{sm: 24, lg: 4}}
+                    labelCol={{sm: 24, lg: 5}}
                     tooltip={t(__('Meta description tooltip message'))}
                   >
                     <TextArea
@@ -592,7 +590,7 @@ const AddProduct = () => {
                   <Form.Item
                     name="meta_keywords"
                     label={t('Meta keywords')}
-                    labelCol={{sm: 24, lg: 4}}
+                    labelCol={{sm: 24, lg: 5}}
                     tooltip={t(__('Meta keywords tooltip message'))}
                     extra={t(__('Meta keywords example'))}
                   >
@@ -627,8 +625,12 @@ const AddProduct = () => {
               </Row>
             </TabPane>
 
-            <TabPane tab={t('feature')} key="feature" forceRender={true}>
-              Content of Tab Pane 3
+            <TabPane tab={t('feature')} key="feature">
+              <Row className="productForm--seo" justify="center">
+                <Col xs={24} lg={21}>
+                  <ProductAssignFeatures category_id={issetCategory?.category_id} />
+                </Col>
+              </Row>
             </TabPane>
           </Tabs>
         </Form>
