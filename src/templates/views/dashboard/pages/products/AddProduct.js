@@ -1,19 +1,19 @@
-import "./styles/AddProduct.less";
-import { Button, Col, Form, Input, Row, Tabs, Modal, Skeleton, Upload, InputNumber, Select } from "antd";
-import DashboardContentHeader from "../templates/components/DashboardContentHeader";
+import "./../styles/AddProduct.less";
+import { useNavigate } from "react-router-dom";
+import { Button, Col, Form, Input, Row, Tabs, Modal, Skeleton, InputNumber, Select } from "antd";
+import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import { useTranslation } from "react-i18next";
-import { __, fn_get_base64 } from "../../../../functions/Helper";
-import { useGetApi } from "../../../../functions";
+import { __ } from "../../../../../functions/Helper";
+import { useGetApi } from "../../../../../functions";
 import { useLayoutEffect, useRef, useState, useEffect } from "react";
-import { useGetConfig } from "../../../../contexts/config/ConfigContext";
 import { CloseOutlined, EditOutlined, UploadOutlined } from "@ant-design/icons";
-
 import BraftEditor from 'braft-editor';
 import 'braft-editor/dist/index.css';
 import axios from "axios";
-import ImagesUploader from "../../../common/ImagesUploader";
-import ProductAssignFeatures from "./components/ProductAssignFeatures";
-import { useGetAuthState } from "../../../../contexts/user/UserContext";
+import ImagesUploader from "../../../../common/ImagesUploader";
+import ProductAssignFeatures from "./../components/ProductAssignFeatures";
+import { useGetAuthState } from "../../../../../contexts/user/UserContext";
+import { isLoadingAction, useSpinnerDispatch } from "../../../../../contexts/spiner/SpinnerContext";
 
 const AddProduct = () => {
 
@@ -21,7 +21,13 @@ const AddProduct = () => {
   const { Option } = Select;
   const { TextArea } = Input;
 
+  const navigate = useNavigate();
+
+  // user data context state:
   const { user_data } = useGetAuthState();
+
+  // spinner dispatch context:
+  const { spinnerDispatch } = useSpinnerDispatch();
 
   const { t } = useTranslation();
 
@@ -45,8 +51,6 @@ const AddProduct = () => {
 
   // function for handle image upload change:
   const handleImageUploadChange = ({ fileList }) => setImageFileList({ fileList });
-
-  //const [images, setImages] = useState([]);
 
   // function for upload images:
   const handleUploadImage = async options => {
@@ -77,7 +81,7 @@ const AddProduct = () => {
       onSuccess("Ok");
       //console.log("server res: ", res);
     } catch (err) {
-      //console.log("Eroor: ", err);
+      //console.log("Error: ", err);
       const error = new Error("Some error");
       onError({ err });
     }
@@ -219,9 +223,15 @@ const AddProduct = () => {
   const handleAddProductOnFinish = values => {
     values.company_id = user_data?.auth?.company_id;
 
+    // show spinner (spinner context):
+    spinnerDispatch(isLoadingAction(true));
+
     axios.post(`https://alaedeen.com/horn/create-product-api`, { product_data: values })
       .then(res => {
-        console.log(res.data)
+        spinnerDispatch(isLoadingAction(false));
+      })
+      .then(() => {
+        navigate('/dashboard/product/products');
       })
   }
 
