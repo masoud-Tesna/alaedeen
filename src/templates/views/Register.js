@@ -67,9 +67,9 @@ const Register = () => {
   const { city_lists: cityLists } = data || [];
 
   // if signed in and register type = buyer => redirect to home page:
-  /*if (user_data.auth.user_id && registerType === 'buyer') {
+  if (user_data.auth.user_id && registerType === 'buyer') {
     navigate('/');
-  }*/
+  }
 
   async function Register(values) {
     return await axios.post(`https://alaedeen.com/horn/register-api/?lang_code=${config.language}`, { user_data: values });
