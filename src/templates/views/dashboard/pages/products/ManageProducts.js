@@ -1,4 +1,4 @@
-import "./../styles/ManageProducts.less";
+import "./styles/ManageProducts.less";
 
 import { Button, Col, Empty, Popconfirm, Row, Skeleton } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";

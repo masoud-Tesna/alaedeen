@@ -1,4 +1,4 @@
-import "./../styles/AddProduct.less";
+import "./styles/AddProduct.less";
 import { useNavigate } from "react-router-dom";
 import { Button, Col, Form, Input, Row, Tabs, Modal, Skeleton, InputNumber, Select } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
