@@ -1,15 +1,15 @@
-import "./styles/ManageProducts.less";
+import "./../styles/ManageProducts.less";
 
 import { Button, Col, Empty, Popconfirm, Row, Skeleton } from "antd";
-import DashboardContentHeader from "../templates/components/DashboardContentHeader";
+import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import { useTranslation } from "react-i18next";
-import { __ } from "../../../../functions/Helper";
-import { useGetApi } from "../../../../functions";
-import { useGetAuthState } from "../../../../contexts/user/UserContext";
+import { __ } from "../../../../../functions/Helper";
+import { useGetApi } from "../../../../../functions";
+import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 
 // import Cookies Package:
 import { Cookies } from "react-cookie";
-import ShowResponsiveImage from "../../../common/ShowResponsiveImage";
+import ShowResponsiveImage from "../../../../common/ShowResponsiveImage";
 import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
 import React from "react";
 import { Link } from "react-router-dom";
