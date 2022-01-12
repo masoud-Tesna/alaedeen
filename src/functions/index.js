@@ -87,7 +87,7 @@ export const signInApi = async (values) => {
 
 };
 
-export function useResizeImage({ image_path, image_folder, image_width, image_height, useQueryKey }) {
+export function useResizeImage({ image_path, image_folder, image_width, image_height, useQueryKey, options }) {
 
   // async function for get API:
   const url = `https://alaedeen.com/horn/image-resize-api/?image_path=${image_path}&image_folder=${image_folder}&image_width=${image_width}&image_height=${image_height}`;
@@ -97,7 +97,8 @@ export function useResizeImage({ image_path, image_folder, image_width, image_he
   }
 
   return useQuery(['imageResponsive', useQueryKey], getImageResized, {
-    enabled: !!image_path
+    ...options,
+    enabled: !!imagePath
   });
 }
 
