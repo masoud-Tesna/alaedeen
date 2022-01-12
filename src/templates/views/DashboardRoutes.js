@@ -25,7 +25,7 @@ const DashboardRoutes = () => ([
 
   <Route exact path="/dashboard/account/password-reset" element={<DashboardMain> password-reset </DashboardMain>} />,
 
-  <Route exact path="/dashboard/account/manufacturer-information" element={<>ManufactureInformation</>} />,
+  <Route exact path="/dashboard/account/manufacturer-information" element={<ManufactureInformation />} />,
 
   <Route exact path="/dashboard/product/products" element={<ManageProducts />} />,
 
