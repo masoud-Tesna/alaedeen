@@ -9,8 +9,8 @@ import { ConfigInitialState } from './ConfigInitialState';
 import { changeIpAction, changeCountryAction, changeCountryCodeAction, changeClientLanguageAction } from './ConfigActionCreators';
 import axios from "axios";
 
-import LoaderSpinner from '../../templates/common/LoadSpinner';
 import { useQuery } from "react-query";
+import { isLoadingAction, useSpinnerDispatch } from "../spiner/SpinnerContext";
 
 
 // Config Context Create:
@@ -19,6 +19,9 @@ const configContext = createContext();
 // create Config Context Provide:
 function ConfigProvider({ children }) {
 
+  // spinner dispatch context:
+  const { spinnerDispatch } = useSpinnerDispatch();
+
   // useReducer For Language use in app
   const [config, configDispatch] = useReducer(
     ConfigReducer,
@@ -26,6 +29,8 @@ function ConfigProvider({ children }) {
   );
 
   async function getConfigApi() {
+    // show spinner (spinner context):
+    spinnerDispatch(isLoadingAction(true));
     const url = "https://alaedeen.com/horn/config-api";
     const { data } = await axios.get(url);
     return data;
@@ -37,16 +42,16 @@ function ConfigProvider({ children }) {
       configDispatch(changeCountryAction(data?.country));
       configDispatch(changeCountryCodeAction(data?.country_code));
       configDispatch(changeClientLanguageAction(data?.client_language));
+
+      // hidden spinner (spinner context):
+      spinnerDispatch(isLoadingAction(false));
     }
   });
 
+
+
   return (
     <configContext.Provider value={{ config, configDispatch }}>
-
-      {(isLoading || config.loading) &&
-        <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>
-      }
-
       {children}
     </configContext.Provider>
   );
@@ -63,7 +68,7 @@ function useConfigDispatch() {
   return { configDispatch };
 }
 
-export { changeLanguageAction, changeCurrencyAction, loadingTrue } from './ConfigActionCreators';
+export { changeLanguageAction, changeCurrencyAction } from './ConfigActionCreators';
 
 export {
   ConfigProvider,

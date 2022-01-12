@@ -4,8 +4,7 @@ import {
   CHANGE_COUNTRY_CODE,
   CHANGE_LANGUAGE,
   CHANGE_CLIENT_LANGUAGE,
-  CHANGE_CURRENCY,
-  LOADING_TRUE
+  CHANGE_CURRENCY
 } from "./ConfigActions";
 import i18n from "../../translations";
 
@@ -13,17 +12,17 @@ export function ConfigReducer(state, action) {
   switch (action.type) {
     case CHANGE_IP:
       return {
-        ...state, ip: action.payload, loading: false
+        ...state, ip: action.payload
       };
 
     case CHANGE_COUNTRY:
       return {
-        ...state, country: action.payload, loading: false
+        ...state, country: action.payload
       };
 
     case CHANGE_COUNTRY_CODE:
       return {
-        ...state, countryCode: action.payload, loading: false
+        ...state, countryCode: action.payload
       };
 
     case CHANGE_LANGUAGE:
@@ -36,23 +35,18 @@ export function ConfigReducer(state, action) {
           document.documentElement.lang = action.payload;
         });
       return {
-        ...state, language: action.payload, loading: false
+        ...state, language: action.payload
       };
 
     case CHANGE_CLIENT_LANGUAGE:
       return {
-        ...state, clientLanguage: action.payload, loading: false
+        ...state, clientLanguage: action.payload
       };
 
     case CHANGE_CURRENCY:
       window.localStorage.setItem("client_currency", action.payload);
       return {
-        ...state, currency: action.payload, loading: false
-      };
-
-    case LOADING_TRUE:
-      return {
-        ...state, loading: true
+        ...state, currency: action.payload
       };
 
     default:

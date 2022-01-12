@@ -6,13 +6,14 @@ import { Col, Menu, Row } from 'antd';
 
 import { GlobalOutlined, HomeOutlined } from '@ant-design/icons';
 
-
 // import alaedeen character:
 import alaedeenChar from '../../../../assets/images/alaedeen-char.svg';
+
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useConfigDispatch, useGetConfig, changeLanguageAction, loadingTrue } from "../../../../../contexts/config/ConfigContext";
+import { useConfigDispatch, useGetConfig, changeLanguageAction } from "../../../../../contexts/config/ConfigContext";
 import { useWindowSize } from "../../../../../functions";
+import { isLoadingAction, useSpinnerDispatch } from "../../../../../contexts/spiner/SpinnerContext";
 
 const DashboardSidenav = ({ dashboardToggleDrawer }) => {
 
@@ -21,6 +22,9 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   // initial state for language:
   const { config } = useGetConfig();
   const { configDispatch } = useConfigDispatch();
+
+  // spinner dispatch context:
+  const { spinnerDispatch } = useSpinnerDispatch();
 
   // get window width
   const { width } = useWindowSize();
@@ -41,8 +45,8 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   // function for change language:
   const handleChangeLanguage = (lang) => {
     if (lang !== config.language) {
-      // true loading state:
-      configDispatch(loadingTrue());
+      // show spinner (spinner context):
+      spinnerDispatch(isLoadingAction(true));
 
       const changeLanguageTimer = setTimeout(() => {
         // change language:
@@ -51,13 +55,14 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
         if (width < 993) {
           dashboardToggleDrawer();
         }
+
+        // hidden spinner (spinner context):
+        spinnerDispatch(isLoadingAction(false));
       }, 1000);
       return () => clearTimeout(changeLanguageTimer);
 
     }
   }
-
-
 
   // submenu keys of first level
   const rootSubmenuKeys = ['dashboard', 'language', 'account', 'sub3'];

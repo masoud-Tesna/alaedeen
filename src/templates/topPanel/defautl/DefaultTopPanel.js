@@ -18,7 +18,7 @@ import { CategoriesDropDownVertical as Categories } from "../../blocks/categorie
 import LoaderSpinner from '../../common/LoadSpinner';
 
 // import language context:
-import { useGetConfig, useConfigDispatch, changeLanguageAction, changeCurrencyAction, loadingTrue } from '../../../contexts/config/ConfigContext';
+import { useGetConfig, useConfigDispatch, changeLanguageAction, changeCurrencyAction } from '../../../contexts/config/ConfigContext';
 
 // import Custom hooks:
 import { useWindowSize } from "../../../functions";
@@ -36,6 +36,7 @@ import { logout, useDispatchAuthState, useGetAuthState } from "../../../contexts
 /*import OneRequestMultipleQuotesModal from "../../blocks/static_templates/OneRequestMultipleQuotesModal";*/
 
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
+import { isLoadingAction, useSpinnerDispatch } from "../../../contexts/spiner/SpinnerContext";
 
 const DefaultTopPanel = ({ pathName }) => {
 
@@ -55,17 +56,17 @@ const DefaultTopPanel = ({ pathName }) => {
   const { config } = useGetConfig();
   const { configDispatch } = useConfigDispatch();
 
+  // spinner dispatch context:
+  const { spinnerDispatch } = useSpinnerDispatch();
+
   // initial state for drawer Menu (mobile version):
   const [visibleTopPanelMenuXs, setVisibleTopPanelMenuXs] = useState(false);
-
-  // initial state for show spinner:
-  const [ showLoadSpinner, setShowLoadSpinner ] = useState(false);
 
   // function for change language:
   const handleChangeLanguage = (lang) => {
     if (lang !== config.language) {
-      // true loading state:
-      configDispatch(loadingTrue());
+      // show spinner (spinner context):
+      spinnerDispatch(isLoadingAction(true));
 
       const changeLanguageTimer = setTimeout(() => {
         // change language:
@@ -73,6 +74,9 @@ const DefaultTopPanel = ({ pathName }) => {
 
         // close top panel menu:
         closeTopPanelMenuXs();
+
+        // hidden spinner (spinner context):
+        spinnerDispatch(isLoadingAction(false));
       }, 1000);
       return () => clearTimeout(changeLanguageTimer);
 
@@ -82,12 +86,14 @@ const DefaultTopPanel = ({ pathName }) => {
   // function for change currency:
   const handleChangeCurrency = (e) => {
     if (e.target.value !== config.currency) {
-      setShowLoadSpinner(true);
+      // show spinner (spinner context):
+      spinnerDispatch(isLoadingAction(true));
 
       configDispatch(changeCurrencyAction(e.target.value));
 
       const changeCurrencyTimer = setTimeout(() => {
-        setShowLoadSpinner(false);
+        // hidden spinner (spinner context):
+        spinnerDispatch(isLoadingAction(false));
         closeTopPanelMenuXs();
       }, 1000);
       return () => clearTimeout(changeCurrencyTimer);
@@ -121,11 +127,6 @@ const DefaultTopPanel = ({ pathName }) => {
 
   return (
     <Row className="bg-top-panel topPanel--container">
-
-      {/*Show Loading Spinner if Change state*/}
-      { showLoadSpinner &&
-        <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>
-      }
 
       {/* if Screen Width <= 992 (Mobile) render drawer Menu: */}
       {width < 992 &&

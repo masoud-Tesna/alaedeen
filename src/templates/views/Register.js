@@ -34,6 +34,7 @@ import { useGetConfig } from "../../contexts/config/ConfigContext";
 // import alaedeen character:
 import alaedeenChar from '../assets/images/alaedeen-char.svg';
 import { useMutation } from "react-query";
+import { isLoadingAction, useSpinnerDispatch } from "../../contexts/spiner/SpinnerContext";
 
 const Register = () => {
 
@@ -50,7 +51,8 @@ const Register = () => {
   //initial state and dispatch for auth context:
   const { user_data } = useGetAuthState();
 
-  const [registerIsLoading, setRegisterIsLoading] = useState(false);
+  // spinner dispatch context:
+  const { spinnerDispatch } = useSpinnerDispatch();
 
   // state for set register type (if seller show step bar):
   const [registerType, setRegisterType] = useState("seller");
@@ -65,9 +67,9 @@ const Register = () => {
   const { city_lists: cityLists } = data || [];
 
   // if signed in and register type = buyer => redirect to home page:
-  if (user_data.auth.user_id && registerType === 'buyer') {
+  /*if (user_data.auth.user_id && registerType === 'buyer') {
     navigate('/');
-  }
+  }*/
 
   async function Register(values) {
     return await axios.post(`https://alaedeen.com/horn/register-api/?lang_code=${config.language}`, { user_data: values });
@@ -82,12 +84,12 @@ const Register = () => {
   });
 
   const onRegisterFormHandle = values => {
-    // enable loading spinner:
-    setRegisterIsLoading(true);
+    // show spinner (spinner context):
+    spinnerDispatch(isLoadingAction(true));
 
     if (values.password1 !== values.password2) {
-      // disable loading spinner:
-      setRegisterIsLoading(false);
+      // hidden spinner (spinner context):
+      spinnerDispatch(isLoadingAction(false));
 
       message.warning({
         content: "رمز های عبور باهم یکسان نیست",
@@ -100,7 +102,8 @@ const Register = () => {
         .then(res => {
 
           if (!res.data.status && res.data.error === 'email_already_used') {
-            setRegisterIsLoading(false);
+            // hidden spinner (spinner context):
+            spinnerDispatch(isLoadingAction(false));
             message.error({
               content: "ایمیل قبلا در سیستم ثبت شده است",
               duration: 4,
@@ -117,8 +120,8 @@ const Register = () => {
 
             mutate(loginData, {
               onSuccess: () => {
-                // disable loading spinner:
-                setRegisterIsLoading(false);
+                // hidden spinner (spinner context):
+                spinnerDispatch(isLoadingAction(false));
 
                 // if register as buyer show register done message. else show Modal for seller...
                 registerType === 'buyer' ?
@@ -147,8 +150,6 @@ const Register = () => {
         description={ t('alaedeen_description') }
         keywords={ t('alaedeen_keywords') }
       />
-
-      { registerIsLoading && <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/> }
 
       <Col span={24} className="register--topSection">
         <Row>
@@ -185,7 +186,7 @@ const Register = () => {
           <Col span={24}>
             <Tabs
               className="register-tab__container"
-              defaultActiveKey="buyer"
+              defaultActiveKey={ registerType }
               centered={true}
               onTabClick={key => setRegisterType(key)}
             >

@@ -4,8 +4,7 @@ import {
   CHANGE_COUNTRY_CODE,
   CHANGE_LANGUAGE,
   CHANGE_CLIENT_LANGUAGE,
-  CHANGE_CURRENCY,
-  LOADING_TRUE
+  CHANGE_CURRENCY
 } from './ConfigActions';
 
 // Actions Creator
@@ -48,11 +47,5 @@ export const changeCurrencyAction = (currency) => {
   return {
     type: CHANGE_CURRENCY,
     payload: currency
-  };
-};
-
-export const loadingTrue = () => {
-  return {
-    type: LOADING_TRUE
   };
 };
