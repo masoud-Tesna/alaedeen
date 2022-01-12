@@ -53,7 +53,10 @@ const ShowResponsiveImage = (
     image_folder: imageFolder,
     image_width: width,
     image_height: height,
-    useQueryKey: `${ object_type }_${ object_id }_${ width }_${ height }`
+    useQueryKey: `${ object_type }_${ object_id }_${ width }_${ height }`,
+    options: {
+      refetchOnWindowFocus: false
+    }
   });
 
   const { image } = data || "";
