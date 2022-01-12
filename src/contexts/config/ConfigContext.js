@@ -45,7 +45,8 @@ function ConfigProvider({ children }) {
 
       // hidden spinner (spinner context):
       spinnerDispatch(isLoadingAction(false));
-    }
+    },
+    refetchOnWindowFocus: false
   });
 
 
