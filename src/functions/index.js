@@ -98,7 +98,7 @@ export function useResizeImage({ image_path, image_folder, image_width, image_he
 
   return useQuery(['imageResponsive', useQueryKey], getImageResized, {
     ...options,
-    enabled: !!imagePath
+    enabled: !!image_path
   });
 }
 
