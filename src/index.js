@@ -14,6 +14,9 @@ import { QueryClient, QueryClientProvider } from "react-query";
 // import react query dev tools:
 import { ReactQueryDevtools } from "react-query/devtools";
 
+// import spinner Context:
+import { SpinnerProvider } from "./contexts/spiner/SpinnerContext";
+
 // import language context:
 import { ConfigProvider } from "./contexts/config/ConfigContext";
 
@@ -31,14 +34,16 @@ const Application = () => {
   return (
     <CookiesProvider>
       <QueryClientProvider client={queryClient}>
-        <ConfigProvider>
-          <UserProvider>
-            <StrictMode>
-              <App />
-            </StrictMode>
-            <ReactQueryDevtools />
-          </UserProvider>
-        </ConfigProvider>
+        <SpinnerProvider>
+          <ConfigProvider>
+            <UserProvider>
+              <StrictMode>
+                <App />
+              </StrictMode>
+              <ReactQueryDevtools />
+            </UserProvider>
+          </ConfigProvider>
+        </SpinnerProvider>
       </QueryClientProvider>
     </CookiesProvider>
   );
