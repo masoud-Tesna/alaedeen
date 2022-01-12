@@ -6,12 +6,18 @@ const Dashboard = asyncComponent(() =>
   import('./dashboard/pages/Dashboard').then(module => module.default)
 );
 
+// account section:
+const ManufactureInformation = asyncComponent(() =>
+  import('./dashboard/pages/account/ManufactureInformation').then(module => module.default)
+);
+
+// Product Section:
 const ManageProducts = asyncComponent(() =>
-  import('./dashboard/pages/ManageProducts').then(module => module.default)
+  import('./dashboard/pages/products/ManageProducts').then(module => module.default)
 );
 
 const AddProduct = asyncComponent(() =>
-  import('./dashboard/pages/AddProduct').then(module => module.default)
+  import('./dashboard/pages/products/AddProduct').then(module => module.default)
 );
 
 const DashboardRoutes = () => ([
@@ -19,11 +25,11 @@ const DashboardRoutes = () => ([
 
   <Route exact path="/dashboard/account/password-reset" element={<DashboardMain> password-reset </DashboardMain>} />,
 
-  <Route exact path="/dashboard/account/manufacturer-information" element={<DashboardMain> manufacturer-information </DashboardMain>} />,
+  <Route exact path="/dashboard/account/manufacturer-information" element={<>ManufactureInformation</>} />,
 
   <Route exact path="/dashboard/product/products" element={<ManageProducts />} />,
 
-  <Route exact path="/dashboard/product/:productId" element={<h1>Product edit</h1>} />,
+  <Route exact path="/dashboard/product/:productId" element={<ManufactureInformation />} />,
 
   <Route exact path="/dashboard/product/add" element={<AddProduct />} />,
 
