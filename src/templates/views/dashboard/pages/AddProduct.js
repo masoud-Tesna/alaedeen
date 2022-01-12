@@ -13,6 +13,7 @@ import 'braft-editor/dist/index.css';
 import axios from "axios";
 import ImagesUploader from "../../../common/ImagesUploader";
 import ProductAssignFeatures from "./components/ProductAssignFeatures";
+import { useGetAuthState } from "../../../../contexts/user/UserContext";
 
 const AddProduct = () => {
 
@@ -20,7 +21,12 @@ const AddProduct = () => {
   const { Option } = Select;
   const { TextArea } = Input;
 
+  const { user_data } = useGetAuthState();
+
   const { t } = useTranslation();
+
+  // use ref for add product form:
+  const productForm = useRef(null);
 
   // state for show category picker:
   const [isCategoryPickerModalVisible, setIsCategoryPickerModalVisible] = useState(false);
@@ -40,6 +46,8 @@ const AddProduct = () => {
   // function for handle image upload change:
   const handleImageUploadChange = ({ fileList }) => setImageFileList({ fileList });
 
+  //const [images, setImages] = useState([]);
+
   // function for upload images:
   const handleUploadImage = async options => {
     const { onSuccess, onError, file, onProgress } = options;
@@ -51,13 +59,20 @@ const AddProduct = () => {
         onProgress({ percent: (event.loaded / event.total) * 100 });
       }
     };
-    fmData.append("image", file);
+    fmData.append("file", file);
     try {
       const res = await axios.post(
         "https://alaedeen.com/horn/upload-image-product-api",
         fmData,
         config
       );
+
+      const prevImages = productForm?.current?.getFieldValue('images') || [];
+      productForm?.current?.setFieldsValue({
+        images: [...prevImages, res.data],
+      });
+
+      //setImages(prev => [ ...prev, res.data ]);
 
       onSuccess("Ok");
       //console.log("server res: ", res);
@@ -138,15 +153,12 @@ const AddProduct = () => {
     </div>
   );
 
-  // use ref for add product form:
-  const productForm = useRef(null);
-
   // useEffect for handle selected category in modal (insert selected category id in to form field And Reset product_features array item):
   useEffect(()=>{
     productForm?.current?.setFieldsValue({
-      category: issetCategory?.category_id,
+      category_ids: [issetCategory?.category_id],
       product_features : [],
-    })
+    });
   },[issetCategory?.category_id]);
 
   // controls toolbar show in text editor:
@@ -204,6 +216,15 @@ const AddProduct = () => {
     }
   }
 
+  const handleAddProductOnFinish = values => {
+    values.company_id = user_data?.auth?.company_id;
+
+    axios.post(`https://alaedeen.com/horn/create-product-api`, { product_data: values })
+      .then(res => {
+        console.log(res.data)
+      })
+  }
+
   return (
     <Row>
       <Col span={24}>
@@ -214,7 +235,7 @@ const AddProduct = () => {
         <Form
           className="h-100 addProduct--formContent"
           name="add-product-form"
-          onFinish={value => console.log(value)}
+          onFinish={handleAddProductOnFinish}
           scrollToFirstError
           ref={productForm}
         >
@@ -229,6 +250,13 @@ const AddProduct = () => {
             <TabPane tab={t('general')} key="general" forceRender>
               <Row className="productForm--general" justify="center">
                 <Col xs={24} lg={21}>
+                  <Form.Item
+                    name='images'
+                    hidden
+                  >
+                    <Input hidden/>
+                  </Form.Item>
+
                   <Form.Item
                     name="product"
                     label={t('product_name')}
@@ -247,7 +275,7 @@ const AddProduct = () => {
                   </Form.Item>
 
                   <Form.Item
-                    name="category"
+                    name={['category_ids']}
                     label={t('category')}
                     rules={[
                       {
@@ -382,7 +410,7 @@ const AddProduct = () => {
                   </Form.Item>
 
                   <Form.Item
-                    name="min_price"
+                    name="price"
                     label={t(__('min price'))}
                     labelCol={{sm: 24, lg: 5}}
                   >
@@ -395,7 +423,7 @@ const AddProduct = () => {
                   </Form.Item>
 
                   <Form.Item
-                    name="max_price"
+                    name="list_price"
                     label={t(__('max price'))}
                     labelCol={{sm: 24, lg: 5}}
                   >
@@ -541,7 +569,7 @@ const AddProduct = () => {
                       {countryLists?.country_lists?.map((countryList) => {
                         return (
                           <Option key={ `country_lists_${ countryList?.code }` } value={countryList?.code} label={ countryList?.country }>
-                            <div className="demo-option-label-item">
+                            <div className="optionByIcon">
                               <i className={ `flag-icon flag-icon-${ countryList.code.toLowerCase() } vv-font-size-1-9 country--lists__flagIcon` } />
                               { countryList?.country }
                             </div>
