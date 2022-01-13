@@ -126,35 +126,6 @@ const AddProduct = () => {
     setCategoryId(524);
   }
 
-  // state for get scroll:
-  const [scrolled, setScrolled] = useState("");
-
-  // function for handle scroll:
-  const handleScroll = () => {
-    if (window.scrollY > 25) {
-      setScrolled("scrolled");
-    } else {
-      setScrolled("");
-    }
-  };
-
-  // useEffect for handle scroll:
-  useLayoutEffect(() => {
-
-    window.addEventListener("scroll", handleScroll)
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll)
-    }
-  }, [])
-
-  // render tab bar for add new DIV before tab bar:
-  const renderTabBar = (props, DefaultTabBar) => (
-    <div className={scrolled}>
-      <DefaultTabBar {...props} className="tabBarForScrolled" />
-    </div>
-  );
-
   // useEffect for handle selected category in modal (insert selected category id in to form field And Reset product_features array item):
   useEffect(()=>{
     productForm?.current?.setFieldsValue({
@@ -254,7 +225,7 @@ const AddProduct = () => {
             tabBarExtraContent={
               <Button className="bg-primary text-white border-0" htmlType="submit">{t(__('create'))}</Button>
             }
-            renderTabBar={renderTabBar}
+
           >
             <TabPane tab={t('general')} key="general" forceRender>
               <Row className="productForm--general" justify="center">

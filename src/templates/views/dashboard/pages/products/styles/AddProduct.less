@@ -4,6 +4,20 @@
   .ant-tabs {
     .ant-tabs-nav {
       margin-bottom: 3rem;
+      position: fixed !important;
+      z-index: 99;
+      top: 70.7px;
+      background: #F6F6F6;
+      width: 100% !important;
+      padding: 1rem 3rem;
+
+      @media (min-width: @screen-lg) {
+        width: calc(100% - 23%) !important;
+      }
+
+      @media (min-width: 1310px) {
+        width: calc(100% - 18.8%) !important;
+      }
 
       .ant-tabs-tab {
         min-width: 55px;
@@ -17,27 +31,8 @@
       }
     }
 
-    .tabBarForScrolled {
-      background: #F6F6F6 ;
-      padding: 0 3rem;
-    }
-
-    .scrolled {
-      padding-bottom: 80px;
-      .tabBarForScrolled {
-        position: fixed !important;
-        z-index: 99;
-        top: 70.7px;
-        //width: 100%;
-
-        @media (min-width: @screen-lg) {
-          width: calc(100% - 25.3%) !important;
-        }
-
-        @media (min-width: 1310px) {
-          width: calc(100% - 18.8%) !important;
-        }
-      }
+    .ant-tabs-content-holder {
+      padding-top: 8rem;
     }
   }
 
@@ -65,9 +60,11 @@
       border: 1px solid #d9d9d9;
     }
 
-    .addProduct--location {
+    .ant-input-group {
       .ant-form-item {
+        margin-bottom: 0;
         margin-right: 1rem;
+
         .ant-form-item-control {
           padding: 0;
         }
