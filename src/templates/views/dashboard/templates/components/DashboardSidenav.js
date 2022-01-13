@@ -65,7 +65,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   }
 
   // submenu keys of first level
-  const rootSubmenuKeys = ['dashboard', 'language', 'account', 'sub3'];
+  const rootSubmenuKeys = ['dashboard', 'language', 'account', 'product'];
 
   const [openKeys, setOpenKeys] = useState([mainPage]);
 
