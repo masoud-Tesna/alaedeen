@@ -76,8 +76,6 @@ const AddProduct = () => {
         images: [...prevImages, res.data],
       });
 
-      //setImages(prev => [ ...prev, res.data ]);
-
       onSuccess("Ok");
       //console.log("server res: ", res);
     } catch (err) {
@@ -223,9 +221,7 @@ const AddProduct = () => {
   const handleAddProductOnFinish = values => {
     values.company_id = user_data?.auth?.company_id;
 
-    console.log(values)
-
-    /*// show spinner (spinner context):
+    // show spinner (spinner context):
     spinnerDispatch(isLoadingAction(true));
 
     axios.post(`https://alaedeen.com/horn/create-product-api`, { product_data: values })
@@ -235,7 +231,7 @@ const AddProduct = () => {
       })
       .then(() => {
         navigate('/dashboard/product/products');
-      })*/
+      })
   }
 
   return (
