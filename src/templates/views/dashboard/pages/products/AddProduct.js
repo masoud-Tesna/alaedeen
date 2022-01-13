@@ -66,7 +66,7 @@ const AddProduct = () => {
     fmData.append("file", file);
     try {
       const res = await axios.post(
-        "https://alaedeen.com/horn/upload-image-product-api",
+        "https://alaedeen.com/horn/upload-image-api",
         fmData,
         config
       );
@@ -223,7 +223,9 @@ const AddProduct = () => {
   const handleAddProductOnFinish = values => {
     values.company_id = user_data?.auth?.company_id;
 
-    // show spinner (spinner context):
+    console.log(values)
+
+    /*// show spinner (spinner context):
     spinnerDispatch(isLoadingAction(true));
 
     axios.post(`https://alaedeen.com/horn/create-product-api`, { product_data: values })
@@ -233,7 +235,7 @@ const AddProduct = () => {
       })
       .then(() => {
         navigate('/dashboard/product/products');
-      })
+      })*/
   }
 
   return (
@@ -261,12 +263,6 @@ const AddProduct = () => {
             <TabPane tab={t('general')} key="general" forceRender>
               <Row className="productForm--general" justify="center">
                 <Col xs={24} lg={21}>
-                  <Form.Item
-                    name='images'
-                    hidden
-                  >
-                    <Input hidden/>
-                  </Form.Item>
 
                   <Form.Item
                     name="product"
@@ -404,11 +400,13 @@ const AddProduct = () => {
                   </Form.Item>
 
                   <Form.Item
-                    name="upload"
+                    name="images"
                     label="product images"
                     valuePropName="fileList"
                     labelCol={{sm: 24, lg: 5}}
                   >
+                    <Input hidden/>
+
                     <ImagesUploader
                       handleCustomRequest={handleUploadImage}
                       handleOnRemove={handleOnRemoveImage}
