@@ -5579,3 +5579,29 @@ button.text-f2:hover, button.text-f2:focus{
   pointer-events: none;
   color: lighten(#474747, 40%) !important;
 }
+
+.optionByIcon {
+    i,
+    & > div {
+        margin: 0 1rem;
+    }
+
+    .colorFeature--icon {
+        border-radius: 50%;
+        height: 20px;
+        width: 20px;
+        display: inline-block;
+        border: 2px solid #BCBCBC;
+        margin: 0 1rem;
+    }
+
+    & > .ant-image {
+        vertical-align: middle;
+    }
+
+    & > .skeletonImage--custom {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
