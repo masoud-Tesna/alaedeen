@@ -1,29 +1,22 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./styles/ManufactureInformation.less";
 
-import { Col, DatePicker, Form, Input, InputNumber, Row, Select, Steps, Switch } from "antd";
+import { Col, Form, Row, Steps } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
-import { useGetConfig } from "../../../../../contexts/config/ConfigContext";
 import { useGetApi, useWindowSize } from "../../../../../functions";
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../../../functions/Helper";
-import ImagesUploader from "../../../../common/ImagesUploader";
-import { UploadOutlined } from "@ant-design/icons";
 import axios from "axios";
 import CompanyDetailsForm from "./manufactureInformation/CompanyDetailsForm";
 import ManufacturingCapabilityForm from "./manufactureInformation/ManufacturingCapabilityForm";
 import ExportCapabilityForm from "./manufactureInformation/ExportCapabilityForm";
 import CertificatesForm from "./manufactureInformation/CertificatesForm";
+import CompanyIntroductionForm from "./manufactureInformation/CompanyIntroductionForm";
 
 const ManufactureInformation = () => {
 
   const { Step } = Steps;
-  const { TextArea } = Input;
-  const { Option } = Select;
-
-  // get initial config:
-  const { config } = useGetConfig();
 
   // get window width
   const { width } = useWindowSize();
@@ -35,8 +28,9 @@ const ManufactureInformation = () => {
   const [manufacturingCapabilityFrm] = Form.useForm();
   const [exportCapabilityFrm] = Form.useForm();
   const [certificatesFrm] = Form.useForm();
+  const [companyIntroductionFrm] = Form.useForm();
 
-  const [currentStep, setCurrentStep] = useState(3);
+  const [currentStep, setCurrentStep] = useState(4);
 
   // save image name in array state:
   const [imageFileList, setImageFileList] = useState({});
@@ -85,11 +79,18 @@ const ManufactureInformation = () => {
   // get country codes from API:
   const { data: countryCodesData } = useGetApi(`country-code-api`, "", `countryCodes`);
   const countryCodes = countryCodesData?.country_code || [];
-  console.log(countryCodes)
 
   // function for upload images:
   const handleUploadImage = async options => {
     const { onSuccess, onError, file, onProgress, inputName, frmRef } = options;
+
+    let isCloneable = false,
+        clone;
+
+    if (options.isCloneable || options.isCloneable === 0) {
+      clone = options.isCloneable;
+      isCloneable = true;
+    }
 
     const fmData = new FormData();
     const config = {
@@ -108,7 +109,9 @@ const ManufactureInformation = () => {
 
       const profileFields = frmRef.getFieldValue('profile_fields');
 
-      let prevImages = {0: []};
+      let prevImages = [];
+
+      if (isCloneable) prevImages = {[clone]: []}
 
       if (profileFields) {
         if (profileFields[inputName]) {
@@ -116,15 +119,23 @@ const ManufactureInformation = () => {
         }
       }
 
-      frmRef?.setFieldsValue({
-        "profile_fields": {
-          [inputName]: {
-            0: [...prevImages[0], res.data]
-          }
-        },
-      });
+      if (isCloneable) {
+        frmRef?.setFieldsValue({
+          "profile_fields": {
+            [inputName]: {
+              [clone]: [...prevImages[clone], res.data]
+            }
+          },
+        });
+      } else {
+        frmRef?.setFieldsValue({
+          "profile_fields": {
+            [ inputName ]: [ ...prevImages, res.data ]
+          },
+        });
+      }
 
-      console.log(profileFields)
+      //console.log(profileFields)
 
       onSuccess("Ok");
       //console.log("server res: ", res);
@@ -195,6 +206,18 @@ const ManufactureInformation = () => {
             handleImageUploadChange={handleImageUploadChange}
             imageFileList={imageFileList}
             certificationTypes={certificationTypes}
+          />
+        )
+
+      case 4:
+        return (
+          <CompanyIntroductionForm
+            formRef={companyIntroductionFrm}
+            handleUploadImage={handleUploadImage}
+            handleOnRemoveImage={handleOnRemoveImage}
+            handleImageUploadChange={handleImageUploadChange}
+            imageFileList={imageFileList}
+            countryLists={countryLists}
           />
         )
     }
