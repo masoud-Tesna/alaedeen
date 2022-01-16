@@ -37,7 +37,7 @@ const ExportCapabilityForm = (
       scrollToFirstError
       form={formRef}
     >
-      <Row className="manufactureInfoForm--manufacturingCapability" justify="center">
+      <Row className="manufactureInfoForm--exportCapability" justify="center">
         <Col xs={24} lg={22}>
           <Form.Item
             name={['profile_fields', "96"]}

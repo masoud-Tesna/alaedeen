@@ -14,6 +14,7 @@ import axios from "axios";
 import CompanyDetailsForm from "./manufactureInformation/CompanyDetailsForm";
 import ManufacturingCapabilityForm from "./manufactureInformation/ManufacturingCapabilityForm";
 import ExportCapabilityForm from "./manufactureInformation/ExportCapabilityForm";
+import CertificatesForm from "./manufactureInformation/CertificatesForm";
 
 const ManufactureInformation = () => {
 
@@ -33,8 +34,9 @@ const ManufactureInformation = () => {
   const [companyDetailsFrm] = Form.useForm();
   const [manufacturingCapabilityFrm] = Form.useForm();
   const [exportCapabilityFrm] = Form.useForm();
+  const [certificatesFrm] = Form.useForm();
 
-  const [currentStep, setCurrentStep] = useState(2);
+  const [currentStep, setCurrentStep] = useState(3);
 
   // save image name in array state:
   const [imageFileList, setImageFileList] = useState({});
@@ -73,6 +75,9 @@ const ManufactureInformation = () => {
 
   const {data: languagesSpokenData} = useGetApi("get-profile-field-value-api", "field_id=71", "languagesSpoken");
   const languagesSpoken = languagesSpokenData || [];
+
+  const {data: certificationTypesData} = useGetApi("get-profile-field-value-api", "field_id=73", "certificationTypes");
+  const certificationTypes = certificationTypesData || [];
 
   const { data: countryListsData } = useGetApi(`country-lists-api`, '', `countryLists`);
   const countryLists = countryListsData || [];
@@ -178,6 +183,18 @@ const ManufactureInformation = () => {
             acceptedDeliveries={acceptedDeliveries}
             paymentCurrencies={paymentCurrencies}
             languagesSpoken={languagesSpoken}
+          />
+        )
+
+      case 3:
+        return (
+          <CertificatesForm
+            formRef={certificatesFrm}
+            handleUploadImage={handleUploadImage}
+            handleOnRemoveImage={handleOnRemoveImage}
+            handleImageUploadChange={handleImageUploadChange}
+            imageFileList={imageFileList}
+            certificationTypes={certificationTypes}
           />
         )
     }
