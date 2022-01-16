@@ -292,6 +292,10 @@ export function scrollIntoViewIfTargetNotOnDisplay(target) {
   }
 }
 
+export function scrollTop() {
+  window.scroll({ top: 0, behavior: 'smooth' });
+}
+
 export function isEven(n) {
   return n % 2 === 0;
 }
