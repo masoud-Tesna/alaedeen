@@ -279,6 +279,19 @@ export function asyncComponent(getComponent) {
   return AsyncComponent;
 }
 
+export function scrollIntoViewIfTargetNotOnDisplay(target) {
+  if (target.getBoundingClientRect().bottom > window.innerHeight) {
+    target.scrollIntoView(false);
+  }
+
+  if (target.getBoundingClientRect().top < 0) {
+    target.scrollIntoView({
+      behavior: 'smooth',
+      inline: 'nearest',
+    });
+  }
+}
+
 export function isEven(n) {
   return n % 2 === 0;
 }
