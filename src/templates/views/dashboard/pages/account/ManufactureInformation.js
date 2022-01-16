@@ -13,6 +13,7 @@ import ManufacturingCapabilityForm from "./manufactureInformation/ManufacturingC
 import ExportCapabilityForm from "./manufactureInformation/ExportCapabilityForm";
 import CertificatesForm from "./manufactureInformation/CertificatesForm";
 import CompanyIntroductionForm from "./manufactureInformation/CompanyIntroductionForm";
+import SupportForm from "./manufactureInformation/SupportForm";
 
 const ManufactureInformation = () => {
 
@@ -29,6 +30,7 @@ const ManufactureInformation = () => {
   const [exportCapabilityFrm] = Form.useForm();
   const [certificatesFrm] = Form.useForm();
   const [companyIntroductionFrm] = Form.useForm();
+  const [supportFrm] = Form.useForm();
 
   const [currentStep, setCurrentStep] = useState(4);
 
@@ -213,6 +215,18 @@ const ManufactureInformation = () => {
         return (
           <CompanyIntroductionForm
             formRef={companyIntroductionFrm}
+            handleUploadImage={handleUploadImage}
+            handleOnRemoveImage={handleOnRemoveImage}
+            handleImageUploadChange={handleImageUploadChange}
+            imageFileList={imageFileList}
+            countryLists={countryLists}
+          />
+        )
+
+      case 5:
+        return (
+          <SupportForm
+            formRef={supportFrm}
             handleUploadImage={handleUploadImage}
             handleOnRemoveImage={handleOnRemoveImage}
             handleImageUploadChange={handleImageUploadChange}
