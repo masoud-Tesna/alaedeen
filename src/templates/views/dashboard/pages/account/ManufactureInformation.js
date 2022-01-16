@@ -11,6 +11,9 @@ import { __ } from "../../../../../functions/Helper";
 import ImagesUploader from "../../../../common/ImagesUploader";
 import { UploadOutlined } from "@ant-design/icons";
 import axios from "axios";
+import CompanyDetailsForm from "./manufactureInformation/CompanyDetailsForm";
+import ManufacturingCapabilityForm from "./manufactureInformation/ManufacturingCapabilityForm";
+import ExportCapabilityForm from "./manufactureInformation/ExportCapabilityForm";
 
 const ManufactureInformation = () => {
 
@@ -29,8 +32,9 @@ const ManufactureInformation = () => {
   // use ref for add product form:
   const [companyDetailsFrm] = Form.useForm();
   const [manufacturingCapabilityFrm] = Form.useForm();
+  const [exportCapabilityFrm] = Form.useForm();
 
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(2);
 
   // save image name in array state:
   const [imageFileList, setImageFileList] = useState({});
@@ -57,6 +61,26 @@ const ManufactureInformation = () => {
 
   const {data: unitsData} = useGetApi("get-profile-field-value-api", "field_id=31", "units");
   const units = unitsData || [];
+
+  const {data: dutiesData} = useGetApi("get-profile-field-value-api", "field_id=65", "duties");
+  const duties = dutiesData || [];
+
+  const {data: acceptedDeliveriesData} = useGetApi("get-profile-field-value-api", "field_id=69&order_by=description", "acceptedDeliveries");
+  const acceptedDeliveries = acceptedDeliveriesData || [];
+
+  const {data: paymentCurrenciesData} = useGetApi("get-profile-field-value-api", "field_id=70", "paymentCurrencies");
+  const paymentCurrencies = paymentCurrenciesData || [];
+
+  const {data: languagesSpokenData} = useGetApi("get-profile-field-value-api", "field_id=71", "languagesSpoken");
+  const languagesSpoken = languagesSpokenData || [];
+
+  const { data: countryListsData } = useGetApi(`country-lists-api`, '', `countryLists`);
+  const countryLists = countryListsData || [];
+
+  // get country codes from API:
+  const { data: countryCodesData } = useGetApi(`country-code-api`, "", `countryCodes`);
+  const countryCodes = countryCodesData?.country_code || [];
+  console.log(countryCodes)
 
   // function for upload images:
   const handleUploadImage = async options => {
@@ -101,7 +125,7 @@ const ManufactureInformation = () => {
       //console.log("server res: ", res);
     } catch (err) {
       //console.log("Error: ", err);
-      const error = new Error("Some error");
+      //const error = new Error("Some error");
       onError({ err });
     }
   };
@@ -117,657 +141,62 @@ const ManufactureInformation = () => {
   const stepContent = step => {
     switch (step) {
       case 0:
-        return(
-          <Form
-            className="h-100 manufactureInfo--formContent"
-            name="add-product-form"
-            onFinish={values => console.log(values)}
-            scrollToFirstError
-            translate="no"
-            form={companyDetailsFrm}
-          >
-            <Row className="manufactureInfoForm--companyDetails" justify="center">
-              <Col xs={24} lg={21}>
-                <Form.Item
-                  name={['profile_fields', "1"]}
-                  label={t(__('Company Operational Address'))}
-                  labelCol={{sm: 24, lg: 6}}
-                >
-                  <TextArea
-                    autoSize={{ minRows: 2}}
-                    allowClear
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name={['profile_fields', "2"]}
-                  label={t(__('Zip/Postal Code'))}
-                  labelCol={{sm: 24, lg: 6}}
-                >
-                  <Input
-                    allowClear
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name={['profile_fields', "4"]}
-                  label={t(__('Year Company Registered'))}
-                  labelCol={{sm: 24, lg: 6}}
-                >
-                  <DatePicker
-                    picker="year"
-                    className="w-30"
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name={['profile_fields', "5"]}
-                  label={ t(__('Total No. Employees')) }
-                  labelCol={{sm: 24, lg: 6}}
-                >
-                  <Select
-                    placeholder={ t(__('Total No. Employees')) }
-                    className="w-30"
-                    allowClear
-                    showSearch
-                    filterOption={(input, option) =>
-                      option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                    }
-                  >
-                    {employees.length && employees?.map(employee => {
-                      return (
-                        <Option
-                          key={ `office_size_${ employee?.value_id }` }
-                          value={ employee?.value_id }
-                        >
-                          { t(__(employee?.description)) }
-                        </Option>
-                      );
-                    })}
-                  </Select>
-                </Form.Item>
-
-                <Form.Item
-                  name={['profile_fields', "6"]}
-                  label={t(__('Company Website Url'))}
-                  labelCol={{sm: 24, lg: 6}}
-                >
-                  <Input
-                    addonBefore="https://"
-                    placeholder="yourWebsite.com"
-                    allowClear
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name={['profile_fields', "7"]}
-                  label={t(__('Legal Owner'))}
-                  labelCol={{sm: 24, lg: 6}}
-                >
-                  <Input
-                    allowClear
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name={['profile_fields', "8"]}
-                  label={ t(__('Office Size')) }
-                  labelCol={{sm: 24, lg: 6}}
-                >
-                  <Select
-                    placeholder={ t(__('Office Size')) }
-                    className="w-30"
-                    allowClear
-                    showSearch
-                    filterOption={(input, option) =>
-                      option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                    }
-                  >
-                    {officeSizes.length && officeSizes?.map(officeSize => {
-                      return (
-                        <Option key={ `office_size_${ officeSize?.value_id }` } value={ officeSize?.value_id } >{ t(__(officeSize?.description)) }</Option>
-                      );
-                    })}
-                  </Select>
-                </Form.Item>
-
-                <Form.Item
-                  name={['profile_fields', "9"]}
-                  label={t(__('Company Advantages'))}
-                  labelCol={{sm: 24, lg: 6}}
-                >
-                  <TextArea
-                    placeholder={t(__('Company Advantages'))}
-                    showCount
-                    maxLength={1024}
-                    autoSize={{ minRows: 4, maxRows: 5 }}
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
-          </Form>
-        )
+        return (
+          <CompanyDetailsForm
+            formRef={companyDetailsFrm}
+            employees={employees}
+            officeSizes={officeSizes}
+          />
+        );
 
       case 1:
-        return(
-          <Form
-            className="h-100 manufactureInfo--formContent"
-            name="add-product-form"
-            onFinish={values => console.log(values)}
-            scrollToFirstError
-            form={manufacturingCapabilityFrm}
-          >
-            <Row className="manufactureInfoForm--companyDetails" justify="center">
-              <Col xs={24} lg={21}>
-                <Form.Item
-                  name={['profile_fields', "10"]}
-                  label={t(__('Whether to show production line'))}
-                  labelCol={{sm: 24}}
-                  initialValue={"Y"}
-                  className="formSwitch"
-                >
-                  <Switch
-                    checkedChildren={t('yes')}
-                    unCheckedChildren={t('no')}
-                    defaultChecked
-                    className="formSwitch--switch"
-                    onChange={value => {
-                      manufacturingCapabilityFrm?.setFieldsValue({
-                        "profile_fields": {
-                          10: value ? "Y" : "N"
-                        },
-                      });
-                    }}
-                  />
-                </Form.Item>
+        return (
+          <ManufacturingCapabilityForm
+            formRef={manufacturingCapabilityFrm}
+            handleUploadImage={handleUploadImage}
+            handleOnRemoveImage={handleOnRemoveImage}
+            handleImageUploadChange={handleImageUploadChange}
+            imageFileList={imageFileList}
+            factorySize={factorySize}
+            qualityControlStaffs={qualityControlStaffs}
+            researchesStaffs={researchesStaffs}
+            units={units}
+          />
+        )
 
-                <Row>
-                  <Col span={24} className="mb-4 border border-bc rounded-5 formCloneable">
-                    <Form.Item
-                      name={['profile_fields', "11", 0]}
-                      label={t(__('Process name'))}
-                      labelCol={{sm: 24, lg: 6}}
-                    >
-                      <Input
-                        allowClear
-                      />
-                    </Form.Item>
-
-                    <Form.Item
-                      name={["profile_fields", "12", 0]}
-                      label="Process pictures"
-                      valuePropName="fileList"
-                      labelCol={{sm: 24, lg: 6}}
-                    >
-                      <Input hidden/>
-
-                      <ImagesUploader
-                        handleCustomRequest={options => handleUploadImage({
-                          ...options,
-                          inputName : 12,
-                          frmRef: manufacturingCapabilityFrm
-                        })}
-                        handleOnRemove={handleOnRemoveImage}
-                        handleOnChange={handleImageUploadChange}
-                        imageFileList={imageFileList}
-                        uploadBtnText="select image"
-                        uploadBtnIcon={<UploadOutlined />}
-                        customClassName="addProduct--imageUploader"
-                      />
-                    </Form.Item>
-
-                    <Form.Item
-                      name={['profile_fields', "13", 0]}
-                      label={t(__('Process describe'))}
-                      labelCol={{sm: 24, lg: 6}}
-                    >
-                      <TextArea
-                        placeholder={t(__('Process describe'))}
-                        showCount
-                        maxLength={1024}
-                        autoSize={{ minRows: 6, maxRows: 7 }}
-                      />
-                    </Form.Item>
-                  </Col>
-                </Row>
-
-                <Form.Item
-                  name={['profile_fields', "14"]}
-                  label={t(__('Whether to show production equipment'))}
-                  labelCol={{sm: 24}}
-                  initialValue={"Y"}
-                  className="formSwitch"
-                >
-                  <Switch
-                    checkedChildren={t('yes')}
-                    unCheckedChildren={t('no')}
-                    defaultChecked
-                    className="formSwitch--switch"
-                    onChange={value => {
-                      manufacturingCapabilityFrm?.setFieldsValue({
-                        "profile_fields": {
-                          14: value ? "Y" : "N"
-                        },
-                      });
-                    }}
-                  />
-                </Form.Item>
-
-                <Row>
-                  <Col span={24} className="mb-4 border border-bc rounded-5 formCloneable">
-                    <Form.Item
-                      name={['profile_fields', "15", 0]}
-                      label={t(__('Equipment Name'))}
-                      labelCol={{sm: 24, lg: 6}}
-                    >
-                      <Input
-                        allowClear
-                      />
-                    </Form.Item>
-
-                    <Form.Item
-                      name={['profile_fields', "16", 0]}
-                      label={t(__('Equipment Model'))}
-                      labelCol={{sm: 24, lg: 6}}
-                    >
-                      <Input
-                        allowClear
-                      />
-                    </Form.Item>
-
-                    <Form.Item
-                      name={['profile_fields', "17", 0]}
-                      label={t(__('Equipment quantity'))}
-                      labelCol={{sm: 24, lg: 6}}
-                    >
-                      <Input
-                        allowClear
-                      />
-                    </Form.Item>
-                  </Col>
-                </Row>
-
-                <Form.Item
-                  name={['profile_fields', "18"]}
-                  label={t(__('Whether to show production line'))}
-                  labelCol={{sm: 24}}
-                  initialValue={"Y"}
-                  className="formSwitch"
-                >
-                  <Switch
-                    checkedChildren={t('yes')}
-                    unCheckedChildren={t('no')}
-                    defaultChecked
-                    className="formSwitch--switch"
-                    onChange={value => {
-                      manufacturingCapabilityFrm?.setFieldsValue({
-                        "profile_fields": {
-                          18: value ? "Y" : "N"
-                        },
-                      });
-                    }}
-                  />
-                </Form.Item>
-
-                <Row>
-                  <Col span={24} className="mb-4 border border-bc rounded-5 formCloneable">
-                    <Form.Item
-                      name={['profile_fields', "19", 0]}
-                      label={t(__('Production Line nameEquipment Name'))}
-                      labelCol={{sm: 24, lg: 6}}
-                    >
-                      <Input
-                        allowClear
-                      />
-                    </Form.Item>
-
-                    <Form.Item
-                      name={['profile_fields', "20", 0]}
-                      label={t(__('Supervisor Number'))}
-                      labelCol={{sm: 24, lg: 6}}
-                    >
-                      <Input
-                        allowClear
-                      />
-                    </Form.Item>
-
-                    <Form.Item
-                      name={['profile_fields', "21", 0]}
-                      label={t(__('Number of Operators'))}
-                      labelCol={{sm: 24, lg: 6}}
-                    >
-                      <Input
-                        allowClear
-                      />
-                    </Form.Item>
-
-                    <Form.Item
-                      name={['profile_fields', "22", 0]}
-                      label={t(__('QC/QA Number'))}
-                      labelCol={{sm: 24, lg: 6}}
-                    >
-                      <Input
-                        allowClear
-                      />
-                    </Form.Item>
-                  </Col>
-                </Row>
-
-                <Form.Item
-                  name={['profile_fields', "23", 0]}
-                  label={t(__('Factory Location'))}
-                  labelCol={{sm: 24, lg: 6}}
-                >
-                  <Input
-                    allowClear
-                  />
-                </Form.Item>
-
-                <Form.Item
-                  name={['profile_fields', "24"]}
-                  label={ t(__('Factory Size')) }
-                  labelCol={{sm: 24, lg: 6}}
-                >
-                  <Select
-                    placeholder={ t(__('Factory Size')) }
-                    className="w-30"
-                    allowClear
-                    showSearch
-                    filterOption={(input, option) =>
-                      option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                    }
-                  >
-                    {factorySize.length && factorySize?.map(item => {
-                      return (
-                        <Option
-                          key={ `office_size_${ item?.value_id }` }
-                          value={ item?.value_id }
-                        >
-                          { t(__(item?.description)) }
-                        </Option>
-                      );
-                    })}
-                  </Select>
-                </Form.Item>
-
-                <Form.Item
-                  name={['profile_fields', "25"]}
-                  label={ t(__('No. of QC Staff')) }
-                  labelCol={{sm: 24, lg: 6}}
-                >
-                  <Select
-                    placeholder={ t(__('No. of QC Staff')) }
-                    className="w-30"
-                    allowClear
-                    showSearch
-                    filterOption={(input, option) =>
-                      option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                    }
-                  >
-                    {qualityControlStaffs.length && qualityControlStaffs?.map(qualityControlStaff => {
-                      return (
-                        <Option
-                          key={ `office_size_${ qualityControlStaff?.value_id }` }
-                          value={ qualityControlStaff?.value_id }
-                        >
-                          { t(__(qualityControlStaff?.description)) }
-                        </Option>
-                      );
-                    })}
-                  </Select>
-                </Form.Item>
-
-                <Form.Item
-                  name={['profile_fields', "26"]}
-                  label={ t(__('No. of R & D Staff')) }
-                  labelCol={{sm: 24, lg: 6}}
-                >
-                  <Select
-                    placeholder={ t(__('No. of R & D Staff')) }
-                    className="w-30"
-                    allowClear
-                    showSearch
-                    filterOption={(input, option) =>
-                      option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                    }
-                  >
-                    {researchesStaffs.length && researchesStaffs?.map(researchesStaff => {
-                      return (
-                        <Option
-                          key={ `office_size_${ researchesStaff?.value_id }` }
-                          value={ researchesStaff?.value_id }
-                        >
-                          { t(__(researchesStaff?.description)) }
-                        </Option>
-                      );
-                    })}
-                  </Select>
-                </Form.Item>
-
-                <Form.Item
-                  name={['profile_fields', "27"]}
-                  label={ t(__('No. of Production Lines')) }
-                  labelCol={{sm: 24, lg: 6}}
-                >
-                  <Select
-                    placeholder={ t(__('No. of Production Lines')) }
-                    className="w-30"
-                    allowClear
-                    showSearch
-                    filterOption={(input, option) =>
-                      option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                    }
-                  >
-                    <Option
-                      value="1"
-                    >
-                      1
-                    </Option>
-
-                    <Option
-                      value="2"
-                    >
-                      2
-                    </Option>
-
-                    <Option
-                      value="3"
-                    >
-                      3
-                    </Option>
-
-                    <Option
-                      value="4"
-                    >
-                      4
-                    </Option>
-
-                    <Option
-                      value="5"
-                    >
-                      5
-                    </Option>
-
-                    <Option
-                      value="6"
-                    >
-                      6
-                    </Option>
-
-                    <Option
-                      value="7"
-                    >
-                      7
-                    </Option>
-
-                    <Option
-                      value="8"
-                    >
-                      8
-                    </Option>
-
-                    <Option
-                      value="9"
-                    >
-                      9
-                    </Option>
-
-                    <Option
-                      value="10"
-                    >
-                      10
-                    </Option>
-
-                    <Option
-                      value="above 10"
-                    >
-                      { t('above_10') }
-                    </Option>
-                  </Select>
-                </Form.Item>
-
-                <Form.Item
-                  name={['profile_fields', "28"]}
-                  label={t(__('Add information about your annual production capacity'))}
-                  labelCol={{sm: 24}}
-                  initialValue={"Y"}
-                  className="formSwitch"
-                >
-                  <Switch
-                    checkedChildren={t('yes')}
-                    unCheckedChildren={t('no')}
-                    defaultChecked
-                    className="formSwitch--switch"
-                    onChange={value => {
-                      manufacturingCapabilityFrm?.setFieldsValue({
-                        "profile_fields": {
-                          28: value ? "Y" : "N"
-                        },
-                      });
-                    }}
-                  />
-                </Form.Item>
-
-                <Row>
-                  <Col span={24} className="mb-4 border border-bc rounded-5 formCloneable">
-                    <Form.Item
-                      name={['profile_fields', "29", 0]}
-                      label={t(__('Production Name'))}
-                      labelCol={{sm: 24, lg: 6}}
-                    >
-                      <Input
-                        allowClear
-                      />
-                    </Form.Item>
-
-                    <Form.Item
-                      label={t(__('Units Produced (Previous Year)'))}
-                      labelCol={{sm: 24, lg: 6}}
-                    >
-                      <Input.Group compact>
-                        <Form.Item
-                          name={['profile_fields', "30", 0]}
-                          className="w-40"
-                        >
-                          <Input
-                            allowClear
-                          />
-                        </Form.Item>
-
-                        <Form.Item
-                          name={['profile_fields', "31", 0]}
-                          className="w-30"
-                        >
-                          <Select
-                            placeholder={ t(__('Select Unit Type')) }
-                            className="w-10"
-                            allowClear
-                            showSearch
-                            filterOption={(input, option) =>
-                              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                            }
-                          >
-                            {units.length && units?.map(unit => {
-                              return (
-                                <Option
-                                  key={ `office_size_${ unit?.value_id }` }
-                                  value={ unit?.value_id }
-                                >
-                                  { t(__(unit?.description)) }
-                                </Option>
-                              );
-                            })}
-                          </Select>
-                        </Form.Item>
-                      </Input.Group>
-                    </Form.Item>
-
-                    <Form.Item
-                      label={t(__('Highest Ever Annual Output'))}
-                      labelCol={{sm: 24, lg: 6}}
-                    >
-                      <Input.Group compact>
-                        <Form.Item
-                          name={['profile_fields', "32", 0]}
-                          className="w-40"
-                        >
-                          <Input
-                            allowClear
-                          />
-                        </Form.Item>
-
-                        <Form.Item
-                          name={['profile_fields', "33", 0]}
-                          className="w-30"
-                        >
-                          <Select
-                            placeholder={ t(__('Select Unit Type')) }
-                            className="w-10"
-                            allowClear
-                            showSearch
-                            filterOption={(input, option) =>
-                              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                            }
-                          >
-                            {units.length && units?.map(unit => {
-                              return (
-                                <Option
-                                  key={ `office_size_${ unit?.value_id }` }
-                                  value={ unit?.value_id }
-                                >
-                                  { t(__(unit?.description)) }
-                                </Option>
-                              );
-                            })}
-                          </Select>
-                        </Form.Item>
-                      </Input.Group>
-                    </Form.Item>
-                  </Col>
-                </Row>
-
-              </Col>
-            </Row>
-          </Form>
+      case 2:
+        return (
+          <ExportCapabilityForm
+            formRef={exportCapabilityFrm}
+            countryLists={countryLists}
+            handleUploadImage={handleUploadImage}
+            handleOnRemoveImage={handleOnRemoveImage}
+            handleImageUploadChange={handleImageUploadChange}
+            imageFileList={imageFileList}
+            countryCodes={countryCodes}
+            duties={duties}
+            acceptedDeliveries={acceptedDeliveries}
+            paymentCurrencies={paymentCurrencies}
+            languagesSpoken={languagesSpoken}
+          />
         )
     }
   }
 
   useEffect(() => {
 
+    // get step caption div:
     let stepCaption = document.getElementById("manufactureInfo--Step__caption") && document.getElementById("manufactureInfo--Step__caption");
 
+    // get step content div:
     const stepContent = document.getElementById("manufactureInfo--Step__content") && document.getElementById("manufactureInfo--Step__content");
 
-    let stepContentWidth;
-
     if (stepCaption && stepContent) {
+      // get step content width:
       const {width} = stepContent.getBoundingClientRect();
-      stepContentWidth = width;
-    }
 
-    if (stepContentWidth) {
-      document.getElementById("manufactureInfo--Step__caption").style.width = `calc(${stepContentWidth}px + 45px)`;
+      // set step caption width:
+      document.getElementById("manufactureInfo--Step__caption").style.width = `calc(${width}px + 45px)`;
     }
 
   }, [width])
