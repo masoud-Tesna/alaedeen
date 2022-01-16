@@ -79,7 +79,8 @@ const ManufacturingCapabilityForm = (
                   handleCustomRequest={options => handleUploadImage({
                     ...options,
                     inputName : 12,
-                    frmRef: formRef
+                    frmRef: formRef,
+                    isCloneable: 0
                   })}
                   handleOnRemove={handleOnRemoveImage}
                   handleOnChange={handleImageUploadChange}

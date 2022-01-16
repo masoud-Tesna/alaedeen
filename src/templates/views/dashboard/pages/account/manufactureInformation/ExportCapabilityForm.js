@@ -334,7 +334,8 @@ const ExportCapabilityForm = (
                   handleCustomRequest={options => handleUploadImage({
                     ...options,
                     inputName : 54,
-                    frmRef: formRef
+                    frmRef: formRef,
+                    isCloneable: 0
                   })}
                   handleOnRemove={handleOnRemoveImage}
                   handleOnChange={handleImageUploadChange}
@@ -358,7 +359,8 @@ const ExportCapabilityForm = (
                   handleCustomRequest={options => handleUploadImage({
                     ...options,
                     inputName : 55,
-                    frmRef: formRef
+                    frmRef: formRef,
+                    isCloneable: 0
                   })}
                   handleOnRemove={handleOnRemoveImage}
                   handleOnChange={handleImageUploadChange}
@@ -569,7 +571,8 @@ const ExportCapabilityForm = (
                   handleCustomRequest={options => handleUploadImage({
                     ...options,
                     inputName : 68,
-                    frmRef: formRef
+                    frmRef: formRef,
+                    isCloneable: 0
                   })}
                   handleOnRemove={handleOnRemoveImage}
                   handleOnChange={handleImageUploadChange}

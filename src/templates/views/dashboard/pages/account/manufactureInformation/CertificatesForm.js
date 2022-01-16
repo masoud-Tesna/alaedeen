@@ -1,4 +1,4 @@
-import { Col, Collapse, Form, Input, InputNumber, Row, Select, Switch } from "antd";
+import { Col, Form, Input, Row, Select, Switch } from "antd";
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../../../../functions/Helper";
 import ImagesUploader from "../../../../../common/ImagesUploader";
@@ -14,10 +14,7 @@ const CertificatesForm = (
     certificationTypes
   }
 ) => {
-
-  const { TextArea } = Input;
   const { Option } = Select;
-  const { Panel } = Collapse;
 
   const { t } = useTranslation();
 
@@ -117,7 +114,8 @@ const CertificatesForm = (
                   handleCustomRequest={options => handleUploadImage({
                     ...options,
                     inputName : 76,
-                    frmRef: formRef
+                    frmRef: formRef,
+                    isCloneable: 0
                   })}
                   handleOnRemove={handleOnRemoveImage}
                   handleOnChange={handleImageUploadChange}
@@ -187,7 +185,8 @@ const CertificatesForm = (
                   handleCustomRequest={options => handleUploadImage({
                     ...options,
                     inputName : 80,
-                    frmRef: formRef
+                    frmRef: formRef,
+                    isCloneable: 0
                   })}
                   handleOnRemove={handleOnRemoveImage}
                   handleOnChange={handleImageUploadChange}
@@ -247,7 +246,8 @@ const CertificatesForm = (
                   handleCustomRequest={options => handleUploadImage({
                     ...options,
                     inputName : 83,
-                    frmRef: formRef
+                    frmRef: formRef,
+                    isCloneable: 0
                   })}
                   handleOnRemove={handleOnRemoveImage}
                   handleOnChange={handleImageUploadChange}
