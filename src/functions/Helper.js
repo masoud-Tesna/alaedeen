@@ -27,12 +27,15 @@ export function __(world, prefix = "", sign = ".") {
     .replaceAll("’", "")
     .replaceAll("²", "")
     .replaceAll("%", "")
+    .replaceAll(" - ", "_")
+    .replaceAll(" -", "_")
+    .replaceAll("- ", "_")
+    .replaceAll("-", "_")
     .replaceAll("    ", "_")
     .replaceAll("   ", "_")
     .replaceAll("  ", "_")
     .replaceAll(" ", "_")
-    .replaceAll(" - ", "_")
-    .replaceAll("-", "_");
+  ;
 
   returnWord = prefix? `${prefix}${sign}${returnWord}` : returnWord;
 
