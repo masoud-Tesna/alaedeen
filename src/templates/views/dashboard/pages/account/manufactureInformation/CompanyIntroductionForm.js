@@ -1,4 +1,4 @@
-import { Checkbox, Col, DatePicker, Form, Input, Row, Select, Switch } from "antd";
+import { Button, Checkbox, Col, DatePicker, Form, Input, Row, Select, Space, Switch } from "antd";
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../../../../functions/Helper";
 import ImagesUploader from "../../../../../common/ImagesUploader";
@@ -8,6 +8,8 @@ import { UploadOutlined } from "@ant-design/icons";
 const CompanyIntroductionForm = (
   {
     formRef,
+    handleSubmitForm,
+    handlePrevStep,
     handleUploadImage,
     handleOnRemoveImage,
     handleImageUploadChange,
@@ -21,6 +23,26 @@ const CompanyIntroductionForm = (
 
   const { t } = useTranslation();
 
+  const handleBeforeSubmitForm = () => {
+    formRef.validateFields()
+      .then(values => {
+        // append section name to values:
+        values.section = "company_introduction";
+
+        // if isset field 90 (sata picker) change format:
+        if (values['profile_fields'][90]) {
+          values['profile_fields'][90] = values['profile_fields'][90].format('YYYY-MM');
+        }
+
+        // submit form:
+        handleSubmitForm(values);
+      })
+      .catch(errorInfo => {
+        // if isset error show log:
+        console.log(errorInfo)
+      });
+  }
+
   return (
     <Form
       className="h-100 manufactureInfo--formContent"
@@ -30,7 +52,7 @@ const CompanyIntroductionForm = (
       form={formRef}
     >
       <Row className="manufactureInfoForm--certificates" justify="center">
-        <Col xs={24} lg={22}>
+        <Col xs={24} lg={22} className="formItems--content">
 
           <Row className="companyLogo">
             <Col span={24}>
@@ -43,7 +65,6 @@ const CompanyIntroductionForm = (
               <Row className="px-5">
                 <Col span={12}>
                   <Form.Item
-                    name={"fa_logo"}
                     label={t(__('Logo For Persian Language'))}
                     valuePropName="fileList"
                     labelCol={{sm: 24, lg: 6}}
@@ -51,8 +72,11 @@ const CompanyIntroductionForm = (
                     <Input hidden/>
 
                     <ImageUploader
-                      inputName="fa_logo"
-                      formRef={ formRef }
+                      handleCustomRequest={options => handleUploadImage({
+                        ...options,
+                        inputName : "fa",
+                        for_logo: true
+                      })}
                       uploadBtnText="select logo"
                       uploadBtnIcon={<UploadOutlined />}
                       customClassName="addProduct--imageUploader"
@@ -62,7 +86,6 @@ const CompanyIntroductionForm = (
 
                 <Col span={12}>
                   <Form.Item
-                    name={"en_logo"}
                     label={t(__('Logo For english Language'))}
                     valuePropName="fileList"
                     labelCol={{sm: 24, lg: 6}}
@@ -70,8 +93,11 @@ const CompanyIntroductionForm = (
                     <Input hidden/>
 
                     <ImageUploader
-                      inputName="en_logo"
-                      formRef={ formRef }
+                      handleCustomRequest={options => handleUploadImage({
+                        ...options,
+                        inputName : "en",
+                        for_logo: true
+                      })}
                       uploadBtnText="select logo"
                       uploadBtnIcon={<UploadOutlined />}
                       customClassName="addProduct--imageUploader"
@@ -96,7 +122,6 @@ const CompanyIntroductionForm = (
           </Form.Item>
 
           <Form.Item
-            name={["profile_fields", "86"]}
             label={t(__('Company images'))}
             valuePropName="fileList"
             labelCol={{sm: 24, lg: 6}}
@@ -107,8 +132,7 @@ const CompanyIntroductionForm = (
             <ImagesUploader
               handleCustomRequest={options => handleUploadImage({
                 ...options,
-                inputName : 86,
-                frmRef: formRef
+                inputName : 86
               })}
               handleOnRemove={handleOnRemoveImage}
               handleOnChange={handleImageUploadChange}
@@ -132,7 +156,7 @@ const CompanyIntroductionForm = (
                   <Row gutter={20}>
                     <Col>
                       <Form.Item
-                        name={['vide_link', 0, "show_home"]}
+                        name={['profile_fields', 'video_link', 0, "show_home"]}
                         valuePropName="checked"
                       >
                         <Checkbox>{ t(__('show in home')) }</Checkbox>
@@ -140,7 +164,7 @@ const CompanyIntroductionForm = (
                     </Col>
                     <Col span={9}>
                       <Form.Item
-                        name={['vide_link', 0, "link"]}
+                        name={['profile_fields', 'video_link', 0, "link"]}
                       >
                         <Input
                           placeholder={t(__('video_link'))}
@@ -155,7 +179,7 @@ const CompanyIntroductionForm = (
                   <Row gutter={20}>
                     <Col>
                       <Form.Item
-                        name={['vide_link', 1, "show_home"]}
+                        name={['profile_fields', 'video_link', 1, "show_home"]}
                         valuePropName="checked"
                       >
                         <Checkbox>{ t(__('show in home')) }</Checkbox>
@@ -163,7 +187,7 @@ const CompanyIntroductionForm = (
                     </Col>
                     <Col span={9}>
                       <Form.Item
-                        name={['vide_link', 1, "link"]}
+                        name={['profile_fields', 'video_link', 1, "link"]}
                       >
                         <Input
                           placeholder={t(__('video_link'))}
@@ -178,7 +202,7 @@ const CompanyIntroductionForm = (
                   <Row gutter={20}>
                     <Col>
                       <Form.Item
-                        name={['vide_link', 2, "show_home"]}
+                        name={['profile_fields', 'video_link', 2, "show_home"]}
                         valuePropName="checked"
                       >
                         <Checkbox>{ t(__('show in home')) }</Checkbox>
@@ -186,7 +210,7 @@ const CompanyIntroductionForm = (
                     </Col>
                     <Col span={9}>
                       <Form.Item
-                        name={['vide_link', 2, "link"]}
+                        name={['profile_fields', 'video_link', 2, "link"]}
                       >
                         <Input
                           placeholder={t(__('video_link'))}
@@ -225,7 +249,7 @@ const CompanyIntroductionForm = (
           <Row>
             <Col span={24} className="mb-4 border border-bc rounded-5 formCloneable">
               <Form.Item
-                name={['profile_fields', "88", 0]}
+                name={['profile_fields', "88"]}
                 label={t(__('Trade Show Name'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -240,17 +264,7 @@ const CompanyIntroductionForm = (
               >
                 <Input.Group compact>
                   <Form.Item
-                    name={['profile_fields', "89", 0]}
-                    className="w-30"
-                  >
-                    <DatePicker
-                      picker="year"
-                      className="w-100"
-                    />
-                  </Form.Item>
-
-                  <Form.Item
-                    name={['profile_fields', "90", 0]}
+                    name={['profile_fields', "90"]}
                     className="w-30"
                   >
                     <DatePicker
@@ -262,7 +276,7 @@ const CompanyIntroductionForm = (
               </Form.Item>
 
               <Form.Item
-                name={['profile_fields', "91", 0]}
+                name={['profile_fields', "91"]}
                 label={t(__('Host Country/Region'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -290,7 +304,7 @@ const CompanyIntroductionForm = (
               </Form.Item>
 
               <Form.Item
-                name={['profile_fields', "92", 0]}
+                name={['profile_fields', "92"]}
                 label={t(__('description'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -303,7 +317,6 @@ const CompanyIntroductionForm = (
               </Form.Item>
 
               <Form.Item
-                name={["profile_fields", "93", 0]}
                 label={t(__('Trade Show Photo'))}
                 valuePropName="fileList"
                 labelCol={{sm: 24, lg: 6}}
@@ -314,9 +327,7 @@ const CompanyIntroductionForm = (
                 <ImagesUploader
                   handleCustomRequest={options => handleUploadImage({
                     ...options,
-                    inputName : 93,
-                    frmRef: formRef,
-                    isCloneable: 0
+                    inputName : 93
                   })}
                   handleOnRemove={handleOnRemoveImage}
                   handleOnChange={handleImageUploadChange}
@@ -328,6 +339,18 @@ const CompanyIntroductionForm = (
               </Form.Item>
             </Col>
           </Row>
+        </Col>
+
+        <Col span={24} id="stepChangeCurrent--content" className="stepChangeCurrent--content">
+          <Space size="large">
+            <Button onClick={() => handlePrevStep()}>
+              { t('previous') }
+            </Button>
+
+            <Button type="primary" onClick={() => handleBeforeSubmitForm()}>
+              { t('submit_and_next') }
+            </Button>
+          </Space>
         </Col>
       </Row>
     </Form>
