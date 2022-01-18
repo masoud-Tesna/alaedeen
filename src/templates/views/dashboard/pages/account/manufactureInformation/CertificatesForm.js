@@ -1,4 +1,4 @@
-import { Col, Form, Input, Row, Select, Switch } from "antd";
+import { Button, Col, Form, Input, Row, Select, Space, Switch } from "antd";
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../../../../functions/Helper";
 import ImagesUploader from "../../../../../common/ImagesUploader";
@@ -7,6 +7,8 @@ import { UploadOutlined } from "@ant-design/icons";
 const CertificatesForm = (
   {
     formRef,
+    handleSubmitForm,
+    handlePrevStep,
     handleUploadImage,
     handleOnRemoveImage,
     handleImageUploadChange,
@@ -18,6 +20,21 @@ const CertificatesForm = (
 
   const { t } = useTranslation();
 
+  const handleBeforeSubmitForm = () => {
+    formRef.validateFields()
+      .then(values => {
+        // append section name to values:
+        values.section = "certificates";
+
+        // submit form:
+        handleSubmitForm(values);
+      })
+      .catch(errorInfo => {
+        // if isset error show log:
+        console.log(errorInfo)
+      });
+  }
+
   return (
     <Form
       className="h-100 manufactureInfo--formContent"
@@ -27,7 +44,7 @@ const CertificatesForm = (
       form={formRef}
     >
       <Row className="manufactureInfoForm--certificates" justify="center">
-        <Col xs={24} lg={22}>
+        <Col xs={24} lg={22} className="formItems--content">
           <Form.Item
             name={['profile_fields', "72"]}
             label={t(__('Certification'))}
@@ -53,7 +70,7 @@ const CertificatesForm = (
           <Row>
             <Col span={24} className="mb-4 border border-bc rounded-5 formCloneable">
               <Form.Item
-                name={['profile_fields', "73", 0]}
+                name={['profile_fields', "73"]}
                 label={t(__('certification type'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -80,7 +97,7 @@ const CertificatesForm = (
               </Form.Item>
 
               <Form.Item
-                name={['profile_fields', "74", 0]}
+                name={['profile_fields', "74"]}
                 label={t(__('Certificate name'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -92,7 +109,7 @@ const CertificatesForm = (
 
 
               <Form.Item
-                name={['profile_fields', "75", 0]}
+                name={['profile_fields', "75"]}
                 label={t(__('Issued By'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -102,7 +119,6 @@ const CertificatesForm = (
               </Form.Item>
 
               <Form.Item
-                name={["profile_fields", "76", 0]}
                 label={t(__('certification images'))}
                 valuePropName="fileList"
                 labelCol={{sm: 24, lg: 6}}
@@ -113,9 +129,7 @@ const CertificatesForm = (
                 <ImagesUploader
                   handleCustomRequest={options => handleUploadImage({
                     ...options,
-                    inputName : 76,
-                    frmRef: formRef,
-                    isCloneable: 0
+                    inputName : 76
                   })}
                   handleOnRemove={handleOnRemoveImage}
                   handleOnChange={handleImageUploadChange}
@@ -153,7 +167,7 @@ const CertificatesForm = (
           <Row>
             <Col span={24} className="mb-4 border border-bc rounded-5 formCloneable">
               <Form.Item
-                name={['profile_fields', "78", 0]}
+                name={['profile_fields', "78"]}
                 label={t(__('Award name'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -163,7 +177,7 @@ const CertificatesForm = (
               </Form.Item>
 
               <Form.Item
-                name={['profile_fields', "79", 0]}
+                name={['profile_fields', "79"]}
                 label={t(__('Issued By'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -173,7 +187,6 @@ const CertificatesForm = (
               </Form.Item>
 
               <Form.Item
-                name={["profile_fields", "80", 0]}
                 label={t(__('Honor & Award Certifications images'))}
                 valuePropName="fileList"
                 labelCol={{sm: 24, lg: 6}}
@@ -184,9 +197,7 @@ const CertificatesForm = (
                 <ImagesUploader
                   handleCustomRequest={options => handleUploadImage({
                     ...options,
-                    inputName : 80,
-                    frmRef: formRef,
-                    isCloneable: 0
+                    inputName : 80
                   })}
                   handleOnRemove={handleOnRemoveImage}
                   handleOnChange={handleImageUploadChange}
@@ -224,7 +235,7 @@ const CertificatesForm = (
           <Row>
             <Col span={24} className="mb-4 border border-bc rounded-5 formCloneable">
               <Form.Item
-                name={['profile_fields', "82", 0]}
+                name={['profile_fields', "82"]}
                 label={t(__('patent Name'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -234,7 +245,6 @@ const CertificatesForm = (
               </Form.Item>
 
               <Form.Item
-                name={["profile_fields", "83", 0]}
                 label={t(__('patent images'))}
                 valuePropName="fileList"
                 labelCol={{sm: 24, lg: 6}}
@@ -245,9 +255,7 @@ const CertificatesForm = (
                 <ImagesUploader
                   handleCustomRequest={options => handleUploadImage({
                     ...options,
-                    inputName : 83,
-                    frmRef: formRef,
-                    isCloneable: 0
+                    inputName : 83
                   })}
                   handleOnRemove={handleOnRemoveImage}
                   handleOnChange={handleImageUploadChange}
@@ -259,6 +267,18 @@ const CertificatesForm = (
               </Form.Item>
             </Col>
           </Row>
+        </Col>
+
+        <Col span={24} id="stepChangeCurrent--content" className="stepChangeCurrent--content">
+          <Space size="large">
+            <Button onClick={() => handlePrevStep()}>
+              { t('previous') }
+            </Button>
+
+            <Button type="primary" onClick={() => handleBeforeSubmitForm()}>
+              { t('submit_and_next') }
+            </Button>
+          </Space>
         </Col>
       </Row>
     </Form>
