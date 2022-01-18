@@ -1,4 +1,17 @@
-import { Col, Collapse, DatePicker, Form, Input, InputNumber, Row, Select, Switch, Checkbox } from "antd";
+import {
+  Col,
+  Collapse,
+  DatePicker,
+  Form,
+  Input,
+  InputNumber,
+  Row,
+  Select,
+  Switch,
+  Checkbox,
+  Space,
+  Button
+} from "antd";
 import { __, scrollIntoViewIfTargetNotOnDisplay } from "../../../../../../functions/Helper";
 import { useTranslation } from "react-i18next";
 import ImagesUploader from "../../../../../common/ImagesUploader";
@@ -8,6 +21,8 @@ import { useRef } from "react";
 const ExportCapabilityForm = (
   {
     formRef,
+    handleSubmitForm,
+    handlePrevStep,
     countryLists,
     handleUploadImage,
     handleOnRemoveImage,
@@ -29,6 +44,26 @@ const ExportCapabilityForm = (
 
   const collapseRef = useRef(null);
 
+  const handleBeforeSubmitForm = () => {
+    formRef.validateFields()
+      .then(values => {
+        // append section name to values:
+        values.section = "export_capability";
+
+        // if isset field 48 (sata picker) change format:
+        if (values['profile_fields'][48]) {
+          values['profile_fields'][48] = values['profile_fields'][48].format('YYYY');
+        }
+
+        // submit form:
+        handleSubmitForm(values);
+      })
+      .catch(errorInfo => {
+        // if isset error show log:
+        console.log(errorInfo)
+      });
+  }
+
   return (
     <Form
       className="h-100 manufactureInfo--formContent"
@@ -38,7 +73,7 @@ const ExportCapabilityForm = (
       form={formRef}
     >
       <Row className="manufactureInfoForm--exportCapability" justify="center">
-        <Col xs={24} lg={22}>
+        <Col xs={24} lg={22} className="formItems--content">
           <Form.Item
             name={['profile_fields', "96"]}
             label={t(__('Exports Description'))}
@@ -60,10 +95,14 @@ const ExportCapabilityForm = (
             <Input.Group compact>
               <Form.Item
                 name={['profile_fields', "95"]}
-                className="w-40"
+                className="w-30"
               >
-                <Input
+                <InputNumber
+                  className="w-100"
                   allowClear
+                  step="0.0"
+                  formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                  parser={value => value.replace(/\$\s?|(,*)/g, '')}
                 />
               </Form.Item>
 
@@ -145,8 +184,8 @@ const ExportCapabilityForm = (
           </Form.Item>
 
           <Row>
-            <Col span={6} className="d-none d-lg-block" />
-            <Col sm={24} lg={18} className="exportRate--content">
+
+            <Col sm={24} lg={ { span: 18, offset: 6 }} className="exportRate--content">
               <Form.Item>
                 <Row className="row-cols-1 row-cols-lg-2" gutter={[ { sm: 0, lg: 80 }, 0]}>
                   <Col>
@@ -157,6 +196,7 @@ const ExportCapabilityForm = (
                         addonAfter={`% ${t('Iraq')}`}
                         defaultValue={0}
                         allowClear
+                        onFocus={e => e.target.select()}
                       />
                     </Form.Item>
                   </Col>
@@ -169,6 +209,7 @@ const ExportCapabilityForm = (
                         addonAfter={`% ${t('Syria')}`}
                         defaultValue={0}
                         allowClear
+                        onFocus={e => e.target.select()}
                       />
                     </Form.Item>
                   </Col>
@@ -181,6 +222,7 @@ const ExportCapabilityForm = (
                         addonAfter={`% ${t('Afghanistan')}`}
                         defaultValue={0}
                         allowClear
+                        onFocus={e => e.target.select()}
                       />
                     </Form.Item>
                   </Col>
@@ -193,6 +235,7 @@ const ExportCapabilityForm = (
                         addonAfter={`% ${t('Tajikistan')}`}
                         defaultValue={0}
                         allowClear
+                        onFocus={e => e.target.select()}
                       />
                     </Form.Item>
                   </Col>
@@ -205,6 +248,7 @@ const ExportCapabilityForm = (
                         addonAfter={`% ${t('Armenia')}`}
                         defaultValue={0}
                         allowClear
+                        onFocus={e => e.target.select()}
                       />
                     </Form.Item>
                   </Col>
@@ -217,6 +261,7 @@ const ExportCapabilityForm = (
                         addonAfter={`% ${t('Azerbaijan')}`}
                         defaultValue={0}
                         allowClear
+                        onFocus={e => e.target.select()}
                       />
                     </Form.Item>
                   </Col>
@@ -261,7 +306,7 @@ const ExportCapabilityForm = (
           <Row>
             <Col span={24} className="mb-4 border border-bc rounded-5 formCloneable">
               <Form.Item
-                name={['profile_fields', "50", 0]}
+                name={['profile_fields', "50"]}
                 label={t(__('Project/customer name'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -271,7 +316,7 @@ const ExportCapabilityForm = (
               </Form.Item>
 
               <Form.Item
-                name={['profile_fields', "51", 0]}
+                name={['profile_fields', "51"]}
                 label={t(__('Customer’s Country/Region'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -299,7 +344,7 @@ const ExportCapabilityForm = (
               </Form.Item>
 
               <Form.Item
-                name={['profile_fields', "52", 0]}
+                name={['profile_fields', "52"]}
                 label={t(__('Products You Supply To Customer'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -309,7 +354,7 @@ const ExportCapabilityForm = (
               </Form.Item>
 
               <Form.Item
-                name={['profile_fields', "53", 0]}
+                name={['profile_fields', "53"]}
                 label={t(__('Annual Turnover'))}
                 labelCol={{sm: 24, lg: 5}}
               >
@@ -322,7 +367,6 @@ const ExportCapabilityForm = (
               </Form.Item>
 
               <Form.Item
-                name={["profile_fields", "54", 0]}
                 label={t(__('Cooperation photos'))}
                 valuePropName="fileList"
                 labelCol={{sm: 24, lg: 6}}
@@ -333,9 +377,7 @@ const ExportCapabilityForm = (
                 <ImagesUploader
                   handleCustomRequest={options => handleUploadImage({
                     ...options,
-                    inputName : 54,
-                    frmRef: formRef,
-                    isCloneable: 0
+                    inputName : 54
                   })}
                   handleOnRemove={handleOnRemoveImage}
                   handleOnChange={handleImageUploadChange}
@@ -347,7 +389,6 @@ const ExportCapabilityForm = (
               </Form.Item>
 
               <Form.Item
-                name={["profile_fields", "55", 0]}
                 label={t(__('Transaction Documents'))}
                 valuePropName="fileList"
                 labelCol={{sm: 24, lg: 6}}
@@ -358,9 +399,7 @@ const ExportCapabilityForm = (
                 <ImagesUploader
                   handleCustomRequest={options => handleUploadImage({
                     ...options,
-                    inputName : 55,
-                    frmRef: formRef,
-                    isCloneable: 0
+                    inputName : 55
                   })}
                   handleOnRemove={handleOnRemoveImage}
                   handleOnChange={handleImageUploadChange}
@@ -411,7 +450,7 @@ const ExportCapabilityForm = (
           <Row>
             <Col span={24} className="mb-4 border border-bc rounded-5 formCloneable">
               <Form.Item
-                name={['profile_fields', "58", 0]}
+                name={['profile_fields', "58"]}
                 label={t(__('Country/Region'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -439,7 +478,7 @@ const ExportCapabilityForm = (
               </Form.Item>
 
               <Form.Item
-                name={['profile_fields', "59", 0]}
+                name={['profile_fields', "59"]}
                 label={t(__('Province/State'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -449,7 +488,7 @@ const ExportCapabilityForm = (
               </Form.Item>
 
               <Form.Item
-                name={['profile_fields', "60", 0]}
+                name={['profile_fields', "60"]}
                 label={t(__('city'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -459,7 +498,7 @@ const ExportCapabilityForm = (
               </Form.Item>
 
               <Form.Item
-                name={['profile_fields', "61", 0]}
+                name={['profile_fields', "61"]}
                 label={t(__('Street Address'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -474,7 +513,7 @@ const ExportCapabilityForm = (
               >
                 <Input.Group compact>
                   <Form.Item
-                    name={['profile_fields', "62", 0]}
+                    name={['profile_fields', "62"]}
                     className="w-30"
                   >
                     <Select
@@ -500,7 +539,7 @@ const ExportCapabilityForm = (
                   </Form.Item>
 
                   <Form.Item
-                    name={['profile_fields', "64", 0]}
+                    name={['profile_fields', "64"]}
                     className="w-40"
                   >
                     <Input
@@ -511,7 +550,7 @@ const ExportCapabilityForm = (
               </Form.Item>
 
               <Form.Item
-                name={['profile_fields', "65", 0]}
+                name={['profile_fields', "65"]}
                 label={ t(__('Duties')) }
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -538,7 +577,7 @@ const ExportCapabilityForm = (
               </Form.Item>
 
               <Form.Item
-                name={['profile_fields', "66", 0]}
+                name={['profile_fields', "66"]}
                 label={t(__('person-in-charge'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -548,7 +587,7 @@ const ExportCapabilityForm = (
               </Form.Item>
 
               <Form.Item
-                name={['profile_fields', "67", 0]}
+                name={['profile_fields', "67"]}
                 label={t(__('Number of Staff'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -559,7 +598,6 @@ const ExportCapabilityForm = (
               </Form.Item>
 
               <Form.Item
-                name={["profile_fields", "68", 0]}
                 label={t(__('Office Photos'))}
                 valuePropName="fileList"
                 labelCol={{sm: 24, lg: 6}}
@@ -570,9 +608,7 @@ const ExportCapabilityForm = (
                 <ImagesUploader
                   handleCustomRequest={options => handleUploadImage({
                     ...options,
-                    inputName : 68,
-                    frmRef: formRef,
-                    isCloneable: 0
+                    inputName : 68
                   })}
                   handleOnRemove={handleOnRemoveImage}
                   handleOnChange={handleImageUploadChange}
@@ -665,6 +701,18 @@ const ExportCapabilityForm = (
               </Collapse>
             </Col>
           </Row>
+        </Col>
+
+        <Col span={24} id="stepChangeCurrent--content" className="stepChangeCurrent--content">
+          <Space size="large">
+            <Button onClick={() => handlePrevStep()}>
+              { t('previous') }
+            </Button>
+
+            <Button type="primary" onClick={() => handleBeforeSubmitForm()}>
+              { t('submit_and_next') }
+            </Button>
+          </Space>
         </Col>
       </Row>
     </Form>
