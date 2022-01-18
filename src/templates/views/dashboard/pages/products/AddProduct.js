@@ -5,7 +5,7 @@ import DashboardContentHeader from "../../templates/components/DashboardContentH
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../../../functions/Helper";
 import { useGetApi } from "../../../../../functions";
-import { useLayoutEffect, useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { CloseOutlined, EditOutlined, UploadOutlined } from "@ant-design/icons";
 import BraftEditor from 'braft-editor';
 import 'braft-editor/dist/index.css';
