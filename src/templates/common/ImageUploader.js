@@ -10,8 +10,7 @@ import axios from "axios";
 
 const ImageUploader = (
   {
-    formRef,
-    inputName,
+    handleCustomRequest,
     uploadBtnText,
     uploadBtnIcon,
     customClassName
@@ -44,38 +43,6 @@ const ImageUploader = (
     }
   };
 
-  // function for upload images:
-  const handleUploadImage = async options => {
-    const { onSuccess, onError, file, onProgress, inputName, frmRef } = options;
-
-    const fmData = new FormData();
-    const config = {
-      headers: { "content-type": "multipart/form-data" },
-      onUploadProgress: event => {
-        onProgress({ percent: (event.loaded / event.total) * 100 });
-      }
-    };
-    fmData.append("file", file);
-    try {
-      const res = await axios.post(
-        "https://alaedeen.com/horn/upload-image-api",
-        fmData,
-        config
-      );
-
-      frmRef?.setFieldsValue({
-        [inputName]: res.data,
-      });
-
-      onSuccess("Ok");
-      //console.log("server res: ", res);
-    } catch (err) {
-      //console.log("Error: ", err);
-      //const error = new Error("Some error");
-      onError({ err });
-    }
-  };
-
   // upload button component:
   const imageUploadButton = (
     <div className="uploadBtn">
@@ -90,11 +57,7 @@ const ImageUploader = (
         listType="picture-card"
         className="avatar-uploader"
         showUploadList={false}
-        customRequest={options => handleUploadImage({
-          ...options,
-          inputName : inputName,
-          frmRef: formRef
-        })}
+        customRequest={handleCustomRequest}
         onChange={handleChange}
       >
         {(imageUrl && !isLoading) ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : imageUploadButton}
