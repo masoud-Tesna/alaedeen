@@ -1,10 +1,11 @@
-import { Col, DatePicker, Form, Input, Row, Select } from "antd";
+import { Button, Col, DatePicker, Form, Input, Row, Select } from "antd";
 import { __ } from "../../../../../../functions/Helper";
 import { useTranslation } from "react-i18next";
 
 const CompanyDetailsForm = (
   {
     formRef,
+    handleSubmitForm,
     employees,
     officeSizes
   }
@@ -14,6 +15,20 @@ const CompanyDetailsForm = (
   const { Option } = Select;
 
   const { t } = useTranslation();
+
+  const handleBeforeSubmitForm = () => {
+    formRef.validateFields()
+      .then(values => {
+        if (values['profile_fields'][4]) {
+          values[ 'profile_fields' ][ 4 ] = values[ 'profile_fields' ][ 4 ].format('YYYY');
+          values.section = "company_details";
+        }
+        handleSubmitForm(values);
+      })
+      .catch(errorInfo => {
+        console.log(errorInfo)
+      });
+  }
 
   return (
     <Form
@@ -141,6 +156,12 @@ const CompanyDetailsForm = (
               autoSize={{ minRows: 4, maxRows: 5 }}
             />
           </Form.Item>
+        </Col>
+
+        <Col span={24} className="stepChangeCurrent--content">
+          <Button type="primary" onClick={() => handleBeforeSubmitForm()}>
+            { t('submit_and_next') }
+          </Button>
         </Col>
       </Row>
     </Form>
