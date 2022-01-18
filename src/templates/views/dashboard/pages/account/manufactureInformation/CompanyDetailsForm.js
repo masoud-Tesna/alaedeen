@@ -40,7 +40,7 @@ const CompanyDetailsForm = (
       form={formRef}
     >
       <Row className="manufactureInfoForm--companyDetails" justify="center">
-        <Col xs={24} lg={22}>
+        <Col xs={24} lg={22} className="formItems--content">
           <Form.Item
             name={['profile_fields', "1"]}
             label={t(__('Company Operational Address'))}
