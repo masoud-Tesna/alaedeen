@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 import "./styles/ManufactureInformation.less";
 
@@ -6,14 +7,15 @@ import { Col, Form, Row, Steps } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import { useGetApi, useWindowSize } from "../../../../../functions";
 import { useTranslation } from "react-i18next";
-import { __ } from "../../../../../functions/Helper";
-import axios from "axios";
+import { __, scrollTop } from "../../../../../functions/Helper";
 import CompanyDetailsForm from "./manufactureInformation/CompanyDetailsForm";
 import ManufacturingCapabilityForm from "./manufactureInformation/ManufacturingCapabilityForm";
 import ExportCapabilityForm from "./manufactureInformation/ExportCapabilityForm";
 import CertificatesForm from "./manufactureInformation/CertificatesForm";
 import CompanyIntroductionForm from "./manufactureInformation/CompanyIntroductionForm";
 import SupportForm from "./manufactureInformation/SupportForm";
+import { isLoadingAction, useSpinnerDispatch } from "../../../../../contexts/spiner/SpinnerContext";
+import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 
 const ManufactureInformation = () => {
 
@@ -24,6 +26,12 @@ const ManufactureInformation = () => {
 
   const { t } = useTranslation();
 
+  // user data context state:
+  const { user_data } = useGetAuthState();
+
+  // spinner dispatch context:
+  const { spinnerDispatch } = useSpinnerDispatch();
+
   // use ref for add product form:
   const [companyDetailsFrm] = Form.useForm();
   const [manufacturingCapabilityFrm] = Form.useForm();
@@ -32,14 +40,41 @@ const ManufactureInformation = () => {
   const [companyIntroductionFrm] = Form.useForm();
   const [supportFrm] = Form.useForm();
 
-  const [currentStep, setCurrentStep] = useState(4);
+  const [currentStep, setCurrentStep] = useState(0);
 
   // save image name in array state:
   const [imageFileList, setImageFileList] = useState({});
 
   const stepsHandleOnChange = current => {
     setCurrentStep(current);
+
+    if (current !== currentStep) {
+      const scrollTopTimer = setTimeout(() => {
+        scrollTop();
+      }, 100);
+
+      return () => clearTimeout(scrollTopTimer);
+    }
   }
+
+  const handleNextStep = () => {
+    setCurrentStep(prev => prev + 1);
+    const scrollTopTimer = setTimeout(() => {
+      scrollTop();
+    }, 100);
+
+    return () => clearTimeout(scrollTopTimer);
+  };
+
+  const handlePrevStep = () => {
+    setCurrentStep(prev => prev - 1);
+
+    const scrollTopTimer = setTimeout(() => {
+      scrollTop();
+    }, 100);
+
+    return () => clearTimeout(scrollTopTimer);
+  };
 
   // get data from API:
   const {data: officeSizesData} = useGetApi("get-profile-field-value-api", "field_id=8", "officeSizes");
@@ -109,23 +144,19 @@ const ManufactureInformation = () => {
         config
       );
 
-      const profileFields = frmRef.getFieldValue('profile_fields');
+      let prevImages;
 
-      let prevImages = [];
-
-      if (isCloneable) prevImages = {[clone]: []}
-
-      if (profileFields) {
-        if (profileFields[inputName]) {
-          prevImages = profileFields[inputName];
-        }
+      if (isCloneable) {
+        prevImages = frmRef.getFieldValue(['profile_fields', inputName, clone]) || [];
+      } else {
+        prevImages = frmRef.getFieldValue(['profile_fields', inputName]) || [];
       }
 
       if (isCloneable) {
         frmRef?.setFieldsValue({
           "profile_fields": {
             [inputName]: {
-              [clone]: [...prevImages[clone], res.data]
+              [clone]: [...prevImages, res.data]
             }
           },
         });
@@ -137,7 +168,7 @@ const ManufactureInformation = () => {
         });
       }
 
-      //console.log(profileFields)
+      //console.log(frmRef.getFieldValue(['profile_fields', inputName]))
 
       onSuccess("Ok");
       //console.log("server res: ", res);
@@ -156,12 +187,30 @@ const ManufactureInformation = () => {
     console.log(file);
   }
 
+  // function for submit form:
+  const handleSubmitForm = values => {
+    values.company_id = user_data?.auth?.company_id;
+
+    // show spinner (spinner context):
+    spinnerDispatch(isLoadingAction(true));
+
+    axios.post(`https://alaedeen.com/horn/profile-update-api`, { ...values })
+      .then((res) => {
+        // hidden spinner (spinner context):
+        spinnerDispatch(isLoadingAction(false));
+      })
+      .then(() => {
+        handleNextStep();
+      })
+  }
+
   const stepContent = step => {
     switch (step) {
       case 0:
         return (
           <CompanyDetailsForm
             formRef={companyDetailsFrm}
+            handleSubmitForm={handleSubmitForm}
             employees={employees}
             officeSizes={officeSizes}
           />
@@ -237,8 +286,7 @@ const ManufactureInformation = () => {
     }
   }
 
-  useEffect(() => {
-
+  const handleSetWidth = () => {
     // get step caption div:
     let stepCaption = document.getElementById("manufactureInfo--Step__caption") && document.getElementById("manufactureInfo--Step__caption");
 
@@ -250,10 +298,35 @@ const ManufactureInformation = () => {
       const {width} = stepContent.getBoundingClientRect();
 
       // set step caption width:
-      document.getElementById("manufactureInfo--Step__caption").style.width = `calc(${width}px + 45px)`;
+      stepCaption.style.width = `calc(${width}px + 45px)`;
     }
+  }
 
-  }, [width])
+  const handleSetWidthStepChange = () => {
+
+    // get step content div:
+    const stepContent = document.getElementById("manufactureInfo--Step__content") && document.getElementById("manufactureInfo--Step__content");
+
+    // get step change content div:
+    const stepChange = document.getElementsByClassName("stepChangeCurrent--content");
+
+    if (stepContent && stepChange) {
+      // get step content width:
+      const {width} = stepContent.getBoundingClientRect();
+
+      for (let i = 0, len = stepChange.length; i < len; i++) {
+        stepChange[ i ].style.width = `${ width }px`;
+      }
+    }
+  }
+
+  useEffect(() => {
+    handleSetWidth();
+  }, [width]);
+
+  useEffect(() => {
+    handleSetWidthStepChange();
+  }, [currentStep]);
 
   return (
     <Row>
@@ -288,6 +361,26 @@ const ManufactureInformation = () => {
             {stepContent(currentStep)}
 
           </Col>
+
+          {/*<Col span={24}>
+            <div className="steps-action">
+              {currentStep < 5 - 1 && (
+                <Button type="primary" onClick={() => next()}>
+                  Next
+                </Button>
+              )}
+              {currentStep === 5 && (
+                <Button type="primary" onClick={() => console.log('Processing complete!')}>
+                  Done
+                </Button>
+              )}
+              {currentStep > 0 && (
+                <Button style={{ margin: '0 8px' }} onClick={() => prev()}>
+                  Previous
+                </Button>
+              )}
+            </div>
+          </Col>*/}
         </Row>
       </Col>
     </Row>

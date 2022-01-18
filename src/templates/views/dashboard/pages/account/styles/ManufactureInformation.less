@@ -73,14 +73,6 @@ html:lang(ar) {
     padding: 1rem 0;
     //width: 100% !important;
 
-    @media (min-width: @screen-lg) {
-      //width: calc(100% - 23%) !important;
-    }
-
-    @media (min-width: 1310px) {
-      //width: calc(100% - 18.8%) !important;
-    }
-
     .ant-steps-item {
       flex: 0 0 auto;
       width: 16.66666667%;
@@ -304,6 +296,14 @@ html:lang(ar) {
             text-align: right;
           }
         }
+      }
+
+      .stepChangeCurrent--content {
+        position: fixed !important;
+        z-index: 99;
+        bottom: 0;
+        background: #F6F6F6;
+        padding: 1rem 0;
       }
     }
   }
