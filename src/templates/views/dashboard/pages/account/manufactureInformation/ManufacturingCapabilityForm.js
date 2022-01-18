@@ -1,4 +1,4 @@
-import { Col, Form, Input, Row, Select, Switch } from "antd";
+import { Button, Col, Form, Input, Row, Select, Space, Switch } from "antd";
 import { __ } from "../../../../../../functions/Helper";
 import { useTranslation } from "react-i18next";
 import ImagesUploader from "../../../../../common/ImagesUploader";
@@ -7,6 +7,8 @@ import { UploadOutlined } from "@ant-design/icons";
 const ManufacturingCapabilityForm = (
   {
     formRef,
+    handleSubmitForm,
+    handlePrevStep,
     handleUploadImage,
     handleOnRemoveImage,
     handleImageUploadChange,
@@ -23,6 +25,17 @@ const ManufacturingCapabilityForm = (
 
   const { t } = useTranslation();
 
+  const handleBeforeSubmitForm = () => {
+    formRef.validateFields()
+      .then(values => {
+        values.section = "manufacturing_capability";
+        handleSubmitForm(values);
+      })
+      .catch(errorInfo => {
+        console.log(errorInfo)
+      });
+  }
+
   return (
     <Form
       className="h-100 manufactureInfo--formContent"
@@ -32,7 +45,7 @@ const ManufacturingCapabilityForm = (
       form={formRef}
     >
       <Row className="manufactureInfoForm--manufacturingCapability" justify="center">
-        <Col xs={24} lg={22}>
+        <Col xs={24} lg={22} className="formItems--content">
           <Form.Item
             name={['profile_fields', "10"]}
             label={t(__('Whether to show production line'))}
@@ -58,7 +71,7 @@ const ManufacturingCapabilityForm = (
           <Row>
             <Col span={24} className="mb-4 border border-bc rounded-5 formCloneable">
               <Form.Item
-                name={['profile_fields', "11", 0]}
+                name={['profile_fields', "11"]}
                 label={t(__('Process name'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -68,7 +81,6 @@ const ManufacturingCapabilityForm = (
               </Form.Item>
 
               <Form.Item
-                name={["profile_fields", "12", 0]}
                 label="Process pictures"
                 valuePropName="fileList"
                 labelCol={{sm: 24, lg: 6}}
@@ -78,9 +90,7 @@ const ManufacturingCapabilityForm = (
                 <ImagesUploader
                   handleCustomRequest={options => handleUploadImage({
                     ...options,
-                    inputName : 12,
-                    frmRef: formRef,
-                    isCloneable: 0
+                    inputName : 12
                   })}
                   handleOnRemove={handleOnRemoveImage}
                   handleOnChange={handleImageUploadChange}
@@ -92,7 +102,7 @@ const ManufacturingCapabilityForm = (
               </Form.Item>
 
               <Form.Item
-                name={['profile_fields', "13", 0]}
+                name={['profile_fields', "13"]}
                 label={t(__('Process describe'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -131,7 +141,7 @@ const ManufacturingCapabilityForm = (
           <Row>
             <Col span={24} className="mb-4 border border-bc rounded-5 formCloneable">
               <Form.Item
-                name={['profile_fields', "15", 0]}
+                name={['profile_fields', "15"]}
                 label={t(__('Equipment Name'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -141,7 +151,7 @@ const ManufacturingCapabilityForm = (
               </Form.Item>
 
               <Form.Item
-                name={['profile_fields', "16", 0]}
+                name={['profile_fields', "16"]}
                 label={t(__('Equipment Model'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -151,7 +161,7 @@ const ManufacturingCapabilityForm = (
               </Form.Item>
 
               <Form.Item
-                name={['profile_fields', "17", 0]}
+                name={['profile_fields', "17"]}
                 label={t(__('Equipment quantity'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -187,7 +197,7 @@ const ManufacturingCapabilityForm = (
           <Row>
             <Col span={24} className="mb-4 border border-bc rounded-5 formCloneable">
               <Form.Item
-                name={['profile_fields', "19", 0]}
+                name={['profile_fields', "19"]}
                 label={t(__('Production Line nameEquipment Name'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -197,7 +207,7 @@ const ManufacturingCapabilityForm = (
               </Form.Item>
 
               <Form.Item
-                name={['profile_fields', "20", 0]}
+                name={['profile_fields', "20"]}
                 label={t(__('Supervisor Number'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -207,7 +217,7 @@ const ManufacturingCapabilityForm = (
               </Form.Item>
 
               <Form.Item
-                name={['profile_fields', "21", 0]}
+                name={['profile_fields', "21"]}
                 label={t(__('Number of Operators'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -217,7 +227,7 @@ const ManufacturingCapabilityForm = (
               </Form.Item>
 
               <Form.Item
-                name={['profile_fields', "22", 0]}
+                name={['profile_fields', "22"]}
                 label={t(__('QC/QA Number'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -229,7 +239,7 @@ const ManufacturingCapabilityForm = (
           </Row>
 
           <Form.Item
-            name={['profile_fields', "23", 0]}
+            name={['profile_fields', "23"]}
             label={t(__('Factory Location'))}
             labelCol={{sm: 24, lg: 6}}
           >
@@ -426,7 +436,7 @@ const ManufacturingCapabilityForm = (
           <Row>
             <Col span={24} className="mb-4 border border-bc rounded-5 formCloneable">
               <Form.Item
-                name={['profile_fields', "29", 0]}
+                name={['profile_fields', "29"]}
                 label={t(__('Production Name'))}
                 labelCol={{sm: 24, lg: 6}}
               >
@@ -441,7 +451,7 @@ const ManufacturingCapabilityForm = (
               >
                 <Input.Group compact>
                   <Form.Item
-                    name={['profile_fields', "30", 0]}
+                    name={['profile_fields', "30"]}
                     className="w-40"
                   >
                     <Input
@@ -450,7 +460,7 @@ const ManufacturingCapabilityForm = (
                   </Form.Item>
 
                   <Form.Item
-                    name={['profile_fields', "31", 0]}
+                    name={['profile_fields', "31"]}
                     className="w-30"
                   >
                     <Select
@@ -483,7 +493,7 @@ const ManufacturingCapabilityForm = (
               >
                 <Input.Group compact>
                   <Form.Item
-                    name={['profile_fields', "32", 0]}
+                    name={['profile_fields', "32"]}
                     className="w-40"
                   >
                     <Input
@@ -492,7 +502,7 @@ const ManufacturingCapabilityForm = (
                   </Form.Item>
 
                   <Form.Item
-                    name={['profile_fields', "33", 0]}
+                    name={['profile_fields', "33"]}
                     className="w-30"
                   >
                     <Select
@@ -521,6 +531,18 @@ const ManufacturingCapabilityForm = (
             </Col>
           </Row>
 
+        </Col>
+
+        <Col span={24} id="stepChangeCurrent--content" className="stepChangeCurrent--content">
+          <Space size="large">
+            <Button onClick={() => handlePrevStep()}>
+              { t('previous') }
+            </Button>
+
+            <Button type="primary" onClick={() => handleBeforeSubmitForm()}>
+              { t('submit_and_next') }
+            </Button>
+          </Space>
         </Col>
       </Row>
     </Form>
