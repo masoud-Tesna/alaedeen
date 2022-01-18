@@ -40,7 +40,7 @@ const ManufactureInformation = () => {
   const [companyIntroductionFrm] = Form.useForm();
   const [supportFrm] = Form.useForm();
 
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(2);
 
   // save image name in array state:
   const [imageFileList, setImageFileList] = useState({});
@@ -119,7 +119,7 @@ const ManufactureInformation = () => {
 
   // function for upload images:
   const handleUploadImage = async options => {
-    const { onSuccess, onError, file, onProgress, inputName, frmRef } = options;
+    const { onSuccess, onError, file, onProgress, inputName } = options;
 
     let isCloneable = false,
         clone;
@@ -136,19 +136,26 @@ const ManufactureInformation = () => {
         onProgress({ percent: (event.loaded / event.total) * 100 });
       }
     };
+
     fmData.append("file", file);
+    fmData.append("image_uid", file?.uid);
+    fmData.append("company_id", user_data?.auth?.company_id);
+    fmData.append("field_id", inputName);
+    if (isCloneable) fmData.append("clone", clone);
+
     try {
       const res = await axios.post(
-        "https://alaedeen.com/horn/upload-image-api",
+        "https://alaedeen.com/horn/profile-upload-image-api",
         fmData,
         config
       );
 
-      let prevImages;
+      /*let prevImages;
 
       if (isCloneable) {
         prevImages = frmRef.getFieldValue(['profile_fields', inputName, clone]) || [];
-      } else {
+      }
+      else {
         prevImages = frmRef.getFieldValue(['profile_fields', inputName]) || [];
       }
 
@@ -160,19 +167,21 @@ const ManufactureInformation = () => {
             }
           },
         });
-      } else {
+      }
+      else {
         frmRef?.setFieldsValue({
           "profile_fields": {
             [ inputName ]: [ ...prevImages, res.data ]
           },
         });
-      }
+      }*/
 
-      //console.log(frmRef.getFieldValue(['profile_fields', inputName]))
+      //console.log(res?.data);
 
       onSuccess("Ok");
       //console.log("server res: ", res);
-    } catch (err) {
+    }
+    catch (err) {
       //console.log("Error: ", err);
       //const error = new Error("Some error");
       onError({ err });
@@ -200,7 +209,7 @@ const ManufactureInformation = () => {
         spinnerDispatch(isLoadingAction(false));
       })
       .then(() => {
-        handleNextStep();
+        //handleNextStep();
       })
   }
 
@@ -220,6 +229,8 @@ const ManufactureInformation = () => {
         return (
           <ManufacturingCapabilityForm
             formRef={manufacturingCapabilityFrm}
+            handlePrevStep={handlePrevStep}
+            handleSubmitForm={handleSubmitForm}
             handleUploadImage={handleUploadImage}
             handleOnRemoveImage={handleOnRemoveImage}
             handleImageUploadChange={handleImageUploadChange}
@@ -235,6 +246,8 @@ const ManufactureInformation = () => {
         return (
           <ExportCapabilityForm
             formRef={exportCapabilityFrm}
+            handlePrevStep={handlePrevStep}
+            handleSubmitForm={handleSubmitForm}
             countryLists={countryLists}
             handleUploadImage={handleUploadImage}
             handleOnRemoveImage={handleOnRemoveImage}
