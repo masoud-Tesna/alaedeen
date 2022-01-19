@@ -3,7 +3,7 @@ import axios from "axios";
 
 import "./styles/ManufactureInformation.less";
 
-import { Col, Form, Row, Steps } from "antd";
+import { Col, Form, Row, Steps, Result, Modal } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import { useGetApi, useWindowSize } from "../../../../../functions";
 import { useTranslation } from "react-i18next";
@@ -40,10 +40,17 @@ const ManufactureInformation = () => {
   const [companyIntroductionFrm] = Form.useForm();
   const [supportFrm] = Form.useForm();
 
-  const [currentStep, setCurrentStep] = useState(2);
+  // state for save current step key:
+  const [currentStep, setCurrentStep] = useState(0);
 
   // save image name in array state:
   const [imageFileList, setImageFileList] = useState({});
+
+  // state for finish submit form:
+  const [finishFormModalVisible, setFinishFormModalVisible] = useState(false);
+
+  // function for close finish submit form Modal:
+  const handleCloseFinishFormModal = () => setFinishFormModalVisible(false);
 
   const stepsHandleOnChange = current => {
     setCurrentStep(current);
@@ -122,12 +129,18 @@ const ManufactureInformation = () => {
     const { onSuccess, onError, file, onProgress, inputName } = options;
 
     let isCloneable = false,
-        clone;
+        clone,
+        for_logo = false,
+        for_agent = false;
 
     if (options.isCloneable || options.isCloneable === 0) {
       clone = options.isCloneable;
       isCloneable = true;
     }
+
+    if (options.for_logo) for_logo = true;
+
+    if (options.for_agent) for_agent = true;
 
     const fmData = new FormData();
     const config = {
@@ -140,8 +153,20 @@ const ManufactureInformation = () => {
     fmData.append("file", file);
     fmData.append("image_uid", file?.uid);
     fmData.append("company_id", user_data?.auth?.company_id);
-    fmData.append("field_id", inputName);
-    if (isCloneable) fmData.append("clone", clone);
+
+    if (for_logo) {
+      fmData.append("for_logo", "true");
+      fmData.append("logo_lang", inputName);
+    }
+    else if(for_agent) {
+      fmData.append("for_agent", "true");
+      fmData.append("field_id", inputName);
+    }
+    else {
+      fmData.append("field_id", inputName);
+      if (isCloneable) fmData.append("clone", clone);
+    }
+
 
     try {
       const res = await axios.post(
@@ -149,32 +174,6 @@ const ManufactureInformation = () => {
         fmData,
         config
       );
-
-      /*let prevImages;
-
-      if (isCloneable) {
-        prevImages = frmRef.getFieldValue(['profile_fields', inputName, clone]) || [];
-      }
-      else {
-        prevImages = frmRef.getFieldValue(['profile_fields', inputName]) || [];
-      }
-
-      if (isCloneable) {
-        frmRef?.setFieldsValue({
-          "profile_fields": {
-            [inputName]: {
-              [clone]: [...prevImages, res.data]
-            }
-          },
-        });
-      }
-      else {
-        frmRef?.setFieldsValue({
-          "profile_fields": {
-            [ inputName ]: [ ...prevImages, res.data ]
-          },
-        });
-      }*/
 
       //console.log(res?.data);
 
@@ -193,7 +192,17 @@ const ManufactureInformation = () => {
 
   // function for remove image:
   const handleOnRemoveImage = file => {
-    console.log(file);
+
+    const imageData = {
+      image_uid: file?.uid,
+      field_id: file?.inputName,
+      company_id: user_data?.auth?.company_id
+    }
+
+    axios.post(`https://alaedeen.com/horn/profile-remove-image-api`, { ...imageData })
+      .then(res => {
+        //console.log(res?.data)
+      });
   }
 
   // function for submit form:
@@ -204,12 +213,16 @@ const ManufactureInformation = () => {
     spinnerDispatch(isLoadingAction(true));
 
     axios.post(`https://alaedeen.com/horn/profile-update-api`, { ...values })
-      .then((res) => {
+      .then(() => {
         // hidden spinner (spinner context):
         spinnerDispatch(isLoadingAction(false));
       })
       .then(() => {
-        //handleNextStep();
+        if (currentStep === 5) {
+          setFinishFormModalVisible(true);
+        } else {
+          handleNextStep();
+        }
       })
   }
 
@@ -265,6 +278,8 @@ const ManufactureInformation = () => {
         return (
           <CertificatesForm
             formRef={certificatesFrm}
+            handlePrevStep={handlePrevStep}
+            handleSubmitForm={handleSubmitForm}
             handleUploadImage={handleUploadImage}
             handleOnRemoveImage={handleOnRemoveImage}
             handleImageUploadChange={handleImageUploadChange}
@@ -277,6 +292,8 @@ const ManufactureInformation = () => {
         return (
           <CompanyIntroductionForm
             formRef={companyIntroductionFrm}
+            handlePrevStep={handlePrevStep}
+            handleSubmitForm={handleSubmitForm}
             handleUploadImage={handleUploadImage}
             handleOnRemoveImage={handleOnRemoveImage}
             handleImageUploadChange={handleImageUploadChange}
@@ -289,10 +306,9 @@ const ManufactureInformation = () => {
         return (
           <SupportForm
             formRef={supportFrm}
+            handlePrevStep={handlePrevStep}
+            handleSubmitForm={handleSubmitForm}
             handleUploadImage={handleUploadImage}
-            handleOnRemoveImage={handleOnRemoveImage}
-            handleImageUploadChange={handleImageUploadChange}
-            imageFileList={imageFileList}
             countryLists={countryLists}
           />
         )
@@ -343,6 +359,20 @@ const ManufactureInformation = () => {
 
   return (
     <Row>
+
+      <Modal
+        visible={finishFormModalVisible}
+        title={t('your_information_submit')}
+        footer={false}
+        onCancel={handleCloseFinishFormModal}
+      >
+        <Result
+          className="finishFormModal--content"
+          status="success"
+          title={t('your_information_submit')}
+        />
+      </Modal>
+
       <Col span={24}>
         <DashboardContentHeader page={"Manufacturing Information"} />
       </Col>
