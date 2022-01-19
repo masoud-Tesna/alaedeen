@@ -687,11 +687,11 @@ const ExportCapabilityForm = (
                         <Row gutter={[0, 20]}>
                           {languagesSpoken?.length && languagesSpoken?.map(languageSpoken => {
                             return (
-                              <Col key={`languagesSpoken_${languageSpoken?.value_id}`} span={8}>
+                              <Col key={`languagesSpoken_${languageSpoken?.lang_id}`} span={8}>
                                 <Checkbox
-                                  value={languageSpoken?.value_id}
+                                  value={languageSpoken?.lang_code}
                                 >
-                                  { t(__(languageSpoken?.description)) }
+                                  { t(__(languageSpoken?.lang_name)) }
                                 </Checkbox>
                               </Col>
                             )
