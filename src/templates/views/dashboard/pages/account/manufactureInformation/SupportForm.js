@@ -1,16 +1,15 @@
-import { Col, Form, Input, Row, Select } from "antd";
+import { Button, Col, Form, Input, Row, Select, Space } from "antd";
 import { __ } from "../../../../../../functions/Helper";
 import { UploadOutlined } from "@ant-design/icons";
-import ImagesUploader from "../../../../../common/ImagesUploader";
 import { useTranslation } from "react-i18next";
+import ImageUploader from "../../../../../common/ImageUploader";
 
 const SupportForm = (
   {
     formRef,
+    handleSubmitForm,
+    handlePrevStep,
     handleUploadImage,
-    handleOnRemoveImage,
-    handleImageUploadChange,
-    imageFileList,
     countryLists
   }
 ) => {
@@ -19,6 +18,21 @@ const SupportForm = (
   const { Option } = Select;
 
   const { t } = useTranslation();
+
+  const handleBeforeSubmitForm = () => {
+    formRef.validateFields()
+      .then(values => {
+        // append section name to values:
+        values.section = "support";
+
+        // submit form:
+        handleSubmitForm(values);
+      })
+      .catch(errorInfo => {
+        // if isset error show log:
+        console.log(errorInfo)
+      });
+  }
 
   return (
     <Form
@@ -29,10 +43,9 @@ const SupportForm = (
       form={formRef}
     >
       <Row className="manufactureInfoForm--certificates" justify="center">
-        <Col xs={24} lg={22}>
+        <Col xs={24} lg={22} className="formItems--content">
 
           <Form.Item
-            name={["profile_fields", "99"]}
             label={t(__('personal photo'))}
             valuePropName="fileList"
             labelCol={{sm: 24, lg: 6}}
@@ -40,16 +53,13 @@ const SupportForm = (
           >
             <Input hidden/>
 
-            <ImagesUploader
+            <ImageUploader
               handleCustomRequest={options => handleUploadImage({
                 ...options,
                 inputName : 99,
-                frmRef: formRef
+                for_agent: true
               })}
-              handleOnRemove={handleOnRemoveImage}
-              handleOnChange={handleImageUploadChange}
-              imageFileList={imageFileList}
-              uploadBtnText="select image"
+              uploadBtnText="select logo"
               uploadBtnIcon={<UploadOutlined />}
               customClassName="addProduct--imageUploader"
             />
@@ -86,7 +96,7 @@ const SupportForm = (
           </Form.Item>
 
           <Form.Item
-            name={['profile_fields', "85"]}
+            name={['profile_fields', "101"]}
             label={t(__('address'))}
             labelCol={{sm: 24, lg: 6}}
           >
@@ -99,9 +109,7 @@ const SupportForm = (
           </Form.Item>
 
           <Row>
-            <Col sm={24} lg={6} />
-
-            <Col sm={24} lg={18}>
+            <Col sm={24} lg={{ span: 18, offset: 6 }}>
               <Form.Item>
                 <Input.Group compact>
                   <Form.Item
@@ -145,6 +153,18 @@ const SupportForm = (
               </Form.Item>
             </Col>
           </Row>
+        </Col>
+
+        <Col span={24} id="stepChangeCurrent--content" className="stepChangeCurrent--content">
+          <Space size="large">
+            <Button onClick={() => handlePrevStep()}>
+              { t('previous') }
+            </Button>
+
+            <Button type="primary" onClick={() => handleBeforeSubmitForm()}>
+              { t('submit_and_finish') }
+            </Button>
+          </Space>
         </Col>
       </Row>
     </Form>
