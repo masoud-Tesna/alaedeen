@@ -51,8 +51,6 @@ const SupportForm = (
             labelCol={{sm: 24, lg: 6}}
             extra={t(__('personal photo message'))}
           >
-            <Input hidden/>
-
             <ImageUploader
               handleCustomRequest={options => handleUploadImage({
                 ...options,

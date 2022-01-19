@@ -372,14 +372,15 @@ const ExportCapabilityForm = (
                 labelCol={{sm: 24, lg: 6}}
                 extra={t(__('Process pictures message'))}
               >
-                <Input hidden/>
-
                 <ImagesUploader
                   handleCustomRequest={options => handleUploadImage({
                     ...options,
                     inputName : 54
                   })}
-                  handleOnRemove={handleOnRemoveImage}
+                  handleOnRemove={file => handleOnRemoveImage({
+                    ...file,
+                    inputName : 54
+                  })}
                   handleOnChange={handleImageUploadChange}
                   imageFileList={imageFileList}
                   uploadBtnText="select image"
@@ -394,14 +395,15 @@ const ExportCapabilityForm = (
                 labelCol={{sm: 24, lg: 6}}
                 extra={t(__('Transaction Documents message'))}
               >
-                <Input hidden/>
-
                 <ImagesUploader
                   handleCustomRequest={options => handleUploadImage({
                     ...options,
                     inputName : 55
                   })}
-                  handleOnRemove={handleOnRemoveImage}
+                  handleOnRemove={file => handleOnRemoveImage({
+                    ...file,
+                    inputName : 55
+                  })}
                   handleOnChange={handleImageUploadChange}
                   imageFileList={imageFileList}
                   uploadBtnText="select image"
@@ -603,14 +605,15 @@ const ExportCapabilityForm = (
                 labelCol={{sm: 24, lg: 6}}
                 extra={t(__('Process pictures message'))}
               >
-                <Input hidden/>
-
                 <ImagesUploader
                   handleCustomRequest={options => handleUploadImage({
                     ...options,
                     inputName : 68
                   })}
-                  handleOnRemove={handleOnRemoveImage}
+                  handleOnRemove={file => handleOnRemoveImage({
+                    ...file,
+                    inputName : 68
+                  })}
                   handleOnChange={handleImageUploadChange}
                   imageFileList={imageFileList}
                   uploadBtnText="select image"

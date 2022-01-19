@@ -69,8 +69,6 @@ const CompanyIntroductionForm = (
                     valuePropName="fileList"
                     labelCol={{sm: 24, lg: 6}}
                   >
-                    <Input hidden/>
-
                     <ImageUploader
                       handleCustomRequest={options => handleUploadImage({
                         ...options,
@@ -90,8 +88,6 @@ const CompanyIntroductionForm = (
                     valuePropName="fileList"
                     labelCol={{sm: 24, lg: 6}}
                   >
-                    <Input hidden/>
-
                     <ImageUploader
                       handleCustomRequest={options => handleUploadImage({
                         ...options,
@@ -127,14 +123,15 @@ const CompanyIntroductionForm = (
             labelCol={{sm: 24, lg: 6}}
             extra={t(__('Company Photos message'))}
           >
-            <Input hidden/>
-
             <ImagesUploader
               handleCustomRequest={options => handleUploadImage({
                 ...options,
                 inputName : 86
               })}
-              handleOnRemove={handleOnRemoveImage}
+              handleOnRemove={file => handleOnRemoveImage({
+                ...file,
+                inputName : 86
+              })}
               handleOnChange={handleImageUploadChange}
               imageFileList={imageFileList}
               uploadBtnText="select image"
@@ -322,14 +319,15 @@ const CompanyIntroductionForm = (
                 labelCol={{sm: 24, lg: 6}}
                 extra={t(__('Office Photos message'))}
               >
-                <Input hidden/>
-
                 <ImagesUploader
                   handleCustomRequest={options => handleUploadImage({
                     ...options,
                     inputName : 93
                   })}
-                  handleOnRemove={handleOnRemoveImage}
+                  handleOnRemove={file => handleOnRemoveImage({
+                    ...file,
+                    inputName : 93
+                  })}
                   handleOnChange={handleImageUploadChange}
                   imageFileList={imageFileList}
                   uploadBtnText="select image"

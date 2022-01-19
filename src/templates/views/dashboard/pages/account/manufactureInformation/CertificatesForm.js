@@ -124,14 +124,15 @@ const CertificatesForm = (
                 labelCol={{sm: 24, lg: 6}}
                 extra={t(__('Office Photos message'))}
               >
-                <Input hidden/>
-
                 <ImagesUploader
                   handleCustomRequest={options => handleUploadImage({
                     ...options,
                     inputName : 76
                   })}
-                  handleOnRemove={handleOnRemoveImage}
+                  handleOnRemove={file => handleOnRemoveImage({
+                    ...file,
+                    inputName : 76
+                  })}
                   handleOnChange={handleImageUploadChange}
                   imageFileList={imageFileList}
                   uploadBtnText="select image"
@@ -192,14 +193,15 @@ const CertificatesForm = (
                 labelCol={{sm: 24, lg: 6}}
                 extra={t(__('Office Photos message'))}
               >
-                <Input hidden/>
-
                 <ImagesUploader
                   handleCustomRequest={options => handleUploadImage({
                     ...options,
                     inputName : 80
                   })}
-                  handleOnRemove={handleOnRemoveImage}
+                  handleOnRemove={file => handleOnRemoveImage({
+                    ...file,
+                    inputName : 80
+                  })}
                   handleOnChange={handleImageUploadChange}
                   imageFileList={imageFileList}
                   uploadBtnText="select image"
@@ -250,14 +252,15 @@ const CertificatesForm = (
                 labelCol={{sm: 24, lg: 6}}
                 extra={t(__('Office Photos message'))}
               >
-                <Input hidden/>
-
                 <ImagesUploader
                   handleCustomRequest={options => handleUploadImage({
                     ...options,
                     inputName : 83
                   })}
-                  handleOnRemove={handleOnRemoveImage}
+                  handleOnRemove={file => handleOnRemoveImage({
+                    ...file,
+                    inputName : 83
+                  })}
                   handleOnChange={handleImageUploadChange}
                   imageFileList={imageFileList}
                   uploadBtnText="select image"

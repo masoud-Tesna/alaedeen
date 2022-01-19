@@ -85,14 +85,15 @@ const ManufacturingCapabilityForm = (
                 valuePropName="fileList"
                 labelCol={{sm: 24, lg: 6}}
               >
-                <Input hidden/>
-
                 <ImagesUploader
                   handleCustomRequest={options => handleUploadImage({
                     ...options,
                     inputName : 12
                   })}
-                  handleOnRemove={handleOnRemoveImage}
+                  handleOnRemove={file => handleOnRemoveImage({
+                    ...file,
+                    inputName : 12
+                  })}
                   handleOnChange={handleImageUploadChange}
                   imageFileList={imageFileList}
                   uploadBtnText="select image"
