@@ -8,7 +8,7 @@ const CertificatesForm = (
   {
     formRef,
     handleSubmitForm,
-    handlePrevStep,
+    handlePrevTab,
     handleUploadImage,
     handleOnRemoveImage,
     handleImageUploadChange,
@@ -272,9 +272,9 @@ const CertificatesForm = (
           </Row>
         </Col>
 
-        <Col span={24} id="stepChangeCurrent--content" className="stepChangeCurrent--content">
+        <Col span={24} className="stepChangeCurrent--content">
           <Space size="large">
-            <Button onClick={() => handlePrevStep()}>
+            <Button onClick={() => handlePrevTab()}>
               { t('previous') }
             </Button>
 

@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 import "./styles/ManufactureInformation.less";
 
-import { Col, Form, Row, Steps, Result, Modal } from "antd";
+import { Col, Form, Row, Result, Modal, Tabs } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
-import { useGetApi, useWindowSize } from "../../../../../functions";
+import { useGetApi } from "../../../../../functions";
 import { useTranslation } from "react-i18next";
 import { __, scrollTop } from "../../../../../functions/Helper";
 import CompanyDetailsForm from "./manufactureInformation/CompanyDetailsForm";
@@ -19,10 +19,7 @@ import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 
 const ManufactureInformation = () => {
 
-  const { Step } = Steps;
-
-  // get window width
-  const { width } = useWindowSize();
+  const { TabPane } = Tabs;
 
   const { t } = useTranslation();
 
@@ -40,8 +37,8 @@ const ManufactureInformation = () => {
   const [companyIntroductionFrm] = Form.useForm();
   const [supportFrm] = Form.useForm();
 
-  // state for save current step key:
-  const [currentStep, setCurrentStep] = useState(0);
+  // state for save current tab key:
+  const [currentTab, setCurrentTab] = useState("1");
 
   // save image name in array state:
   const [imageFileList, setImageFileList] = useState({});
@@ -52,10 +49,10 @@ const ManufactureInformation = () => {
   // function for close finish submit form Modal:
   const handleCloseFinishFormModal = () => setFinishFormModalVisible(false);
 
-  const stepsHandleOnChange = current => {
-    setCurrentStep(current);
+  const tabsHandleOnChange = activeTab => {
+    setCurrentTab(activeTab);
 
-    if (current !== currentStep) {
+    if (activeTab !== currentTab) {
       const scrollTopTimer = setTimeout(() => {
         scrollTop();
       }, 100);
@@ -64,8 +61,8 @@ const ManufactureInformation = () => {
     }
   }
 
-  const handleNextStep = () => {
-    setCurrentStep(prev => prev + 1);
+  const handleNextTab = () => {
+    setCurrentTab(prev => (parseInt(prev) + 1).toString());
     const scrollTopTimer = setTimeout(() => {
       scrollTop();
     }, 100);
@@ -73,8 +70,8 @@ const ManufactureInformation = () => {
     return () => clearTimeout(scrollTopTimer);
   };
 
-  const handlePrevStep = () => {
-    setCurrentStep(prev => prev - 1);
+  const handlePrevTab = () => {
+    setCurrentTab(prev => (parseInt(prev) - 1).toString());
 
     const scrollTopTimer = setTimeout(() => {
       scrollTop();
@@ -209,6 +206,7 @@ const ManufactureInformation = () => {
   const handleSubmitForm = values => {
     values.company_id = user_data?.auth?.company_id;
 
+
     // show spinner (spinner context):
     spinnerDispatch(isLoadingAction(true));
 
@@ -218,144 +216,15 @@ const ManufactureInformation = () => {
         spinnerDispatch(isLoadingAction(false));
       })
       .then(() => {
-        if (currentStep === 5) {
+        if (currentTab === 6) {
           setFinishFormModalVisible(true);
         } else {
-          handleNextStep();
+          handleNextTab();
         }
       })
   }
 
-  const stepContent = step => {
-    switch (step) {
-      case 0:
-        return (
-          <CompanyDetailsForm
-            formRef={companyDetailsFrm}
-            handleSubmitForm={handleSubmitForm}
-            employees={employees}
-            officeSizes={officeSizes}
-          />
-        );
-
-      case 1:
-        return (
-          <ManufacturingCapabilityForm
-            formRef={manufacturingCapabilityFrm}
-            handlePrevStep={handlePrevStep}
-            handleSubmitForm={handleSubmitForm}
-            handleUploadImage={handleUploadImage}
-            handleOnRemoveImage={handleOnRemoveImage}
-            handleImageUploadChange={handleImageUploadChange}
-            imageFileList={imageFileList}
-            factorySize={factorySize}
-            qualityControlStaffs={qualityControlStaffs}
-            researchesStaffs={researchesStaffs}
-            units={units}
-          />
-        )
-
-      case 2:
-        return (
-          <ExportCapabilityForm
-            formRef={exportCapabilityFrm}
-            handlePrevStep={handlePrevStep}
-            handleSubmitForm={handleSubmitForm}
-            countryLists={countryLists}
-            handleUploadImage={handleUploadImage}
-            handleOnRemoveImage={handleOnRemoveImage}
-            handleImageUploadChange={handleImageUploadChange}
-            imageFileList={imageFileList}
-            countryCodes={countryCodes}
-            duties={duties}
-            acceptedDeliveries={acceptedDeliveries}
-            paymentCurrencies={paymentCurrencies}
-            languagesSpoken={languagesSpoken}
-          />
-        )
-
-      case 3:
-        return (
-          <CertificatesForm
-            formRef={certificatesFrm}
-            handlePrevStep={handlePrevStep}
-            handleSubmitForm={handleSubmitForm}
-            handleUploadImage={handleUploadImage}
-            handleOnRemoveImage={handleOnRemoveImage}
-            handleImageUploadChange={handleImageUploadChange}
-            imageFileList={imageFileList}
-            certificationTypes={certificationTypes}
-          />
-        )
-
-      case 4:
-        return (
-          <CompanyIntroductionForm
-            formRef={companyIntroductionFrm}
-            handlePrevStep={handlePrevStep}
-            handleSubmitForm={handleSubmitForm}
-            handleUploadImage={handleUploadImage}
-            handleOnRemoveImage={handleOnRemoveImage}
-            handleImageUploadChange={handleImageUploadChange}
-            imageFileList={imageFileList}
-            countryLists={countryLists}
-          />
-        )
-
-      case 5:
-        return (
-          <SupportForm
-            formRef={supportFrm}
-            handlePrevStep={handlePrevStep}
-            handleSubmitForm={handleSubmitForm}
-            handleUploadImage={handleUploadImage}
-            countryLists={countryLists}
-          />
-        )
-    }
-  }
-
-  const handleSetWidth = () => {
-    // get step caption div:
-    let stepCaption = document.getElementById("manufactureInfo--Step__caption") && document.getElementById("manufactureInfo--Step__caption");
-
-    // get step content div:
-    const stepContent = document.getElementById("manufactureInfo--Step__content") && document.getElementById("manufactureInfo--Step__content");
-
-    if (stepCaption && stepContent) {
-      // get step content width:
-      const {width} = stepContent.getBoundingClientRect();
-
-      // set step caption width:
-      stepCaption.style.width = `calc(${width}px + 45px)`;
-    }
-  }
-
-  const handleSetWidthStepChange = () => {
-
-    // get step content div:
-    const stepContent = document.getElementById("manufactureInfo--Step__content") && document.getElementById("manufactureInfo--Step__content");
-
-    // get step change content div:
-    const stepChange = document.getElementsByClassName("stepChangeCurrent--content");
-
-    if (stepContent && stepChange) {
-      // get step content width:
-      const {width} = stepContent.getBoundingClientRect();
-
-      for (let i = 0, len = stepChange.length; i < len; i++) {
-        stepChange[ i ].style.width = `${ width }px`;
-      }
-    }
-  }
-
-  useEffect(() => {
-    handleSetWidth();
-  }, [width]);
-
-  useEffect(() => {
-    handleSetWidthStepChange();
-  }, [currentStep]);
+  console.log(currentTab)
 
   return (
     <Row>
@@ -378,53 +247,90 @@ const ManufactureInformation = () => {
       </Col>
 
       <Col id="manufactureInfo--content" span={24} className="manufactureInfo--content">
-        <Row>
-          <Col id="manufactureInfo--Step__caption" span={24} className="manufactureInfo--Step__caption">
-            <Steps
-              current={currentStep}
-              progressDot
-              onChange={stepsHandleOnChange}
-            >
-              <Step key="company_details"  description={ t(__('Basic Company Details')) } />
+        <Tabs
+          activeKey={currentTab}
+          cllassName="manufacturing--tab"
+          onChange={tabsHandleOnChange}
+        >
+          <TabPane className="manufacturingTab--content" tab={t(__("Basic Company Details"))} key="1">
+            <CompanyDetailsForm
+              formRef={companyDetailsFrm}
+              handleSubmitForm={handleSubmitForm}
+              employees={employees}
+              officeSizes={officeSizes}
+            />
+          </TabPane>
 
-              <Step key="manufacturing_capability" description={ t(__('Manufacturing Capability')) } />
+          <TabPane className="manufacturingTab--content" tab={t(__("manufacturing_capability"))} key="2">
+              <ManufacturingCapabilityForm
+                formRef={manufacturingCapabilityFrm}
+                handlePrevTab={handlePrevTab}
+                handleSubmitForm={handleSubmitForm}
+                handleUploadImage={handleUploadImage}
+                handleOnRemoveImage={handleOnRemoveImage}
+                handleImageUploadChange={handleImageUploadChange}
+                imageFileList={imageFileList}
+                factorySize={factorySize}
+                qualityControlStaffs={qualityControlStaffs}
+                researchesStaffs={researchesStaffs}
+                units={units}
+              />
+            </TabPane>
 
-              <Step key="export_capability" description={ t(__('Export Capability')) } />
+          <TabPane className="manufacturingTab--content" tab={t(__("Export Capability"))} key="3">
+            <ExportCapabilityForm
+              formRef={exportCapabilityFrm}
+              handlePrevTab={handlePrevTab}
+              handleSubmitForm={handleSubmitForm}
+              countryLists={countryLists}
+              handleUploadImage={handleUploadImage}
+              handleOnRemoveImage={handleOnRemoveImage}
+              handleImageUploadChange={handleImageUploadChange}
+              imageFileList={imageFileList}
+              countryCodes={countryCodes}
+              duties={duties}
+              acceptedDeliveries={acceptedDeliveries}
+              paymentCurrencies={paymentCurrencies}
+              languagesSpoken={languagesSpoken}
+            />
+          </TabPane>
 
-              <Step key="certificates" description={ t(__('certificates')) } />
+          <TabPane className="manufacturingTab--content" tab={t(__("certificates"))} key="4">
+            <CertificatesForm
+              formRef={certificatesFrm}
+              handlePrevTab={handlePrevTab}
+              handleSubmitForm={handleSubmitForm}
+              handleUploadImage={handleUploadImage}
+              handleOnRemoveImage={handleOnRemoveImage}
+              handleImageUploadChange={handleImageUploadChange}
+              imageFileList={imageFileList}
+              certificationTypes={certificationTypes}
+            />
+          </TabPane>
 
-              <Step key="company_introduction" description={ t(__('Company Introduction')) } />
+          <TabPane className="manufacturingTab--content" tab={t(__("Company Introduction"))} key="5">
+            <CompanyIntroductionForm
+              formRef={companyIntroductionFrm}
+              handlePrevTab={handlePrevTab}
+              handleSubmitForm={handleSubmitForm}
+              handleUploadImage={handleUploadImage}
+              handleOnRemoveImage={handleOnRemoveImage}
+              handleImageUploadChange={handleImageUploadChange}
+              imageFileList={imageFileList}
+              countryLists={countryLists}
+            />
+          </TabPane>
 
-              <Step key="Support" description={ t(__('Support')) } />
-            </Steps>
-          </Col>
-
-          <Col id="manufactureInfo--Step__content" span={24} className="manufactureInfo--Step__content">
-
-            {stepContent(currentStep)}
-
-          </Col>
-
-          {/*<Col span={24}>
-            <div className="steps-action">
-              {currentStep < 5 - 1 && (
-                <Button type="primary" onClick={() => next()}>
-                  Next
-                </Button>
-              )}
-              {currentStep === 5 && (
-                <Button type="primary" onClick={() => console.log('Processing complete!')}>
-                  Done
-                </Button>
-              )}
-              {currentStep > 0 && (
-                <Button style={{ margin: '0 8px' }} onClick={() => prev()}>
-                  Previous
-                </Button>
-              )}
-            </div>
-          </Col>*/}
-        </Row>
+          <TabPane className="manufacturingTab--content" tab={t(__("Support"))} key="6">
+            <SupportForm
+              formRef={supportFrm}
+              handlePrevTab={handlePrevTab}
+              handleSubmitForm={handleSubmitForm}
+              handleUploadImage={handleUploadImage}
+              countryLists={countryLists}
+            />
+          </TabPane>
+        </Tabs>
       </Col>
     </Row>
   );
