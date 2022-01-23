@@ -27,7 +27,7 @@ const ManageProducts = () => {
 
   const {isLoading, data} = useGetApi('vendor-products-api', `_token=${token}`, `vendor_products_${user_data?.auth?.company_id}`);
 
-  const {products, params} = data || [];
+  const {products} = data || [];
 
   const handleRemoveProduct = (productId) => {
     console.log(productId);
@@ -36,7 +36,7 @@ const ManageProducts = () => {
   return (
     <Row>
       <Col span={24}>
-        <DashboardContentHeader page={"manage products"} linkText={"create_product"} lnkHref={"/dashboard/product/add"} linkIcon={<PlusOutlined />} />
+        <DashboardContentHeader page={"manage products"} linkText={"create_product"} lnkHref={"/dashboard/products/create"} linkIcon={<PlusOutlined />} />
       </Col>
 
       <Col span={24} className="productManage--table">
@@ -144,7 +144,7 @@ const ManageProducts = () => {
                       <Col className="my-auto product--actions" span={6}>
                         <Row justify="space-between" gutter={10}>
                           <Col>
-                            <Link to={`/dashboard/product/${productId}`}>
+                            <Link to={`/dashboard/products/${productId}`}>
                               <Button type="primary" icon={<EditOutlined />} >
                                 {t('edit')}
                               </Button>

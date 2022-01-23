@@ -196,12 +196,12 @@ const AddProduct = () => {
     spinnerDispatch(isLoadingAction(true));
 
     axios.post(`https://alaedeen.com/horn/create-product-api`, { product_data: values })
-      .then(res => {
+      .then(() => {
         // hidden spinner (spinner context):
         spinnerDispatch(isLoadingAction(false));
       })
       .then(() => {
-        navigate('/dashboard/product/products');
+        navigate('/dashboard/products/manage');
       })
   }
 
