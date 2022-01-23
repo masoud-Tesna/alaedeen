@@ -39,7 +39,6 @@ const CertificatesForm = (
     <Form
       className="h-100 manufactureInfo--formContent"
       name="certificates-form"
-      onFinish={values => console.log(values)}
       scrollToFirstError
       form={formRef}
     >

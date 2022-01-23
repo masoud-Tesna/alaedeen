@@ -34,9 +34,7 @@ const CompanyDetailsForm = (
     <Form
       className="h-100 manufactureInfo--formContent"
       name="companyDetails-form"
-      onFinish={values => console.log(values)}
       scrollToFirstError
-      translate="no"
       form={formRef}
     >
       <Row className="manufactureInfoForm--companyDetails" justify="center">

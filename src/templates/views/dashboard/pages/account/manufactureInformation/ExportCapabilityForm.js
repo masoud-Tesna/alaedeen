@@ -68,7 +68,6 @@ const ExportCapabilityForm = (
     <Form
       className="h-100 manufactureInfo--formContent"
       name="exportCapability-form"
-      onFinish={values => console.log(values)}
       scrollToFirstError
       form={formRef}
     >

@@ -1,14 +1,15 @@
 import "../products/styles/ManageProducts.less";
 
-import { Button, Col, Empty, Popconfirm, Row, Skeleton } from "antd";
+import { Button, Col, Empty, Form, Modal, Popconfirm, Row, Skeleton } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../../../functions/Helper";
 import { useGetApi } from "../../../../../functions";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import CreateCategory from "./CreateCategory";
 
 const ManageCategories = () => {
 
@@ -16,22 +17,55 @@ const ManageCategories = () => {
 
   const { user_data } = useGetAuthState();
 
+  // state for show create category picker:
+  const [isCreateCategoryModalVisible, setIsCreateCategoryModalVisible] = useState(false);
+
   const company_id = user_data?.auth?.company_id;
 
   const { isLoading, data: categoriesData } = useGetApi('vendor-categories-api', `company_id=${company_id}`, `vendor-categories_${user_data?.auth?.company_id}`, { enabled:  !!company_id});
 
   const categories = categoriesData || {};
 
+  // use ref for create category form:
+  const [createCategoryFrm] = Form.useForm();
+
+  // function for close create category modal:
+  const closeCreateCategoryModal = () => {
+    setIsCreateCategoryModalVisible(false);
+  };
+
   const handleRemoveCategory = (categoryId) => {
     console.log(categoryId);
   }
 
   const handleOnClickCreateCategory = () => {
-    console.log("clicked")
+    setIsCreateCategoryModalVisible(true);
+  }
+
+  const handleSubmitForm = values => {
+    console.log(values)
   }
 
   return (
     <Row>
+      <Modal
+        className="categoriesPicker--Modal"
+        title={t('create_category')}
+        style={{ top: 10 }}
+        visible={isCreateCategoryModalVisible}
+        onCancel={() => closeCreateCategoryModal()}
+        onOk={() => console.log('ok')}
+        okText={t("create")}
+        cancelText={t("cancel")}
+        destroyOnClose
+        maskClosable={false}
+      >
+        <CreateCategory
+          formRef={createCategoryFrm}
+          handleSubmitForm={handleSubmitForm}
+        />
+      </Modal>
+
       <Col span={24}>
         <DashboardContentHeader page={"manage categories"} linkText={"create_category"} linkOnClick={handleOnClickCreateCategory} linkIcon={<PlusOutlined />} />
       </Col>

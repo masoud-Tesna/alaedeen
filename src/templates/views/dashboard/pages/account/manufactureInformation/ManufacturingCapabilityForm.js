@@ -40,7 +40,6 @@ const ManufacturingCapabilityForm = (
     <Form
       className="h-100 manufactureInfo--formContent"
       name="manufacturingCapability-form"
-      onFinish={values => console.log(values)}
       scrollToFirstError
       form={formRef}
     >

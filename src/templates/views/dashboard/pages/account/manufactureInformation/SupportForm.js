@@ -38,7 +38,6 @@ const SupportForm = (
     <Form
       className="h-100 manufactureInfo--formContent"
       name="support-form"
-      onFinish={values => console.log(values)}
       scrollToFirstError
       form={formRef}
     >

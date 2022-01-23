@@ -46,8 +46,7 @@ const CompanyIntroductionForm = (
   return (
     <Form
       className="h-100 manufactureInfo--formContent"
-      name="certificates-form"
-      onFinish={values => console.log(values)}
+      name="companyIntroduction-form"
       scrollToFirstError
       form={formRef}
     >
