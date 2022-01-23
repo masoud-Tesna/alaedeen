@@ -19,9 +19,9 @@ const ManageProducts = () => {
 
   const company_id = user_data?.auth?.company_id;
 
-  const {isLoading, data} = useGetApi('vendor-products-api', `company_id=${company_id}`, `vendor_products_${user_data?.auth?.company_id}`, { enabled:  !!company_id});
+  const {isLoading, data: productsData} = useGetApi('vendor-products-api', `company_id=${company_id}`, `vendor_products_${user_data?.auth?.company_id}`, { enabled:  !!company_id});
 
-  const {products} = data || [];
+  const {products} = productsData || {};
 
   const handleRemoveProduct = (productId) => {
     console.log(productId);
@@ -35,7 +35,7 @@ const ManageProducts = () => {
 
       <Col span={24} className="productManage--table">
         <div>
-          <Row className="productManage--table__head">
+          <Row className="__head">
             <Col className="text-center" span={2}>
               {t('picture')}
             </Col>
@@ -56,32 +56,32 @@ const ManageProducts = () => {
             </Col>
           </Row>
 
-          <Row className="productManage--table__body">
-            {isLoading ?
+          <Row className="__body">
+            {(!company_id || isLoading) ?
               new Array(6).fill("", 0, 6).map((p, i) => {
                 return(
                   <Col key={i} span={24}>
-                    <Row className="productManage--table__data">
-                      <Col className="text-center product--image" span={2}>
+                    <Row className="__data">
+                      <Col className="text-center __image" span={2}>
                         <ShowResponsiveImage
                           skeletonWidth="100%"
                           skeletonHeight="70px"
                         />
                       </Col>
 
-                      <Col className="text-center my-auto product--name" span={8}>
+                      <Col className="text-center my-auto __name" span={8}>
                         <Skeleton.Input style={{ width: `calc(60% - ${i + 2}px)`, height: 22 }} active={true} size={"small"} />
                       </Col>
 
-                      <Col className="text-center my-auto product--price" span={2}>
+                      <Col className="text-center my-auto __price" span={2}>
                         <Skeleton.Input style={{ width: `calc(60% - ${i + 2}px)`, height: 22 }} active={true} size={"small"} />
                       </Col>
 
-                      <Col className="text-center my-auto product--price" span={2}>
+                      <Col className="text-center my-auto __price" span={2}>
                         <Skeleton.Input style={{ width: `calc(60% - ${i + 2}px)`, height: 22 }} active={true} size={"small"} />
                       </Col>
 
-                      <Col className="my-auto product--actions" span={6}>
+                      <Col className="my-auto __actions" span={6}>
                         <Row justify="space-between" gutter={10}>
                           <Col span={12}>
                             <Skeleton.Input style={{ width: `calc(60% - ${i + 2}px)`, height: 22 }} active={true} size={"small"} />
@@ -93,23 +93,24 @@ const ManageProducts = () => {
                         </Row>
                       </Col>
 
-                      <Col className="text-center my-auto product--publish" span={4}>
+                      <Col className="text-center my-auto __publish" span={4}>
                         <Skeleton.Input style={{ width: `calc(60% - ${i + 2}px)`, height: 22 }} active={true} size={"small"} />
                       </Col>
                     </Row>
                   </Col>
                 )
               }) :
+
               products?.length && products?.map(product => {
-                const productPrice = parseFloat(product.price).toFixed(2);
-                const productListPrice = parseFloat(product.list_price).toFixed(2);
+                const productPrice = parseFloat(product?.price).toFixed(2);
+                const productListPrice = parseFloat(product?.list_price).toFixed(2);
 
                 const productId = product?.product_id;
 
                 return(
-                  <Col key={product.product_id} span={24}>
-                    <Row className={ `productManage--table__data ${product?.status === 'D' ? 'disable--product' : ''}` }>
-                      <Col className="text-center product--image" span={2}>
+                  <Col key={productId} span={24}>
+                    <Row className={ `__data ${product?.status === 'D' ? 'disable--item' : ''}` }>
+                      <Col className="text-center __image" span={2}>
                         <ShowResponsiveImage
                           imagePath={ product?.main_pair?.detailed?.image_path }
                           imageFolder='detailed'
@@ -123,19 +124,19 @@ const ManageProducts = () => {
                         />
                       </Col>
 
-                      <Col className="text-center my-auto product--name" span={8}>
+                      <Col className="text-center my-auto __name" span={8}>
                         { product.product }
                       </Col>
 
-                      <Col className="text-center my-auto product--price" span={2}>
+                      <Col className="text-center my-auto __price" span={2}>
                         {productPrice}
                       </Col>
 
-                      <Col className="text-center my-auto product--price" span={2}>
+                      <Col className="text-center my-auto __price" span={2}>
                         {productListPrice}
                       </Col>
 
-                      <Col className="my-auto product--actions" span={6}>
+                      <Col className="my-auto __actions" span={6}>
                         <Row justify="space-between" gutter={10}>
                           <Col>
                             <Link to={`/dashboard/products/${productId}`}>
@@ -160,10 +161,10 @@ const ManageProducts = () => {
                         </Row>
                       </Col>
 
-                      <Col className="text-center my-auto product--publish" span={4}>
-                        {product?.status === 'A' && <span className="product--status__active">{t('published_product')}</span>}
+                      <Col className="text-center my-auto __publish" span={4}>
+                        {product?.status === 'A' && <span className="item--status__active">{t('published_product')}</span>}
 
-                        {product?.status === 'D' && <span className="product--status__disable">{t('awaiting_approval')}</span>}
+                        {product?.status === 'D' && <span className="item--status__disable">{t('awaiting_approval')}</span>}
                       </Col>
                     </Row>
                   </Col>

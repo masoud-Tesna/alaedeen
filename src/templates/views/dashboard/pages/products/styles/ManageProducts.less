@@ -1,6 +1,7 @@
 @import '../../../../../styles/Mixins';
 
-.productManage--table {
+.productManage--table,
+.categoryManage--table {
   padding: 0 3rem;
 
   & > div {
@@ -8,7 +9,7 @@
     border-radius: 5px;
   }
 
-  .productManage--table__head {
+  .__head {
     padding: 1.5rem 0;
     border-bottom: 1px solid #BCBCBC;
 
@@ -24,7 +25,7 @@
     }
   }
 
-  .productManage--table__body {
+  .__body {
     & > .ant-col {
       padding: 1rem 0;
 
@@ -37,7 +38,7 @@
       }
     }
 
-    .productManage--table__data {
+    .__data {
 
       .ant-skeleton {
         width: 100%;
@@ -47,33 +48,33 @@
         padding: 0 1.5rem;
       }
 
-      .product--image {
+      .__image {
         min-height: 70px;
       }
 
-      .product--name,
-      .product--price,
-      .product--publish span {
+      .__name,
+      .__price,
+      .__publish span {
         font-size: 1.5rem;
       }
 
-      .product--publish span {
+      .__publish span {
         color: @primary-color;
       }
 
-      &.disable--product {
-        .product--image {
+      &.disable--item {
+        .___image {
           opacity: 0.4;
         }
 
-        .product--name,
-        .product--price,
-        .product--publish span {
+        .__name,
+        .__price,
+        .__publish span {
           color: #BCBCBC;
         }
       }
 
-      .product--actions {
+      .__actions {
         button {
           width: 100px;
           border-radius: 5px;
@@ -92,7 +93,6 @@
 }
 
 .ant-popover {
-
   .ant-btn {
     width: 35%;
     margin-left: 1rem;
