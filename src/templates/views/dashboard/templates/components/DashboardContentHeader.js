@@ -4,10 +4,10 @@ import { Button, Col, Row } from "antd";
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../../../functions/Helper";
 
-import {DashboardDrawerContext} from "../../templates/DashboardMain";
+import { DashboardDrawerContext } from "../../templates/DashboardMain";
 import { Link } from "react-router-dom";
 
-const DashboardContentHeader = ({page, linkText, lnkHref, linkIcon}) => {
+const DashboardContentHeader = ({page, linkText, linkHref, linkOnClick, linkIcon}) => {
 
   const { t } = useTranslation();
 
@@ -30,11 +30,19 @@ const DashboardContentHeader = ({page, linkText, lnkHref, linkIcon}) => {
 
       {(linkText || linkIcon) &&
         <Col className="d-none d-lg-block dashboardContentHeader--extraLink">
-          <Link to={lnkHref}>
-            <Button className="product--add__link" icon={linkIcon} >
+          {linkHref &&
+            <Link to={linkHref}>
+              <Button className="product--add__link" icon={linkIcon} >
+                {t(__(linkText))}
+              </Button>
+            </Link>
+          }
+
+          {linkOnClick &&
+            <Button onClick={linkOnClick} className="product--add__link" icon={linkIcon} >
               {t(__(linkText))}
             </Button>
-          </Link>
+          }
         </Col>
       }
     </Row>
