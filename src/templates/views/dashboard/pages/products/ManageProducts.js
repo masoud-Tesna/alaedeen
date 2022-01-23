@@ -6,9 +6,6 @@ import { useTranslation } from "react-i18next";
 import { __ } from "../../../../../functions/Helper";
 import { useGetApi } from "../../../../../functions";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";
-
-// import Cookies Package:
-import { Cookies } from "react-cookie";
 import ShowResponsiveImage from "../../../../common/ShowResponsiveImage";
 import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
 import React from "react";
@@ -20,12 +17,9 @@ const ManageProducts = () => {
 
   const { user_data } = useGetAuthState();
 
-  // use Cookies Class:
-  const Cookie = new Cookies();
+  const company_id = user_data?.auth?.company_id;
 
-  const token = Cookie.get('_token');
-
-  const {isLoading, data} = useGetApi('vendor-products-api', `_token=${token}`, `vendor_products_${user_data?.auth?.company_id}`);
+  const {isLoading, data} = useGetApi('vendor-products-api', `company_id=${company_id}`, `vendor_products_${user_data?.auth?.company_id}`, { enabled:  !!company_id});
 
   const {products} = data || [];
 
