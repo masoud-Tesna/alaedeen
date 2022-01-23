@@ -125,7 +125,7 @@ const ManageProducts = () => {
                       </Col>
 
                       <Col className="text-center my-auto __name" span={8}>
-                        { product.product }
+                        { product?.product }
                       </Col>
 
                       <Col className="text-center my-auto __price" span={2}>
