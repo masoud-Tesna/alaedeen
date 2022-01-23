@@ -30,7 +30,7 @@ const ManageProducts = () => {
   return (
     <Row>
       <Col span={24}>
-        <DashboardContentHeader page={"manage products"} linkText={"create_product"} lnkHref={"/dashboard/products/create"} linkIcon={<PlusOutlined />} />
+        <DashboardContentHeader page={"manage products"} linkText={"create_product"} linkHref={"/dashboard/products/create"} linkIcon={<PlusOutlined />} />
       </Col>
 
       <Col span={24} className="productManage--table">
