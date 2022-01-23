@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 import "./styles/AddProduct.less";
 import { useNavigate } from "react-router-dom";
 import { Button, Col, Form, Input, Row, Tabs, Modal, Skeleton, InputNumber, Select } from "antd";
@@ -5,7 +7,6 @@ import DashboardContentHeader from "../../templates/components/DashboardContentH
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../../../functions/Helper";
 import { useGetApi } from "../../../../../functions";
-import { useRef, useState, useEffect } from "react";
 import { CloseOutlined, EditOutlined, UploadOutlined } from "@ant-design/icons";
 import BraftEditor from 'braft-editor';
 import 'braft-editor/dist/index.css';
@@ -32,7 +33,7 @@ const CreateProduct = () => {
   const { t } = useTranslation();
 
   // use ref for add product form:
-  const productForm = useRef(null);
+  const [createProductFrm] = Form.useForm();
 
   // state for show category picker:
   const [isCategoryPickerModalVisible, setIsCategoryPickerModalVisible] = useState(false);
@@ -71,14 +72,15 @@ const CreateProduct = () => {
         config
       );
 
-      const prevImages = productForm?.current?.getFieldValue('images') || [];
-      productForm?.current?.setFieldsValue({
+      const prevImages = createProductFrm?.getFieldValue('images') || [];
+      createProductFrm?.setFieldsValue({
         images: [...prevImages, res.data],
       });
 
       onSuccess("Ok");
       //console.log("server res: ", res);
-    } catch (err) {
+    }
+    catch (err) {
       //console.log("Error: ", err);
       const error = new Error("Some error");
       onError({ err });
@@ -128,7 +130,7 @@ const CreateProduct = () => {
 
   // useEffect for handle selected category in modal (insert selected category id in to form field And Reset product_features array item):
   useEffect(()=>{
-    productForm?.current?.setFieldsValue({
+    createProductFrm?.setFieldsValue({
       category_ids: [issetCategory?.category_id],
       product_features : [],
     });
@@ -170,7 +172,7 @@ const CreateProduct = () => {
 
   // function for handle on change BraftEditor
   const descriptionHandleChange = editorState => {
-    productForm?.current?.setFieldsValue({
+    createProductFrm?.setFieldsValue({
       full_description: editorState.toHTML(),
       meta_description: editorState.toText().slice(0, 160),
     });
@@ -181,7 +183,7 @@ const CreateProduct = () => {
   //function for handle on change product name input:
   const productNameHandleChange = data => {
     if (!productPageTitle) {
-      productForm?.current?.setFieldsValue({
+      createProductFrm?.setFieldsValue({
         page_title: data.target.value.slice(0, 60),
       });
 
@@ -214,10 +216,10 @@ const CreateProduct = () => {
       <Col span={24} className="addProduct--content">
         <Form
           className="h-100 addProduct--formContent"
-          name="add-product-form"
+          name="createProduct-form"
           onFinish={handleAddProductOnFinish}
           scrollToFirstError
-          ref={productForm}
+          form={createProductFrm}
         >
           <Tabs
             defaultActiveKey="general"
@@ -474,7 +476,7 @@ const CreateProduct = () => {
                           }
                           onChange={e => {
                             if (!e) {
-                              productForm?.current?.setFieldsValue({
+                              createProductFrm?.setFieldsValue({
                                 location: {
                                   city: null
                                 },
