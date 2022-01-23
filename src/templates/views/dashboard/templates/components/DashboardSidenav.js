@@ -35,10 +35,21 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   const page = pathname.replace("/", "");
 
   // example: account
-  const mainPage = page.replace("dashboard", "").replace("/", "").split("/")[0];
+  let mainPage = page.replace("dashboard", "").replace("/", "").split("/")[0];
 
   // example:reset-password
-  const subPage = page.replace("dashboard", "").replace("/", "").split("/")[1];
+  let subPage = page.replace("dashboard", "").replace("/", "").split("/")[1];
+
+  if (mainPage === 'products') { // if main page is "products/" subPage = "manageProducts"
+    subPage = "manageProducts";
+  }
+  else if (mainPage === 'categories') { // if main page is "categories/" subPage = "manageCategories"
+    subPage = "manageCategories";
+  }
+
+  if (mainPage === 'categories') { // if main page is "categories/" mainPage = "products"
+    mainPage = "products";
+  }
 
   const { t } = useTranslation();
 
@@ -65,7 +76,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   }
 
   // submenu keys of first level
-  const rootSubmenuKeys = ['dashboard', 'language', 'account', 'product'];
+  const rootSubmenuKeys = ['dashboard', 'language', 'account', 'products'];
 
   const [openKeys, setOpenKeys] = useState([mainPage]);
 
@@ -133,14 +144,14 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
             </Item>
           </SubMenu>
 
-          <SubMenu key="product" icon={<i className="fab fa-product-hunt " />} title={ t('products') }>
-            <Item key="products">
-              <Link to="/dashboard/product/products" className="side--link">
+          <SubMenu key="products" icon={<i className="fab fa-product-hunt " />} title={ t('products_and_categories') }>
+            <Item key="manageProducts">
+              <Link to="/dashboard/products/manage" className="side--link">
                 { t('manage_products') }
               </Link>
             </Item>
-            <Item key="categories">
-              <Link to="/dashboard/product/categories" className="side--link">
+            <Item key="manageCategories">
+              <Link to="/dashboard/categories/manage" className="side--link">
                 { t('manage_categories') }
               </Link>
             </Item>
