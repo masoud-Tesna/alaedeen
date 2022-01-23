@@ -16,8 +16,8 @@ const ManageProducts = asyncComponent(() =>
   import('./dashboard/pages/products/ManageProducts').then(module => module.default)
 );
 
-const AddProduct = asyncComponent(() =>
-  import('./dashboard/pages/products/AddProduct').then(module => module.default)
+const CreateProduct = asyncComponent(() =>
+  import('./dashboard/pages/products/CreateProduct').then(module => module.default)
 );
 
 const ManageCategories = asyncComponent(() =>
@@ -33,13 +33,11 @@ const DashboardRoutes = () => ([
 
   <Route exact path="/dashboard/products/manage" element={<ManageProducts />} />,
 
-  <Route exact path="/dashboard/products/create" element={<AddProduct />} />,
+  <Route exact path="/dashboard/products/create" element={<CreateProduct />} />,
 
   <Route exact path="/dashboard/products/:productId" element={<>Edit Product</>} />,
 
   <Route exact path="/dashboard/categories/manage" element={<ManageCategories />} />,
-
-  <Route exact path="/dashboard/categories/create" element={<AddProduct />} />,
 
   <Route exact path="/dashboard/categories/:categoryId" element={<>Edit Category</>} />,
 

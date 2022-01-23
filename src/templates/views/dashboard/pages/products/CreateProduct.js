@@ -15,7 +15,7 @@ import ProductAssignFeatures from "./../components/ProductAssignFeatures";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 import { isLoadingAction, useSpinnerDispatch } from "../../../../../contexts/spiner/SpinnerContext";
 
-const AddProduct = () => {
+const CreateProduct = () => {
 
   const { TabPane } = Tabs;
   const { Option } = Select;
@@ -643,4 +643,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default CreateProduct;
