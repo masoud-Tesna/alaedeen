@@ -155,7 +155,7 @@ const ManageCategories = () => {
                 )
               }) :
 
-              categories?.length && categories?.map(category => {
+              categories?.length ? categories?.map(category => {
                 const categoryId = category?.category_id;
 
                 return(
@@ -203,10 +203,10 @@ const ManageCategories = () => {
                     </Row>
                   </Col>
                 )
-              })
+              }) : null
             }
 
-            {((!isLoading && company_id) && !categories.length) && <Col span={24} className="text-center"><Empty /></Col>}
+            {((!isLoading && company_id) && !categories.length) && <Col span={24} className="text-center"><Empty description={t("no_data")}/></Col>}
           </Row>
         </div>
       </Col>

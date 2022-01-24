@@ -101,7 +101,7 @@ const ManageProducts = () => {
                 )
               }) :
 
-              products?.length && products?.map(product => {
+              products?.length ? products?.map(product => {
                 const productPrice = parseFloat(product?.price).toFixed(2);
                 const productListPrice = parseFloat(product?.list_price).toFixed(2);
 
@@ -169,10 +169,10 @@ const ManageProducts = () => {
                     </Row>
                   </Col>
                 )
-              })
+              }) : null
             }
 
-            {(!isLoading && !products?.length) && <Col span={24} className="text-center"><Empty /></Col>}
+            {((!isLoading && company_id) && !products?.length) && <Col span={24} className="text-center"><Empty description={t("no_data")}/></Col>}
           </Row>
         </div>
       </Col>
