@@ -1,0 +1,114 @@
+@import '../../../../../styles/Mixins';
+
+.createCategory--formContent {
+  .CategoryParent--title {
+    font-size: 1.7rem;
+    font-weight: bolder;
+    color: #333333;
+  }
+
+  .CategoryParent--Collapse {
+    & > .ant-collapse-item {
+      border-bottom: 1px solid #BCBCBC;
+    }
+
+    .ant-collapse-item {
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+
+      .ant-collapse-header {
+        padding: 0;
+        line-height: 4.2rem;
+        &:nth-child(odd) {
+          background-color: #EFEFEF;
+        }
+
+        & > div {
+          padding: 0 1.5rem;
+
+          &:first-child {
+            border-right: 1px solid #BCBCBC;
+            margin-right: 1rem;
+            width: 43px;
+
+            .ant-collapse-arrow {
+              margin-right: 0 !important;
+              svg {
+                font-size: 1.5rem;
+                color: @primary-color;
+              }
+            }
+          }
+        }
+
+        .categoryName {
+          flex: 1 1 auto;
+          font-size: 1.5rem;
+        }
+
+        .ant-collapse-extra {
+
+        }
+      }
+
+      .ant-collapse-content-box {
+        padding: 1.2rem 0 1.2rem 1.2rem;
+      }
+
+      &.ant-collapse-no-arrow {
+        .categoryName {
+          padding-left: calc(43px + 1rem);
+        }
+      }
+    }
+  }
+
+  .categoryCreate {
+    .selectedCategory {
+      cursor: pointer;
+
+
+      &:hover {
+        .__title {
+          color: darken(@primary-color, 15%);
+        }
+
+        .__edit svg {
+          color: darken(@primary-color, 15%);
+        }
+      }
+
+      .__title {
+        color: @primary-color;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+
+      .__edit {
+        margin: 0 1rem;
+
+        svg {
+          color: @primary-color;
+          transform: scale(1.2);
+        }
+      }
+    }
+  }
+
+  .ant-form-item {
+    .ant-form-item-control {
+      padding: 0 0.5rem;
+    }
+  }
+}
+
+/*.ant-modal-wrap {
+  max-height: calc(100vh - 10px);
+  overflow-y: hidden;
+
+  .ant-modal-body {
+    max-height: calc(100vh - 65px);
+    overflow: auto;
+  }
+}*/
