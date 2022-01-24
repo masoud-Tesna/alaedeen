@@ -267,7 +267,7 @@ const CreateProduct = () => {
                       <span className="selectedCategory" onClick={showCategoryPickerModal}>
                           <span className="selectedCategory--title">{issetCategory?.category}</span>
                           <span className="selectedCategory--edit"><EditOutlined /></span>
-                        </span> :
+                      </span> :
                       <span className="selectedCategory" onClick={showCategoryPickerModal}>
                           <span className="selectedCategory--title">{t('select_category')}</span>
                           <span className="selectedCategory--edit"><EditOutlined /></span>
