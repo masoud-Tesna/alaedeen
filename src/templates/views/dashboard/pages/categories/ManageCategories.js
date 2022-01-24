@@ -10,6 +10,8 @@ import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import CreateCategory from "./CreateCategory";
+import { isLoadingAction, useSpinnerDispatch } from "../../../../../contexts/spiner/SpinnerContext";
+import axios from "axios";
 
 const ManageCategories = () => {
 
@@ -17,12 +19,23 @@ const ManageCategories = () => {
 
   const { user_data } = useGetAuthState();
 
+  // spinner dispatch context:
+  const { spinnerDispatch } = useSpinnerDispatch();
+
   // state for show create category picker:
   const [isCreateCategoryModalVisible, setIsCreateCategoryModalVisible] = useState(false);
 
   const company_id = user_data?.auth?.company_id;
 
-  const { isLoading, data: categoriesData } = useGetApi('vendor-categories-api', `company_id=${company_id}`, `vendor-categories_${user_data?.auth?.company_id}`, { enabled:  !!company_id});
+  const { isLoading, data: categoriesData, refetch: refetchCategoryList } = useGetApi(
+    'vendor-categories-api',
+    `company_id=${company_id}`,
+    `vendor-categories_${user_data?.auth?.company_id}`,
+    {
+      enabled:  !!company_id,
+      refetchOnWindowFocus: false
+      }
+    );
 
   const categories = categoriesData || {};
 
@@ -42,8 +55,30 @@ const ManageCategories = () => {
     setIsCreateCategoryModalVisible(true);
   }
 
-  const handleSubmitForm = values => {
-    console.log(values)
+  const handleSubmitForm = () => {
+    const values = createCategoryFrm?.getFieldsValue();
+
+    values.store_id = user_data?.auth?.company_id;
+    values.status = "D";
+
+    // show spinner (spinner context):
+    spinnerDispatch(isLoadingAction(true));
+
+    axios.post(`https://alaedeen.com/horn/create-personal-category-api`, {category_data: values})
+      .then(() => {
+        refetchCategoryList()
+          .then(() => {
+            setIsCreateCategoryModalVisible(false);
+          })
+          .then(() => {
+            createCategoryFrm.resetFields()
+          });
+
+      })
+      .then(() => {
+        // hidden spinner (spinner context):
+        spinnerDispatch(isLoadingAction(false));
+      });
   }
 
   return (
@@ -54,7 +89,7 @@ const ManageCategories = () => {
         style={{ top: 10 }}
         visible={isCreateCategoryModalVisible}
         onCancel={() => closeCreateCategoryModal()}
-        onOk={() => console.log('ok')}
+        onOk={() => handleSubmitForm()}
         okText={t("create")}
         cancelText={t("cancel")}
         destroyOnClose
@@ -62,7 +97,6 @@ const ManageCategories = () => {
       >
         <CreateCategory
           formRef={createCategoryFrm}
-          handleSubmitForm={handleSubmitForm}
         />
       </Modal>
 
@@ -172,7 +206,7 @@ const ManageCategories = () => {
               })
             }
 
-            {(!isLoading && !categories?.length) && <Col span={24} className="text-center"><Empty /></Col>}
+            {((!isLoading && company_id) && !categories.length) && <Col span={24} className="text-center"><Empty /></Col>}
           </Row>
         </div>
       </Col>
