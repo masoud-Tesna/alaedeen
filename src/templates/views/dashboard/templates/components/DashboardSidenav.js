@@ -37,7 +37,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   // example: account
   let mainPage = page.replace("dashboard", "").replace("/", "").split("/")[0];
 
-  // example:reset-password
+  // example: reset-password
   let subPage = page.replace("dashboard", "").replace("/", "").split("/")[1];
 
   if (mainPage === 'products') { // if main page is "products/" subPage = "manageProducts"
@@ -50,6 +50,8 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   if (mainPage === 'categories') { // if main page is "categories/" mainPage = "products"
     mainPage = "products";
   }
+
+  console.log(`page: ${page} - mainPage: ${mainPage} - subPage: ${subPage}`);
 
   const { t } = useTranslation();
 
@@ -76,7 +78,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   }
 
   // submenu keys of first level
-  const rootSubmenuKeys = ['dashboard', 'language', 'account', 'products'];
+  const rootSubmenuKeys = ['dashboard', 'language', 'account', 'products', 'plans'];
 
   const [openKeys, setOpenKeys] = useState([mainPage]);
 
@@ -117,7 +119,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
           className="side--menu"
           onOpenChange={onOpenChange}
           openKeys={openKeys}
-          defaultSelectedKeys={[(page === 'dashboard' || page === 'dashboard/') ? 'dashboard' : subPage]}
+          defaultSelectedKeys={[(page === 'dashboard' || page === 'dashboard/') ? 'dashboard' : subPage || mainPage]} /* if sub page isset (/product/manage) else main page (/plans) */
         >
           <Menu.Item key="dashboard"  icon={<HomeOutlined />}>
             <Link to="/dashboard" className="side--link">
@@ -156,6 +158,12 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
               </Link>
             </Item>
           </SubMenu>
+
+          <Menu.Item key="plans"  icon={ <i className="fal fa-box-check" /> }>
+            <Link to="/dashboard/plans" className="side--link">
+              { t('plans_and_pricing') }
+            </Link>
+          </Menu.Item>
         </Menu>
       </Col>
     </Row>
