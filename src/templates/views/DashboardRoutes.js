@@ -2,9 +2,9 @@ import { Route } from "react-router-dom";
 import { asyncComponent } from "../../functions/Helper";
 import DashboardMain from "./dashboard/templates/DashboardMain";
 
-const Dashboard = asyncComponent(() =>
+/*const Dashboard = asyncComponent(() =>
   import('./dashboard/pages/Dashboard').then(module => module.default)
-);
+);*/
 
 // account section:
 const ManufactureInformation = asyncComponent(() =>
@@ -24,8 +24,12 @@ const ManageCategories = asyncComponent(() =>
   import('./dashboard/pages/categories/ManageCategories').then(module => module.default)
 );
 
+const Plans = asyncComponent(() =>
+  import('./dashboard/pages/plans').then(module => module.default)
+);
+
 const DashboardRoutes = () => ([
-  <Route exact path="/dashboard" element={<Dashboard />} />,
+  <Route exact path="/dashboard" element={<Plans />} />,
 
   <Route exact path="/dashboard/account/password-reset" element={<DashboardMain> password-reset </DashboardMain>} />,
 
@@ -40,6 +44,8 @@ const DashboardRoutes = () => ([
   <Route exact path="/dashboard/categories/manage" element={<ManageCategories />} />,
 
   <Route exact path="/dashboard/categories/:categoryId" element={<>Edit Category</>} />,
+
+  <Route exact path="/dashboard/plans" element={<Plans />} />,
 
 ]);
 
