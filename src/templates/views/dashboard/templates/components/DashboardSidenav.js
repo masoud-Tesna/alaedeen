@@ -51,8 +51,6 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
     mainPage = "products";
   }
 
-  console.log(`page: ${page} - mainPage: ${mainPage} - subPage: ${subPage}`);
-
   const { t } = useTranslation();
 
   // function for change language:
