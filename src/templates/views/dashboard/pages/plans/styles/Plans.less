@@ -1,0 +1,28 @@
+@import '../../../../../styles/Mixins';
+
+.plans-container {
+  padding: 0 3rem;
+
+  .chosen-plans {
+    margin-top: 3rem;
+    padding: 0 3rem;
+    @media (min-width: @screen-md) {
+      padding: 0 calc((100vw / 2) / 3);
+    }
+
+    .__caption {
+      font-weight: 700;
+      font-size: 2rem;
+      line-height: 2;
+      color: #333333;
+      margin-bottom: -.5rem;
+      border-bottom: 1px solid #BCBCBC;
+    }
+
+    .__plan {
+      font-weight: 500;
+      font-size: 1.5rem;
+      color: #333333;
+    }
+  }
+}
