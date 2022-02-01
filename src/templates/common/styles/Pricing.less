@@ -1,0 +1,141 @@
+// import Mixin:
+@import '../../styles/Mixins';
+
+.pricing {
+  min-height: 40rem;
+  height: 100%;
+  padding: 4rem 2rem;
+  box-shadow: 0 0 10px rgba(31,66,135,.3);
+  border-radius: 10px;
+  transition: 0.4s ease-in-out;
+
+  .__header {
+    text-transform: uppercase;
+    font-size: 3.5rem;
+    font-weight: bolder;
+    text-align: center;
+  }
+
+  .__price--content {
+    .__currency {
+      margin: auto .3rem auto 0;
+
+      span {
+        font-weight: 700;
+        font-size: 2rem;
+      }
+    }
+
+    .__price,
+    .__duration {
+      margin: auto 0;
+
+      span {
+        font-weight: 700;
+        font-size: 3rem;
+      }
+    }
+
+    .__duration {
+      margin: 0 .5rem;
+    }
+
+    .__priceText {
+      font-weight: 600;
+      font-size: 1.6rem;
+      text-align: center;
+    }
+  }
+
+  .__features {
+    padding: 0 3rem;
+    .__feature {
+      font-size: 2rem;
+      font-weight: 600;
+
+      i {
+        margin-right: 0.5rem;
+      }
+
+      .true {
+        color: #34f034;
+        font-size: 1.8rem;
+      }
+
+      .false {
+        color: #A03033;
+        font-size: 1.96rem;
+      }
+    }
+  }
+
+  .__chosen {
+    text-align: center;
+    align-self: flex-end !important;
+
+    .ant-checkbox-wrapper {
+      position: relative;
+
+      .ant-checkbox {
+        .ant-checkbox-inner {
+          width: 145px;
+          height: 50px;
+          border-top-left-radius: 0;
+          border-bottom-right-radius: 0;
+          border-bottom-left-radius: 3rem;
+          border-top-right-radius: 3rem;
+          background-color: transparent;
+          border-color: #3ba949;
+          border-width: 2px;
+        }
+
+        &:hover,
+        &.ant-checkbox-checked {
+          .ant-checkbox-inner {
+            border-top-left-radius: 3rem !important;
+            border-bottom-right-radius: 3rem !important;
+            border-bottom-left-radius: 0 !important;
+            border-top-right-radius: 0 !important;
+          }
+        }
+
+        &.ant-checkbox-checked {
+          &::after {
+            border: 0;
+          }
+
+          .ant-checkbox-inner {
+            background-color: #3ba949;
+
+            &::after {
+              transform: rotate(45deg) scale(2.4) translate(-50%, -50%) !important;
+              top: calc(50% + 5px);
+              left: calc(50% - 5px);
+            }
+          }
+        }
+      }
+
+      & > span + span {
+        position: absolute;
+        padding: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+
+        .planCheckBox  {
+          font-size: 1.7rem;
+          font-weight: 600;
+          transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+
+          &.__checked {
+            display: none;
+            transition: all 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46) 0.1s;
+          }
+        }
+      }
+    }
+  }
+}
