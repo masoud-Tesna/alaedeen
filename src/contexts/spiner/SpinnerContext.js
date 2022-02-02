@@ -1,6 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
 import LoaderSpinner from "../../templates/common/LoadSpinner";
-import { LOADING_TRUE } from "../config/ConfigActions";
 
 // spinner Context Create:
 const spinnerContext = createContext();

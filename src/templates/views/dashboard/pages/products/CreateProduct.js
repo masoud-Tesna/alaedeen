@@ -82,7 +82,7 @@ const CreateProduct = () => {
     }
     catch (err) {
       //console.log("Error: ", err);
-      const error = new Error("Some error");
+      //const error = new Error("Some error");
       onError({ err });
     }
   };

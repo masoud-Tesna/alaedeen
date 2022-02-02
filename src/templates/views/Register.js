@@ -28,7 +28,6 @@ import {
 
 import { signInApi, useGetApi } from "../../functions";
 import axios from "axios";
-import LoaderSpinner from "../common/LoadSpinner";
 import { useGetConfig } from "../../contexts/config/ConfigContext";
 
 // import alaedeen character:

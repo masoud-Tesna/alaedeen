@@ -236,6 +236,8 @@ const ProductAssignFeatures = ({category_id}) => {
             </Row>
           </div>
         )
+
+      default : return <></>
     }
   }
 

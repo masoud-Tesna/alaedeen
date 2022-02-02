@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 import { __, fn_get_base64 } from "../../functions/Helper";
 import { Upload } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
-import axios from "axios";
 
 const ImageUploader = (
   {

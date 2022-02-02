@@ -14,9 +14,6 @@ import alaedeenChar from '../../assets/images/alaedeen-char.svg'
 // import categories drop down:
 import { CategoriesDropDownVertical as Categories } from "../../blocks/categories/CategoriesDropDownVertical";
 
-// import another components used:
-import LoaderSpinner from '../../common/LoadSpinner';
-
 // import language context:
 import { useGetConfig, useConfigDispatch, changeLanguageAction, changeCurrencyAction } from '../../../contexts/config/ConfigContext';
 
@@ -411,7 +408,7 @@ const DefaultTopPanel = ({ pathName }) => {
                 </span>
               </a>
 
-              <a className="topPanel--content__item hover" href="https://alaedeen.com/horn/create-ticket" target="_blank" >
+              <a className="topPanel--content__item hover" href="https://alaedeen.com/horn/create-ticket" target="_blank" rel="noreferrer">
                 <span className="topPanel--item__text">
                   {t(__('Free consultation'))}
                 </span>

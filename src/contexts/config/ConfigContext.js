@@ -36,7 +36,7 @@ function ConfigProvider({ children }) {
     return data;
   }
 
-  const { isLoading } =  useQuery('config', getConfigApi, {
+  useQuery('config', getConfigApi, {
     onSuccess: (data) => {
       configDispatch(changeIpAction(data?.ip));
       configDispatch(changeCountryAction(data?.country));
