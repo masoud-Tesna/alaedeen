@@ -27,7 +27,7 @@ const News = () => {
   const { config } = useGetConfig();
 
   if (config.language !== 'en') {
-    moment.locale("fa", fa);
+    moment.updateLocale("fa", fa);
     moment.loadPersian({usePersianDigits: true});
   }
 

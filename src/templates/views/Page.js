@@ -20,7 +20,7 @@ const Page = () => {
   // get initial config:
   const { config } = useGetConfig();
 
-  moment.locale("fa", fa);
+  moment.updateLocale("fa", fa);
   moment.loadPersian({usePersianDigits: true});
 
   // get page seo name in url:
