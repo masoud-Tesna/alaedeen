@@ -1,6 +1,39 @@
 // import Mixin:
 @import '../../styles/Mixins';
 
+html:lang(fa),
+html:lang(ar) {
+  .__afterDiscount {
+   .--basePrice {
+     &:before {
+       width: 98% !important;
+       left: -7% !important;
+       transform: rotate(-20deg) !important;
+     }
+   }
+  }
+}
+
+html:lang(fa) {
+  .__afterDiscount {
+    .--basePrice {
+      &:before {
+        top: 37% !important;
+      }
+    }
+  }
+}
+
+html:lang(ar) {
+  .__afterDiscount {
+    .--basePrice {
+      &:before {
+        top: 46% !important;
+      }
+    }
+  }
+}
+
 .pricing {
   min-height: 40rem;
   height: 100%;
@@ -17,41 +50,81 @@
   }
 
   .__price--content {
-    .__currency {
-      margin: auto .3rem auto 0;
+    .__discount,
+    .__afterDiscount,
+    .__price,
+    .__priceText {
+      text-align: center;
+    }
 
+    .__discount {
       span {
-        font-weight: 700;
-        font-size: 2rem;
+        font-weight: 600;
+        font-size: 2.5rem;
       }
     }
 
-    .__price,
-    .__duration {
-      margin: auto 0;
+    .__afterDiscount {
+      direction: ltr;
 
+      .--basePrice,
+      .--after span {
+        font-weight: 600;
+        font-size: 2.4rem;
+      }
+
+      .--basePrice {
+        &:after {
+          content: "";
+          margin: 0 .5rem;
+        }
+
+        &:before {
+          top: 50%;
+          background: rgb(207, 19, 34);
+          opacity: 0.7;
+          content: '';
+          width: 90%;
+          position: absolute;
+          height: 0.4rem;
+          border-radius: 0.4rem;
+          left: -6%;
+          white-space: nowrap;
+          display: block;
+          transform: rotate(-16deg);
+        }
+
+        text-decoration: none;
+        position: relative;
+        color: rgb(207, 19, 34);
+
+      }
+
+      .--after {
+        display: inline-block;
+      }
+    }
+
+    .__price {
       span {
         font-weight: 700;
         font-size: 3rem;
       }
     }
 
-    .__duration {
-      margin: 0 .5rem;
-    }
-
     .__priceText {
       font-weight: 600;
       font-size: 1.6rem;
-      text-align: center;
     }
   }
 
   .__features {
     padding: 0 3rem;
     .__feature {
-      font-size: 2rem;
-      font-weight: 600;
+      .--item {
+        font-size: 2rem;
+        font-weight: 600;
+      }
 
       i {
         margin-right: 0.5rem;
@@ -60,11 +133,6 @@
       .true {
         color: #34f034;
         font-size: 1.8rem;
-      }
-
-      .false {
-        color: #A03033;
-        font-size: 1.96rem;
       }
     }
   }
