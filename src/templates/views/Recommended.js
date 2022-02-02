@@ -317,9 +317,10 @@ const Recommended = () => {
                               }
                             >
                               {pages?.map((page) =>
-                                page?.results?.products.map((product, i) => {
+                                page?.results?.products.map(product => {
                                   return (
                                     <CategoryOneColumn
+                                      key = { `Recommended_CategoryOneColumn_${product?.product_id}` }
                                       product={product}
                                     />
                                   );
@@ -372,9 +373,10 @@ const Recommended = () => {
 
                                 <Row className="h-100" gutter={[ { xs:8, lg: 23 }, { xs:10, lg: 23 }]} justify={"center"}>
                                   {pages?.map((page) =>
-                                    page?.results?.products.map((product, i) => {
+                                    page?.results?.products.map(product => {
                                       return (
                                         <CategoryMultiColumn
+                                          key = { `Recommended_CategoryMultiColumn_${product?.product_id}` }
                                           product={ product }
                                           allDetails
                                           widthProductImage={ width >= 992 ? 194 : 170 }

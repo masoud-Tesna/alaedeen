@@ -125,7 +125,7 @@ const ManageCategories = () => {
             {(!company_id || isLoading) ?
               new Array(6).fill("", 0, 6).map((p, i) => {
                 return(
-                  <Col key={i} span={24}>
+                  <Col key={`ManageCategoriesLoading_${i}`} span={24}>
                     <Row className="__data">
                       <Col className="text-center my-auto __name" span={7}>
                         <Skeleton.Input style={{ width: `calc(60% - ${i}px)`, height: 22 }} active={true} size={"small"} />
@@ -159,7 +159,7 @@ const ManageCategories = () => {
                 const categoryId = category?.category_id;
 
                 return(
-                  <Col key={categoryId} span={24}>
+                  <Col key={ `ManageCategories_categories_${categoryId}` } span={24}>
                     <Row className={ `__data ${category?.status === 'D' ? 'disable--item' : ''}` }>
 
                       <Col className="text-center my-auto __name" span={7}>

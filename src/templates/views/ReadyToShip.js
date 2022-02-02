@@ -312,9 +312,10 @@ const ReadyToShip = () => {
 
                         {/*if product show type === oneColumn*/}
                         {productShowType === 'oneColumn' &&
-                        products?.map((product, i) => {
+                        products?.map(product => {
                           return (
                             <CategoryOneColumn
+                              key = { `ReadyToShip_CategoryOneColumn_${product?.product_id}` }
                               product={product}
                             />
                           );
@@ -325,9 +326,10 @@ const ReadyToShip = () => {
                         {productShowType === 'multiColumn' &&
                         <Col span={24}>
                           <Row className="h-100" gutter={[ { xs:8, lg: 23 }, { xs:10, lg: 23 }]} justify={"center"}>
-                            { products?.map((product, i) => {
+                            { products?.map(product => {
                               return (
                                 <CategoryMultiColumn
+                                  key = { `ReadyToShip_CategoryMultiColumn_${product?.product_id}` }
                                   product={ product }
                                   allDetails
                                   widthProductImage={ width >= 992 ? 194 : 170 }

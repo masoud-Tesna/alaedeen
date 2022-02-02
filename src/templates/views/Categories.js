@@ -357,7 +357,7 @@ const Categories = () => {
                         <span>Loading!</span> :
                         categoryBanners.map(categoryBanner => {
                           return (
-                            <div className="categoriesCarousel--item" key={`category_banner${categoryBanner.object_id}`}>
+                            <div className="categoriesCarousel--item" key={`category_banner_${categoryBanner.object_id}`}>
                               <img className="d-block w-100" src={categoryBanner.value} alt="" />
                             </div>
                           )
@@ -535,34 +535,33 @@ const Categories = () => {
                       <>
 
                         {/*if product show type === oneColumn*/}
-                        {productShowType === 'oneColumn' &&
-                        products?.map((product, i) => {
-                          return (
-                            <CategoryOneColumn
-                              key = { i }
-                              product={product}
-                            />
-                          );
-                        })
-                        }
+                        {productShowType === 'oneColumn' ?
+                          products?.map(product => {
+                            return (
+                              <CategoryOneColumn
+                                key = { `Categories_CategoryOneColumn_${product?.product_id}` }
+                                product={product}
+                              />
+                            );
+                          }) :
 
-                        {/*if product show type === multiColumn*/}
-                        {productShowType === 'multiColumn' &&
-                        <Col span={24}>
-                          <Row className="h-100" gutter={[ { xs:8, lg: 23 }, { xs:10, lg: 23 }]} justify={"center"}>
-                            { products?.map((product, i) => {
-                              return (
-                                <CategoryMultiColumn
-                                  key={ i }
-                                  product={ product }
-                                  allDetails
-                                  widthProductImage={ width >= 992 ? 194 : 170 }
-                                  heightProductImage={ width >= 992 ? 194 : 170 }
-                                />
-                              );
-                            }) }
-                          </Row>
-                        </Col>
+                          /*if product show type === multiColumn*/
+                          productShowType === 'multiColumn' &&
+                            <Col span={24}>
+                              <Row className="h-100" gutter={[ { xs:8, lg: 23 }, { xs:10, lg: 23 }]} justify={"center"}>
+                                { products?.map(product => {
+                                  return (
+                                    <CategoryMultiColumn
+                                      key = { `Categories_CategoryMultiColumn${product?.product_id}` }
+                                      product={ product }
+                                      allDetails
+                                      widthProductImage={ width >= 992 ? 194 : 170 }
+                                      heightProductImage={ width >= 992 ? 194 : 170 }
+                                    />
+                                  );
+                                }) }
+                              </Row>
+                            </Col>
                         }
 
                       </>

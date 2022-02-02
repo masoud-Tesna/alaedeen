@@ -45,7 +45,7 @@ const ProductSpecifications = ({ product, isLoading }) => {
               {
                 Object.values(feature?.variants).map(variant => {
                   return(
-                    <Col key={`features_variants_${variant.variant_id}`}>
+                    <Col key={`ProductSpecifications_PrdFeatures_MULTIPLE_CHECKBOX${variant.variant_id}`}>
                       <div className="certificationImages--image text-center">
                         <ShowResponsiveImage
                           imagePath={ variant?.image }
@@ -76,7 +76,7 @@ const ProductSpecifications = ({ product, isLoading }) => {
                 Object.values(feature?.variants).map(variant => {
                   const featureColor = (variant.variant_color).toString().trim().toLowerCase().replaceAll(" ", "-")
                   return(
-                    <Col key={`features_variants_${variant.variant_id}`}>
+                    <Col key={`ProductSpecifications_PrdFeatures_MULTIPLE_CHECKBOX${variant.variant_id}`}>
                       <span className={`colorFeature--icon ${featureColor} align-middle`} /> <span className="colorFeature--title align-middle">{variant.variant}</span>
                     </Col>
                   );
@@ -91,7 +91,7 @@ const ProductSpecifications = ({ product, isLoading }) => {
               {
                 Object.values(feature?.variants).map(variant => {
                   return(
-                    <Col key={`features_variants_${variant.variant_id}`}>
+                    <Col key={`ProductSpecifications_PrdFeatures_MULTIPLE_CHECKBOX${variant.variant_id}`}>
                       <span className="colorFeature--title align-middle">{variant.variant}</span>
                     </Col>
                   );
@@ -196,7 +196,7 @@ const ProductSpecifications = ({ product, isLoading }) => {
                               {feature.description} &nbsp;
                               { Object.values(feature.subfeatures).filter(sub => sub.feature_code === 'S').map(sub => {
                                 return(
-                                  <span>({sub.variants[sub.variant_id].variant})</span>
+                                  <span key={`featureTableHeader_${feature.feature_id}_span_${sub.variant_id}`}>({sub.variants[sub.variant_id].variant})</span>
                                 );
                               }) }
                             </th>
@@ -208,12 +208,12 @@ const ProductSpecifications = ({ product, isLoading }) => {
 
                   <tbody>
                     {
-                      product?.variants_product.map(product_variant => {
+                      product?.variants_product.map((product_variant, i) => {
 
                         const productVariantPrice = parseFloat(product_variant?.price).toFixed(2);
 
                         return(
-                          <tr>
+                          <tr key={`featureTableBody_${i}`}>
                             <td>
                               {product_variant.product_code}
                             </td>
@@ -226,13 +226,13 @@ const ProductSpecifications = ({ product, isLoading }) => {
                               Object.values(product_variant.product_features).map(feature => {
 
                                 return (
-                                  <td key={`featureTableData_${feature.feature_id}`}>
+                                  <td key={`featureTableBody_${i}_item_${feature.feature_id}`}>
                                     { Object.values(feature.subfeatures).filter(sub => sub.feature_code === 'P').map(sub => {
 
                                       const toFloatInt = parseFloat(sub?.value_int).toFixed(0);
 
                                       return(
-                                        <span>{toFloatInt}</span>
+                                        <span key={`featureTableBody_${i}_item_${feature.feature_id}_${toFloatInt}`}>{toFloatInt}</span>
                                       );
                                     }) }
                                   </td>
@@ -257,7 +257,7 @@ const ProductSpecifications = ({ product, isLoading }) => {
                     Object.values(product?.product_features).filter(f => f.variations_product !== 'Y' && f.feature_type !== PrdFeatures_GROUP).map(feature => {
 
                       return(
-                        <Col key={`features_${feature.feature_id}`}>
+                        <Col key={`ProductSpecifications_featuresList${feature.feature_id}`}>
                           <Row gutter={12}>
                             <Col className="features--variant">
                               { feature?.description }{ feature?.suffix && ` (${feature?.suffix})` } :

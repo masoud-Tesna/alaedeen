@@ -47,7 +47,7 @@ const CategoriesMultiColumn = () => {
               <>
                 {categories?.slice(0, 8)?.map((category, index) => {
                   return (
-                    <Col key={ `categoriesMultiColumn_${ category?.category_id }` } className="categoriesMultiColumn--item" span={12}>
+                    <Col key={ `categoriesMultiColumn_xl_${ category?.category_id }` } className="categoriesMultiColumn--item" span={12}>
                       <Link to={ `/categories/${category?.seo_name}` } className={ `d-block ${category?.p_count === 0 ? 'link--disable': ''}` } >
                         <Row className={`categoriesMultiColumn--item__row ${ (index !== 6 && index !== 7) ? 'categoriesMultiColumn--item__borderBottom': '' }`}>
                           <Col span={24} className="categoriesMultiColumn--img text-center py-2">
@@ -114,7 +114,7 @@ const CategoriesMultiColumn = () => {
                   <ScrollContainer className="text-select-none d-flex requestsList--scrollContainer">
                     {categories?.slice(0, 7)?.map((category, index) => {
                       return (
-                        <Col key={ `categoriesMultiColumnXS_${ category?.category_id }` } span={9} className="categoriesMultiColumn--item">
+                        <Col key={ `categoriesMultiColumn_xs_${ category?.category_id }` } span={9} className="categoriesMultiColumn--item">
                           <Link to={ `/categories/${category?.seo_name}` } className={ `d-block h-100 ${category?.p_count === 0 ? 'link--disable': ''}` }>
                             <Row className="categoriesMultiColumn--item__row">
                               <Col span={24} className="categoriesMultiColumn--img text-center my-2">

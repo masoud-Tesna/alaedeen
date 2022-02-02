@@ -241,7 +241,7 @@ const Register = () => {
                                               <>
                                                 {cityLists?.map((item) => {
                                                   return (
-                                                    <Option key={ `cityLists_${ item.code }` } value={item.code} >{ item.state }</Option>
+                                                    <Option key={ `buyer_cityLists_${ item.code }` } value={item.code} >{ item.state }</Option>
                                                   );
                                                 })}
                                               </>
@@ -500,7 +500,7 @@ const Register = () => {
                                               <>
                                                 {cityLists?.map((item) => {
                                                   return (
-                                                    <Option key={ `cityLists_${ item.code }` } value={item.code} >{ item.state }</Option>
+                                                    <Option key={ `seller_cityLists_${ item.code }` } value={item.code} >{ item.state }</Option>
                                                   );
                                                 })}
                                               </>

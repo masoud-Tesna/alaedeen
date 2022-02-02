@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, Fragment } from "react";
 
 // import style file:
 import "./styles/FactoryOneColumn.less";
@@ -119,8 +119,8 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
 
           if (factory?.store_type === "A") {
             return (
-              <>
-                <Col xs={24} lg={12} key = { factory?.company_id } className={ `factory--container ${selectedStoreId === factory?.company_id ? "byParam" : ""}` }>
+              <Fragment key = { `FactoryOneColumn_pro_${factory?.company_id}` }>
+                <Col xs={24} lg={12} className={ `factory--container ${selectedStoreId === factory?.company_id ? "byParam" : ""}` }>
                   <Row gutter={width >= 992 ? 16 : 0} className="bg-white rounded-10 border border-70 h-100 m-0">
                     <Col span={24}>
                       <Row className="h-100" gutter={[0, 12]}>
@@ -220,7 +220,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                                     {factory?.products.length ?
                                       factory?.products.map(product => {
                                         return (
-                                          <Col key={product?.product_id}>
+                                          <Col key={`factoryProduct_${factory?.company_id}_${product?.product_id}`}>
                                             <div className="rounded-10 shadow-y-2 text-center factory--productImage">
                                               <ShowResponsiveImage
                                                 imagePath={ product?.main_pair?.detailed?.image_path }
@@ -239,7 +239,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                                       }) :
                                       new Array(4).fill("", 0, 4).map((_, i) => {
                                         return(
-                                          <Col key={i}>
+                                          <Col key={`factoryProduct_${factory?.company_id}_${i}`}>
                                             <div className="rounded-10 shadow-y-2 text-center factory--productImage">
                                               <ShowResponsiveImage
                                                 skeletonWidth="100%"
@@ -403,12 +403,12 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                     </Row>
                   </Modal>
                 </Col>
-              </>
+              </Fragment>
             );
           }
 
           return (
-            <Col xs={12} lg={6} key = { factory?.company_id } className={ `factory--container storeType--free ${selectedStoreId === factory?.company_id ? "byParam" : ""}` }>
+            <Col xs={12} lg={6} key = { `FactoryOneColumn_free_${factory?.company_id}` } className={ `factory--container storeType--free ${selectedStoreId === factory?.company_id ? "byParam" : ""}` }>
               <Row className="bg-white rounded-10 border border-70 h-100" gutter={[0, 7]}>
                 <Col className="factory--topSection" span={24}>
                   <Row>

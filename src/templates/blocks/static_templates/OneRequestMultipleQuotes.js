@@ -83,7 +83,7 @@ const OneRequestMultipleQuotes = () => {
                     <>
                       {quantityUnits?.request_contents?.map((quantityUnit, index) => {
                         return (
-                          <Option key={(index + 2) * 4} value={quantityUnit?.key} >{ quantityUnit?.value }</Option>
+                          <Option key={`quantityUnits_${(index + 2) * 4}`} value={quantityUnit?.key} >{ quantityUnit?.value }</Option>
                         );
                       })}
                     </>

@@ -294,7 +294,7 @@ const CreateProduct = () => {
                                   return (
                                     <Col
                                       span={24}
-                                      key={`categoryPickerParent_${parent?.category_id}`}
+                                      key={`CreateProduct_categoryPickerParent_${parent?.category_id}`}
                                       className="category--item__parent"
                                       onClick={() => setCategoryId(parent?.parent_id)}
                                     >
@@ -336,7 +336,7 @@ const CreateProduct = () => {
                                     return (
                                       <Col
                                         span={24}
-                                        key={`categoryPickerModal_${category?.category_id}`}
+                                        key={`CreateProduct_categoryPickerModal_${category?.category_id}`}
                                         className="category--item"
                                         onClick={() => handleSelectCategory(category?.category, category?.category_id)}
                                       >

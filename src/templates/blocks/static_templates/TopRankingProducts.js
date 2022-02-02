@@ -96,11 +96,11 @@ const TopRankingProducts = () => {
                         className="SkeletonMultiColumnHorizontal"
                       /> :
                       <>
-                        {productsCat1.map((product, i) => {
+                        {productsCat1.map(product => {
                           return (
                             <ProductsMultiColumnHorizontal
-                              key = { i }
-                              productKey = { i }
+                              key = { `TopRankingProducts_cat1_xl_${product?.product_id}` }
+                              productKey = { product?.product_id }
                               product= {product}
                               widthProductImage={140}
                               heightProductImage={140}
@@ -131,11 +131,11 @@ const TopRankingProducts = () => {
                         className="SkeletonMultiColumnHorizontal"
                       /> :
                       <>
-                        {productsCat2.map((product, i) => {
+                        {productsCat2.map(product => {
                           return (
                             <ProductsMultiColumnHorizontal
-                              key = { i }
-                              productKey = { i }
+                              key = { `TopRankingProducts_cat2_xl_${product?.product_id}` }
+                              productKey = { product?.product_id }
                               product= {product}
                               widthProductImage={140}
                               heightProductImage={140}
@@ -166,11 +166,11 @@ const TopRankingProducts = () => {
                         className="SkeletonMultiColumnHorizontal"
                       /> :
                       <>
-                        {productsCat3.map((product, i) => {
+                        {productsCat3.map(product => {
                           return (
                             <ProductsMultiColumnHorizontal
-                              key = { i }
-                              productKey = { i }
+                              key = { `TopRankingProducts_cat3_xl_${product?.product_id}` }
+                              productKey = { product?.product_id }
                               product= {product}
                               widthProductImage={140}
                               heightProductImage={140}
@@ -221,11 +221,11 @@ const TopRankingProducts = () => {
                             Xs
                           /> :
                           <>
-                            {productsCat1.map((product, i) => {
+                            {productsCat1.map(product => {
                               return (
                                 <ProductsMultiColumnHorizontal
-                                  key = { i }
-                                  productKey = { i }
+                                  key = { `TopRankingProducts_cat1_xs_${product?.product_id}` }
+                                  productKey = { product?.product_id }
                                   product= {product}
                                   widthProductImage={90}
                                   heightProductImage={90}
@@ -257,11 +257,11 @@ const TopRankingProducts = () => {
                             Xs
                           /> :
                           <>
-                            {productsCat2.map((product, i) => {
+                            {productsCat2.map(product => {
                               return (
                                 <ProductsMultiColumnHorizontal
-                                  key = { i }
-                                  productKey = { i }
+                                  key = { `TopRankingProducts_cat2_xs_${product?.product_id}` }
+                                  productKey = { product?.product_id }
                                   product= {product}
                                   widthProductImage={90}
                                   heightProductImage={90}
@@ -293,11 +293,11 @@ const TopRankingProducts = () => {
                             Xs
                           /> :
                           <>
-                            {productsCat3.map((product, i) => {
+                            {productsCat3.map(product => {
                               return (
                                 <ProductsMultiColumnHorizontal
-                                  key = { i }
-                                  productKey = { i }
+                                  key = { `TopRankingProducts_cat3_xs_${product?.product_id}` }
+                                  productKey = { product?.product_id }
                                   product= {product}
                                   widthProductImage={90}
                                   heightProductImage={90}

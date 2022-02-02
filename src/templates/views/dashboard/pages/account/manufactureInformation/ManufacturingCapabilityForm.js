@@ -292,7 +292,7 @@ const ManufacturingCapabilityForm = (
               {qualityControlStaffs.length && qualityControlStaffs?.map(qualityControlStaff => {
                 return (
                   <Option
-                    key={ `office_size_${ qualityControlStaff?.value_id }` }
+                    key={ `qualityControlStaffs_${ qualityControlStaff?.value_id }` }
                     value={ qualityControlStaff?.value_id }
                   >
                     { t(__(qualityControlStaff?.description)) }
@@ -319,7 +319,7 @@ const ManufacturingCapabilityForm = (
               {researchesStaffs.length && researchesStaffs?.map(researchesStaff => {
                 return (
                   <Option
-                    key={ `office_size_${ researchesStaff?.value_id }` }
+                    key={ `researchesStaffs_${ researchesStaff?.value_id }` }
                     value={ researchesStaff?.value_id }
                   >
                     { t(__(researchesStaff?.description)) }
@@ -475,7 +475,7 @@ const ManufacturingCapabilityForm = (
                       {units.length && units?.map(unit => {
                         return (
                           <Option
-                            key={ `office_size_${ unit?.value_id }` }
+                            key={ `units_${ unit?.value_id }` }
                             value={ unit?.value_id }
                           >
                             { t(__(unit?.description)) }
@@ -517,7 +517,7 @@ const ManufacturingCapabilityForm = (
                       {units.length && units?.map(unit => {
                         return (
                           <Option
-                            key={ `office_size_${ unit?.value_id }` }
+                            key={ `units_${ unit?.value_id }` }
                             value={ unit?.value_id }
                           >
                             { t(__(unit?.description)) }

@@ -215,7 +215,7 @@ const DefaultFooter = () => {
 
               {categories?.slice(0, width < 993 ? 8 : 6)?.map((category) => {
                 return (
-                  <Col key={category?.category_id} className="text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
+                  <Col key={`footerCategories_${category?.category_id}`} className="text-white vv-font-size-1-5 footer--middleSection-link" span={24}>
                     {/*link: /categories/${category?.seo_name}*/}
                     <Link to={ `/categories/${category?.seo_name}` } className={category?.p_count === 0 ? 'link--disable': ''}>
                       { category.category }

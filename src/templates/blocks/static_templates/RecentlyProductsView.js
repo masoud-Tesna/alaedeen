@@ -58,10 +58,10 @@ const RecentlyProductsView = () => {
                     height = {width >= 992 ? 363.933 : 273.05}
                   /> :
                     <>
-                      {products?.map((product, i) => {
+                      {products?.map(product => {
                         return (
                           <ProductsMultiColumnVertical
-                            key = { i }
+                            key = { `RecentlyProductsView_xl_${product?.product_id}` }
                             className="bg-white rounded-10 shadow-y-2"
                             product={product}
                             allDetails
@@ -80,9 +80,9 @@ const RecentlyProductsView = () => {
                     autoplay={{delay: 3000}}
                     dir={'ltr'}
                   >
-                    {products.map((product, i) => {
+                    {products.map(product => {
                       return (
-                        <Col key = { i }>
+                        <Col key = { `RecentlyProductsView_xs_${product?.product_id}` }>
                           <SwiperSlide>
                             <ProductsMultiColumnVertical
                               className="bg-white rounded-10 shadow-y-2"

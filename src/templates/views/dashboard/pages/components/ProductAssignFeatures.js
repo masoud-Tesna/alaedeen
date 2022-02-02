@@ -77,7 +77,7 @@ const ProductAssignFeatures = ({category_id}) => {
             >
               {Object.values(feature?.variants).length && Object.values(feature?.variants).map((variant) => {
                 return (
-                  <Option key={ variant?.variant_id } value={ variant?.variant_id } >{ variant?.variant }</Option>
+                  <Option key={ `ProductAssignFeatures_PrdFeatures_SELECTABLE_${variant?.variant_id}` } value={ variant?.variant_id } >{ variant?.variant }</Option>
                 );
               })}
             </Select>
@@ -111,7 +111,7 @@ const ProductAssignFeatures = ({category_id}) => {
 
                   return (
                     <Option
-                      key={ variant?.variant_id }
+                      key={ `ProductAssignFeatures_PrdFeatures_MULTIPLE_CHECKBOX_${variant?.variant_id}` }
                       value={ variant?.variant_id }
                       label={ variant?.variant }
                     >
@@ -149,7 +149,7 @@ const ProductAssignFeatures = ({category_id}) => {
 
                   return (
                     <Option
-                      key={ variant?.variant_id }
+                      key={ `ProductAssignFeatures_PrdFeatures_MULTIPLE_CHECKBOX_${variant?.variant_id}` }
                       value={ variant?.variant_id }
                       label={ variant?.variant }>
                       <div className="optionByIcon">
@@ -195,7 +195,7 @@ const ProductAssignFeatures = ({category_id}) => {
                 {Object.values(feature?.variants).length && Object.values(feature?.variants).map((variant) => {
                   return (
                     <Option
-                      key={ variant?.variant_id }
+                      key={ `ProductAssignFeatures_PrdFeatures_MULTIPLE_CHECKBOX_${variant?.variant_id}` }
                       value={ variant?.variant_id }
                       label={ variant?.variant }
                     >

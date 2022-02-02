@@ -151,9 +151,9 @@ const PremiumFactories = () => {
 
                   /> :
                   <>
-                    {factories?.map((factory, index) => {
+                    {factories?.map(factory => {
                       return (
-                        <Col span={8} key={index}>
+                        <Col span={8} key={`PremiumFactories_xl_${factory?.company_id}`}>
                           <div className="premiumFactories--item rounded-10 shadow-y-2 bg-white h-100">
                             <Row className="mb-4 d-flex- align-items-center- premiumFactories--item__detail">
                               <Col flex="70px" className="premiumFactories--item__image">
@@ -198,9 +198,9 @@ const PremiumFactories = () => {
                     grid={{ span: 8 }}
                   /> :
                   <>
-                    {factories?.slice(0, 2)?.map((factory, index) => {
+                    {factories?.slice(0, 2)?.map(factory => {
                       return (
-                        <Col key={index} span={12}>
+                        <Col key={`PremiumFactories_xs_${factory?.company_id}`} span={12}>
                           <div className="premiumFactories--itemXs">
                             <div className="premiumFactories--factoryImages__Xs">
                               <ShowResponsiveImage

@@ -50,7 +50,7 @@ const ProductFilters = (props) => {
               return(
                 Object.entries(filter?.selected_variants).map(([key, selected], index) => {
                   return (
-                    <Col>
+                    <Col key={`selectedVariant_${selected?.variant_id}`}>
                       <div className="productFilter--selected__item">
 
                         <Row className="h-100" align={"middle"} >

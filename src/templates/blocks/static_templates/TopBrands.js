@@ -95,7 +95,7 @@ const TopBrands = () => {
                   <>
                     {factories?.map((brand) => {
                       return (
-                        <Col className="topBrands--item" key={ brand.company_id * 10 }>
+                        <Col className="topBrands--item" key={ `TopBrands_xl_${brand.company_id}` }>
                           <a className="d-block h-100 link--disable" href={`https://store.alaedeen.com/?store_id=${brand.company_id}`}>
                             <div className="d-flex align-items-end justify-content-center topBrands--item__image">
                               <FactoriesLogo
@@ -134,7 +134,7 @@ const TopBrands = () => {
                     <>
                       {factories?.map((brand) => {
                         return (
-                          <div className="d-inline topBrandsScroll--item__content" key={brand.company_id}>
+                          <div className="d-inline topBrandsScroll--item__content" key={ `TopBrands_xs_${brand.company_id}` }>
                             <a className="d-block h-100 link--disable" href={`https://store.alaedeen.com/?store_id=${brand.company_id}`}>
                               <Row className="topBrandsScroll--item" justify="center">
                                 <div className="d-flex align-items-end justify-content-center w-100 topBrands--item__image">

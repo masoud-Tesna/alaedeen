@@ -60,7 +60,7 @@ const ManageProducts = () => {
             {(!company_id || isLoading) ?
               new Array(6).fill("", 0, 6).map((p, i) => {
                 return(
-                  <Col key={i} span={24}>
+                  <Col key={`ManageProductsLoading_${i}`} span={24}>
                     <Row className="__data">
                       <Col className="text-center __image" span={2}>
                         <ShowResponsiveImage
@@ -108,7 +108,7 @@ const ManageProducts = () => {
                 const productId = product?.product_id;
 
                 return(
-                  <Col key={productId} span={24}>
+                  <Col key={`ManageProducts_productsList_${productId}`} span={24}>
                     <Row className={ `__data ${product?.status === 'D' ? 'disable--item' : ''}` }>
                       <Col className="text-center __image" span={2}>
                         <ShowResponsiveImage

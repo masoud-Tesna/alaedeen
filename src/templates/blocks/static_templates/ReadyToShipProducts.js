@@ -38,7 +38,7 @@ const ReadyToShipProducts = () => {
         <>
           {products?.map((product) => {
             return (<ProductsMultiColumnVertical
-              key = { product.product_id }
+              key = { `ReadyToShipProducts_${product?.product_id}` }
               product={product}
               detailIcon="company"
               grid={productsMultiColumnVertical_items}

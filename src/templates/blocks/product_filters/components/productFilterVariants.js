@@ -7,7 +7,7 @@ const ProductFilterVariants = (props) => {
     <>
       {Object.values(features)?.map(feature => {
         return(
-          <Col key={`${featureKey}_${feature?.variant_id}`} span={24} className={ `feature--item py-2 px-4 ${feature?.selected && 'selected'}` }>
+          <Col key={`variantOfFilter_${featureKey}_${feature?.variant_id}`} span={24} className={ `feature--item py-2 px-4 ${feature?.selected && 'selected'}` }>
 
             <Row>
               <Col

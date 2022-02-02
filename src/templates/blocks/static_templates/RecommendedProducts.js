@@ -58,10 +58,10 @@ const RecommendedProducts = () => {
                   height = {width >= 992 ? 363.933 : 273.05}
                 /> :
                 <>
-                  {products?.map((product, i) => {
+                  {products?.map(product => {
                     return (
                       <ProductsMultiColumnVertical
-                        key = { i }
+                        key = { `RecommendedProducts_${product?.product_id}` }
                         className="bg-white rounded-10 shadow-y-2"
                         product={product}
                         allDetails

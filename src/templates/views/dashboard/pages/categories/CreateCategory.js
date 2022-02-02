@@ -72,7 +72,7 @@ const CreateCategory = ({ formRef }) => {
           return (
             <CustomPanel
               header={subCategory?.category}
-              key={ categoryId }
+              key={ `CreateCategory_subCategories_${categoryId}` }
               showArrow={!!subCategory?.subcategories}
               categoryId={categoryId}
               categoryName={subCategory?.category}
@@ -116,7 +116,7 @@ const CreateCategory = ({ formRef }) => {
                   return (
                     <CustomPanel
                       header={category?.category}
-                      key={ categoryId }
+                      key={ `CreateCategory_categories_${categoryId}` }
                       showArrow={!!category?.subcategories}
                       categoryId={categoryId}
                       categoryName={category?.category}

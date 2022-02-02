@@ -55,7 +55,7 @@ const CategoryOneColumn = (props) => {
             Object.values(feature?.variants).map(variant => {
               const featureColor = (variant.variant_color).toString().trim().toLowerCase().replaceAll(" ", "-")
               return(
-                <span key={`features_variants_${variant.variant_id}`}>
+                <span key={`CategoryOneColumn_PrdFeatures_MULTIPLE_CHECKBOX_${variant.variant_id}`}>
                   <span className={`colorFeature--icon ${featureColor} align-middle`} /> <span className="colorFeature--title align-middle">{variant.variant}</span> &nbsp;&nbsp;
                 </span>
               );
@@ -66,7 +66,7 @@ const CategoryOneColumn = (props) => {
           return (
             Object.values(feature?.variants).map(variant => {
               return(
-                <span key={`features_variants_${variant.variant_id}`} className="feature--multiple">
+                <span key={`CategoryOneColumn_PrdFeatures_MULTIPLE_CHECKBOX_${variant.variant_id}`} className="feature--multiple">
                   {variant.variant}
                 </span>
               );
@@ -148,7 +148,7 @@ const CategoryOneColumn = (props) => {
                     .slice(0, 6)
                     .map(([key, feature]) => {
                       return(
-                        <Col key={`features_${key}`}>
+                        <Col key={`productsOneColumnVerticalFeatures_xl_${key}`}>
                           <div className="w-100 text-truncate">
                             <span className="features--variant">{ feature?.description }{ feature?.suffix && ` (${feature?.suffix})` } :</span> <span className="features--value">{FeatureVariant(feature)}</span>
                           </div>
@@ -170,7 +170,7 @@ const CategoryOneColumn = (props) => {
                     .slice(0, 4)
                     .map(([key, feature]) => {
                       return(
-                        <Col key={`features_${key}`}>
+                        <Col key={`productsOneColumnVerticalFeatures_xs_${key}`}>
                           <div className="w-100 text-truncate">
                             <span className="features--variant">{ feature?.description }{ feature?.suffix && ` (${feature?.suffix})` } :</span> <span className="features--value">{FeatureVariant(feature)}</span>
                           </div>
