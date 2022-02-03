@@ -94,7 +94,7 @@ const Pricing = (
           planPrice={price}
         >
           <span className={ `planCheckBox ${checked}` }>
-            {t('please_check')}
+            {t('choose')}
           </span>
         </Checkbox>
       </Col>
