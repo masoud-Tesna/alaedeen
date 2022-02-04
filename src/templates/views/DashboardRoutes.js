@@ -28,8 +28,8 @@ const Plans = asyncComponent(() =>
   import('./dashboard/pages/plans').then(module => module.default)
 );
 
-const Checkout = asyncComponent(() =>
-  import('./dashboard/pages/payment/Checkout').then(module => module.default)
+const Result = asyncComponent(() =>
+  import('./dashboard/pages/payment/Result').then(module => module.default)
 );
 
 const DashboardRoutes = () => ([
@@ -51,7 +51,7 @@ const DashboardRoutes = () => ([
 
   <Route exact path="/dashboard/plans" element={<Plans />} />,
 
-  <Route exact path="/dashboard/payment/checkout" element={<Checkout />} />,
+  <Route exact path="/dashboard/payment/result" element={<Result />} />,
 
 ]);
 
