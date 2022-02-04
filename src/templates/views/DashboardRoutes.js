@@ -28,6 +28,10 @@ const Plans = asyncComponent(() =>
   import('./dashboard/pages/plans').then(module => module.default)
 );
 
+const Checkout = asyncComponent(() =>
+  import('./dashboard/pages/payment/Checkout').then(module => module.default)
+);
+
 const DashboardRoutes = () => ([
   <Route exact path="/dashboard" element={<Plans />} />,
 
@@ -46,6 +50,8 @@ const DashboardRoutes = () => ([
   <Route exact path="/dashboard/categories/:categoryId" element={<>Edit Category</>} />,
 
   <Route exact path="/dashboard/plans" element={<Plans />} />,
+
+  <Route exact path="/dashboard/payment/checkout" element={<Checkout />} />,
 
 ]);
 
