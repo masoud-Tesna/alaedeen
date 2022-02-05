@@ -18,8 +18,6 @@ import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 import fa from "moment/locale/fa";
 import TextTruncate from "react-text-truncate";
 import { Link } from "react-router-dom";
-import React from "react";
-
 
 const News = () => {
 
