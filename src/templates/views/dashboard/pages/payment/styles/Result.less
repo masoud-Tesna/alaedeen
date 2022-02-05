@@ -1,0 +1,188 @@
+@import '../../../../../styles/Mixins';
+
+html:lang(fa),
+html:lang(ar) {
+  .paymentResult--container {
+    .invoice {
+      .orderDetails{
+        .__variable {
+          text-align: left;
+
+          span {
+            &:after {
+              margin: 0 .6rem 0 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.paymentResult--container {
+  padding: 0 3rem;
+  .paymentResult {
+    span {
+      font-size: 2.5rem;
+      font-weight: 600;
+
+      .anticon {
+        animation: blinkMe 2s linear infinite;
+        vertical-align: middle;
+
+        svg {
+          font-size: 6rem;
+          margin: .5rem;
+        }
+      }
+    }
+  }
+
+  .invoice {
+    padding: 0 3rem;
+    margin-bottom: 5rem;
+
+    .__caption {
+      font-weight: 700;
+      font-size: 2rem;
+      color: #333333;
+      border-bottom: 1px solid #BCBCBC;
+      padding-bottom: .7rem;
+    }
+
+    .orderDetails {
+      .__variable {
+        text-align: right;
+
+        span {
+          font-size: 1.8rem;
+          font-weight: 700;
+
+          &:after {
+            margin: 0 0 0 .6rem;
+            content: ':';
+            position: relative;
+            top: -0.5px;
+          }
+        }
+      }
+
+      .__value {
+        span,
+        time {
+          font-size: 1.6rem;
+          font-weight: 600;
+        }
+
+        .ant-statistic {
+          margin-top: -.5rem;
+        }
+      }
+    }
+
+    .orderData {
+      margin-top: 5rem;
+
+      .chosen--plans { // for plans and pricing data
+        .chosen--plans__table {
+          & > div {
+            border: 1px solid #BCBCBC;
+            border-radius: 5px;
+          }
+
+          .__head {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #BCBCBC;
+
+            & > .ant-col {
+              padding: 0 1.5rem;
+              color: #333333;
+              font-weight: 700;
+              font-size: 1.6rem;
+
+              &:not(:last-child) {
+                border-right: 1px solid #BCBCBC;
+              }
+            }
+          }
+
+          .__body {
+            & > .ant-col {
+              padding: 1rem 0;
+
+              &:nth-child(odd) {
+                background-color: #EFEFEF;
+              }
+
+              &:not(:last-child) {
+                border-bottom: 1px solid #BCBCBC;
+              }
+            }
+
+            .__data {
+
+              .ant-skeleton {
+                width: 100%;
+              }
+
+              & > .ant-col {
+                padding: 0 1.5rem;
+              }
+
+              .__plan,
+              .__price,
+              .__price span {
+                font-weight: 600;
+                font-size: 1.5rem;
+                color: #333333;
+              }
+
+              .__tax,
+              .__taxPrice span {
+                color: #000000;
+                font-weight: 700;
+                font-size: 1.8rem;
+              }
+
+              &.--total {
+                .__plan,
+                .__price,
+                .__price span {
+                  font-weight: 700;
+                  font-size: 1.8rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .unsuccessful {
+    .__item,
+    .__item.--msg span {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #333333;
+    }
+
+    .__item.--msg {
+      & span + span {
+        color: #a61d24;
+      }
+    }
+  }
+}
+
+@keyframes blinkMe {
+  0% {
+    opacity: .5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: .5;
+  }
+}
