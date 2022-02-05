@@ -80,7 +80,7 @@ const News = () => {
                         <Col span={7} className="text-8b news-date">
                           <i className="fal fa-clock align-middle" />
                           {config.language === 'fa'
-                            ? moment.unix(1640809800).format('jDD jMMM jYYYY')
+                            ? moment.unix(page?.timestamp).format('jDD jMMMM jYYYY')
                             : <Moment format="DD MMM, YYYY" unix locale="en">{page?.timestamp}</Moment>
                           }
                         </Col>
