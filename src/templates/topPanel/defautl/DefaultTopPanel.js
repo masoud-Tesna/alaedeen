@@ -408,11 +408,11 @@ const DefaultTopPanel = ({ pathName }) => {
                 </span>
               </a>
 
-              <a className="topPanel--content__item hover" href="https://alaedeen.com/horn/create-ticket" target="_blank" rel="noreferrer">
+              {/*<a className="topPanel--content__item hover" href="https://alaedeen.com/horn/create-ticket" target="_blank" rel="noreferrer">
                 <span className="topPanel--item__text">
                   {t(__('Free consultation'))}
                 </span>
-              </a>
+              </a>*/}
             </Space>
           </Col>
 
