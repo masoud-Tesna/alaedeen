@@ -172,7 +172,7 @@ const Register = () => {
           okText = 'الان ثبت میکنم'
           cancelText = 'بعدا'
           onCancel={() => navigate("/")}
-          onOk={() => window.location.replace("https://alaedeen.com/horn/profile-settings/")}
+          onOk={() => navigate('/dashboard/account/manufacturer-information')}
           maskClosable={false}
         >
           <p className="text-33 vv-font-size-1-7">

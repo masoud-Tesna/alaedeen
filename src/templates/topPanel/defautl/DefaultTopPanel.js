@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import './styles/DefaultTopPanel.less';
 
 // Ant Design Import:
-import { Row, Col, Divider, Space, Collapse, Drawer, Skeleton } from 'antd';
+import { Row, Col, Divider, Space, Collapse, Drawer, Skeleton, Menu } from 'antd';
 import { DownOutlined } from "@ant-design/icons";
 
 // import alaedeen character:
@@ -235,16 +235,18 @@ const DefaultTopPanel = ({ pathName }) => {
                       </Row>
                     </Link>
 
-                    <a className="menuXs--sideNavLinks__item d-block" href="https://alaedeen.com/horn/profile-settings/" >
-                      <Row justify={"space-between"}>
-                        <Col className="text-center" span={5}>
-                          <i className="fal fa-user-cog text-primary vv-font-size-3" />
-                        </Col>
-                        <Col span={18} className="my-auto">
-                          <span className="text-70 vv-font-size-1-6">{t(__('profile settings'))}</span>
-                        </Col>
-                      </Row>
-                    </a>
+                    {(user_data?.auth?.plan_id === "8") &&
+                      <Link className="menuXs--sideNavLinks__item d-block" to={"/dashboard"} >
+                        <Row justify={"space-between"}>
+                          <Col className="text-center" span={5}>
+                            <i className="fal fa-user-cog text-primary vv-font-size-3" />
+                          </Col>
+                          <Col span={18} className="my-auto">
+                            <span className="text-70 vv-font-size-1-6">{t(__('dashboard'))}</span>
+                          </Col>
+                        </Row>
+                      </Link>
+                    }
 
                     <a className="menuXs--sideNavLinks__item d-block" href="https://alaedeen.com/horn/my-tickets/" >
                       <Row justify={"space-between"}>
