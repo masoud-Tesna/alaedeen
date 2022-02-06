@@ -38,7 +38,6 @@ import ReadyToShip from "./templates/views/ReadyToShip";*/
 
 import { useGetAuthState } from "./contexts/user/UserContext";
 
-import "@babel/polyfill";
 import DashboardRoutes from "./templates/views/DashboardRoutes";
 import DashboardMain from "./templates/views/dashboard/templates/DashboardMain";
 
