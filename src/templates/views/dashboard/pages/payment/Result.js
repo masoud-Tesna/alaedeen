@@ -161,11 +161,11 @@ const Result = () => {
                   <Col span={24}>
                     <Row className="__data" justify="space-between">
                       <Col className="my-auto __tax">
-                        {t('the_amount_payable')} :
+                        {t('amount_paid')} :
                       </Col>
 
                       <Col className="my-auto __taxPrice">
-                        <Statistic value={order?.total_price} />
+                        <Statistic value={order?.total_price / 10} />
                       </Col>
                     </Row>
                   </Col>
