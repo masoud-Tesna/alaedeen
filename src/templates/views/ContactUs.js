@@ -163,7 +163,7 @@ const ContactUs = () => {
                               },
                             ]}>
                             <Input
-                              placeholder={ t("firs_name_and_last_name") }
+                              placeholder={ t("first_name_and_last_name") }
                             />
                           </Form.Item>
                         </Col>
