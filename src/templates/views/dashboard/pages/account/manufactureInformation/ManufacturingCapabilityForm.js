@@ -8,7 +8,6 @@ const ManufacturingCapabilityForm = (
   {
     formRef,
     handleSubmitForm,
-    handlePrevTab,
     handleUploadImage,
     handleOnRemoveImage,
     handleImageUploadChange,
@@ -534,15 +533,9 @@ const ManufacturingCapabilityForm = (
         </Col>
 
         <Col span={24} className="stepChangeCurrent--content">
-          <Space size="large">
-            <Button onClick={() => handlePrevTab()}>
-              { t('previous') }
-            </Button>
-
-            <Button type="primary" onClick={() => handleBeforeSubmitForm()}>
-              { t('submit_and_next') }
-            </Button>
-          </Space>
+          <Button type="primary" onClick={() => handleBeforeSubmitForm()}>
+            { t('submit_and_next') }
+          </Button>
         </Col>
       </Row>
     </Form>

@@ -8,7 +8,6 @@ const SupportForm = (
   {
     formRef,
     handleSubmitForm,
-    handlePrevTab,
     handleUploadImage,
     countryLists
   }
@@ -153,15 +152,9 @@ const SupportForm = (
         </Col>
 
         <Col span={24} className="stepChangeCurrent--content">
-          <Space size="large">
-            <Button onClick={() => handlePrevTab()}>
-              { t('previous') }
-            </Button>
-
-            <Button type="primary" onClick={() => handleBeforeSubmitForm()}>
-              { t('submit_and_finish') }
-            </Button>
-          </Space>
+          <Button type="primary" onClick={() => handleBeforeSubmitForm()}>
+            { t('submit_and_finish') }
+          </Button>
         </Col>
       </Row>
     </Form>

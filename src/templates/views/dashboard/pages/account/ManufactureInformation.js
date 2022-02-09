@@ -70,16 +70,6 @@ const ManufactureInformation = () => {
     return () => clearTimeout(scrollTopTimer);
   };
 
-  const handlePrevTab = () => {
-    setCurrentTab(prev => (parseInt(prev) - 1).toString());
-
-    const scrollTopTimer = setTimeout(() => {
-      scrollTop();
-    }, 100);
-
-    return () => clearTimeout(scrollTopTimer);
-  };
-
   // get data from API:
   const {data: officeSizesData} = useGetApi("get-profile-field-value-api", "field_id=8", "officeSizes");
   const officeSizes = officeSizesData || [];
@@ -224,8 +214,6 @@ const ManufactureInformation = () => {
       })
   }
 
-  console.log(currentTab)
-
   return (
     <Row>
 
@@ -264,7 +252,6 @@ const ManufactureInformation = () => {
           <TabPane className="manufacturingTab--content" tab={t(__("manufacturing_capability"))} key="2">
               <ManufacturingCapabilityForm
                 formRef={manufacturingCapabilityFrm}
-                handlePrevTab={handlePrevTab}
                 handleSubmitForm={handleSubmitForm}
                 handleUploadImage={handleUploadImage}
                 handleOnRemoveImage={handleOnRemoveImage}
@@ -280,7 +267,6 @@ const ManufactureInformation = () => {
           <TabPane className="manufacturingTab--content" tab={t(__("Export Capability"))} key="3">
             <ExportCapabilityForm
               formRef={exportCapabilityFrm}
-              handlePrevTab={handlePrevTab}
               handleSubmitForm={handleSubmitForm}
               countryLists={countryLists}
               handleUploadImage={handleUploadImage}
@@ -298,7 +284,6 @@ const ManufactureInformation = () => {
           <TabPane className="manufacturingTab--content" tab={t(__("certificates"))} key="4">
             <CertificatesForm
               formRef={certificatesFrm}
-              handlePrevTab={handlePrevTab}
               handleSubmitForm={handleSubmitForm}
               handleUploadImage={handleUploadImage}
               handleOnRemoveImage={handleOnRemoveImage}
@@ -311,7 +296,6 @@ const ManufactureInformation = () => {
           <TabPane className="manufacturingTab--content" tab={t(__("Company Introduction"))} key="5">
             <CompanyIntroductionForm
               formRef={companyIntroductionFrm}
-              handlePrevTab={handlePrevTab}
               handleSubmitForm={handleSubmitForm}
               handleUploadImage={handleUploadImage}
               handleOnRemoveImage={handleOnRemoveImage}
@@ -324,7 +308,6 @@ const ManufactureInformation = () => {
           <TabPane className="manufacturingTab--content" tab={t(__("Support"))} key="6">
             <SupportForm
               formRef={supportFrm}
-              handlePrevTab={handlePrevTab}
               handleSubmitForm={handleSubmitForm}
               handleUploadImage={handleUploadImage}
               countryLists={countryLists}
