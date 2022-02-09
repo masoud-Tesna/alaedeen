@@ -136,7 +136,7 @@ const Plans = () => {
         </Row>
 
         <Row gutter={[0, 20]} className="chosen--plans">
-          <Col span={24} className="__caption">Your chosen plan(s):</Col>
+          <Col span={24} className="__caption">{t("your_chosen_plan")}:</Col>
           {planIds?.length ?
             <>
               <Col span={24} className="chosen--plans__table">
