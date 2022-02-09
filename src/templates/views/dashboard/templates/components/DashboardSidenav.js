@@ -137,11 +137,11 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
                 { t('manufacturer_information') }
               </Link>
             </Item>
-            <Item key="password-reset">
+            {/*<Item key="password-reset">
               <Link to="/dashboard/account/password-reset" className="side--link">
                 { t('password_reset') }
               </Link>
-            </Item>
+            </Item>*/}
           </SubMenu>
 
           <SubMenu key="products" icon={<i className="fab fa-product-hunt " />} title={ t('products_and_categories') }>
