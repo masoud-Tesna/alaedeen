@@ -6,7 +6,6 @@ import { Col, Row, Statistic } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import React from "react";
 import { useGetApi, useQueryString } from "../../../../../functions";
-import { useLocation } from "react-router-dom";
 import { CheckCircleTwoTone, WarningTwoTone } from "@ant-design/icons";
 import Moment from "react-moment";
 import moment from "moment-jalaali";
@@ -30,8 +29,6 @@ const Result = () => {
 
   // initial for work in URL:
   const query = useQueryString();
-  /*const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);*/
 
   // get Url parameters:
   const orderType = query.get("type");
@@ -46,7 +43,7 @@ const Result = () => {
     if (paymentStatus === "C") setGetOrderData(true);
   }, [paymentStatus]);
 
-  const {isLoading, data} = useGetApi("order-data-api", `order_id=${orderId}&order_type=${orderType}`, `orderData_${orderId}_${orderType}`, {
+  const {isLoading, data} = useGetApi("order-data-api", `order_id=${orderId}&order_type=${orderType}&company_id=${user_data?.auth?.company_id}`, `orderData_${orderId}_${orderType}`, {
     enabled: getOrderData,
     refetchOnWindowFocus: false
   });
