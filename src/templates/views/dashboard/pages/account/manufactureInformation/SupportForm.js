@@ -56,7 +56,7 @@ const SupportForm = (
                 inputName : 99,
                 for_agent: true
               })}
-              uploadBtnText="select logo"
+              uploadBtnText="select image"
               uploadBtnIcon={<UploadOutlined />}
               customClassName="addProduct--imageUploader"
             />
