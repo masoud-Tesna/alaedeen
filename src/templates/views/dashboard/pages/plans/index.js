@@ -62,27 +62,34 @@ const Plans = () => {
       company_id: +(user_data?.auth?.company_id),
       plans: planIds
     };
+    let canPostData = false;
 
-    // show spinner (spinner context):
-    spinnerDispatch(isLoadingAction(true));
+    canPostData = (values?.plans?.length && values?.company_id) ? true : false;
 
-    axios.post(`https://alaedeen.com/horn/plans-pay-api`, { ...values })
-      .then(res => {
-        if (res?.data?.status === 100) {
-          setPayLink(res?.data?.payLink);
-        } else {
+    if (canPostData) {
+
+      // show spinner (spinner context):
+      spinnerDispatch(isLoadingAction(true));
+
+      axios.post(`https://alaedeen.com/horn/plans-pay-api`, { ...values })
+        .then(res => {
+          if (res?.data?.status === 100) {
+            setPayLink(res?.data?.payLink);
+          } else {
+            // hidden spinner (spinner context):
+            spinnerDispatch(isLoadingAction(false));
+
+            console.log(res?.date);
+          }
+        })
+        .catch(err => {
           // hidden spinner (spinner context):
           spinnerDispatch(isLoadingAction(false));
 
-          console.log(res?.date);
-        }
-      })
-      .catch(err => {
-        // hidden spinner (spinner context):
-        spinnerDispatch(isLoadingAction(false));
+          console.log(err);
+        })
 
-        console.log(err);
-      })
+    }
   }
 
   useEffect(() => {
