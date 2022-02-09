@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Row, Select, Space, Switch } from "antd";
+import { Button, Col, Form, Input, Row, Select, Switch } from "antd";
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../../../../functions/Helper";
 import ImagesUploader from "../../../../../common/ImagesUploader";
