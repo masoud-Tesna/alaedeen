@@ -62,9 +62,8 @@ const Plans = () => {
       company_id: +(user_data?.auth?.company_id),
       plans: planIds
     };
-    let canPostData = false;
 
-    canPostData = (values?.plans?.length && values?.company_id) ? true : false;
+    const canPostData = !!(values?.plans?.length && values?.company_id);
 
     if (canPostData) {
 
