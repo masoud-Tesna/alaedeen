@@ -266,6 +266,7 @@ const CompanyIntroductionForm = (
                     <DatePicker
                       picker="month"
                       className="w-100"
+                      placeholder={t("month")}
                     />
                   </Form.Item>
                 </Input.Group>

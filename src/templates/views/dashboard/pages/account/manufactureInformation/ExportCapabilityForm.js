@@ -277,6 +277,7 @@ const ExportCapabilityForm = (
             <DatePicker
               picker="year"
               className="w-30"
+              placeholder={t("year")}
             />
           </Form.Item>
 
