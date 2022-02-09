@@ -103,6 +103,7 @@ const CompanyDetailsForm = (
             name={['profile_fields', "6"]}
             label={t(__('Company Website Url'))}
             labelCol={{sm: 24, lg: 6}}
+            className="websiteUrl"
           >
             <Input
               addonBefore="https://"

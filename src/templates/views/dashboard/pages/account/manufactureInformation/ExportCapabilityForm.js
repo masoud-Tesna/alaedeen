@@ -74,8 +74,9 @@ const ExportCapabilityForm = (
           <Form.Item
             name={['profile_fields', "96"]}
             label={t(__('Exports Description'))}
-            extra={t(__(' Please briefly describe your export history'))}
+            extra={t(__('Please briefly describe your export history'))}
             labelCol={{sm: 24, lg: 6}}
+            className="textAreaByExtraText"
           >
             <TextArea
               placeholder={t(__('Exports Description'))}
