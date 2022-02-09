@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Row, Select, Space, Switch } from "antd";
+import { Button, Col, Form, Input, Row, Select, Switch } from "antd";
 import { __ } from "../../../../../../functions/Helper";
 import { useTranslation } from "react-i18next";
 import ImagesUploader from "../../../../../common/ImagesUploader";
@@ -79,7 +79,7 @@ const ManufacturingCapabilityForm = (
               </Form.Item>
 
               <Form.Item
-                label="Process pictures"
+                label={t(__('Process pictures'))}
                 valuePropName="fileList"
                 labelCol={{sm: 24, lg: 6}}
               >
