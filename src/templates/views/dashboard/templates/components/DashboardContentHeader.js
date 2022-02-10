@@ -4,10 +4,20 @@ import { Button, Col, Row } from "antd";
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../../../functions/Helper";
 
-import { DashboardDrawerContext } from "../../templates/DashboardMain";
+import { DashboardDrawerContext } from "../DashboardMain";
 import { Link } from "react-router-dom";
 
-const DashboardContentHeader = ({page, linkText, linkHref, linkOnClick, linkIcon}) => {
+const DashboardContentHeader = (
+  {
+    page,
+    hasLink = false,
+    linkData = {},
+    hasBtn = false,
+    btnData = {},
+    hasStat = false,
+    stat
+  }
+) => {
 
   const { t } = useTranslation();
 
@@ -28,19 +38,19 @@ const DashboardContentHeader = ({page, linkText, linkHref, linkOnClick, linkIcon
 
       </Col>
 
-      {(linkText || linkIcon) &&
+      {(hasLink || hasBtn) &&
         <Col className="d-none d-lg-block dashboardContentHeader--extraLink">
-          {linkHref &&
-            <Link to={linkHref}>
-              <Button className="product--add__link" icon={linkIcon} >
-                {t(__(linkText))}
+          {hasLink &&
+            <Link to={linkData?.href}>
+              <Button className="product--add__link" icon={linkData?.icon} >
+                {t(__(linkData?.text))}
               </Button>
             </Link>
           }
 
-          {linkOnClick &&
-            <Button onClick={linkOnClick} className="product--add__link" icon={linkIcon} >
-              {t(__(linkText))}
+          {hasBtn &&
+            <Button onClick={btnData?.handleOnClick} className="product--add__link" icon={btnData?.icon} >
+              {t(__(btnData?.text))}
             </Button>
           }
         </Col>
