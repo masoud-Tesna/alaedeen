@@ -101,7 +101,17 @@ const ManageCategories = () => {
       </Modal>
 
       <Col span={24}>
-        <DashboardContentHeader page={"manage categories"} linkText={"create_category"} linkOnClick={handleOnClickCreateCategory} linkIcon={<PlusOutlined />} />
+        <DashboardContentHeader
+          page={"manage categories"}
+          hasBtn={true}
+          btnData={
+            {
+              text: "create_category",
+              handleOnClick: handleOnClickCreateCategory,
+              icon:  <PlusOutlined />
+            }
+          }
+        />
       </Col>
 
       <Col span={24} className="categoryManage--table">
