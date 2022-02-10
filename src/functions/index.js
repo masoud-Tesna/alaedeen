@@ -6,6 +6,7 @@ import axios from "axios";
 
 import { useQuery } from "react-query";
 import { useGetConfig } from "../contexts/config/ConfigContext";
+import { useGetAuthState } from "../contexts/user/UserContext";
 
 export function useGetTopRankingProducts(cat1, cat2, cat3) {
   const [load, setLoad] = useState(true);
@@ -77,6 +78,17 @@ export function useGetApi(mode, params, key, options) {
   return useQuery(['getApi', queryKey], getApi, {
     ...options
   });
+}
+
+export const useGetProductsLimitStat = () => {
+
+  const { user_data } = useGetAuthState();
+
+  const company_id = user_data?.auth?.company_id;
+
+  const {isLoading, isFetching, data, refetch} = useGetApi('products-limit-stat-api', `company_id=${company_id}`, `products_limit_stat_${user_data?.auth?.company_id}`, { enabled:  !!company_id, refetchOnWindowFocus: false });
+
+  return {isLoading, isFetching, data, refetch};
 }
 
 // function for sign in by email and password:
