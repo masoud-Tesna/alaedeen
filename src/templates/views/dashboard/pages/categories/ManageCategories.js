@@ -28,14 +28,15 @@ const ManageCategories = () => {
   const company_id = user_data?.auth?.company_id;
 
   const { isLoading, data: categoriesData, refetch: refetchCategoryList } = useGetApi(
+
     'vendor-categories-api',
     `company_id=${company_id}`,
-    `vendor-categories_${user_data?.auth?.company_id}`,
+    `vendor-categories_${company_id}`,
     {
       enabled:  !!company_id,
       refetchOnWindowFocus: false
-      }
-    );
+    }
+  );
 
   const categories = categoriesData || {};
 
