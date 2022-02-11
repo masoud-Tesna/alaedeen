@@ -4,12 +4,13 @@ import { Button, Col, Empty, Popconfirm, Row, Skeleton } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../../../functions/Helper";
-import { useGetApi } from "../../../../../functions";
+import { useGetApi, useGetProductsLimitStat } from "../../../../../functions";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 import ShowResponsiveImage from "../../../../common/ShowResponsiveImage";
 import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
 import React from "react";
 import { Link } from "react-router-dom";
+import ProductsLimitStat from "../components/ProductsLimitStat";
 
 const ManageProducts = () => {
 
@@ -19,9 +20,13 @@ const ManageProducts = () => {
 
   const company_id = user_data?.auth?.company_id;
 
-  const {isLoading, data: productsData} = useGetApi('vendor-products-api', `company_id=${company_id}`, `vendor_products_${user_data?.auth?.company_id}`, { enabled:  !!company_id});
+  const {isLoading, data: productsData} = useGetApi('vendor-products-api', `company_id=${company_id}`, `vendor_products_${user_data?.auth?.company_id}`, { enabled: !!company_id });
 
   const {products} = productsData || {};
+
+  const { isLoading: productsLimitIsLoading, isFetching: productsLimitIsFetching, data: productsLimitData } = useGetProductsLimitStat();
+
+  const productsLimitStat = productsLimitData || {};
 
   const handleRemoveProduct = (productId) => {
     console.log(productId);
@@ -40,7 +45,16 @@ const ManageProducts = () => {
               icon:  <PlusOutlined />
             }
           }
+          hasStat={true}
+          stat={
+            <ProductsLimitStat
+              productsLimitStat = {productsLimitStat}
+              isLoading = {productsLimitIsLoading}
+              isFetching = {productsLimitIsFetching}
+            />
+          }
         />
+
       </Col>
 
       <Col span={24} className="productManage--table">

@@ -38,7 +38,35 @@ const DashboardContentHeader = (
 
       </Col>
 
-      {(hasLink || hasBtn) &&
+      {hasStat &&
+        <Col span={12}>
+          <Row gutter={10} justify="end">
+            <Col className="dashboardContentHeader--stat my-auto" flex="1 1">
+              {stat}
+            </Col>
+
+            {(hasLink || hasBtn) &&
+              <Col className="d-none d-lg-block dashboardContentHeader--extraLink">
+              {hasLink &&
+              <Link to={linkData?.href}>
+                <Button className="product--add__link" icon={linkData?.icon} >
+                  {t(__(linkData?.text))}
+                </Button>
+              </Link>
+              }
+
+              {hasBtn &&
+              <Button onClick={btnData?.handleOnClick} className="product--add__link" icon={btnData?.icon} >
+                {t(__(btnData?.text))}
+              </Button>
+              }
+            </Col>
+            }
+          </Row>
+        </Col>
+      }
+
+      {(!hasStat && (hasLink || hasBtn)) &&
         <Col className="d-none d-lg-block dashboardContentHeader--extraLink">
           {hasLink &&
             <Link to={linkData?.href}>
