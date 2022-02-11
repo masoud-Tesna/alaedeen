@@ -1,0 +1,25 @@
+@import '../../../../../styles/Mixins';
+
+.productsLimitStat--progress {
+  .ant-progress {
+    display: flex;
+    flex-flow: row wrap;
+
+    .ant-progress-outer {
+      margin: 0;
+      padding: 0;
+      flex: 1 1 0%;
+      position: relative;
+      max-width: 100%;
+      min-height: 1px;
+      display: block;
+    }
+
+    .ant-progress-text {
+      width: auto;
+      display: block;
+      margin: auto 0;
+      padding: 0 .9rem;
+    }
+  }
+}
