@@ -76,7 +76,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   }
 
   // submenu keys of first level
-  const rootSubmenuKeys = ['dashboard', 'language', 'account', 'products', 'plans'];
+  const rootSubmenuKeys = ['dashboard', 'language', 'account', 'support', 'products', 'plans'];
 
   const [openKeys, setOpenKeys] = useState([mainPage]);
 
@@ -143,6 +143,12 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
               </Link>
             </Item>*/}
           </SubMenu>
+
+          <Menu.Item key="support"  icon={ <i className="fal fa-user-headset" /> }>
+            <a href="https://alaedeen.com/horn/my-tickets/" className="side--link">
+              { t('support') }
+            </a>
+          </Menu.Item>
 
           <SubMenu key="products" icon={<i className="fab fa-product-hunt " />} title={ t('products_and_categories') }>
             <Item key="manageProducts">
