@@ -197,7 +197,7 @@ const CreateProduct = () => {
     // show spinner (spinner context):
     spinnerDispatch(isLoadingAction(true));
 
-    axios.post(`https://alaedeen.com/horn/create-product-api`, { product_data: values })
+    axios.post(`https://alaedeen.com/horn/vendor-products-api`, { product_data: values })
       .then(() => {
         // hidden spinner (spinner context):
         spinnerDispatch(isLoadingAction(false));
@@ -370,7 +370,7 @@ const CreateProduct = () => {
 
                   <Form.Item
                     name="images"
-                    label="product images"
+                    label={ t(__('product images')) }
                     valuePropName="fileList"
                     labelCol={{sm: 24, lg: 5}}
                   >
