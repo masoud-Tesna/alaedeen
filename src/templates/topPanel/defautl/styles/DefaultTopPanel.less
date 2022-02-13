@@ -1,24 +1,35 @@
+// import Mixin:
+@import '../../../styles/Mixins';
+
 html:lang(fa),
 html:lang(ar) {
   .topPanel--col > .ant-row-rtl,
   .topPanel--col .ant-space-rtl {
     direction: ltr;
-  }
 
-  .topPanel--col .ant-space-rtl {
-    .ant-space-item {
-      &:not(:last-child) {
-        margin-right: 16px;
-        margin-left: 0 !important;
-      }
+    @media (min-width: @screen-md) {
+      direction: rtl !important;
     }
   }
 
-  .topPanel--content__right .ant-space-rtl {
-    .ant-space-item {
-      &:not(:last-child) {
-        margin-right: 0.5px;
-        margin-left: 0 !important;
+  .topPanel--col .ant-space-rtl {
+    //
+  }
+
+  .topPanel--content__right {
+    text-align: left !important;
+
+    .ant-space-rtl {
+      .ant-space-item {
+        &:not(:last-child) {
+          margin-right: 0.5px;
+          margin-left: 0 !important;
+
+          @media (min-width: @screen-md) {
+            margin-right: 0 !important;
+            margin-left: 0.5px !important;
+          }
+        }
       }
     }
   }
@@ -27,6 +38,11 @@ html:lang(ar) {
     right: unset !important;
     left: 0 !important;
     padding-top: 0 !important;
+
+    @media (min-width: @screen-md) {
+      //margin-right: 0 !important;
+      //margin-left: 16px !important;
+    }
   }
 
   .topPanel--col__logoXSRow,
@@ -252,7 +268,7 @@ html:lang(ar) {
   }
 }*/
 
-@media (min-width: 992px) {
+@media (min-width: @screen-md) {
   .topPanel--container {
     height: 41px;
   }

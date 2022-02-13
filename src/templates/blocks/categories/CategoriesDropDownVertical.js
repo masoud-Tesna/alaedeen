@@ -1,5 +1,4 @@
-// import Style LESS File:
-import './styles/CategoriesMultiColumn.less';
+
 
 import { Dropdown, Menu } from "antd";
 import { DownOutlined } from "@ant-design/icons";
@@ -46,11 +45,11 @@ const CategoriesDropDownVertical = ({ userClass }) => {
   const { t } = useTranslation();
 
   return (
-    <Dropdown className={ userClass } overlay={CategoriesContent()} trigger={['click']}>
+    <Dropdown className={ `${userClass} topPanelCategoriesDropDown` } overlay={CategoriesContent()} trigger={['click']}>
       <span className="vv-cursor-pointer" onClick={e => e.preventDefault()}>
-        <i className="fal fa-list-ul mr-3 vv-font-size-2" />
+        <i className="fal fa-list-ul vv-font-size-2" />
         <span className="topPanel--item__text">{t(__('Categories'))}</span>
-        <DownOutlined className="ml-3" />
+        <DownOutlined />
       </span>
     </Dropdown>
   );

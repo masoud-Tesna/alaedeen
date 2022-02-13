@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import './styles/DefaultTopPanel.less';
 
 // Ant Design Import:
-import { Row, Col, Divider, Space, Collapse, Drawer, Skeleton, Menu } from 'antd';
+import { Row, Col, Divider, Space, Collapse, Drawer, Skeleton } from 'antd';
 import { DownOutlined } from "@ant-design/icons";
 
 // import alaedeen character:
@@ -446,13 +446,13 @@ const DefaultTopPanel = ({ pathName }) => {
 
               <Link className="topPanel--content__item home-icon" to={"/"} >
                 <span className="topPanel--item__text">
-                  <i className="fal fa-home text-white vv-font-size-2"></i>
+                  <i className="fal fa-home text-white vv-font-size-2" />
                 </span>
               </Link>
 
               <Link className="topPanel--content__item question-icon" to={"/faq"} >
                 <span className="topPanel--item__text">
-                  <i className="fal fa-question-circle text-white vv-font-size-2"></i>
+                  <i className="fal fa-question-circle text-white vv-font-size-2" />
                 </span>
               </Link>
 
