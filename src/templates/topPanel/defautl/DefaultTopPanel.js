@@ -345,7 +345,7 @@ const DefaultTopPanel = ({ pathName }) => {
                       </Row>
                     </a>*/}
 
-                    <a className="menuXs--sideNavLinks__item d-block" href="https://alaedeen.com/horn/index.php?dispatch=vendor_communication.threads">
+                    {/*<a className="menuXs--sideNavLinks__item d-block" href="https://alaedeen.com/horn/index.php?dispatch=vendor_communication.threads">
                       <Row justify={"space-between"}>
                         <Col className="text-center" span={5}>
                           <i className="fal fa-envelope text-primary vv-font-size-3" />
@@ -354,7 +354,7 @@ const DefaultTopPanel = ({ pathName }) => {
                           <span className="text-70 vv-font-size-1-6">{t(__('Messages'))}</span>
                         </Col>
                       </Row>
-                    </a>
+                    </a>*/}
                   </Space>
                 </Col>
                 <Divider className="border-bc" />

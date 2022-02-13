@@ -80,11 +80,11 @@ const DefaultHeader = ({ pathName }) => {
         </a>
       </Menu.Item>*/}
 
-      <Menu.Item>
+      {/*<Menu.Item>
         <a href="https://alaedeen.com/horn/index.php?dispatch=vendor_communication.threads">
           { t(__('Messages')) }
         </a>
-      </Menu.Item>
+      </Menu.Item>*/}
 
       <Menu.Item>
         <a href="https://alaedeen.com/horn/wishlist/">
