@@ -12,8 +12,15 @@ import {
 } from "../../../../common/FeatureTypeConst";
 import ShowResponsiveImage from "../../../../common/ShowResponsiveImage";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
-const ProductAssignFeatures = ({category_id}) => {
+const ProductAssignFeatures = (
+  {
+    category_id,
+    featuresData = {},
+    formRef
+  }
+) => {
 
   const { Option } = Select;
   const { Title } = Typography;
@@ -21,13 +28,15 @@ const ProductAssignFeatures = ({category_id}) => {
   const { t } = useTranslation();
 
   // get Feature list from API:
+  const { isLoading: featuresIsLoading, data } = useGetApi(`feature-list-api`, `category_id=${category_id}`, `features_${category_id}`, { enabled: !!category_id, refetchOnWindowFocus: false });
 
-  /*const { isLoading: featuresIsLoading, data: featuresData } = useGetApi(`feature-list-api`, `category_id=942`, `features_${category_id}`);*/
+  const { features } = data || [];
 
-  const { isLoading: featuresIsLoading, data: featuresData } = useGetApi(`feature-list-api`, `category_id=${category_id}`, `features_${category_id}`, { enabled: !!category_id });
-  const { features } = featuresData || [];
+
+  //console.log(formRef.getFieldsValue())
 
   const featureItem = feature => {
+
     switch (feature?.feature_type) {
       case PrdFeatures_TEXT_FIELD :
         return(
@@ -36,6 +45,7 @@ const ProductAssignFeatures = ({category_id}) => {
             name={['product_features', feature?.feature_id]}
             label={feature?.description}
             labelCol={{sm: 24, lg: 5}}
+            initialValue={featuresData[feature?.feature_id]?.value}
           >
             <Input
               className="w-40"
@@ -51,6 +61,7 @@ const ProductAssignFeatures = ({category_id}) => {
             name={['product_features', feature?.feature_id]}
             label={feature?.description}
             labelCol={{sm: 24, lg: 5}}
+            initialValue={parseFloat(featuresData[feature?.feature_id]?.value_int) || ""}
           >
             <InputNumber
               className="w-40"
@@ -65,6 +76,7 @@ const ProductAssignFeatures = ({category_id}) => {
             name={['product_features', feature?.feature_id]}
             label={feature?.description}
             labelCol={{sm: 24, lg: 5}}
+            initialValue={featuresData[feature?.feature_id]?.variant_id}
           >
             <Select
               placeholder={ feature?.description }
@@ -74,6 +86,7 @@ const ProductAssignFeatures = ({category_id}) => {
               filterOption={(input, option) =>
                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
               }
+              defaultValue={featuresData[feature?.feature_id]?.variant_id}
             >
               {Object.values(feature?.variants).length && Object.values(feature?.variants).map((variant) => {
                 return (
@@ -86,6 +99,8 @@ const ProductAssignFeatures = ({category_id}) => {
 
       case PrdFeatures_MULTIPLE_CHECKBOX :
 
+        const selectedVariants = featuresData[feature?.feature_id]?.variants ? Object.keys(featuresData[feature?.feature_id]?.variants) : [];
+
         if (feature.feature_id === "3247") {
           return (
             <Form.Item
@@ -93,6 +108,7 @@ const ProductAssignFeatures = ({category_id}) => {
               name={['product_features', feature?.feature_id]}
               label={feature?.description}
               labelCol={{sm: 24, lg: 5}}
+              initialValue={selectedVariants}
             >
               <Select
                 mode="multiple"
@@ -104,6 +120,7 @@ const ProductAssignFeatures = ({category_id}) => {
                 filterOption={(input, option) =>
                   option?.children.props?.children[1]?.toLowerCase()?.indexOf(input?.toLowerCase()) >= 0
                 }
+                defaultValue={selectedVariants}
               >
                 {Object.values(feature?.variants).length && Object.values(feature?.variants).map((variant) => {
 
@@ -133,6 +150,7 @@ const ProductAssignFeatures = ({category_id}) => {
               name={['product_features', feature?.feature_id]}
               label={feature?.description}
               labelCol={{sm: 24, lg: 5}}
+              initialValue={selectedVariants}
             >
               <Select
                 mode="multiple"
@@ -144,6 +162,7 @@ const ProductAssignFeatures = ({category_id}) => {
                 filterOption={(input, option) =>
                   option?.children.props?.children[1]?.toLowerCase()?.indexOf(input?.toLowerCase()) >= 0
                 }
+                defaultValue={selectedVariants}
               >
                 {Object.values(feature?.variants).length && Object.values(feature?.variants).map((variant) => {
 
@@ -180,6 +199,7 @@ const ProductAssignFeatures = ({category_id}) => {
               name={['product_features', feature?.feature_id]}
               label={feature?.description}
               labelCol={{sm: 24, lg: 5}}
+              initialValue={selectedVariants}
             >
               <Select
                 mode="multiple"
@@ -191,6 +211,7 @@ const ProductAssignFeatures = ({category_id}) => {
                 filterOption={(input, option) =>
                   option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                 }
+                defaultValue={selectedVariants}
               >
                 {Object.values(feature?.variants).length && Object.values(feature?.variants).map((variant) => {
                   return (
@@ -209,12 +230,15 @@ const ProductAssignFeatures = ({category_id}) => {
         }
 
       case PrdFeatures_SINGLE_CHECKBOX :
+        const selectedCheckbox = featuresData[feature?.feature_id]?.value === "Y" ? true : false
         return (
           <Form.Item
             key={feature?.feature_id}
-            name={['product_features', feature?.feature_id]}
+            name={['product_features', "checkbox", feature?.feature_id]}
             label={feature?.description}
             labelCol={{sm: 24, lg: 5}}
+            valuePropName="checked"
+            initialValue={selectedCheckbox}
           >
             <Checkbox />
           </Form.Item>
@@ -248,7 +272,10 @@ const ProductAssignFeatures = ({category_id}) => {
         Object.values(features).map(feature => {
           return featureItem(feature);
         }) :
-        <div className="features--errorSelectCategory"><Title type="danger" level={4}>{t('select_category_first_msg')}</Title></div>
+
+        <div className="features--errorSelectCategory">
+          <Title type="danger" level={4}>{t('select_category_first_msg')}</Title>
+        </div>
   );
 };
 
