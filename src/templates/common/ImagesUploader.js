@@ -4,7 +4,7 @@ import "./styles/ImagesUploader.less";
 
 import { useTranslation } from "react-i18next";
 import { __, fn_get_base64 } from "../../functions/Helper";
-import { Modal, Upload } from "antd";
+import { Image, Modal, Upload } from "antd";
 
 const ImagesUploader = (
   {
@@ -14,7 +14,8 @@ const ImagesUploader = (
     imageFileList,
     uploadBtnText,
     uploadBtnIcon,
-    customClassName
+    customClassName,
+    hasUpdate = false,
   }
 ) => {
   const { t } = useTranslation();
@@ -55,28 +56,38 @@ const ImagesUploader = (
     </div>
   );
 
-  return (
-    <div className={`imageUploader--container ${customClassName}`}>
-      <Upload
-        accept="image/*"
-        customRequest={handleCustomRequest}
-        onRemove={handleOnRemove}
-        listType="picture-card"
-        onPreview={handleImagePreview}
-        onChange={handleOnChange}
-      >
-        {imageUploadButton}
-      </Upload>
-      <Modal
-        visible={previewImageModalVisible}
-        title={previewImageTitle}
-        footer={null}
-        onCancel={handleClosePreviewImageModal}
-      >
-        <img alt="example" style={{ width: '100%' }} src={previewImage} />
-      </Modal>
-    </div>
-  );
-};
+  let fileListProp = {};
 
-export default ImagesUploader;
+  if (hasUpdate) {
+    fileListProp = {
+      fileList: imageFileList
+    }
+  }
+
+    return (
+      <div className={`imageUploader--container ${customClassName}`}>
+        <Upload
+          accept="image/*"
+          customRequest={handleCustomRequest}
+          onRemove={handleOnRemove}
+          listType="picture-card"
+          {...fileListProp}
+          onPreview={handleImagePreview}
+          onChange={handleOnChange}
+        >
+          {imageUploadButton}
+        </Upload>
+
+        <Modal
+          visible={previewImageModalVisible}
+          title={previewImageTitle}
+          footer={null}
+          onCancel={handleClosePreviewImageModal}
+        >
+          <img alt="example" style={{ width: '100%' }} src={previewImage} />
+        </Modal>
+      </div>
+    );
+  };
+
+  export default ImagesUploader;
