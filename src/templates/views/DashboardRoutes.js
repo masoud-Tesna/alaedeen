@@ -35,6 +35,10 @@ const Result = asyncComponent(() =>
   import('./dashboard/pages/payment/Result').then(module => module.default)
 );
 
+const Affiliate = asyncComponent(() =>
+  import('./dashboard/pages/affiliate').then(module => module.default)
+);
+
 const DashboardRoutes = () => ([
   <Route exact path="/dashboard" element={<Plans />} />,
 
@@ -55,6 +59,8 @@ const DashboardRoutes = () => ([
   <Route exact path="/dashboard/plans" element={<Plans />} />,
 
   <Route exact path="/dashboard/payment/result" element={<Result />} />,
+
+  <Route exact path="/dashboard/Affiliate" element={<Affiliate />} />,
 
 ]);
 
