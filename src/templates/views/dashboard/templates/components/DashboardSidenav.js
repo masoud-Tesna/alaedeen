@@ -76,7 +76,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   }
 
   // submenu keys of first level
-  const rootSubmenuKeys = ['dashboard', 'language', 'account', 'support', 'products', 'plans'];
+  const rootSubmenuKeys = ['dashboard', 'language', 'account', 'support', 'products', 'plans', 'affiliate'];
 
   const [openKeys, setOpenKeys] = useState([mainPage]);
 
@@ -166,6 +166,12 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
           <Menu.Item key="plans"  icon={ <i className="fal fa-box-check" /> }>
             <Link to="/dashboard/plans" className="side--link">
               { t('plans_and_pricing') }
+            </Link>
+          </Menu.Item>
+
+          <Menu.Item key="affiliate"  icon={ <i className="fa-regular fa-users-medical" /> }>
+            <Link to="/dashboard/affiliate" className="side--link">
+              { t('affiliate') }
             </Link>
           </Menu.Item>
         </Menu>
