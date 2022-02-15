@@ -8,9 +8,11 @@ import { useGetApi, useGetProductsLimitStat } from "../../../../../functions";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 import ShowResponsiveImage from "../../../../common/ShowResponsiveImage";
 import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import ProductsLimitStat from "../components/ProductsLimitStat";
+import axios from "axios";
+import { useQuery } from "react-query";
 
 const ManageProducts = () => {
 
@@ -31,6 +33,18 @@ const ManageProducts = () => {
   const handleRemoveProduct = (productId) => {
     console.log(productId);
   }
+
+  /*useEffect(() => {
+    axios.get('https://alaedeen.com/cs_cart/api/products', {
+      mode: 'cors',
+      headers: {
+        Authorization: 'Basic ZGV2ZWxvcG1lbnRAYWxhZWRlZW4uY29tOk4wWUcxUHR3ckUzdjNFeTgzR3k4MDRZMmI1MzlxSU85',
+        Origin:'https://localhost:3000',
+        'Access-Control-Allow-Origin': '*'
+      }
+    })
+      .then(response => console.log(response))
+  }, []);*/
 
   return (
     <Row>
