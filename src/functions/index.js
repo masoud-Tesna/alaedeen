@@ -80,6 +80,31 @@ export function useGetApi(mode, params, key, options) {
   });
 }
 
+export function useGetApiNew(path, params, key, options) {
+
+  // get initial config from context:
+  const { config } = useGetConfig();
+
+  const queryKey = `${key}_${config.language}`;
+
+
+  // async function for get API:
+  async function getApi() {
+    const { data } = await axios.get(`https://alaedeen.com/horn/api/${ path }/`,
+      {
+        params: {
+          ...params,
+          "lang_code" : config.language
+        }
+      });
+    return data;
+  }
+
+  return useQuery(['getApi', queryKey], getApi, {
+    ...options
+  });
+}
+
 export const useGetProductsLimitStat = () => {
 
   const { user_data } = useGetAuthState();
