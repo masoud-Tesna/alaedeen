@@ -1,0 +1,141 @@
+@import '../../../../../styles/Mixins';
+
+html:lang(fa),
+html:lang(ar) {
+  .affiliate--container {
+    .ant-row-rtl,
+    .ant-col-rt,
+    .ant-typography-rtl {
+      direction: ltr;
+    }
+
+    .__title {
+      direction: rtl;
+    }
+  }
+}
+
+.affiliate--container {
+  padding: 0 3rem;
+
+  .getReferral {
+    height: 150px;
+    margin-top: 10rem;
+
+    .--link,
+    .--code {
+      flex: 0 0 42.5%;
+      max-width: 42.5%;
+      @media (min-width: @screen-md) {
+        flex: 0 0 46%;
+        max-width: 46%;
+      }
+      @media (min-width: @screen-xl) {
+        flex: 0 0 44%;
+        max-width: 44%;
+      }
+
+      .__title {
+        font-size: 1.7rem;
+        font-weight: bolder;
+        color: #333333;
+      }
+
+      .__link,
+      .__code {
+        display: block;
+        border: 1px solid @primary-color;
+        border-radius: .7rem;
+        position: relative;
+
+
+        .ant-typography {
+          font-size: 1.7rem;
+          margin: 0;
+          padding: 0 calc(40px + 1.3rem) 0 1.3rem;
+          font-weight: bold;
+          min-height: 44px;
+          line-height: 44px;
+
+          .ant-typography-copy {
+            padding: 0 1.3rem !important;
+            margin: 0 0 0 1.3rem;
+            background-color: #3ba949 !important;
+            border-top-right-radius: .7rem;
+            border-bottom-right-radius: .7rem;
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            display: inline-table !important;
+
+            i {
+              font-size: 2.3rem;
+              color: #333333;
+              display: table-cell;
+              vertical-align: middle;
+              position: relative;
+
+              &.fa-regular.fa-check {
+                color: #FFFFFF;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .--divider {
+      flex: 0 0 15%;
+      max-width: 15%;
+      @media (min-width: @screen-md) {
+        flex: 0 0 8%;
+        max-width: 8%;
+      }
+      @media (min-width: @screen-xl) {
+        flex: 0 0 12%;
+        max-width: 12%;
+      }
+
+      display: table;
+      text-align: center;
+      position: relative;
+      min-height: 1px;
+
+      .__text {
+        position: relative;
+        display: table-cell;
+        vertical-align: middle;
+        font-size: 1.8rem;
+        font-weight: bold;
+
+        &:before, &:after {
+          position: absolute;
+          content: "";
+          width: 1px;
+          left: 50%;
+          border-left: 1px solid #d4d4d4;
+        }
+        &:before {
+          bottom: 50%;
+          top: 0;
+          margin-bottom: 10px;
+        }
+        &:after {
+          top: 50%;
+          bottom: 0;
+          margin-top: 10px;
+        }
+      }
+    }
+
+  }
+
+  .affiliate--stat {
+    .__title {
+      font-size: 1.7rem;
+      font-weight: bold;
+      color: #333333;
+    }
+  }
+}
