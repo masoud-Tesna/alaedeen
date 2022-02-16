@@ -80,6 +80,7 @@ export function useGetApi(mode, params, key, options) {
   });
 }
 
+// TODO: Change All Get Api by useGetApi() change to new API (useGetApiNew()), And remove old get API...
 export function useGetApiNew(path, params, key, options) {
 
   // get initial config from context:
