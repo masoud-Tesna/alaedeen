@@ -60,7 +60,7 @@ const DefaultHeader = ({ pathName }) => {
         </span>
       </Menu.Item>
 
-      {(user_data?.auth?.plan_id === "8") &&
+      {(user_data?.auth?.plan_id === "8" || user_data?.auth?.plan_id === "14") &&
         <Menu.Item>
           <Link to={ "/dashboard" }>
             { t(__('dashboard')) }
