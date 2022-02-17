@@ -26,7 +26,7 @@ import {
   useGetAuthState
 } from "../../contexts/user/UserContext";
 
-import { signInApi, useGetApi } from "../../functions";
+import { signInApi, useGetApi, useQueryString } from "../../functions";
 import axios from "axios";
 import { useGetConfig } from "../../contexts/config/ConfigContext";
 
@@ -69,6 +69,12 @@ const Register = () => {
   if (user_data.auth.user_id && registerType === 'buyer') {
     navigate('/');
   }
+
+  // initial for work in URL:
+  const query = useQueryString();
+
+  // get Url parameters:
+  const referralCode = query.get("ref");
 
   async function Register(values) {
     return await axios.post(`https://alaedeen.com/horn/register-api/?lang_code=${config.language}`, { user_data: values });
@@ -455,7 +461,8 @@ const Register = () => {
                       className="h-100 register--formContent"
                       name="register-seller-form"
                       initialValues={{
-                        registrant_type: 'seller'
+                        registrant_type: 'seller',
+                        referral_code: referralCode
                       }}
                       onFinish={onRegisterFormHandle}
                     >
@@ -692,6 +699,28 @@ const Register = () => {
                                             </Col>
                                           </Row>
                                         </Checkbox.Group>
+                                      </Form.Item>
+                                    </Col>
+                                  </Row>
+                                </Col>
+                              </Row>
+                            </Col>
+
+                            <Col span={24}>
+                              <Row className="" align="middle">
+                                <Col className="text-center" flex="46px">
+                                  <i className="fa-regular fa-users text-bc vv-font-size-3" />
+                                </Col>
+                                <Col flex="1 1">
+                                  <Row className="register--formContent__item" align="middle">
+                                    <Col span={24}>
+                                      <Form.Item
+                                        name="referral_code"
+                                        >
+                                        <Input
+                                          placeholder={ t(__('referral_code')) }
+                                          bordered={false}
+                                        />
                                       </Form.Item>
                                     </Col>
                                   </Row>
