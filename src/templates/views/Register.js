@@ -462,7 +462,7 @@ const Register = () => {
                       name="register-seller-form"
                       initialValues={{
                         registrant_type: 'seller',
-                        referral_code: referralCode
+                        ref_code: referralCode
                       }}
                       onFinish={onRegisterFormHandle}
                     >
@@ -715,7 +715,7 @@ const Register = () => {
                                   <Row className="register--formContent__item" align="middle">
                                     <Col span={24}>
                                       <Form.Item
-                                        name="referral_code"
+                                        name="ref_code"
                                         >
                                         <Input
                                           placeholder={ t(__('referral_code')) }
