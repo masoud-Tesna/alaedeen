@@ -3,7 +3,7 @@ import "./styles/Plans.less";
 import { Button, Col, Empty, Row, Statistic } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import Pricing from "../../../../common/Pricing";
-import { __ } from "../../../../../functions/Helper";
+import { __, fn_after_discount, fn_discount } from "../../../../../functions/Helper";
 import React, { useEffect, useState } from "react";
 import { useGetApi } from "../../../../../functions";
 import { useTranslation } from "react-i18next";
@@ -33,12 +33,22 @@ const Plans = () => {
     refetchOnWindowFocus: false
   });
 
+  const [hasAffiliateDiscount, setHasAffiliateDiscount] = useState(false);
+  const [planDiscount, setPlanDiscount] = useState(0);
+
+  useEffect(() => {
+    if (user_data?.auth?.ref_code) {
+      setHasAffiliateDiscount(true);
+      setPlanDiscount(+user_data?.auth?.plan_discount);
+    }
+  }, [user_data?.auth?.ref_code]);
+
   const plans = data || {};
 
   const handlePriceList = value => {
     const planId     = value?.target?.id,
-          planPrice  = value?.target?.planPrice,
-          checked     = value?.target?.checked;
+      planPrice  = value?.target?.planPrice,
+      checked     = value?.target?.checked;
 
     if (checked) {
       // add selected plan in to state:
@@ -73,7 +83,7 @@ const Plans = () => {
       axios.post(`https://alaedeen.com/horn/plans-pay-api`, { ...values })
         .then(res => {
           if (res?.data?.status === 100) {
-            setPayLink(res?.data?.payLink);
+            //setPayLink(res?.data?.payLink);
           } else {
             // hidden spinner (spinner context):
             spinnerDispatch(isLoadingAction(false));
@@ -92,7 +102,7 @@ const Plans = () => {
   }
 
   useEffect(() => {
-    setTax(priceList * (9 / 100));
+    setTax(fn_after_discount(priceList, 9));
   }, [priceList]);
 
   // if get pay link from zibal, redirect to pay page:
@@ -108,25 +118,43 @@ const Plans = () => {
 
       <Col span={24} className="plans--container">
         <Row gutter={[20, 20]} justify="center">
-          { (isLoading || !plans?.length) ?
+
+          <Col span={24} className="DiscountDetails">
+            <Row gutter={[0, 20]}>
+              <Col span={24} className={ `__base ${(hasAffiliateDiscount && planDiscount) ? 'plusAffiliate': ''}` }>
+                {t('base_prise_discount_msg')}
+              </Col>
+              { hasAffiliateDiscount &&
+              <Col span={ 24 } className="__affiliate">
+                { t('affiliate_discount_msg') }
+              </Col>
+              }
+            </Row>
+          </Col>
+
+          { (isLoading || !plans?.length || user_data?.load) ?
             <>Loading...</> :
             plans?.map(plan => {
               return (
                 <Col key={`plansList_${+(plan?.plan_id)}`} xs={24} md={8}>
                   <Pricing
-                    planId          = { +(plan?.plan_id) }
-                    plan            = { plan?.plan }
-                    discount        = { plan?.discount }
-                    afterDiscount   = { plan?.after_discount }
-                    price           = { plan?.price }
-                    priceText       = { plan?.price_text }
-                    basePrice       = { plan?.base_price }
-                    color           = { plan?.color }
-                    gradient        = { plan?.gradient }
-                    backgroundColor = { plan?.background }
-                    features        = { plan?.features || {} }
-                    planIds         = {planIds}
-                    handlePriceList = {handlePriceList}
+                    planId               = { +(plan?.plan_id) }
+                    plan                 = { plan?.plan }
+                    planType             = { plan?.type }
+                    productsLimit        = { +(plan?.products_limit) }
+                    hasAffiliateDiscount = { hasAffiliateDiscount }
+                    planDiscount         = { planDiscount }
+                    baseDiscount         = { plan?.base_discount }
+                    afterDiscount        = { plan?.after_discount }
+                    price                = { +(plan?.price) }
+                    priceText            = { plan?.price_text }
+                    basePrice            = { plan?.base_price }
+                    color                = { plan?.color }
+                    gradient             = { plan?.gradient }
+                    backgroundColor      = { plan?.background }
+                    features             = { plan?.features || {} }
+                    planIds              = { planIds }
+                    handlePriceList      = { handlePriceList }
                   />
                 </Col>
               )
@@ -161,7 +189,36 @@ const Plans = () => {
                   <Row className="__body">
                     {planIds?.map(planId => {
                       const plan = plans?.find(plan => +(plan?.plan_id) === planId)?.plan;
+                      const basePrice = plans?.find(plan => +(plan?.plan_id) === planId)?.base_price;
+                      const baseDiscount = plans?.find(plan => +(plan?.plan_id) === planId)?.base_discount;
+                      const productsLimit = plans?.find(plan => +(plan?.plan_id) === planId)?.products_limit;
+                      const planType = plans?.find(plan => +(plan?.plan_id) === planId)?.type;
                       const price = plans?.find(plan => +(plan?.plan_id) === planId)?.price;
+
+                      let priceBeforeDiscount = 0,
+                        priceAfterDiscount = 0,
+                        allDiscount = 0;
+
+                      if (hasAffiliateDiscount && baseDiscount) {
+                        allDiscount = +baseDiscount + +planDiscount;
+                      }
+
+                      else if (hasAffiliateDiscount && !baseDiscount) {
+                        allDiscount = +planDiscount;
+                      }
+
+                      else if (!hasAffiliateDiscount && baseDiscount) {
+                        allDiscount = +baseDiscount;
+                      }
+
+                      if (planType === "P") { // if plan is product :
+                        priceAfterDiscount = +productsLimit * fn_discount(basePrice, allDiscount);
+                        priceBeforeDiscount = +productsLimit * basePrice;
+                      }
+                      else if (planType === "S") { // if plan is personal store:
+                        priceAfterDiscount = fn_discount(+price, allDiscount);
+                        priceBeforeDiscount = +price;
+                      }
 
                       return (
                         <Col span={24} key={`chosenPlan_${planId}`}>
@@ -169,19 +226,19 @@ const Plans = () => {
                             <Col span={8} className="text-center my-auto __plan">{ plan }</Col>
 
                             <Col span={4} className="text-center my-auto __price">
-                              <Statistic value={price} />
+                              <Statistic value={priceBeforeDiscount} />
                             </Col>
 
                             <Col span={4} className="text-center my-auto __price">
-                              <Statistic value={0} prefix="%" />
+                              <Statistic value={allDiscount} prefix="%" />
                             </Col>
 
                             <Col span={4} className="text-center my-auto __price">
-                              <Statistic value={0} />
+                              <Statistic value={fn_after_discount(priceBeforeDiscount, allDiscount)} />
                             </Col>
 
                             <Col span={4} className="text-center my-auto __price">
-                              <Statistic value={price} />
+                              <Statistic value={priceAfterDiscount} />
                             </Col>
                           </Row>
                         </Col>

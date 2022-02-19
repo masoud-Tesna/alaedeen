@@ -3,6 +3,25 @@
 .plans--container {
   padding: 0 3rem;
 
+  .DiscountDetails {
+    .__base,
+    .__affiliate {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #333333;
+    }
+
+    .__base {
+      &.plusAffiliate {
+        color: darken(#eea21e, 3%);
+      }
+    }
+
+    .__affiliate {
+      color: @primary-color;
+    }
+  }
+
   .chosen--plans {
     margin: 4rem 0;
     padding: 0 3rem;

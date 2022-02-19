@@ -61,6 +61,17 @@ html:lang(ar) {
       span {
         font-weight: 600;
         font-size: 2.5rem;
+        color: #333333;
+
+        &.--baseDiscount {
+          &.plusAffiliate {
+            color: darken(#eea21e, 3%);
+          }
+        }
+
+        &.--affiliateDiscount {
+          color: @primary-color;
+        }
       }
     }
 
