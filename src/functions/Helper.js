@@ -315,3 +315,8 @@ export function fn_get_base64(file) {
     reader.onerror = error => reject(error);
   });
 }
+
+export function fn_discount(price, percent) {
+  const discount = (percent / 100) * price;
+  return (price - discount);
+}
