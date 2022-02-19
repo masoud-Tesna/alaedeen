@@ -1,9 +1,6 @@
-import { Route } from "react-router-dom";
+import { Navigate, Route } from "react-router-dom";
 import { asyncComponent } from "../../functions/Helper";
-
-/*const Dashboard = asyncComponent(() =>
-  import('./dashboard/pages/Dashboard').then(module => module.default)
-);*/
+import { useGetAuthState } from "../../contexts/user/UserContext";
 
 // account section:
 const ManufactureInformation = asyncComponent(() =>
@@ -39,29 +36,52 @@ const Affiliate = asyncComponent(() =>
   import('./dashboard/pages/affiliate').then(module => module.default)
 );
 
-const DashboardRoutes = () => ([
-  <Route exact path="/dashboard" element={<Plans />} />,
+const DashboardRoutes = () => {
 
-  <Route exact path="/dashboard/account/password-reset" element={<h1> password-reset </h1>} />,
+  const { user_data } = useGetAuthState();
 
-  <Route exact path="/dashboard/account/manufacturer-information" element={<ManufactureInformation />} />,
+  return (
+    <Route path="dashboard">
 
-  <Route exact path="/dashboard/products/manage" element={<ManageProducts />} />,
+      {user_data?.load ?
+        <>Loading...</> :
 
-  <Route exact path="/dashboard/products/create" element={<CreateProduct />} />,
+        user_data?.auth?.user_id ?
+          <>
+            <Route index element={<Plans />} />
 
-  <Route exact path="/dashboard/products/:productId" element={<UpdateProduct />} />,
+            <Route path="account/password-reset" element={<h1> password-reset </h1>} />
 
-  <Route exact path="/dashboard/categories/manage" element={<ManageCategories />} />,
+            <Route path="account/manufacturer-information" element={<ManufactureInformation />} />
 
-  <Route exact path="/dashboard/categories/:categoryId" element={<>Edit Category</>} />,
+            <Route path="products">
+              <Route index element={<Navigate to="manage" />} />
 
-  <Route exact path="/dashboard/plans" element={<Plans />} />,
+              <Route path={"manage"} element={<ManageProducts />} />
 
-  <Route exact path="/dashboard/payment/result" element={<Result />} />,
+              <Route path="create" element={<CreateProduct />} />
 
-  <Route exact path="/dashboard/Affiliate" element={<Affiliate />} />,
+              <Route path=":productId" element={<UpdateProduct />} />
+            </Route>
 
-]);
+            <Route path="categories">
+              <Route index element={<Navigate to="manage" />} />
+
+              <Route path={"manage"} element={<ManageCategories />} />
+
+              <Route path=":categoryId" element={<>Edit Category</>} />
+            </Route>
+
+            <Route path="plans" element={<Plans />} />
+
+            <Route path="payment/result" element={<Result />} />
+
+            <Route path="affiliate" element={<Affiliate />} />
+          </> :
+          <Route index path={"*"} element={<Navigate to="/" />} />
+      }
+    </Route>
+  )
+}
 
 export default DashboardRoutes;

@@ -14,6 +14,7 @@ import { useTranslation } from "react-i18next";
 import { useConfigDispatch, useGetConfig, changeLanguageAction } from "../../../../../contexts/config/ConfigContext";
 import { useWindowSize } from "../../../../../functions";
 import { isLoadingAction, useSpinnerDispatch } from "../../../../../contexts/spiner/SpinnerContext";
+import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 
 const DashboardSidenav = ({ dashboardToggleDrawer }) => {
 
@@ -30,6 +31,10 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   const { width } = useWindowSize();
 
   const { pathname } = useLocation();
+
+  const { user_data } = useGetAuthState();
+
+  const planId = user_data?.auth?.plan_id || null;
 
   // example: dashboard or dashboard/account/reset-password
   const page = pathname.replace("/", "");
@@ -144,7 +149,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
             </Item>*/}
           </SubMenu>
 
-          <Menu.Item key="support"  icon={ <i className="fal fa-user-headset" /> }>
+          <Menu.Item key="support" icon={ <i className="fal fa-user-headset" /> }>
             <a href="https://alaedeen.com/horn/my-tickets/" className="side--link">
               { t('support') }
             </a>
@@ -169,11 +174,13 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
             </Link>
           </Menu.Item>
 
-          <Menu.Item key="affiliate"  icon={ <i className="fa-regular fa-users-medical" /> }>
+          {planId === "14" &&
+            <Menu.Item key="affiliate"  icon={ <i className="fa-regular fa-users-medical" /> }>
             <Link to="/dashboard/affiliate" className="side--link">
               { t('affiliate') }
             </Link>
           </Menu.Item>
+          }
         </Menu>
       </Col>
     </Row>

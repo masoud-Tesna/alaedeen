@@ -54,21 +54,21 @@ const DefaultHeader = ({ pathName }) => {
 
   const menu = (
     <Menu className="header--userMenu">
-      <Menu.Item>
+      <Menu.Item key="userFullName">
         <span className="font-weight-bold">
           {` ${user_data?.auth.firstname} ${user_data?.auth.lastname} `}
         </span>
       </Menu.Item>
 
       {(user_data?.auth?.plan_id === "8" || user_data?.auth?.plan_id === "14") &&
-        <Menu.Item>
+        <Menu.Item key="dashboardLink">
           <Link to={ "/dashboard" }>
             { t(__('dashboard')) }
           </Link>
         </Menu.Item>
       }
 
-      <Menu.Item>
+      <Menu.Item key="tickets">
         <a href="https://alaedeen.com/horn/my-tickets/">
           { t(__('my_tickets')) }
         </a>
@@ -86,13 +86,13 @@ const DefaultHeader = ({ pathName }) => {
         </a>
       </Menu.Item>*/}
 
-      <Menu.Item>
+      <Menu.Item key="Favorites">
         <a href="https://alaedeen.com/horn/wishlist/">
           { t(__('Favorites')) }
         </a>
       </Menu.Item>
 
-      <Menu.Item className="header--userMenu__signOut">
+      <Menu.Item className="header--userMenu__signOut" key="logOut">
         <Button className="header--userMenu__signOutBtn w-100 bg-primary-darken" onClick={handleLogOut}>
           { t(__('sign out')) }
         </Button>
