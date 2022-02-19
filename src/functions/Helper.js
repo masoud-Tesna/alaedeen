@@ -320,3 +320,7 @@ export function fn_discount(price, percent) {
   const discount = (percent / 100) * price;
   return (price - discount);
 }
+
+export function fn_after_discount(price, percent) {
+  return (percent / 100) * price;
+}
