@@ -49,9 +49,9 @@ const Result = () => {
   });
 
   const order = data || {};
-
+  console.log(order?.data)
   const orderDataShow = (lists, type) => {
-    const tax = order?.total_plans_price * (9 / 100);
+    const tax = order?.prices_after_discount * (9 / 100);
     switch (type) {
       case "P" :
         return (
@@ -84,19 +84,19 @@ const Result = () => {
                           <Col span={8} className="text-center my-auto __plan">{ list?.plan }</Col>
 
                           <Col span={4} className="text-center my-auto __price">
-                            <Statistic value={list?.price} />
+                            <Statistic value={list?.price_before_discount} />
                           </Col>
 
                           <Col span={4} className="text-center my-auto __price">
-                            <Statistic value={0} prefix="%" />
+                            <Statistic value={list?.discount} prefix="%" />
                           </Col>
 
                           <Col span={4} className="text-center my-auto __price">
-                            <Statistic value={0} />
+                            <Statistic value={list?.discount_price} />
                           </Col>
 
                           <Col span={4} className="text-center my-auto __price">
-                            <Statistic value={list?.price} />
+                            <Statistic value={list?.price_after_discount} />
                           </Col>
                         </Row>
                       </Col>
@@ -108,19 +108,19 @@ const Result = () => {
                       <Col span={8} className="text-center my-auto __plan">{ t("total") }</Col>
 
                       <Col span={4} className="text-center my-auto __price">
-                        <Statistic value={order?.total_plans_price} />
+                        <Statistic value={order?.prices_before_discount} />
                       </Col>
 
                       <Col span={4} className="text-center my-auto __price">
-                        <Statistic value={0} prefix="%" />
+                        <Statistic value={order?.discounts} prefix="%" />
                       </Col>
 
                       <Col span={4} className="text-center my-auto __price">
-                        <Statistic value={0} />
+                        <Statistic value={order?.discounts_price} />
                       </Col>
 
                       <Col span={4} className="text-center my-auto __price">
-                        <Statistic value={order?.total_plans_price} />
+                        <Statistic value={order?.prices_after_discount} />
                       </Col>
                     </Row>
                   </Col>
@@ -138,7 +138,7 @@ const Result = () => {
                       </Col>
 
                       <Col className="my-auto __taxPrice">
-                        <Statistic value={order?.total_plans_price} />
+                        <Statistic value={order?.prices_after_discount} />
                       </Col>
                     </Row>
                   </Col>
@@ -254,7 +254,7 @@ const Result = () => {
                             <span>{t("amount_paid")}</span>
                           </Col>
                           <Col xs={24} md={19} lg={20} className="__value my-auto">
-                            <Statistic value={order?.total_price} suffix={t("rial")} />
+                            <Statistic value={+(order?.total_price) / 10} suffix={t("toman")} />
                           </Col>
                         </Row>
                       </Col>
