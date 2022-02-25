@@ -10,10 +10,14 @@ import { useTranslation } from "react-i18next";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 import { isLoadingAction, useSpinnerDispatch } from "../../../../../contexts/spiner/SpinnerContext";
 import axios from "axios";
+import { useGetConfig } from "../../../../../contexts/config/ConfigContext";
 
 const Plans = () => {
 
   const { t } = useTranslation();
+
+  // get initial config:
+  const { config } = useGetConfig();
 
   // spinner dispatch context:
   const { spinnerDispatch } = useSpinnerDispatch();
@@ -24,6 +28,7 @@ const Plans = () => {
   const [priceList, setPriceList] = useState(0);
 
   const [tax, setTax] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const [planIds, setPlanIds] = useState([]);
 
@@ -37,11 +42,11 @@ const Plans = () => {
   const [planDiscount, setPlanDiscount] = useState(0);
 
   useEffect(() => {
-    if (user_data?.auth?.ref_code) {
+    if (user_data?.auth?.plan_discount !== "0") {
       setHasAffiliateDiscount(true);
       setPlanDiscount(+user_data?.auth?.plan_discount);
     }
-  }, [user_data?.auth?.ref_code]);
+  }, [user_data?.auth?.plan_discount]);
 
   const plans = data || {};
 
@@ -70,7 +75,8 @@ const Plans = () => {
     // create value for post:
     const values = {
       company_id: +(user_data?.auth?.company_id),
-      plans: planIds
+      plans: planIds,
+      lang_code: config?.language
     };
 
     const canPostData = !!(values?.plans?.length && values?.company_id);
@@ -80,10 +86,10 @@ const Plans = () => {
       // show spinner (spinner context):
       spinnerDispatch(isLoadingAction(true));
 
-      axios.post(`https://alaedeen.com/horn/plans-pay-api`, { ...values })
+      axios.post(`https://alaedeen.com/horn/plans-pay-api`, JSON.stringify({ ...values }))
         .then(res => {
           if (res?.data?.status === 100) {
-            //setPayLink(res?.data?.payLink);
+            setPayLink(res?.data?.payLink);
           } else {
             // hidden spinner (spinner context):
             spinnerDispatch(isLoadingAction(false));
@@ -102,8 +108,17 @@ const Plans = () => {
   }
 
   useEffect(() => {
-    setTax(fn_after_discount(priceList, 9));
-  }, [priceList]);
+
+    if (hasAffiliateDiscount) {
+      setTotalPrice(fn_discount(priceList, planDiscount));
+      setTax(fn_after_discount(totalPrice, 9));
+    }
+    else {
+      setTotalPrice(priceList);
+      setTax(fn_after_discount(priceList, 9));
+    }
+
+  }, [hasAffiliateDiscount, priceList, totalPrice]);
 
   // if get pay link from zibal, redirect to pay page:
   useEffect(() => {
@@ -121,7 +136,7 @@ const Plans = () => {
 
           <Col span={24} className="DiscountDetails">
             <Row gutter={[0, 20]}>
-              <Col span={24} className={ `__base ${(hasAffiliateDiscount && planDiscount) ? 'plusAffiliate': ''}` }>
+              <Col span={24} className={ `__base ${hasAffiliateDiscount ? 'plusAffiliate': ''}` }>
                 {t('base_prise_discount_msg')}
               </Col>
               { hasAffiliateDiscount &&
@@ -164,7 +179,7 @@ const Plans = () => {
 
         <Row gutter={[0, 20]} className="chosen--plans">
           <Col span={24} className="__caption">{t("your_chosen_plan")}:</Col>
-          {planIds?.length ?
+          {(planIds?.length && plans.length) ?
             <>
               <Col span={24} className="chosen--plans__table">
                 <div>
@@ -197,19 +212,7 @@ const Plans = () => {
 
                       let priceBeforeDiscount = 0,
                         priceAfterDiscount = 0,
-                        allDiscount = 0;
-
-                      if (hasAffiliateDiscount && baseDiscount) {
-                        allDiscount = +baseDiscount + +planDiscount;
-                      }
-
-                      else if (hasAffiliateDiscount && !baseDiscount) {
-                        allDiscount = +planDiscount;
-                      }
-
-                      else if (!hasAffiliateDiscount && baseDiscount) {
-                        allDiscount = +baseDiscount;
-                      }
+                        allDiscount = +baseDiscount || 0;
 
                       if (planType === "P") { // if plan is product :
                         priceAfterDiscount = +productsLimit * fn_discount(basePrice, allDiscount);
@@ -230,7 +233,13 @@ const Plans = () => {
                             </Col>
 
                             <Col span={4} className="text-center my-auto __price">
-                              <Statistic value={allDiscount} prefix="%" />
+                              { allDiscount ?
+                                <Statistic
+                                  value={ allDiscount } prefix={ config?.language === "en" ? "%" : "" }
+                                  suffix={ config?.language !== "en" ? "%" : "" }
+                                /> :
+                                allDiscount
+                              }
                             </Col>
 
                             <Col span={4} className="text-center my-auto __price">
@@ -263,10 +272,30 @@ const Plans = () => {
                       </Row>
                     </Col>
 
+                    {hasAffiliateDiscount &&
+                      <Col span={24}>
+                        <Row className="__data" justify="space-between">
+                          <Col className="my-auto __tax">
+                            { config?.language === "en" ?
+                              `${ t('discount') } (%${ planDiscount }) :` :
+                              `${ t('discount') } (${ planDiscount }%) :`
+                            }
+                          </Col>
+
+                          <Col className="my-auto __taxPrice">
+                            <Statistic value={totalPrice} />
+                          </Col>
+                        </Row>
+                      </Col>
+                    }
+
                     <Col span={24}>
                       <Row className="__data" justify="space-between">
                         <Col className="my-auto __tax">
-                          {t('tax')} (%9) :
+                          { config?.language === "en" ?
+                            `${ t('tax') } (%9) :` :
+                            `${ t('tax') } (9%) :`
+                          }
                         </Col>
 
                         <Col className="my-auto __taxPrice">
@@ -282,7 +311,7 @@ const Plans = () => {
                         </Col>
 
                         <Col className="my-auto __taxPrice">
-                          <Statistic value={priceList + tax} />
+                          <Statistic value={totalPrice + tax} />
                         </Col>
                       </Row>
                     </Col>

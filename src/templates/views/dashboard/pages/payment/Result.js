@@ -11,6 +11,7 @@ import Moment from "react-moment";
 import moment from "moment-jalaali";
 import fa from "moment/locale/fa";
 import { useGetConfig } from "../../../../../contexts/config/ConfigContext";
+import { fn_after_discount, fn_discount } from "../../../../../functions/Helper";
 
 const Result = () => {
 
@@ -38,6 +39,16 @@ const Result = () => {
 
   const [getOrderData, setGetOrderData] = useState(false);
 
+  const [hasAffiliateDiscount, setHasAffiliateDiscount] = useState(false);
+  const [planDiscount, setPlanDiscount] = useState(0);
+
+  useEffect(() => {
+    if (user_data?.auth?.plan_discount !== "0") {
+      setHasAffiliateDiscount(true);
+      setPlanDiscount(+user_data?.auth?.plan_discount);
+    }
+  }, [user_data?.auth?.plan_discount]);
+
   // if pay status Complete get order data:
   useEffect(() => {
     if (paymentStatus === "C") setGetOrderData(true);
@@ -49,9 +60,17 @@ const Result = () => {
   });
 
   const order = data || {};
-  console.log(order?.data)
   const orderDataShow = (lists, type) => {
-    const tax = order?.prices_after_discount * (9 / 100);
+    let tax = 0,
+      totalPrice = 0;
+    if (setHasAffiliateDiscount) {
+      totalPrice = fn_discount(+(order?.prices_after_discount), +planDiscount);
+      tax = fn_after_discount(totalPrice, 9);
+    } else {
+      totalPrice = order?.prices_after_discount;
+      tax = fn_after_discount(+(order?.prices_after_discount), 9);
+    }
+    /*const tax = order?.prices_after_discount * (9 / 100);*/
     switch (type) {
       case "P" :
         return (
@@ -88,7 +107,13 @@ const Result = () => {
                           </Col>
 
                           <Col span={4} className="text-center my-auto __price">
-                            <Statistic value={list?.discount} prefix="%" />
+                            { list?.discount ?
+                              <Statistic
+                                value={ list?.discount } prefix={ config?.language === "en" ? "%" : "" }
+                                suffix={ config?.language !== "en" ? "%" : "" }
+                              /> :
+                              list?.discount
+                            }
                           </Col>
 
                           <Col span={4} className="text-center my-auto __price">
@@ -112,7 +137,13 @@ const Result = () => {
                       </Col>
 
                       <Col span={4} className="text-center my-auto __price">
-                        <Statistic value={order?.discounts} prefix="%" />
+                        { order?.discounts ?
+                          <Statistic
+                            value={ order?.discounts } prefix={ config?.language === "en" ? "%" : "" }
+                            suffix={ config?.language !== "en" ? "%" : "" }
+                          /> :
+                          order?.discounts
+                        }
                       </Col>
 
                       <Col span={4} className="text-center my-auto __price">
@@ -143,10 +174,30 @@ const Result = () => {
                     </Row>
                   </Col>
 
+                  {hasAffiliateDiscount &&
+                    <Col span={24}>
+                      <Row className="__data" justify="space-between">
+                        <Col className="my-auto __tax">
+                          { config?.language === "en" ?
+                            `${ t('discount') } (%${ planDiscount }) :` :
+                            `${ t('discount') } (${ planDiscount }%) :`
+                          }
+                        </Col>
+
+                        <Col className="my-auto __taxPrice">
+                          <Statistic value={totalPrice} />
+                        </Col>
+                      </Row>
+                    </Col>
+                  }
+
                   <Col span={24}>
                     <Row className="__data" justify="space-between">
                       <Col className="my-auto __tax">
-                        {t('tax')} (%9) :
+                        { config?.language === "en" ?
+                          `${ t('tax') } (%9) :` :
+                          `${ t('tax') } (9%) :`
+                        }
                       </Col>
 
                       <Col className="my-auto __taxPrice">

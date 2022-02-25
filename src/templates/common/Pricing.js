@@ -25,26 +25,19 @@ const Pricing = (
   }
 ) => {
 
-  let allDiscount = 0,
-    showPrice = 0;
-
-  if (hasAffiliateDiscount && baseDiscount) {
-    allDiscount = +baseDiscount + +planDiscount;
-  }
-
-  else if (hasAffiliateDiscount && !baseDiscount) {
-    allDiscount = +planDiscount;
-  }
-
-  else if (!hasAffiliateDiscount && baseDiscount) {
-    allDiscount = +baseDiscount;
-  }
+  let basePriceAfterDiscount = 0,
+      totalPrice = 0,
+      totalByBasePrice = 0;
 
   if (planType === "P") { // if plan is product :
-    showPrice = +productsLimit * fn_discount(basePrice, allDiscount);
+    basePriceAfterDiscount = fn_discount(basePrice, baseDiscount);
+    basePriceAfterDiscount = fn_discount(+basePriceAfterDiscount, +planDiscount);
+    totalPrice = +productsLimit * basePriceAfterDiscount;
+    totalByBasePrice = +productsLimit * fn_discount(+basePrice, +baseDiscount);
   }
   else if (planType === "S") { // if plan is personal store:
-    showPrice = fn_discount(+price, allDiscount)
+    totalPrice = fn_discount(+price, +planDiscount);
+    totalByBasePrice = +price;
   }
 
   const { t } = useTranslation();
@@ -92,11 +85,11 @@ const Pricing = (
                   </Col>
 
                   {planType === 'P' &&
-                  <Col span={24} className="__afterDiscount">
+                    <Col span={24} className="__afterDiscount">
                     <s className="--basePrice">
                       <Statistic className="--after" valueStyle={{color: color}} value={basePrice} />
                     </s>
-                    <Statistic className="--after" valueStyle={{color: color}} value={fn_discount(basePrice, allDiscount)} />
+                    <Statistic className="--after" valueStyle={{color: color}} value={basePriceAfterDiscount} />
                   </Col>
                   }
                 </> :
@@ -111,14 +104,14 @@ const Pricing = (
                     <s className="--basePrice">
                       <Statistic className="--after" valueStyle={{color: color}} value={basePrice} />
                     </s>
-                    <Statistic className="--after" valueStyle={{color: color}} value={fn_discount(basePrice, allDiscount)} />
+                    <Statistic className="--after" valueStyle={{color: color}} value={fn_discount(basePrice, baseDiscount)} />
                   </Col>
                 </>
               }
 
 
               <Col span={24} className="__price">
-                <Statistic valueStyle={{color: color}} value={showPrice} suffix={t('toman')} />
+                <Statistic valueStyle={{color: color}} value={totalPrice} suffix={t('toman')} />
               </Col>
 
               { priceText && <Col span={24} className="__priceText" style={{ color: color }}>{priceText}</Col> }
@@ -150,7 +143,7 @@ const Pricing = (
         <Checkbox
           id={planId}
           onChange={handlePriceList}
-          planPrice={showPrice}
+          planPrice={totalByBasePrice}
         >
           <span className={ `planCheckBox ${checked}` }>
             {t('choose')}
