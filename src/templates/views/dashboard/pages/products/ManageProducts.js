@@ -4,7 +4,7 @@ import { Button, Col, Empty, Popconfirm, Row, Skeleton } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../../../functions/Helper";
-import { useGetApi, useGetProductsLimitStat } from "../../../../../functions";
+import { useGetApiOld, useGetProductsLimitStat } from "../../../../../functions";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 import ShowResponsiveImage from "../../../../common/ShowResponsiveImage";
 import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
@@ -19,7 +19,7 @@ const ManageProducts = () => {
 
   const company_id = user_data?.auth?.company_id;
 
-  const {isLoading, data: productsData} = useGetApi('vendor-products-api', `company_id=${company_id}`, `vendor_products_${user_data?.auth?.company_id}`, { enabled: !!company_id });
+  const {isLoading, data: productsData} = useGetApiOld('vendor-products-api', `company_id=${company_id}`, `vendor_products_${user_data?.auth?.company_id}`, { enabled: !!company_id });
 
   const {products} = productsData || {};
 

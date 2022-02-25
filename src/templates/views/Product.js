@@ -1,4 +1,4 @@
-import {useGetApi} from "../../functions";
+import {useGetApiOld} from "../../functions";
 import { useNavigate, useParams } from "react-router-dom";
 import {Col, Row} from "antd";
 import ProductDetail from "../blocks/product_templates";
@@ -12,7 +12,7 @@ const Product = () => {
   const navigate = useNavigate();
 
   // get products from API before selecting filters and after selecting filter:
-  const { isLoading, data } = useGetApi(`products-api`, `product_path=${productSeoName}`, `product_details_${productSeoName}`, {
+  const { isLoading, data } = useGetApiOld(`products-api`, `product_path=${productSeoName}`, `product_details_${productSeoName}`, {
     onSuccess: (data) => {
       if (data === 'not_found') {
         navigate('/');

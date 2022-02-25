@@ -5,7 +5,7 @@ import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 import { Col, Row, Statistic } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import React from "react";
-import { useGetApi, useQueryString } from "../../../../../functions";
+import { useGetApiOld, useQueryString } from "../../../../../functions";
 import { CheckCircleTwoTone, WarningTwoTone } from "@ant-design/icons";
 import Moment from "react-moment";
 import moment from "moment-jalaali";
@@ -54,7 +54,7 @@ const Result = () => {
     if (paymentStatus === "C") setGetOrderData(true);
   }, [paymentStatus]);
 
-  const {isLoading, data} = useGetApi("order-data-api", `order_id=${orderId}&order_type=${orderType}&company_id=${user_data?.auth?.company_id}`, `orderData_${orderId}_${orderType}`, {
+  const {isLoading, data} = useGetApiOld("order-data-api", `order_id=${orderId}&order_type=${orderType}&company_id=${user_data?.auth?.company_id}`, `orderData_${orderId}_${orderType}`, {
     enabled: getOrderData,
     refetchOnWindowFocus: false
   });

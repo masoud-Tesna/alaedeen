@@ -14,7 +14,7 @@ import ProductsMultiColumnVertical from "../product_list_templates/ProductsMulti
 import SkeletonMultiColumnVertical from "../product_list_templates/skeletons/SkeletonMultiColumnVertical";
 
 // import custom hooks:
-import { useGetApi, useWindowSize } from '../../../functions';
+import { useGetApiOld, useWindowSize } from '../../../functions';
 
 // import helper functions:
 import { __ } from '../../../functions/Helper';
@@ -30,7 +30,7 @@ const RecentlyProductsView = () => {
   const { width } = useWindowSize();
 
   // get products from API:
-  const { isLoading, data } = useGetApi(`products-api`, `items_per_page=5`, `recentlyProducts`);
+  const { isLoading, data } = useGetApiOld(`products-api`, `items_per_page=5`, `recentlyProducts`);
   const { products } = data || [];
 
   return (

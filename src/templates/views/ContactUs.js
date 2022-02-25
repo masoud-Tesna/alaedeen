@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import './styles/ContactUs.less';
 
 import { Button, Col, Form, Input, Row, Skeleton } from "antd";
-import { useGetApi, useWindowSize } from "../../functions";
+import { useGetApiOld, useWindowSize } from "../../functions";
 import { SeoGenerator } from "../../functions/Helper";
 import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../contexts/config/ConfigContext";
@@ -22,7 +22,7 @@ const ContactUs = () => {
   // get window width
   const { width } = useWindowSize();
 
-  const { isLoading, data } = useGetApi("page-api", "page_seo=alaedeen-contact-us", "page_alaedeen-contact-us");
+  const { isLoading, data } = useGetApiOld("page-api", "page_seo=alaedeen-contact-us", "page_alaedeen-contact-us");
   const page = data || [];
 
   useEffect(() => {

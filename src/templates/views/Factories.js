@@ -14,7 +14,7 @@ import topSectionBg from '../assets/images/factoriezTopSectionBg.png';
 import { __, SeoGenerator } from '../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
-import { useGetApi, useQueryString } from "../../functions";
+import { useGetApiOld, useQueryString } from "../../functions";
 
 // import Factories Show Component:
 import FactoryOneColumn from "./factories/FactoryOneColumn";
@@ -28,7 +28,7 @@ const Factories = () => {
   const selectedStoreId = useQueryString().get('selected_store_id');
 
   // get factories from API:
-  const { isLoading, data } = useGetApi("factories-page-api", `selected_store_id=${selectedStoreId || ''}`, `factories_${selectedStoreId}`);
+  const { isLoading, data } = useGetApiOld("factories-page-api", `selected_store_id=${selectedStoreId || ''}`, `factories_${selectedStoreId}`);
   const { factories } = data || [];
 
   useEffect(() => {

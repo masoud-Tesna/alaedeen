@@ -8,7 +8,7 @@ import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
 
-import { useGetApi, useWindowSize } from '../../../functions';
+import { useGetApiOld, useWindowSize } from '../../../functions';
 
 // import ant design:
 import { Col, Row, Form, Input, Button, Select, InputNumber, Modal, Checkbox, Radio, Result, Spin } from "antd";
@@ -28,25 +28,25 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
   const { t } = useTranslation();
 
   // get quantity Units list from API:
-  const { data: quantityUnits } = useGetApi(`request-content-api`, 'variant=quantity_units', `quantityUnits`, { enabled: isRequestModalVisible });
+  const { data: quantityUnits } = useGetApiOld(`request-content-api`, 'variant=quantity_units', `quantityUnits`, { enabled: isRequestModalVisible });
 
   // get country lists from API:
-  const { data: countryLists } = useGetApi(`country-lists-api`, '', `countryLists`, { enabled: isRequestModalVisible });
+  const { data: countryLists } = useGetApiOld(`country-lists-api`, '', `countryLists`, { enabled: isRequestModalVisible });
 
   // get order values lists from API:
-  const { data: orderValues } = useGetApi(`request-content-api`, 'variant=order_values', `orderValues`, { enabled: isRequestModalVisible });
+  const { data: orderValues } = useGetApiOld(`request-content-api`, 'variant=order_values', `orderValues`, { enabled: isRequestModalVisible });
 
   // get supp Locations lists from API:
-  const { data: suppLocations } = useGetApi(`request-content-api`, 'variant=supp_locations', `suppLocations`, { enabled: isRequestModalVisible });
+  const { data: suppLocations } = useGetApiOld(`request-content-api`, 'variant=supp_locations', `suppLocations`, { enabled: isRequestModalVisible });
 
   // get regular Types lists from API:
-  const { data: regularTypes } = useGetApi(`request-content-api`, 'variant=regular_types', `regularTypes`, { enabled: isRequestModalVisible });
+  const { data: regularTypes } = useGetApiOld(`request-content-api`, 'variant=regular_types', `regularTypes`, { enabled: isRequestModalVisible });
 
   // get requirement Urgencies lists from API:
-  const { data: requirementUrgencies } = useGetApi(`request-content-api`, 'variant=requirement_urgencies', `requirementUrgencies`, { enabled: isRequestModalVisible });
+  const { data: requirementUrgencies } = useGetApiOld(`request-content-api`, 'variant=requirement_urgencies', `requirementUrgencies`, { enabled: isRequestModalVisible });
 
   // get country codes from API:
-  const { data: countryCodes } = useGetApi(`country-code-api`, `lang_code=${config.language}`, `countryCodes`, { enabled: isRequestModalVisible });
+  const { data: countryCodes } = useGetApiOld(`country-code-api`, `lang_code=${config.language}`, `countryCodes`, { enabled: isRequestModalVisible });
 
   const [isSpinSend, setIsSpinSend] = useState(false);
 
@@ -62,7 +62,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
   const [isRegularType, setIsRegularType] = useState(false);
 
   // get cities list from API:
-  const { data: cityLists } = useGetApi(`city-lists-api`, `country_code=${countryCode}`, `citiesList_${countryCode}`);
+  const { data: cityLists } = useGetApiOld(`city-lists-api`, `country_code=${countryCode}`, `citiesList_${countryCode}`);
 
   async function getRequestCheck() {
     return await axios.get("https://alaedeen.com/horn/request-check-api/?table=?:vv_products_request&column=request_check");

@@ -8,7 +8,7 @@ import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
 
-import { useGetApi } from '../../../functions';
+import { useGetApiOld } from '../../../functions';
 
 // import ant design:
 import { Col, Row, Form, Input, Button, Select, InputNumber} from "antd";
@@ -33,7 +33,7 @@ const OneRequestMultipleQuotes = () => {
 
 
   // get country lists from API:
-  const { data: quantityUnits } = useGetApi(`request-content-api`, 'variant=quantity_units', `quantityUnits`);
+  const { data: quantityUnits } = useGetApiOld(`request-content-api`, 'variant=quantity_units', `quantityUnits`);
 
   return (
     <div className="px-4 border border-secondary-2 border-w-5 rounded-lg h-100 oneRequest--container">

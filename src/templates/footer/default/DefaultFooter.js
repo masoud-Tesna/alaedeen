@@ -13,7 +13,7 @@ import { __ } from '../../../functions/Helper';
 import { useTranslation } from "react-i18next";
 
 // import Custom Hooks:
-import { useGetApi, useWindowSize } from '../../../functions';
+import { useGetApiOld, useWindowSize } from '../../../functions';
 
 // import logo:
 /*import appleStore from "../../assets/images/appleStore.svg";
@@ -37,11 +37,11 @@ const DefaultFooter = () => {
   const { config } = useGetConfig();*/
 
   // get categories from API:
-  const { isLoading: categoriesIsLoading, data: categories_data } = useGetApi(`home-categories-api`, '', `allCategories`);
+  const { isLoading: categoriesIsLoading, data: categories_data } = useGetApiOld(`home-categories-api`, '', `allCategories`);
   const { categories } = categories_data || [];
 
   // get footer pages:
-  const { isLoading: pagesIsLoading, data: pages_data } = useGetApi(`footer-pages-api`, "store_id=440", `footerPage`);
+  const { isLoading: pagesIsLoading, data: pages_data } = useGetApiOld(`footer-pages-api`, "store_id=440", `footerPage`);
 
   const pages = pages_data || [];
 

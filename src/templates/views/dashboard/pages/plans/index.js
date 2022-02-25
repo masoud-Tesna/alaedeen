@@ -5,7 +5,7 @@ import DashboardContentHeader from "../../templates/components/DashboardContentH
 import Pricing from "../../../../common/Pricing";
 import { __, fn_after_discount, fn_discount } from "../../../../../functions/Helper";
 import React, { useEffect, useState } from "react";
-import { useGetApi } from "../../../../../functions";
+import { useGetApiOld } from "../../../../../functions";
 import { useTranslation } from "react-i18next";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 import { isLoadingAction, useSpinnerDispatch } from "../../../../../contexts/spiner/SpinnerContext";
@@ -34,7 +34,7 @@ const Plans = () => {
 
   const [payLink, setPayLink] = useState("");
 
-  const {isLoading, data} = useGetApi("plans-api", "", "plans", {
+  const {isLoading, data} = useGetApiOld("plans-api", "", "plans", {
     refetchOnWindowFocus: false
   });
 

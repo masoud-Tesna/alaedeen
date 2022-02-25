@@ -9,7 +9,7 @@ import ProductsMultiColumnVertical from "../product_list_templates/ProductsMulti
 import SkeletonMultiColumnVertical from "../product_list_templates/skeletons/SkeletonMultiColumnVertical";
 
 // import Custom hooks:
-import { useGetApi, useWindowSize } from "../../../functions";
+import { useGetApiOld, useWindowSize } from "../../../functions";
 
 // import helper functions:
 import { __ } from '../../../functions/Helper';
@@ -26,7 +26,7 @@ const RecommendedProducts = () => {
   const product_items_per_page = width >= 992 ? 20 : 12;
 
   // get products from API:
-  const { isLoading, data } = useGetApi(`recommended-api`, `recShowHome=Y&items_per_page=${product_items_per_page}`, `recommendedHomeProducts_${product_items_per_page}`);
+  const { isLoading, data } = useGetApiOld(`recommended-api`, `recShowHome=Y&items_per_page=${product_items_per_page}`, `recommendedHomeProducts_${product_items_per_page}`);
   const { products } = data || [];
 
   let productsMultiColumnVertical_items = { span: 8 };

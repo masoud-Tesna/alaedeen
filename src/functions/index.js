@@ -60,7 +60,7 @@ export function useGetTopRankingProducts(cat1, cat2, cat3) {
   return { productsCat1, productsCat2, productsCat3, parametersCat1, parametersCat2, parametersCat3, load, error }
 }
 
-export function useGetApi(mode, params, key, options) {
+export function useGetApiOld(mode, params, key, options) {
 
   // get initial config from context:
   const { config } = useGetConfig();
@@ -80,8 +80,8 @@ export function useGetApi(mode, params, key, options) {
   });
 }
 
-// TODO: Change All Get Api by useGetApi() change to new API (useGetApiNew()), And remove old get API...
-export function useGetApiNew(path, params, key, options) {
+// TODO: Change All Get Api by useGetApiOld() change to new API (useGetApiNew()), And remove old get API...
+export function useGetApi(path, params, key, options) {
 
   // get initial config from context:
   const { config } = useGetConfig();
@@ -112,7 +112,7 @@ export const useGetProductsLimitStat = () => {
 
   const company_id = user_data?.auth?.company_id;
 
-  const {isLoading, isFetching, data, refetch} = useGetApi('products-limit-stat-api', `company_id=${company_id}`, `products_limit_stat_${user_data?.auth?.company_id}`, { enabled:  !!company_id, refetchOnWindowFocus: false });
+  const {isLoading, isFetching, data, refetch} = useGetApiOld('products-limit-stat-api', `company_id=${company_id}`, `products_limit_stat_${user_data?.auth?.company_id}`, { enabled:  !!company_id, refetchOnWindowFocus: false });
 
   return {isLoading, isFetching, data, refetch};
 }

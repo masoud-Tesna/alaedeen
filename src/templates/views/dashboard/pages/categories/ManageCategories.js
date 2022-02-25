@@ -4,7 +4,7 @@ import { Button, Col, Empty, Form, Modal, Popconfirm, Row, Skeleton } from "antd
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../../../functions/Helper";
-import { useGetApi } from "../../../../../functions";
+import { useGetApiOld } from "../../../../../functions";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
@@ -27,7 +27,7 @@ const ManageCategories = () => {
 
   const company_id = user_data?.auth?.company_id;
 
-  const { isLoading, data: categoriesData, refetch: refetchCategoryList } = useGetApi(
+  const { isLoading, data: categoriesData, refetch: refetchCategoryList } = useGetApiOld(
 
     'vendor-categories-api',
     `company_id=${company_id}`,

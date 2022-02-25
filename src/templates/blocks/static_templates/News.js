@@ -12,7 +12,7 @@ import { __, fn_stripHtml } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
-import { useGetApi } from "../../../functions";
+import { useGetApiOld } from "../../../functions";
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 
 import fa from "moment/locale/fa";
@@ -32,7 +32,7 @@ const News = () => {
   const { t } = useTranslation();
 
   // get news one blog:
-  const { isLoading, data } = useGetApi("blogs-api", "category_path=news-and-events&items_per_page=1", `newsBlog`);
+  const { isLoading, data } = useGetApiOld("blogs-api", "category_path=news-and-events&items_per_page=1", `newsBlog`);
   const {sub_pages: page} = data || [];
 
   return (

@@ -1,6 +1,6 @@
 // import style file:
 import './styles/AllCategories.less';
-import { useGetApi } from "../../functions";
+import { useGetApiOld } from "../../functions";
 import { Col, Row } from "antd";
 import { Link } from "react-router-dom";
 import { __, SeoGenerator } from "../../functions/Helper";
@@ -11,7 +11,7 @@ const AllCategories = () => {
   const { t } = useTranslation();
 
   // get categories from API:
-  const { isLoading, data } = useGetApi(`home-categories-api`, '', `allCategories`);
+  const { isLoading, data } = useGetApiOld(`home-categories-api`, '', `allCategories`);
 
   const { categories } = data || [];
 

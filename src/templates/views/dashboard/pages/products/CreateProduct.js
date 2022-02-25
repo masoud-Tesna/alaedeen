@@ -6,7 +6,7 @@ import { Button, Col, Form, Input, Row, Tabs, Modal, Skeleton, InputNumber, Sele
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../../../functions/Helper";
-import { useGetApi } from "../../../../../functions";
+import { useGetApiOld } from "../../../../../functions";
 import { CloseOutlined, EditOutlined, UploadOutlined } from "@ant-design/icons";
 import BraftEditor from 'braft-editor';
 import 'braft-editor/dist/index.css';
@@ -92,19 +92,19 @@ const CreateProduct = () => {
   }
 
   // get categories from API:
-  const {isLoading: categoryPickerIsLoading, data: categoryPickerData} = useGetApi('picker-categories-api', `category_id=${categoryId}`, `categoriesPicker_${categoryId}`);
+  const {isLoading: categoryPickerIsLoading, data: categoryPickerData} = useGetApiOld('picker-categories-api', `category_id=${categoryId}`, `categoriesPicker_${categoryId}`);
   const categories = categoryPickerData || [];
 
   // get quantity Units list from API:
-  const { data: quantityUnitsData } = useGetApi(`request-content-api`, 'variant=quantity_units', `quantityUnits`);
+  const { data: quantityUnitsData } = useGetApiOld(`request-content-api`, 'variant=quantity_units', `quantityUnits`);
   const quantityUnits = quantityUnitsData || [];
 
   // get country lists from API:
-  const { data: countryListsData } = useGetApi(`country-lists-api`, '', `countryLists`);
+  const { data: countryListsData } = useGetApiOld(`country-lists-api`, '', `countryLists`);
   const countryLists = countryListsData || [];
 
   // get cities list from API:
-  const { isLoading: cityListsIsLoading, data: cityListsData } = useGetApi(`city-lists-api`, `country_code=${countryCode}`, `citiesList_${countryCode}`, { enabled: !!countryCode });
+  const { isLoading: cityListsIsLoading, data: cityListsData } = useGetApiOld(`city-lists-api`, `country_code=${countryCode}`, `citiesList_${countryCode}`, { enabled: !!countryCode });
   const cityLists = cityListsData || [];
 
   // function for show category picker modal:

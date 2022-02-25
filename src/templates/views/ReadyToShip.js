@@ -12,7 +12,7 @@ import { Button, Col, Collapse, Pagination, Row, Space } from "antd";
 import { useGetConfig } from "../../contexts/config/ConfigContext";
 
 // import helper functions:
-import { useGetApi, useQueryString, useWindowSize } from "../../functions";
+import { useGetApiOld, useQueryString, useWindowSize } from "../../functions";
 
 // import helpers function:
 import { __, SeoGenerator } from "../../functions/Helper";
@@ -172,7 +172,7 @@ const ReadyToShip = () => {
   }
 
   // get products from API before selecting filters and after selecting filter:
-  const { isLoading, data: product_data } = useGetApi(`recommended-api`, `items_per_page=20&page=${page}&features_hash=${featuresHash}&rtsShowMore=Y`, `recommendedMoreProducts_${page ? `_${page}` : ''}${featuresHash ? `_${featuresHash}` : ''}`);
+  const { isLoading, data: product_data } = useGetApiOld(`recommended-api`, `items_per_page=20&page=${page}&features_hash=${featuresHash}&rtsShowMore=Y`, `recommendedMoreProducts_${page ? `_${page}` : ''}${featuresHash ? `_${featuresHash}` : ''}`);
 
   // get products and params from product_data Or empty array:
   const { products, params} = product_data || [];

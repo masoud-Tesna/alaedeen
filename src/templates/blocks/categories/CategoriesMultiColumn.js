@@ -8,7 +8,7 @@ import { Col, Row } from "antd";
 import ScrollContainer from 'react-indiana-drag-scroll';
 
 // import custom hooks:
-import { useGetApi, useWindowSize } from "../../../functions";
+import { useGetApiOld, useWindowSize } from "../../../functions";
 
 import CategoriesMultiColumnSkeleton from "./skeletons/CategoriesMultiColumnSkeleton";
 
@@ -27,7 +27,7 @@ const CategoriesMultiColumn = () => {
   const { width } = useWindowSize();
 
   // get categories from API:
-  const { isLoading, data } = useGetApi(`home-categories-api`, '', `allCategories`);
+  const { isLoading, data } = useGetApiOld(`home-categories-api`, '', `allCategories`);
   const { categories } = data || [];
 
   return (

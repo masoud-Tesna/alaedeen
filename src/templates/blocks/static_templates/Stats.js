@@ -5,7 +5,7 @@ import './styles/Stats.less';
 import { Col, Row, Skeleton } from "antd";
 
 // import custom hooks:
-import { useGetApi } from "../../../functions";
+import { useGetApiOld } from "../../../functions";
 
 // import helper functions:
 import { __ } from '../../../functions/Helper';
@@ -17,7 +17,7 @@ const Stats = () => {
   const { t } = useTranslation();
 
   // get country lists from API:
-  const { isLoading, data: stats } = useGetApi(`stats-api`, '', `stats`);
+  const { isLoading, data: stats } = useGetApiOld(`stats-api`, '', `stats`);
 
   return (
     <div className="stats--container">

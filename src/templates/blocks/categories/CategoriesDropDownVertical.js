@@ -9,13 +9,13 @@ import { __ } from "../../../functions/Helper";
 import { useTranslation } from "react-i18next";
 
 // import custom hooks:
-import { useGetApi } from "../../../functions";
+import { useGetApiOld } from "../../../functions";
 import { Link } from "react-router-dom";
 
 const CategoriesContent = () => {
 
   // get categories from API:
-  const { isLoading, data } = useGetApi(`home-categories-api`, '', `allCategories`);
+  const { isLoading, data } = useGetApiOld(`home-categories-api`, '', `allCategories`);
   const { categories } = data || [];
 
   return(

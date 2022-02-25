@@ -5,7 +5,7 @@ import "./styles/ManufactureInformation.less";
 
 import { Col, Form, Row, Result, Modal, Tabs } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
-import { useGetApi } from "../../../../../functions";
+import { useGetApiOld } from "../../../../../functions";
 import { useTranslation } from "react-i18next";
 import { __, scrollTop } from "../../../../../functions/Helper";
 import CompanyDetailsForm from "./manufactureInformation/CompanyDetailsForm";
@@ -71,44 +71,44 @@ const ManufactureInformation = () => {
   };
 
   // get data from API:
-  const {data: officeSizesData} = useGetApi("get-profile-field-value-api", "field_id=8", "officeSizes");
+  const {data: officeSizesData} = useGetApiOld("get-profile-field-value-api", "field_id=8", "officeSizes");
   const officeSizes = officeSizesData || [];
 
-  const {data: employeesData} = useGetApi("get-profile-field-value-api", "field_id=5", "employees");
+  const {data: employeesData} = useGetApiOld("get-profile-field-value-api", "field_id=5", "employees");
   const employees = employeesData || [];
 
-  const {data: factorySizeData} = useGetApi("get-profile-field-value-api", "field_id=24", "factorySize");
+  const {data: factorySizeData} = useGetApiOld("get-profile-field-value-api", "field_id=24", "factorySize");
   const factorySize = factorySizeData || [];
 
-  const {data: qualityControlStaffsData} = useGetApi("get-profile-field-value-api", "field_id=25", "qualityControlStaffs");
+  const {data: qualityControlStaffsData} = useGetApiOld("get-profile-field-value-api", "field_id=25", "qualityControlStaffs");
   const qualityControlStaffs = qualityControlStaffsData || [];
 
-  const {data: researchesStaffsData} = useGetApi("get-profile-field-value-api", "field_id=26", "researchesStaffs");
+  const {data: researchesStaffsData} = useGetApiOld("get-profile-field-value-api", "field_id=26", "researchesStaffs");
   const researchesStaffs = researchesStaffsData || [];
 
-  const {data: unitsData} = useGetApi("get-profile-field-value-api", "field_id=31", "units");
+  const {data: unitsData} = useGetApiOld("get-profile-field-value-api", "field_id=31", "units");
   const units = unitsData || [];
 
-  const {data: dutiesData} = useGetApi("get-profile-field-value-api", "field_id=65", "duties");
+  const {data: dutiesData} = useGetApiOld("get-profile-field-value-api", "field_id=65", "duties");
   const duties = dutiesData || [];
 
-  const {data: acceptedDeliveriesData} = useGetApi("get-profile-field-value-api", "field_id=69&order_by=description", "acceptedDeliveries");
+  const {data: acceptedDeliveriesData} = useGetApiOld("get-profile-field-value-api", "field_id=69&order_by=description", "acceptedDeliveries");
   const acceptedDeliveries = acceptedDeliveriesData || [];
 
-  const {data: paymentCurrenciesData} = useGetApi("get-profile-field-value-api", "field_id=70", "paymentCurrencies");
+  const {data: paymentCurrenciesData} = useGetApiOld("get-profile-field-value-api", "field_id=70", "paymentCurrencies");
   const paymentCurrencies = paymentCurrenciesData || [];
 
-  const {data: languagesSpokenData} = useGetApi("get-profile-field-value-api", "field_id=71", "languagesSpoken");
+  const {data: languagesSpokenData} = useGetApiOld("get-profile-field-value-api", "field_id=71", "languagesSpoken");
   const languagesSpoken = languagesSpokenData || [];
 
-  const {data: certificationTypesData} = useGetApi("get-profile-field-value-api", "field_id=73", "certificationTypes");
+  const {data: certificationTypesData} = useGetApiOld("get-profile-field-value-api", "field_id=73", "certificationTypes");
   const certificationTypes = certificationTypesData || [];
 
-  const { data: countryListsData } = useGetApi(`country-lists-api`, '', `countryLists`);
+  const { data: countryListsData } = useGetApiOld(`country-lists-api`, '', `countryLists`);
   const countryLists = countryListsData || [];
 
   // get country codes from API:
-  const { data: countryCodesData } = useGetApi(`country-code-api`, "", `countryCodes`);
+  const { data: countryCodesData } = useGetApiOld(`country-code-api`, "", `countryCodes`);
   const countryCodes = countryCodesData?.country_code || [];
 
   // function for upload images:

@@ -9,7 +9,7 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import SkeletonTopBrands from "./skeletons/SkeletonTopBrands";
 
 // import custom hooks:
-import { useGetApi, useWindowSize } from "../../../functions";
+import { useGetApiOld, useWindowSize } from "../../../functions";
 
 // import helper functions:
 import { __, fn_stripHtml } from '../../../functions/Helper';
@@ -65,7 +65,7 @@ const TopBrands = () => {
   const { width } = useWindowSize();
 
   // get top brands from API:
-  const { isLoading, data } = useGetApi(`premium-factories-api`, `items_per_page=5`, `topBrandsHomePage`);
+  const { isLoading, data } = useGetApiOld(`premium-factories-api`, `items_per_page=5`, `topBrandsHomePage`);
   const { factories } = data || [];
 
   return (

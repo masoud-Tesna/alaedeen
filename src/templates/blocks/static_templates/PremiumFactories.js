@@ -13,7 +13,7 @@ import verifiedIcon from '../../assets/images/verified.png';
 import SkeletonTopBrands from "./skeletons/SkeletonTopBrands";
 
 // import custom hook used:
-import { useGetApi, useWindowSize } from '../../../functions';
+import { useGetApiOld, useWindowSize } from '../../../functions';
 
 // import helper functions:
 import { __ } from '../../../functions/Helper';
@@ -120,7 +120,7 @@ const PremiumFactories = () => {
   const { width } = useWindowSize();
 
   // get premium factories from API:
-  const { isLoading, data } = useGetApi(`premium-factories-api`, `items_per_page=3`, `premiumFactoriesHomePage`);
+  const { isLoading, data } = useGetApiOld(`premium-factories-api`, `items_per_page=3`, `premiumFactoriesHomePage`);
   const { factories } = data || [];
 
   return (

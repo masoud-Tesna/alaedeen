@@ -26,7 +26,7 @@ import {
   useGetAuthState
 } from "../../contexts/user/UserContext";
 
-import { signInApi, useGetApi, useQueryString } from "../../functions";
+import { signInApi, useGetApiOld, useQueryString } from "../../functions";
 import axios from "axios";
 import { useGetConfig } from "../../contexts/config/ConfigContext";
 
@@ -61,7 +61,7 @@ const Register = () => {
   const { AuthDispatch } = useDispatchAuthState();
 
   // get cities list from API:
-  const { data } = useGetApi(`city-lists-api`, 'country_code=IR', `citiesList_IR`);
+  const { data } = useGetApiOld(`city-lists-api`, 'country_code=IR', `citiesList_IR`);
 
   const { city_lists: cityLists } = data || [];
 

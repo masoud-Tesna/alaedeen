@@ -12,7 +12,7 @@ import { Button, Carousel, Col, Collapse, Pagination, Row, Space, Typography } f
 import { useGetConfig } from "../../contexts/config/ConfigContext";
 
 // import helper functions:
-import { useGetApi, useQueryString, useWindowSize } from "../../functions";
+import { useGetApiOld, useQueryString, useWindowSize } from "../../functions";
 
 // import helpers function:
 import { __, SeoGenerator, splitArray } from "../../functions/Helper";
@@ -119,7 +119,7 @@ const Categories = () => {
   // get filters and sub categories from filtersApi Or empty array:
  const {filters, subCategories} = filtersApi || [];
 
-/*  const { isLoading: load2, data: filter2 } = useGetApi(`product-filters-api`, `category_path=${categorySeoName}&features_hash=${featuresHashContainer}&lang_code=${config.language}${storeId ? `&store_id=${storeId}` : ''}`, `filter2_${categorySeoName}${page ? `_${page}` : ''}${featuresHashContainer ? `_${featuresHashContainer}` : ''}${storeId ? `_${storeId}` : ''}`);
+/*  const { isLoading: load2, data: filter2 } = useGetApiOld(`product-filters-api`, `category_path=${categorySeoName}&features_hash=${featuresHashContainer}&lang_code=${config.language}${storeId ? `&store_id=${storeId}` : ''}`, `filter2_${categorySeoName}${page ? `_${page}` : ''}${featuresHashContainer ? `_${featuresHashContainer}` : ''}${storeId ? `_${storeId}` : ''}`);
 
   const {filters, subCategories} = filter2 || [];*/
 
@@ -197,7 +197,7 @@ const Categories = () => {
   }
 
   // get products from API before selecting filters and after selecting filter:
-  const { isLoading, data: product_data } = useGetApi(`products-api`, `category_path=${categorySeoName}&items_per_page=20&page=${page}&features_hash=${featuresHash}${storeId ? `&store_id=${storeId}` : ''}`, `category_product_${categorySeoName}${page ? `_${page}` : ''}${featuresHash ? `_${featuresHash}` : ''}${storeId ? `_${storeId}` : ''}`);
+  const { isLoading, data: product_data } = useGetApiOld(`products-api`, `category_path=${categorySeoName}&items_per_page=20&page=${page}&features_hash=${featuresHash}${storeId ? `&store_id=${storeId}` : ''}`, `category_product_${categorySeoName}${page ? `_${page}` : ''}${featuresHash ? `_${featuresHash}` : ''}${storeId ? `_${storeId}` : ''}`);
 
   // get products and params from product_data Or empty array:
   const { products, categoryBanners, params} = product_data || [];

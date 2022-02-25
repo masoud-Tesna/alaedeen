@@ -11,7 +11,7 @@ import { Col, Row, Skeleton, Modal } from "antd";
 import { __ } from '../../../functions/Helper';
 
 import { useTranslation } from "react-i18next";
-import { useGetApi, useWindowSize } from "../../../functions";
+import { useGetApiOld, useWindowSize } from "../../../functions";
 
 // import Moment for show date:
 import Moment from 'react-moment';
@@ -54,7 +54,7 @@ const RequestsList = () => {
   const { t } = useTranslation();
 
   // get request lists from API:
-  const { isLoading, data } = useGetApi(`request-list-api`, 'items_per_page=5&status=C', `requestLists`);
+  const { isLoading, data } = useGetApiOld(`request-list-api`, 'items_per_page=5&status=C', `requestLists`);
   const requestLists = data || [];
 
   const [isRequestModal, setIsRequestModal] = useState([]);

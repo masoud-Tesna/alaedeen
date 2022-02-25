@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./styles/CreateCategory.less";
 
 import { Col, Collapse, Form, Input, Row, Skeleton } from "antd";
-import { useGetApi } from "../../../../../functions";
+import { useGetApiOld } from "../../../../../functions";
 import { useTranslation } from "react-i18next";
 import { EditOutlined } from "@ant-design/icons";
 import { __ } from "../../../../../functions/Helper";
@@ -18,7 +18,7 @@ const CreateCategory = ({ formRef }) => {
   const [categoryDetail, setCategoryDetail] = useState({});
 
   // get categories from API:
-  const {isLoading, data} = useGetApi('categories-tree-api', "category_id=524", `categoriesTree`, { refetchOnWindowFocus: false });
+  const {isLoading, data} = useGetApiOld('categories-tree-api', "category_id=524", `categoriesTree`, { refetchOnWindowFocus: false });
   const categories = data || {};
 
   const SelectCategoryParent = (categoryId, categoryName) => {

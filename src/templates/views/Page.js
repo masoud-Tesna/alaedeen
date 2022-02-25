@@ -5,7 +5,7 @@ import './styles/Page.less';
 
 // import ant design:
 import { Col, Row, Skeleton } from "antd";
-import { useGetApi } from "../../functions";
+import { useGetApiOld } from "../../functions";
 import { SeoGenerator } from "../../functions/Helper";
 import moment from "moment-jalaali";
 import Moment from "react-moment";
@@ -43,7 +43,7 @@ const Page = () => {
     key = `page_${blogSeoName}`;
   }
 
-  const { isLoading, data } = useGetApi(mode, params, key);
+  const { isLoading, data } = useGetApiOld(mode, params, key);
   const page = data || [];
 
   return (
