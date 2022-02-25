@@ -628,7 +628,7 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
                     className="requestSendSuccess--container"
                     status="success"
                     title={ t(__('send request success message')) }
-                    subTitle={ ` ${ t(__('your request tracking code')) } : HORN-${ trackingCode } ` }
+                    subTitle={ ` ${ t(__('your request tracking code')) } : Alaedeen-${ trackingCode } ` }
                     extra={[
                       <Button className="closeRequestModalBtn" key="close_modal" onClick={handleClosRequestModal}>{ t(__('close')) }</Button>,
                     ]}
