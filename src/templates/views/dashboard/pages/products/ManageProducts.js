@@ -3,7 +3,7 @@ import "./styles/ManageProducts.less";
 import { Button, Col, Empty, Popconfirm, Row, Skeleton } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import { useTranslation } from "react-i18next";
-import { __ } from "../../../../../functions/Helper";
+import { __, SeoGenerator } from "../../../../../functions/Helper";
 import { useGetApiOld, useGetProductsLimitStat } from "../../../../../functions";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 import ShowResponsiveImage from "../../../../common/ShowResponsiveImage";
@@ -33,6 +33,10 @@ const ManageProducts = () => {
 
   return (
     <Row>
+      <SeoGenerator
+        title="Dashboard | Products - Manage"
+      />
+
       <Col span={24}>
         <DashboardContentHeader
           page={"manage products"}

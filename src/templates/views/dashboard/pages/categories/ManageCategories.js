@@ -3,7 +3,7 @@ import "../products/styles/ManageProducts.less";
 import { Button, Col, Empty, Form, Modal, Popconfirm, Row, Skeleton } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import { useTranslation } from "react-i18next";
-import { __ } from "../../../../../functions/Helper";
+import { __, SeoGenerator } from "../../../../../functions/Helper";
 import { useGetApiOld } from "../../../../../functions";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
@@ -84,6 +84,10 @@ const ManageCategories = () => {
 
   return (
     <Row>
+      <SeoGenerator
+        title="Dashboard | Categories - Manage"
+      />
+
       <Modal
         className="categoriesPicker--Modal"
         title={t('create_category')}

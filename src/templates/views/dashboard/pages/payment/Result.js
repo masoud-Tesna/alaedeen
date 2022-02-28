@@ -11,7 +11,7 @@ import Moment from "react-moment";
 import moment from "moment-jalaali";
 import fa from "moment/locale/fa";
 import { useGetConfig } from "../../../../../contexts/config/ConfigContext";
-import { fn_after_discount, fn_discount } from "../../../../../functions/Helper";
+import { fn_after_discount, fn_discount, SeoGenerator } from "../../../../../functions/Helper";
 
 const Result = () => {
 
@@ -229,6 +229,10 @@ const Result = () => {
 
   return (
     <Row>
+      <SeoGenerator
+        title="Dashboard | Payment - Result"
+      />
+
       <Col span={24}>
         <DashboardContentHeader page={"payment result"}/>
       </Col>

@@ -5,6 +5,7 @@ import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { SeoGenerator } from "../../../../../functions/Helper";
 
 const Affiliate = () => {
 
@@ -28,6 +29,10 @@ const Affiliate = () => {
 
   return (
     <Row>
+      <SeoGenerator
+        title="Dashboard | Affiliate Program"
+      />
+
       <Col span={ 24 }>
         <DashboardContentHeader page={ "Affiliate Program" }/>
       </Col>

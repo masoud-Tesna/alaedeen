@@ -9,7 +9,7 @@ import fa from "moment/locale/fa";
 import React, { useState } from "react";
 import { useGetConfig } from "../../../../../contexts/config/ConfigContext";
 import { useTranslation } from "react-i18next";
-import { __ } from "../../../../../functions/Helper";
+import { __, SeoGenerator } from "../../../../../functions/Helper";
 
 const Private = () => {
 
@@ -37,6 +37,9 @@ const Private = () => {
 
   return (
     <Row>
+      <SeoGenerator
+        title="Dashboard | Requests - Private"
+      />
       <Col span={ 24 }>
         <DashboardContentHeader page={ "Private requests" }/>
       </Col>

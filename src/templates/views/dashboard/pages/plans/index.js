@@ -3,7 +3,7 @@ import "./styles/Plans.less";
 import { Button, Col, Empty, Row, Statistic } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import Pricing from "../../../../common/Pricing";
-import { __, fn_after_discount, fn_discount } from "../../../../../functions/Helper";
+import { __, fn_after_discount, fn_discount, SeoGenerator } from "../../../../../functions/Helper";
 import React, { useEffect, useState } from "react";
 import { useGetApiOld } from "../../../../../functions";
 import { useTranslation } from "react-i18next";
@@ -127,6 +127,10 @@ const Plans = () => {
 
   return (
     <Row>
+      <SeoGenerator
+        title="Dashboard | Plans"
+      />
+
       <Col span={24}>
         <DashboardContentHeader page={"plans and pricing"}/>
       </Col>

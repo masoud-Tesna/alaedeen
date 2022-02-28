@@ -7,7 +7,7 @@ import { Col, Form, Row, Result, Modal, Tabs } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import { useGetApiOld } from "../../../../../functions";
 import { useTranslation } from "react-i18next";
-import { __, scrollTop } from "../../../../../functions/Helper";
+import { __, scrollTop, SeoGenerator } from "../../../../../functions/Helper";
 import CompanyDetailsForm from "./manufactureInformation/CompanyDetailsForm";
 import ManufacturingCapabilityForm from "./manufactureInformation/ManufacturingCapabilityForm";
 import ExportCapabilityForm from "./manufactureInformation/ExportCapabilityForm";
@@ -216,6 +216,9 @@ const ManufactureInformation = () => {
 
   return (
     <Row>
+      <SeoGenerator
+        title="Dashboard | Account - Manufacture Information"
+      />
 
       <Modal
         visible={finishFormModalVisible}

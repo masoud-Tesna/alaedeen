@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Col, Form, Input, Row, Tabs, Modal, Skeleton, InputNumber, Select } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import { useTranslation } from "react-i18next";
-import { __ } from "../../../../../functions/Helper";
+import { __, SeoGenerator } from "../../../../../functions/Helper";
 import { useGetApiOld } from "../../../../../functions";
 import { CloseOutlined, EditOutlined, UploadOutlined } from "@ant-design/icons";
 import BraftEditor from 'braft-editor';
@@ -209,6 +209,10 @@ const CreateProduct = () => {
 
   return (
     <Row>
+      <SeoGenerator
+        title="Dashboard | Products - Create"
+      />
+
       <Col span={24}>
         <DashboardContentHeader page={"create new product"} />
       </Col>

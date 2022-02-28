@@ -8,7 +8,7 @@ import fa from "moment/locale/fa";
 import React, { useState } from "react";
 import { useGetConfig } from "../../../../../contexts/config/ConfigContext";
 import { useTranslation } from "react-i18next";
-import { __ } from "../../../../../functions/Helper";
+import { __, SeoGenerator } from "../../../../../functions/Helper";
 
 const Public = () => {
   // get initial config:
@@ -29,6 +29,10 @@ const Public = () => {
 
   return (
     <Row>
+      <SeoGenerator
+        title="Dashboard | Requests - Public"
+      />
+
       <Col span={ 24 }>
         <DashboardContentHeader page={ "Private requests" }/>
       </Col>

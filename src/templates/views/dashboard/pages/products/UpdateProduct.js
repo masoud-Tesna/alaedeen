@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Button, Col, Form, Input, Row, Tabs, Modal, Skeleton, InputNumber, Select } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import { useTranslation } from "react-i18next";
-import { __ } from "../../../../../functions/Helper";
+import { __, SeoGenerator } from "../../../../../functions/Helper";
 import { useGetApiOld } from "../../../../../functions";
 import { CloseOutlined, EditOutlined, UploadOutlined } from "@ant-design/icons";
 import BraftEditor from 'braft-editor';
@@ -243,16 +243,26 @@ const UpdateProduct = () => {
 
   if (isLoading || !companyId) {
     return(
-      <div className="mt-4 px-5">
-        <Skeleton active={true} paragraph={{ rows: 8 }} />
-        <Skeleton active={true} paragraph={{ rows: 5 }} />
-        <Skeleton active={true} paragraph={{ rows: 4 }} />
-      </div>
+      <>
+        <SeoGenerator
+          title="Dashboard | Products - Update"
+        />
+
+        <div className="mt-4 px-5">
+          <Skeleton active={true} paragraph={{ rows: 8 }} />
+          <Skeleton active={true} paragraph={{ rows: 5 }} />
+          <Skeleton active={true} paragraph={{ rows: 4 }} />
+        </div>
+      </>
     );
   }
   else {
     return(
       <Row>
+        <SeoGenerator
+          title={ `Dashboard | Products - ${productData?.product}` }
+        />
+
         <Col span={ 24 }>
           <DashboardContentHeader page={ "edit_product" }/>
         </Col>
@@ -402,16 +412,16 @@ const UpdateProduct = () => {
                       label={ t('description') }
                       labelCol={ { sm: 24, lg: 5 } }
                     >
-                     <div>
-                       <BraftEditor
-                         language="en"
-                         controls={ textEditorControls }
-                         className="text-editor"
-                         contentStyle={ { height: 300 } }
-                         onChange={ descriptionHandleChange }
-                         value={productDescription}
-                       />
-                     </div>
+                      <div>
+                        <BraftEditor
+                          language="en"
+                          controls={ textEditorControls }
+                          className="text-editor"
+                          contentStyle={ { height: 300 } }
+                          onChange={ descriptionHandleChange }
+                          value={productDescription}
+                        />
+                      </div>
                     </Form.Item>
 
                     <Form.Item
