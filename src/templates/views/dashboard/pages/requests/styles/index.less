@@ -1,0 +1,58 @@
+@import '../../../../../styles/Mixins';
+
+.requests--container {
+  margin-top: 60px !important;
+
+  .requests--list {
+    border-right: 1px solid #E6E6E6;
+    min-height: calc(100vh - 79px);
+
+    .requests {
+      .__item {
+        padding: 1rem 1rem;
+        min-height: calc(65px + 1rem);
+        cursor: pointer;
+        transition: all .5s;
+
+        &:not(:last-child) {
+          border-bottom: 1px solid #E6E6E6;
+        }
+
+        &:hover {
+          background-color: #E6E6E6;
+        }
+
+        .--details {
+          align-self: center;
+          .--product,
+          .--name,
+          .--company {
+            font-size: 1.6rem;
+            font-weight: 600;
+          }
+
+          .--product {
+            font-weight: 700;
+          }
+        }
+
+        .--date {
+          align-self: flex-end;
+        }
+      }
+    }
+  }
+
+  .requests--selected {
+    padding: 30px 2rem 0 !important;
+
+    .--variable,
+    .--value {
+      font-size: 1.5rem;
+    }
+
+    .--variable {
+      font-weight: 700;
+    }
+  }
+}
