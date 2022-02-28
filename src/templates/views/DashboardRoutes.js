@@ -36,6 +36,14 @@ const Affiliate = asyncComponent(() =>
   import('./dashboard/pages/affiliate').then(module => module.default)
 );
 
+const Public = asyncComponent(() =>
+  import('./dashboard/pages/requests/Public').then(module => module.default)
+);
+
+const Private = asyncComponent(() =>
+  import('./dashboard/pages/requests/Private').then(module => module.default)
+);
+
 const DashboardRoutes = () => {
 
   const { user_data } = useGetAuthState();
@@ -67,7 +75,7 @@ const DashboardRoutes = () => {
             <Route path="categories">
               <Route index element={<Navigate to="manage" />} />
 
-              <Route path={"manage"} element={<ManageCategories />} />
+              <Route path="manage" element={<ManageCategories />} />
 
               <Route path=":categoryId" element={<>Edit Category</>} />
             </Route>
@@ -77,6 +85,14 @@ const DashboardRoutes = () => {
             <Route path="payment/result" element={<Result />} />
 
             <Route path="affiliate" element={<Affiliate />} />
+
+            <Route path="requests">
+              <Route index element={<Navigate to="manage" />} />
+
+              <Route path="public" element={<Public />} />
+
+              <Route path="private" element={<Private />} />
+            </Route>
           </> :
           <Route index path={"*"} element={<Navigate to="/" />} />
       }

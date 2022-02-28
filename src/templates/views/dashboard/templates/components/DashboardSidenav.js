@@ -81,7 +81,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   }
 
   // submenu keys of first level
-  const rootSubmenuKeys = ['dashboard', 'language', 'account', 'support', 'products', 'plans', 'affiliate'];
+  const rootSubmenuKeys = ['dashboard', 'language', 'account', 'support', 'requests', 'products', 'plans', 'affiliate'];
 
   const [openKeys, setOpenKeys] = useState([mainPage]);
 
@@ -154,6 +154,19 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
               { t('support') }
             </a>
           </Menu.Item>
+
+          <SubMenu key="requests" icon={ <i className="fa-light fa-comment-quote" /> } title={ t('requests') }>
+            <Item key="public">
+              <Link to="/dashboard/requests/public" className="side--link">
+                { t('public_requests') }
+              </Link>
+            </Item>
+            <Item key="private">
+              <Link to="/dashboard/requests/private" className="side--link">
+                { t('private_requests') }
+              </Link>
+            </Item>
+          </SubMenu>
 
           <SubMenu key="products" icon={<i className="fab fa-product-hunt " />} title={ t('products_and_categories') }>
             <Item key="manageProducts">
