@@ -5680,11 +5680,6 @@
     "locate-path" "^5.0.0"
     "path-exists" "^4.0.0"
 
-"flag-icon-css@^3.5.0":
-  "integrity" "sha512-pgJnJLrtb0tcDgU1fzGaQXmR8h++nXvILJ+r5SmOXaaL/2pocunQo2a8TAXhjQnBpRLPtZ1KCz/TYpqeNuE2ew=="
-  "resolved" "https://registry.npmjs.org/flag-icon-css/-/flag-icon-css-3.5.0.tgz"
-  "version" "3.5.0"
-
 "flag-icons@^6.1.1":
   "integrity" "sha512-7QJaPXelUF5yLKppUvfqx915oLm2q6DVM037vrBzww4DjwzyVPooq74SLfPPsYabbN3kMPbDQstYjHrx8kBUPg=="
   "resolved" "https://registry.npmjs.org/flag-icons/-/flag-icons-6.1.1.tgz"
