@@ -4,9 +4,6 @@ import './templates/styles/custom.less';
 //import Style File:
 import './templates/styles/App.less';
 
-// flag icons:
-import 'flag-icon-css/less/flag-icon.less';
-
 // Components:
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
