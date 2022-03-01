@@ -46,7 +46,7 @@ const CertificatesForm = (
           <Form.Item
             name={['profile_fields', "72"]}
             label={t(__('Certification'))}
-            labelCol={{sm: 24}}
+            labelCol={{span: 24}}
             initialValue={"Y"}
             className="formSwitch"
           >
@@ -144,7 +144,7 @@ const CertificatesForm = (
           <Form.Item
             name={['profile_fields', "77"]}
             label={t(__('Honor & Award Certifications'))}
-            labelCol={{sm: 24}}
+            labelCol={{span: 24}}
             initialValue={"Y"}
             className="formSwitch"
           >
@@ -213,7 +213,7 @@ const CertificatesForm = (
           <Form.Item
             name={['profile_fields', "81"]}
             label={t(__('Patents'))}
-            labelCol={{sm: 24}}
+            labelCol={{span: 24}}
             initialValue={"Y"}
             className="formSwitch"
           >

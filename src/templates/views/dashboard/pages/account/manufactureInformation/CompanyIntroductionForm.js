@@ -56,10 +56,13 @@ const CompanyIntroductionForm = (
             <Col span={24}>
               <Form.Item
                 label={t(__('Company Logo'))}
-                labelCol={{sm: 24}}
+                labelCol={{span: 24}}
                 extra={t(__('Company Logo message'))}
                 className="companyLogo--caption"
               />
+            </Col>
+
+            <Col span={24}>
               <Row className="px-5">
                 <Col span={12}>
                   <Form.Item
@@ -142,7 +145,7 @@ const CompanyIntroductionForm = (
             <Col span={24}>
               <Form.Item
                 label={t(__('video Links'))}
-                labelCol={{sm: 24}}
+                labelCol={{span: 24}}
                 extra={t(__('video links message'))}
                 className="companyLogo--caption"
               />
@@ -222,7 +225,7 @@ const CompanyIntroductionForm = (
           <Form.Item
             name={['profile_fields', "87"]}
             label={t(__('Have you attended to any trade shows'))}
-            labelCol={{sm: 24}}
+            labelCol={{span: 24}}
             initialValue={"Y"}
             className="formSwitch"
           >

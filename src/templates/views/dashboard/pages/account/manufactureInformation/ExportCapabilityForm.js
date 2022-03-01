@@ -283,7 +283,7 @@ const ExportCapabilityForm = (
           <Form.Item
             name={['profile_fields', "49"]}
             label={t(__('Whether add customer case'))}
-            labelCol={{sm: 24}}
+            labelCol={{span: 24}}
             initialValue={"Y"}
             className="formSwitch"
           >
@@ -429,7 +429,7 @@ const ExportCapabilityForm = (
           <Form.Item
             name={['profile_fields', "57"]}
             label={t(__('Whether add customer case'))}
-            labelCol={{sm: 24}}
+            labelCol={{span: 24}}
             initialValue={"Y"}
             className="formSwitch"
           >

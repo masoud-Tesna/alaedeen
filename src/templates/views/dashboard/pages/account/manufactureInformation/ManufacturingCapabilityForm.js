@@ -47,7 +47,7 @@ const ManufacturingCapabilityForm = (
           <Form.Item
             name={['profile_fields', "10"]}
             label={t(__('Whether to show production line'))}
-            labelCol={{sm: 24}}
+            labelCol={{span: 24}}
             initialValue={"Y"}
             className="formSwitch"
           >
@@ -118,7 +118,7 @@ const ManufacturingCapabilityForm = (
           <Form.Item
             name={['profile_fields', "14"]}
             label={t(__('Whether to show production equipment'))}
-            labelCol={{sm: 24}}
+            labelCol={{span: 24}}
             initialValue={"Y"}
             className="formSwitch"
           >
@@ -174,7 +174,7 @@ const ManufacturingCapabilityForm = (
           <Form.Item
             name={['profile_fields', "18"]}
             label={t(__('Whether to show production line'))}
-            labelCol={{sm: 24}}
+            labelCol={{span: 24}}
             initialValue={"Y"}
             className="formSwitch"
           >
@@ -413,7 +413,7 @@ const ManufacturingCapabilityForm = (
           <Form.Item
             name={['profile_fields', "28"]}
             label={t(__('Add information about your annual production capacity'))}
-            labelCol={{sm: 24}}
+            labelCol={{span: 24}}
             initialValue={"Y"}
             className="formSwitch"
           >
