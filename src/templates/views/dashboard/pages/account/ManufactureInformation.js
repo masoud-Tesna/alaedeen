@@ -156,7 +156,7 @@ const ManufactureInformation = () => {
 
 
     try {
-      const res = await axios.post(
+      await axios.post(
         "https://alaedeen.com/horn/profile-upload-image-api",
         fmData,
         config

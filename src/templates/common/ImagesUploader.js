@@ -4,7 +4,7 @@ import "./styles/ImagesUploader.less";
 
 import { useTranslation } from "react-i18next";
 import { __, fn_get_base64 } from "../../functions/Helper";
-import { Image, Modal, Upload } from "antd";
+import { Modal, Upload } from "antd";
 
 const ImagesUploader = (
   {
