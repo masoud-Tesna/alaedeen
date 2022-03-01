@@ -137,7 +137,7 @@ const ProductDetail = (props) => {
                           <Skeleton.Input className="productSkeleton--text" style={{ "--text-width": "20vw", "--text-height": "2.55vh" }} active={true} size={"small"} /> :
                           product?.manufacturing_country &&
                           <>
-                            <i className={ `flag-icon flag-icon-${ (product?.manufacturing_country)?.toLowerCase() } display-5 mr-2 mr-lg-3` } />
+                            <i className={ `fi fi-${ (product?.manufacturing_country)?.toLowerCase() } display-5 mr-2 mr-lg-3` } />
                             <span className="text-92">{ product.manufacturing_country }</span>
                           </>
                         }

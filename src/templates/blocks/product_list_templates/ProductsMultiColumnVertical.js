@@ -114,7 +114,7 @@ const ProductsMultiColumnVertical = (props) => {
               </Col>
               <Col className="align-self-end productsMultiColumnVertical--item__detailIcon">
                 {detailIcon === 'default' ?
-                  <><i className={ `flag-icon flag-icon-${ manufacturing_country.toLowerCase() } vv-font-size-1-9` } /> <span className="vv-font-size-1-5 text-92">{ manufacturing_country }</span></> :
+                  <><i className={ `fi fi-${ manufacturing_country.toLowerCase() } vv-font-size-1-9` } /> <span className="vv-font-size-1-5 text-92">{ manufacturing_country }</span></> :
                   product?.company_logo &&
                   <ShowResponsiveImage
                     imagePath={ `https://alaedeen.com/horn/images/company_logo/${product.company_logo}` }

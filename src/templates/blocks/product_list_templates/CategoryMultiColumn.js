@@ -90,7 +90,7 @@ const CategoryMultiColumn = (props) => {
 
                 </Col>
                 <Col className="align-self-end productsMultiColumnVertical--item__detailIcon">
-                  <i className={ `flag-icon flag-icon-${ manufacturing_country.toLowerCase() } ${ width >= 992 ? 'vv-font-size-2' : 'vv-font-size-1-8' } mr-2` } />
+                  <i className={ `fi fi-${ manufacturing_country.toLowerCase() } ${ width >= 992 ? 'vv-font-size-2' : 'vv-font-size-1-8' } mr-2` } />
                   <span className={ `${ width >= 992 ? 'vv-font-size-1-6' : 'vv-font-size-1-4' } text-92 font-weight-500` }>{ manufacturing_country }</span>
                 </Col>
               </Row>

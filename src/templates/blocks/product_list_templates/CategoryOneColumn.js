@@ -197,7 +197,7 @@ const CategoryOneColumn = (props) => {
 
                         {product?.manufacturing_country &&
                         <div className="productsOneColumnVertical--item__manufacturingLocation">
-                          <i className={ `flag-icon flag-icon-${product?.manufacturing_country?.toString().trim().toLowerCase()} vv-font-size-2 align-bottom` } /> { product?.manufacturing_country }
+                          <i className={ `fi fi-${product?.manufacturing_country?.toString().trim().toLowerCase()} vv-font-size-2 align-bottom` } /> { product?.manufacturing_country }
                         </div>
                         }
 
@@ -226,7 +226,7 @@ const CategoryOneColumn = (props) => {
                       <i className="icon-vv-location text-ab vv-font-size-2-2" /> { product?.wk_location }
                     </Col>
                     <Col className="productsOneColumnVertical--item__manufacturingLocation">
-                      <i className={ `flag-icon flag-icon-${product?.manufacturing_country?.toString().trim().toLowerCase()} vv-font-size-2 align-bottom` } /> { product?.manufacturing_country }
+                      <i className={ `fi fi-${product?.manufacturing_country?.toString().trim().toLowerCase()} vv-font-size-2 align-bottom` } /> { product?.manufacturing_country }
                     </Col>
                   </>
                 }

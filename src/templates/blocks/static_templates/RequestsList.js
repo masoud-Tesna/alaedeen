@@ -123,7 +123,7 @@ const RequestsList = () => {
                                 <span className="text-47 vv-font-size-1-6">{ `${requestList?.auth_country}, ${requestList?.auth_city}` }</span>
                               </Col>
                               <Col className="align-self-end">
-                                <i className={ `flag-icon flag-icon-${requestList?.country_code} vv-font-size-1-9` } />
+                                <i className={ `fi fi-${requestList?.country_code} vv-font-size-1-9` } />
                               </Col>
                             </Row>
                           </Col>

@@ -333,7 +333,7 @@ const ExportCapabilityForm = (
                     return (
                       <Option key={ `country_lists_${ countryList?.code }` } value={countryList?.code} label={ countryList?.country }>
                         <div className="optionByIcon">
-                          <i className={ `flag-icon flag-icon-${ countryList.code.toLowerCase() } vv-font-size-1-9` } />
+                          <i className={ `fi fi-${ countryList.code.toLowerCase() } vv-font-size-1-9` } />
                           { countryList?.country }
                         </div>
                       </Option>
@@ -469,7 +469,7 @@ const ExportCapabilityForm = (
                     return (
                       <Option key={ `country_lists_${ countryList?.code }` } value={countryList?.code} label={ countryList?.country }>
                         <div className="optionByIcon">
-                          <i className={ `flag-icon flag-icon-${ countryList.code.toLowerCase() } vv-font-size-1-9` } />
+                          <i className={ `fi fi-${ countryList.code.toLowerCase() } vv-font-size-1-9` } />
                           { countryList?.country }
                         </div>
                       </Option>

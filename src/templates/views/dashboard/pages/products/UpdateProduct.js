@@ -550,7 +550,7 @@ const UpdateProduct = () => {
                                         label={ countryList?.country }>
                                   <div className="optionByIcon">
                                     <i
-                                      className={ `flag-icon flag-icon-${ countryList.code.toLowerCase() } vv-font-size-1-9` }/>
+                                      className={ `fi fi-${ countryList.code.toLowerCase() } vv-font-size-1-9` }/>
                                     { countryList?.country }
                                   </div>
                                 </Option>
@@ -611,7 +611,7 @@ const UpdateProduct = () => {
                                     label={ countryList?.country }>
                               <div className="optionByIcon">
                                 <i
-                                  className={ `flag-icon flag-icon-${ countryList.code.toLowerCase() } vv-font-size-1-9 country--lists__flagIcon` }/>
+                                  className={ `fi fi-${ countryList.code.toLowerCase() } vv-font-size-1-9 country--lists__flagIcon` }/>
                                 { countryList?.country }
                               </div>
                             </Option>

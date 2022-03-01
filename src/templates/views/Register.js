@@ -224,7 +224,7 @@ const Register = () => {
                                     <Col span={24}>
                                       <Row>
                                         <Col className="my-auto vv-font-size-1-9 text-47">
-                                          <i className="flag-icon flag-icon-ir vv-font-size-2-2" /> {t(__('iran'))} -
+                                          <i className="fi fi-ir vv-font-size-2-2" /> {t(__('iran'))} -
                                         </Col>
                                         <Col flex="1 1">
                                           <Form.Item
@@ -484,7 +484,7 @@ const Register = () => {
                                     <Col span={24}>
                                       <Row>
                                         <Col className="my-auto vv-font-size-1-9 text-47">
-                                          <i className="flag-icon flag-icon-ir vv-font-size-2-2" /> {t(__('iran'))} -
+                                          <i className="fi fi-ir vv-font-size-2-2" /> {t(__('iran'))} -
                                         </Col>
                                         <Col flex="1 1">
                                           <Form.Item
