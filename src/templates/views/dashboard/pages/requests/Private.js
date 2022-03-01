@@ -70,7 +70,7 @@ const Private = () => {
                     <Col
                       key={request?.request_id}
                       span={24}
-                      className="__item"
+                      className={ `__item ${(selectedRequest?.request_id && (selectedRequest.request_id === request?.request_id)) ? 'active' : ''}` }
                       onClick={() => setSelectedRequest(request)}
                     >
                       <Row gutter={10} className="h-100">
@@ -98,7 +98,7 @@ const Private = () => {
           </Col>
 
           <Col span={16} className="requests--selected">
-            { selectedRequest.request_id ?
+            { selectedRequest?.request_id ?
               <Row className="row-cols-1" gutter={[0, 30]}>
                 <Col>
                   <Row gutter={16}>
