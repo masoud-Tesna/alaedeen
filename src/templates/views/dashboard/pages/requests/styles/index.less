@@ -4,8 +4,13 @@
   margin-top: 60px !important;
 
   .requests--list {
-    border-right: 1px solid #E6E6E6;
     min-height: calc(100vh - 79px);
+    border-right: 1px solid #E6E6E6;
+
+    &.ant-col-rtl {
+      border-right: none;
+      border-left: 1px solid #E6E6E6;
+    }
 
     .requests {
       .__item {
