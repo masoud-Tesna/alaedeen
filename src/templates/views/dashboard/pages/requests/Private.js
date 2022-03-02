@@ -10,6 +10,8 @@ import React, { useState } from "react";
 import { useGetConfig } from "../../../../../contexts/config/ConfigContext";
 import { useTranslation } from "react-i18next";
 import { __, SeoGenerator } from "../../../../../functions/Helper";
+import { CommentOutlined, PlusOutlined } from "@ant-design/icons";
+import { useNavigate } from "react-router-dom";
 
 const Private = () => {
 
@@ -17,6 +19,8 @@ const Private = () => {
   const { config } = useGetConfig();
 
   const { t } = useTranslation();
+
+  const navigate = useNavigate();
 
   // user data context state:
   const { user_data } = useGetAuthState();
@@ -29,7 +33,6 @@ const Private = () => {
   }
 
   const [selectedRequest, setSelectedRequest] = useState({});
-  console.log(selectedRequest)
 
   // get request lists from API:
   const { isLoading, data } = useGetApiOld(`request-list-api`, `company_id=${companyId}`, `requestLists_${companyId}`, {enabled: !!companyId});
@@ -41,7 +44,17 @@ const Private = () => {
         title="Dashboard | Requests - Private"
       />
       <Col span={ 24 }>
-        <DashboardContentHeader page={ "Private requests" }/>
+        <DashboardContentHeader
+          page={ "Private requests" }
+          hasBtn={!!selectedRequest?.request_id}
+          btnData={
+            {
+              text: "conversation",
+              handleOnClick: () => navigate(selectedRequest?.request_id),
+              icon:  <CommentOutlined />
+            }
+          }
+        />
       </Col>
 
       <Col span={24} className="requests--container">
@@ -73,21 +86,32 @@ const Private = () => {
                       className={ `__item ${(selectedRequest?.request_id && (selectedRequest.request_id === request?.request_id)) ? 'active' : ''}` }
                       onClick={() => setSelectedRequest(request)}
                     >
-                      <Row gutter={10} className="h-100">
-                        <Col flex="1 1" className="--details">
-                          <span className="--product">{request?.product_name}</span> -
-                          <span className="--name">{request?.auth_name}</span>
-                          {request?.auth_company ?
-                            <> - <span className="--company">{request?.auth_company}</span></> :
-                            <></>
-                          }
-
+                      <Row gutter={[0, 5]} className="h-100">
+                        <Col span={24} className="--details">
+                          <div className="topSection">
+                            <span className="--product">{request?.product_name}</span>
+                          </div>
                         </Col>
-                        <Col className="--date">
-                          {config.language === 'fa'
-                            ? moment.unix(request?.timestamp).format('jDD jMMMM jYYYY')
-                            : <Moment format="DD MMM, YYYY" unix locale="en">{request?.timestamp}</Moment>
-                          }
+
+                        <Col span={24} className="extra">
+                          <Row gutter={10}>
+                            <Col flex="1 1" className="--details">
+                              <div className="buttonSection">
+                                <span className="--name">{request?.auth_name}</span>
+                                {request?.auth_company ?
+                                  <> - <span className="--company">{request?.auth_company}</span></> :
+                                  <></>
+                                }
+                              </div>
+                            </Col>
+
+                            <Col className="--date">
+                              {config.language === 'fa'
+                                ? moment.unix(request?.timestamp).format('jDD jMMMM jYYYY')
+                                : <Moment format="DD MMM, YYYY" unix locale="en">{request?.timestamp}</Moment>
+                              }
+                            </Col>
+                          </Row>
                         </Col>
                       </Row>
                     </Col>

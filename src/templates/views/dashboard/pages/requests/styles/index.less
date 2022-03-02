@@ -29,21 +29,28 @@
         }
 
         .--details {
-          align-self: center;
-          .--product,
-          .--name,
-          .--company {
-            font-size: 1.6rem;
-            font-weight: 600;
+          &,
+          .topSection,
+          .buttonSection {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
           }
 
-          .--product {
-            font-weight: 700;
+          .topSection {
+            span {
+              font-size: 1.6rem;
+              font-weight: 700;
+            }
           }
-        }
 
-        .--date {
-          align-self: flex-end;
+          .buttonSection {
+            span {
+              color: #929191;
+              font-size: 1.2rem;
+              font-weight: 500;
+            }
+          }
         }
       }
     }
