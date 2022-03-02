@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 const DashboardContentHeader = (
   {
     page,
+    extra,
     hasLink = false,
     linkData = {},
     hasBtn = false,
@@ -24,7 +25,7 @@ const DashboardContentHeader = (
   return (
     <Row className="dashboardContentHeader" justify="space-between">
       <Col className="dashboardContentHeader--caption">
-        {t(__(page))}
+        {t(__(page))} {extra ? `: ${extra}` : ""}
       </Col>
 
       <Col className="d-lg-none dashboardContentHeader--toggleDrawer">
