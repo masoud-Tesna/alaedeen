@@ -44,6 +44,10 @@ const Private = asyncComponent(() =>
   import('./dashboard/pages/requests/Private').then(module => module.default)
 );
 
+const Conversation = asyncComponent(() =>
+  import('./dashboard/pages/requests/Conversation').then(module => module.default)
+);
+
 const DashboardRoutes = () => {
 
   const { user_data } = useGetAuthState();
@@ -87,11 +91,19 @@ const DashboardRoutes = () => {
             <Route path="affiliate" element={<Affiliate />} />
 
             <Route path="requests">
-              <Route index element={<Navigate to="manage" />} />
+              <Route index element={<Navigate to="public" />} />
 
-              <Route path="public" element={<Public />} />
+              <Route path="public" >
+                <Route index element={<Public />} />
 
-              <Route path="private" element={<Private />} />
+                <Route path=":requestId" element={<Conversation />} />
+              </Route>
+
+              <Route path="private" >
+                <Route index element={<Private />} />
+
+                <Route path=":requestId" element={<Conversation />} />
+              </Route>
             </Route>
           </> :
           <Route index path={"*"} element={<Navigate to="/" />} />
