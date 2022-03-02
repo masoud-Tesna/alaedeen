@@ -10,7 +10,7 @@ import React, { useState } from "react";
 import { useGetConfig } from "../../../../../contexts/config/ConfigContext";
 import { useTranslation } from "react-i18next";
 import { __, SeoGenerator } from "../../../../../functions/Helper";
-import { CommentOutlined, PlusOutlined } from "@ant-design/icons";
+import { CommentOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
 const Private = () => {
