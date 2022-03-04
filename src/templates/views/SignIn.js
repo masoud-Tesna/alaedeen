@@ -43,10 +43,12 @@ const SignIn = () => {
   const [signInIncorrect, setSignInIncorrect] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-  // If you are already logged in:
-  if (isLoggedIn && user_data.auth.user_id) {
-    navigate('/');
-  }
+  useEffect((() => {
+    // If you are already logged in:
+    if (isLoggedIn && user_data.auth.user_id) {
+      navigate('/');
+    }
+  }), [isLoggedIn, user_data.auth.user_id])
 
   const { mutate } = useMutation(signInApi, {
     onSuccess: res => {

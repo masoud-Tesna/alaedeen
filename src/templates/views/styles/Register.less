@@ -7,15 +7,7 @@ html:lang(ar) {
     margin: 0 !important;
   }
 
-  .register--loginExtra {
-
-    @media (min-width: @screen-md) {
-      border-left: 0 !important;
-      border-right: 1px solid #707070;
-    }
-  }
-
-  .sellerRegisterStep {
+  /*.sellerRegisterStep {
     .ant-steps-item {
       .ant-steps-item-tail {
         margin-left: 0;
@@ -49,7 +41,7 @@ html:lang(ar) {
     .ant-col-rtl {
       direction: rtl;
     }
-  }
+  }*/
 }
 
 .register--container {
@@ -225,7 +217,14 @@ html:lang(ar) {
   }
 
   .register--loginExtra {
+    @media (min-width: @screen-md) {
+      border-left: 1px solid #707070;
 
+      &.ant-col-rtl {
+        border-left: 0 !important;
+        border-right: 1px solid #707070;
+      }
+    }
 
     .register--loginExtra__content {
       margin-top: 2rem;
@@ -279,11 +278,6 @@ html:lang(ar) {
         margin-top: 8rem;
       }
     }
-
-    @media (min-width: @screen-md) {
-      border-left: 1px solid #707070;
-    }
-
   }
 
   .sellerRegisterStep {

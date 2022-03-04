@@ -1,118 +1,113 @@
 // import Mixin:
 @import '../../styles/Mixins';
 
-html:lang(fa),
-html:lang(ar) {
-  .signIn--loginExtra {
-
-    @media (min-width: @screen-md) {
-      //border-left: 0 !important;
-      //border-right: 1px solid #707070;
-    }
-  }
-
-  .ant-row-rtl,
-  .ant-col-rtl,
-  .ant-input-affix-wrapper-rtl,
-  .ant-checkbox-rtl
-  {
-    direction: ltr;
-  }
-
-  .signIn--loginContent .ant-col-rtl .ant-form-item-explain-error
-  {
-    direction: rtl;
-  }
-}
-
 .signIn--container {
-  .signIn--formContent {
-    .signIn--loginContent {
-      .ant-form-item {
-        margin-bottom: 2rem;
-      }
+  .signIn--content {
+    @media (min-width: @screen-md) {
+      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.17);
+      border-radius: 10px;
+      margin-top: 4rem;
+      margin-bottom: 2rem;
+      align-self: center;
+    }
 
-      .signIn--formContent__userLogin,
-      .signIn--formContent__password {
-        .ant-input-affix-wrapper {
-          border-bottom: 1px solid #707070;
+    .signIn--formContent {
+      .signIn--loginContent {
+        .ant-form-item {
+          margin-bottom: 2rem;
+        }
 
-          &:focus {
+        .signIn--formContent__userLogin,
+        .signIn--formContent__password {
+          .ant-input-affix-wrapper {
+            border-bottom: 1px solid #707070;
+
+            direction: ltr;
+
+            &:focus {
+              box-shadow: none;
+            }
+
+            .ant-input-prefix {
+              margin-right: 1rem;
+            }
+
+            .ant-input-prefix,
+            .ant-input-suffix {
+              svg {
+                font-size: 2rem;
+              }
+            }
+
+            .ant-input {
+              &::placeholder {
+                font-size: 1.7rem;
+                color: #929191;
+              }
+            }
+          }
+
+          .ant-input-affix-wrapper.ant-input-affix-wrapper-focused {
             box-shadow: none;
           }
+        }
 
-          .ant-input-prefix{
-            margin-right: 1rem;
+        .ant-form-item-has-error .ant-input-affix-wrapper {
+          border-bottom: 1px solid #f5222d !important;
+        }
+
+        .signIn--rememberMe {
+          .ant-checkbox-wrapper {
+            color: #929191;
+
+            &:hover {
+              color: #5f5e5e;
+            }
           }
+        }
 
-          .ant-input-prefix,
-          .ant-input-suffix {
-            svg {
+        .signIn--signInBtn {
+          margin-bottom: 0 !important;
+
+          .ant-btn {
+            border-radius: 6px;
+
+            span {
               font-size: 2rem;
-            }
-          }
-
-          .ant-input {
-            &::placeholder {
-              font-size: 1.7rem;
-              color: #929191;
+              font-weight: 600;
             }
           }
         }
-
-        .ant-input-affix-wrapper.ant-input-affix-wrapper-focused {
-          box-shadow: none;
-        }
       }
 
-      .ant-form-item-has-error .ant-input-affix-wrapper {
-        border-bottom: 1px solid #f5222d !important;
-      }
+      .signIn--loginExtra {
+        text-align: center;
 
-      .signIn--rememberMe {
-        .ant-checkbox-wrapper {
-          color: #929191;
+        @media (min-width: @screen-md) {
+          border-left: 1px solid #707070;
 
-          &:hover {
-            color: #5f5e5e;
+          &.ant-col-rtl {
+            border-left: 0 !important;
+            border-right: 1px solid #707070;
           }
         }
-      }
 
-      .signIn--signInBtn {
-        margin-bottom: 0 !important;
-        .ant-btn {
-          border-radius: 6px;
-
-          span {
-            font-size: 2rem;
-            font-weight: 600;
-          }
+        .signInWithGoogleTxt {
+          margin-bottom: 3rem;
         }
-      }
-    }
 
-    .signIn--loginExtra {
-      text-align: center;
+        .signInWithGoogleBtn {
+          margin-bottom: 4rem;
 
-      @media (min-width: @screen-md) {
-        border-left: 1px solid #707070;
-      }
+          div.shadow-circle {
+            width: 54px;
+            height: 54px;
+            line-height: 49px;
 
-      .signInWithGoogleTxt {
-        margin-bottom: 3rem;
-      }
-
-      .signInWithGoogleBtn {
-        margin-bottom: 4rem;
-        div.shadow-circle {
-          width: 54px;
-          height: 54px;
-          line-height: 49px;
-
-          img {
-            width: 40px;
-            height: 40px;
+            img {
+              width: 40px;
+              height: 40px;
+            }
           }
         }
       }
@@ -121,26 +116,7 @@ html:lang(ar) {
 }
 
 @media (min-width: 992px) {
-  .signIn--container {
-    .signIn--content {
-      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.17);
-      border-radius: 10px;
-      margin-top: 4rem;
-      margin-bottom: 2rem;
-    }
-  }
-
-  /*.ant-layout.layout {
-    min-height: 100vh;
-  }*/
-
   .site-layout-content.siteLayoutContent__signIn--page {
     height: calc(100vh - 41px);
-  }
-
-  .signIn--container {
-    .signIn--content {
-      align-self: center;
-    }
   }
 }
