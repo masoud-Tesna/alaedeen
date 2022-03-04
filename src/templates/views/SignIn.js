@@ -28,10 +28,6 @@ import { signInApi } from "../../functions";
 
 const SignIn = () => {
 
-  // initial State for Error Handle:
-  const [signInIncorrect, setSignInIncorrect] = useState(null);
-  const [isLogin, setIsLogin] = useState(true);
-
   // get initial config:
   const { config } = useGetConfig();
 
@@ -43,7 +39,12 @@ const SignIn = () => {
   const { user_data } = useGetAuthState();
   const { AuthDispatch } = useDispatchAuthState();
 
-  if (isLogin && user_data.auth.user_id) {
+  // initial State for Error Handle:
+  const [signInIncorrect, setSignInIncorrect] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  // If you are already logged in:
+  if (isLoggedIn && user_data.auth.user_id) {
     navigate('/');
   }
 
@@ -64,7 +65,7 @@ const SignIn = () => {
   });
 
   const signInHandle = values => {
-    setIsLogin(false);
+    setIsLoggedIn(false);
     AuthDispatch(checkSignInLoadingAction());
     const loginData = {
       user_login: values.user_login,

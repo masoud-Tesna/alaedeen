@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // import style file:
 import './styles/Register.less';
@@ -65,10 +65,12 @@ const Register = () => {
 
   const { city_lists: cityLists } = data || [];
 
-  // if signed in and register type = buyer => redirect to home page:
-  if (user_data.auth.user_id && registerType === 'buyer') {
-    navigate('/');
-  }
+  useEffect(() => {
+    // If you are already logged in:
+    if (user_data.auth.user_id) {
+      navigate('/');
+    }
+  }, []);
 
   // initial for work in URL:
   const query = useQueryString();

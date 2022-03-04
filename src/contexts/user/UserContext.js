@@ -61,7 +61,7 @@ export function UserProvider ({ children }) {
       dispatch(signInLoadingFalseAction());
     }
 
-  }), [mutate, token]);
+  }), []);
 
   return (
     <userContext.Provider value={{ auth, dispatch }}>
