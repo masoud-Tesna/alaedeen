@@ -1,12 +1,12 @@
 import "./styles/index.less";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import { Col, Empty, Row, Skeleton } from "antd";
-import { useGetApiOld } from "../../../../../functions";
+import { useGetApi } from "../../../../../functions";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 import Moment from "react-moment";
 import moment from "moment-jalaali";
 import fa from "moment/locale/fa";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useGetConfig } from "../../../../../contexts/config/ConfigContext";
 import { useTranslation } from "react-i18next";
 import { __, SeoGenerator } from "../../../../../functions/Helper";
@@ -25,7 +25,29 @@ const Private = () => {
   // user data context state:
   const { user_data } = useGetAuthState();
 
-  const companyId = user_data?.auth?.company_id || 0;
+  // state for save user id and type:
+  const [user, setUser] = useState({});
+
+  // for set user id and user type
+  useEffect(() => {
+    if (user_data?.auth?.user_id) {
+      if (user_data?.auth?.user_type === 'V') {
+        setUser(
+          {
+            id: user_data?.auth?.company_id,
+            type: 'V'
+          }
+        );
+      } else if (user_data?.auth?.user_type === 'C') {
+        setUser(
+          {
+            id: user_data?.auth?.user_id,
+            type: 'C'
+          }
+        );
+      }
+    }
+  }, [user_data?.auth]);
 
   if (config.language !== 'en') {
     moment.updateLocale("fa", fa);
@@ -34,8 +56,20 @@ const Private = () => {
 
   const [selectedRequest, setSelectedRequest] = useState({});
 
-  // get request lists from API:
-  const { isLoading, data } = useGetApiOld(`request-list-api`, `company_id=${companyId}`, `requestLists_${companyId}`, {enabled: !!companyId});
+  // get Private request lists from API:
+  const { isLoading,  data } = useGetApi(
+    `Requests/${user?.id}`,
+    {
+      request_type: 'private',
+      user_type: user?.type
+    },
+    `requestLists_private_${user?.id}`,
+    {
+      enabled: !!user?.id,
+      refetchOnWindowFocus: false
+    }
+  );
+
   const requestLists = data?.request_lists || [];
 
   return (

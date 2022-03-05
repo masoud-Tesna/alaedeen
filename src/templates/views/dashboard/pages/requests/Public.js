@@ -1,16 +1,17 @@
 import "./styles/index.less";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import { Col, Empty, Row, Skeleton } from "antd";
-import { useGetApiOld } from "../../../../../functions";
+import { useGetApi, useGetApiOld } from "../../../../../functions";
 import Moment from "react-moment";
 import moment from "moment-jalaali";
 import fa from "moment/locale/fa";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useGetConfig } from "../../../../../contexts/config/ConfigContext";
 import { useTranslation } from "react-i18next";
 import { __, SeoGenerator } from "../../../../../functions/Helper";
 import { CommentOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 
 const Public = () => {
   // get initial config:
@@ -25,10 +26,49 @@ const Public = () => {
     moment.loadPersian({usePersianDigits: true});
   }
 
+  // user data context state:
+  const { user_data } = useGetAuthState();
+
+  // state for save user id and type:
+  const [user, setUser] = useState({});
+
+  // for set user id and user type
+  useEffect(() => {
+    if (user_data?.auth?.user_id) {
+      if (user_data?.auth?.user_type === 'V') {
+        setUser(
+          {
+            id: user_data?.auth?.company_id,
+            type: 'V'
+          }
+        );
+      } else if (user_data?.auth?.user_type === 'C') {
+        setUser(
+          {
+            id: user_data?.auth?.user_id,
+            type: 'C'
+          }
+        );
+      }
+    }
+  }, [user_data?.auth]);
+
   const [selectedRequest, setSelectedRequest] = useState({});
 
   // get request lists from API:
-  const { isLoading, data } = useGetApiOld(`request-list-api`, "", `requestLists_public`);
+  const { isLoading,  data } = useGetApi(
+    `Requests/${user?.id}`,
+    {
+      request_type: 'public',
+      user_type: user?.type
+    },
+    `requestLists_public_${user?.id}`,
+    {
+      enabled: !!user?.id,
+      refetchOnWindowFocus: false
+    }
+  );
+
   const requestLists = data?.request_lists || [];
 
   return (
