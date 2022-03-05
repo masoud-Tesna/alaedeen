@@ -50,7 +50,7 @@ const SignIn = () => {
     }
   }), [isLoggedIn, user_data.auth.user_id])
 
-  const { mutate } = useMutation(signInApi, {
+  const { mutate: signInMutate } = useMutation(signInApi, {
     onSuccess: res => {
       if (res === 'email_incorrect') {
         setSignInIncorrect('email_incorrect');
@@ -74,7 +74,7 @@ const SignIn = () => {
       password: values.password,
       language: config.language
     }
-    mutate(loginData, {
+    signInMutate(loginData, {
       onSuccess: res => {
         if (res?.auth?.status ) window.location.href = "/";
       }
