@@ -324,3 +324,18 @@ export function fn_discount(price, percent) {
 export function fn_after_discount(price, percent) {
   return (percent / 100) * price;
 }
+
+/**
+ * This function is same as PHP's nl2br() with default parameters.
+ *
+ * @param {string} str Input text
+ * @param {boolean} replaceMode Use replace instead of insert
+ * @param {boolean} isXhtml Use XHTML
+ * @return {string} Filtered text
+ */
+export function nl2br (str, replaceMode, isXhtml) {
+
+  let breakTag = (isXhtml) ? '<br />' : '<br>';
+  let replaceStr = (replaceMode) ? '$1'+ breakTag : '$1'+ breakTag +'$2';
+  return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, replaceStr);
+}
