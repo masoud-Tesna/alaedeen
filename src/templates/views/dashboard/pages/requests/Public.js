@@ -1,7 +1,7 @@
 import "./styles/index.less";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import { Col, Empty, Row, Skeleton } from "antd";
-import { useGetApi, useGetApiOld } from "../../../../../functions";
+import { useGetApi } from "../../../../../functions";
 import Moment from "react-moment";
 import moment from "moment-jalaali";
 import fa from "moment/locale/fa";
