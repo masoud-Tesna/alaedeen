@@ -122,16 +122,16 @@ const ManageCategories = () => {
       <Col span={24} className="categoryManage--table">
         <div>
           <Row className="__head">
-            <Col className="text-center" span={7}>
+            <Col className="text-center" span={9}>
               {t('category')}
             </Col>
-            <Col className="text-center" span={7}>
+            <Col className="text-center" span={9}>
               {t('category_parent')}
             </Col>
-            <Col className="text-center" span={6}>
+            {/*<Col className="text-center" span={6}>
               {t('action')}
-            </Col>
-            <Col className="text-center" span={4}>
+            </Col>*/}
+            <Col className="text-center" span={6}>
               {t('status')}
             </Col>
           </Row>
@@ -177,15 +177,15 @@ const ManageCategories = () => {
                   <Col key={ `ManageCategories_categories_${categoryId}` } span={24}>
                     <Row className={ `__data ${category?.status === 'D' ? 'disable--item' : ''}` }>
 
-                      <Col className="text-center my-auto __name" span={7}>
+                      <Col className="text-center my-auto __name" span={9}>
                         { category?.category }
                       </Col>
 
-                      <Col className="text-center my-auto __name" span={7}>
+                      <Col className="text-center my-auto __name" span={9}>
                         {category?.parent}
                       </Col>
 
-                      <Col className="my-auto __actions" span={6}>
+                      {/*<Col className="my-auto __actions" span={6}>
                         <Row justify="space-between" gutter={10}>
                           <Col>
                             <Link to={`/dashboard/categories/${categoryId}`}>
@@ -197,7 +197,7 @@ const ManageCategories = () => {
 
                           <Col>
                             <Popconfirm
-                              title={t(__("Are you sure to delete this product?"))}
+                              title={t(__("Are you sure to delete this category?"))}
                               onConfirm={() => handleRemoveCategory(categoryId)}
                               okText={ t("Yes") }
                               cancelText={ t("No") }
@@ -208,9 +208,9 @@ const ManageCategories = () => {
                             </Popconfirm>
                           </Col>
                         </Row>
-                      </Col>
+                      </Col>*/}
 
-                      <Col className="text-center my-auto __publish" span={4}>
+                      <Col className="text-center my-auto __publish" span={6}>
                         {category?.status === 'A' && <span className="item--status__active">{t('category_is_active')}</span>}
 
                         {category?.status === 'D' && <span className="item--status__disable">{t('awaiting_approval')}</span>}
