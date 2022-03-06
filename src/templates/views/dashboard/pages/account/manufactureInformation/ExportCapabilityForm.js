@@ -428,7 +428,7 @@ const ExportCapabilityForm = (
 
           <Form.Item
             name={['profile_fields', "57"]}
-            label={t(__('Whether add customer case'))}
+            label={t(__('does your company have an overseas office'))}
             labelCol={{span: 24}}
             initialValue={"Y"}
             className="formSwitch"
