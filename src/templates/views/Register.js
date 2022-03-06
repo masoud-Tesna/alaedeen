@@ -697,7 +697,7 @@ const Register = () => {
                                               <Checkbox value="trading_company"> { t(__('Trading Company')) } </Checkbox>
                                             </Col>
                                             <Col span={24}>
-                                              <Checkbox value="business_type_business_service"> { t(__('Business Service (Transportation, finance, travel, Ads)')) } </Checkbox>
+                                              <Checkbox value="service"> { t(__('Business Service (Transportation, finance, travel, Ads)')) } </Checkbox>
                                             </Col>
                                           </Row>
                                         </Checkbox.Group>
