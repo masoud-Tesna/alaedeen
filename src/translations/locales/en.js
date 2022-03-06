@@ -2,6 +2,7 @@ const en = {
   "categories": "Categories",
   "stores": "Stores",
   "logistics": "Logistics",
+  "cooperation_year": "{{years}} Years",
   "sign_in": "Sign in",
   "international_exhibition": "International Exhibition",
   "what_are_you_looking_for": "What are you looking for ...",

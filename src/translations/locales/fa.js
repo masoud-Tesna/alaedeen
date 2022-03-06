@@ -1,5 +1,6 @@
 const fa = {
   "categories": "دسته بندی‌ها",
+  "cooperation_year": "{{years}} سال",
   "stores": "فروشگاه",
   "logistics": "حمل و نقل",
   "sign_in": "ورود",

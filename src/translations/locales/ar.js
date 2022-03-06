@@ -1,5 +1,6 @@
 const ar = {
   "categories": "فئات",
+  "cooperation_year": "{{years}} سنة",
   "stores": "المخازن",
   "logistics": "الخدمات اللوجستية",
   "sign_in": "تسجيل الدخول",
