@@ -41,7 +41,7 @@ const ManufactureInformation = () => {
   const [ supportFrm ] = Form.useForm();
 
   // state for save current tab key:
-  const [ currentTab, setCurrentTab ] = useState("2");
+  const [ currentTab, setCurrentTab ] = useState("1");
 
   // save image name in array state:
   const [ imageFileList, setImageFileList ] = useState({});
@@ -255,7 +255,7 @@ const ManufactureInformation = () => {
             />
           </TabPane>
 
-          { !businessType.includes("freight") &&
+          { !businessType.includes("service") &&
           <TabPane className="manufacturingTab--content" tab={ t(__("manufacturing_capability")) } key="2">
             <ManufacturingCapabilityForm
               formRef={ manufacturingCapabilityFrm }
