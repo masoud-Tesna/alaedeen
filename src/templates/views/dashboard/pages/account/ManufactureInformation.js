@@ -41,7 +41,7 @@ const ManufactureInformation = () => {
   const [ supportFrm ] = Form.useForm();
 
   // state for save current tab key:
-  const [ currentTab, setCurrentTab ] = useState("1");
+  const [ currentTab, setCurrentTab ] = useState("2");
 
   // save image name in array state:
   const [ imageFileList, setImageFileList ] = useState({});
@@ -74,44 +74,47 @@ const ManufactureInformation = () => {
   };
 
   // get data from API:
-  const { data: officeSizesData } = useGetApiOld("get-profile-field-value-api", "field_id=8", "officeSizes");
+  const { data: officeSizesData } = useGetApiOld("get-profile-field-value-api", "field_id=8", "officeSizes", { refetchOnWindowFocus: false });
   const officeSizes = officeSizesData || [];
 
-  const { data: employeesData } = useGetApiOld("get-profile-field-value-api", "field_id=5", "employees");
+  const { data: employeesData } = useGetApiOld("get-profile-field-value-api", "field_id=5", "employees", { refetchOnWindowFocus: false });
   const employees = employeesData || [];
 
-  const { data: factorySizeData } = useGetApiOld("get-profile-field-value-api", "field_id=24", "factorySize");
+  const { data: factorySizeData } = useGetApiOld("get-profile-field-value-api", "field_id=24", "factorySize", { refetchOnWindowFocus: false });
   const factorySize = factorySizeData || [];
 
-  const { data: qualityControlStaffsData } = useGetApiOld("get-profile-field-value-api", "field_id=25", "qualityControlStaffs");
+  const { data: qualityControlStaffsData } = useGetApiOld("get-profile-field-value-api", "field_id=25", "qualityControlStaffs", { refetchOnWindowFocus: false });
   const qualityControlStaffs = qualityControlStaffsData || [];
 
-  const { data: researchesStaffsData } = useGetApiOld("get-profile-field-value-api", "field_id=26", "researchesStaffs");
+  const { data: researchesStaffsData } = useGetApiOld("get-profile-field-value-api", "field_id=26", "researchesStaffs", { refetchOnWindowFocus: false });
   const researchesStaffs = researchesStaffsData || [];
 
-  const { data: unitsData } = useGetApiOld("get-profile-field-value-api", "field_id=31", "units");
+  const { data: unitsData } = useGetApiOld("get-profile-field-value-api", "field_id=31", "units", { refetchOnWindowFocus: false });
   const units = unitsData || [];
 
-  const { data: dutiesData } = useGetApiOld("get-profile-field-value-api", "field_id=65", "duties");
+  const { data: dutiesData } = useGetApiOld("get-profile-field-value-api", "field_id=65", "duties", { refetchOnWindowFocus: false });
   const duties = dutiesData || [];
 
-  const { data: acceptedDeliveriesData } = useGetApiOld("get-profile-field-value-api", "field_id=69&order_by=description", "acceptedDeliveries");
+  const { data: totalTransactionsData } = useGetApiOld("get-profile-field-value-api", "field_id=112", "total_transactions", { refetchOnWindowFocus: false });
+  const totalTransactions = totalTransactionsData || [];
+
+  const { data: acceptedDeliveriesData } = useGetApiOld("get-profile-field-value-api", "field_id=69&order_by=description", "acceptedDeliveries", { refetchOnWindowFocus: false });
   const acceptedDeliveries = acceptedDeliveriesData || [];
 
-  const { data: paymentCurrenciesData } = useGetApiOld("get-profile-field-value-api", "field_id=70", "paymentCurrencies");
+  const { data: paymentCurrenciesData } = useGetApiOld("get-profile-field-value-api", "field_id=70", "paymentCurrencies", { refetchOnWindowFocus: false });
   const paymentCurrencies = paymentCurrenciesData || [];
 
-  const { data: languagesSpokenData } = useGetApiOld("get-profile-field-value-api", "field_id=71", "languagesSpoken");
+  const { data: languagesSpokenData } = useGetApiOld("get-profile-field-value-api", "field_id=71", "languagesSpoken", { refetchOnWindowFocus: false });
   const languagesSpoken = languagesSpokenData || [];
 
-  const { data: certificationTypesData } = useGetApiOld("get-profile-field-value-api", "field_id=73", "certificationTypes");
+  const { data: certificationTypesData } = useGetApiOld("get-profile-field-value-api", "field_id=73", "certificationTypes", { refetchOnWindowFocus: false });
   const certificationTypes = certificationTypesData || [];
 
-  const { data: countryListsData } = useGetApiOld(`country-lists-api`, '', `countryLists`);
+  const { data: countryListsData } = useGetApiOld(`country-lists-api`, '', `countryLists`, { refetchOnWindowFocus: false });
   const countryLists = countryListsData || [];
 
   // get country codes from API:
-  const { data: countryCodesData } = useGetApiOld(`country-code-api`, "", `countryCodes`);
+  const { data: countryCodesData } = useGetApiOld(`country-code-api`, "", `countryCodes`, { refetchOnWindowFocus: false });
   const countryCodes = countryCodesData?.country_code || [];
 
   // function for upload images:
@@ -265,6 +268,7 @@ const ManufactureInformation = () => {
               qualityControlStaffs={ qualityControlStaffs }
               researchesStaffs={ researchesStaffs }
               units={ units }
+              totalTransactions={ totalTransactions }
               businessType={ businessType }
             />
           </TabPane>
