@@ -3,7 +3,7 @@ import axios from "axios";
 
 import "./styles/ManufactureInformation.less";
 
-import { Col, Form, Row, Result, Modal, Tabs } from "antd";
+import { Col, Form, Modal, Result, Row, Tabs } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import { useGetApiOld } from "../../../../../functions";
 import { useTranslation } from "react-i18next";
@@ -26,25 +26,28 @@ const ManufactureInformation = () => {
   // user data context state:
   const { user_data } = useGetAuthState();
 
+  // Variable for save business type:
+  const businessType = user_data?.auth?.business_type || {};
+
   // spinner dispatch context:
   const { spinnerDispatch } = useSpinnerDispatch();
 
   // use ref for add product form:
-  const [companyDetailsFrm] = Form.useForm();
-  const [manufacturingCapabilityFrm] = Form.useForm();
-  const [exportCapabilityFrm] = Form.useForm();
-  const [certificatesFrm] = Form.useForm();
-  const [companyIntroductionFrm] = Form.useForm();
-  const [supportFrm] = Form.useForm();
+  const [ companyDetailsFrm ] = Form.useForm();
+  const [ manufacturingCapabilityFrm ] = Form.useForm();
+  const [ exportCapabilityFrm ] = Form.useForm();
+  const [ certificatesFrm ] = Form.useForm();
+  const [ companyIntroductionFrm ] = Form.useForm();
+  const [ supportFrm ] = Form.useForm();
 
   // state for save current tab key:
-  const [currentTab, setCurrentTab] = useState("1");
+  const [ currentTab, setCurrentTab ] = useState("1");
 
   // save image name in array state:
-  const [imageFileList, setImageFileList] = useState({});
+  const [ imageFileList, setImageFileList ] = useState({});
 
   // state for finish submit form:
-  const [finishFormModalVisible, setFinishFormModalVisible] = useState(false);
+  const [ finishFormModalVisible, setFinishFormModalVisible ] = useState(false);
 
   // function for close finish submit form Modal:
   const handleCloseFinishFormModal = () => setFinishFormModalVisible(false);
@@ -71,37 +74,37 @@ const ManufactureInformation = () => {
   };
 
   // get data from API:
-  const {data: officeSizesData} = useGetApiOld("get-profile-field-value-api", "field_id=8", "officeSizes");
+  const { data: officeSizesData } = useGetApiOld("get-profile-field-value-api", "field_id=8", "officeSizes");
   const officeSizes = officeSizesData || [];
 
-  const {data: employeesData} = useGetApiOld("get-profile-field-value-api", "field_id=5", "employees");
+  const { data: employeesData } = useGetApiOld("get-profile-field-value-api", "field_id=5", "employees");
   const employees = employeesData || [];
 
-  const {data: factorySizeData} = useGetApiOld("get-profile-field-value-api", "field_id=24", "factorySize");
+  const { data: factorySizeData } = useGetApiOld("get-profile-field-value-api", "field_id=24", "factorySize");
   const factorySize = factorySizeData || [];
 
-  const {data: qualityControlStaffsData} = useGetApiOld("get-profile-field-value-api", "field_id=25", "qualityControlStaffs");
+  const { data: qualityControlStaffsData } = useGetApiOld("get-profile-field-value-api", "field_id=25", "qualityControlStaffs");
   const qualityControlStaffs = qualityControlStaffsData || [];
 
-  const {data: researchesStaffsData} = useGetApiOld("get-profile-field-value-api", "field_id=26", "researchesStaffs");
+  const { data: researchesStaffsData } = useGetApiOld("get-profile-field-value-api", "field_id=26", "researchesStaffs");
   const researchesStaffs = researchesStaffsData || [];
 
-  const {data: unitsData} = useGetApiOld("get-profile-field-value-api", "field_id=31", "units");
+  const { data: unitsData } = useGetApiOld("get-profile-field-value-api", "field_id=31", "units");
   const units = unitsData || [];
 
-  const {data: dutiesData} = useGetApiOld("get-profile-field-value-api", "field_id=65", "duties");
+  const { data: dutiesData } = useGetApiOld("get-profile-field-value-api", "field_id=65", "duties");
   const duties = dutiesData || [];
 
-  const {data: acceptedDeliveriesData} = useGetApiOld("get-profile-field-value-api", "field_id=69&order_by=description", "acceptedDeliveries");
+  const { data: acceptedDeliveriesData } = useGetApiOld("get-profile-field-value-api", "field_id=69&order_by=description", "acceptedDeliveries");
   const acceptedDeliveries = acceptedDeliveriesData || [];
 
-  const {data: paymentCurrenciesData} = useGetApiOld("get-profile-field-value-api", "field_id=70", "paymentCurrencies");
+  const { data: paymentCurrenciesData } = useGetApiOld("get-profile-field-value-api", "field_id=70", "paymentCurrencies");
   const paymentCurrencies = paymentCurrenciesData || [];
 
-  const {data: languagesSpokenData} = useGetApiOld("get-profile-field-value-api", "field_id=71", "languagesSpoken");
+  const { data: languagesSpokenData } = useGetApiOld("get-profile-field-value-api", "field_id=71", "languagesSpoken");
   const languagesSpoken = languagesSpokenData || [];
 
-  const {data: certificationTypesData} = useGetApiOld("get-profile-field-value-api", "field_id=73", "certificationTypes");
+  const { data: certificationTypesData } = useGetApiOld("get-profile-field-value-api", "field_id=73", "certificationTypes");
   const certificationTypes = certificationTypesData || [];
 
   const { data: countryListsData } = useGetApiOld(`country-lists-api`, '', `countryLists`);
@@ -116,9 +119,9 @@ const ManufactureInformation = () => {
     const { onSuccess, onError, file, onProgress, inputName } = options;
 
     let isCloneable = false,
-        clone,
-        for_logo = false,
-        for_agent = false;
+      clone,
+      for_logo = false,
+      for_agent = false;
 
     if (options.isCloneable || options.isCloneable === 0) {
       clone = options.isCloneable;
@@ -144,12 +147,10 @@ const ManufactureInformation = () => {
     if (for_logo) {
       fmData.append("for_logo", "true");
       fmData.append("logo_lang", inputName);
-    }
-    else if(for_agent) {
+    } else if (for_agent) {
       fmData.append("for_agent", "true");
       fmData.append("field_id", inputName);
-    }
-    else {
+    } else {
       fmData.append("field_id", inputName);
       if (isCloneable) fmData.append("clone", clone);
     }
@@ -166,8 +167,7 @@ const ManufactureInformation = () => {
 
       onSuccess("Ok");
       //console.log("server res: ", res);
-    }
-    catch (err) {
+    } catch (err) {
       //console.log("Error: ", err);
       //const error = new Error("Some error");
       onError({ err });
@@ -221,99 +221,102 @@ const ManufactureInformation = () => {
       />
 
       <Modal
-        visible={finishFormModalVisible}
-        title={t('your_information_submit')}
-        footer={false}
-        onCancel={handleCloseFinishFormModal}
+        visible={ finishFormModalVisible }
+        title={ t('your_information_submit') }
+        footer={ false }
+        onCancel={ handleCloseFinishFormModal }
       >
         <Result
           className="finishFormModal--content"
           status="success"
-          title={t('your_information_submit')}
+          title={ t('your_information_submit') }
         />
       </Modal>
 
-      <Col span={24}>
-        <DashboardContentHeader page={"Manufacturing Information"} />
+      <Col span={ 24 }>
+        <DashboardContentHeader page={ "Manufacturing Information" }/>
       </Col>
 
-      <Col id="manufactureInfo--content" span={24} className="manufactureInfo--content">
+      <Col id="manufactureInfo--content" span={ 24 } className="manufactureInfo--content">
         <Tabs
-          activeKey={currentTab}
+          activeKey={ currentTab }
           cllassName="manufacturing--tab"
-          onChange={tabsHandleOnChange}
+          onChange={ tabsHandleOnChange }
         >
-          <TabPane className="manufacturingTab--content" tab={t(__("Basic Company Details"))} key="1">
+          <TabPane className="manufacturingTab--content" tab={ t(__("Basic Company Details")) } key="1">
             <CompanyDetailsForm
-              formRef={companyDetailsFrm}
-              handleSubmitForm={handleSubmitForm}
-              employees={employees}
-              officeSizes={officeSizes}
+              formRef={ companyDetailsFrm }
+              handleSubmitForm={ handleSubmitForm }
+              employees={ employees }
+              officeSizes={ officeSizes }
             />
           </TabPane>
 
-          <TabPane className="manufacturingTab--content" tab={t(__("manufacturing_capability"))} key="2">
-              <ManufacturingCapabilityForm
-                formRef={manufacturingCapabilityFrm}
-                handleSubmitForm={handleSubmitForm}
-                handleUploadImage={handleUploadImage}
-                handleOnRemoveImage={handleOnRemoveImage}
-                handleImageUploadChange={handleImageUploadChange}
-                imageFileList={imageFileList}
-                factorySize={factorySize}
-                qualityControlStaffs={qualityControlStaffs}
-                researchesStaffs={researchesStaffs}
-                units={units}
-              />
-            </TabPane>
+          { !businessType.includes("freight") &&
+          <TabPane className="manufacturingTab--content" tab={ t(__("manufacturing_capability")) } key="2">
+            <ManufacturingCapabilityForm
+              formRef={ manufacturingCapabilityFrm }
+              handleSubmitForm={ handleSubmitForm }
+              handleUploadImage={ handleUploadImage }
+              handleOnRemoveImage={ handleOnRemoveImage }
+              handleImageUploadChange={ handleImageUploadChange }
+              imageFileList={ imageFileList }
+              factorySize={ factorySize }
+              qualityControlStaffs={ qualityControlStaffs }
+              researchesStaffs={ researchesStaffs }
+              units={ units }
+              businessType={ businessType }
+            />
+          </TabPane>
+          }
 
-          <TabPane className="manufacturingTab--content" tab={t(__("Export Capability"))} key="3">
+          <TabPane className="manufacturingTab--content" tab={ t(__("Export Capability")) } key="3">
             <ExportCapabilityForm
-              formRef={exportCapabilityFrm}
-              handleSubmitForm={handleSubmitForm}
-              countryLists={countryLists}
-              handleUploadImage={handleUploadImage}
-              handleOnRemoveImage={handleOnRemoveImage}
-              handleImageUploadChange={handleImageUploadChange}
-              imageFileList={imageFileList}
-              countryCodes={countryCodes}
-              duties={duties}
-              acceptedDeliveries={acceptedDeliveries}
-              paymentCurrencies={paymentCurrencies}
-              languagesSpoken={languagesSpoken}
+              formRef={ exportCapabilityFrm }
+              handleSubmitForm={ handleSubmitForm }
+              countryLists={ countryLists }
+              handleUploadImage={ handleUploadImage }
+              handleOnRemoveImage={ handleOnRemoveImage }
+              handleImageUploadChange={ handleImageUploadChange }
+              imageFileList={ imageFileList }
+              countryCodes={ countryCodes }
+              duties={ duties }
+              acceptedDeliveries={ acceptedDeliveries }
+              paymentCurrencies={ paymentCurrencies }
+              languagesSpoken={ languagesSpoken }
             />
           </TabPane>
 
-          <TabPane className="manufacturingTab--content" tab={t(__("certificates"))} key="4">
+          <TabPane className="manufacturingTab--content" tab={ t(__("certificates")) } key="4">
             <CertificatesForm
-              formRef={certificatesFrm}
-              handleSubmitForm={handleSubmitForm}
-              handleUploadImage={handleUploadImage}
-              handleOnRemoveImage={handleOnRemoveImage}
-              handleImageUploadChange={handleImageUploadChange}
-              imageFileList={imageFileList}
-              certificationTypes={certificationTypes}
+              formRef={ certificatesFrm }
+              handleSubmitForm={ handleSubmitForm }
+              handleUploadImage={ handleUploadImage }
+              handleOnRemoveImage={ handleOnRemoveImage }
+              handleImageUploadChange={ handleImageUploadChange }
+              imageFileList={ imageFileList }
+              certificationTypes={ certificationTypes }
             />
           </TabPane>
 
-          <TabPane className="manufacturingTab--content" tab={t(__("Company Introduction"))} key="5">
+          <TabPane className="manufacturingTab--content" tab={ t(__("Company Introduction")) } key="5">
             <CompanyIntroductionForm
-              formRef={companyIntroductionFrm}
-              handleSubmitForm={handleSubmitForm}
-              handleUploadImage={handleUploadImage}
-              handleOnRemoveImage={handleOnRemoveImage}
-              handleImageUploadChange={handleImageUploadChange}
-              imageFileList={imageFileList}
-              countryLists={countryLists}
+              formRef={ companyIntroductionFrm }
+              handleSubmitForm={ handleSubmitForm }
+              handleUploadImage={ handleUploadImage }
+              handleOnRemoveImage={ handleOnRemoveImage }
+              handleImageUploadChange={ handleImageUploadChange }
+              imageFileList={ imageFileList }
+              countryLists={ countryLists }
             />
           </TabPane>
 
-          <TabPane className="manufacturingTab--content" tab={t(__("Support"))} key="6">
+          <TabPane className="manufacturingTab--content" tab={ t(__("Support")) } key="6">
             <SupportForm
-              formRef={supportFrm}
-              handleSubmitForm={handleSubmitForm}
-              handleUploadImage={handleUploadImage}
-              countryLists={countryLists}
+              formRef={ supportFrm }
+              handleSubmitForm={ handleSubmitForm }
+              handleUploadImage={ handleUploadImage }
+              countryLists={ countryLists }
             />
           </TabPane>
         </Tabs>
