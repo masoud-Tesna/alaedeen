@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Row, Select, Skeleton, Switch } from "antd";
+import { Button, Col, Form, Input, Row, Select, Switch } from "antd";
 import { __ } from "../../../../../../functions/Helper";
 import { useTranslation } from "react-i18next";
 import ImagesUploader from "../../../../../common/ImagesUploader";
@@ -31,8 +31,7 @@ const ManufacturingCapabilityForm = (
     formRef.validateFields()
       .then(values => {
         values.section = "manufacturing_capability";
-        console.log(values)
-        //handleSubmitForm(values);
+        handleSubmitForm(values);
       })
       .catch(errorInfo => {
         console.log(errorInfo)
