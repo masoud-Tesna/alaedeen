@@ -694,7 +694,7 @@ const Register = () => {
                                                     <Checkbox value="wholesaler"> { t(__('Wholesaler')) } </Checkbox>
                                                   </Col>*/}
                                             <Col span={24}>
-                                              <Checkbox value="trading_company"> { t(__('Trading Company')) } </Checkbox>
+                                              <Checkbox value="trading"> { t(__('Trading Company')) } </Checkbox>
                                             </Col>
                                             <Col span={24}>
                                               <Checkbox value="service"> { t(__('Business Service (Transportation, finance, travel, Ads)')) } </Checkbox>
