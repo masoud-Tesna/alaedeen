@@ -164,7 +164,7 @@ const ManageProducts = () => {
                       </Col>
 
                       <Col className="my-auto __actions" span={6}>
-                        <Row justify="space-between" gutter={10}>
+                        <Row justify="center" gutter={10}>
                           <Col>
                             <Link to={`/dashboard/products/${productId}`}>
                               <Button type="primary" icon={<EditOutlined />} >
@@ -173,7 +173,7 @@ const ManageProducts = () => {
                             </Link>
                           </Col>
 
-                          <Col>
+                          {/*<Col>
                             <Popconfirm
                               title={t(__("Are you sure to delete this product?"))}
                               onConfirm={() => handleRemoveProduct(productId)}
@@ -184,7 +184,7 @@ const ManageProducts = () => {
                                 {t('delete')}
                               </Button>
                             </Popconfirm>
-                          </Col>
+                          </Col>*/}
                         </Row>
                       </Col>
 
