@@ -130,10 +130,12 @@ const CreateProduct = () => {
 
   // useEffect for handle selected category in modal (insert selected category id in to form field And Reset product_features array item):
   useEffect(()=>{
-    createProductFrm?.setFieldsValue({
-      category_ids: [issetCategory?.category_id],
-      product_features : [],
-    });
+    if (issetCategory?.category_id) {
+      createProductFrm?.setFieldsValue({
+        category_ids: [issetCategory?.category_id],
+        product_features : [],
+      });
+    }
   },[issetCategory?.category_id]);
 
   // controls toolbar show in text editor:
