@@ -24,7 +24,7 @@ i18n
   // init i18next
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    debug: true,
+    debug: false,
     fallbackLng: langCode,
     keySeparator: false, // we do not use keys in form messages.welcome
     interpolation: {
