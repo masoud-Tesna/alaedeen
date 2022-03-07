@@ -6,9 +6,15 @@ import {
   CHANGE_CLIENT_LANGUAGE,
   CHANGE_CURRENCY
 } from "./ConfigActions";
-import i18n from "../../translations";
+import i18n from "../../translations/i18n";
+// import Cookies Package:
+import { Cookies } from "react-cookie";
 
 export function ConfigReducer(state, action) {
+
+  // use Cookies Class:
+  const Cookie = new Cookies();
+
   switch (action.type) {
     case CHANGE_IP:
       return {
@@ -29,7 +35,12 @@ export function ConfigReducer(state, action) {
       i18n
         .changeLanguage(action.payload)
         .then(() => {
-          window.localStorage.setItem("lang_code", action.payload);
+          Cookie.set("lang_code", action.payload,
+            {
+              path: "/",
+              //domain: ".alaedeen.com"
+            }
+          )
         })
         .then(() => {
           document.documentElement.lang = action.payload;

@@ -3,7 +3,7 @@ import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 
 // import i18n:
-import "./translations";
+import "./translations/i18n";
 
 // import Cookie Provider:
 import { CookiesProvider } from "react-cookie";

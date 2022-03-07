@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, Suspense } from "react";
 import LoaderSpinner from "../../templates/common/LoadSpinner";
 
 // spinner Context Create:
@@ -36,7 +36,10 @@ export const SpinnerProvider = ({ children }) => {
         <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>
       }
 
-      {children}
+      <Suspense fallback="">
+        {children}
+      </Suspense>
+
     </spinnerContext.Provider>
   );
 
