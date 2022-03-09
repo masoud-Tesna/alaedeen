@@ -40,47 +40,47 @@ const Register = () => {
   const { spinnerDispatch } = useSpinnerDispatch();
 
   // state for set register type (if seller show step bar):
-  const [registerType, setRegisterType] = useState("seller");
+  const [ registerType, setRegisterType ] = useState("seller");
 
   // state for show verification modal:
-  const [verificationModalVisible, setVerificationModalVisible] = useState(false);
+  const [ verificationModalVisible, setVerificationModalVisible ] = useState(false);
 
   // state for show loading spinner in verification btn (if clicked and request send to server):
-  const [verificationModalConfirmLoading, setVerificationModalConfirmLoading] = useState(false);
+  const [ verificationModalConfirmLoading, setVerificationModalConfirmLoading ] = useState(false);
 
   // state for save user email:
-  const [userLoginEmail, setUserLoginEmail] = useState("");
+  const [ userLoginEmail, setUserLoginEmail ] = useState("");
 
   // state for save user password:
-  const [userLoginPassword, setUserLoginPassword] = useState("");
+  const [ userLoginPassword, setUserLoginPassword ] = useState("");
 
   // state for save user phone number:
-  const [userLoginPhoneNumber, setUserLoginPhoneNumber] = useState("");
+  const [ userLoginPhoneNumber, setUserLoginPhoneNumber ] = useState("");
 
   // state for disable or enable phone number input for edit and update phone number:
-  const [userLoginPhoneNumberVisible, setUserLoginPhoneNumberVisible] = useState(true);
+  const [ userLoginPhoneNumberVisible, setUserLoginPhoneNumberVisible ] = useState(true);
 
   // state for show loading spinner in send new phone number btn (if clicked and request send to server):
-  const [userLoginPhoneNumberConfirmLoading, setUserLoginPhoneNumberConfirmLoading] = useState(false);
+  const [ userLoginPhoneNumberConfirmLoading, setUserLoginPhoneNumberConfirmLoading ] = useState(false);
 
   // state for show btn To resend the verification code:
-  const [resendCode, setResendCode] = useState(false);
+  const [ resendCode, setResendCode ] = useState(false);
 
   // state for show loading spinner in resend new code btn (if clicked and request send to server):
-  const [resendCodeConfirmLoading, setResendCodeConfirmLoading] = useState(false);
+  const [ resendCodeConfirmLoading, setResendCodeConfirmLoading ] = useState(false);
 
   // state for show countdown for resend code (after: 1 Minute):
-  const [resendCodeDeadline, setResendCodeDeadline] = useState(0);
+  const [ resendCodeDeadline, setResendCodeDeadline ] = useState(0);
 
   useEffect(() => {
     setResendCodeDeadline(fn_deadline("1.01"))
-  }, [resendCode]);
+  }, [ resendCode ]);
 
   // ref for handle change phone number input:
   const changePhoneRef = useRef(null);
 
   // ref for handle verification code input:
-  const [verificationForm] = Form.useForm();
+  const [ verificationForm ] = Form.useForm();
 
   const { AuthDispatch } = useDispatchAuthState();
 
@@ -104,7 +104,7 @@ const Register = () => {
 
   // create register axios async function:
   async function Register(values) {
-    return await axios.post(`https://alaedeen.com/horn/register-api/?lang_code=${config.language}`, { user_data: values });
+    return await axios.post(`https://alaedeen.com/horn/register-api/?lang_code=${ config.language }`, { user_data: values });
   }
 
   // create sign in useMutation:
@@ -130,8 +130,7 @@ const Register = () => {
         duration: 4,
         className: 'registerDone--warning',
       })
-    }
-    else {
+    } else {
       Register(values)
         .then(res => {
           if (!res.data.status && res.data.error === 'email_already_used') {
@@ -142,9 +141,7 @@ const Register = () => {
               duration: 4,
               className: 'registerDone--warning',
             })
-          }
-
-          else {
+          } else {
 
             if (registerType === 'buyer') {
 
@@ -169,9 +166,7 @@ const Register = () => {
                   });
                 }
               });
-            }
-
-            else {
+            } else {
 
               setUserLoginEmail(values.email); // set user email sate:
               setUserLoginPassword(values.password1); // set user password sate:
@@ -193,7 +188,7 @@ const Register = () => {
   // create phone verify axios async function:
   async function VerificationApi(verificationCode, values) {
     return await axios.put(
-      `https://alaedeen.com/api/VerificationAccounts.php/?verification_code=${verificationCode}`,
+      `https://alaedeen.com/api/VerificationAccounts.php/?verification_code=${ verificationCode }`,
       values
     );
   }
@@ -303,8 +298,7 @@ const Register = () => {
 
               });
 
-            }
-            else {
+            } else {
               if (res?.data?.error === "not_match") {
                 message.error({
                   content: t("verification_code_not_match"),
@@ -322,87 +316,87 @@ const Register = () => {
   }
 
   return (
-    <Row justify={"center"} className="register--container h-100">
+    <Row justify={ "center" } className="register--container h-100">
       <SeoGenerator
         title={ t('register') }
         description={ t('alaedeen_description') }
         keywords={ t('alaedeen_keywords') }
       />
 
-      <Col span={24} className="register--topSection">
+      <Col span={ 24 } className="register--topSection">
         <Row>
-          <Col span={24} className="text-center logo-char">
-            <img src={alaedeenChar} alt=""/>
+          <Col span={ 24 } className="text-center logo-char">
+            <img src={ alaedeenChar } alt=""/>
           </Col>
-          <Col span={24} className="text-center logo-text">
-            <i className="logo-icon-alaedeen-com" />
+          <Col span={ 24 } className="text-center logo-text">
+            <i className="logo-icon-alaedeen-com"/>
           </Col>
-          <Col span={24} className="text-center top-msg">
-            {t('register_top_msg')}
+          <Col span={ 24 } className="text-center top-msg">
+            { t('register_top_msg') }
           </Col>
         </Row>
       </Col>
 
-      <Col xs={24} lg={20} className="register--content bg-white p-5">
+      <Col xs={ 24 } lg={ 20 } className="register--content bg-white p-5">
 
         <Modal
           title={ t(__("Enter the verification code")) }
-          visible={verificationModalVisible}
-          maskClosable={false}
-          closable={false}
+          visible={ verificationModalVisible }
+          maskClosable={ false }
+          closable={ false }
           className="verificationModal"
-          footer={[
+          footer={ [
             !resendCode ?
-            <div className="resendCode--title">
-             {t(__("Resend the code after"))} :
-            </div> :
-            null,
+              <div className="resendCode--title">
+                { t(__("Resend the code after")) } :
+              </div> :
+              null,
             !resendCode ?
-              <Countdown className="resendCode--countdown" value={resendCodeDeadline} onFinish={() => setResendCode(true)} format="mm:ss" /> :
+              <Countdown className="resendCode--countdown" value={ resendCodeDeadline } onFinish={ () => setResendCode(true) } format="mm:ss"/> :
               <div className="resendCode--sendBtn">
                 <Button
-                  icon={<SendOutlined />}
-                  loading={resendCodeConfirmLoading}
-                  onClick={handleResendCode}
+                  icon={ <SendOutlined/> }
+                  loading={ resendCodeConfirmLoading }
+                  onClick={ handleResendCode }
                 >
                   { t("resend_code") }
                 </Button>
               </div>
-          ,
+            ,
             <div className="--confirm">
-              <Button key="submit" type="primary" onClick={handleVerification} loading={verificationModalConfirmLoading}>
-                {t('verification')}
+              <Button key="submit" type="primary" onClick={ handleVerification } loading={ verificationModalConfirmLoading }>
+                { t('verification') }
               </Button>
             </div>,
-          ]}
+          ] }
         >
 
-          <Row gutter={[0, 20]}>
-            <Col span={24}>
-              <Row gutter={[0, 10]}>
-                <Col span={24} className="text-33 vv-font-size-1-7">
-                  {t(__('verification code was sent to the phone number'))}
+          <Row gutter={ [ 0, 20 ] }>
+            <Col span={ 24 }>
+              <Row gutter={ [ 0, 10 ] }>
+                <Col span={ 24 } className="text-33 vv-font-size-1-7">
+                  { t(__('verification code was sent to the phone number')) }
                 </Col>
 
-                <Col span={24}>
-                  <Row gutter={10}>
-                    <Col span={12} className="phoneNumber">
+                <Col span={ 24 }>
+                  <Row gutter={ 10 }>
+                    <Col span={ 12 } className="phoneNumber">
                       <Input
-                        ref={changePhoneRef}
-                        disabled = {userLoginPhoneNumberVisible}
+                        ref={ changePhoneRef }
+                        disabled={ userLoginPhoneNumberVisible }
                         addonAfter={
                           userLoginPhoneNumberVisible ?
-                            <span className="--edit" onClick={() => setUserLoginPhoneNumberVisible(false)}>
-                          <EditOutlined />
+                            <span className="--edit" onClick={ () => setUserLoginPhoneNumberVisible(false) }>
+                          <EditOutlined/>
                         </span> :
-                            <span className="--editing" onClick={() => handleChangeNumber(changePhoneRef.current.input.value) }>
-                              {userLoginPhoneNumberConfirmLoading ?
-                                <LoadingOutlined /> :
-                                <SendOutlined />
+                            <span className="--editing" onClick={ () => handleChangeNumber(changePhoneRef.current.input.value) }>
+                              { userLoginPhoneNumberConfirmLoading ?
+                                <LoadingOutlined/> :
+                                <SendOutlined/>
                               }
                             </span>
                         }
-                        defaultValue={userLoginPhoneNumber}
+                        defaultValue={ userLoginPhoneNumber }
                         className="text-left"
                       />
                     </Col>
@@ -411,27 +405,27 @@ const Register = () => {
               </Row>
             </Col>
 
-            <Col span={24}>
+            <Col span={ 24 }>
               <Form
-                form={verificationForm}
+                form={ verificationForm }
                 name="verification_form"
               >
                 <Form.Item
                   name="verification_code"
-                  label={t(__('verification_code'))}
-                  labelCol={{span: 24}}
+                  label={ t(__('verification_code')) }
+                  labelCol={ { span: 24 } }
                   className="verificationItem"
-                  rules={[
+                  rules={ [
                     {
                       required: true,
                       message: t("please_enter_verification_code")
                     },
-                  ]}
+                  ] }
                 >
                   <InputNumber
                     allowClear
                     className="w-40"
-                    maxLength={5}
+                    maxLength={ 5 }
                   />
                 </Form.Item>
               </Form>
@@ -440,69 +434,69 @@ const Register = () => {
 
         </Modal>
 
-        <Row gutter={{ xs: 0, lg: 32 }}>
-          <Col span={24}>
+        <Row gutter={ { xs: 0, lg: 32 } }>
+          <Col span={ 24 }>
             <Tabs
               className="register-tab__container"
               defaultActiveKey={ registerType }
-              centered={true}
-              onTabClick={key => setRegisterType(key)}
+              centered={ true }
+              onTabClick={ key => setRegisterType(key) }
             >
               <TabPane tab={ t(__('buyer')) } key="buyer">
-                <Row gutter={{ xs: 0, lg: 32 }}>
-                  <Col xs={24} md={12}>
+                <Row gutter={ { xs: 0, lg: 32 } }>
+                  <Col xs={ 24 } md={ 12 }>
                     <Form
                       className="h-100 register--formContent"
                       name="register-buyer-form"
-                      initialValues={{
+                      initialValues={ {
                         registrant_type: 'buyer'
-                      }}
-                      onFinish={onRegisterFormHandle}
+                      } }
+                      onFinish={ onRegisterFormHandle }
                     >
                       <Row>
-                        <Col span={24} className="mb-4 mb-lg-0 register--loginContent">
-                          <Row className="h-100" align="middle" gutter={[0, 30]}>
+                        <Col span={ 24 } className="mb-4 mb-lg-0 register--loginContent">
+                          <Row className="h-100" align="middle" gutter={ [ 0, 30 ] }>
 
                             <Form.Item name="registrant_type" hidden>
                               <Input/>
                             </Form.Item>
 
-                            <Col span={24}>
+                            <Col span={ 24 }>
                               <Row className="" align="middle">
                                 <Col className="text-center" flex="46px">
-                                  <i className="fas fa-map-marker-alt text-bc vv-font-size-3" />
+                                  <i className="fas fa-map-marker-alt text-bc vv-font-size-3"/>
                                 </Col>
                                 <Col flex="1 1">
                                   <Row className="register--formContent__item" align="middle">
-                                    <Col span={24}>
+                                    <Col span={ 24 }>
                                       <Row>
                                         <Col className="my-auto vv-font-size-1-9 text-47">
-                                          <i className="fi fi-ir vv-font-size-2-2" /> {t(__('iran'))} -
+                                          <i className="fi fi-ir vv-font-size-2-2"/> { t(__('iran')) } -
                                         </Col>
                                         <Col flex="1 1">
                                           <Form.Item
                                             name="auth_city"
-                                            rules={[
+                                            rules={ [
                                               {
                                                 required: true,
                                               },
-                                            ]}
+                                            ] }
                                           >
                                             <Select
                                               placeholder={ t(__('select your city')) }
                                               allowClear
                                               showSearch
-                                              bordered={false}
-                                              filterOption={(input, option) =>
+                                              bordered={ false }
+                                              filterOption={ (input, option) =>
                                                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                               }
                                             >
                                               <>
-                                                {cityLists?.map((item) => {
+                                                { cityLists?.map((item) => {
                                                   return (
-                                                    <Option key={ `buyer_cityLists_${ item.code }` } value={item.code} >{ item.state }</Option>
+                                                    <Option key={ `buyer_cityLists_${ item.code }` } value={ item.code }>{ item.state }</Option>
                                                   );
-                                                })}
+                                                }) }
                                               </>
                                             </Select>
                                           </Form.Item>
@@ -514,44 +508,44 @@ const Register = () => {
                               </Row>
                             </Col>
 
-                            <Col span={24}>
+                            <Col span={ 24 }>
                               <Row className="" align="middle">
                                 <Col className="text-center" flex="46px">
-                                  <i className="fas fa-user-circle text-bc vv-font-size-3" />
+                                  <i className="fas fa-user-circle text-bc vv-font-size-3"/>
                                 </Col>
                                 <Col flex="1 1">
-                                  <Row gutter={ { xs: 15, md: 30 }}>
-                                    <Col span={12}>
+                                  <Row gutter={ { xs: 15, md: 30 } }>
+                                    <Col span={ 12 }>
                                       <Row className="register--formContent__item" align="middle">
-                                        <Col span={24}>
+                                        <Col span={ 24 }>
                                           <Form.Item
                                             name="firstname"
-                                            rules={[
+                                            rules={ [
                                               {
                                                 required: true
                                               },
-                                            ]}>
+                                            ] }>
                                             <Input
                                               placeholder={ t(__('first name')) }
-                                              bordered={false}
+                                              bordered={ false }
                                             />
                                           </Form.Item>
                                         </Col>
                                       </Row>
                                     </Col>
-                                    <Col span={12}>
+                                    <Col span={ 12 }>
                                       <Row className="register--formContent__item" align="middle">
-                                        <Col span={24}>
+                                        <Col span={ 24 }>
                                           <Form.Item
                                             name="lastname"
-                                            rules={[
+                                            rules={ [
                                               {
                                                 required: true
                                               },
-                                            ]}>
+                                            ] }>
                                             <Input
                                               placeholder={ t(__('last name')) }
-                                              bordered={false}
+                                              bordered={ false }
                                             />
                                           </Form.Item>
                                         </Col>
@@ -562,24 +556,24 @@ const Register = () => {
                               </Row>
                             </Col>
 
-                            <Col span={24}>
+                            <Col span={ 24 }>
                               <Row className="" align="middle">
                                 <Col className="text-center" flex="46px">
-                                  <i className="fa fa-mobile text-bc vv-font-size-3" />
+                                  <i className="fa fa-mobile text-bc vv-font-size-3"/>
                                 </Col>
                                 <Col flex="1 1">
                                   <Row className="register--formContent__item" align="middle">
-                                    <Col span={24}>
+                                    <Col span={ 24 }>
                                       <Form.Item
                                         name="phone"
-                                        rules={[
+                                        rules={ [
                                           {
                                             required: true
                                           },
-                                        ]}>
+                                        ] }>
                                         <Input
                                           placeholder={ t(__('phone_number')) }
-                                          bordered={false}
+                                          bordered={ false }
                                         />
                                       </Form.Item>
                                     </Col>
@@ -588,25 +582,25 @@ const Register = () => {
                               </Row>
                             </Col>
 
-                            <Col span={24}>
+                            <Col span={ 24 }>
                               <Row className="" align="middle">
                                 <Col className="text-center" flex="46px">
-                                  <i className="fa fa-envelope text-bc vv-font-size-3" />
+                                  <i className="fa fa-envelope text-bc vv-font-size-3"/>
                                 </Col>
                                 <Col flex="1 1">
                                   <Row className="register--formContent__item" align="middle">
-                                    <Col span={24}>
+                                    <Col span={ 24 }>
                                       <Form.Item
                                         name="email"
-                                        rules={[
+                                        rules={ [
                                           {
                                             required: true,
                                             type: 'email',
                                           },
-                                        ]}>
+                                        ] }>
                                         <Input
                                           placeholder={ t(__('email')) }
-                                          bordered={false}
+                                          bordered={ false }
                                         />
                                       </Form.Item>
                                     </Col>
@@ -615,25 +609,25 @@ const Register = () => {
                               </Row>
                             </Col>
 
-                            <Col span={24}>
+                            <Col span={ 24 }>
                               <Row className="" align="middle">
                                 <Col className="text-center" flex="46px">
-                                  <i className="fa fa-lock text-bc vv-font-size-3" />
+                                  <i className="fa fa-lock text-bc vv-font-size-3"/>
                                 </Col>
                                 <Col flex="1 1">
                                   <Row className="register--formContent__item" align="middle">
-                                    <Col span={24}>
+                                    <Col span={ 24 }>
                                       <Form.Item
                                         name="password1"
-                                        rules={[
+                                        rules={ [
                                           {
                                             required: true,
                                           },
-                                        ]}>
+                                        ] }>
                                         <Input.Password
                                           placeholder={ t(__('password')) }
-                                          bordered={false}
-                                          iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                                          bordered={ false }
+                                          iconRender={ visible => (visible ? <EyeTwoTone/> : <EyeInvisibleOutlined/>) }
                                         />
                                       </Form.Item>
                                     </Col>
@@ -642,25 +636,25 @@ const Register = () => {
                               </Row>
                             </Col>
 
-                            <Col span={24}>
+                            <Col span={ 24 }>
                               <Row className="" align="middle">
                                 <Col className="text-center" flex="46px">
-                                  <i className="fa fa-lock text-bc vv-font-size-3" />
+                                  <i className="fa fa-lock text-bc vv-font-size-3"/>
                                 </Col>
                                 <Col flex="1 1">
                                   <Row className="register--formContent__item" align="middle">
-                                    <Col span={24}>
+                                    <Col span={ 24 }>
                                       <Form.Item
                                         name="password2"
-                                        rules={[
+                                        rules={ [
                                           {
                                             required: true,
                                           },
-                                        ]}>
+                                        ] }>
                                         <Input.Password
                                           placeholder={ t(__('Confirm password')) }
-                                          bordered={false}
-                                          iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                                          bordered={ false }
+                                          iconRender={ visible => (visible ? <EyeTwoTone/> : <EyeInvisibleOutlined/>) }
                                         />
                                       </Form.Item>
                                     </Col>
@@ -669,7 +663,7 @@ const Register = () => {
                               </Row>
                             </Col>
 
-                            <Col span={24} className="text-center">
+                            <Col span={ 24 } className="text-center">
                               <Form.Item
                                 className="signIn--signInBtn"
                                 valuePropName="checked"
@@ -686,19 +680,19 @@ const Register = () => {
                     </Form>
                   </Col>
 
-                  <Col xs={24} md={12} className="register--loginExtra">
+                  <Col xs={ 24 } md={ 12 } className="register--loginExtra">
                     <Row className="register--loginExtra__content">
-                      <Col span={24} className="text-bc vv-font-size-1-9 registerWithGoogleTxt">
+                      <Col span={ 24 } className="text-bc vv-font-size-1-9 registerWithGoogleTxt">
                         { t(__('Or Sign In with')) }
                       </Col>
 
-                      <Col span={24} className="registerWithGoogleBtn">
+                      <Col span={ 24 } className="registerWithGoogleBtn">
                         <div className="shadow-circle rounded-circle mx-auto">
-                          <img className="mx-auto" src={googlePic} alt={ t(__('sing_in_whit_google')) }/>
+                          <img className="mx-auto" src={ googlePic } alt={ t(__('sing_in_whit_google')) }/>
                         </div>
                       </Col>
 
-                      <Col span={24} className="dontHaveAccountContainer">
+                      <Col span={ 24 } className="dontHaveAccountContainer">
                         <span className="text-92 vv-font-size-1-9">{ t(__('Already have an account')) }</span>
                         <Link to={ "/sign-in" } className="text-primary-darken mx-2 vv-font-size-1-9 font-weight-600">{ t(__('sign in')) }</Link>
                       </Col>
@@ -708,61 +702,61 @@ const Register = () => {
               </TabPane>
 
               <TabPane tab={ t(__('seller')) } key="seller">
-                <Row gutter={{ xs: 0, lg: 32 }}>
-                  <Col xs={24} md={12}>
+                <Row gutter={ { xs: 0, lg: 32 } }>
+                  <Col xs={ 24 } md={ 12 }>
                     <Form
                       className="h-100 register--formContent"
                       name="register-seller-form"
-                      initialValues={{
+                      initialValues={ {
                         registrant_type: 'seller',
                         ref_code: referralCode
-                      }}
-                      onFinish={onRegisterFormHandle}
+                      } }
+                      onFinish={ onRegisterFormHandle }
                     >
                       <Row>
-                        <Col span={24} className="mb-4 mb-lg-0 register--loginContent">
-                          <Row className="h-100" align="middle" gutter={[0, 30]}>
+                        <Col span={ 24 } className="mb-4 mb-lg-0 register--loginContent">
+                          <Row className="h-100" align="middle" gutter={ [ 0, 30 ] }>
 
                             <Form.Item name="registrant_type" hidden>
                               <Input/>
                             </Form.Item>
 
-                            <Col span={24}>
+                            <Col span={ 24 }>
                               <Row className="" align="middle">
                                 <Col className="text-center" flex="46px">
-                                  <i className="fas fa-map-marker-alt text-bc vv-font-size-3" />
+                                  <i className="fas fa-map-marker-alt text-bc vv-font-size-3"/>
                                 </Col>
                                 <Col flex="1 1">
                                   <Row className="register--formContent__item" align="middle">
-                                    <Col span={24}>
+                                    <Col span={ 24 }>
                                       <Row>
                                         <Col className="my-auto vv-font-size-1-9 text-47">
-                                          <i className="fi fi-ir vv-font-size-2-2" /> {t(__('iran'))} -
+                                          <i className="fi fi-ir vv-font-size-2-2"/> { t(__('iran')) } -
                                         </Col>
                                         <Col flex="1 1">
                                           <Form.Item
                                             name="auth_city"
-                                            rules={[
+                                            rules={ [
                                               {
                                                 required: true,
                                               },
-                                            ]}
+                                            ] }
                                           >
                                             <Select
                                               placeholder={ t(__('select your city')) }
                                               allowClear
                                               showSearch
-                                              bordered={false}
-                                              filterOption={(input, option) =>
+                                              bordered={ false }
+                                              filterOption={ (input, option) =>
                                                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                                               }
                                             >
                                               <>
-                                                {cityLists?.map((item) => {
+                                                { cityLists?.map((item) => {
                                                   return (
-                                                    <Option key={ `seller_cityLists_${ item.code }` } value={item.code} >{ item.state }</Option>
+                                                    <Option key={ `seller_cityLists_${ item.code }` } value={ item.code }>{ item.state }</Option>
                                                   );
-                                                })}
+                                                }) }
                                               </>
                                             </Select>
                                           </Form.Item>
@@ -774,44 +768,44 @@ const Register = () => {
                               </Row>
                             </Col>
 
-                            <Col span={24}>
+                            <Col span={ 24 }>
                               <Row className="" align="middle">
                                 <Col className="text-center" flex="46px">
-                                  <i className="fas fa-user-circle text-bc vv-font-size-3" />
+                                  <i className="fas fa-user-circle text-bc vv-font-size-3"/>
                                 </Col>
                                 <Col flex="1 1">
-                                  <Row gutter={ { xs: 15, md: 30 }}>
-                                    <Col span={12}>
+                                  <Row gutter={ { xs: 15, md: 30 } }>
+                                    <Col span={ 12 }>
                                       <Row className="register--formContent__item" align="middle">
-                                        <Col span={24}>
+                                        <Col span={ 24 }>
                                           <Form.Item
                                             name="firstname"
-                                            rules={[
+                                            rules={ [
                                               {
                                                 required: true
                                               },
-                                            ]}>
+                                            ] }>
                                             <Input
                                               placeholder={ t(__('first name')) }
-                                              bordered={false}
+                                              bordered={ false }
                                             />
                                           </Form.Item>
                                         </Col>
                                       </Row>
                                     </Col>
-                                    <Col span={12}>
+                                    <Col span={ 12 }>
                                       <Row className="register--formContent__item" align="middle">
-                                        <Col span={24}>
+                                        <Col span={ 24 }>
                                           <Form.Item
                                             name="lastname"
-                                            rules={[
+                                            rules={ [
                                               {
                                                 required: true
                                               },
-                                            ]}>
+                                            ] }>
                                             <Input
                                               placeholder={ t(__('last name')) }
-                                              bordered={false}
+                                              bordered={ false }
                                             />
                                           </Form.Item>
                                         </Col>
@@ -822,24 +816,24 @@ const Register = () => {
                               </Row>
                             </Col>
 
-                            <Col span={24}>
+                            <Col span={ 24 }>
                               <Row className="" align="middle">
                                 <Col className="text-center" flex="46px">
-                                  <i className="fa fa-mobile text-bc vv-font-size-3" />
+                                  <i className="fa fa-mobile text-bc vv-font-size-3"/>
                                 </Col>
                                 <Col flex="1 1">
                                   <Row className="register--formContent__item" align="middle">
-                                    <Col span={24}>
+                                    <Col span={ 24 }>
                                       <Form.Item
                                         name="phone"
-                                        rules={[
+                                        rules={ [
                                           {
                                             required: true
                                           },
-                                        ]}>
+                                        ] }>
                                         <Input
                                           placeholder={ t(__('phone_number')) }
-                                          bordered={false}
+                                          bordered={ false }
                                         />
                                       </Form.Item>
                                     </Col>
@@ -848,25 +842,25 @@ const Register = () => {
                               </Row>
                             </Col>
 
-                            <Col span={24}>
+                            <Col span={ 24 }>
                               <Row className="" align="middle">
                                 <Col className="text-center" flex="46px">
-                                  <i className="fa fa-envelope text-bc vv-font-size-3" />
+                                  <i className="fa fa-envelope text-bc vv-font-size-3"/>
                                 </Col>
                                 <Col flex="1 1">
                                   <Row className="register--formContent__item" align="middle">
-                                    <Col span={24}>
+                                    <Col span={ 24 }>
                                       <Form.Item
                                         name="email"
-                                        rules={[
+                                        rules={ [
                                           {
                                             required: true,
                                             type: 'email',
                                           },
-                                        ]}>
+                                        ] }>
                                         <Input
                                           placeholder={ t(__('email')) }
-                                          bordered={false}
+                                          bordered={ false }
                                         />
                                       </Form.Item>
                                     </Col>
@@ -875,24 +869,24 @@ const Register = () => {
                               </Row>
                             </Col>
 
-                            <Col span={24}>
+                            <Col span={ 24 }>
                               <Row className="" align="middle">
                                 <Col className="text-center" flex="46px">
-                                  <i className="fas fa-building text-bc vv-font-size-3" />
+                                  <i className="fas fa-building text-bc vv-font-size-3"/>
                                 </Col>
                                 <Col flex="1 1">
                                   <Row className="register--formContent__item" align="middle">
-                                    <Col span={24}>
+                                    <Col span={ 24 }>
                                       <Form.Item
                                         name="company"
-                                        rules={[
+                                        rules={ [
                                           {
                                             required: true
                                           },
-                                        ]}>
+                                        ] }>
                                         <Input
                                           placeholder={ t(__('Company Name')) }
-                                          bordered={false}
+                                          bordered={ false }
                                         />
                                       </Form.Item>
                                     </Col>
@@ -901,24 +895,24 @@ const Register = () => {
                               </Row>
                             </Col>
 
-                            <Col span={24}>
+                            <Col span={ 24 }>
                               <Row className="" align="middle">
                                 <Col className="text-center" flex="46px">
-                                  <i className="fas fa-tag text-bc vv-font-size-3" />
+                                  <i className="fas fa-tag text-bc vv-font-size-3"/>
                                 </Col>
                                 <Col flex="1 1">
                                   <Row className="register--formContent__item" align="middle">
-                                    <Col span={24}>
+                                    <Col span={ 24 }>
                                       <Form.Item
                                         name="brand"
-                                        rules={[
+                                        rules={ [
                                           {
                                             required: true
                                           },
-                                        ]}>
+                                        ] }>
                                         <Input
                                           placeholder={ t(__('brand Name')) }
-                                          bordered={false}
+                                          bordered={ false }
                                         />
                                       </Form.Item>
                                     </Col>
@@ -927,27 +921,27 @@ const Register = () => {
                               </Row>
                             </Col>
 
-                            <Col span={24}>
-                              <Row gutter={[0, 15]}>
-                                <Col span={24} className="vv-font-size-2 text-70">
+                            <Col span={ 24 }>
+                              <Row gutter={ [ 0, 15 ] }>
+                                <Col span={ 24 } className="vv-font-size-2 text-70">
                                   { t(__('Business Type')) }:
                                 </Col>
-                                <Col span={24}>
+                                <Col span={ 24 }>
                                   <Row className="register--formContent__item for--businessType" align="middle">
-                                    <Col span={24}>
+                                    <Col span={ 24 }>
                                       <Form.Item name="business_type">
-                                        <Checkbox.Group style={{ width: '100%' }} name="business_type">
-                                          <Row gutter={[0, 20]}>
-                                            <Col span={24}>
+                                        <Checkbox.Group style={ { width: '100%' } } name="business_type">
+                                          <Row gutter={ [ 0, 20 ] }>
+                                            <Col span={ 24 }>
                                               <Checkbox value="manufacture"> { t(__('Manufacture')) } </Checkbox>
                                             </Col>
                                             {/*<Col span={24}>
                                                     <Checkbox value="wholesaler"> { t(__('Wholesaler')) } </Checkbox>
-                                                  </Col>*/}
-                                            <Col span={24}>
+                                                  </Col>*/ }
+                                            <Col span={ 24 }>
                                               <Checkbox value="trading"> { t(__('Trading Company')) } </Checkbox>
                                             </Col>
-                                            <Col span={24}>
+                                            <Col span={ 24 }>
                                               <Checkbox value="service"> { t(__('Business Service (Transportation, finance, travel, Ads)')) } </Checkbox>
                                             </Col>
                                           </Row>
@@ -959,20 +953,20 @@ const Register = () => {
                               </Row>
                             </Col>
 
-                            <Col span={24}>
+                            <Col span={ 24 }>
                               <Row className="" align="middle">
                                 <Col className="text-center" flex="46px">
-                                  <i className="fa-regular fa-users text-bc vv-font-size-3" />
+                                  <i className="fa-regular fa-users text-bc vv-font-size-3"/>
                                 </Col>
                                 <Col flex="1 1">
                                   <Row className="register--formContent__item" align="middle">
-                                    <Col span={24}>
+                                    <Col span={ 24 }>
                                       <Form.Item
                                         name="ref_code"
-                                        >
+                                      >
                                         <Input
                                           placeholder={ t(__('referral_code')) }
-                                          bordered={false}
+                                          bordered={ false }
                                         />
                                       </Form.Item>
                                     </Col>
@@ -981,25 +975,25 @@ const Register = () => {
                               </Row>
                             </Col>
 
-                            <Col span={24}>
+                            <Col span={ 24 }>
                               <Row className="" align="middle">
                                 <Col className="text-center" flex="46px">
-                                  <i className="fa fa-lock text-bc vv-font-size-3" />
+                                  <i className="fa fa-lock text-bc vv-font-size-3"/>
                                 </Col>
                                 <Col flex="1 1">
                                   <Row className="register--formContent__item" align="middle">
-                                    <Col span={24}>
+                                    <Col span={ 24 }>
                                       <Form.Item
                                         name="password1"
-                                        rules={[
+                                        rules={ [
                                           {
                                             required: true,
                                           },
-                                        ]}>
+                                        ] }>
                                         <Input.Password
                                           placeholder={ t(__('password')) }
-                                          bordered={false}
-                                          iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                                          bordered={ false }
+                                          iconRender={ visible => (visible ? <EyeTwoTone/> : <EyeInvisibleOutlined/>) }
                                         />
                                       </Form.Item>
                                     </Col>
@@ -1008,25 +1002,25 @@ const Register = () => {
                               </Row>
                             </Col>
 
-                            <Col span={24}>
+                            <Col span={ 24 }>
                               <Row className="" align="middle">
                                 <Col className="text-center" flex="46px">
-                                  <i className="fa fa-lock text-bc vv-font-size-3" />
+                                  <i className="fa fa-lock text-bc vv-font-size-3"/>
                                 </Col>
                                 <Col flex="1 1">
                                   <Row className="register--formContent__item" align="middle">
-                                    <Col span={24}>
+                                    <Col span={ 24 }>
                                       <Form.Item
                                         name="password2"
-                                        rules={[
+                                        rules={ [
                                           {
                                             required: true,
                                           },
-                                        ]}>
+                                        ] }>
                                         <Input.Password
                                           placeholder={ t(__('Confirm password')) }
-                                          bordered={false}
-                                          iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                                          bordered={ false }
+                                          iconRender={ visible => (visible ? <EyeTwoTone/> : <EyeInvisibleOutlined/>) }
                                         />
                                       </Form.Item>
                                     </Col>
@@ -1035,20 +1029,20 @@ const Register = () => {
                               </Row>
                             </Col>
 
-                            <Col span={24}>
-                              <Row gutter={[0, 15]}>
-                                <Col span={24}>
+                            <Col span={ 24 }>
+                              <Row gutter={ [ 0, 15 ] }>
+                                <Col span={ 24 }>
                                   <Row className="register--formContent__item for--businessType" align="middle">
-                                    <Col span={24}>
+                                    <Col span={ 24 }>
                                       <Form.Item
                                         className="signIn--rememberMe"
                                         name="accept_rules"
                                         valuePropName="checked"
-                                        rules={[
+                                        rules={ [
                                           {
                                             required: true,
                                           },
-                                        ]}
+                                        ] }
                                       >
                                         <Checkbox
                                           value="Y"
@@ -1062,7 +1056,7 @@ const Register = () => {
                               </Row>
                             </Col>
 
-                            <Col span={24} className="text-center">
+                            <Col span={ 24 } className="text-center">
                               <Form.Item
                                 className="signIn--signInBtn"
                                 valuePropName="checked"
@@ -1079,13 +1073,13 @@ const Register = () => {
                     </Form>
                   </Col>
 
-                  <Col xs={24} md={12} className="register--loginExtra">
+                  <Col xs={ 24 } md={ 12 } className="register--loginExtra">
                     <Row className="register--loginExtra__content">
-                      <Col span={24} className="registerSellerRules">
+                      <Col span={ 24 } className="registerSellerRules">
                         { t('register_seller_rules') }
                       </Col>
 
-                      <Col span={24} className="dontHaveAccountContainer">
+                      <Col span={ 24 } className="dontHaveAccountContainer">
                         <span className="text-92 vv-font-size-1-9">{ t(__('Already have an account')) }</span>
                         <Link to={ "/sign-in" } className="text-primary-darken mx-2 vv-font-size-1-9 font-weight-600">{ t(__('sign in')) }</Link>
                       </Col>
