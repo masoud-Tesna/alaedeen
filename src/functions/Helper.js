@@ -340,3 +340,7 @@ export function nl2br (str, replaceMode, isXhtml) {
   let replaceStr = (replaceMode) ? '$1'+ breakTag : '$1'+ breakTag +'$2';
   return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, replaceStr);
 }
+
+export function fn_deadline(min) {
+  return Date.now() + min * 60000;
+}
