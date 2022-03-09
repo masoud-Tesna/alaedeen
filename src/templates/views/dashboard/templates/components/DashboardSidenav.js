@@ -45,6 +45,8 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   // example: reset-password
   let subPage = page.replace("dashboard", "").replace("/", "").split("/")[1];
 
+  let subSubPage = page.replace("dashboard", "").replace("/", "").split("/")[2];
+
   if (mainPage === 'products') { // if main page is "products/" subPage = "manageProducts"
     subPage = "manageProducts";
   }
@@ -54,6 +56,16 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
 
   if (mainPage === 'categories') { // if main page is "categories/" mainPage = "products"
     mainPage = "products";
+  }
+
+  if (mainPage === 'requests') {
+    if (subPage === "public") {
+      subSubPage = subSubPage === 'send' ? 'public_send' : 'public_receive';
+    }
+
+    if (subPage === "private") {
+      subSubPage = subSubPage === 'send' ? 'private_send' : 'private_receive';
+    }
   }
 
   const { t } = useTranslation();
@@ -83,7 +95,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   // submenu keys of first level
   const rootSubmenuKeys = ['dashboard', 'language', 'account', 'support', 'requests', 'products', 'plans', 'affiliate'];
 
-  const [openKeys, setOpenKeys] = useState([mainPage]);
+  const [openKeys, setOpenKeys] = useState([mainPage, subPage, subSubPage]);
 
   const onOpenChange = keys => {
     const latestOpenKey = keys.find(key => openKeys.indexOf(key) === -1);
@@ -122,7 +134,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
           className="side--menu"
           onOpenChange={onOpenChange}
           openKeys={openKeys}
-          defaultSelectedKeys={[(page === 'dashboard' || page === 'dashboard/') ? 'dashboard' : subPage || mainPage]} /* if sub page isset (/product/manage) else main page (/plans) */
+          defaultSelectedKeys={(page === 'dashboard' || page === 'dashboard/') ? ['dashboard'] : openKeys}
         >
           <Menu.Item key="dashboard"  icon={<HomeOutlined />}>
             <Link to="/dashboard" className="side--link">
@@ -156,16 +168,31 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
           </Menu.Item>
 
           <SubMenu key="requests" icon={ <i className="fa-light fa-comment-quote" /> } title={ t('requests') }>
-            <Item key="public">
-              <Link to="/dashboard/requests/public" className="side--link">
-                { t('public_requests') }
-              </Link>
-            </Item>
-            <Item key="private">
-              <Link to="/dashboard/requests/private" className="side--link">
-                { t('private_requests') }
-              </Link>
-            </Item>
+            <SubMenu key="public" title={ t('public') }>
+              <Item key="public_send">
+                <Link to="/dashboard/requests/public/send" className="side--link">
+                  { t('sends') }
+                </Link>
+              </Item>
+              <Item key="public_receive">
+                <Link to="/dashboard/requests/public/receive" className="side--link">
+                  { t('receives') }
+                </Link>
+              </Item>
+            </SubMenu>
+
+            <SubMenu key="private" title={ t('private') }>
+              <Item key="private_send">
+                <Link to="/dashboard/requests/private/send" className="side--link">
+                  { t('sends') }
+                </Link>
+              </Item>
+              <Item key="private_receive">
+                <Link to="/dashboard/requests/private/receive" className="side--link">
+                  { t('receives') }
+                </Link>
+              </Item>
+            </SubMenu>
           </SubMenu>
 
           <SubMenu key="products" icon={<i className="fab fa-product-hunt " />} title={ t('products_and_categories') }>
