@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // import style file:
 import './styles/Register.less';
@@ -354,7 +354,7 @@ const Register = () => {
           footer={[
             !resendCode ?
             <div className="resendCode--title">
-             {t(__("Resend the code after:"))} :
+             {t(__("Resend the code after"))} :
             </div> :
             null,
             !resendCode ?
@@ -365,7 +365,7 @@ const Register = () => {
                   loading={resendCodeConfirmLoading}
                   onClick={handleResendCode}
                 >
-                  { t("send_new_code") }
+                  { t("resend_code") }
                 </Button>
               </div>
           ,
