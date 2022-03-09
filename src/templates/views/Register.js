@@ -1,30 +1,15 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 // import style file:
 import './styles/Register.less';
 
-import {
-  message,
-  Button,
-  Checkbox,
-  Col,
-  Form,
-  Input,
-  Row,
-  Select,
-  Tabs,
-  Modal
-} from "antd";
-import { __, SeoGenerator } from "../../functions/Helper";
-import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
+import { Button, Checkbox, Col, Form, Input, InputNumber, message, Modal, Row, Select, Statistic, Tabs } from "antd";
+import { __, fn_deadline, SeoGenerator } from "../../functions/Helper";
+import { EditOutlined, EyeInvisibleOutlined, EyeTwoTone, LoadingOutlined, SendOutlined } from "@ant-design/icons";
 import googlePic from "../assets/images/google.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import {
-  signInAction,
-  useDispatchAuthState,
-  useGetAuthState
-} from "../../contexts/user/UserContext";
+import { signInAction, useDispatchAuthState, useGetAuthState } from "../../contexts/user/UserContext";
 
 import { signInApi, useGetApiOld, useQueryString } from "../../functions";
 import axios from "axios";
@@ -39,6 +24,7 @@ const Register = () => {
 
   const { TabPane } = Tabs;
   const { Option } = Select;
+  const { Countdown } = Statistic;
 
   // get initial config:
   const { config } = useGetConfig();
@@ -56,7 +42,45 @@ const Register = () => {
   // state for set register type (if seller show step bar):
   const [registerType, setRegisterType] = useState("seller");
 
-  const [isSignedInModal, setIsSignedInModal] = useState(false);
+  // state for show verification modal:
+  const [verificationModalVisible, setVerificationModalVisible] = useState(false);
+
+  // state for show loading spinner in verification btn (if clicked and request send to server):
+  const [verificationModalConfirmLoading, setVerificationModalConfirmLoading] = useState(false);
+
+  // state for save user email:
+  const [userLoginEmail, setUserLoginEmail] = useState("");
+
+  // state for save user password:
+  const [userLoginPassword, setUserLoginPassword] = useState("");
+
+  // state for save user phone number:
+  const [userLoginPhoneNumber, setUserLoginPhoneNumber] = useState("");
+
+  // state for disable or enable phone number input for edit and update phone number:
+  const [userLoginPhoneNumberVisible, setUserLoginPhoneNumberVisible] = useState(true);
+
+  // state for show loading spinner in send new phone number btn (if clicked and request send to server):
+  const [userLoginPhoneNumberConfirmLoading, setUserLoginPhoneNumberConfirmLoading] = useState(false);
+
+  // state for show btn To resend the verification code:
+  const [resendCode, setResendCode] = useState(false);
+
+  // state for show loading spinner in resend new code btn (if clicked and request send to server):
+  const [resendCodeConfirmLoading, setResendCodeConfirmLoading] = useState(false);
+
+  // state for show countdown for resend code (after: 1 Minute):
+  const [resendCodeDeadline, setResendCodeDeadline] = useState(0);
+
+  useEffect(() => {
+    setResendCodeDeadline(fn_deadline("1.01"))
+  }, [resendCode]);
+
+  // ref for handle change phone number input:
+  const changePhoneRef = useRef(null);
+
+  // ref for handle verification code input:
+  const [verificationForm] = Form.useForm();
 
   const { AuthDispatch } = useDispatchAuthState();
 
@@ -78,11 +102,13 @@ const Register = () => {
   // get Url parameters:
   const referralCode = query.get("ref");
 
+  // create register axios async function:
   async function Register(values) {
     return await axios.post(`https://alaedeen.com/horn/register-api/?lang_code=${config.language}`, { user_data: values });
   }
 
-  const { mutate } = useMutation(signInApi, {
+  // create sign in useMutation:
+  const { mutate: signInMutation } = useMutation(signInApi, {
     onSuccess: res => {
       if (res?.auth?.status) {
         AuthDispatch(signInAction(res.auth, res.token));
@@ -90,6 +116,7 @@ const Register = () => {
     }
   });
 
+  // create handle register function:
   const onRegisterFormHandle = values => {
     // show spinner (spinner context):
     spinnerDispatch(isLoadingAction(true));
@@ -107,47 +134,191 @@ const Register = () => {
     else {
       Register(values)
         .then(res => {
-
           if (!res.data.status && res.data.error === 'email_already_used') {
             // hidden spinner (spinner context):
             spinnerDispatch(isLoadingAction(false));
             message.error({
-              content: "ایمیل قبلا در سیستم ثبت شده است",
+              content: t(__("Email is already registered in the system")),
               duration: 4,
               className: 'registerDone--warning',
             })
           }
+
           else {
 
-            const loginData = {
-              user_login: values.email,
-              password: values.password1,
-              language: config.language
-            }
+            if (registerType === 'buyer') {
 
-            mutate(loginData, {
-              onSuccess: () => {
-                // hidden spinner (spinner context):
-                spinnerDispatch(isLoadingAction(false));
+              const loginData = {
+                user_login: values.email,
+                password: values.password1,
+                language: config.language
+              }
 
-                // if register as buyer show register done message. else show Modal for seller...
-                registerType === 'buyer' ?
+              signInMutation(loginData, {
+                onSuccess: () => {
+                  // hidden spinner (spinner context):
+                  spinnerDispatch(isLoadingAction(false));
+
+                  // if register as buyer show register done message. else show Modal for seller...
                   message.success({
-                    content: "ثبت نام شما با موفقیت انجام شد.",
+                    content: t("register_done_and_login"),
                     duration: 2,
                     className: 'registerDone--message',
                   }).then(() => {
-                    navigate('/');
-                  }) :
-                  setIsSignedInModal(true);
-              }
-            });
+                    navigate('/dashboard');
+                  });
+                }
+              });
+            }
+
+            else {
+
+              setUserLoginEmail(values.email); // set user email sate:
+              setUserLoginPassword(values.password1); // set user password sate:
+              setUserLoginPhoneNumber(values.phone); // set user phone number sate:
+
+              setVerificationModalVisible(true); // show verification modal:
+
+              spinnerDispatch(isLoadingAction(false)); // hide spinner (spinner context):
+            }
 
           }
 
         });
     }
 
+  }
+
+
+  // create phone verify axios async function:
+  async function VerificationApi(verificationCode, values) {
+    return await axios.put(
+      `https://alaedeen.com/api/VerificationAccounts.php/?verification_code=${verificationCode}`,
+      values
+    );
+  }
+
+  // create edit phone or resend code axios async function:
+  async function editPhoneAndSendCode(params) {
+    return await axios.post(
+      `https://alaedeen.com/api/VerificationAccounts.php`,
+      { ...params }
+    );
+  }
+
+  // create function for handle change phone number:
+  const handleChangeNumber = phone => {
+    // show btn loading spinner
+    setUserLoginPhoneNumberConfirmLoading(true);
+    const params = {
+      phone: phone,
+      user_email: userLoginEmail,
+      type: "edit_number"
+    }
+
+    editPhoneAndSendCode(params)
+      .then(res => {
+        if (res?.data?.status) {
+
+          // add new phone number to state:
+          setUserLoginPhoneNumber(phone);
+
+          // if new phone updated and code send...
+          message.success({
+            content: t('new_number_saved'),
+            duration: 2,
+            className: 'registerDone--message',
+          });
+
+          setUserLoginPhoneNumberConfirmLoading(false);
+          setUserLoginPhoneNumberVisible(true);
+        }
+      })
+  }
+
+  const handleResendCode = () => {
+    setResendCodeConfirmLoading(true);
+    const params = {
+      phone: userLoginPhoneNumber,
+      user_email: userLoginEmail,
+      type: "send_code"
+    }
+
+    editPhoneAndSendCode(params)
+      .then(res => {
+        if (res?.data?.status) {
+          // if again code send...
+          message.success({
+            content: t(__("New code sent")),
+            duration: 2,
+            className: 'registerDone--message',
+          });
+          setResendCodeConfirmLoading(false)
+          setResendCode(false)
+        }
+      })
+  }
+
+  const handleVerification = () => {
+    setVerificationModalConfirmLoading(true);
+    verificationForm
+      .validateFields()
+      .then((values) => {
+        const params = {
+          user_email: userLoginEmail
+        };
+
+        VerificationApi(values?.verification_code, params)
+          .then(res => {
+            if (res?.data?.verify) {
+
+              message.success({
+                content: t(('Your account has been verified')),
+                duration: 2,
+                className: 'registerDone--message',
+              }).then(() => {
+
+                const loginData = {
+                  user_login: userLoginEmail,
+                  password: userLoginPassword,
+                  language: config.language
+                }
+
+                signInMutation(loginData, {
+                  onSuccess: () => {
+                    // hidden spinner (spinner context):
+                    setVerificationModalConfirmLoading(false);
+                    setVerificationModalVisible(false);
+
+                    // if register as buyer show register done message. else show Modal for seller...
+                    message.success({
+                      content: t("register_done_and_login"),
+                      duration: 2,
+                      className: 'registerDone--message',
+                    }).then(() => {
+                      navigate('/dashboard');
+                    });
+                  }
+                });
+
+              });
+
+            }
+            else {
+              if (res?.data?.error === "not_match") {
+                message.error({
+                  content: t("verification_code_not_match"),
+                  duration: 4,
+                  className: 'registerDone--warning',
+                });
+                setVerificationModalConfirmLoading(false);
+              }
+            }
+          })
+      })
+      .catch((info) => {
+        setVerificationModalConfirmLoading(false);
+      });
   }
 
   return (
@@ -175,18 +346,98 @@ const Register = () => {
       <Col xs={24} lg={20} className="register--content bg-white p-5">
 
         <Modal
-          title={ t(__("Registration Successful")) }
-          visible={isSignedInModal}
-          okText = 'الان ثبت میکنم'
-          cancelText = 'بعدا'
-          onCancel={() => navigate("/")}
-          onOk={() => navigate('/dashboard/account/manufacturer-information')}
+          title={ t(__("Enter the verification code")) }
+          visible={verificationModalVisible}
           maskClosable={false}
+          closable={false}
+          className="verificationModal"
+          footer={[
+            !resendCode ?
+            <div className="resendCode--title">
+             {t(__("Resend the code after:"))} :
+            </div> :
+            null,
+            !resendCode ?
+              <Countdown className="resendCode--countdown" value={resendCodeDeadline} onFinish={() => setResendCode(true)} format="mm:ss" /> :
+              <div className="resendCode--sendBtn">
+                <Button
+                  icon={<SendOutlined />}
+                  loading={resendCodeConfirmLoading}
+                  onClick={handleResendCode}
+                >
+                  { t("send_new_code") }
+                </Button>
+              </div>
+          ,
+            <div className="--confirm">
+              <Button key="submit" type="primary" onClick={handleVerification} loading={verificationModalConfirmLoading}>
+                {t('verification')}
+              </Button>
+            </div>,
+          ]}
         >
-          <p className="text-33 vv-font-size-1-7">
-            اطلاعات  بیشتری برای جلب اعتماد مشتری و کسب درآمد ارائه دهید
-            این اطلاعات در نمایه شرکت شما نمایش داده میشود.
-          </p>
+
+          <Row gutter={[0, 20]}>
+            <Col span={24}>
+              <Row gutter={[0, 10]}>
+                <Col span={24} className="text-33 vv-font-size-1-7">
+                  {t(__('verification code was sent to the phone number'))}
+                </Col>
+
+                <Col span={24}>
+                  <Row gutter={10}>
+                    <Col span={12} className="phoneNumber">
+                      <Input
+                        ref={changePhoneRef}
+                        disabled = {userLoginPhoneNumberVisible}
+                        addonAfter={
+                          userLoginPhoneNumberVisible ?
+                            <span className="--edit" onClick={() => setUserLoginPhoneNumberVisible(false)}>
+                          <EditOutlined />
+                        </span> :
+                            <span className="--editing" onClick={() => handleChangeNumber(changePhoneRef.current.input.value) }>
+                              {userLoginPhoneNumberConfirmLoading ?
+                                <LoadingOutlined /> :
+                                <SendOutlined />
+                              }
+                            </span>
+                        }
+                        defaultValue={userLoginPhoneNumber}
+                        className="text-left"
+                      />
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+            </Col>
+
+            <Col span={24}>
+              <Form
+                form={verificationForm}
+                name="verification_form"
+              >
+                <Form.Item
+                  name="verification_code"
+                  label={t(__('verification_code'))}
+                  labelCol={{span: 24}}
+                  className="verificationItem"
+                  rules={[
+                    {
+                      required: true,
+                      message: t("please_enter_verification_code")
+                    },
+                  ]}
+                >
+                  <InputNumber
+                    allowClear
+                    className="w-40"
+                    maxLength={5}
+                  />
+                </Form.Item>
+              </Form>
+            </Col>
+          </Row>
+
         </Modal>
 
         <Row gutter={{ xs: 0, lg: 32 }}>

@@ -562,3 +562,69 @@ html:lang(ar) {
     }
   }
 }
+
+.verificationModal {
+  .verificationItem {
+    margin: 0;
+    .ant-form-item-label {
+      &.ant-col-rtl {
+        text-align: right;
+      }
+    }
+
+    .ant-input-number-handler-wrap {
+      display: none;
+    }
+  }
+
+  .phoneNumber {
+    .ant-input-group-addon {
+      padding: 0;
+      cursor: pointer;
+
+      .--edit,
+      .--editing {
+        display: block;
+        padding: 0 11px;
+
+        svg {
+          font-size: 2rem;
+          margin-top: .3rem;
+        }
+
+        &:hover {
+          svg {
+            color: @primary-color;
+          }
+        }
+      }
+    }
+  }
+
+  .ant-modal-footer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+
+    & > div {
+      align-self: center;
+      display: block;
+    }
+
+    .resendCode--title {
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 1.5rem;
+    }
+
+    .resendCode--countdown,
+    .resendCode--sendBtn {
+      padding: 0 2rem;
+    }
+
+    .resendCode--countdown {
+      .ant-statistic-content {
+        font-size: 1.4rem !important;
+      }
+    }
+  }
+}
