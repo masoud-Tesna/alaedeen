@@ -344,3 +344,7 @@ export function nl2br (str, replaceMode, isXhtml) {
 export function fn_deadline(min) {
   return Date.now() + min * 60000;
 }
+
+export const fn_alternation = (x, y, extra) => {
+  return extra ? (x * y) + 1 :  x * y;
+}
