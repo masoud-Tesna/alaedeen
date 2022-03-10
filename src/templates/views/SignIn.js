@@ -6,7 +6,7 @@ import './styles/SignIn.less';
 import { Link, useNavigate } from "react-router-dom";
 
 // import Design:
-import { Button, Col, Form, Input, Row } from "antd";
+import { Button, Col, Form, Input, message, Row } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone, LockOutlined, UserOutlined } from "@ant-design/icons";
 
 // import helper functions:
@@ -76,7 +76,16 @@ const SignIn = () => {
     }
     signInMutate(loginData, {
       onSuccess: res => {
-        if (res?.auth?.status ) window.location.href = "/";
+        if (res?.auth?.status ) {
+          message.success({
+            content: t(__("You have logged in successfully")),
+            duration: 2,
+            className: 'loginDone--message',
+          })
+            .then(() => {
+              navigate('/');
+            });
+        }
       }
     });
   }
