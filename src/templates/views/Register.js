@@ -73,8 +73,10 @@ const Register = () => {
   const [ resendCodeDeadline, setResendCodeDeadline ] = useState(0);
 
   useEffect(() => {
-    setResendCodeDeadline(fn_deadline("1.01"))
-  }, [ resendCode ]);
+    if (verificationModalVisible) {
+      setResendCodeDeadline(fn_deadline("1.01"))
+    }
+  }, [ resendCode, verificationModalVisible ]);
 
   // ref for handle change phone number input:
   const changePhoneRef = useRef(null);
@@ -236,7 +238,7 @@ const Register = () => {
     const params = {
       phone: userLoginPhoneNumber,
       user_email: userLoginEmail,
-      type: "send_code"
+      type: "resend_code"
     }
 
     editPhoneAndSendCode(params)
