@@ -259,30 +259,6 @@ export const SeoGenerator = ({ title, description, keywords, ogImage = "https://
   );
 }
 
-export function asyncComponent(getComponent) {
-  class AsyncComponent extends Component {
-    static Component = null;
-    state = { Component: AsyncComponent.Component };
-
-    componentWillMount() {
-      if (!this.state.Component) {
-        getComponent().then(Component => {
-          AsyncComponent.Component = Component
-          this.setState({ Component })
-        })
-      }
-    }
-    render() {
-      const { Component } = this.state
-      if (Component) {
-        return <Component {...this.props} />
-      }
-      return null
-    }
-  }
-  return AsyncComponent;
-}
-
 export function scrollIntoViewIfTargetNotOnDisplay(target) {
   if (target.getBoundingClientRect().bottom > window.innerHeight) {
     target.scrollIntoView(false);
