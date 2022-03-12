@@ -1,60 +1,34 @@
+import { lazy, Suspense } from "react";
 import { Navigate, Route } from "react-router-dom";
-import { asyncComponent } from "../../functions/Helper";
 import { useGetAuthState } from "../../contexts/user/UserContext";
 
 // account section:
-const ManufactureInformation = asyncComponent(() =>
-  import('./dashboard/pages/account/ManufactureInformation').then(module => module.default)
-);
+const ManufactureInformation = lazy(() => import('./dashboard/pages/account/ManufactureInformation'));
 
 // Product Section:
-const ManageProducts = asyncComponent(() =>
-  import('./dashboard/pages/products/ManageProducts').then(module => module.default)
-);
+const ManageProducts = lazy(() => import('./dashboard/pages/products/ManageProducts'));
 
-const CreateProduct = asyncComponent(() =>
-  import('./dashboard/pages/products/CreateProduct').then(module => module.default)
-);
+const CreateProduct = lazy(() => import('./dashboard/pages/products/CreateProduct'));
 
-const UpdateProduct = asyncComponent(() =>
-  import('./dashboard/pages/products/UpdateProduct').then(module => module.default)
-);
+const UpdateProduct = lazy(() => import('./dashboard/pages/products/UpdateProduct'));
 
-const ManageCategories = asyncComponent(() =>
-  import('./dashboard/pages/categories/ManageCategories').then(module => module.default)
-);
+const ManageCategories = lazy(() => import('./dashboard/pages/categories/ManageCategories'));
 
-const Plans = asyncComponent(() =>
-  import('./dashboard/pages/plans').then(module => module.default)
-);
+const Plans = lazy(() => import('./dashboard/pages/plans'));
 
-const Result = asyncComponent(() =>
-  import('./dashboard/pages/payment/Result').then(module => module.default)
-);
+const Result = lazy(() => import('./dashboard/pages/payment/Result'));
 
-const Affiliate = asyncComponent(() =>
-  import('./dashboard/pages/affiliate').then(module => module.default)
-);
+const Affiliate = lazy(() => import('./dashboard/pages/affiliate'));
 
-const RequestPublicSent = asyncComponent(() =>
-  import('./dashboard/pages/requests/public/Sent').then(module => module.default)
-);
+const RequestPublicSent = lazy(() => import('./dashboard/pages/requests/public/Sent'));
 
-const RequestPublicReceived = asyncComponent(() =>
-  import('./dashboard/pages/requests/public/Received').then(module => module.default)
-);
+const RequestPublicReceived = lazy(() => import('./dashboard/pages/requests/public/Received'));
 
-const RequestPrivateSent = asyncComponent(() =>
-  import('./dashboard/pages/requests/private/Sent').then(module => module.default)
-);
+const RequestPrivateSent = lazy(() => import('./dashboard/pages/requests/private/Sent'));
 
-const RequestPrivateReceived = asyncComponent(() =>
-  import('./dashboard/pages/requests/private/Received').then(module => module.default)
-);
+const RequestPrivateReceived = lazy(() => import('./dashboard/pages/requests/private/Received'));
 
-const Conversation = asyncComponent(() =>
-  import('./dashboard/pages/requests/Conversation').then(module => module.default)
-);
+const Conversation = lazy(() => import('./dashboard/pages/requests/Conversation'));
 
 const DashboardRoutes = () => {
 
@@ -68,35 +42,35 @@ const DashboardRoutes = () => {
 
         user_data?.auth?.user_id ?
           <>
-            <Route index element={ <Plans/> }/>
+            <Route index element={ <Suspense fallback={null}><Plans /></Suspense> }/>
 
-            <Route path="account/password-reset" element={ <h1> password-reset </h1> }/>
+            <Route path="account/password-reset" element={ <Suspense fallback={null}><h1> password-reset </h1></Suspense> }/>
 
-            <Route path="account/manufacturer-information" element={ <ManufactureInformation/> }/>
+            <Route path="account/manufacturer-information" element={ <Suspense fallback={null}><ManufactureInformation /></Suspense> }/>
 
             <Route path="products">
               <Route index element={ <Navigate to="manage"/> }/>
 
-              <Route path={ "manage" } element={ <ManageProducts/> }/>
+              <Route path={ "manage" } element={ <Suspense fallback={null}><ManageProducts /></Suspense> }/>
 
-              <Route path="create" element={ <CreateProduct/> }/>
+              <Route path="create" element={ <Suspense fallback={null}><CreateProduct /></Suspense> }/>
 
-              <Route path=":productId" element={ <UpdateProduct/> }/>
+              <Route path=":productId" element={ <Suspense fallback={null}><UpdateProduct /></Suspense> }/>
             </Route>
 
             <Route path="categories">
               <Route index element={ <Navigate to="manage"/> }/>
 
-              <Route path="manage" element={ <ManageCategories/> }/>
+              <Route path="manage" element={ <Suspense fallback={null}><ManageCategories /></Suspense> }/>
 
-              <Route path=":categoryId" element={ <>Edit Category</> }/>
+              <Route path=":categoryId" element={ <Suspense fallback={null}><h1>Edit Category</h1></Suspense> }/>
             </Route>
 
-            <Route path="plans" element={ <Plans/> }/>
+            <Route path="plans" element={ <Suspense fallback={null}><Plans /></Suspense> }/>
 
-            <Route path="payment/result" element={ <Result/> }/>
+            <Route path="payment/result" element={ <Suspense fallback={null}><Result /></Suspense> }/>
 
-            <Route path="affiliate" element={ <Affiliate/> }/>
+            <Route path="affiliate" element={ <Suspense fallback={null}><Affiliate /></Suspense> }/>
 
             <Route path="requests">
               <Route index element={ <Navigate to="/dashboard"/> }/>
@@ -104,21 +78,21 @@ const DashboardRoutes = () => {
               <Route path="public">
                 <Route index element={ <Navigate to="sent"/> }/>
 
-                <Route path="sent" element={ <RequestPublicSent/> }/>
+                <Route path="sent" element={ <Suspense fallback={null}><RequestPublicSent /></Suspense> }/>
 
-                <Route path="received" element={ <RequestPublicReceived/> }/>
+                <Route path="received" element={ <Suspense fallback={null}><RequestPublicReceived /></Suspense> }/>
 
-                <Route path=":requestId" element={<Conversation />} />
+                <Route path=":requestId" element={ <Suspense fallback={null}><Conversation /></Suspense> } />
               </Route>
 
               <Route path="private">
                 <Route index element={ <Navigate to="sent"/> }/>
 
-                <Route path="sent" element={ <RequestPrivateSent/> }/>
+                <Route path="sent" element={ <Suspense fallback={null}><RequestPrivateSent /></Suspense> }/>
 
-                <Route path="received" element={ <RequestPrivateReceived/> }/>
+                <Route path="received" element={ <Suspense fallback={null}><RequestPrivateReceived /></Suspense> }/>
 
-                <Route path=":requestId" element={<Conversation />} />
+                <Route path=":requestId" element={ <Suspense fallback={null}><Conversation /></Suspense> } />
               </Route>
             </Route>
           </> :

@@ -1,3 +1,5 @@
+import { lazy, Suspense } from "react";
+
 // Custom Styles:
 import './templates/styles/custom.less';
 
@@ -17,74 +19,38 @@ import { useGetConfig } from "./contexts/config/ConfigContext";
 import TopPanel from "./templates/topPanel";
 import { Header as SiteHeader } from "./templates/header";
 import { SiteFooter } from "./templates/footer";
-import { asyncComponent } from "./functions/Helper";
 
 import { Helmet } from "react-helmet";
-
-// Pages:
-/*import Home from "./templates/views/Home";
-import SignIn from "./templates/views/SignIn";
-import Register from "./templates/views/Register";
-import Factories from "./templates/views/Factories";
-import AllCategories from "./templates/views/AllCategories";
-import Categories from "./templates/views/Categories";
-import Product from "./templates/views/Product";
-import Recommended from "./templates/views/Recommended";
-import ReadyToShip from "./templates/views/ReadyToShip";*/
-
 
 import { useGetAuthState } from "./contexts/user/UserContext";
 
 import DashboardRoutes from "./templates/views/DashboardRoutes";
 import DashboardMain from "./templates/views/dashboard/templates/DashboardMain";
 
-const Home = asyncComponent(() =>
-  import('./templates/views/Home').then(module => module.default)
-);
+// Pages:
+const Home = lazy(() => import('./templates/views/Home'));
 
-const SignIn = asyncComponent(() =>
-  import('./templates/views/SignIn').then(module => module.default)
-);
+const SignIn = lazy(() => import('./templates/views/SignIn'));
 
-const Register = asyncComponent(() =>
-  import('./templates/views/Register').then(module => module.default)
-);
+const Register = lazy(() => import('./templates/views/Register'));
 
-const Factories = asyncComponent(() =>
-  import('./templates/views/Factories').then(module => module.default)
-);
+const Factories = lazy(() => import('./templates/views/Factories'));
 
-const AllCategories = asyncComponent(() =>
-  import('./templates/views/AllCategories').then(module => module.default)
-);
+const AllCategories = lazy(() => import('./templates/views/AllCategories'));
 
-const Categories = asyncComponent(() =>
-  import('./templates/views/Categories').then(module => module.default)
-);
+const Categories = lazy(() => import('./templates/views/Categories'));
 
-const Product = asyncComponent(() =>
-  import('./templates/views/Product').then(module => module.default)
-);
+const Product = lazy(() => import('./templates/views/Product'));
 
-const Recommended = asyncComponent(() =>
-  import('./templates/views/Recommended').then(module => module.default)
-);
+const Recommended = lazy(() => import('./templates/views/Recommended'));
 
-const ReadyToShip = asyncComponent(() =>
-  import('./templates/views/ReadyToShip').then(module => module.default)
-);
+const ReadyToShip = lazy(() => import('./templates/views/ReadyToShip'));
 
-const Page = asyncComponent(() =>
-  import('./templates/views/Page').then(module => module.default)
-);
+const Page = lazy(() => import('./templates/views/Page'));
 
-const ContactUs = asyncComponent(() =>
-  import('./templates/views/ContactUs').then(module => module.default)
-);
+const ContactUs = lazy(() => import('./templates/views/ContactUs'));
 
-
-
-function App() {
+const App = () => {
 
   // get initial config:
   const { config } = useGetConfig();
@@ -191,46 +157,46 @@ function App() {
               <DashboardMain>
                 <Routes>
                   {/* Home Route */}
-                  <Route exact path="/" element={<Home />} />
+                  <Route exact path="/" element={<Suspense fallback={null}><Home /></Suspense>} />
 
                   {/* Sign in Route */}
-                  <Route path="/sign-in" element={<SignIn />} />
+                  <Route path="/sign-in" element={<Suspense fallback={null}><SignIn /></Suspense>} />
 
                   {/* Register Route */}
-                  <Route path="/register" element={<Register />} />
+                  <Route path="/register" element={<Suspense fallback={null}><Register /></Suspense>} />
 
                   {/* Factories Route */}
-                  <Route path="/factories" element={<Factories />} />
+                  <Route path="/factories" element={<Suspense fallback={null}><Factories /></Suspense>} />
 
                   {/* All Categories Route */}
-                  <Route path="/all-categories" element={<AllCategories />} />
+                  <Route path="/all-categories" element={<Suspense fallback={null}><AllCategories /></Suspense>} />
 
                   {/* if open categories page without category path, redirect to all-category route */}
                   <Route exact path="/categories" element={<Navigate to="/all-categories" />} />
 
                   {/* categories Route (categories/electronic) */}
-                  <Route path="/categories/:category" element={<Categories />} />
+                  <Route path="/categories/:category" element={<Suspense fallback={null}><Categories /></Suspense>} />
 
                   {/* if open product details page without product path, redirect to all-category route */}
                   <Route exact path="/product" element={<Navigate to="/all-categories" />} />
 
                   {/* Product details Route */}
-                  <Route path="/product/:product" element={<Product />} />
+                  <Route path="/product/:product" element={<Suspense fallback={null}><Product /></Suspense>} />
 
                   {/* Recommended details Route */}
-                  <Route path="/recommended" element={<Recommended />} />
+                  <Route path="/recommended" element={<Suspense fallback={null}><Recommended /></Suspense>} />
 
                   {/* Ready To Ship details Route */}
-                  <Route path="/ready-to-ship" element={<ReadyToShip />} />
+                  <Route path="/ready-to-ship" element={<Suspense fallback={null}><ReadyToShip /></Suspense>} />
 
                   {/* show page detail Route */}
-                  <Route path="/page/:page" element={<Page />} />
+                  <Route path="/page/:page" element={<Suspense fallback={null}><Page /></Suspense>} />
 
                   {/* contact us */}
-                  <Route exact path="/page/alaedeen-contact-us" element={<ContactUs />} />
+                  <Route exact path="/page/alaedeen-contact-us" element={<Suspense fallback={null}><ContactUs /></Suspense>} />
 
                   {/* show blog detail Route */}
-                  <Route path="/blog/:blog" element={<Page />} />
+                  <Route path="/blog/:blog" element={<Suspense fallback={null}><Page /></Suspense>} />
 
                   {/* Dashboard Routes */}
                   {DashboardRoutes()}
