@@ -34,6 +34,8 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
 
   const { user_data } = useGetAuthState();
 
+  const userType = user_data?.auth?.user_type;
+
   const planId = user_data?.auth?.plan_id || null;
 
   const urlPath = pathname?.split("/").filter(Boolean);
@@ -107,6 +109,58 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
     }
   };
 
+  const requestShowCondition = userType => {
+    switch (userType) {
+      case "V" :
+        return(
+          <>
+            <SubMenu key="public" title={ t('public') }>
+              <Item key="public_sent">
+                <Link to="/dashboard/requests/public/sent" className="side--link">
+                  { t('sent') }
+                </Link>
+              </Item>
+              <Item key="public_received">
+                <Link to="/dashboard/requests/public/received" className="side--link">
+                  { t('received') }
+                </Link>
+              </Item>
+            </SubMenu>
+
+            <SubMenu key="private" title={ t('private') }>
+              <Item key="private_sent">
+                <Link to="/dashboard/requests/private/sent" className="side--link">
+                  { t('sent') }
+                </Link>
+              </Item>
+              <Item key="private_received">
+                <Link to="/dashboard/requests/private/received" className="side--link">
+                  { t('received') }
+                </Link>
+              </Item>
+            </SubMenu>
+          </>
+        )
+
+      case "C" :
+        return (
+          <>
+            <Item key="public_sent">
+              <Link to="/dashboard/requests/public/sent" className="side--link">
+                { t('public') }
+              </Link>
+            </Item>
+
+            <Item key="private_sent">
+              <Link to="/dashboard/requests/private/sent" className="side--link">
+                { t('private') }
+              </Link>
+            </Item>
+          </>
+        );
+    }
+  }
+
   return (
     <Row gutter={[0, 20]} className="dashboard-side__container">
       <Col span={24} className="my-auto alaedeen-logo">
@@ -170,31 +224,9 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
           </Menu.Item>
 
           <SubMenu key="requests" icon={ <i className="fa-light fa-comment-quote" /> } title={ t('requests') }>
-            <SubMenu key="public" title={ t('public') }>
-              <Item key="public_sent">
-                <Link to="/dashboard/requests/public/sent" className="side--link">
-                  { t('sent') }
-                </Link>
-              </Item>
-              <Item key="public_received">
-                <Link to="/dashboard/requests/public/received" className="side--link">
-                  { t('received') }
-                </Link>
-              </Item>
-            </SubMenu>
 
-            <SubMenu key="private" title={ t('private') }>
-              <Item key="private_sent">
-                <Link to="/dashboard/requests/private/sent" className="side--link">
-                  { t('sent') }
-                </Link>
-              </Item>
-              <Item key="private_received">
-                <Link to="/dashboard/requests/private/received" className="side--link">
-                  { t('received') }
-                </Link>
-              </Item>
-            </SubMenu>
+            {requestShowCondition(userType)}
+
           </SubMenu>
 
           <SubMenu key="products" icon={<i className="fab fa-product-hunt " />} title={ t('products_and_categories') }>
