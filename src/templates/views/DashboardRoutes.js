@@ -28,7 +28,8 @@ const RequestPrivateSent = lazy(() => import('./dashboard/pages/requests/private
 
 const RequestPrivateReceived = lazy(() => import('./dashboard/pages/requests/private/Received'));
 
-const Conversation = lazy(() => import('./dashboard/pages/requests/Conversation'));
+const RequestPublicConversation = lazy(() => import('./dashboard/pages/requests/public/Conversation'));
+const RequestPrivateConversation = lazy(() => import('./dashboard/pages/requests/private/Conversation.js'));
 
 const DashboardRoutes = () => {
 
@@ -51,7 +52,7 @@ const DashboardRoutes = () => {
             <Route path="products">
               <Route index element={ <Navigate to="manage"/> }/>
 
-              <Route path={ "manage" } element={ <Suspense fallback={null}><ManageProducts /></Suspense> }/>
+              <Route path="manage" element={ <Suspense fallback={null}><ManageProducts /></Suspense> }/>
 
               <Route path="create" element={ <Suspense fallback={null}><CreateProduct /></Suspense> }/>
 
@@ -78,21 +79,34 @@ const DashboardRoutes = () => {
               <Route path="public">
                 <Route index element={ <Navigate to="sent"/> }/>
 
-                <Route path="sent" element={ <Suspense fallback={null}><RequestPublicSent /></Suspense> }/>
+                <Route path="sent">
+                  <Route index element={ <Suspense fallback={null}><RequestPublicSent /></Suspense> } />
 
-                <Route path="received" element={ <Suspense fallback={null}><RequestPublicReceived /></Suspense> }/>
+                  <Route path=":requestId" element={ <Suspense fallback={null}><RequestPublicConversation /></Suspense> } />
+                </Route>
 
-                <Route path=":requestId" element={ <Suspense fallback={null}><Conversation /></Suspense> } />
+                <Route path="received">
+                  <Route index element={ <Suspense fallback={null}><RequestPublicReceived /></Suspense> } />
+
+                  <Route path=":requestId" element={ <Suspense fallback={null}><RequestPublicConversation /></Suspense> } />
+                </Route>
               </Route>
 
               <Route path="private">
                 <Route index element={ <Navigate to="sent"/> }/>
 
-                <Route path="sent" element={ <Suspense fallback={null}><RequestPrivateSent /></Suspense> }/>
+                <Route path="sent">
+                  <Route index element={ <Suspense fallback={null}><RequestPrivateSent /></Suspense> } />
 
-                <Route path="received" element={ <Suspense fallback={null}><RequestPrivateReceived /></Suspense> }/>
+                  <Route path=":requestId" element={ <Suspense fallback={null}><RequestPrivateConversation /></Suspense> } />
+                </Route>
 
-                <Route path=":requestId" element={ <Suspense fallback={null}><Conversation /></Suspense> } />
+                <Route path="received">
+                  <Route index element={ <Suspense fallback={null}><RequestPrivateReceived /></Suspense> } />
+
+                  <Route path=":requestId" element={ <Suspense fallback={null}><RequestPrivateConversation /></Suspense> } />
+                </Route>
+
               </Route>
             </Route>
           </> :
