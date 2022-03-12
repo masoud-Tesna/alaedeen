@@ -1,20 +1,12 @@
 // import style file:
 import './styles/LoadSpinner.less';
+import { Spin } from "antd";
 
-const LoadSpinner = (props) => {
-
-  const { spinner } = props;
-  const { spinnerColor } = props;
+const LoadSpinner = () => {
 
   return (
     <div className = "overlay">
-      {spinner === 'default' ?
-        <div className = "spinner" style={{ border: `5px solid ${spinnerColor || '#F20604'}` }} /> :
-        <>
-          { spinner }
-        </>
-      }
-
+      <Spin size="large" />
     </div>
   );
 };
