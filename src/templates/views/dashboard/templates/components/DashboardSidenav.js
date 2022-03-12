@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./styles/DashboardSidenav.less";
 
@@ -60,11 +60,11 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
 
   if (mainPage === 'requests') {
     if (subPage === "public") {
-      subSubPage = subSubPage === 'send' ? 'public_send' : 'public_receive';
+      subSubPage = subSubPage === 'sent' ? 'public_sent' : subSubPage === 'received' ? 'public_received' : null;
     }
 
     if (subPage === "private") {
-      subSubPage = subSubPage === 'send' ? 'private_send' : 'private_receive';
+      subSubPage = subSubPage === 'sent' ? 'private_sent' : subSubPage === 'received' ? 'private_received' : null;
     }
   }
 
@@ -96,6 +96,10 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   const rootSubmenuKeys = ['dashboard', 'language', 'account', 'support', 'requests', 'products', 'plans', 'affiliate'];
 
   const [openKeys, setOpenKeys] = useState([mainPage, subPage, subSubPage]);
+
+  useEffect(() => {
+    setOpenKeys([mainPage, subPage, subSubPage]);
+  }, [mainPage, subPage, subSubPage]);
 
   const onOpenChange = keys => {
     const latestOpenKey = keys.find(key => openKeys.indexOf(key) === -1);
@@ -134,7 +138,8 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
           className="side--menu"
           onOpenChange={onOpenChange}
           openKeys={openKeys}
-          defaultSelectedKeys={(page === 'dashboard' || page === 'dashboard/') ? ['dashboard'] : openKeys}
+          defaultOpenKeys={(page === 'dashboard' || page === 'dashboard/') ? ['dashboard'] : openKeys}
+          selectedKeys={(page === 'dashboard' || page === 'dashboard/') ? ['dashboard'] : openKeys}
         >
           <Menu.Item key="dashboard"  icon={<HomeOutlined />}>
             <Link to="/dashboard" className="side--link">
@@ -169,27 +174,27 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
 
           <SubMenu key="requests" icon={ <i className="fa-light fa-comment-quote" /> } title={ t('requests') }>
             <SubMenu key="public" title={ t('public') }>
-              <Item key="public_send">
-                <Link to="/dashboard/requests/public/send" className="side--link">
-                  { t('sends') }
+              <Item key="public_sent">
+                <Link to="/dashboard/requests/public/sent" className="side--link">
+                  { t('sent') }
                 </Link>
               </Item>
-              <Item key="public_receive">
-                <Link to="/dashboard/requests/public/receive" className="side--link">
-                  { t('receives') }
+              <Item key="public_received">
+                <Link to="/dashboard/requests/public/received" className="side--link">
+                  { t('received') }
                 </Link>
               </Item>
             </SubMenu>
 
             <SubMenu key="private" title={ t('private') }>
-              <Item key="private_send">
-                <Link to="/dashboard/requests/private/send" className="side--link">
-                  { t('sends') }
+              <Item key="private_sent">
+                <Link to="/dashboard/requests/private/sent" className="side--link">
+                  { t('sent') }
                 </Link>
               </Item>
-              <Item key="private_receive">
-                <Link to="/dashboard/requests/private/receive" className="side--link">
-                  { t('receives') }
+              <Item key="private_received">
+                <Link to="/dashboard/requests/private/received" className="side--link">
+                  { t('received') }
                 </Link>
               </Item>
             </SubMenu>
@@ -215,7 +220,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
           </Menu.Item>
 
           {planId === "14" &&
-            <Menu.Item key="affiliate"  icon={ <i className="fa-regular fa-users-medical" /> }>
+          <Menu.Item key="affiliate"  icon={ <i className="fa-regular fa-users-medical" /> }>
             <Link to="/dashboard/affiliate" className="side--link">
               { t('affiliate') }
             </Link>
