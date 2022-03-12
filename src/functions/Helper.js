@@ -1,5 +1,3 @@
-import { Component } from "react";
-
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
@@ -156,7 +154,16 @@ export const useAppendRouteParameter = (name, value) => {
 
 }
 
-export const SeoGenerator = ({ title, description, keywords, ogImage = "https://alaedeen.com/alaedeen-xs.png", canonical, children }) => {
+export const SeoGenerator = (
+  {
+    title,
+    description,
+    keywords,
+    ogImage = "https://alaedeen.com/alaedeen-xs.png",
+    canonical,
+    children
+  }
+) => {
 
   // object for languages link tag:
   const languageLinks = [
