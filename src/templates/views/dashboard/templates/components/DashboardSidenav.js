@@ -36,36 +36,33 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
 
   const planId = user_data?.auth?.plan_id || null;
 
-  // example: dashboard or dashboard/account/reset-password
-  const page = pathname.replace("/", "");
+  const urlPath = pathname?.split("/").filter(Boolean);
 
-  // example: account
-  let mainPage = page.replace("dashboard", "").replace("/", "").split("/")[0];
+  // remove first item of array (first item is "dashboard") :
+  urlPath.shift();
 
-  // example: reset-password
-  let subPage = page.replace("dashboard", "").replace("/", "").split("/")[1];
-
-  let subSubPage = page.replace("dashboard", "").replace("/", "").split("/")[2];
-
-  if (mainPage === 'products') { // if main page is "products/" subPage = "manageProducts"
-    subPage = "manageProducts";
-  }
-  else if (mainPage === 'categories') { // if main page is "categories/" subPage = "manageCategories"
-    subPage = "manageCategories";
-  }
-
-  if (mainPage === 'categories') { // if main page is "categories/" mainPage = "products"
-    mainPage = "products";
-  }
-
-  if (mainPage === 'requests') {
-    if (subPage === "public") {
-      subSubPage = subSubPage === 'sent' ? 'public_sent' : subSubPage === 'received' ? 'public_received' : null;
+  if (urlPath[0] === "requests") {
+    if (urlPath[1] === "public") {
+      urlPath[2] = urlPath[2] === "sent" ? "public_sent" : urlPath[2] === "received" ? "public_received" : null;
     }
 
-    if (subPage === "private") {
-      subSubPage = subSubPage === 'sent' ? 'private_sent' : subSubPage === 'received' ? 'private_received' : null;
+    if (urlPath[1] === "private") {
+      urlPath[2] = urlPath[2] === "sent" ? "private_sent" : urlPath[2] === "received" ? "private_received" : null;
     }
+  }
+
+  else if (urlPath[0] === "products") {
+    urlPath[1] = "manageProducts";
+  }
+
+  else if (urlPath[0] === "categories") {
+    urlPath[0] = "products";
+    urlPath[1] = "manageCategories";
+  }
+
+  // if remove first item and url is: /dashboard => array is empty => That's why we add the dashboard to the array:
+  if (!urlPath.length) {
+    urlPath[0] = "dashboard"
   }
 
   const { t } = useTranslation();
@@ -95,11 +92,11 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   // submenu keys of first level
   const rootSubmenuKeys = ['dashboard', 'language', 'account', 'support', 'requests', 'products', 'plans', 'affiliate'];
 
-  const [openKeys, setOpenKeys] = useState([mainPage, subPage, subSubPage]);
+  const [openKeys, setOpenKeys] = useState(urlPath);
 
   useEffect(() => {
-    setOpenKeys([mainPage, subPage, subSubPage]);
-  }, [mainPage, subPage, subSubPage]);
+    setOpenKeys(urlPath);
+  }, [pathname]);
 
   const onOpenChange = keys => {
     const latestOpenKey = keys.find(key => openKeys.indexOf(key) === -1);
@@ -138,8 +135,8 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
           className="side--menu"
           onOpenChange={onOpenChange}
           openKeys={openKeys}
-          defaultOpenKeys={(page === 'dashboard' || page === 'dashboard/') ? ['dashboard'] : openKeys}
-          selectedKeys={(page === 'dashboard' || page === 'dashboard/') ? ['dashboard'] : openKeys}
+          defaultOpenKeys={openKeys}
+          selectedKeys={openKeys}
         >
           <Menu.Item key="dashboard"  icon={<HomeOutlined />}>
             <Link to="/dashboard" className="side--link">
