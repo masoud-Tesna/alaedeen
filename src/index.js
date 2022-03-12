@@ -23,8 +23,8 @@ import { ConfigProvider } from "./contexts/config/ConfigContext";
 // import user  context:
 import { UserProvider } from "./contexts/user/UserContext";
 
-import * as Sentry from "@sentry/react";
-import { BrowserTracing } from "@sentry/tracing";
+/*import * as Sentry from "@sentry/react";
+import { BrowserTracing } from "@sentry/tracing";*/
 
 // import Application:
 import App from './App';
@@ -32,7 +32,7 @@ import App from './App';
 // initial query client:
 const queryClient = new QueryClient();
 
-Sentry.init({
+/*Sentry.init({
   dsn: "https://fa9d9d9d6d4448e4a01fd5b98d5520f1@o1154697.ingest.sentry.io/6234525",
   integrations: [new BrowserTracing()],
 
@@ -40,7 +40,7 @@ Sentry.init({
   // of transactions for performance monitoring.
   // We recommend adjusting this value in production
   tracesSampleRate: 1.0,
-});
+});*/
 
 const Application = () => {
   return (
