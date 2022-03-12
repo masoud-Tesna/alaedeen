@@ -7,7 +7,7 @@ import './templates/styles/custom.less';
 import './templates/styles/App.less';
 
 // Components:
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 
 // Design:
 import { ConfigProvider, Layout } from 'antd';
@@ -63,44 +63,17 @@ const App = () => {
 
   const { Footer, Content } = Layout;
 
-
-
   return (
     <ConfigProvider direction={ directionTheme }>
 
-      {/* set schema Organization for home url */}
-      {/*<Helmet>
-
-        {config.language === 'en' &&
-
-          <script type="text/javascript">
-            {`
-              !function () {
-                function t() {
-                  var t = document.createElement("script");
-                  t.type = "text/javascript", t.async = !0, localStorage.getItem("rayToken") ? t.src = "https://app.raychat.io/scripts/js/" + o + "?rid=" + localStorage.getItem("rayToken") + "&href=" + window.location.href : t.src = "https://app.raychat.io/scripts/js/" + o + "?href=" + window.location.href;
-                  var e = document.getElementsByTagName("script")[ 0 ];
-                  e.parentNode.insertBefore(t, e)
-                }
-
-                var e = document, a = window, o = "2ec01bb9-7711-48ad-8967-ae9c7c728824";
-                "complete" == e.readyState ? t() : a.attachEvent ? a.attachEvent("onload", t) : a.addEventListener("load", t, !1)
-              }();
-            `}
-          </script>
-
-        }
-
-      </Helmet>*/}
-
       <Helmet
-        htmlAttributes={{
+        htmlAttributes={ {
           lang,
-        }}
+        } }
       >
 
         <script type="text/javascript">
-          {`
+          { `
               !function () {
                 function t() {
                   let t = document.createElement("script");
@@ -119,29 +92,29 @@ const App = () => {
                   o = "2ec01bb9-7711-48ad-8967-ae9c7c728824";
                 "complete" === e.readyState ? t() : a.attachEvent ? a.attachEvent("onload", t) : a.addEventListener("load", t, !1)
               }();
-            `}
+            ` }
         </script>
 
-        {user_data?.auth?.user_id &&
+        { user_data?.auth?.user_id &&
 
-          <script type="text/javascript">
-            {`
+        <script type="text/javascript">
+          { `
             
             window.addEventListener('raychat_ready', function (ets) {
                 window.Raychat.setUser({
-                  email: '${user_data?.auth?.email}',
-                  name: '${user_data?.auth?.firstname} ${user_data?.auth?.lastname}',
-                  about: '${user_data?.auth?.company}',
-                  phone: '${user_data?.auth?.phone}',
-                  avatar: '${user_data?.auth?.company_logo?.logo_path}',
+                  email: '${ user_data?.auth?.email }',
+                  name: '${ user_data?.auth?.firstname } ${ user_data?.auth?.lastname }',
+                  about: '${ user_data?.auth?.company }',
+                  phone: '${ user_data?.auth?.phone }',
+                  avatar: '${ user_data?.auth?.company_logo?.logo_path }',
                   updateOnce: true
                 });
               });
             
              
             
-            `}
-          </script>
+            ` }
+        </script>
 
         }
 
@@ -149,57 +122,59 @@ const App = () => {
 
       <Layout className="layout">
         <Router>
-          <TopPanel />
+          <TopPanel/>
 
-          <SiteHeader />
+          <SiteHeader/>
+
           <Content>
             <div className="site-layout-content" id="siteLayoutContent">
               <DashboardMain>
                 <Routes>
-                  {/* Home Route */}
-                  <Route exact path="/" element={<Suspense fallback={null}><Home /></Suspense>} />
+                  {/* Home Route */ }
+                  <Route exact path="/" element={ <Suspense fallback={ null } ><Home/></Suspense> }/>
 
-                  {/* Sign in Route */}
-                  <Route path="/sign-in" element={<Suspense fallback={null}><SignIn /></Suspense>} />
+                  {/* Sign in Route */ }
+                  <Route path="/sign-in" element={ <Suspense fallback={ null } ><SignIn/></Suspense> }/>
 
-                  {/* Register Route */}
-                  <Route path="/register" element={<Suspense fallback={null}><Register /></Suspense>} />
+                  {/* Register Route */ }
+                  <Route path="/register" element={ <Suspense fallback={ null } ><Register/></Suspense> }/>
 
-                  {/* Factories Route */}
-                  <Route path="/factories" element={<Suspense fallback={null}><Factories /></Suspense>} />
+                  {/* Factories Route */ }
+                  <Route path="/factories" element={ <Suspense fallback={ null } ><Factories/></Suspense> }/>
 
-                  {/* All Categories Route */}
-                  <Route path="/all-categories" element={<Suspense fallback={null}><AllCategories /></Suspense>} />
+                  {/* All Categories Route */ }
+                  <Route path="/all-categories" element={ <Suspense fallback={ null } ><AllCategories/></Suspense> }/>
 
-                  {/* if open categories page without category path, redirect to all-category route */}
-                  <Route exact path="/categories" element={<Navigate to="/all-categories" />} />
+                  {/* if open categories page without category path, redirect to all-category route */ }
+                  <Route exact path="/categories" element={ <Navigate to="/all-categories"/> }/>
 
-                  {/* categories Route (categories/electronic) */}
-                  <Route path="/categories/:category" element={<Suspense fallback={null}><Categories /></Suspense>} />
+                  {/* categories Route (categories/electronic) */ }
+                  <Route path="/categories/:category" element={ <Suspense fallback={ null }><Categories/></Suspense> }/>
 
-                  {/* if open product details page without product path, redirect to all-category route */}
-                  <Route exact path="/product" element={<Navigate to="/all-categories" />} />
+                  {/* if open product details page without product path, redirect to all-category route */ }
+                  <Route exact path="/product" element={ <Navigate to="/all-categories"/> }/>
 
-                  {/* Product details Route */}
-                  <Route path="/product/:product" element={<Suspense fallback={null}><Product /></Suspense>} />
+                  {/* Product details Route */ }
+                  <Route path="/product/:product" element={ <Suspense fallback={ null }><Product/></Suspense> }/>
 
-                  {/* Recommended details Route */}
-                  <Route path="/recommended" element={<Suspense fallback={null}><Recommended /></Suspense>} />
+                  {/* Recommended details Route */ }
+                  <Route path="/recommended" element={ <Suspense fallback={ null }><Recommended/></Suspense> }/>
 
-                  {/* Ready To Ship details Route */}
-                  <Route path="/ready-to-ship" element={<Suspense fallback={null}><ReadyToShip /></Suspense>} />
+                  {/* Ready To Ship details Route */ }
+                  <Route path="/ready-to-ship" element={ <Suspense fallback={ null }><ReadyToShip/></Suspense> }/>
 
-                  {/* show page detail Route */}
-                  <Route path="/page/:page" element={<Suspense fallback={null}><Page /></Suspense>} />
+                  {/* show page detail Route */ }
+                  <Route path="/page/:page" element={ <Suspense fallback={ null }><Page/></Suspense> }/>
 
-                  {/* contact us */}
-                  <Route exact path="/page/alaedeen-contact-us" element={<Suspense fallback={null}><ContactUs /></Suspense>} />
+                  {/* contact us */ }
+                  <Route exact path="/page/alaedeen-contact-us"
+                         element={ <Suspense fallback={ null }><ContactUs/></Suspense> }/>
 
-                  {/* show blog detail Route */}
-                  <Route path="/blog/:blog" element={<Suspense fallback={null}><Page /></Suspense>} />
+                  {/* show blog detail Route */ }
+                  <Route path="/blog/:blog" element={ <Suspense fallback={ null }><Page/></Suspense> }/>
 
-                  {/* Dashboard Routes */}
-                  {DashboardRoutes()}
+                  {/* Dashboard Routes */ }
+                  { DashboardRoutes() }
 
                 </Routes>
               </DashboardMain>
@@ -207,7 +182,7 @@ const App = () => {
           </Content>
 
           <Footer>
-           <SiteFooter />
+            <SiteFooter/>
           </Footer>
         </Router>
       </Layout>
