@@ -86,11 +86,11 @@ const DefaultHeader = ({ pathName }) => {
         </a>
       </Menu.Item>*/}
 
-      <Menu.Item key="Favorites">
+      {/*<Menu.Item key="Favorites">
         <a href="https://alaedeen.com/horn/wishlist/">
           { t(__('Favorites')) }
         </a>
-      </Menu.Item>
+      </Menu.Item>*/}
 
       <Menu.Item className="header--userMenu__signOut" key="logOut">
         <Button className="header--userMenu__signOutBtn w-100 bg-primary-darken" onClick={handleLogOut}>

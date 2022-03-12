@@ -323,7 +323,7 @@ const DefaultTopPanel = ({ pathName }) => {
                       </Row>
                     </span>
 
-                    <a className="menuXs--sideNavLinks__item d-block" href="https://alaedeen.com/horn/wishlist/" >
+                    {/*<a className="menuXs--sideNavLinks__item d-block" href="https://alaedeen.com/horn/wishlist/" >
                       <Row justify={"space-between"}>
                         <Col className="text-center" span={5}>
                           <i className="fal fa-star text-primary vv-font-size-3" />
@@ -332,7 +332,7 @@ const DefaultTopPanel = ({ pathName }) => {
                           <span className="text-70 vv-font-size-1-6">{t(__('Favorites'))}</span>
                         </Col>
                       </Row>
-                    </a>
+                    </a>*/}
 
                     {/*<a className="menuXs--sideNavLinks__item d-block" href="https://alaedeen.com/horn/compare/">
                       <Row justify={"space-between"}>
