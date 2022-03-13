@@ -1,6 +1,6 @@
 import "./styles/DashboardContentHeader.less"
 
-import { Button, Col, Row } from "antd";
+import { Button, Col, Row, Skeleton } from "antd";
 import { useTranslation } from "react-i18next";
 import { __ } from "../../../../../functions/Helper";
 
@@ -11,6 +11,7 @@ const DashboardContentHeader = (
   {
     page,
     extra,
+    isLoading = false,
     hasLink = false,
     linkData = {},
     hasBtn = false,
@@ -39,51 +40,63 @@ const DashboardContentHeader = (
 
       </Col>
 
-      {hasStat &&
+      {isLoading ?
         <Col span={12}>
-          <Row gutter={10} justify="end">
-            <Col className="dashboardContentHeader--stat my-auto" flex="1 1">
-              {stat}
+          <Row justify="end">
+            <Col className="d-none d-lg-block dashboardContentHeader--extraLink">
+              <Skeleton.Input active={true} size="small" style={{ width: 100, height: 35 }} />
             </Col>
-
-            {(hasLink || hasBtn) &&
-              <Col className="d-none d-lg-block dashboardContentHeader--extraLink">
-              {hasLink &&
-              <Link to={linkData?.href}>
-                <Button className="product--add__link" icon={linkData?.icon} >
-                  {t(__(linkData?.text))}
-                </Button>
-              </Link>
-              }
-
-              {hasBtn &&
-              <Button onClick={btnData?.handleOnClick} className="product--add__link" icon={btnData?.icon} >
-                {t(__(btnData?.text))}
-              </Button>
-              }
-            </Col>
-            }
           </Row>
-        </Col>
-      }
+        </Col> :
+        <>
+          {hasStat &&
+          <Col span={12}>
+            <Row gutter={10} justify="end">
+              <Col className="dashboardContentHeader--stat my-auto" flex="1 1">
+                {stat}
+              </Col>
 
-      {(!hasStat && (hasLink || hasBtn)) &&
-        <Col className="d-none d-lg-block dashboardContentHeader--extraLink">
-          {hasLink &&
+              {(hasLink || hasBtn) &&
+              <Col className="d-none d-lg-block dashboardContentHeader--extraLink">
+                {hasLink &&
+                <Link to={linkData?.href}>
+                  <Button className="product--add__link" icon={linkData?.icon} >
+                    {t(__(linkData?.text))}
+                  </Button>
+                </Link>
+                }
+
+                {hasBtn &&
+                <Button onClick={btnData?.handleOnClick} className="product--add__link" icon={btnData?.icon} >
+                  {t(__(btnData?.text))}
+                </Button>
+                }
+              </Col>
+              }
+            </Row>
+          </Col>
+          }
+
+          {(!hasStat && (hasLink || hasBtn)) &&
+          <Col className="d-none d-lg-block dashboardContentHeader--extraLink">
+            {hasLink &&
             <Link to={linkData?.href}>
               <Button className="product--add__link" icon={linkData?.icon} >
                 {t(__(linkData?.text))}
               </Button>
             </Link>
-          }
+            }
 
-          {hasBtn &&
+            {hasBtn &&
             <Button onClick={btnData?.handleOnClick} className="product--add__link" icon={btnData?.icon} >
               {t(__(btnData?.text))}
             </Button>
+            }
+          </Col>
           }
-        </Col>
+        </>
       }
+
     </Row>
   );
 };
