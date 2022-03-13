@@ -36,12 +36,16 @@ const Received = () => {
   // for set user id and user type
   useEffect(() => {
     if (user_data?.auth?.user_id) {
-      setUser(
-        {
-          id: +(user_data?.auth?.company_id) || user_data?.auth?.user_id,
-          type: user_data?.auth?.user_type
-        }
-      );
+      if (user_data?.auth?.user_type === "V") { // if user type === vendor
+        setUser(
+          {
+            id: +(user_data?.auth?.company_id) || user_data?.auth?.user_id,
+            type: user_data?.auth?.user_type
+          }
+        );
+      } else { // else not permission to use page
+        navigate("/dashboard/requests/private/sent");
+      }
     }
   }, [user_data?.auth]);
 
