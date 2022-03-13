@@ -38,7 +38,7 @@ const Sent = () => {
     if (user_data?.auth?.user_id) {
       setUser(
         {
-          id: user_data?.auth?.company_id || user_data?.auth?.user_id,
+          id: +(user_data?.auth?.company_id) || user_data?.auth?.user_id,
           type: user_data?.auth?.user_type
         }
       );
@@ -51,8 +51,9 @@ const Sent = () => {
   const { isLoading,  data } = useGetApi(
     `Requests`,
     {
-      request_type: ['private', 'sent'],
-      company_id: user?.id,
+      request_type: "private",
+      request_mode: "sent",
+      user_id: user?.id,
       user_type: user?.type
     },
     `requestLists_private_sent_${user?.id}`,
