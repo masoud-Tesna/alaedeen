@@ -6,7 +6,7 @@ import { Button, Col, Form, Input, Row, Tabs, Modal, Skeleton, InputNumber, Sele
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import { useTranslation } from "react-i18next";
 import { __, SeoGenerator } from "../../../../../functions/Helper";
-import { useGetApiOld } from "../../../../../functions";
+import { useGetApiOld, useGetProductsLimitStat } from "../../../../../functions";
 import { CloseOutlined, EditOutlined, UploadOutlined } from "@ant-design/icons";
 import BraftEditor from 'braft-editor';
 import 'braft-editor/dist/index.css';
@@ -207,6 +207,22 @@ const CreateProduct = () => {
       .then(() => {
         navigate('/dashboard/products/manage');
       })
+  }
+
+  const { isLoading: productsLimitIsLoading, isFetching: productsLimitIsFetching, data: productsLimitData } = useGetProductsLimitStat();
+
+  useEffect(() => {
+
+    spinnerDispatch(isLoadingAction(productsLimitIsLoading || productsLimitIsFetching));
+
+    if ((!productsLimitIsLoading && !productsLimitIsFetching) && +(productsLimitData?.remaining) === 0) {
+      navigate('/dashboard/products/manage');
+    }
+
+  }, [productsLimitIsLoading, productsLimitIsFetching])
+
+  if (productsLimitIsLoading || productsLimitIsFetching) {
+    return <Skeleton active={true} paragraph={{ rows: 15 }} />
   }
 
   return (

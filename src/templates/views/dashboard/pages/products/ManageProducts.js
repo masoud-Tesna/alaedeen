@@ -27,9 +27,11 @@ const ManageProducts = () => {
 
   const productsLimitStat = productsLimitData || {};
 
-  const handleRemoveProduct = (productId) => {
+  const createProductLink = +(productsLimitStat?.remaining);
+
+  /*const handleRemoveProduct = (productId) => {
     console.log(productId);
-  }
+  }*/
 
   return (
     <Row>
@@ -40,7 +42,8 @@ const ManageProducts = () => {
       <Col span={24}>
         <DashboardContentHeader
           page={"manage products"}
-          hasLink={true}
+          isLoading={productsLimitIsLoading || productsLimitIsFetching}
+          hasLink={!!createProductLink}
           linkData={
             {
               text: "create_product",
