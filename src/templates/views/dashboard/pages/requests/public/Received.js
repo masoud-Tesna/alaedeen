@@ -38,7 +38,7 @@ const Received = () => {
     if (user_data?.auth?.user_id) {
       setUser(
         {
-          id: user_data?.auth?.company_id || user_data?.auth?.user_id,
+          id: +(user_data?.auth?.company_id) || user_data?.auth?.user_id,
           type: user_data?.auth?.user_type
         }
       );
@@ -51,8 +51,9 @@ const Received = () => {
   const { isLoading,  data } = useGetApi(
     `Requests`,
     {
-      request_type: ['public', 'received'],
-      company_id: user?.id,
+      request_type: "public",
+      request_mode: "received",
+      user_id: user?.id,
       user_type: user?.type
     },
     `requestLists_public_received_${user?.id}`,
