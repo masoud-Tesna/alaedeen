@@ -11,31 +11,74 @@ html:lang(ar) {
   }
 }
 
-.dashboard-side__container {
-  .alaedeen-logo {
-    padding: 0 3rem;
+.dashboard--side__container {
+  .alaedeen--logo {
+    padding: 0 3rem 1rem;
+    border-bottom: 1px solid #BCBCBC;
 
     @media (min-width: @screen-lg) {
-      padding: 0 1rem;
+      padding: 0 1rem 1rem;
     }
 
     @media (min-width: 1310px) {
-      padding: 0 3rem !important;
+      padding: 0 3rem 1rem;
     }
   }
 
-  .side--menu {
-    .ant-menu-title-content,
-    .side--link {
-      font-size: 1.5rem;
+  .user--details {
+    padding: 0 1rem;
+    height: 40px;
+
+    .--details {
+      font-size: 1.6rem;
+      font-weight: 600;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
-    .anticon svg {
-      transform: scale(1.5);
+    .--avatar {
+      text-align: center;
+
+      .ant-image {
+        &,
+        img {
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+
+  .dashboard--menu {
+    height: calc(100vh - 146px);
+    overflow-y: auto;
+
+    scrollbar-color: darken(#3ba949, 15%) #F5F5F5;
+    scrollbar-width: thin;
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 10px;
+      background-color: #F5F5F5;
+      border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: darken(#3ba949, 15%);
+      border-radius: 10px;
     }
 
-    i {
-      transform: scale(1.4);
+    .side--menu {
+      .ant-menu-title-content,
+      .side--link {
+        font-size: 1.5rem;
+      }
+
+      .anticon svg {
+        transform: scale(1.5);
+      }
+
+      i {
+        transform: scale(1.4);
+      }
     }
   }
 }

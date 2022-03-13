@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./styles/DashboardSidenav.less";
 
@@ -15,6 +15,7 @@ import { useConfigDispatch, useGetConfig, changeLanguageAction } from "../../../
 import { useWindowSize } from "../../../../../functions";
 import { isLoadingAction, useSpinnerDispatch } from "../../../../../contexts/spiner/SpinnerContext";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";
+import ShowResponsiveImage from "../../../../common/ShowResponsiveImage";
 
 const DashboardSidenav = ({ dashboardToggleDrawer }) => {
 
@@ -162,8 +163,8 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   }
 
   return (
-    <Row gutter={[0, 20]} className="dashboard-side__container">
-      <Col span={24} className="my-auto alaedeen-logo">
+    <Row gutter={[0, 20]} className="dashboard--side__container">
+      <Col span={24} className="my-auto alaedeen--logo">
         <div className="logo">
           <Link to={"/"} className="d-block">
             <Row justify="center">
@@ -182,7 +183,34 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
         </div>
       </Col>
 
-      <Col span={24}>
+      <Col span={24} className="user--details">
+        <Row gutter={10}>
+          <Col flex="55px" className="--avatar">
+            { (user_data?.auth?.company_logo && user_data?.auth?.company_logo.length !== 0) ?
+              <ShowResponsiveImage
+                imagePath={ user_data?.auth?.company_logo?.logo_path }
+                imageFolder='company_logo'
+                width={55}
+                height={55}
+                skeletonWidth="55px"
+                skeletonHeight="55px"
+                skeletonRadius="55%"
+                skeletonSvgWidth="30px"
+                imageAlt={ user_data?.auth?.company ? user_data?.auth?.company : ` ${user_data?.auth?.firstname} ${user_data?.auth?.lastname} `}
+                object_id={user_data?.auth?.company_id}
+                object_type={`company_logo${config.language}`}
+              /> :
+              <i className="fal fa-user display-3 text-70 d-block" />
+            }
+          </Col>
+
+          <Col flex="1 1" className="--details">
+            { user_data?.auth?.company || `${user_data?.auth?.firstname} ${user_data?.auth?.lastname}` }
+          </Col>
+        </Row>
+      </Col>
+
+      <Col span={24} className="dashboard--menu">
         <Menu
           mode="inline"
           style={{ height: '100%', borderRight: 0 }}
