@@ -33,7 +33,7 @@ export const SpinnerProvider = ({ children }) => {
   return (
     <spinnerContext.Provider value={{ spinner, spinnerDispatch }} >
       {spinner.isLoading &&
-        <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>
+        <LoaderSpinner tip={"spinner context"}/>
       }
 
       <Suspense fallback="">

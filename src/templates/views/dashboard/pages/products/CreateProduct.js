@@ -213,9 +213,9 @@ const CreateProduct = () => {
 
   useEffect(() => {
 
-    spinnerDispatch(isLoadingAction(productsLimitIsLoading || productsLimitIsFetching));
+    spinnerDispatch(isLoadingAction(true));
 
-    if ((!productsLimitIsLoading && !productsLimitIsFetching) && +(productsLimitData?.remaining) === 0) {
+    if ((!productsLimitIsLoading && !productsLimitIsFetching) && +(productsLimitData?.remaining) !== 0) {
       navigate('/dashboard/products/manage');
     }
 

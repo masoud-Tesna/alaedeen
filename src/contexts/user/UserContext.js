@@ -14,17 +14,18 @@ import { UserInitialState } from './UserInitialState';
 // import Action Creator:
 import { signInAction, logOutAction, checkSignInLoadingAction, signInLoadingFalseAction } from './UserActionCreators';
 
-// import LoaderSpinner:
-import LoaderSpinner from '../../templates/common/LoadSpinner';
-
 // import config context:
 import { useGetConfig } from "../config/ConfigContext";
+import { isLoadingAction, useSpinnerDispatch } from "../spiner/SpinnerContext";
 
 // User Context Create:
 const userContext = createContext();
 
 // create User Context Provide:
 export function UserProvider ({ children }) {
+
+  // spinner dispatch context:
+  const { spinnerDispatch } = useSpinnerDispatch();
 
   // use Cookies Class:
   const Cookie = new Cookies();
@@ -63,13 +64,12 @@ export function UserProvider ({ children }) {
 
   }), []);
 
+  useEffect(() => {
+    spinnerDispatch(isLoadingAction(auth?.load));
+  }, [auth?.load])
+
   return (
     <userContext.Provider value={{ auth, dispatch }}>
-
-      {auth.load &&
-        <LoaderSpinner spinner={'default'} spinnerColor={'#2e8339'}/>
-      }
-
       {children}
     </userContext.Provider>
   );

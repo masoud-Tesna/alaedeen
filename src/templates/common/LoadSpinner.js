@@ -2,11 +2,11 @@
 import './styles/LoadSpinner.less';
 import { Spin } from "antd";
 
-const LoadSpinner = () => {
+const LoadSpinner = ({ tip }) => {
 
   return (
     <div className = "overlay">
-      <Spin size="large" />
+      <Spin tip={ tip } size="large" />
     </div>
   );
 };
