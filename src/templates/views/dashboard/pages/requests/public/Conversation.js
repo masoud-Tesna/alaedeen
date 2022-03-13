@@ -249,7 +249,7 @@ const Conversation = () => {
                         </Col>
 
                         <Col className="--date">
-                          05 Aug, 2021
+                          {/*05 Aug, 2021*/}
                         </Col>
                       </Row>
                     </Col>
@@ -342,7 +342,7 @@ const Conversation = () => {
                               <TextArea
                                 autoSize={{ minRows: 3, maxRows: 3}}
                                 addonAfter=".com"
-                                placeholder={ t(__('Type a massage')) }
+                                placeholder={ t(__('Type a message')) }
                                 bordered={false}
                                 allowClear
                                 spellCheck={false}
