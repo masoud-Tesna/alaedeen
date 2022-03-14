@@ -137,7 +137,7 @@ const Plans = () => {
 
       <Col span={24} className="plans--container">
 
-        { (isLoading || !plans?.length || user_data?.load) ?
+        { !(isLoading || !plans?.length || user_data?.load) ?
           <Row gutter={[0, 20]} justify="center">
             <Col span={24} className="DiscountDetails">
               <Row gutter={[0, 15]}>
@@ -156,7 +156,7 @@ const Plans = () => {
                 {new Array(4).fill("", 0, 4).map((__, i) => {
                   return(
                     <Col xs={24} md={8} key={`isLoading_prising_${i + 1}`}>
-                      <Skeleton.Input style={{ height: "45rem" }} active={true} />
+                      <Skeleton.Input style={{ height: "45rem", borderRadius: 10 }} active={true} />
                     </Col>
                   )
                 })}
