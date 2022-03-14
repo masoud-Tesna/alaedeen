@@ -16,7 +16,6 @@ const Pricing = (
     basePrice,
     price,
     color,
-    gradient,
     backgroundColor,
     headerBackground,
     features,
@@ -60,20 +59,15 @@ const Pricing = (
   return (
     <Row
       className="pricing"
-      gutter={ [ 0, 30 ] }
-      style={
-        gradient ?
-          { backgroundImage: gradient, backgroundSize: "200%" } :
-          backgroundColor &&
-          { background: backgroundColor }
-      }
+      gutter={ [ 0, 20 ] }
+      style={{ background: backgroundColor }}
     >
       <Col span={ 24 }>
-        <Row gutter={ [ 0, 15 ] }>
-          <Col span={ 24 } className="__header" style={ { color: color, backgroundColor: headerBackground } }>{ plan }</Col>
+        <Row gutter={ [ 0, 10 ] }>
+          <Col span={ 24 } className="__header" style={ { color: color, background: headerBackground } }>{ plan }</Col>
 
           <Col span={ 24 } className="__price--content">
-            <Row gutter={ [ 0, 8 ] }>
+            <Row gutter={ [ 0, 5 ] }>
 
               { hasAffiliateDiscount ?
                 <>
@@ -130,7 +124,7 @@ const Pricing = (
                   <s className="--basePrice">
                     <Statistic className="--after" valueStyle={ { color: color } } value={ planRealPrice }/>
                   </s>
-                  <Statistic className="--after" valueStyle={ { color: color } } value={ totalPrice } suffix={ t('toman') }/>
+                  <Statistic className="__price" valueStyle={ { color: color } } value={ totalPrice } suffix={ t('toman') }/>
                 </Col> :
                 <Col span={ 24 } className="__price">
                   <Statistic valueStyle={ { color: color } } value={ totalPrice } suffix={ t('toman') }/>

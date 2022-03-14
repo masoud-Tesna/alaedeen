@@ -155,8 +155,8 @@ const Plans = () => {
               <Row gutter={[20, 20]} className="isLoading--Pricing" justify="center">
                 {new Array(4).fill("", 0, 4).map((__, i) => {
                   return(
-                    <Col xs={24} md={8} key={`isLoading_prising_${i + 1}`}>
-                      <Skeleton.Input style={{ height: "45rem", borderRadius: 10 }} active={true} />
+                    <Col xs={24} md={6} key={`isLoading_prising_${i + 1}`}>
+                      <Skeleton.Input style={{ height: "48rem", borderRadius: 10 }} active={true} />
                     </Col>
                   )
                 })}
@@ -186,7 +186,7 @@ const Plans = () => {
               {
                 plans?.map(plan => {
                   return (
-                    <Col key={`plansList_${+(plan?.plan_id)}`} xs={24} md={8}>
+                    <Col key={`plansList_${+(plan?.plan_id)}`} xs={24} md={6}>
                       <Pricing
                         planId               = { +(plan?.plan_id) }
                         plan                 = { plan?.plan }
@@ -199,7 +199,6 @@ const Plans = () => {
                         price                = { +(plan?.price) }
                         basePrice            = { plan?.base_price }
                         color                = { plan?.color }
-                        gradient             = { plan?.gradient }
                         backgroundColor      = { plan?.background }
                         headerBackground      = { plan?.header_background }
                         features             = { plan?.features || {} }
