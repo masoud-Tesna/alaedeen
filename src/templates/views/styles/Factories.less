@@ -1,48 +1,51 @@
+// import Mixin:
+@import '../../styles/Mixins';
+
 .factories--pageSection {
   margin-top: -1.2rem;
   .factories--container {
     .factories--topSection {
-      padding: 1rem 1.5rem;
+      padding: 1rem .8rem;
       box-shadow: 0 0 20px 20px #3B3042;
+
+      @media (min-width: @screen-md) {
+        padding: 6rem 8rem 1rem;
+      }
+
       .factories--topSection__caption1 {
-        font-size: 2rem !important;
+        font-size: 2rem;
+
+        @media (min-width: @screen-md) {
+          font-size: 5rem;
+          line-height: 1.2;
+        }
       }
+
       .factories--topSection__caption2 {
-        font-size: 1.4rem !important;
+        font-size: 1.4rem;
+
+        @media (min-width: @screen-md) {
+          font-size: 2rem;
+        }
       }
+
       .factories--topSection__image {
         img {
           height: 100px;
-        }
-      }
-    }
-    .factories--bottomSection {
-      margin-top: 40px !important;
-      padding: 0 10px;
-    }
-  }
-}
 
-@media (min-width: 992px) {
-  .factories--pageSection {
-    .factories--container {
-      .factories--topSection {
-        padding: 6rem 6rem 1rem;
-        .factories--topSection__caption1 {
-          font-size: 5rem !important;
-          line-height: 1.2;
-        }
-        .factories--topSection__caption2 {
-          font-size: 2rem !important;
-        }
-        .factories--topSection__image {
-          img {
+          @media (min-width: @screen-md) {
             height: auto;
           }
         }
       }
-      .factories--bottomSection {
-        padding: 0 6rem;
+    }
+
+    .factories--bottomSection {
+      margin-top: 4.5rem;
+      padding: 0 .8rem;
+
+      @media (min-width: @screen-md) {
+        padding: 0 8rem;
       }
     }
   }
