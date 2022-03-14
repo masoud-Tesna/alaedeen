@@ -2,7 +2,7 @@ import "./styles/Pricing.less";
 
 import { Checkbox, Col, Row, Statistic } from "antd";
 import { useTranslation } from "react-i18next";
-import { fn_discount, fn_format_number } from "../../functions/Helper";
+import { fn_discount } from "../../functions/Helper";
 
 const Pricing = (
   {
@@ -130,14 +130,14 @@ const Pricing = (
                   <s className="--basePrice">
                     <Statistic className="--after" valueStyle={ { color: color } } value={ planRealPrice }/>
                   </s>
-                  <Statistic className="--after" valueStyle={ { color: color } } value={ totalPrice }/>
+                  <Statistic className="--after" valueStyle={ { color: color } } value={ totalPrice } suffix={ t('toman') }/>
                 </Col> :
                 <Col span={ 24 } className="__price">
                   <Statistic valueStyle={ { color: color } } value={ totalPrice } suffix={ t('toman') }/>
                 </Col>
               }
 
-              { isProfit && <Col span={ 24 } className="__profit" style={ { color: color } }>{t("package_profit", { var1: fn_format_number(profit) })}</Col> }
+              { isProfit && <Col span={ 24 } className="__profit" style={ { color: color } }>{t("package_profit", { var1: profit.toLocaleString() })}</Col> }
 
             </Row>
           </Col>
