@@ -211,7 +211,7 @@ const SignIn = () => {
 
             <Col xs={24} lg={12} className="signIn--loginExtra">
               <Row className="h-100">
-                <Col span={24} className="text-bc vv-font-size-1-4 signInWithGoogleTxt">
+                {/*<Col span={24} className="text-bc vv-font-size-1-4 signInWithGoogleTxt">
                   { t(__('Or Sign In with')) }
                 </Col>
 
@@ -219,9 +219,9 @@ const SignIn = () => {
                   <div className="shadow-circle rounded-circle mx-auto">
                     <img className="mx-auto" src={googlePic} alt={ t(__('sing_in_whit_google')) }/>
                   </div>
-                </Col>
+                </Col>*/}
 
-                <Col span={24} className="dontHaveAccountContainer">
+                <Col span={24} className="dontHaveAccountContainer" style={{alignSelf: "flex-end"}}>
                   <span className="text-92 vv-font-size-1-6">{ t(__('Don\'t have an account')) }</span>
                   <Link to={ "/register" } className="text-primary-darken mx-2 vv-font-size-1-8 font-weight-600">{ t(__('Join Free')) }</Link>
                 </Col>

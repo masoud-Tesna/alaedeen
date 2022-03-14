@@ -684,7 +684,7 @@ const Register = () => {
 
                   <Col xs={ 24 } md={ 12 } className="register--loginExtra">
                     <Row className="register--loginExtra__content">
-                      <Col span={ 24 } className="text-bc vv-font-size-1-9 registerWithGoogleTxt">
+                      {/*<Col span={ 24 } className="text-bc vv-font-size-1-9 registerWithGoogleTxt">
                         { t(__('Or Sign In with')) }
                       </Col>
 
@@ -692,7 +692,7 @@ const Register = () => {
                         <div className="shadow-circle rounded-circle mx-auto">
                           <img className="mx-auto" src={ googlePic } alt={ t(__('sing_in_whit_google')) }/>
                         </div>
-                      </Col>
+                      </Col>*/}
 
                       <Col span={ 24 } className="dontHaveAccountContainer">
                         <span className="text-92 vv-font-size-1-9">{ t(__('Already have an account')) }</span>
