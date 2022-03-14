@@ -27,7 +27,8 @@ import CategoryOneColumn from "../blocks/product_list_templates/CategoryOneColum
 import CategoryMultiColumn from "../blocks/product_list_templates/CategoryMultiColumn";
 
 // import filters show:
-import ProductFilters from "../blocks/product_filters";
+
+//import ProductFilters from "../blocks/product_filters"; // TODO: commented filter
 import SubCategoriesSwiperMobile from "./categories/SubCategoriesSwiperMobile";
 import SubCategoriesSwiperDesktop from "./categories/SubCategoriesSwiperDesktop";
 import LoaderSpinner from "../common/LoadSpinner";
@@ -119,11 +120,8 @@ const Categories = () => {
   // get filters and sub categories from filtersApi Or empty array:
  const {filters, subCategories} = filtersApi || [];
 
-/*  const { isLoading: load2, data: filter2 } = useGetApiOld(`product-filters-api`, `category_path=${categorySeoName}&features_hash=${featuresHashContainer}&lang_code=${config.language}${storeId ? `&store_id=${storeId}` : ''}`, `filter2_${categorySeoName}${page ? `_${page}` : ''}${featuresHashContainer ? `_${featuresHashContainer}` : ''}${storeId ? `_${storeId}` : ''}`);
-
-  const {filters, subCategories} = filter2 || [];*/
-
-  // function for handle select feature:
+  // TODO: commented filter
+  /*// function for handle select feature:
   const featureHandleClick = (filter_id = "", variant_id = "") => {
     // send filter_id, variant_id and featuresHashContainer for get feature hash (377-2001 eg):
     async function filterToHash() {
@@ -164,11 +162,11 @@ const Categories = () => {
           })
         }
 
-        /*setFeaturesHash(prevState => {
+        /!*setFeaturesHash(prevState => {
           if (prevState) {
             return res.data
           }
-        });*/
+        });*!/
       });
   }
 
@@ -194,7 +192,7 @@ const Categories = () => {
 
     // attaching filter hash and page in to url: (fealan comment shod ta dorost konam)
     navigate(`/categories/${categorySeoName}/?page=${page}${featuresHashContainer && `&features_hash=${featuresHashContainer}`}${storeId ? `&store_id=${storeId}` : ''}`);
-  }
+  }*/
 
   // get products from API before selecting filters and after selecting filter:
   const { isLoading, data: product_data } = useGetApiOld(`products-api`, `category_path=${categorySeoName}&items_per_page=20&page=${page}&features_hash=${featuresHash}${storeId ? `&store_id=${storeId}` : ''}`, `category_product_${categorySeoName}${page ? `_${page}` : ''}${featuresHash ? `_${featuresHash}` : ''}${storeId ? `_${storeId}` : ''}`);
@@ -234,8 +232,6 @@ const Categories = () => {
     return originalElement;
   }
 
-
-
   // ref for access category slider:
   const subCategorySliderRef = useRef();
 
@@ -252,9 +248,9 @@ const Categories = () => {
   }
 
   // filter show or hide in mobile device by filter btn:
-  const [filterContentMobileToggle, setFilterContentMobileToggle] = useState("");
+  //const [filterContentMobileToggle, setFilterContentMobileToggle] = useState(""); // TODO: commented filter
 
-  const { Panel } = Collapse;
+  //const { Panel } = Collapse; // TODO: commented filter
 
 
   const [ellipsisCategoryDesc, setEllipsisCategoryDesc] = useState(true);
@@ -430,7 +426,7 @@ const Categories = () => {
                 </Col>
                 }
 
-                <Col span={24} className="mb-4">
+                {/*<Col span={24} className="mb-4">
                   <Row gutter={5} align={"middle"}>
                     <Col span={13} className="text-truncate">
                       <span className="text-47 vv-font-size-1-2rem">{products?.length} {t(__('products'))}:</span>
@@ -474,17 +470,17 @@ const Categories = () => {
                     </Collapse>
                     }
                   </div>
-                </Col>
+                </Col>*/}
               </>
             }
 
-            {(width >= 992 && (filters?.length === 0 && !isLoading)) &&
+            {/*{(width >= 992 && (filters?.length === 0 && !isLoading)) &&
               <Col span={6}>
-              {/* Loading...*/}
+               Loading...
             </Col>
-            }
+            }*/}
 
-            {(width >= 992 && filters && filters.length !== 0) &&
+            {/*{(width >= 992 && filters && filters.length !== 0) &&
               <ProductFilters
                 filters = {filters}
                 category_id = {params?.category_id || ""}
@@ -498,9 +494,9 @@ const Categories = () => {
                 featureResetHandleClick={handleResetFilter}
                 handleConfirmFilters={handleConfirmFilters}
               />
-            }
+            }*/}
 
-            <Col xs={24} lg={18} ref={productContentMobile}>
+            <Col span={24} ref={productContentMobile}>
               <Row  gutter={[0, 22]}>
 
                 {(params?.category_description !== "" && subCategories?.length === 0 && width >= 992) &&
@@ -518,13 +514,14 @@ const Categories = () => {
                 }
 
                 {width >= 992 &&
-                <Col span={24} className="text-right productShowType">
-                  <Space size={"large"}>
-                    <i className={ `icon-vv-list-without-options-business cursor-pointer display-6 ${productShowType === 'oneColumn' && 'active'}` } onClick={() => productShowTypeHandleClick('oneColumn')} />
-                    <i className={ `icon-vv-grid-list-business cursor-pointer display-6 ${productShowType === 'multiColumn' ? 'active': ''}` } onClick={() => productShowTypeHandleClick('multiColumn')} />
-                  </Space>
-                </Col>
+                  <Col span={24} className="text-right productShowType">
+                    <Space size={"large"}>
+                      <i className={ `icon-vv-list-without-options-business cursor-pointer display-6 ${productShowType === 'oneColumn' && 'active'}` } onClick={() => productShowTypeHandleClick('oneColumn')} />
+                      <i className={ `icon-vv-grid-list-business cursor-pointer display-6 ${productShowType === 'multiColumn' ? 'active': ''}` } onClick={() => productShowTypeHandleClick('multiColumn')} />
+                    </Space>
+                  </Col>
                 }
+
                 <Col span={24}>
                   <Row className={ `h-100 ${productShowType === 'oneColumn' && 'bg-white shadow-y rounded-lg rounded-md-md'}` } justify="center">
 
