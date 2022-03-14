@@ -1,5 +1,3 @@
-import { Fragment } from 'react';
-
 // import style file:
 import './styles/CategoryOneColumn.less';
 import { Button, Col, Row, Space } from "antd";
@@ -96,7 +94,7 @@ const CategoryOneColumn = (props) => {
           </div>
         </Col>
 
-        <Col flex="1 1" className="text-truncate pt-4">
+        <Col flex="1 1" className="text-truncate pt-4 productsOneColumnVertical--item__details">
           <Row className="h-100" gutter={[0, 5]}>
             <Col span={24} className="text-47 font-weight-bold text-truncate productsOneColumnVertical--item__title">
               { product.product }
