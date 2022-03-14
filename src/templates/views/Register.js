@@ -327,10 +327,10 @@ const Register = () => {
 
       <Col span={ 24 } className="register--topSection">
         <Row>
-          <Col span={ 24 } className="text-center logo-char">
+          <Col span={ 24 } className="text-center logo-char cursor-pointer" onClick={() => navigate("/")}>
             <img src={ alaedeenChar } alt=""/>
           </Col>
-          <Col span={ 24 } className="text-center logo-text">
+          <Col span={ 24 } className="text-center logo-text cursor-pointer" onClick={() => navigate("/")}>
             <i className="logo-icon-alaedeen-com"/>
           </Col>
           <Col span={ 24 } className="text-center top-msg">
