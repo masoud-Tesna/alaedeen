@@ -197,7 +197,6 @@ const Plans = () => {
                         baseDiscount         = { plan?.base_discount }
                         afterDiscount        = { plan?.after_discount }
                         price                = { +(plan?.price) }
-                        priceText            = { plan?.price_text }
                         basePrice            = { plan?.base_price }
                         color                = { plan?.color }
                         gradient             = { plan?.gradient }
