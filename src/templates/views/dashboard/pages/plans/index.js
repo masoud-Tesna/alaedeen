@@ -137,7 +137,7 @@ const Plans = () => {
 
       <Col span={24} className="plans--container">
 
-        { !(isLoading || !plans?.length || user_data?.load) ?
+        { (isLoading || !plans?.length || user_data?.load) ?
           <Row gutter={[0, 20]} justify="center">
             <Col span={24} className="DiscountDetails">
               <Row gutter={[0, 15]}>
@@ -201,6 +201,7 @@ const Plans = () => {
                         color                = { plan?.color }
                         gradient             = { plan?.gradient }
                         backgroundColor      = { plan?.background }
+                        headerBackground      = { plan?.header_background }
                         features             = { plan?.features || {} }
                         planIds              = { planIds }
                         handlePriceList      = { handlePriceList }
