@@ -39,6 +39,7 @@ const TopPanel = () => {
   // Check pathName For Set Default Top Panel Or Not:
   if (
     pathName === 'dashboard'
+    || pathName === 'register'
   ) {
     return <></> // remove Footer
   }
@@ -51,7 +52,6 @@ const TopPanel = () => {
     )
     || pathName === 'all-categories'
     || pathName === 'sign-in'
-    || pathName === 'register'
   ) {
     return <TopPanelWhitBackIcon scrolledClass={ scrolled } pathName={pathName} />
   }
