@@ -18,6 +18,7 @@ const Pricing = (
     color,
     gradient,
     backgroundColor,
+    headerBackground,
     features,
     planIds,
     handlePriceList,
@@ -68,8 +69,8 @@ const Pricing = (
       }
     >
       <Col span={ 24 }>
-        <Row gutter={ [ 0, 30 ] }>
-          <Col span={ 24 } className="__header" style={ { color: color } }>{ plan }</Col>
+        <Row gutter={ [ 0, 15 ] }>
+          <Col span={ 24 } className="__header" style={ { color: color, backgroundColor: headerBackground } }>{ plan }</Col>
 
           <Col span={ 24 } className="__price--content">
             <Row gutter={ [ 0, 8 ] }>

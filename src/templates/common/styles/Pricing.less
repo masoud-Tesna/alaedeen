@@ -37,16 +37,25 @@ html:lang(ar) {
 .pricing {
   min-height: 40rem;
   height: 100%;
-  padding: 4rem 2rem;
+  //padding: 4rem 2rem;
   box-shadow: 0 0 10px rgba(31,66,135,.3);
   border-radius: 10px;
   transition: 0.4s ease-in-out;
+
+  .__header,
+  .__price--content,
+  .__features,
+  .__chosen {
+    padding: 0 2rem;
+  }
 
   .__header {
     text-transform: uppercase;
     font-size: 3.5rem;
     font-weight: bolder;
     text-align: center;
+    padding: 4rem 0;
+    border-radius: 10px 10px 0 0;
   }
 
   .__price--content {
@@ -155,6 +164,7 @@ html:lang(ar) {
   .__chosen {
     text-align: center;
     align-self: flex-end !important;
+    padding-bottom: 4rem;
 
     .ant-checkbox-wrapper {
       position: relative;
