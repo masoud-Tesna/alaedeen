@@ -331,7 +331,3 @@ export function fn_deadline(min) {
 export const fn_alternation = (x, y, extra) => {
   return extra ? (x * y) + 1 :  x * y;
 }
-
-export const fn_format_number = amount => {
-  return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-};
