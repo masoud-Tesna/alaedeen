@@ -156,7 +156,7 @@ const DefaultHeader = ({ pathName }) => {
               }*/}
             </Col>
 
-            <Col span={6} className="my-auto">
+            <Col className="my-auto">
               <Row className="header--content__account" align="middle" gutter={12}>
 
                 { user_data.load ?
