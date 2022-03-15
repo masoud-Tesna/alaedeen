@@ -156,8 +156,13 @@ const DefaultHeader = ({ pathName }) => {
               }*/}
             </Col>
 
-            <Col className="my-auto">
-              <Row className="header--content__account" align="middle" gutter={12}>
+            <Col span={6} className="my-auto">
+              <Row
+                className="header--content__account"
+                align="middle"
+                gutter={12}
+                justify={config?.language === "en" ? "end" : "start"}
+              >
 
                 { user_data.load ?
                   <>
@@ -168,7 +173,13 @@ const DefaultHeader = ({ pathName }) => {
                       <>
                         <Dropdown overlay={menu} trigger={['click']} openClassName="content--account__DropDownIsOpen" onVisibleChange={visible => setDropDownIsActive(visible)} >
 
-                          <Row className="w-100" align="middle" gutter={12} onClick={e => e.preventDefault()}>
+                          <Row
+                            className="w-100"
+                            align="middle"
+                            justify={ config?.language === "en" ? "end" : "start" }
+                            gutter={12}
+                            onClick={e => e.preventDefault()}
+                          >
                             <Col>
                               { (user_data?.auth?.company_logo && user_data?.auth?.company_logo.length !== 0) ?
                                 <span className="content--account__companyLogo">
@@ -190,8 +201,8 @@ const DefaultHeader = ({ pathName }) => {
                               }
                             </Col>
 
-                            <Col span={16}>
-                                  <span className="font-weight-600 content--account__companyName">
+                            <Col>
+                              <span className="font-weight-600 content--account__companyName">
                                     { user_data?.auth?.company || `${user_data?.auth?.firstname} ${user_data?.auth?.lastname}` }
                                   </span>
                               <DownOutlined rotate={ dropDownIsActive ? 180 : 0} />
@@ -204,26 +215,24 @@ const DefaultHeader = ({ pathName }) => {
                         <Col>
                           <i className="fal fa-user display-3 text-70 d-block" />
                         </Col>
-                        <Col span={16}>
-                          <Row gutter={[0, 24]}>
-                            <Col span={24} className="header--account__link">
-                              <Link className="text-70 vv-font-size-2" to={"/sign-in"} >
-                                {t(__('Sign in'))}
-                              </Link>
-                            </Col>
-                            <Col span={24} className="header--account__link">
-                              <Link className="text-70 vv-font-size-2" to={"/register"} >
-                                {t(__('Join Free'))}
-                              </Link>
-                            </Col>
-                          </Row>
+                        <Col>
+                          <div className="header--account__link">
+                            <Link className="text-70 vv-font-size-2" to={"/sign-in"} >
+                              {t(__('Sign in'))}
+                            </Link>
+                          </div>
+
+                          <div className="header--account__link">
+                            <Link className="text-70 vv-font-size-2" to={"/register"} >
+                              {t(__('Join Free'))}
+                            </Link>
+                          </div>
                         </Col>
                       </>
                     }
 
                   </>
                 }
-
 
               </Row>
             </Col>

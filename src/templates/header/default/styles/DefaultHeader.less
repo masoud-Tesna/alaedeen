@@ -1,12 +1,15 @@
+// import Mixin:
+@import '../../../styles/Mixins';
+
 html:lang(fa),
 html:lang(ar) {
   .header--col .ant-row-rtl {
     direction: ltr;
   }
 
-  .header--content__account {
+  /*.header--content__account {
     padding-right: 3rem;
-  }
+  }*/
 
   .header--left__searchBox > .ant-input-affix-wrapper.ant-input-affix-wrapper-rtl,
   .header--left__searchBox input,
@@ -42,12 +45,18 @@ html:lang(ar) {
 }
 
 .ant-layout-header.site--header {
+  display: none;
   height: auto;
   background: #FFFFFF;
   line-height: 0 !important;
   overflow-x: hidden !important;
-  padding: 0 18px;
-  /*padding: 0;*/
+  padding: 0 1.8rem;
+
+  @media (min-width: @screen-md) {
+    display: block;
+    height: calc(80px + 1.2rem);
+    padding: 0 0 .4rem;
+  }
 
   .logo {
     margin-left: 3.2rem;
@@ -178,6 +187,23 @@ html:lang(ar) {
   }*/
 
   .header--content__account {
+
+    margin-right: 3.2rem !important;
+
+    @media (min-width: 992px) {
+      margin-right: 2rem !important;
+    }
+
+    @media (min-width: 1200px) {
+      margin-right: 2.5rem !important;
+    }
+
+    .header--account__link {
+      &:last-child {
+        margin-top: 2.4rem;
+      }
+    }
+
     .content--account__companyLogo {
       display: inline-block;
       width: 50px;
@@ -259,10 +285,3 @@ html:lang(ar) {
   }
 }
 
-@media (min-width: 992px) {
-  .ant-layout-header.site--header {
-    height: calc(80px + 1.2rem);
-    padding: 0 0 .4rem !important;
-    /*padding: 0 !important;*/
-  }
-}
