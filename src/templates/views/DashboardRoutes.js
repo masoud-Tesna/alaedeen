@@ -16,7 +16,7 @@ const ManageCategories = lazy(() => import('./dashboard/pages/categories/ManageC
 
 const Plans = lazy(() => import('./dashboard/pages/plans'));
 
-const Result = lazy(() => import('./dashboard/pages/payment/Result'));
+const PaymentResult = lazy(() => import('./dashboard/pages/invoice/Result'));
 
 const Affiliate = lazy(() => import('./dashboard/pages/affiliate'));
 
@@ -69,7 +69,13 @@ const DashboardRoutes = () => {
 
             <Route path="plans" element={ <Suspense fallback={null}><Plans /></Suspense> }/>
 
-            <Route path="payment/result" element={ <Suspense fallback={null}><Result /></Suspense> }/>
+            <Route path="invoice">
+              <Route index path="*" element={ <Navigate to="manage"/> }/>
+
+              <Route path="manage" element={ <Suspense fallback={null}><h1>Mange invoice</h1></Suspense> }/>
+
+              <Route path="payment-result" element={ <Suspense fallback={null}><PaymentResult /></Suspense> }/>
+            </Route>
 
             <Route path="affiliate" element={ <Suspense fallback={null}><Affiliate /></Suspense> }/>
 
