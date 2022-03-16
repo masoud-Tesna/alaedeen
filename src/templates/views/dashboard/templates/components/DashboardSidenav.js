@@ -93,7 +93,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   }
 
   // submenu keys of first level
-  const rootSubmenuKeys = ['dashboard', 'language', 'account', 'support', 'requests', 'products', 'plans', 'affiliate'];
+  const rootSubmenuKeys = ['dashboard', 'language', 'account', 'support', 'requests', 'products', 'plans', 'affiliate', 'invoice'];
 
   const [openKeys, setOpenKeys] = useState(urlPath);
 
@@ -285,6 +285,12 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
                 </Link>
               </Menu.Item>
               }
+
+              <Menu.Item key="invoice"  icon={ <i className="fal fa-file-invoice-dollar" /> }>
+                <Link to="/dashboard/invoice" className="side--link">
+                  { t('invoice') }
+                </Link>
+              </Menu.Item>
             </Menu>
           </Col>
         </Row>
