@@ -346,7 +346,7 @@ const Categories = () => {
                 <Row className="h-100" gutter={[0, 10]}>
 
                   {categoryBanners?.length > 0 &&
-                  <Col span={24} className="categoriesCarousel">
+                      <Col span={24} className="categoriesCarousel">
                     <Carousel draggable={true} pauseOnDotsHover={true} rtl={true}>
 
                       {isLoading ?
