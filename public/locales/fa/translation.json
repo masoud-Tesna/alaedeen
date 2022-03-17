@@ -1,6 +1,5 @@
 {
     "categories": "دسته بندی‌ها",
-    "package_profit": "سود شما از این خرید {{var1}} تومان می باشد.",
     "stores": "فروشگاه",
     "logistics": "حمل و نقل",
     "sign_in": "ورود",
@@ -318,7 +317,7 @@
     "submit_comments": "ثبت نظرات",
     "first_name_and_last_name": "نام و نام خانوادگی",
     "subject": "موضوع",
-    "type_your_comment": "نظر خود را ثبت کنید...",
+    "type_your_comment": "نظر خود را ثبت کنید",
     "registration_successful": "ثبت نام شما با موفقیت انجام شد",
     "youre_now_logged_in": "شما اکنون وارد سامانه شده اید",
     "i_accept_the_terms_of_service": "قوانین را میپذیرم",
@@ -444,5 +443,9 @@
     "verification_code_not_match": "کد تأیید صحیح نیست",
     "please_enter_verification_code": "لطفا کد تأیید را وارد کنید",
     "new_number_saved": "شماره همراه جدید ذخیره شد",
-    "resend_code": "ارسال مجدد کد تأیید"
+    "resend_code": "ارسال مجدد کد تأیید",
+    "submit_and_finish": "ثبت و تمام",
+    "register_top_msg": "علاءالدین درگاه صادرات آسان",
+    "package_profit": "سود شما از این خرید {{var1}} تومان میباشد",
+    "you_have_logged_in_successfully": "شما وارد حساب کاربری خود شدید"
 }

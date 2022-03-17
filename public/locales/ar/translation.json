@@ -1,6 +1,5 @@
 {
     "categories": "فئات",
-    "package_profit": "ربحك من هذا الشراء هو {{var1}} تومان.",
     "stores": "المخازن",
     "logistics": "الخدمات اللوجستية",
     "sign_in": "تسجيل الدخول",
@@ -288,7 +287,7 @@
     "patent_name": "اسم براءة الاختراع",
     "patent_images": "صور براءات الاختراع",
     "company_logo": "شعار الشركة",
-    "company_logo_message": "200KB كحد أقصى. JPEG ، تنسيق PNG فقط. عرض الصورة وارتفاعها المقترح: 100 * 100 بكسل",
+    "company_logo_message": "200 KB كحد أقصى. JPEG ، تنسيق PNG فقط. عرض الصورة وارتفاعها المقترح: 100 * 100 بكسل",
     "logo_for_english_language": "الشعار الدولي",
     "logo_for_persian_language": "الشعار المحلي",
     "select_logo": "حدد الشعار",
@@ -318,7 +317,7 @@
     "submit_comments": "إرسال التعليقات",
     "first_name_and_last_name": "الاسم الأول واسم العائلة",
     "subject": "الموضوع",
-    "type_your_comment": "أرسل تعليقك...",
+    "type_your_comment": "أرسل تعليقك",
     "registration_successful": "تم تسجيلك بنجاح",
     "youre_now_logged_in": "أنت الآن مسجل الدخول",
     "i_accept_the_terms_of_service": "أوافق على القواعد",
@@ -444,5 +443,9 @@
     "verification_code_not_match": "رمز التحقق غير صحيح",
     "please_enter_verification_code": "أدخل رمز التحقق",
     "new_number_saved": "تم حفظ الرقم الجديد",
-    "resend_code": "إعادة إرسال رمز التحقق"
+    "resend_code": "إعادة إرسال رمز التحقق",
+    "submit_and_finish": "أرسل وانتهى",
+    "register_top_msg": "علاءالدین بوابة التجارة السهلة",
+    "package_profit": "ربحك من هذا الشراء هو {{var1}} تومان",
+    "you_have_logged_in_successfully": "لقد قمت بتسجيل الدخول إلى حسابك"
 }

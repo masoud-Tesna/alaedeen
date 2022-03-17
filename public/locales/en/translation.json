@@ -1,6 +1,5 @@
 {
     "categories": "Categories",
-    "package_profit": "Your profit from this purchase is {{var1}} Toman.",
     "stores": "Stores",
     "logistics": "Logistics",
     "sign_in": "Sign in",
@@ -288,7 +287,7 @@
     "patent_name": "Patent name",
     "patent_images": "Patent images",
     "company_logo": "Company Logo",
-    "company_logo_message": "200KB max. JPEG, PNG format only. Suggested photo width and height: 100×100px",
+    "company_logo_message": "200 KB max. JPEG, PNG format only. Suggested photo width and height: 100×100px",
     "logo_for_english_language": "International logo",
     "logo_for_persian_language": "Local logo",
     "select_logo": "Select logo",
@@ -444,5 +443,9 @@
     "verification_code_not_match": "Verification code not match",
     "please_enter_verification_code": "Please enter verification code",
     "new_number_saved": "New number saved",
-    "resend_code": "Resend code"
+    "resend_code": "Resend code",
+    "submit_and_finish": "Submit and finish",
+    "register_top_msg": "Alaedeen easy trade gateway",
+    "package_profit": "Your profit from this purchase is {{var1}} Tomans",
+    "you_have_logged_in_successfully": "You have logged in successfully"
 }
