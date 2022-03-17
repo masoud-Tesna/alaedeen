@@ -16,8 +16,6 @@ const ManageCategories = lazy(() => import('./dashboard/pages/categories/ManageC
 
 const Plans = lazy(() => import('./dashboard/pages/plans'));
 
-const PaymentResult = lazy(() => import('./dashboard/pages/invoice/Result'));
-
 const Affiliate = lazy(() => import('./dashboard/pages/affiliate'));
 
 const RequestPublicSent = lazy(() => import('./dashboard/pages/requests/public/Sent'));
@@ -29,7 +27,12 @@ const RequestPrivateSent = lazy(() => import('./dashboard/pages/requests/private
 const RequestPrivateReceived = lazy(() => import('./dashboard/pages/requests/private/Received'));
 
 const RequestPublicConversation = lazy(() => import('./dashboard/pages/requests/public/Conversation'));
+
 const RequestPrivateConversation = lazy(() => import('./dashboard/pages/requests/private/Conversation.js'));
+
+const Invoices = lazy(() => import('./dashboard/pages/invoices'));
+
+const PaymentResult = lazy(() => import('./dashboard/pages/invoices/Result'));
 
 const DashboardRoutes = () => {
 
@@ -69,12 +72,12 @@ const DashboardRoutes = () => {
 
             <Route path="plans" element={ <Suspense fallback={null}><Plans /></Suspense> }/>
 
-            <Route path="invoice">
-              <Route index path="*" element={ <Navigate to="manage"/> }/>
+            <Route path="invoices">
+              <Route index element={ <Suspense fallback={null}><Invoices /></Suspense> }/>
 
-              <Route path="manage" element={ <Suspense fallback={null}><h1>Mange invoice</h1></Suspense> }/>
+              <Route path="result/:orderId" element={ <Suspense fallback={null}><PaymentResult /></Suspense> }/>
 
-              <Route path="payment-result" element={ <Suspense fallback={null}><PaymentResult /></Suspense> }/>
+              <Route path="*" element={ <Navigate to="" /> }/>
             </Route>
 
             <Route path="affiliate" element={ <Suspense fallback={null}><Affiliate /></Suspense> }/>

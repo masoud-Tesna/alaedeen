@@ -45,7 +45,7 @@ const Result = () => {
   useEffect(() => {
     if (user_data?.auth?.plan_discount !== "0") {
       setHasAffiliateDiscount(true);
-      setPlanDiscount(+user_data?.auth?.plan_discount);
+      setPlanDiscount(+(user_data?.auth?.plan_discount));
     }
   }, [user_data?.auth?.plan_discount]);
 

@@ -286,9 +286,9 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
               </Menu.Item>
               }
 
-              <Menu.Item key="invoice"  icon={ <i className="fal fa-file-invoice-dollar" /> }>
-                <Link to="/dashboard/invoice" className="side--link">
-                  { t('invoice') }
+              <Menu.Item key="invoices"  icon={ <i className="fal fa-file-invoice-dollar" /> }>
+                <Link to="/dashboard/invoices" className="side--link">
+                  { t('invoices') }
                 </Link>
               </Menu.Item>
             </Menu>
