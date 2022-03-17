@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./styles/Result.less";
+import "./styles/Invoices.less";
 import { useTranslation } from "react-i18next";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 import { Col, Row, Statistic } from "antd";
@@ -70,7 +70,7 @@ const Result = () => {
       totalPrice = order?.prices_after_discount;
       tax = fn_after_discount(+(order?.prices_after_discount), 9);
     }
-    /*const tax = order?.prices_after_discount * (9 / 100);*/
+
     switch (type) {
       case "P" :
         return (
@@ -225,7 +225,6 @@ const Result = () => {
         break;
     }
   }
-
 
   return (
     <Row>
