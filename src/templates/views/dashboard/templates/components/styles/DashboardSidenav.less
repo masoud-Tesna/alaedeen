@@ -13,15 +13,29 @@ html:lang(ar) {
 
 .dashboard--side__container {
   .alaedeen--logo {
-    padding: 0 3rem 1rem;
-    border-bottom: 1px solid #BCBCBC;
+    padding: 0 3rem;
+    box-shadow: 0 0 0.5rem 0.13rem rgba(0, 0, 0, 0.15);
+    margin-bottom: .3rem;
+    height: 70px;
 
     @media (min-width: @screen-lg) {
-      padding: 0 1rem 1rem;
+      padding: 0 1rem;
     }
 
     @media (min-width: 1310px) {
-      padding: 0 3rem 1rem;
+      padding: 0 3rem;
+    }
+
+    .logo {
+      height: 100%;
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+
+      & > a {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
     }
   }
 

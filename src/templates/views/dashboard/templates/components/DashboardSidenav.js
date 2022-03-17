@@ -164,7 +164,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
 
   return (
     <Row className="dashboard--side__container">
-      <Col span={24} className="my-auto alaedeen--logo">
+      <Col span={24} className="alaedeen--logo">
         <div className="logo">
           <Link to={"/"} className="d-block">
             <Row justify="center">
