@@ -109,13 +109,15 @@ const Invoices = () => {
 
                           <Col span={4} className="text-center my-auto __actions">
                             <Row justify="center" gutter={10}>
-                              <Col>
-                                <Link to={`result/${invoice?.order_id}/?type=${invoice?.type}&status=${invoice?.status}&for=invoice`}>
-                                  <Button type="primary" icon={<EyeOutlined />} >
-                                    {t('details')}
-                                  </Button>
-                                </Link>
-                              </Col>
+                              {invoice?.status === "C" &&
+                                <Col>
+                                  <Link to={`result/${invoice?.order_id}/?type=${invoice?.type}&status=${invoice?.status}&for=invoice`}>
+                                    <Button type="primary" icon={<EyeOutlined />} >
+                                      {t('details')}
+                                    </Button>
+                                  </Link>
+                                </Col>
+                              }
                             </Row>
                           </Col>
                         </Row>

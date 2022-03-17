@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./styles/Invoices.less";
 import { useTranslation } from "react-i18next";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";
-import { Col, Row, Statistic } from "antd";
+import { Col, Row, Skeleton, Statistic } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import React from "react";
 import { useGetApi, useGetApiOld, useQueryString } from "../../../../../functions";
@@ -272,7 +272,7 @@ const Result = () => {
           </Col>
 
           {isLoading ?
-            <>Loading...</> :
+            <Skeleton paragraph={{ rows: 10 }} active={true}/> :
             order?.order_id &&
               <Col span={24} className="invoice">
                 <Row gutter={[0, 20]}>
