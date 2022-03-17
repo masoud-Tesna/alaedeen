@@ -5,13 +5,19 @@ import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 import { Col, Row, Statistic } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import React from "react";
-import { useGetApiOld, useQueryString } from "../../../../../functions";
-import { CheckCircleTwoTone, WarningTwoTone } from "@ant-design/icons";
+import { useGetApi, useGetApiOld, useQueryString } from "../../../../../functions";
+import {
+  CheckCircleTwoTone,
+  ExclamationCircleOutlined,
+  ExclamationCircleTwoTone,
+  WarningTwoTone
+} from "@ant-design/icons";
 import Moment from "react-moment";
 import moment from "moment-jalaali";
 import fa from "moment/locale/fa";
 import { useGetConfig } from "../../../../../contexts/config/ConfigContext";
 import { fn_after_discount, fn_discount, SeoGenerator } from "../../../../../functions/Helper";
+import { useParams } from "react-router-dom";
 
 const Result = () => {
 
@@ -32,8 +38,9 @@ const Result = () => {
   const query = useQueryString();
 
   // get Url parameters:
+  const {orderId} = useParams();
   const orderType = query.get("type");
-  const orderId = query.get("order_id");
+  const detailsFor = query.get("for");
   const paymentStatus = query.get("status");
   const paymentStatusMsg = query.get("status_msg");
 
@@ -54,10 +61,19 @@ const Result = () => {
     if (paymentStatus === "C") setGetOrderData(true);
   }, [paymentStatus]);
 
-  const {isLoading, data} = useGetApiOld("order-data-api", `order_id=${orderId}&order_type=${orderType}&company_id=${user_data?.auth?.company_id}`, `orderData_${orderId}_${orderType}`, {
-    enabled: getOrderData,
-    refetchOnWindowFocus: false
-  });
+  // get request lists from API:
+  const { isLoading, data } = useGetApi(
+    `Invoices/${orderId}`,
+    {
+      order_type: orderType,
+      company_id: user_data?.auth?.company_id
+    },
+    `invoice_${orderId}`,
+    {
+      enabled: !!user_data?.auth?.company_id,
+      refetchOnWindowFocus: false
+    }
+  );
 
   const order = data || {};
   const orderDataShow = (lists, type) => {
@@ -229,11 +245,11 @@ const Result = () => {
   return (
     <Row>
       <SeoGenerator
-        title="Dashboard | Payment - Result"
+        title="Dashboard | invoice - detail"
       />
 
       <Col span={24}>
-        <DashboardContentHeader page={"payment result"}/>
+        <DashboardContentHeader page={"invoice detail"}/>
       </Col>
 
       <Col span={24} className="paymentResult--container">
@@ -243,9 +259,13 @@ const Result = () => {
               <span style={{ color: "#3ba949" }}>
                 <CheckCircleTwoTone twoToneColor="#3ba949"/> { t('payment_was_successful') }
               </span> :
-              paymentStatus === "U" &&
-              <span style={{ color: "#a61d24" }}>
-                <WarningTwoTone twoToneColor="#a61d24" /> { t('payment_unsuccessful') }
+              paymentStatus === "U" ?
+                <span style={{ color: "#a61d24" }}>
+                  <WarningTwoTone twoToneColor="#a61d24" /> { t('payment_unsuccessful') }
+                </span> :
+              paymentStatus === "O" &&
+              <span style={{ color: "#d89614" }}>
+                <ExclamationCircleTwoTone twoToneColor="#d89614" /> { t('order_not_completed') }
               </span>
             }
 
@@ -281,7 +301,7 @@ const Result = () => {
                             <span>{t("order_code")}</span>
                           </Col>
                           <Col xs={24} md={19} lg={20} className="__value my-auto">
-                            <span>{order?.order_code}</span>
+                            <span>{order?.order_id}</span>
                           </Col>
                         </Row>
                       </Col>
@@ -308,7 +328,7 @@ const Result = () => {
                             <span>{t("amount_paid")}</span>
                           </Col>
                           <Col xs={24} md={19} lg={20} className="__value my-auto">
-                            <Statistic value={+(order?.total_price) / 10} suffix={t("toman")} />
+                            <Statistic value={+(order?.total_price)} suffix={t("toman")} />
                           </Col>
                         </Row>
                       </Col>
@@ -322,7 +342,7 @@ const Result = () => {
               </Col>
           }
 
-          {paymentStatus === "U" &&
+          {(paymentStatus === "U" && detailsFor !== "invoice") &&
             <Col span={24} className="unsuccessful">
               <Row gutter={[0, 16]}>
                 <Col span={24} className="__item --caption text-center">

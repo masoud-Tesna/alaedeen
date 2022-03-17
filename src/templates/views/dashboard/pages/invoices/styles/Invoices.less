@@ -22,6 +22,127 @@ html:lang(ar) {
 .invoices--container,
 .paymentResult--container {
   padding: 0 3rem;
+
+  .chosen--plans,
+  .invoices { // for plans and pricing data
+    .chosen--plans__table,
+    .invoices__table {
+      & > div {
+        border: 1px solid #BCBCBC;
+        border-radius: 5px;
+      }
+
+      .__head {
+        padding: 1.5rem 0;
+        border-bottom: 1px solid #BCBCBC;
+
+        & > .ant-col {
+          padding: 0 1.5rem;
+          color: #333333;
+          font-weight: 700;
+          font-size: 1.6rem;
+
+          &:not(:last-child) {
+            border-right: 1px solid #BCBCBC;
+          }
+        }
+      }
+
+      .__body {
+        & > .ant-col {
+          padding: 1rem 0;
+
+          &:nth-child(odd) {
+            background-color: #EFEFEF;
+          }
+
+          &:not(:last-child) {
+            border-bottom: 1px solid #BCBCBC;
+          }
+        }
+
+        .__data {
+
+          .ant-skeleton {
+            width: 100%;
+          }
+
+          & > .ant-col {
+            padding: 0 1.5rem;
+          }
+
+          .__plan,
+          .__price,
+          .__price span {
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: #333333;
+          }
+
+          .__tax,
+          .__taxPrice span {
+            color: #000000;
+            font-weight: 700;
+            font-size: 1.8rem;
+          }
+
+          &.--total {
+            .__plan,
+            .__price,
+            .__price span {
+              font-weight: 700;
+              font-size: 1.8rem;
+            }
+          }
+        }
+      }
+    }
+
+    .invoices__table {
+      .__body {
+        & > .ant-col {
+          &:hover {
+            background-color: darken(#EFEFEF, 10%);
+          }
+        }
+
+        .__data {
+
+          .ant-skeleton {
+            width: 100%;
+          }
+
+          & > .ant-col {
+            padding: 0 1.5rem;
+          }
+
+          .__plan,
+          .__price,
+          .__price span {
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: #333333;
+          }
+
+          .__tax,
+          .__taxPrice span {
+            color: #000000;
+            font-weight: 700;
+            font-size: 1.8rem;
+          }
+
+          &.--total {
+            .__plan,
+            .__price,
+            .__price span {
+              font-weight: 700;
+              font-size: 1.8rem;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 .invoices--container {
@@ -90,80 +211,6 @@ html:lang(ar) {
 
     .orderData {
       margin-top: 5rem;
-
-      .chosen--plans { // for plans and pricing data
-        .chosen--plans__table {
-          & > div {
-            border: 1px solid #BCBCBC;
-            border-radius: 5px;
-          }
-
-          .__head {
-            padding: 1.5rem 0;
-            border-bottom: 1px solid #BCBCBC;
-
-            & > .ant-col {
-              padding: 0 1.5rem;
-              color: #333333;
-              font-weight: 700;
-              font-size: 1.6rem;
-
-              &:not(:last-child) {
-                border-right: 1px solid #BCBCBC;
-              }
-            }
-          }
-
-          .__body {
-            & > .ant-col {
-              padding: 1rem 0;
-
-              &:nth-child(odd) {
-                background-color: #EFEFEF;
-              }
-
-              &:not(:last-child) {
-                border-bottom: 1px solid #BCBCBC;
-              }
-            }
-
-            .__data {
-
-              .ant-skeleton {
-                width: 100%;
-              }
-
-              & > .ant-col {
-                padding: 0 1.5rem;
-              }
-
-              .__plan,
-              .__price,
-              .__price span {
-                font-weight: 600;
-                font-size: 1.5rem;
-                color: #333333;
-              }
-
-              .__tax,
-              .__taxPrice span {
-                color: #000000;
-                font-weight: 700;
-                font-size: 1.8rem;
-              }
-
-              &.--total {
-                .__plan,
-                .__price,
-                .__price span {
-                  font-weight: 700;
-                  font-size: 1.8rem;
-                }
-              }
-            }
-          }
-        }
-      }
     }
   }
 
