@@ -2,10 +2,10 @@ import { lazy, Suspense } from "react";
 import { Navigate, Route } from "react-router-dom";
 import { useGetAuthState } from "../../contexts/user/UserContext";
 
-// account section:
+const Dashboard = lazy(() => import('./dashboard/pages/homePage'));
+
 const ManufactureInformation = lazy(() => import('./dashboard/pages/account/ManufactureInformation'));
 
-// Product Section:
 const ManageProducts = lazy(() => import('./dashboard/pages/products/ManageProducts'));
 
 const CreateProduct = lazy(() => import('./dashboard/pages/products/CreateProduct'));
@@ -46,7 +46,7 @@ const DashboardRoutes = () => {
 
         user_data?.auth?.user_id ?
           <>
-            <Route index element={ <Suspense fallback={null}><BusinessPromotion /></Suspense> }/>
+            <Route index element={ <Suspense fallback={null}><Dashboard /></Suspense> }/>
 
             <Route path="account/password-reset" element={ <Suspense fallback={null}><h1> password-reset </h1></Suspense> }/>
 
