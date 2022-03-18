@@ -14,7 +14,7 @@ const UpdateProduct = lazy(() => import('./dashboard/pages/products/UpdateProduc
 
 const ManageCategories = lazy(() => import('./dashboard/pages/categories/ManageCategories'));
 
-const Plans = lazy(() => import('./dashboard/pages/plans'));
+const BusinessPromotion = lazy(() => import('./dashboard/pages/businessPromotion'));
 
 const Affiliate = lazy(() => import('./dashboard/pages/affiliate'));
 
@@ -46,7 +46,7 @@ const DashboardRoutes = () => {
 
         user_data?.auth?.user_id ?
           <>
-            <Route index element={ <Suspense fallback={null}><Plans /></Suspense> }/>
+            <Route index element={ <Suspense fallback={null}><BusinessPromotion /></Suspense> }/>
 
             <Route path="account/password-reset" element={ <Suspense fallback={null}><h1> password-reset </h1></Suspense> }/>
 
@@ -70,7 +70,7 @@ const DashboardRoutes = () => {
               <Route path=":categoryId" element={ <Suspense fallback={null}><h1>Edit Category</h1></Suspense> }/>
             </Route>
 
-            <Route path="plans" element={ <Suspense fallback={null}><Plans /></Suspense> }/>
+            <Route path="business-promotion" element={ <Suspense fallback={null}><BusinessPromotion /></Suspense> }/>
 
             <Route path="invoices">
               <Route index element={ <Suspense fallback={null}><Invoices /></Suspense> }/>

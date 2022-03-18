@@ -12,7 +12,7 @@ import { isLoadingAction, useSpinnerDispatch } from "../../../../../contexts/spi
 import axios from "axios";
 import { useGetConfig } from "../../../../../contexts/config/ConfigContext";
 
-const Plans = () => {
+const BusinessPromotion = () => {
 
   const { t } = useTranslation();
 
@@ -128,11 +128,11 @@ const Plans = () => {
   return (
     <Row>
       <SeoGenerator
-        title="Dashboard | Plans"
+        title="Dashboard | Business promotion"
       />
 
       <Col span={24}>
-        <DashboardContentHeader page={"plans and pricing"}/>
+        <DashboardContentHeader page={"Business promotion"}/>
       </Col>
 
       <Col span={24} className="plans--container">
@@ -370,4 +370,4 @@ const Plans = () => {
   );
 };
 
-export default Plans;
+export default BusinessPromotion;
