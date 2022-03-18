@@ -1,0 +1,85 @@
+@import '../../../../../styles/Mixins';
+
+.dashboard--container {
+  padding: 0 3rem;
+  
+  .dashboard--item {
+    background-color: #FFFFFF;
+    padding: 1.5rem 2rem;
+
+    .user--details {
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #BCBCBC;
+
+      .--details {
+        font-size: 1.6rem;
+        font-weight: 600;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        align-self: center;
+      }
+
+      .--avatar {
+        text-align: center;
+
+        .ant-image {
+          &,
+          img {
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+
+    .user--information {
+      .--info {
+        .--variable {
+          margin-right: .7rem;
+          font-weight: 600;
+          font-size: 1.6rem;
+        }
+
+        .--value {
+          font-size: 1.5rem;
+        }
+
+        &.ant-row-rtl {
+          .--variable {
+            margin-right: 0;
+            margin-left: .7rem;
+          }
+        }
+      }
+    }
+
+    &.--links {
+      padding: 7rem 4rem;
+
+      * {
+        transition: color 0.7s;
+      }
+
+      .__icon {
+        margin: auto 0;
+
+        i {
+          font-size: 10rem;
+        }
+      }
+
+      .__link {
+        margin: auto 0;
+        font-size: 2rem;
+        font-weight: bold;
+      }
+
+      &:hover {
+        .__icon i,
+        .__link {
+          color: @primary-color;
+        }
+      }
+    }
+  }
+}
