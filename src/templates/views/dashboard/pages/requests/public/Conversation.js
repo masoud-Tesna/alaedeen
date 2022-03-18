@@ -42,7 +42,7 @@ const Conversation = () => {
 
   const urlPath = pathname?.split("/").filter(Boolean);
 
-  const requestMode = urlPath[3];
+  const requestMode = urlPath[2];
 
   // state for save user id and type:
   const [user, setUser] = useState({});
@@ -180,7 +180,7 @@ const Conversation = () => {
           btnData={
             {
               text: "go back",
-              handleOnClick: () => navigate(`/dashboard/requests/public/${requestMode}`),
+              handleOnClick: () => navigate(`/dashboard/requests/${urlPath[2]}/${urlPath[3]}`),
               icon:  <ArrowLeftOutlined />
             }
           }

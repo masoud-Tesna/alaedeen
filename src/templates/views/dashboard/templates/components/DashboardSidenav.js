@@ -45,12 +45,12 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   urlPath.shift();
 
   if (urlPath[0] === "requests") {
-    if (urlPath[1] === "public") {
-      urlPath[2] = urlPath[2] === "sent" ? "public_sent" : urlPath[2] === "received" ? "public_received" : null;
+    if (urlPath[1] === "sent") {
+      urlPath[2] = urlPath[2] === "public" ? "public_sent" : urlPath[2] === "private" ? "private_sent" : null;
     }
 
-    if (urlPath[1] === "private") {
-      urlPath[2] = urlPath[2] === "sent" ? "private_sent" : urlPath[2] === "received" ? "private_received" : null;
+    if (urlPath[1] === "received") {
+      urlPath[2] = urlPath[2] === "public" ? "public_received" : urlPath[2] === "private" ? "private_received" : null;
     }
   }
 
@@ -110,7 +110,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
     }
   };
 
-  const requestShowCondition = userType => {
+  const requestShowCondition2 = userType => {
     switch (userType) {
       case "V" :
         return(
@@ -137,6 +137,58 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
               <Item key="private_received">
                 <Link to="/dashboard/requests/private/received" className="side--link">
                   { t('received') }
+                </Link>
+              </Item>
+            </SubMenu>
+          </>
+        )
+
+      case "C" :
+        return (
+          <>
+            <Item key="public_sent">
+              <Link to="/dashboard/requests/public/sent" className="side--link">
+                { t('public') }
+              </Link>
+            </Item>
+
+            <Item key="private_sent">
+              <Link to="/dashboard/requests/private/sent" className="side--link">
+                { t('private') }
+              </Link>
+            </Item>
+          </>
+        );
+    }
+  }
+
+  const requestShowCondition = userType => {
+    switch (userType) {
+      case "V" :
+        return(
+          <>
+            <SubMenu key="sent" title={ t('sent') }>
+              <Item key="public_sent">
+                <Link to="/dashboard/requests/sent/public" className="side--link">
+                  { t('public') }
+                </Link>
+              </Item>
+              <Item key="private_sent">
+                <Link to="/dashboard/requests/sent/private" className="side--link">
+                  { t('private') }
+                </Link>
+              </Item>
+            </SubMenu>
+
+            <SubMenu key="received" title={ t('received') }>
+              <Item key="public_received">
+                <Link to="/dashboard/requests/received/public" className="side--link">
+                  { t('public') }
+                </Link>
+              </Item>
+              <Item key="private_received">
+                <Link to="/dashboard/requests/received/private" className="side--link">
+                  { t('private') }
                 </Link>
               </Item>
             </SubMenu>

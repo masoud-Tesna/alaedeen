@@ -117,6 +117,39 @@ const DashboardRoutes = () => {
                 </Route>
 
               </Route>
+
+              <Route path="sent">
+                <Route index element={ <Navigate to="public"/> }/>
+
+                <Route path="public">
+                  <Route index element={ <Suspense fallback={null}><RequestPublicSent /></Suspense> } />
+
+                  <Route path=":requestId" element={ <Suspense fallback={null}><RequestPublicConversation /></Suspense> } />
+                </Route>
+
+                <Route path="private">
+                  <Route index element={ <Suspense fallback={null}><RequestPrivateSent/></Suspense> } />
+
+                  <Route path=":requestId" element={ <Suspense fallback={null}><RequestPrivateConversation /></Suspense> } />
+                </Route>
+              </Route>
+
+              <Route path="received">
+                <Route index element={ <Navigate to="public"/> }/>
+
+                <Route path="public">
+                  <Route index element={ <Suspense fallback={null}><RequestPublicReceived /></Suspense> } />
+
+                  <Route path=":requestId" element={ <Suspense fallback={null}><RequestPublicConversation /></Suspense> } />
+                </Route>
+
+                <Route path="private">
+                  <Route index element={ <Suspense fallback={null}><RequestPrivateReceived /></Suspense> } />
+
+                  <Route path=":requestId" element={ <Suspense fallback={null}><RequestPrivateConversation /></Suspense> } />
+                </Route>
+
+              </Route>
             </Route>
           </> :
           <Route index path={ "*" } element={ <Navigate to="/"/> }/>
