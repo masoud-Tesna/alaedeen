@@ -110,58 +110,6 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
     }
   };
 
-  const requestShowCondition2 = userType => {
-    switch (userType) {
-      case "V" :
-        return(
-          <>
-            <SubMenu key="public" title={ t('public') }>
-              <Item key="public_sent">
-                <Link to="/dashboard/requests/public/sent" className="side--link">
-                  { t('sent') }
-                </Link>
-              </Item>
-              <Item key="public_received">
-                <Link to="/dashboard/requests/public/received" className="side--link">
-                  { t('received') }
-                </Link>
-              </Item>
-            </SubMenu>
-
-            <SubMenu key="private" title={ t('private') }>
-              <Item key="private_sent">
-                <Link to="/dashboard/requests/private/sent" className="side--link">
-                  { t('sent') }
-                </Link>
-              </Item>
-              <Item key="private_received">
-                <Link to="/dashboard/requests/private/received" className="side--link">
-                  { t('received') }
-                </Link>
-              </Item>
-            </SubMenu>
-          </>
-        )
-
-      case "C" :
-        return (
-          <>
-            <Item key="public_sent">
-              <Link to="/dashboard/requests/public/sent" className="side--link">
-                { t('public') }
-              </Link>
-            </Item>
-
-            <Item key="private_sent">
-              <Link to="/dashboard/requests/private/sent" className="side--link">
-                { t('private') }
-              </Link>
-            </Item>
-          </>
-        );
-    }
-  }
-
   const requestShowCondition = userType => {
     switch (userType) {
       case "V" :
@@ -197,19 +145,18 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
 
       case "C" :
         return (
-          <>
+          <SubMenu key="sent" title={ t('sent') }>
             <Item key="public_sent">
-              <Link to="/dashboard/requests/public/sent" className="side--link">
+              <Link to="/dashboard/requests/sent/public" className="side--link">
                 { t('public') }
               </Link>
             </Item>
-
             <Item key="private_sent">
-              <Link to="/dashboard/requests/private/sent" className="side--link">
+              <Link to="/dashboard/requests/sent/private" className="side--link">
                 { t('private') }
               </Link>
             </Item>
-          </>
+          </SubMenu>
         );
     }
   }
