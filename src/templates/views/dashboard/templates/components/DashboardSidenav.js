@@ -271,7 +271,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
                 </Item>
               </SubMenu>
 
-              <Menu.Item key="business-promotion"  icon={ <i className="fal fa-box-check" /> }>
+              <Menu.Item key="business-promotion"  icon={ <i className="fa-light fa-arrow-trend-up" /> }> {/* TODO: this is old icon <i className="fal fa-box-check" />*/}
                 <Link to="/dashboard/business-promotion" className="side--link">
                   { t('business_promotion') }
                 </Link>
