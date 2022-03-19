@@ -97,11 +97,11 @@ const Index = () => {
                     </Row>
                   </Col>
                   <Col span={8}>
-                    <span className="--variable">{t("register_time")}:</span>
+                    <span className="--variable">{t("registration_date")}:</span>
                     <span className="--value">
                       {config.language !== 'en'
                         ? moment.unix(user_data?.auth?.timestamp).format('jDD jMMMM jYYYY | HH:mm')
-                        : <Moment format="DD MMM, YYYY | H:m:s" unix locale="en">{user_data?.auth?.timestamp}</Moment>
+                        : <Moment format="DD MMM, YYYY | HH:mm" unix locale="en">{user_data?.auth?.timestamp}</Moment>
                       }
                     </span>
                   </Col>
