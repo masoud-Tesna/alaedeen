@@ -102,5 +102,27 @@ html:lang(ar) {
         width: 100% !important;
       }
     }
+
+    .menuLoading {
+      .--menu {
+        margin-top: 1.4rem;
+
+        .ant-skeleton-content {
+          .ant-skeleton-paragraph {
+            li {
+              height: 4.5rem;
+
+              &:last-child {
+                display: none;
+              }
+            }
+
+            & > li + li {
+              margin-top: 1.5rem;
+            }
+          }
+        }
+      }
+    }
   }
 }

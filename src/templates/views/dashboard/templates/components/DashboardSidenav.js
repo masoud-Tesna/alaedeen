@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 
 import "./styles/DashboardSidenav.less";
 
-import { Col, Menu, Row } from 'antd';
+import { Col, Menu, Row, Skeleton } from 'antd';
 
-import { GlobalOutlined, HomeOutlined } from '@ant-design/icons';
+import { GlobalOutlined, HomeOutlined, NotificationOutlined } from '@ant-design/icons';
 
 // import alaedeen character:
 import alaedeenChar from '../../../../assets/images/alaedeen-char.svg';
@@ -54,6 +54,10 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
     }
   }
 
+  else if (urlPath[0] === "account") {
+    urlPath[1] = urlPath[1] === "settings" ? "account-settings" : null;
+  }
+
   else if (urlPath[0] === "products") {
     urlPath[1] = "manageProducts";
   }
@@ -93,7 +97,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   }
 
   // submenu keys of first level
-  const rootSubmenuKeys = ['dashboard', 'language', 'account', 'support', 'requests', 'products', 'business-promotion', 'affiliate', 'invoice'];
+  const rootSubmenuKeys = ['dashboard', 'account', 'support', 'requests', 'products', 'business-promotion', 'affiliate', 'invoice', 'notices'];
 
   const [openKeys, setOpenKeys] = useState(urlPath);
 
@@ -183,116 +187,131 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
       </Col>
 
       <Col span={24} className="dashboard--menu">
-        <Row gutter={[0, 20]}>
-          <Col span={24} className="user--details">
-            <Row gutter={10}>
-              <Col flex="55px" className="--avatar">
-                { (user_data?.auth?.company_logo && user_data?.auth?.company_logo.length !== 0) ?
-                  <ShowResponsiveImage
-                    imagePath={ user_data?.auth?.company_logo?.logo_path }
-                    imageFolder='company_logo'
-                    width={55}
-                    height={55}
-                    skeletonWidth="55px"
-                    skeletonHeight="55px"
-                    skeletonRadius="55%"
-                    skeletonSvgWidth="30px"
-                    imageAlt={ user_data?.auth?.company ? user_data?.auth?.company : ` ${user_data?.auth?.firstname} ${user_data?.auth?.lastname} `}
-                    object_id={user_data?.auth?.company_id}
-                    object_type={`company_logo${config.language}`}
-                  /> :
-                  <i className="fal fa-user display-3 text-70 d-block" />
+        {user_data?.load ?
+          <div className="px-5 menuLoading">
+            <Skeleton className="--avatar" active={true} paragraph={{ rows: 0 }} title={true} avatar={true} />
+            <Skeleton className="--menu" active={true} paragraph={{ rows: 11 }} title={false} />
+          </div> :
+          <Row gutter={[0, 20]}>
+            <Col span={24} className="user--details">
+              <Row gutter={10}>
+                <Col flex="55px" className="--avatar">
+                  { (user_data?.auth?.company_logo && user_data?.auth?.company_logo.length !== 0) ?
+                    <ShowResponsiveImage
+                      imagePath={ user_data?.auth?.company_logo?.logo_path }
+                      imageFolder='company_logo'
+                      width={55}
+                      height={55}
+                      skeletonWidth="55px"
+                      skeletonHeight="55px"
+                      skeletonRadius="55%"
+                      skeletonSvgWidth="30px"
+                      imageAlt={ user_data?.auth?.company ? user_data?.auth?.company : ` ${user_data?.auth?.firstname} ${user_data?.auth?.lastname} `}
+                      object_id={user_data?.auth?.company_id}
+                      object_type={`company_logo${config.language}`}
+                    /> :
+                    <i className="fal fa-user display-3 text-70 d-block" />
+                  }
+                </Col>
+
+                <Col flex="1 1" className="--details">
+                  { user_data?.auth?.company || `${user_data?.auth?.firstname} ${user_data?.auth?.lastname}` }
+                </Col>
+              </Row>
+            </Col>
+
+            <Col span={24}>
+              <Menu
+                mode="inline"
+                style={{ height: '100%', borderRight: 0 }}
+                className="side--menu"
+                onOpenChange={onOpenChange}
+                openKeys={openKeys}
+                defaultOpenKeys={openKeys}
+                selectedKeys={openKeys}
+              >
+                <Menu.Item key="dashboard"  icon={<HomeOutlined />}>
+                  <Link to="/dashboard" className="side--link">
+                    { t('dashboard') }
+                  </Link>
+                </Menu.Item>
+
+                <SubMenu key="language" icon={<GlobalOutlined />} title={ t('language') }>
+                  <Item onClick={() => handleChangeLanguage('fa')} key="1">فارسی</Item>
+                  <Item onClick={() => handleChangeLanguage('en')} key="2">English</Item>
+                  <Item onClick={() => handleChangeLanguage('ar')} key="3">عربی</Item>
+                </SubMenu>
+
+                <SubMenu key="account" icon={<i className="fal fa-user-cog " />} title={ t('account') }>
+                  <Item key="account-settings">
+                    <Link to="/dashboard/account/settings" className="side--link">
+                      { t('account_settings') }
+                    </Link>
+                  </Item>
+
+                  {userType === "V" &&
+                    <Item key="manufacturer-information">
+                      <Link to="/dashboard/account/manufacturer-information" className="side--link">
+                        { t('manufacturer_information') }
+                      </Link>
+                    </Item>
+                  }
+                </SubMenu>
+
+                <Menu.Item key="support" icon={ <i className="fal fa-user-headset" /> }>
+                  <a href="https://alaedeen.com/horn/my-tickets/" className="side--link">
+                    { t('support') }
+                  </a>
+                </Menu.Item>
+
+                <SubMenu key="requests" icon={ <i className="fa-light fa-comment-quote" /> } title={ t('requests') }>
+
+                  {requestShowCondition(userType)}
+
+                </SubMenu>
+
+                <SubMenu key="products" icon={<i className="fab fa-product-hunt " />} title={ t('products_and_categories') }>
+                  <Item key="manageProducts">
+                    <Link to="/dashboard/products/manage" className="side--link">
+                      { t('manage_products') }
+                    </Link>
+                  </Item>
+                  <Item key="manageCategories">
+                    <Link to="/dashboard/categories/manage" className="side--link">
+                      { t('manage_categories') }
+                    </Link>
+                  </Item>
+                </SubMenu>
+
+                <Menu.Item key="business-promotion"  icon={ <i className="fa-light fa-arrow-trend-up" /> }> {/* TODO: this is old icon <i className="fal fa-box-check" />*/}
+                  <Link to="/dashboard/business-promotion" className="side--link">
+                    { t('business_promotion') }
+                  </Link>
+                </Menu.Item>
+
+                {planId === "14" &&
+                  <Menu.Item key="affiliate"  icon={ <i className="fa-regular fa-users-medical" /> }>
+                    <Link to="/dashboard/affiliate" className="side--link">
+                      { t('affiliate') }
+                    </Link>
+                  </Menu.Item>
                 }
-              </Col>
 
-              <Col flex="1 1" className="--details">
-                { user_data?.auth?.company || `${user_data?.auth?.firstname} ${user_data?.auth?.lastname}` }
-              </Col>
-            </Row>
-          </Col>
-
-          <Col span={24}>
-            <Menu
-              mode="inline"
-              style={{ height: '100%', borderRight: 0 }}
-              className="side--menu"
-              onOpenChange={onOpenChange}
-              openKeys={openKeys}
-              defaultOpenKeys={openKeys}
-              selectedKeys={openKeys}
-            >
-              <Menu.Item key="dashboard"  icon={<HomeOutlined />}>
-                <Link to="/dashboard" className="side--link">
-                  { t('dashboard') }
-                </Link>
-              </Menu.Item>
-
-              <SubMenu key="language" icon={<GlobalOutlined />} title={ t('language') }>
-                <Item onClick={() => handleChangeLanguage('fa')} key="1">فارسی</Item>
-                <Item onClick={() => handleChangeLanguage('en')} key="2">English</Item>
-                <Item onClick={() => handleChangeLanguage('ar')} key="3">عربی</Item>
-              </SubMenu>
-
-              <SubMenu key="account" icon={<i className="fal fa-user-cog " />} title={ t('account_settings') }>
-                <Item key="manufacturer-information">
-                  <Link to="/dashboard/account/manufacturer-information" className="side--link">
-                    { t('manufacturer_information') }
+                <Menu.Item key="invoices"  icon={ <i className="fal fa-file-invoice-dollar" /> }>
+                  <Link to="/dashboard/invoices" className="side--link">
+                    { t('invoices') }
                   </Link>
-                </Item>
-                {/*<Item key="password-reset">
-              <Link to="/dashboard/account/password-reset" className="side--link">
-                { t('password_reset') }
-              </Link>
-            </Item>*/}
-              </SubMenu>
+                </Menu.Item>
 
-              <Menu.Item key="support" icon={ <i className="fal fa-user-headset" /> }>
-                <a href="https://alaedeen.com/horn/my-tickets/" className="side--link">
-                  { t('support') }
-                </a>
-              </Menu.Item>
-
-              <SubMenu key="requests" icon={ <i className="fa-light fa-comment-quote" /> } title={ t('requests') }>
-
-                {requestShowCondition(userType)}
-
-              </SubMenu>
-
-              <SubMenu key="products" icon={<i className="fab fa-product-hunt " />} title={ t('products_and_categories') }>
-                <Item key="manageProducts">
-                  <Link to="/dashboard/products/manage" className="side--link">
-                    { t('manage_products') }
+                {/*<Menu.Item key="notices"  icon={ <NotificationOutlined /> }>
+                  <Link to="/dashboard/notices" className="side--link">
+                    { t('notices') }
                   </Link>
-                </Item>
-                <Item key="manageCategories">
-                  <Link to="/dashboard/categories/manage" className="side--link">
-                    { t('manage_categories') }
-                  </Link>
-                </Item>
-              </SubMenu>
-
-              <Menu.Item key="business-promotion"  icon={ <i className="fa-light fa-arrow-trend-up" /> }> {/* TODO: this is old icon <i className="fal fa-box-check" />*/}
-                <Link to="/dashboard/business-promotion" className="side--link">
-                  { t('business_promotion') }
-                </Link>
-              </Menu.Item>
-
-              {planId === "14" &&
-              <Menu.Item key="affiliate"  icon={ <i className="fa-regular fa-users-medical" /> }>
-                <Link to="/dashboard/affiliate" className="side--link">
-                  { t('affiliate') }
-                </Link>
-              </Menu.Item>
-              }
-
-              <Menu.Item key="invoices"  icon={ <i className="fal fa-file-invoice-dollar" /> }>
-                <Link to="/dashboard/invoices" className="side--link">
-                  { t('invoices') }
-                </Link>
-              </Menu.Item>
-            </Menu>
-          </Col>
-        </Row>
+                </Menu.Item>*/}
+              </Menu>
+            </Col>
+          </Row>
+        }
       </Col>
     </Row>
   );
