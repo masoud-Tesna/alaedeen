@@ -101,41 +101,8 @@ html:lang(ar) {
 }
 
 .manufactureInfo--content {
-  padding: 0 3rem;
-
   .ant-tabs {
-    .ant-tabs-nav {
-      margin-bottom: 3rem;
-      position: fixed !important;
-      z-index: 99;
-      top: 70.7px;
-      background: #F6F6F6;
-      width: 100% !important;
-      padding: 1rem 3rem 0;
-
-      @media (min-width: @screen-lg) {
-        width: calc(100% - 23%) !important;
-      }
-
-      @media (min-width: 1310px) {
-        width: calc(100% - 18.8%) !important;
-      }
-
-      .ant-tabs-tab {
-        min-width: 55px;
-
-        .ant-tabs-tab-btn {
-          font-size: 1.8rem;
-          font-weight: 600;
-          color: #333333;
-          margin: 0 auto;
-        }
-      }
-    }
-
     .ant-tabs-content-holder {
-      padding-top: 6rem;
-
       .manufactureInfo--formContent {
         .ant-form-item {
           .ant-form-item-label {
@@ -207,17 +174,6 @@ html:lang(ar) {
           .ant-form-item {
             &:last-child {
               margin-bottom: 0;
-            }
-          }
-        }
-
-        .ant-input-group {
-          .ant-form-item {
-            margin-bottom: 0;
-            margin-right: 1rem;
-
-            .ant-form-item-control {
-              padding: 0;
             }
           }
         }
@@ -314,13 +270,6 @@ html:lang(ar) {
 
           button {
             width: 140px;
-            height: 40px;
-            padding: 0;
-
-            span {
-              font-size: 1.5rem;
-              font-weight: bold;
-            }
           }
         }
       }
@@ -341,4 +290,76 @@ html:lang(ar) {
       font-size: 10rem;
     }
   }
+}
+
+.manufactureInfo--content,
+.settings--container {
+  padding: 0 3rem;
+
+  .ant-tabs {
+    .ant-tabs-nav {
+      margin-bottom: 3rem;
+      position: fixed !important;
+      z-index: 99;
+      top: 70.7px;
+      background: #F6F6F6;
+      width: 100% !important;
+      padding: 1rem 3rem 0;
+
+      @media (min-width: @screen-lg) {
+        width: calc(100% - 23%) !important;
+      }
+
+      @media (min-width: 1310px) {
+        width: calc(100% - 18.8%) !important;
+      }
+
+      .ant-tabs-tab {
+        min-width: 55px;
+
+        .ant-tabs-tab-btn {
+          font-size: 1.8rem;
+          font-weight: 600;
+          color: #333333;
+          margin: 0 auto;
+        }
+      }
+    }
+
+    .ant-tabs-content-holder {
+      padding-top: 6rem;
+
+      .manufactureInfo--formContent,
+      .editProfile--formContent {
+        .ant-input-group {
+          .ant-form-item {
+            margin-bottom: 0;
+            margin-right: 1rem;
+
+            .ant-form-item-control {
+              padding: 0;
+            }
+          }
+        }
+
+        .updateProfile--btn,
+        .stepChangeCurrent--content {
+          button {
+            width: 20rem;
+            height: 40px;
+            padding: 0;
+
+            span {
+              font-size: 1.5rem;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.settings--container {
+
 }
