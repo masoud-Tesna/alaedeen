@@ -215,8 +215,18 @@ const CreateProduct = () => {
 
     spinnerDispatch(isLoadingAction(true));
 
-    if ((!productsLimitIsLoading && !productsLimitIsFetching) && +(productsLimitData?.remaining) !== 0) {
-      navigate('/dashboard/products/manage');
+    if (!productsLimitIsLoading && !productsLimitIsFetching) {
+
+      if (+(productsLimitData?.remaining) === 0) {
+        navigate('/dashboard/products/manage');
+      } else {
+        spinnerDispatch(isLoadingAction(false));
+      }
+
+    }
+
+    return () => {
+      spinnerDispatch(isLoadingAction(false));
     }
 
   }, [productsLimitIsLoading, productsLimitIsFetching])
