@@ -4,6 +4,8 @@ import { useGetAuthState } from "../../contexts/user/UserContext";
 
 const Dashboard = lazy(() => import('./dashboard/pages/homePage'));
 
+const AccountSettings = lazy(() => import('./dashboard/pages/account/Settings'));
+
 const ManufactureInformation = lazy(() => import('./dashboard/pages/account/ManufactureInformation'));
 
 const ManageProducts = lazy(() => import('./dashboard/pages/products/ManageProducts'));
@@ -48,9 +50,13 @@ const DashboardRoutes = () => {
           <>
             <Route index element={ <Suspense fallback={null}><Dashboard /></Suspense> }/>
 
-            <Route path="account/password-reset" element={ <Suspense fallback={null}><h1> password-reset </h1></Suspense> }/>
+            <Route path="account">
+              <Route index path="*" element={ <Navigate to="settings"/> }/>
 
-            <Route path="account/manufacturer-information" element={ <Suspense fallback={null}><ManufactureInformation /></Suspense> }/>
+              <Route path="settings" element={ <Suspense fallback={null}><AccountSettings /></Suspense> }/>
+
+              <Route path="manufacturer-information" element={ <Suspense fallback={null}><ManufactureInformation /></Suspense> }/>
+            </Route>
 
             <Route path="products">
               <Route index element={ <Navigate to="manage"/> }/>
