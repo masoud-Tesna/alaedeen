@@ -55,7 +55,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   }
 
   else if (urlPath[0] === "account") {
-    urlPath[1] = urlPath[1] === "settings" ? "account-settings" : null;
+    urlPath[1] = urlPath[1] === "settings" ? "account-settings" : "manufacturer-information";
   }
 
   else if (urlPath[0] === "products") {
