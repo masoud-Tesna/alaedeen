@@ -6,8 +6,9 @@ import { useTranslation } from "react-i18next";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 import { useState } from "react";
 
-//import edit profile components for customer and vendor:
-import EditProfile from "./editProfile/EditProfile";
+//import edit profile and password change component:
+import EditProfile from "./settings/EditProfile";
+import PasswordChange from "./settings/PasswordChange";
 
 const Settings = () => {
 
@@ -60,7 +61,7 @@ const Settings = () => {
           </TabPane>
 
           <TabPane className="passwordTab--content" tab={ t("password_change") } key="password">
-            Password change
+            <PasswordChange />
           </TabPane>
         </Tabs>
       </Col>
