@@ -67,7 +67,7 @@ const EditProfile = () => {
 
   return (
     <Form
-      className="h-100 editProfile--formContent"
+      className="h-100 settings--formContent"
       name="editProfile-form"
       form={editProfileForm}
       scrollToFirstError
