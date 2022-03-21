@@ -50,6 +50,7 @@ const EditProfile = () => {
   const editProfileOnFinish = values => {
 
     values.user_type = userType;
+    values.operation = "edit_profile";
 
     if (userType === "V") {
       values.fields[65] = values?.fields[65].join(",");
