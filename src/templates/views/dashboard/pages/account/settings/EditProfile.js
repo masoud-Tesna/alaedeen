@@ -40,7 +40,7 @@ const EditProfile = () => {
   const stateLists = stateListsData || [];
 
   // create phone verify axios async function:
-  async function UpdateProfileApi(userId, values) {
+  async function updateProfileApi(userId, values) {
     return await axios.put(
       `https://alaedeen.com/api/Account.php/?user_id=${ userId }`,
       values
@@ -57,7 +57,7 @@ const EditProfile = () => {
 
     spinnerDispatch(isLoadingAction(true));
 
-    UpdateProfileApi(+(user_data?.auth?.user_id), values)
+    updateProfileApi(+(user_data?.auth?.user_id), values)
       .then(res => {
         if (res?.data[0] === "update_done") spinnerDispatch(isLoadingAction(false));
       });
