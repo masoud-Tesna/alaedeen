@@ -8,7 +8,7 @@ import { useState } from "react";
 
 //import edit profile and password change component:
 import EditProfile from "./settings/EditProfile";
-import PasswordChange from "./settings/PasswordChange";
+import ChangePassword from "./settings/ChangePassword";
 
 const Settings = () => {
 
@@ -60,8 +60,8 @@ const Settings = () => {
 
           </TabPane>
 
-          <TabPane className="passwordTab--content" tab={ t("password_change") } key="password">
-            <PasswordChange />
+          <TabPane className="passwordTab--content" tab={ t("Change_password") } key="password">
+            <ChangePassword />
           </TabPane>
         </Tabs>
       </Col>
