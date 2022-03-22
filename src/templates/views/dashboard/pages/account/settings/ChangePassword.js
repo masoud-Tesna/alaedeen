@@ -34,10 +34,10 @@ const ChangePassword = () => {
 
     //spinnerDispatch(isLoadingAction(true));
 
-    /*changePasswordApi(+(user_data?.auth?.user_id), values)
+    changePasswordApi(+(user_data?.auth?.user_id), values)
       .then(res => {
         if (res?.data[0] === "update_done") spinnerDispatch(isLoadingAction(false));
-      });*/
+      });
 
   }
 
