@@ -104,7 +104,7 @@ const Result = () => {
                     {t('discount')}
                   </Col>
                   <Col className="text-center my-auto" span={4}>
-                    {t('discount_price')}
+                    {t('discount_amount')}
                   </Col>
                   <Col className="text-center my-auto" span={4}>
                     {t('amount_including_discount')}
@@ -181,7 +181,7 @@ const Result = () => {
                   <Col span={24}>
                     <Row className="__data" justify="space-between">
                       <Col className="my-auto __tax">
-                        {t('total_price')} :
+                        {t('total_amounts')} :
                       </Col>
 
                       <Col className="my-auto __taxPrice">
