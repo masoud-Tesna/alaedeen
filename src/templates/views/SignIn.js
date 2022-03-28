@@ -83,7 +83,7 @@ const SignIn = () => {
             className: 'loginDone--message',
           })
             .then(() => {
-              navigate('/');
+              navigate('/dashboard');
             });
         }
       }
