@@ -31,6 +31,7 @@ const ChangePassword = () => {
 
   const changePasswordOnFinish = values => {
 
+    values.user_type = user_data?.auth?.user_type;
     values.operation = "change_password";
 
     spinnerDispatch(isLoadingAction(true));
