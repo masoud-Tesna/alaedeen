@@ -128,7 +128,7 @@ const Register = () => {
       spinnerDispatch(isLoadingAction(false));
 
       message.warning({
-        content: "رمز های عبور باهم یکسان نیست",
+        content: t(__("Passwords are not the same")),
         duration: 4,
         className: 'registerDone--warning',
       })
@@ -270,7 +270,7 @@ const Register = () => {
             if (res?.data?.verify) {
 
               message.success({
-                content: t(('Your account has been verified')),
+                content: t(__('Your account has been verified')),
                 duration: 2,
                 className: 'registerDone--message',
               }).then(() => {
