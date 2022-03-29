@@ -255,8 +255,8 @@ const ManufactureInformation = () => {
             />
           </TabPane>
 
-          { !businessType.includes("service") &&
-          <TabPane className="manufacturingTab--content" tab={ t(__("manufacturing_capability")) } key="2">
+          { (businessType.length && !businessType?.includes("service")) &&
+            <TabPane className="manufacturingTab--content" tab={ t(__("manufacturing_capability")) } key="2">
             <ManufacturingCapabilityForm
               formRef={ manufacturingCapabilityFrm }
               handleSubmitForm={ handleSubmitForm }
