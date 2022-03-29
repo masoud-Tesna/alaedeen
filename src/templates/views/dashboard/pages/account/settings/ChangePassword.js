@@ -1,10 +1,11 @@
-import { Button, Col, Form, Input, Row } from "antd";
+import { Button, Col, Form, Input, message, Row } from "antd";
 import { isLoadingAction, useSpinnerDispatch } from "../../../../../../contexts/spiner/SpinnerContext";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { useGetAuthState } from "../../../../../../contexts/user/UserContext";
 import { __ } from "../../../../../../functions/Helper";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
+import { useState } from "react";
 
 const ChangePassword = () => {
 
@@ -18,6 +19,8 @@ const ChangePassword = () => {
   // user data context state:
   const { user_data } = useGetAuthState();
 
+  const [incorrectUpdate, setIncorrectUpdate] = useState("");
+
   // create phone verify axios async function:
   async function changePasswordApi(userId, values) {
     return await axios.put(
@@ -30,16 +33,26 @@ const ChangePassword = () => {
 
     values.operation = "change_password";
 
-    console.log(values)
-
-    //spinnerDispatch(isLoadingAction(true));
+    spinnerDispatch(isLoadingAction(true));
 
     changePasswordApi(+(user_data?.auth?.user_id), values)
       .then(res => {
-        if (res?.data[0] === "update_done") spinnerDispatch(isLoadingAction(false));
+        spinnerDispatch(isLoadingAction(false));
+
+        if (res?.data?.status) {
+          message.success({
+            content: t(__("Your account password has been updated.")),
+            duration: 3,
+          })
+        } else {
+          setIncorrectUpdate(res?.data?.error);
+        }
       });
 
   }
+
+  const oldPasswordIncorrectValidateStatus = incorrectUpdate === "old_password_incorrect" && { validateStatus : "error", help : t("old_password_entered_incorrect") },
+        confirmPasswordIncorrectValidateStatus = incorrectUpdate === "passwords_not_match" && { validateStatus : "error", help : t("confirm_password_not_match") };
 
   return (
     <Form
@@ -63,9 +76,11 @@ const ChangePassword = () => {
                     message: t(__("Please input old password")),
                   },
                 ] }
+                {...oldPasswordIncorrectValidateStatus}
               >
                 <Input.Password
                   iconRender={ visible => (visible ? <EyeTwoTone/> : <EyeInvisibleOutlined/>) }
+                  onChange={() => setIncorrectUpdate(prev => prev === "old_password_incorrect" ? "" : prev)}
                 />
               </Form.Item>
             </Col>
@@ -118,9 +133,11 @@ const ChangePassword = () => {
                     },
                   }),
                 ]}
+                {...confirmPasswordIncorrectValidateStatus}
               >
                 <Input.Password
                   iconRender={ visible => (visible ? <EyeTwoTone/> : <EyeInvisibleOutlined/>) }
+                  onChange={() => setIncorrectUpdate(prev => prev === "passwords_not_match" ? "" : prev)}
                 />
               </Form.Item>
             </Col>
