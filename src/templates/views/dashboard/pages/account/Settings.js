@@ -60,7 +60,7 @@ const Settings = () => {
 
           </TabPane>
 
-          <TabPane className="passwordTab--content" tab={ t("Change_password") } key="password">
+          <TabPane className="passwordTab--content" tab={ t("change_password") } key="password">
             <ChangePassword />
           </TabPane>
         </Tabs>

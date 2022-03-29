@@ -285,7 +285,7 @@ const Result = () => {
                       <Col span={24}>
                         <Row gutter={15}>
                           <Col xs={24} md={5} lg={4} className="__variable">
-                            <span>{t("Payment_result")}</span>
+                            <span>{t("payment_result")}</span>
                           </Col>
                           <Col xs={24} md={19} lg={20} className="__value my-auto">
                             <span>
