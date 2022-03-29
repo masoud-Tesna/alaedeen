@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Checkbox, Col, Form, Input, Row, Select, Skeleton } from "antd";
+import { Button, Checkbox, Col, Form, Input, message, Row, Select, Skeleton } from "antd";
 import { __ } from "../../../../../../functions/Helper";
 import { useTranslation } from "react-i18next";
 import { useGetApiOld } from "../../../../../../functions";
@@ -60,7 +60,14 @@ const EditProfile = () => {
 
     updateProfileApi(+(user_data?.auth?.user_id), values)
       .then(res => {
-        if (res?.data[0] === "update_done") spinnerDispatch(isLoadingAction(false));
+        spinnerDispatch(isLoadingAction(false));
+
+        if (res?.data?.status) {
+          message.success({
+            content: t(__("Your account has been updated")),
+            duration: 3,
+          })
+        }
       });
 
   }
