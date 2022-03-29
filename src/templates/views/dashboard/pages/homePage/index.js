@@ -131,12 +131,12 @@ const Index = () => {
           </Col>
 
           <Col span={8}>
-            <Row className="dashboard--item --links cursor-pointer" onClick={() => navigate("invoices")} justify="center" gutter={15}>
+            <Row className="dashboard--item --links cursor-pointer" onClick={() => navigate("account/settings")} justify="center" gutter={15}>
               <Col className="__icon">
-                <i className="fa-thin fa-file-invoice-dollar" />
+                <i className="fa-thin fa-user" />
               </Col>
 
-              <Col className="__link">{t("invoices")}</Col>
+              <Col className="__link">{t("account_settings")}</Col>
             </Row>
           </Col>
         </Row>
