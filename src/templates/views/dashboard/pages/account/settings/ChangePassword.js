@@ -92,7 +92,7 @@ const ChangePassword = () => {
           <Row>
             <Col xs={24} md={12} lg={10} xl={9}>
               <Form.Item
-                name="password"
+                name="password1"
                 label={ t(__('new_password')) }
                 labelCol={{sm: 24, lg: 7}}
                 rules={[
@@ -114,7 +114,7 @@ const ChangePassword = () => {
           <Row>
             <Col xs={24} md={12} lg={10} xl={9}>
               <Form.Item
-                name="confirm_password"
+                name="password2"
                 label={ t(__('confirm_password')) }
                 labelCol={{sm: 24, lg: 7}}
                 dependencies={['password']}
@@ -126,7 +126,7 @@ const ChangePassword = () => {
                   },
                   ({ getFieldValue }) => ({
                     validator(_, value) {
-                      if (!value || getFieldValue('password') === value) {
+                      if (!value || getFieldValue('password1') === value) {
                         return Promise.resolve();
                       }
 
