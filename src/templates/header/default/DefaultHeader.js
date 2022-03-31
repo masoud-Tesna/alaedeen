@@ -60,13 +60,11 @@ const DefaultHeader = ({ pathName }) => {
         </span>
       </Menu.Item>
 
-      {(user_data?.auth?.plan_id === "8" || user_data?.auth?.plan_id === "14") &&
-        <Menu.Item key="dashboardLink">
-          <Link to={ "/dashboard" }>
-            { t(__('dashboard')) }
-          </Link>
-        </Menu.Item>
-      }
+      <Menu.Item key="dashboardLink">
+        <Link to={ "/dashboard" }>
+          { t(__('dashboard')) }
+        </Link>
+      </Menu.Item>
 
       <Menu.Item key="tickets">
         <a href="https://alaedeen.com/horn/my-tickets/">

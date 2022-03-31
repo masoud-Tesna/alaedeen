@@ -235,18 +235,16 @@ const DefaultTopPanel = ({ pathName }) => {
                       </Row>
                     </Link>
 
-                    {(user_data?.auth?.plan_id === "8" || user_data?.auth?.plan_id === "14") &&
-                      <Link className="menuXs--sideNavLinks__item d-block" to={"/dashboard"} >
-                        <Row justify={"space-between"}>
-                          <Col className="text-center" span={5}>
-                            <i className="fal fa-user-cog text-primary vv-font-size-3" />
-                          </Col>
-                          <Col span={18} className="my-auto">
-                            <span className="text-70 vv-font-size-1-6">{t(__('dashboard'))}</span>
-                          </Col>
-                        </Row>
-                      </Link>
-                    }
+                    <Link className="menuXs--sideNavLinks__item d-block" to={"/dashboard"} >
+                      <Row justify={"space-between"}>
+                        <Col className="text-center" span={5}>
+                          <i className="fal fa-user-cog text-primary vv-font-size-3" />
+                        </Col>
+                        <Col span={18} className="my-auto">
+                          <span className="text-70 vv-font-size-1-6">{t(__('dashboard'))}</span>
+                        </Col>
+                      </Row>
+                    </Link>
 
                     <a className="menuXs--sideNavLinks__item d-block" href="https://alaedeen.com/horn/my-tickets/" >
                       <Row justify={"space-between"}>
