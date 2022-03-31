@@ -8,6 +8,8 @@ const AccountSettings = lazy(() => import('./dashboard/pages/account/Settings'))
 
 const ManufactureInformation = lazy(() => import('./dashboard/pages/account/ManufactureInformation'));
 
+const StoreInformation = lazy(() => import('./dashboard/pages/personalStore/StoreInformation'));
+
 const ManageProducts = lazy(() => import('./dashboard/pages/products/ManageProducts'));
 
 const CreateProduct = lazy(() => import('./dashboard/pages/products/CreateProduct'));
@@ -56,6 +58,12 @@ const DashboardRoutes = () => {
               <Route path="settings" element={ <Suspense fallback={null}><AccountSettings /></Suspense> }/>
 
               <Route path="manufacturer-information" element={ <Suspense fallback={null}><ManufactureInformation /></Suspense> }/>
+            </Route>
+
+            <Route path="personal-store">
+              <Route index path="*" element={ <Navigate to="store-information" /> }/>
+
+              <Route path="store-information" element={ <Suspense fallback={null}><StoreInformation /></Suspense> }/>
             </Route>
 
             <Route path="products">
