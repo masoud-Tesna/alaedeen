@@ -16,7 +16,7 @@ import axios from "axios";
 import { useGetConfig } from "../../contexts/config/ConfigContext";
 
 // import alaedeen character:
-import alaedeenChar from '../assets/images/alaedeen-char.svg';
+import alaedeenChar from '../assets/images/alaedeen-char.png';
 import { useMutation } from "react-query";
 import { isLoadingAction, useSpinnerDispatch } from "../../contexts/spiner/SpinnerContext";
 

@@ -9,7 +9,7 @@ import { Row, Col, Divider, Space, Collapse, Drawer, Skeleton } from 'antd';
 import { DownOutlined } from "@ant-design/icons";
 
 // import alaedeen character:
-import alaedeenChar from '../../assets/images/alaedeen-char.svg'
+import alaedeenChar from '../../assets/images/alaedeen-char.png'
 
 // import categories drop down:
 import { CategoriesDropDownVertical as Categories } from "../../blocks/categories/CategoriesDropDownVertical";

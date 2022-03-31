@@ -9,7 +9,7 @@ import { Button, Col, Dropdown, Input, Layout, Menu, Row, Skeleton } from 'antd'
 import { DownOutlined } from "@ant-design/icons";
 
 // import alaedeen character:
-import alaedeenChar from '../../assets/images/alaedeen-char.svg';
+import alaedeenChar from '../../assets/images/alaedeen-char.png';
 
 // import helper functions:
 import { __ } from "../../../functions/Helper";

@@ -7,7 +7,7 @@ import { Col, Menu, Row, Skeleton } from 'antd';
 import { GlobalOutlined, HomeOutlined, NotificationOutlined } from '@ant-design/icons';
 
 // import alaedeen character:
-import alaedeenChar from '../../../../assets/images/alaedeen-char.svg';
+import alaedeenChar from '../../../../assets/images/alaedeen-char.png';
 
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
