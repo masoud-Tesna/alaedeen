@@ -97,7 +97,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   }
 
   // submenu keys of first level
-  const rootSubmenuKeys = ['dashboard', 'account', 'support', 'requests', 'products', 'business-promotion', 'affiliate', 'invoice', 'notices'];
+  const rootSubmenuKeys = ['dashboard', 'account', 'personal-store', 'support', 'requests', 'products', 'business-promotion', 'affiliate', 'invoice', 'notices'];
 
   const [openKeys, setOpenKeys] = useState(urlPath);
 
@@ -230,7 +230,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
                 defaultOpenKeys={openKeys}
                 selectedKeys={openKeys}
               >
-                <Menu.Item key="dashboard"  icon={<HomeOutlined />}>
+                <Menu.Item key="dashboard" icon={<HomeOutlined />}>
                   <Link to="/dashboard" className="side--link">
                     { t('dashboard') }
                   </Link>
@@ -242,7 +242,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
                   <Item onClick={() => handleChangeLanguage('ar')} key="3">عربی</Item>
                 </SubMenu>
 
-                <SubMenu key="account" icon={<i className="fal fa-user-cog " />} title={ t('account') }>
+                <SubMenu key="account" icon={<i className="fa-light fa-user-cog" />} title={ t('account') }>
                   <Item key="account-settings">
                     <Link to="/dashboard/account/settings" className="side--link">
                       { t('account_settings') }
@@ -258,7 +258,15 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
                   }
                 </SubMenu>
 
-                <Menu.Item key="support" icon={ <i className="fal fa-user-headset" /> }>
+                <SubMenu key="personal-store" icon={<i className="fa-light fa-store" />} title={ t('personal_store') }>
+                  <Item key="personal-store-information">
+                    <Link to="/dashboard/personal-store/personal-store-information" className="side--link">
+                      { t('manufacturer_information') }
+                    </Link>
+                  </Item>
+                </SubMenu>
+
+                <Menu.Item key="support" icon={ <i className="fa-light fa-user-headset" /> }>
                   <a href="https://alaedeen.com/horn/my-tickets/" className="side--link">
                     { t('support') }
                   </a>
@@ -270,7 +278,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
 
                 </SubMenu>
 
-                <SubMenu key="products" icon={<i className="fab fa-product-hunt " />} title={ t('products_and_categories') }>
+                <SubMenu key="products" icon={<i className="fa-brands fa-product-hunt" />} title={ t('products_and_categories') }>
                   <Item key="manageProducts">
                     <Link to="/dashboard/products/manage" className="side--link">
                       { t('manage_products') }
@@ -297,7 +305,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
                   </Menu.Item>
                 }
 
-                <Menu.Item key="invoices"  icon={ <i className="fal fa-file-invoice-dollar" /> }>
+                <Menu.Item key="invoices"  icon={ <i className="fa-light fa-file-invoice-dollar" /> }>
                   <Link to="/dashboard/invoices" className="side--link">
                     { t('invoices') }
                   </Link>
