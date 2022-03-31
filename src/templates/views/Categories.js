@@ -19,8 +19,8 @@ import { __, SeoGenerator, splitArray } from "../../functions/Helper";
 import { useTranslation } from "react-i18next";
 
 // Import Swiper styles
-import "swiper/swiper.less";
-import "swiper/modules/scrollbar/scrollbar.less";
+import "swiper/css";
+import "swiper/css/scrollbar";
 
 // import product show and product skeleton show:
 import CategoryOneColumn from "../blocks/product_list_templates/CategoryOneColumn";

@@ -4,15 +4,15 @@ import { useState } from "react";
 import './styles/ImageGallery.less';
 
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 // import ant design components:
 import { Col, Image, Row } from 'antd';
 
 // Import Swiper styles
-import "swiper/swiper.less";
-import "swiper/modules/free-mode/free-mode.less";
-import "swiper/modules/thumbs/thumbs.less";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/thumbs";
 
 // import Swiper core and required modules
 import SwiperCore, { FreeMode, Thumbs } from 'swiper';
