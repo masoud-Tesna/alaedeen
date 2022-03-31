@@ -259,8 +259,8 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
                 </SubMenu>
 
                 <SubMenu key="personal-store" icon={<i className="fa-light fa-store" />} title={ t('personal_store') }>
-                  <Item key="personal-store-information">
-                    <Link to="/dashboard/personal-store/personal-store-information" className="side--link">
+                  <Item key="store-information">
+                    <Link to="/dashboard/personal-store/store-information" className="side--link">
                       { t('manufacturer_information') }
                     </Link>
                   </Item>
