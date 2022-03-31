@@ -37,9 +37,9 @@ const Index = () => {
       </Col>
 
       <Col span={24} className="dashboard--container">
-        <Row gutter={[20, 20]}>
+        <Row gutter={[25, 20]}>
           <Col span={24}>
-            <Row className="dashboard--item" gutter={[0, 20]}>
+            <Row className="dashboard--item" gutter={[15, 20]}>
               <Col span={24} className="user--details">
                 <Row gutter={10}>
                   <Col flex="55px" className="--avatar">
@@ -68,35 +68,32 @@ const Index = () => {
               </Col>
 
               <Col span={24} className="user--information">
-                <Row gutter={20} className="--info">
-                  <Col span={16}>
-                    <Row gutter={[20, 20]}>
-                      {user_data?.auth?.company &&
-                        <Col xs={24} lg={12}>
-                          <span className="--variable">{t("company")}:</span>
-                          <span className="--value">{user_data?.auth?.company}</span>
-                        </Col>
-                      }
+                <Row gutter={[20, 20]} className="--info">
+                  {user_data?.auth?.company &&
+                    <Col xs={24} lg={8}>
+                      <span className="--variable">{t("company")}:</span>
+                      <span className="--value">{user_data?.auth?.company}</span>
+                    </Col>
+                  }
 
-                      {user_data?.auth?.fields[64] &&
-                        <Col xs={24} lg={12}>
-                          <span className="--variable">{t("brand")}:</span>
-                          <span className="--value">{user_data?.auth?.fields[64]}</span>
-                        </Col>
-                      }
+                  {user_data?.auth?.fields[64] &&
+                    <Col xs={24} lg={8}>
+                      <span className="--variable">{t("brand")}:</span>
+                      <span className="--value">{user_data?.auth?.fields[64]}</span>
+                    </Col>
+                  }
 
-                      <Col xs={24} lg={12}>
-                        <span className="--variable">{t("email")}:</span>
-                        <span className="--value">{user_data?.auth?.email}</span>
-                      </Col>
-
-                      <Col xs={24} lg={12}>
-                        <span className="--variable">{t("phone")}:</span>
-                        <span className="--value">{user_data?.auth?.phone}</span>
-                      </Col>
-                    </Row>
+                  <Col xs={24} lg={8}>
+                    <span className="--variable">{t("email")}:</span>
+                    <span className="--value">{user_data?.auth?.email}</span>
                   </Col>
-                  <Col span={8}>
+
+                  <Col xs={24} lg={8}>
+                    <span className="--variable">{t("phone")}:</span>
+                    <span className="--value">{user_data?.auth?.phone}</span>
+                  </Col>
+
+                  <Col xs={24} lg={8}>
                     <span className="--variable">{t("registration_date")}:</span>
                     <span className="--value">
                       {config.language !== 'en'
@@ -104,6 +101,11 @@ const Index = () => {
                         : <Moment format="DD MMM, YYYY | HH:mm" unix locale="en">{user_data?.auth?.timestamp}</Moment>
                       }
                     </span>
+                  </Col>
+
+                  <Col xs={24} lg={8}>
+                    <span className="--variable">{t("your_id")}:</span>
+                    <span className="--value">{user_data?.auth?.user_id}</span>
                   </Col>
                 </Row>
               </Col>
