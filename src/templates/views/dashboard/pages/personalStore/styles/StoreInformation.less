@@ -1,0 +1,369 @@
+@import '../../../../../styles/Mixins';
+
+html:lang(fa),
+html:lang(ar) {
+  .manufactureInfo--content {
+    .ant-steps-item {
+      .ant-steps-item-tail {
+        margin-left: 0;
+        margin-right: 60px;
+        &:after {
+          margin-left: 0;
+          margin-right: 25px;
+        }
+      }
+
+      .ant-steps-item-icon {
+        margin-left: 0;
+        margin-right: 55px;
+      }
+
+      &.ant-steps-item-process,
+      &.ant-steps-item-finish {
+        .ant-steps-item-icon {
+          .ant-steps-icon-dot {
+            left: unset;
+            right: unset;
+          }
+        }
+      }
+    }
+
+    .ant-form-item {
+      .ant-form-item-control {
+        @media (min-width: @screen-md) {
+          padding-left: 0 !important;
+          padding-right: .8rem;
+        }
+
+        .ant-input-textarea {
+          &.ant-input-textarea-show-count {
+            &:after {
+              float: left;
+            }
+          }
+        }
+      }
+
+      &.websiteUrl {
+        .ant-form-item-control {
+          .ant-input-wrapper {
+            direction: ltr !important;
+
+            .ant-input-group-addon {
+              border-right: 0 !important;
+              border-left: 1px solid #d9d9d9 !important;
+              border-radius: 2px !important;
+              border-top-right-radius: 0 !important;
+              border-bottom-right-radius: 0 !important;
+            }
+
+            .ant-input-affix-wrapper {
+              direction: ltr !important;
+              border-radius: 2px !important;
+              border-top-left-radius: 0 !important;
+              border-bottom-left-radius: 0 !important;
+            }
+          }
+        }
+      }
+    }
+
+    .companyLogo {
+      .companyLogo--caption {
+        .ant-form-item-label {
+          text-align: right !important;
+        }
+      }
+    }
+
+    .formSwitch {
+      .formSwitch--switch {
+        .ant-switch-inner {
+          margin-right: 25px !important;
+          margin-left: 0;
+        }
+
+        &.ant-switch-checked {
+          .ant-switch-handle {
+            right: calc(100% - 22px - 2px);
+            left: unset !important;
+          }
+
+          .ant-switch-inner {
+            margin-left: 25px !important;
+            margin-right: 0 !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+.manufactureInfo--content {
+  .ant-tabs {
+    .ant-tabs-content-holder {
+      .manufactureInfo--formContent {
+        .ant-form-item {
+          .ant-form-item-label {
+            overflow: unset;
+            line-height: 1.3215em;
+            white-space: unset;
+
+            label {
+              &::after {
+                margin: 0 .6rem;
+              }
+            }
+          }
+
+          .ant-form-item-control {
+            @media (min-width: @screen-md) {
+              padding-left: .8rem;
+            }
+          }
+
+          &.textAreaByExtraText {
+            .ant-form-item-extra {
+              width: calc(100% - 64px);
+            }
+          }
+        }
+
+        .formSwitch {
+          .ant-form-item-label {
+            text-align: left;
+          }
+
+          .formSwitch--switch {
+            @media (min-width: @screen-md) {
+              margin-left: -.8rem;
+            }
+
+            min-width: 70px;
+            height: 26px;
+            line-height: 26px;
+
+            .ant-switch-handle {
+              width: 22px;
+              height: 22px;
+            }
+
+            .ant-switch-inner {
+              font-size: 1.5rem;
+              font-weight: bold;
+              margin-right: 0;
+            }
+
+            &.ant-switch-checked {
+              .ant-switch-handle {
+                left: calc(100% - 22px - 2px);
+              }
+
+              .ant-switch-inner {
+                margin-left: 0;
+                margin-right: 25px;
+              }
+            }
+          }
+        }
+
+        .formCloneable {
+          padding: 2rem 1.5rem;
+
+          .ant-form-item {
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+
+        .exportRate--content {
+          @media (min-width: @screen-md) {
+            padding-left: .8rem;
+          }
+
+          .ant-form-item-control {
+            padding: 0;
+          }
+
+          .ant-input-group-addon {
+            font-size: 1.5rem;
+            font-weight: bold;
+            min-width: 145px;
+          }
+
+          & > .ant-form-item {
+            margin-bottom: 0;
+          }
+        }
+
+        .averageLead--content {
+          .ant-input-group-addon {
+            font-size: 1.5rem;
+            font-weight: bold;
+            min-width: 145px;
+          }
+        }
+
+        .checkBoxGroup {
+          .ant-form-item {
+            margin-bottom: 0;
+          }
+
+          .ant-checkbox-wrapper {
+            & span + span {
+              font-size: 1.7rem;
+            }
+          }
+        }
+
+        .companyLogo {
+          .companyLogo--caption {
+            margin-bottom: 1.4rem;
+
+            .ant-form-item-label {
+              text-align: left;
+            }
+
+            .ant-form-item-control {
+              padding: 0;
+            }
+
+            .ant-form-item-control-input {
+              display: none;
+            }
+          }
+        }
+
+        &.ant-form-rtl {
+          .formSwitch {
+            .ant-form-item-label {
+              text-align: right;
+            }
+          }
+        }
+
+        .formItems--content {
+          margin-bottom: 60px;
+        }
+
+        .stepChangeCurrent--content {
+          position: fixed !important;
+          z-index: 99;
+          bottom: 0;
+          background: #F6F6F6;
+          padding: 1rem 3rem;
+          margin-top: 60px;
+          width: 100%;
+
+          @media (min-width: @screen-lg) {
+            width: calc(100% - (22% + 60px));
+            padding: 1rem 0;
+          }
+
+          @media (min-width: 1310px) {
+            width: calc(100% - (18.5% + 60px));
+            padding: 1rem 0;
+            padding: 1rem 0;
+          }
+
+          button {
+            width: 140px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.CollapseScrollTop {
+  position: absolute;
+  top: -120px;
+}
+
+.finishFormModal--content {
+  padding: 0;
+
+  .ant-result-icon {
+    svg {
+      font-size: 10rem;
+    }
+  }
+}
+
+.manufactureInfo--content,
+.settings--container {
+  padding: 0 3rem;
+
+  .ant-tabs {
+    .ant-tabs-nav {
+      margin-bottom: 3rem;
+      position: fixed !important;
+      z-index: 99;
+      top: 70.7px;
+      background: #F6F6F6;
+      width: 100% !important;
+      padding: 1rem 3rem 0;
+
+      @media (min-width: @screen-lg) {
+        width: calc(100% - 23%) !important;
+      }
+
+      @media (min-width: 1310px) {
+        width: calc(100% - 18.8%) !important;
+      }
+
+      .ant-tabs-tab {
+        min-width: 55px;
+
+        .ant-tabs-tab-btn {
+          font-size: 1.8rem;
+          font-weight: 600;
+          color: #333333;
+          margin: 0 auto;
+        }
+      }
+    }
+
+    .ant-tabs-content-holder {
+      padding-top: 6rem;
+
+      .manufactureInfo--formContent,
+      .settings--formContent {
+        .ant-input-group {
+          .ant-form-item {
+            margin-bottom: 0;
+            margin-right: 1rem;
+
+            .ant-form-item-control {
+              padding: 0;
+            }
+          }
+        }
+
+        .updateProfile--btn,
+        .changePassword--btn,
+        .stepChangeCurrent--content {
+          button {
+            width: 20rem;
+            height: 40px;
+            padding: 0;
+
+            span {
+              font-size: 1.5rem;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.settings--container {
+  .ant-skeleton {
+    display: block;
+    margin-bottom: 2.5rem;
+  }
+}
