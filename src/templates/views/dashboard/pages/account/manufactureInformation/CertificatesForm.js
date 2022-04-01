@@ -104,18 +104,6 @@ const CertificatesForm = (
                 />
               </Form.Item>
 
-
-
-              <Form.Item
-                name={['profile_fields', "75"]}
-                label={t(__('Issued By'))}
-                labelCol={{sm: 24, lg: 6}}
-              >
-                <Input
-                  allowClear
-                />
-              </Form.Item>
-
               <Form.Item
                 label={t(__('certification images'))}
                 valuePropName="fileList"
