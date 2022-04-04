@@ -331,3 +331,8 @@ export function fn_deadline(min) {
 export const fn_alternation = (x, y, extra) => {
   return extra ? (x * y) + 1 :  x * y;
 }
+
+export const fn_date_to_timestamp = strDate => {
+  const datum = Date.parse(strDate);
+  return datum / 1000;
+}
