@@ -184,14 +184,14 @@ const ManufactureInformation = () => {
 
       <Modal
         visible={ finishFormModalVisible }
-        title={ t('your_information_submit') }
+        title={ t(__('Information submitted successfully')) }
         footer={ false }
         onCancel={ handleCloseFinishFormModal }
       >
         <Result
           className="finishFormModal--content"
           status="success"
-          title={ t('your_information_submit') }
+          title={ t('information_submit_msg') }
         />
       </Modal>
 
