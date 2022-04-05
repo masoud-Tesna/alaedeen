@@ -3,11 +3,11 @@ import axios from "axios";
 
 import "./styles/ManufactureInformation.less";
 
-import { Col, Form, Modal, Result, Row, Tabs } from "antd";
+import { Button, Col, Form, Modal, Result, Row, Tabs } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import { useGetApiOld } from "../../../../../functions";
 import { useTranslation } from "react-i18next";
-import { __, scrollTop, SeoGenerator } from "../../../../../functions/Helper";
+import { __, fn_date_to_timestamp, scrollTop, SeoGenerator } from "../../../../../functions/Helper";
 import CompanyDetailsForm from "./manufactureInformation/CompanyDetailsForm";
 import ManufacturingCapabilityForm from "./manufactureInformation/ManufacturingCapabilityForm";
 import ExportCapabilityForm from "./manufactureInformation/ExportCapabilityForm";
@@ -16,10 +16,9 @@ import CompanyIntroductionForm from "./manufactureInformation/CompanyIntroductio
 import SupportForm from "./manufactureInformation/SupportForm";
 import { isLoadingAction, useSpinnerDispatch } from "../../../../../contexts/spiner/SpinnerContext";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";
+import Moment from "react-moment";
 
 const ManufactureInformation = () => {
-
-  const { TabPane } = Tabs;
 
   const { t } = useTranslation();
 
@@ -33,15 +32,7 @@ const ManufactureInformation = () => {
   const { spinnerDispatch } = useSpinnerDispatch();
 
   // use ref for add product form:
-  const [ companyDetailsFrm ] = Form.useForm();
-  const [ manufacturingCapabilityFrm ] = Form.useForm();
-  const [ exportCapabilityFrm ] = Form.useForm();
-  const [ certificatesFrm ] = Form.useForm();
-  const [ companyIntroductionFrm ] = Form.useForm();
-  const [ supportFrm ] = Form.useForm();
-
-  // state for save current tab key:
-  const [ currentTab, setCurrentTab ] = useState("1");
+  const [ ManufactureInformation ] = Form.useForm();
 
   // save image name in array state:
   const [ imageFileList, setImageFileList ] = useState({});
@@ -52,34 +43,7 @@ const ManufactureInformation = () => {
   // function for close finish submit form Modal:
   const handleCloseFinishFormModal = () => setFinishFormModalVisible(false);
 
-  const tabsHandleOnChange = activeTab => {
-    setCurrentTab(activeTab);
-
-    if (activeTab !== currentTab) {
-      const scrollTopTimer = setTimeout(() => {
-        scrollTop();
-      }, 100);
-
-      return () => clearTimeout(scrollTopTimer);
-    }
-  }
-
-  const handleNextTab = () => {
-    setCurrentTab(prev => (parseInt(prev) + 1).toString());
-    const scrollTopTimer = setTimeout(() => {
-      scrollTop();
-    }, 100);
-
-    return () => clearTimeout(scrollTopTimer);
-  };
-
   // get data from API:
-  const { data: officeSizesData } = useGetApiOld("get-profile-field-value-api", "field_id=8", "officeSizes", { refetchOnWindowFocus: false });
-  const officeSizes = officeSizesData || [];
-
-  const { data: employeesData } = useGetApiOld("get-profile-field-value-api", "field_id=5", "employees", { refetchOnWindowFocus: false });
-  const employees = employeesData || [];
-
   const { data: factorySizeData } = useGetApiOld("get-profile-field-value-api", "field_id=24", "factorySize", { refetchOnWindowFocus: false });
   const factorySize = factorySizeData || [];
 
@@ -197,23 +161,25 @@ const ManufactureInformation = () => {
 
   // function for submit form:
   const handleSubmitForm = values => {
-    values.company_id = user_data?.auth?.company_id;
+    values.company_id = +(user_data?.auth?.company_id);
 
+    // if isset field 90 (sata picker) change format:
+    if (values['profile_fields'][90]) {
+      values['profile_fields'][90] = fn_date_to_timestamp(values['profile_fields'][90].format('YYYY-MM'));
+    }
+
+    console.log(values)
 
     // show spinner (spinner context):
     spinnerDispatch(isLoadingAction(true));
 
-    axios.post(`https://alaedeen.com/horn/profile-update-api`, { ...values })
+    axios.post(`https://alaedeen.com/horn/manufacturer-information-api`, { ...values })
       .then(() => {
         // hidden spinner (spinner context):
         spinnerDispatch(isLoadingAction(false));
       })
       .then(() => {
-        if (currentTab === 6) {
-          setFinishFormModalVisible(true);
-        } else {
-          handleNextTab();
-        }
+        setFinishFormModalVisible(true);
       })
   }
 
@@ -241,89 +207,138 @@ const ManufactureInformation = () => {
       </Col>
 
       <Col id="manufactureInfo--content" span={ 24 } className="manufactureInfo--content">
-        <Tabs
-          activeKey={ currentTab }
-          cllassName="manufacturing--tab"
-          onChange={ tabsHandleOnChange }
+        <Form
+          className="h-100 manufactureInfo--formContent"
+          name="ManufactureInformation-form"
+          scrollToFirstError
+          form={ManufactureInformation}
+          onFinish={ handleSubmitForm }
         >
-          <TabPane className="manufacturingTab--content" tab={ t(__("Basic Company Details")) } key="1">
-            <CompanyDetailsForm
-              formRef={ companyDetailsFrm }
-              handleSubmitForm={ handleSubmitForm }
-              employees={ employees }
-              officeSizes={ officeSizes }
-            />
-          </TabPane>
+          <Row className="manufactureInfoForm--certificates" justify="center">
+            <Col xs={24} lg={22} className="formItems--content">
+              <Row gutter={[0, 30]}>
+                <Col span={24}>
+                  <Row gutter={[0, 20]}>
+                    <Col span={24} className="__title">
+                      { t(__("Basic Company Details")) }
+                    </Col>
+                    <Col span={24}>
+                      <CompanyDetailsForm />
+                    </Col>
+                  </Row>
+                </Col>
 
-          { (businessType.length && !businessType?.includes("service")) &&
-            <TabPane className="manufacturingTab--content" tab={ t(__("manufacturing_capability")) } key="2">
-            <ManufacturingCapabilityForm
-              formRef={ manufacturingCapabilityFrm }
-              handleSubmitForm={ handleSubmitForm }
-              handleUploadImage={ handleUploadImage }
-              handleOnRemoveImage={ handleOnRemoveImage }
-              handleImageUploadChange={ handleImageUploadChange }
-              imageFileList={ imageFileList }
-              factorySize={ factorySize }
-              qualityControlStaffs={ qualityControlStaffs }
-              researchesStaffs={ researchesStaffs }
-              units={ units }
-              totalTransactions={ totalTransactions }
-              businessType={ businessType }
-            />
-          </TabPane>
-          }
+                <Col span={24}>
+                  <Row gutter={[0, 20]}>
+                    <Col span={24} className="__title">
+                      { t(__("manufacturing_capability")) }
+                    </Col>
+                    <Col span={24}>
+                      <ManufacturingCapabilityForm
+                        formRef={ ManufactureInformation }
+                        handleSubmitForm={ handleSubmitForm }
+                        handleUploadImage={ handleUploadImage }
+                        handleOnRemoveImage={ handleOnRemoveImage }
+                        handleImageUploadChange={ handleImageUploadChange }
+                        imageFileList={ imageFileList }
+                        factorySize={ factorySize }
+                        qualityControlStaffs={ qualityControlStaffs }
+                        researchesStaffs={ researchesStaffs }
+                        units={ units }
+                        totalTransactions={ totalTransactions }
+                        businessType={ businessType }
+                      />
+                    </Col>
+                  </Row>
+                </Col>
 
-          <TabPane className="manufacturingTab--content" tab={ t(__("Export Capability")) } key="3">
-            <ExportCapabilityForm
-              formRef={ exportCapabilityFrm }
-              handleSubmitForm={ handleSubmitForm }
-              countryLists={ countryLists }
-              handleUploadImage={ handleUploadImage }
-              handleOnRemoveImage={ handleOnRemoveImage }
-              handleImageUploadChange={ handleImageUploadChange }
-              imageFileList={ imageFileList }
-              countryCodes={ countryCodes }
-              duties={ duties }
-              acceptedDeliveries={ acceptedDeliveries }
-              paymentCurrencies={ paymentCurrencies }
-              languagesSpoken={ languagesSpoken }
-            />
-          </TabPane>
+                <Col span={24}>
+                  <Row gutter={[0, 20]}>
+                    <Col span={24} className="__title">
+                      { t(__("Export Capability")) }
+                    </Col>
+                    <Col span={24}>
+                      <ExportCapabilityForm
+                        formRef={ ManufactureInformation }
+                        handleSubmitForm={ handleSubmitForm }
+                        countryLists={ countryLists }
+                        handleUploadImage={ handleUploadImage }
+                        handleOnRemoveImage={ handleOnRemoveImage }
+                        handleImageUploadChange={ handleImageUploadChange }
+                        imageFileList={ imageFileList }
+                        countryCodes={ countryCodes }
+                        duties={ duties }
+                        acceptedDeliveries={ acceptedDeliveries }
+                        paymentCurrencies={ paymentCurrencies }
+                        languagesSpoken={ languagesSpoken }
+                      />
+                    </Col>
+                  </Row>
+                </Col>
 
-          <TabPane className="manufacturingTab--content" tab={ t(__("certificates")) } key="4">
-            <CertificatesForm
-              formRef={ certificatesFrm }
-              handleSubmitForm={ handleSubmitForm }
-              handleUploadImage={ handleUploadImage }
-              handleOnRemoveImage={ handleOnRemoveImage }
-              handleImageUploadChange={ handleImageUploadChange }
-              imageFileList={ imageFileList }
-              certificationTypes={ certificationTypes }
-            />
-          </TabPane>
+                <Col span={24}>
+                  <Row gutter={[0, 20]}>
+                    <Col span={24} className="__title">
+                      { t(__("certificates")) }
+                    </Col>
+                    <Col span={24}>
+                      <CertificatesForm
+                        formRef={ ManufactureInformation }
+                        handleSubmitForm={ handleSubmitForm }
+                        handleUploadImage={ handleUploadImage }
+                        handleOnRemoveImage={ handleOnRemoveImage }
+                        handleImageUploadChange={ handleImageUploadChange }
+                        imageFileList={ imageFileList }
+                        certificationTypes={ certificationTypes }
+                      />
+                    </Col>
+                  </Row>
+                </Col>
 
-          <TabPane className="manufacturingTab--content" tab={ t(__("Company Introduction")) } key="5">
-            <CompanyIntroductionForm
-              formRef={ companyIntroductionFrm }
-              handleSubmitForm={ handleSubmitForm }
-              handleUploadImage={ handleUploadImage }
-              handleOnRemoveImage={ handleOnRemoveImage }
-              handleImageUploadChange={ handleImageUploadChange }
-              imageFileList={ imageFileList }
-              countryLists={ countryLists }
-            />
-          </TabPane>
+                <Col span={24}>
+                  <Row gutter={[0, 20]}>
+                    <Col span={24} className="__title">
+                      { t(__("Company Introduction")) }
+                    </Col>
+                    <Col span={24}>
+                      <CompanyIntroductionForm
+                        formRef={ ManufactureInformation }
+                        handleSubmitForm={ handleSubmitForm }
+                        handleUploadImage={ handleUploadImage }
+                        handleOnRemoveImage={ handleOnRemoveImage }
+                        handleImageUploadChange={ handleImageUploadChange }
+                        imageFileList={ imageFileList }
+                        countryLists={ countryLists }
+                      />
+                    </Col>
+                  </Row>
+                </Col>
 
-          <TabPane className="manufacturingTab--content" tab={ t(__("Support")) } key="6">
-            <SupportForm
-              formRef={ supportFrm }
-              handleSubmitForm={ handleSubmitForm }
-              handleUploadImage={ handleUploadImage }
-              countryLists={ countryLists }
-            />
-          </TabPane>
-        </Tabs>
+                <Col span={24}>
+                  <Row gutter={[0, 20]}>
+                    <Col span={24} className="__title">
+                      { t(__("Support")) }
+                    </Col>
+                    <Col span={24}>
+                      <SupportForm
+                        formRef={ ManufactureInformation }
+                        handleSubmitForm={ handleSubmitForm }
+                        handleUploadImage={ handleUploadImage }
+                        countryLists={ countryLists }
+                      />
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+            </Col>
+
+            <Col span={24} className="stepChangeCurrent--content">
+              <Button type="primary" htmlType="submit">
+                { t('submit') }
+              </Button>
+            </Col>
+          </Row>
+        </Form>
       </Col>
     </Row>
   );
