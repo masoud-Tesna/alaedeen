@@ -64,24 +64,20 @@ const DashboardRoutes = () => {
               <Route index path="*" element={ <Navigate to="manage-information" /> }/>
 
               <Route path="manage-information" element={ <Suspense fallback={null}><StoreInformation /></Suspense> }/>
+
+              <Route path="categories">
+                <Route index element={ <Suspense fallback={null}><ManageCategories /></Suspense> }/>
+
+                <Route path=":categoryId" element={ <Suspense fallback={null}><h1>Edit Category</h1></Suspense> }/>
+              </Route>
             </Route>
 
             <Route path="products">
-              <Route index element={ <Navigate to="manage"/> }/>
-
-              <Route path="manage" element={ <Suspense fallback={null}><ManageProducts /></Suspense> }/>
+              <Route index element={ <Suspense fallback={null}><ManageProducts /></Suspense> }/>
 
               <Route path="create" element={ <Suspense fallback={null}><CreateProduct /></Suspense> }/>
 
               <Route path=":productId" element={ <Suspense fallback={null}><UpdateProduct /></Suspense> }/>
-            </Route>
-
-            <Route path="categories">
-              <Route index element={ <Navigate to="manage"/> }/>
-
-              <Route path="manage" element={ <Suspense fallback={null}><ManageCategories /></Suspense> }/>
-
-              <Route path=":categoryId" element={ <Suspense fallback={null}><h1>Edit Category</h1></Suspense> }/>
             </Route>
 
             <Route path="business-promotion" element={ <Suspense fallback={null}><BusinessPromotion /></Suspense> }/>

@@ -39,6 +39,8 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
 
   const planId = user_data?.auth?.plan_id || null;
 
+  const isPersonalStore = user_data?.auth?.pay_for_store === "Y";
+
   const urlPath = pathname?.split("/").filter(Boolean);
 
   // remove first item of array (first item is "dashboard") :
@@ -58,17 +60,11 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
     urlPath[1] = urlPath[1] === "settings" ? "account-settings" : "manufacturer-information";
   }
 
-  else if (urlPath[0] === "products") {
-    urlPath[1] = "manageProducts";
-  }
-
-  else if (urlPath[0] === "categories") {
-    urlPath[0] = "personal-store";
-    urlPath[1] = "manageCategories";
-  }
-
   else if (urlPath[0] === "personal-store") {
-    urlPath[1] = urlPath[1] === "manage-information" ? "store-information" : urlPath[1];
+    urlPath[1] =
+      urlPath[1] === "manage-information" ?
+        "store-information" :
+        urlPath[1];
   }
 
   // if remove first item and url is: /dashboard => array is empty => That's why we add the dashboard to the array:
@@ -262,19 +258,21 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
                   }
                 </SubMenu>
 
-                <SubMenu key="personal-store" icon={<i className="fa-light fa-store" />} title={ t('personal_store') }>
-                  <Item key="store-information">
-                    <Link to="/dashboard/personal-store/manage-information" className="side--link">
-                      { t('manage_information') }
-                    </Link>
-                  </Item>
+                {isPersonalStore &&
+                  <SubMenu key="personal-store" icon={<i className="fa-light fa-store" />} title={ t('personal_store') }>
+                    <Item key="store-information">
+                      <Link to="/dashboard/personal-store/manage-information" className="side--link">
+                        { t('manage_information') }
+                      </Link>
+                    </Item>
 
-                  <Item key="manageCategories">
-                    <Link to="/dashboard/categories/manage" className="side--link">
-                      { t('manage_categories') }
-                    </Link>
-                  </Item>
-                </SubMenu>
+                    <Item key="categories">
+                      <Link to="/dashboard/personal-store/categories" className="side--link">
+                        { t('manage_categories') }
+                      </Link>
+                    </Item>
+                  </SubMenu>
+                }
 
                 <Menu.Item key="support" icon={ <i className="fa-light fa-user-headset" /> }>
                   <a href="https://alaedeen.com/horn/my-tickets/" className="side--link">
@@ -288,13 +286,11 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
 
                 </SubMenu>
 
-                <SubMenu key="products" icon={<i className="fa-brands fa-product-hunt" />} title={ t('products_and_categories') }>
-                  <Item key="manageProducts">
-                    <Link to="/dashboard/products/manage" className="side--link">
-                      { t('manage_products') }
-                    </Link>
-                  </Item>
-                </SubMenu>
+                <Menu.Item key="products" icon={<i className="fa-brands fa-product-hunt" />}>
+                  <Link to="/dashboard/products" className="side--link">
+                    { t('products') }
+                  </Link>
+                </Menu.Item>
 
                 <Menu.Item key="business-promotion"  icon={ <i className="fa-light fa-arrow-trend-up" /> }> {/* TODO: this is old icon <i className="fal fa-box-check" />*/}
                   <Link to="/dashboard/business-promotion" className="side--link">
