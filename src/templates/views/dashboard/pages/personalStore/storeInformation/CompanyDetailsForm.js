@@ -11,7 +11,6 @@ const CompanyDetailsForm = (
   }
 ) => {
 
-  const { TextArea } = Input;
   const { Option } = Select;
 
   const { t } = useTranslation();
@@ -39,17 +38,6 @@ const CompanyDetailsForm = (
     >
       <Row className="manufactureInfoForm--companyDetails" justify="center">
         <Col xs={24} lg={22} className="formItems--content">
-          <Form.Item
-            name={['profile_fields', "1"]}
-            label={t(__('Company Operational Address'))}
-            labelCol={{sm: 24, lg: 6}}
-          >
-            <TextArea
-              autoSize={{ minRows: 2}}
-              allowClear
-            />
-          </Form.Item>
-
           <Form.Item
             name={['profile_fields', "2"]}
             label={t(__('Zip/Postal Code'))}
@@ -142,19 +130,6 @@ const CompanyDetailsForm = (
                 );
               })}
             </Select>
-          </Form.Item>
-
-          <Form.Item
-            name={['profile_fields', "9"]}
-            label={t(__('Company Advantages'))}
-            labelCol={{sm: 24, lg: 6}}
-          >
-            <TextArea
-              placeholder={t(__('Company Advantages'))}
-              showCount
-              maxLength={1024}
-              autoSize={{ minRows: 4, maxRows: 5 }}
-            />
           </Form.Item>
         </Col>
 

@@ -13,7 +13,6 @@ import ManufacturingCapabilityForm from "./storeInformation/ManufacturingCapabil
 import ExportCapabilityForm from "./storeInformation/ExportCapabilityForm";
 import CertificatesForm from "./storeInformation/CertificatesForm";
 import CompanyIntroductionForm from "./storeInformation/CompanyIntroductionForm";
-import SupportForm from "./storeInformation/SupportForm";
 import { isLoadingAction, useSpinnerDispatch } from "../../../../../contexts/spiner/SpinnerContext";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 
@@ -38,7 +37,6 @@ const StoreInformation = () => {
   const [ exportCapabilityFrm ] = Form.useForm();
   const [ certificatesFrm ] = Form.useForm();
   const [ companyIntroductionFrm ] = Form.useForm();
-  const [ supportFrm ] = Form.useForm();
 
   // state for save current tab key:
   const [ currentTab, setCurrentTab ] = useState("1");
@@ -80,9 +78,6 @@ const StoreInformation = () => {
   const { data: employeesData } = useGetApiOld("get-profile-field-value-api", "field_id=5", "employees", { refetchOnWindowFocus: false });
   const employees = employeesData || [];
 
-  const { data: factorySizeData } = useGetApiOld("get-profile-field-value-api", "field_id=24", "factorySize", { refetchOnWindowFocus: false });
-  const factorySize = factorySizeData || [];
-
   const { data: qualityControlStaffsData } = useGetApiOld("get-profile-field-value-api", "field_id=25", "qualityControlStaffs", { refetchOnWindowFocus: false });
   const qualityControlStaffs = qualityControlStaffsData || [];
 
@@ -97,18 +92,6 @@ const StoreInformation = () => {
 
   const { data: totalTransactionsData } = useGetApiOld("get-profile-field-value-api", "field_id=112", "total_transactions", { refetchOnWindowFocus: false });
   const totalTransactions = totalTransactionsData || [];
-
-  const { data: acceptedDeliveriesData } = useGetApiOld("get-profile-field-value-api", "field_id=69&order_by=description", "acceptedDeliveries", { refetchOnWindowFocus: false });
-  const acceptedDeliveries = acceptedDeliveriesData || [];
-
-  const { data: paymentCurrenciesData } = useGetApiOld("get-profile-field-value-api", "field_id=70", "paymentCurrencies", { refetchOnWindowFocus: false });
-  const paymentCurrencies = paymentCurrenciesData || [];
-
-  const { data: languagesSpokenData } = useGetApiOld("get-profile-field-value-api", "field_id=71", "languagesSpoken", { refetchOnWindowFocus: false });
-  const languagesSpoken = languagesSpokenData || [];
-
-  const { data: certificationTypesData } = useGetApiOld("get-profile-field-value-api", "field_id=73", "certificationTypes", { refetchOnWindowFocus: false });
-  const certificationTypes = certificationTypesData || [];
 
   const { data: countryListsData } = useGetApiOld(`country-lists-api`, '', `countryLists`, { refetchOnWindowFocus: false });
   const countryLists = countryListsData || [];
@@ -209,7 +192,7 @@ const StoreInformation = () => {
         spinnerDispatch(isLoadingAction(false));
       })
       .then(() => {
-        if (currentTab === 6) {
+        if (currentTab === 5) {
           setFinishFormModalVisible(true);
         } else {
           handleNextTab();
@@ -225,14 +208,14 @@ const StoreInformation = () => {
 
       <Modal
         visible={ finishFormModalVisible }
-        title={ t('your_information_submit') }
+        title={ t(__('Information submitted successfully')) }
         footer={ false }
         onCancel={ handleCloseFinishFormModal }
       >
         <Result
           className="finishFormModal--content"
           status="success"
-          title={ t('your_information_submit') }
+          title={ t('information_submit_msg') }
         />
       </Modal>
 
@@ -263,7 +246,6 @@ const StoreInformation = () => {
               handleOnRemoveImage={ handleOnRemoveImage }
               handleImageUploadChange={ handleImageUploadChange }
               imageFileList={ imageFileList }
-              factorySize={ factorySize }
               qualityControlStaffs={ qualityControlStaffs }
               researchesStaffs={ researchesStaffs }
               units={ units }
@@ -283,9 +265,6 @@ const StoreInformation = () => {
               imageFileList={ imageFileList }
               countryCodes={ countryCodes }
               duties={ duties }
-              acceptedDeliveries={ acceptedDeliveries }
-              paymentCurrencies={ paymentCurrencies }
-              languagesSpoken={ languagesSpoken }
             />
           </TabPane>
 
@@ -293,11 +272,6 @@ const StoreInformation = () => {
             <CertificatesForm
               formRef={ certificatesFrm }
               handleSubmitForm={ handleSubmitForm }
-              handleUploadImage={ handleUploadImage }
-              handleOnRemoveImage={ handleOnRemoveImage }
-              handleImageUploadChange={ handleImageUploadChange }
-              imageFileList={ imageFileList }
-              certificationTypes={ certificationTypes }
             />
           </TabPane>
 
@@ -305,20 +279,6 @@ const StoreInformation = () => {
             <CompanyIntroductionForm
               formRef={ companyIntroductionFrm }
               handleSubmitForm={ handleSubmitForm }
-              handleUploadImage={ handleUploadImage }
-              handleOnRemoveImage={ handleOnRemoveImage }
-              handleImageUploadChange={ handleImageUploadChange }
-              imageFileList={ imageFileList }
-              countryLists={ countryLists }
-            />
-          </TabPane>
-
-          <TabPane className="manufacturingTab--content" tab={ t(__("Support")) } key="6">
-            <SupportForm
-              formRef={ supportFrm }
-              handleSubmitForm={ handleSubmitForm }
-              handleUploadImage={ handleUploadImage }
-              countryLists={ countryLists }
             />
           </TabPane>
         </Tabs>
