@@ -42,6 +42,10 @@ const DashboardRoutes = () => {
 
   const { user_data } = useGetAuthState();
 
+  const planId = user_data?.auth?.plan_id || null;
+
+  const isPersonalStore = user_data?.auth?.pay_for_store === "Y";
+
   return (
     <Route path="dashboard">
 
@@ -61,15 +65,20 @@ const DashboardRoutes = () => {
             </Route>
 
             <Route path="personal-store">
-              <Route index path="*" element={ <Navigate to="manage-information" /> }/>
+              {isPersonalStore ?
+                <>
+                  <Route index path="*" element={ <Navigate to="manage-information" /> }/>
 
-              <Route path="manage-information" element={ <Suspense fallback={null}><StoreInformation /></Suspense> }/>
+                  <Route path="manage-information" element={ <Suspense fallback={null}><StoreInformation /></Suspense> }/>
 
-              <Route path="categories">
-                <Route index element={ <Suspense fallback={null}><ManageCategories /></Suspense> }/>
+                  <Route path="categories">
+                    <Route index element={ <Suspense fallback={null}><ManageCategories /></Suspense> }/>
 
-                <Route path=":categoryId" element={ <Suspense fallback={null}><h1>Edit Category</h1></Suspense> }/>
-              </Route>
+                    <Route path=":categoryId" element={ <Suspense fallback={null}><h1>Edit Category</h1></Suspense> }/>
+                  </Route>
+                </> :
+                <Route index path="*" element={ <Navigate to="/dashboard" /> }/>
+              }
             </Route>
 
             <Route path="products">
@@ -90,7 +99,7 @@ const DashboardRoutes = () => {
               <Route path="*" element={ <Navigate to="" /> }/>
             </Route>
 
-            <Route path="affiliate" element={ <Suspense fallback={null}><Affiliate /></Suspense> }/>
+            <Route path="affiliate" element={ planId === "14" ? <Suspense fallback={null}><Affiliate /></Suspense> : <Navigate to="/dashboard" /> }/>
 
             <Route path="requests">
               <Route index element={ <Navigate to="/dashboard"/> }/>

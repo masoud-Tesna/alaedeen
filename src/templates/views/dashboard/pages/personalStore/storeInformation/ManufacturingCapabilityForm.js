@@ -49,7 +49,7 @@ const ManufacturingCapabilityForm = (
         <Col xs={ 24 } lg={ 22 } className="formItems--content">
 
           { // if user business type equal to trading get different information:
-            businessType.includes("trading") ?
+            (businessType?.length === 1 && businessType?.includes("trading")) ?
               <>
 
                 <Form.Item
@@ -345,6 +345,302 @@ const ManufacturingCapabilityForm = (
               </> :
 
               <>
+                {businessType.includes("trading") &&
+                  <>
+
+                    <Form.Item
+                      name={ [ 'profile_fields', "108" ] }
+                      label={ t(__('do you cooperate with a factory')) }
+                      labelCol={ { span: 24 } }
+                      initialValue={ "Y" }
+                      className="formSwitch"
+                    >
+                      <Switch
+                        checkedChildren={ t('yes') }
+                        unCheckedChildren={ t('no') }
+                        defaultChecked
+                        className="formSwitch--switch"
+                        onChange={ value => {
+                          formRef?.setFieldsValue({
+                            "profile_fields": {
+                              108: value ? "Y" : "N"
+                            },
+                          });
+                        } }
+                      />
+                    </Form.Item>
+
+                    <Row>
+                      <Col span={ 24 } className="mb-4 border border-bc rounded-5 formCloneable">
+                        <Form.Item
+                          name={ [ 'profile_fields', "109" ] }
+                          label={ t(__('factory name')) }
+                          labelCol={ { sm: 24, lg: 6 } }
+                        >
+                          <Input
+                            allowClear
+                          />
+                        </Form.Item>
+
+                        <Form.Item
+                          label={ t(__('cooperation contract')) }
+                          valuePropName="fileList"
+                          labelCol={ { sm: 24, lg: 6 } }
+                          extra={t(__('cooperation contract message'))}
+                        >
+                          <ImagesUploader
+                            handleCustomRequest={ options => handleUploadImage({
+                              ...options,
+                              inputName: 110
+                            }) }
+                            handleOnRemove={ file => handleOnRemoveImage({
+                              ...file,
+                              inputName: 110
+                            }) }
+                            handleOnChange={ handleImageUploadChange }
+                            imageFileList={ imageFileList }
+                            uploadBtnText="select image"
+                            uploadBtnIcon={ <UploadOutlined/> }
+                            customClassName="addProduct--imageUploader"
+                          />
+                        </Form.Item>
+
+                        <Form.Item
+                          name={['profile_fields', "111"]}
+                          label={ t(__('years of cooperation')) }
+                          labelCol={{sm: 24, lg: 6}}
+                        >
+                          <Select
+                            placeholder={ t(__('years of cooperation')) }
+                            className="w-30"
+                            allowClear
+                            showSearch
+                            filterOption={(input, option) =>
+                              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                            }
+                          >
+
+                            {new Array(11).fill("", 1, 11).map((__, i) => {
+                              return(
+                                <Option key={`cooperation_year_${i}`} value={ i }>
+                                  { t("cooperation_year", { years: i }) }
+                                </Option>
+                              )
+                            })}
+
+                            <Option key={`cooperation_year_more_10`} value="> 10">
+                              { t("cooperation_year", { years: "> 10" }) }
+                            </Option>
+                          </Select>
+                        </Form.Item>
+
+                        <Form.Item
+                          name={['profile_fields', "112"]}
+                          label={ t(__('Total Transaction Amount with the Factory')) }
+                          labelCol={{sm: 24, lg: 6}}
+                        >
+                          <Select
+                            placeholder={ t(__('Total Transaction')) }
+                            className="w-30"
+                            allowClear
+                            showSearch
+                            filterOption={(input, option) =>
+                              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                            }
+                          >
+                            {totalTransactions.length && totalTransactions?.map(totalTransaction => {
+                              return (
+                                <Option
+                                  key={ `total_transaction_${ totalTransaction?.value_id }` }
+                                  value={ totalTransaction?.value_id }
+                                >
+                                  { t(__(totalTransaction?.description)) }
+                                </Option>
+                              );
+                            })}
+                          </Select>
+                        </Form.Item>
+
+                        <Form.Item
+                          label={ t(__('Production Capacity')) }
+                          labelCol={ { sm: 24, lg: 6 } }
+                        >
+                          <Row gutter={[0, 10]}>
+                            <Col span={24}>
+                              <Row gutter={5}>
+                                <Col span={8}>
+                                  <Form.Item
+                                    name={ [ 'profile_fields', "product_capacity", 0, "product" ] }
+                                    label={ t(__('Product')) }
+                                    labelCol={ { sm: 24, lg: 6 } }
+                                  >
+                                    <Input
+                                      allowClear
+                                    />
+                                  </Form.Item>
+                                </Col>
+
+                                <Col span={11}>
+                                  <Form.Item
+                                    name={ [ 'profile_fields', "product_capacity", 0, "product_volume" ] }
+                                    label={ t(__('Annual Production Volume')) }
+                                    labelCol={ { sm: 24, lg: 15 } }
+                                  >
+                                    <Input
+                                      allowClear
+                                    />
+                                  </Form.Item>
+                                </Col>
+
+                                <Col span={5}>
+                                  <Form.Item
+                                    name={ [ 'profile_fields', "product_capacity", 0, "unit" ] }
+                                    labelCol={ { sm: 24, lg: 6 } }
+                                  >
+                                    <Select
+                                      placeholder={ t(__('Select Unit Type')) }
+                                      className="w-100"
+                                      allowClear
+                                      showSearch
+                                      filterOption={ (input, option) =>
+                                        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                      }
+                                    >
+                                      { units.length && units?.map(unit => {
+                                        return (
+                                          <Option
+                                            key={ `units_${ unit?.value_id }` }
+                                            value={ unit?.value_id }
+                                          >
+                                            { t(__(unit?.description)) }
+                                          </Option>
+                                        );
+                                      }) }
+                                    </Select>
+                                  </Form.Item>
+                                </Col>
+                              </Row>
+                            </Col>
+
+                            <Col span={24}>
+                              <Row gutter={5}>
+                                <Col span={8}>
+                                  <Form.Item
+                                    name={ [ 'profile_fields', "product_capacity", 1, "product" ] }
+                                    label={ t(__('Product')) }
+                                    labelCol={ { sm: 24, lg: 6 } }
+                                  >
+                                    <Input
+                                      allowClear
+                                    />
+                                  </Form.Item>
+                                </Col>
+
+                                <Col span={11}>
+                                  <Form.Item
+                                    name={ [ 'profile_fields', "product_capacity", 1, "product_volume" ] }
+                                    label={ t(__('Annual Production Volume')) }
+                                    labelCol={ { sm: 24, lg: 15 } }
+                                  >
+                                    <Input
+                                      allowClear
+                                    />
+                                  </Form.Item>
+                                </Col>
+
+                                <Col span={5}>
+                                  <Form.Item
+                                    name={ [ 'profile_fields', "product_capacity", 1, "unit" ] }
+                                    labelCol={ { sm: 24, lg: 6 } }
+                                  >
+                                    <Select
+                                      placeholder={ t(__('Select Unit Type')) }
+                                      className="w-100"
+                                      allowClear
+                                      showSearch
+                                      filterOption={ (input, option) =>
+                                        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                      }
+                                    >
+                                      { units.length && units?.map(unit => {
+                                        return (
+                                          <Option
+                                            key={ `units_${ unit?.value_id }` }
+                                            value={ unit?.value_id }
+                                          >
+                                            { t(__(unit?.description)) }
+                                          </Option>
+                                        );
+                                      }) }
+                                    </Select>
+                                  </Form.Item>
+                                </Col>
+                              </Row>
+                            </Col>
+
+                            <Col span={24}>
+                              <Row gutter={5}>
+                                <Col span={8}>
+                                  <Form.Item
+                                    name={ [ 'profile_fields', "product_capacity", 2, "product" ] }
+                                    label={ t(__('Product')) }
+                                    labelCol={ { sm: 24, lg: 6 } }
+                                  >
+                                    <Input
+                                      allowClear
+                                    />
+                                  </Form.Item>
+                                </Col>
+
+                                <Col span={11}>
+                                  <Form.Item
+                                    name={ [ 'profile_fields', "product_capacity", 2, "product_volume" ] }
+                                    label={ t(__('Annual Production Volume')) }
+                                    labelCol={ { sm: 24, lg: 15 } }
+                                  >
+                                    <Input
+                                      allowClear
+                                    />
+                                  </Form.Item>
+                                </Col>
+
+                                <Col span={5}>
+                                  <Form.Item
+                                    name={ [ 'profile_fields', "product_capacity", 2, "unit" ] }
+                                    labelCol={ { sm: 24, lg: 6 } }
+                                  >
+                                    <Select
+                                      placeholder={ t(__('Select Unit Type')) }
+                                      className="w-100"
+                                      allowClear
+                                      showSearch
+                                      filterOption={ (input, option) =>
+                                        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                      }
+                                    >
+                                      { units.length && units?.map(unit => {
+                                        return (
+                                          <Option
+                                            key={ `units_${ unit?.value_id }` }
+                                            value={ unit?.value_id }
+                                          >
+                                            { t(__(unit?.description)) }
+                                          </Option>
+                                        );
+                                      }) }
+                                    </Select>
+                                  </Form.Item>
+                                </Col>
+                              </Row>
+                            </Col>
+                          </Row>
+                        </Form.Item>
+                      </Col>
+                    </Row>
+
+                  </>
+                }
+
                 <Form.Item
                   name={ [ 'profile_fields', "10" ] }
                   label={ t(__('Whether to show production line')) }
