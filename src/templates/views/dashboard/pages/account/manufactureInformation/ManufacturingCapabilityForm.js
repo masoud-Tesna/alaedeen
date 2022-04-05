@@ -28,88 +28,28 @@ const ManufacturingCapabilityForm = (
   return (
     // if user business type equal to trading get different information:
     (businessType?.length === 1 && businessType?.includes("trading")) ?
-      <>
-
-        <Form.Item
-          name={ [ 'profile_fields', "108" ] }
-          label={ t(__('do you cooperate with a factory')) }
-          labelCol={ { span: 24 } }
-          initialValue={ "Y" }
-          className="formSwitch"
-        >
-          <Switch
-            checkedChildren={ t('yes') }
-            unCheckedChildren={ t('no') }
-            defaultChecked
-            className="formSwitch--switch"
-            onChange={ value => {
-              formRef?.setFieldsValue({
-                "profile_fields": {
-                  108: value ? "Y" : "N"
-                },
-              });
-            } }
-          />
-        </Form.Item>
-
-        <Row>
-          <Col span={ 24 } className="mb-4 border border-bc rounded-5 formCloneable">
-            <Form.Item
-              name={ [ 'profile_fields', "109" ] }
-              label={ t(__('factory name')) }
-              labelCol={ { sm: 24, lg: 6 } }
-            >
-              <Input
-                allowClear
-              />
-            </Form.Item>
-          </Col>
-        </Row>
-
-      </> :
+      <Form.Item
+        name={ [ 'profile_fields', "109" ] }
+        label={ t(__('factory name')) }
+        labelCol={ { sm: 24, lg: 6 } }
+      >
+        <Input
+          allowClear
+        />
+      </Form.Item> :
 
       <>
 
         {businessType.includes("trading") &&
-          <>
-
-            <Form.Item
-              name={ [ 'profile_fields', "108" ] }
-              label={ t(__('do you cooperate with a factory')) }
-              labelCol={ { span: 24 } }
-              initialValue={ "Y" }
-              className="formSwitch"
-            >
-              <Switch
-                checkedChildren={ t('yes') }
-                unCheckedChildren={ t('no') }
-                defaultChecked
-                className="formSwitch--switch"
-                onChange={ value => {
-                  formRef?.setFieldsValue({
-                    "profile_fields": {
-                      108: value ? "Y" : "N"
-                    },
-                  });
-                } }
-              />
-            </Form.Item>
-
-            <Row>
-              <Col span={ 24 } className="mb-4 border border-bc rounded-5 formCloneable">
-                <Form.Item
-                  name={ [ 'profile_fields', "109" ] }
-                  label={ t(__('factory name')) }
-                  labelCol={ { sm: 24, lg: 6 } }
-                >
-                  <Input
-                    allowClear
-                  />
-                </Form.Item>
-              </Col>
-            </Row>
-
-          </>
+          <Form.Item
+            name={ [ 'profile_fields', "109" ] }
+            label={ t(__('factory name')) }
+            labelCol={ { sm: 24, lg: 6 } }
+          >
+            <Input
+              allowClear
+            />
+          </Form.Item>
         }
 
         <Form.Item
