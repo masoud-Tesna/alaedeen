@@ -16,7 +16,6 @@ import CompanyIntroductionForm from "./manufactureInformation/CompanyIntroductio
 import SupportForm from "./manufactureInformation/SupportForm";
 import { isLoadingAction, useSpinnerDispatch } from "../../../../../contexts/spiner/SpinnerContext";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";
-import Moment from "react-moment";
 
 const ManufactureInformation = () => {
 
@@ -216,9 +215,9 @@ const ManufactureInformation = () => {
         >
           <Row className="manufactureInfoForm--certificates" justify="center">
             <Col xs={24} lg={22} className="formItems--content">
-              <Row gutter={[0, 30]}>
+              <Row gutter={[0, 45]}>
                 <Col span={24}>
-                  <Row gutter={[0, 20]}>
+                  <Row gutter={[0, 30]}>
                     <Col span={24} className="__title">
                       { t(__("Basic Company Details")) }
                     </Col>
@@ -229,7 +228,7 @@ const ManufactureInformation = () => {
                 </Col>
 
                 <Col span={24}>
-                  <Row gutter={[0, 20]}>
+                  <Row gutter={[0, 30]}>
                     <Col span={24} className="__title">
                       { t(__("manufacturing_capability")) }
                     </Col>
@@ -253,7 +252,7 @@ const ManufactureInformation = () => {
                 </Col>
 
                 <Col span={24}>
-                  <Row gutter={[0, 20]}>
+                  <Row gutter={[0, 30]}>
                     <Col span={24} className="__title">
                       { t(__("Export Capability")) }
                     </Col>
@@ -277,7 +276,7 @@ const ManufactureInformation = () => {
                 </Col>
 
                 <Col span={24}>
-                  <Row gutter={[0, 20]}>
+                  <Row gutter={[0, 30]}>
                     <Col span={24} className="__title">
                       { t(__("certificates")) }
                     </Col>
@@ -296,7 +295,7 @@ const ManufactureInformation = () => {
                 </Col>
 
                 <Col span={24}>
-                  <Row gutter={[0, 20]}>
+                  <Row gutter={[0, 30]}>
                     <Col span={24} className="__title">
                       { t(__("Company Introduction")) }
                     </Col>
@@ -315,7 +314,7 @@ const ManufactureInformation = () => {
                 </Col>
 
                 <Col span={24}>
-                  <Row gutter={[0, 20]}>
+                  <Row gutter={[0, 30]}>
                     <Col span={24} className="__title">
                       { t(__("Support")) }
                     </Col>
