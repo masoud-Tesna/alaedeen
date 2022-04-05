@@ -63,8 +63,12 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   }
 
   else if (urlPath[0] === "categories") {
-    urlPath[0] = "products";
+    urlPath[0] = "personal-store";
     urlPath[1] = "manageCategories";
+  }
+
+  else if (urlPath[0] === "personal-store") {
+    urlPath[1] = urlPath[1] === "manage-information" ? "store-information" : urlPath[1];
   }
 
   // if remove first item and url is: /dashboard => array is empty => That's why we add the dashboard to the array:
@@ -260,8 +264,14 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
 
                 <SubMenu key="personal-store" icon={<i className="fa-light fa-store" />} title={ t('personal_store') }>
                   <Item key="store-information">
-                    <Link to="/dashboard/personal-store/store-information" className="side--link">
-                      { t('manufacturer_information') }
+                    <Link to="/dashboard/personal-store/manage-information" className="side--link">
+                      { t('manage_information') }
+                    </Link>
+                  </Item>
+
+                  <Item key="manageCategories">
+                    <Link to="/dashboard/categories/manage" className="side--link">
+                      { t('manage_categories') }
                     </Link>
                   </Item>
                 </SubMenu>
@@ -282,11 +292,6 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
                   <Item key="manageProducts">
                     <Link to="/dashboard/products/manage" className="side--link">
                       { t('manage_products') }
-                    </Link>
-                  </Item>
-                  <Item key="manageCategories">
-                    <Link to="/dashboard/categories/manage" className="side--link">
-                      { t('manage_categories') }
                     </Link>
                   </Item>
                 </SubMenu>

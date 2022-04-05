@@ -61,9 +61,9 @@ const DashboardRoutes = () => {
             </Route>
 
             <Route path="personal-store">
-              <Route index path="*" element={ <Navigate to="store-information" /> }/>
+              <Route index path="*" element={ <Navigate to="manage-information" /> }/>
 
-              <Route path="store-information" element={ <Suspense fallback={null}><StoreInformation /></Suspense> }/>
+              <Route path="manage-information" element={ <Suspense fallback={null}><StoreInformation /></Suspense> }/>
             </Route>
 
             <Route path="products">
