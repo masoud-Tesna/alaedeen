@@ -13,8 +13,6 @@ const ManufacturingCapabilityForm = (
     handleImageUploadChange,
     imageFileList,
     factorySize,
-    qualityControlStaffs,
-    researchesStaffs,
     units,
     businessType
   }
@@ -54,7 +52,7 @@ const ManufacturingCapabilityForm = (
 
         <Form.Item
           name={ [ 'profile_fields', "10" ] }
-          label={ t(__('Whether to show production line')) }
+          label={ t(__('Do you show the production process')) }
           labelCol={ { span: 24 } }
           initialValue={ "Y" }
           className="formSwitch"

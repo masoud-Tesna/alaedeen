@@ -46,12 +46,6 @@ const ManufactureInformation = () => {
   const { data: factorySizeData } = useGetApiOld("get-profile-field-value-api", "field_id=24", "factorySize", { refetchOnWindowFocus: false });
   const factorySize = factorySizeData || [];
 
-  const { data: qualityControlStaffsData } = useGetApiOld("get-profile-field-value-api", "field_id=25", "qualityControlStaffs", { refetchOnWindowFocus: false });
-  const qualityControlStaffs = qualityControlStaffsData || [];
-
-  const { data: researchesStaffsData } = useGetApiOld("get-profile-field-value-api", "field_id=26", "researchesStaffs", { refetchOnWindowFocus: false });
-  const researchesStaffs = researchesStaffsData || [];
-
   const { data: unitsData } = useGetApiOld("get-profile-field-value-api", "field_id=31", "units", { refetchOnWindowFocus: false });
   const units = unitsData || [];
 
@@ -241,8 +235,6 @@ const ManufactureInformation = () => {
                         handleImageUploadChange={ handleImageUploadChange }
                         imageFileList={ imageFileList }
                         factorySize={ factorySize }
-                        qualityControlStaffs={ qualityControlStaffs }
-                        researchesStaffs={ researchesStaffs }
                         units={ units }
                         totalTransactions={ totalTransactions }
                         businessType={ businessType }
