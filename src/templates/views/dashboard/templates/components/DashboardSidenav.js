@@ -4,8 +4,6 @@ import "./styles/DashboardSidenav.less";
 
 import { Col, Menu, Row, Skeleton } from 'antd';
 
-import { GlobalOutlined, HomeOutlined, NotificationOutlined } from '@ant-design/icons';
-
 // import alaedeen character:
 import alaedeenChar from '../../../../assets/images/alaedeen-char.png';
 
@@ -230,13 +228,13 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
                 defaultOpenKeys={openKeys}
                 selectedKeys={openKeys}
               >
-                <Menu.Item key="dashboard" icon={<HomeOutlined />}>
+                <Menu.Item key="dashboard" icon={ <i className="fa-light fa-house" />}>
                   <Link to="/dashboard" className="side--link">
                     { t('dashboard') }
                   </Link>
                 </Menu.Item>
 
-                <SubMenu key="language" icon={<GlobalOutlined />} title={ t('language') }>
+                <SubMenu key="language" icon={<i className="fa-light fa-earth-asia" />} title={ t('language') }>
                   <Item onClick={() => handleChangeLanguage('fa')} key="1">فارسی</Item>
                   <Item onClick={() => handleChangeLanguage('en')} key="2">English</Item>
                   <Item onClick={() => handleChangeLanguage('ar')} key="3">عربی</Item>
