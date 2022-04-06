@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../styles/Conversation.less";
 import { Col, Empty, Row, Skeleton } from "antd";
-import { SeoGenerator } from "../../../../../../functions/Helper";
+import { __, SeoGenerator } from "../../../../../../functions/Helper";
 import DashboardContentHeader from "../../../templates/components/DashboardContentHeader";
 import { useGetApi } from "../../../../../../functions";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
@@ -10,6 +10,7 @@ import { ArrowLeftOutlined } from "@ant-design/icons";
 import ShowResponsiveImage from "../../../../../common/ShowResponsiveImage";
 import { useTranslation } from "react-i18next";
 import Chat from "../components/Chat";
+import Supply from "../components/Supply";
 
 const Conversation = () => {
 
@@ -154,7 +155,9 @@ const Conversation = () => {
                           {
                             id: conversation?.id,
                             conversation_id: conversation?.conversation_id,
-                            receiver_id: conversation?.receiver?.user_id
+                            receiver_id: conversation?.receiver?.user_id,
+                            sender_id: conversation?.sender?.user_id,
+                            isSupply: conversation?.is_supply === "Y",
                           }
                         )
                       }}
@@ -196,16 +199,28 @@ const Conversation = () => {
 
           <Col span={16} className="conversation--content">
             {conversations.length ?
-              (
+              ( /* If there was a conversation: */
                 conversationData?.conversation_id ?
-                  <Chat
-                    contentRef = {messageContent}
-                    conversationData = {conversationData}
-                    requestMode = {requestMode}
-                    user = {user}
-                    messageScrollBottom = {messageScrollBottom}
-                  /> :
-                  <Empty description={t("no_selected_conversation")}/>
+                  (
+                    conversationData?.isSupply ?
+                    ( /* If the supplier has filled in the supply form => Show chat: */
+                      <Chat
+                      contentRef = {messageContent}
+                      conversationData = {conversationData}
+                      requestMode = {requestMode}
+                      user = {user}
+                      messageScrollBottom = {messageScrollBottom}
+                    />
+                    ) :
+                    ( /* If the recipient is the same as the sender of the request, the supply form will be displayed: */
+                      (conversationData?.receiver_id === requestData?.request_sender) ?
+                        <Supply /> :
+                        <Empty description={t(__("Please wait for supplier response"))}/>
+                    )
+                  ) :
+                  (
+                    <Empty description={t("no_selected_conversation")}/>
+                  )
               ) :
               (
                 conversationsIsLoading ?
