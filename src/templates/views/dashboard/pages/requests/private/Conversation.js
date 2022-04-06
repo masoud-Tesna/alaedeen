@@ -171,7 +171,7 @@ const Conversation = () => {
   return (
     <Row>
       <SeoGenerator
-        title="Dashboard | Conversation"
+        title="Dashboard | Request Conversation"
       />
 
       <Col span={ 24 }>
