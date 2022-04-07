@@ -8,8 +8,6 @@ import axios from "axios";
 
 const Supply = (
   {
-    sender,
-    receiver,
     conversationId,
     setConversationData
   }
@@ -34,8 +32,6 @@ const Supply = (
   const handleSubmitSupply = values => {
     setIsSpinSend(true); // show spin
 
-    values.sender = +sender;
-    values.receiver = +receiver;
     values.conversation_id = conversationId;
 
     axios.post(

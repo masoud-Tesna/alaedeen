@@ -214,8 +214,6 @@ const Conversation = () => {
                       ( /* If the recipient is the same as the sender of the request, the supply form will be displayed: */
                         (conversationData?.receiver_id === requestData?.request_sender) ?
                           <Supply
-                            sender = {conversationData?.sender_id}
-                            receiver = {conversationData?.receiver_id}
                             conversationId = {conversationData?.conversation_id}
                             setConversationData = {setConversationData}
                           /> :
