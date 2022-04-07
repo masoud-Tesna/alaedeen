@@ -473,7 +473,7 @@ const Supply = (
                               <div className="mb-3"> {t(__("currency type"))}</div>
 
                               <Form.Item
-                                name={ ["currency_type", "currency"] }
+                                name="currency_type"
                                 className="--currency"
                               >
                                 <Checkbox.Group className="w-100">
