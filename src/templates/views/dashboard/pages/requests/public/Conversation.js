@@ -156,7 +156,7 @@ const Conversation = () => {
                             conversation_id: conversation?.conversation_id,
                             receiver_id: conversation?.receiver?.user_id,
                             sender_id: conversation?.sender?.user_id,
-                            isSupply: conversation?.is_supply === "Y",
+                            isSupply: conversation?.is_supply === "1",
                           }
                         )
                       }}
@@ -213,7 +213,12 @@ const Conversation = () => {
                       ) :
                       ( /* If the recipient is the same as the sender of the request, the supply form will be displayed: */
                         (conversationData?.receiver_id === requestData?.request_sender) ?
-                          <Supply /> :
+                          <Supply
+                            sender = {conversationData?.sender_id}
+                            receiver = {conversationData?.receiver_id}
+                            conversationId = {conversationData?.conversation_id}
+                            setConversationData = {setConversationData}
+                          /> :
                           <Empty description={t(__("Please wait for supplier response"))}/>
                       )
                   ) :
