@@ -34,6 +34,10 @@ const Supply = (
 
     values.conversation_id = conversationId;
 
+    values.negotiable.terms_supply = values.negotiable.terms_supply || false;
+    values.negotiable.terms_of_payment = values.negotiable.terms_of_payment || false;
+    values.negotiable.currency_type = values.negotiable.currency_type || false;
+
     axios.post(
       "https://alaedeen.com/horn/api/SupplyOrder",
       values,
@@ -45,9 +49,9 @@ const Supply = (
     )
       .then((res) => {
         setIsSpinSend(false); // remove spin
-        setConversationData(prev => {
+        /*setConversationData(prev => {
           return { ...prev, isSupply: true }
-        });
+        });*/
       })
       .catch(() => {
         setIsSpinSend(false);
@@ -78,7 +82,6 @@ const Supply = (
               }
             }
           >
-
             <Row className="w-100" gutter={[0, 20]}>
               <Col span={24}>
                 <Form.Item
@@ -384,7 +387,7 @@ const Supply = (
                               </Form.Item>
 
                               <Form.Item
-                                name={["terms_supply", "negotiable"]}
+                                name={["negotiable", "terms_supply"]}
                                 valuePropName="checked"
                               >
                                 <Checkbox>
@@ -453,7 +456,7 @@ const Supply = (
                               </Form.Item>
 
                               <Form.Item
-                                name={["terms_of_payment", "negotiable"]}
+                                name={["negotiable", "terms_of_payment"]}
                                 valuePropName="checked"
                               >
                                 <Checkbox>
@@ -491,7 +494,7 @@ const Supply = (
                               </Form.Item>
 
                               <Form.Item
-                                name={["currency_type", "negotiable"]}
+                                name={["negotiable", "currency_type"]}
                                 valuePropName="checked"
                               >
                                 <Checkbox>
