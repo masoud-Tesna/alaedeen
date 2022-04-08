@@ -34,9 +34,11 @@ const Supply = (
 
     values.conversation_id = conversationId;
 
-    values.negotiable.terms_supply = values.negotiable.terms_supply || false;
-    values.negotiable.terms_of_payment = values.negotiable.terms_of_payment || false;
-    values.negotiable.currency_type = values.negotiable.currency_type || false;
+    if (values.is_supply) {
+      values.negotiable.terms_supply = values.negotiable.terms_supply || false;
+      values.negotiable.terms_of_payment = values.negotiable.terms_of_payment || false;
+      values.negotiable.currency_type = values.negotiable.currency_type || false;
+    }
 
     axios.post(
       "https://alaedeen.com/horn/api/SupplyOrder",
