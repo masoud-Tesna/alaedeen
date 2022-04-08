@@ -51,9 +51,9 @@ const Supply = (
     )
       .then((res) => {
         setIsSpinSend(false); // remove spin
-        /*setConversationData(prev => {
+        setConversationData(prev => {
           return { ...prev, isSupply: true }
-        });*/
+        });
       })
       .catch(() => {
         setIsSpinSend(false);
