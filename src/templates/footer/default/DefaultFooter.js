@@ -233,7 +233,7 @@ const DefaultFooter = () => {
                 className="eNamad--link"
                 referrerPolicy="origin"
                 target="_blank"
-                rel="noreferrer"
+                rel="nofollow"
                 href="https://trustseal.enamad.ir/?id=249644&amp;code=rN4kSWtSgD84AymRm1Py"
               >
                 <img
