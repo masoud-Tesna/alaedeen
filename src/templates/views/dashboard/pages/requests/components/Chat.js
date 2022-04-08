@@ -1,4 +1,4 @@
-import { Button, Col, Empty, Form, Input, Row, Spin } from "antd";
+import { Button, Col, Empty, Form, Input, Row, Space, Spin, Statistic } from "antd";
 import { __, nl2br } from "../../../../../../functions/Helper";
 import ShowResponsiveImage from "../../../../../common/ShowResponsiveImage";
 import moment from "moment-jalaali";
@@ -9,7 +9,7 @@ import { useGetApi } from "../../../../../../functions";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../../../../contexts/config/ConfigContext";
-
+import { CheckOutlined } from "@ant-design/icons";
 
 const Chat = (
   {
@@ -46,7 +46,8 @@ const Chat = (
   );
 
   const messages = messagesListData?.messages || {},
-    messagesParams = messagesListData?.params || {};
+    messagesParams = messagesListData?.params || {},
+    supplyData = messagesListData?.supply_data || {};
 
   const [messageText, setMessageText] = useState("");
   const [isSpinSend, setIsSpinSend] = useState(false); // state for show spin after send message
@@ -94,6 +95,169 @@ const Chat = (
           tip={ isSpinSend ? `${ t('send_your_message') }...` :  `${ t('loading_conversation') }...`}
         >
           <Row gutter={[0, 25]}>
+            {supplyData.order_supply_id &&
+              <Col span={24}>
+                <Row justify="center">
+                  <Col xs={24} lg={18} className="supplyDetails--container">
+                    <Row gutter={[0,25]}>
+                      <Col span={24} className="text-center --caption">
+                        {t("terms_of_order_supply")}
+                      </Col>
+
+                      {
+                        supplyData?.is_supply === "1" ?
+                          (
+                            <>
+                              <Col span={24}>
+                                <Row gutter={[20, 15]}>
+                                  {
+                                    supplyData?.terms_supply?.map((item, i) => {
+                                      return (
+                                        <Col key={`terms_supply_${i + 1}`} span={12} className="--item">
+                                          <Row gutter={[20, 8]}>
+                                            <Col className="mb-1 vv-font-size-1-5 font-weight-600" span={24}> {`${t(__("part"))} ${i + 1}:`} </Col>
+
+                                            <Col span={12} className="__title">
+                                              { t("working_day") } :
+                                            </Col>
+
+                                            <Col span={12} className="__value">
+                                              { `${ item?.working_day }  ${ t('day') }` }
+                                            </Col>
+
+                                            <Col span={12} className="__title">
+                                              { t("percent") } :
+                                            </Col>
+
+                                            <Col span={12} className="__value">
+                                              { `${ t('%') }${ item?.percent }` }
+                                            </Col>
+
+                                            <Col span={12} className="__title">
+                                              { t("amount") } :
+                                            </Col>
+
+                                            <Col span={12} className="__value">
+                                              <Statistic value={ item?.amount } suffix={ t(__(item?.unit)) } />
+                                            </Col>
+                                          </Row>
+                                        </Col>
+                                      )
+                                    })
+                                  }
+
+                                  {
+                                    supplyData?.negotiable?.terms_supply &&
+                                      <Col span={24} className="--negotiable">
+                                      <CheckOutlined /> { t(__('The above conditions are negotiable')) }
+                                    </Col>
+                                  }
+                                </Row>
+                              </Col>
+
+                              <Col span={24}>
+                                <Row gutter={[0, 15]}>
+                                  <Col span={12} className="--item">
+                                    <Row gutter={[20, 8]}>
+                                      <Col span={12} className="__title">
+                                        { t("prepayment") } :
+                                      </Col>
+
+                                      <Col span={12} className="__value">
+                                        { `${ t('%') }${ supplyData?.terms_of_payment?.prepayment }` }
+                                      </Col>
+
+                                      <Col span={12} className="__title">
+                                        { t("complete_order") } :
+                                      </Col>
+
+                                      <Col span={12} className="__value">
+                                        { `${ t('%') }${ supplyData?.terms_of_payment?.complete_order }` }
+                                      </Col>
+
+                                      <Col span={12} className="__title">
+                                        { t("delivery_border") } :
+                                      </Col>
+
+                                      <Col span={12} className="__value">
+                                        { `${ t('%') }${ supplyData?.terms_of_payment?.delivery_border }` }
+                                      </Col>
+
+                                      <Col span={12} className="__title">
+                                        { t("delivery_destination") } :
+                                      </Col>
+
+                                      <Col span={12} className="__value">
+                                        { `${ t('%') }${ supplyData?.terms_of_payment?.delivery_destination }` }
+                                      </Col>
+                                    </Row>
+                                  </Col>
+
+                                  {
+                                    supplyData?.negotiable?.terms_of_payment &&
+                                    <Col span={24} className="--negotiable">
+                                      <CheckOutlined /> { t(__('The above conditions are negotiable')) }
+                                    </Col>
+                                  }
+                                </Row>
+                              </Col>
+
+                              <Col span={24}>
+                                <Row gutter={[0, 15]}>
+                                  <Col span={24} className="--item">
+                                    <Row gutter={[40, 8]}>
+                                      <Col span={6} className="__title">
+                                        { t("currency_type") } :
+                                      </Col>
+
+                                      <Col span={18}>
+                                        <Space size="middle">
+                                          {supplyData?.currency_type?.map((item, i) => {
+                                            return (
+                                              <span key={`currency_type_${i + 1}`} className="__value">
+                                          { t(__(item)) }
+                                        </span>
+                                            )
+                                          })}
+                                        </Space>
+                                      </Col>
+                                    </Row>
+                                  </Col>
+
+                                  {
+                                    supplyData?.negotiable?.currency_type &&
+                                    <Col span={24} className="--negotiable">
+                                      <CheckOutlined /> { t(__('The above conditions are negotiable')) }
+                                    </Col>
+                                  }
+                                </Row>
+                              </Col>
+                            </>
+                          ) :
+                          (
+                            supplyData?.no_order_supply?.type === "order_supply_from" ?
+                              <Col span={24} className="--item">
+                                <Row gutter={[40, 8]}>
+                                  <Col span={6} className="__title">
+                                    { t("order_supply_from") } :
+                                  </Col>
+
+                                  <Col span={18} className="__value">
+                                    { supplyData?.no_order_supply?.order_supply_from }
+                                  </Col>
+                                </Row>
+                              </Col> :
+                              <Col span={24} className="--productNotExist">
+                                {t("product_requested_not_exist.msg")}
+                              </Col>
+                          )
+                      }
+                    </Row>
+                  </Col>
+                </Row>
+              </Col>
+            }
+
             {messages.length ?
               messages?.map(message => {
                 const messageText = nl2br(message?.message);
@@ -144,8 +308,10 @@ const Chat = (
                   </Col>
                 )
               }) :
-              <Col span={24}><Empty description={t("no_message")}/></Col>
+              null
             }
+
+            { (!messages.length && !supplyData.order_supply_id) && <Col span={24}><Empty description={t("no_message")}/></Col> }
           </Row>
         </Spin>
       </Col>
