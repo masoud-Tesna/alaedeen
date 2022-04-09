@@ -88,16 +88,20 @@ const Supply = (
               <Col span={24}>
                 <Form.Item
                   name="is_supply"
-                  label={t(__('Terms of order supply'))}
-                  className="formSwitch"
+                  rules={[
+                    {
+                      required: true,
+                      message: t(__("Please pick an item")),
+                    },
+                  ]}
                 >
-                  <Switch
-                    checkedChildren={<CheckOutlined />}
-                    unCheckedChildren={<CloseOutlined />}
-                    defaultChecked
-                    className="formSwitch--switch"
-                    onChange={value => setIsSupply(value)}
-                  />
+                  <Radio.Group
+                    onChange={e => setIsSupply(e.target.value)}
+                    buttonStyle="solid"
+                  >
+                    <Radio.Button value={true}>{t(__("product is available"))}</Radio.Button>
+                    <Radio.Button value={false}>{t(__("Product not available"))}</Radio.Button>
+                  </Radio.Group>
                 </Form.Item>
               </Col>
 
@@ -109,6 +113,8 @@ const Supply = (
                         <Col span={24}>
                           <Row>
                             <Col span={ 24 } className="mb-4 border border-bc rounded-5 formCloneable">
+                              <div className="mb-4 vv-font-size-1-5 font-weight-600"> {t(__("Terms of order supply"))}</div>
+                              
                               <div className="mb-3"> {`${t(__("part"))} 1:`}</div>
                               <Form.Item
                                 name={ ["terms_supply", "1", "working_day"] }
@@ -120,6 +126,7 @@ const Supply = (
                                     message: t(__("Please complete the input.")),
                                   },
                                 ] }
+                                extra={t(__("working day", "desc"))}
                               >
                                 <Input
                                   placeholder={t(__("working day"))}
@@ -137,6 +144,7 @@ const Supply = (
                                     message: t(__("Please complete the input.")),
                                   },
                                 ] }
+                                extra={t(__("percent", "desc"))}
                               >
                                 <Input
                                   placeholder={t(__("percent"))}
@@ -154,6 +162,7 @@ const Supply = (
                                     message: t(__("Please complete the input.")),
                                   },
                                 ] }
+                                extra={t(__("Approximate amount", "desc"))}
                               >
                                 <Input
                                   placeholder={t(__("amount"))}
@@ -171,6 +180,7 @@ const Supply = (
                                     message: t(__("Please complete the input.")),
                                   },
                                 ] }
+                                extra={t(__("unit", "desc"))}
                               >
                                 <Select
                                   placeholder={ t(__('Select Unit Type')) }
@@ -213,6 +223,7 @@ const Supply = (
                                 name={ ["terms_supply", "2", "working_day"] }
                                 label={t(__("working day"))}
                                 labelCol={ { sm: 24, lg: 6 } }
+                                extra={t(__("working day", "desc"))}
                               >
                                 <Input
                                   placeholder={t(__("working day"))}
@@ -224,6 +235,7 @@ const Supply = (
                                 name={ ["terms_supply", "2", "percent"] }
                                 label={t(__("percent"))}
                                 labelCol={ { sm: 24, lg: 6 } }
+                                extra={t(__("percent", "desc"))}
                               >
                                 <Input
                                   placeholder={t(__("percent"))}
@@ -235,6 +247,7 @@ const Supply = (
                                 name={ ["terms_supply", "2", "amount"] }
                                 label={t(__("Approximate amount"))}
                                 labelCol={ { sm: 24, lg: 6 } }
+                                extra={t(__("Approximate amount", "desc"))}
                               >
                                 <Input
                                   placeholder={t(__("amount"))}
@@ -246,6 +259,7 @@ const Supply = (
                                 name={ ["terms_supply", "2", "unit"] }
                                 label={t(__("unit"))}
                                 labelCol={ { sm: 24, lg: 6 } }
+                                extra={t(__("unit", "desc"))}
                               >
                                 <Select
                                   placeholder={ t(__('Select Unit Type')) }
@@ -273,6 +287,7 @@ const Supply = (
                                 name={ ["terms_supply", "3", "working_day"] }
                                 label={t(__("working day"))}
                                 labelCol={ { sm: 24, lg: 6 } }
+                                extra={t(__("working day", "desc"))}
                               >
                                 <Input
                                   placeholder={t(__("working day"))}
@@ -284,6 +299,7 @@ const Supply = (
                                 name={ ["terms_supply", "3", "percent"] }
                                 label={t(__("percent"))}
                                 labelCol={ { sm: 24, lg: 6 } }
+                                extra={t(__("percent", "desc"))}
                               >
                                 <Input
                                   placeholder={t(__("percent"))}
@@ -295,6 +311,7 @@ const Supply = (
                                 name={ ["terms_supply", "3", "amount"] }
                                 label={t(__("Approximate amount"))}
                                 labelCol={ { sm: 24, lg: 6 } }
+                                extra={t(__("Approximate amount", "desc"))}
                               >
                                 <Input
                                   placeholder={t(__("amount"))}
@@ -306,6 +323,7 @@ const Supply = (
                                 name={ ["terms_supply", "3", "unit"] }
                                 label={t(__("unit"))}
                                 labelCol={ { sm: 24, lg: 6 } }
+                                extra={t(__("unit", "desc"))}
                               >
                                 <Select
                                   placeholder={ t(__('Select Unit Type')) }
@@ -333,6 +351,7 @@ const Supply = (
                                 name={ ["terms_supply", "4", "working_day"] }
                                 label={t(__("working day"))}
                                 labelCol={ { sm: 24, lg: 6 } }
+                                extra={t(__("working day", "desc"))}
                               >
                                 <Input
                                   placeholder={t(__("working day"))}
@@ -344,6 +363,7 @@ const Supply = (
                                 name={ ["terms_supply", "4", "percent"] }
                                 label={t(__("percent"))}
                                 labelCol={ { sm: 24, lg: 6 } }
+                                extra={t(__("percent", "desc"))}
                               >
                                 <Input
                                   placeholder={t(__("percent"))}
@@ -355,6 +375,7 @@ const Supply = (
                                 name={ ["terms_supply", "4", "amount"] }
                                 label={t(__("Approximate amount"))}
                                 labelCol={ { sm: 24, lg: 6 } }
+                                extra={t(__("Approximate amount", "desc"))}
                               >
                                 <Input
                                   placeholder={t(__("amount"))}
@@ -366,6 +387,7 @@ const Supply = (
                                 name={ ["terms_supply", "4", "unit"] }
                                 label={t(__("unit"))}
                                 labelCol={ { sm: 24, lg: 6 } }
+                                extra={t(__("unit", "desc"))}
                               >
                                 <Select
                                   placeholder={ t(__('Select Unit Type')) }
@@ -403,14 +425,19 @@ const Supply = (
                         <Col span={24}>
                           <Row>
                             <Col span={ 24 } className="mb-4 border border-bc rounded-5 formCloneable">
-                              <div className="mb-3"> {t(__("Terms of payment"))}</div>
+                              <div className="mb-4 vv-font-size-1-5 font-weight-600"> {t(__("Terms of payment"))}</div>
 
                               <Form.Item
                                 name={ ["terms_of_payment", "prepayment"] }
                                 label={t(__("prepayment"))}
-                                extra={t(__("percent"))}
+                                extra={t(__("prepayment", "desc"))}
                                 labelCol={ { sm: 24, lg: 6 } }
-                                className="--extra"
+                                rules={ [
+                                  {
+                                    required: true,
+                                    message: t(__("Please complete the input.")),
+                                  },
+                                ] }
                               >
                                 <Input
                                   placeholder={t(__("percent"))}
@@ -421,9 +448,14 @@ const Supply = (
                               <Form.Item
                                 name={ ["terms_of_payment", "complete_order"] }
                                 label={t(__("Complete the order"))}
-                                extra={t(__("percent"))}
+                                extra={t(__("Complete the order", "desc"))}
                                 labelCol={ { sm: 24, lg: 6 } }
-                                className="--extra"
+                                rules={ [
+                                  {
+                                    required: true,
+                                    message: t(__("Please complete the input.")),
+                                  },
+                                ] }
                               >
                                 <Input
                                   placeholder={t(__("percent"))}
@@ -434,9 +466,14 @@ const Supply = (
                               <Form.Item
                                 name={ ["terms_of_payment", "delivery_border"] }
                                 label={t(__("Delivery at the border"))}
-                                extra={t(__("percent"))}
+                                extra={t(__("Delivery at the border", "desc"))}
                                 labelCol={ { sm: 24, lg: 6 } }
-                                className="--extra"
+                                rules={ [
+                                  {
+                                    required: true,
+                                    message: t(__("Please complete the input.")),
+                                  },
+                                ] }
                               >
                                 <Input
                                   placeholder={t(__("percent"))}
@@ -447,9 +484,14 @@ const Supply = (
                               <Form.Item
                                 name={ ["terms_of_payment", "delivery_destination"] }
                                 label={t(__("Delivery in destination"))}
-                                extra={t(__("percent"))}
+                                extra={t(__("Delivery in destination", "desc"))}
                                 labelCol={ { sm: 24, lg: 6 } }
-                                className="--extra"
+                                rules={ [
+                                  {
+                                    required: true,
+                                    message: t(__("Please complete the input.")),
+                                  },
+                                ] }
                               >
                                 <Input
                                   placeholder={t(__("percent"))}
@@ -472,11 +514,18 @@ const Supply = (
                         <Col span={24}>
                           <Row>
                             <Col span={ 24 } className="mb-4 border border-bc rounded-5 formCloneable">
-                              <div className="mb-3"> {t(__("currency type"))}</div>
-
                               <Form.Item
                                 name="currency_type"
+                                label={t(__("currency type"))}
+                                labelCol={{span: 24}}
                                 className="--currency"
+                                extra={t(__("currency_type", "desc"))}
+                                rules={ [
+                                  {
+                                    required: true,
+                                    message: t(__("Please select one or more options")),
+                                  },
+                                ] }
                               >
                                 <Checkbox.Group className="w-100">
                                   <Row gutter={[40, 20]} className="px-6">
@@ -548,8 +597,7 @@ const Supply = (
                                       <Form.Item
                                         name={["no_order_supply", "order_supply_from"]}
                                         label={t(__("Order supply from"))}
-                                        extra={t(__("month"))}
-                                        className="--extra"
+                                        extra={t(__("Order supply from", "desc"))}
                                         onClick={() => {
                                           supplyForm?.setFieldsValue({
                                             no_order_supply: {
