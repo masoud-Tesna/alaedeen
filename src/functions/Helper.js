@@ -6,7 +6,7 @@ export function fn_stripHtml(strip) {
   return strip.replace(regex, '');
 }
 
-export function __(world, prefix = "", sign = ".") {
+export function __(world, suffix = "", sign = ".") {
 
   let returnWord = world;
 
@@ -36,7 +36,7 @@ export function __(world, prefix = "", sign = ".") {
     .replaceAll(" ", "_")
   ;
 
-  returnWord = prefix? `${prefix}${sign}${returnWord}` : returnWord;
+  returnWord = suffix? `${returnWord}${sign}${suffix}` : returnWord;
 
   return returnWord;
 
