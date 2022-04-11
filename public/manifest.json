@@ -5,18 +5,8 @@
   "icons": [
     {
       "src": "alaedeen-xs.png",
-      "sizes": "493x493",
+      "sizes": "82x82",
       "type": "image/png"
-    },
-    {
-      "src": "alaedeen-xs.png",
-      "type": "image/png",
-      "sizes": "493x493"
-    },
-    {
-      "src": "alaedeen-xs.png",
-      "type": "image/png",
-      "sizes": "493x493"
     }
   ],
   "start_url": "/index.html",
