@@ -118,27 +118,27 @@ const Chat = (
                                             <Col className="mb-1 vv-font-size-1-5 font-weight-600" span={24}> {`${t(__("part"))} ${i + 1}:`} </Col>
 
                                             <Col span={12} className="__title">
-                                              { t("working_day") } :
+                                              { t("supply_time") } :
                                             </Col>
 
                                             <Col span={12} className="__value">
-                                              { `${ item?.working_day }  ${ t('day') }` }
+                                              { `${ item?.supply_time }  ${ t('day') }` }
                                             </Col>
 
                                             <Col span={12} className="__title">
-                                              { t("percent") } :
+                                              { t("supply_amount") } :
                                             </Col>
 
                                             <Col span={12} className="__value">
-                                              { `${ t('%') }${ item?.percent }` }
+                                              { `${ t('%') }${ item?.supply_amount }` }
                                             </Col>
 
                                             <Col span={12} className="__title">
-                                              { t("amount") } :
+                                              { t("approx_quantity") } :
                                             </Col>
 
                                             <Col span={12} className="__value">
-                                              <Statistic value={ item?.amount } suffix={ t(__(item?.unit)) } />
+                                              <Statistic value={ item?.approx_quantity } suffix={ t(__(item?.unit)) } />
                                             </Col>
                                           </Row>
                                         </Col>
