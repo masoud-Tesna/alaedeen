@@ -115,7 +115,7 @@ const Supply = (
                             <Col span={ 24 } className="mb-4 border border-bc rounded-5 formCloneable">
                               <div className="mb-4 vv-font-size-1-5 font-weight-600"> {t(__("Terms of order supply"))}</div>
                               
-                              <div className="mb-3"> {`${t(__("part"))} 1:`}</div>
+                              <div className="mb-3"> { t("part", {var1: 1}) }</div>
                               <Form.Item
                                 name={ ["terms_supply", "1", "supply_time"] }
                                 label={t("supply_time")}
@@ -218,7 +218,7 @@ const Supply = (
                                 </Select>
                               </Form.Item>
 
-                              <div className="mb-3 border-top pt-3"> {`${t(__("part"))} 2:`}</div>
+                              <div className="mb-3 border-top pt-3">{ t("part", {var1: 2}) }</div>
                               <Form.Item
                                 name={ ["terms_supply", "2", "supply_time"] }
                                 label={t("supply_time")}
@@ -282,7 +282,7 @@ const Supply = (
                                 </Select>
                               </Form.Item>
 
-                              <div className="mb-3 border-top pt-3"> {`${t(__("part"))} 3:`}</div>
+                              <div className="mb-3 border-top pt-3">{ t("part", {var1: 3}) }</div>
                               <Form.Item
                                 name={ ["terms_supply", "3", "supply_time"] }
                                 label={t("supply_time")}
@@ -346,7 +346,7 @@ const Supply = (
                                 </Select>
                               </Form.Item>
 
-                              <div className="mb-3 border-top pt-3"> {`${t(__("part"))} 4:`}</div>
+                              <div className="mb-3 border-top pt-3">{ t("part", {var1: 4}) }</div>
                               <Form.Item
                                 name={ ["terms_supply", "4", "supply_time"] }
                                 label={t("supply_time")}
