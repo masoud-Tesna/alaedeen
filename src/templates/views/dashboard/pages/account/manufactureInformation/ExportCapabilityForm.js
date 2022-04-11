@@ -25,7 +25,11 @@ const ExportCapabilityForm = (
   return (
     <Row>
       <Col span={24}>
-        <Collapse accordion={true} onChange={() => window.setTimeout(() => scrollIntoViewIfTargetNotOnDisplay(collapseRef?.current), 500) }>
+        <Collapse
+          accordion={true}
+          onChange={() => window.setTimeout(() => scrollIntoViewIfTargetNotOnDisplay(collapseRef?.current), 500) }
+          className="__collapse"
+        >
           <Panel header={t(__('Accepted Delivery Terms'))} key="1">
             <div ref={collapseRef} className="CollapseScrollTop" />
             <div className="checkBoxGroup">

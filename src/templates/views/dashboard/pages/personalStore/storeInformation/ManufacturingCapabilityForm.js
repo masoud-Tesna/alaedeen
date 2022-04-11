@@ -70,8 +70,8 @@ const ManufacturingCapabilityForm = (
                   />
                 </Form.Item>
 
-                <Row>
-                  <Col span={ 24 } className="mb-4 border border-bc rounded-5 formCloneable">
+                <Row className="formCloneable">
+                  <Col span={ 24 } className="mb-4 border border-bc rounded-5">
                     <Form.Item
                       label={ t(__('cooperation contract')) }
                       valuePropName="fileList"
@@ -356,8 +356,8 @@ const ManufacturingCapabilityForm = (
                       />
                     </Form.Item>
 
-                    <Row>
-                      <Col span={ 24 } className="mb-4 border border-bc rounded-5 formCloneable">
+                    <Row className="formCloneable">
+                      <Col span={ 24 } className="mb-4 border border-bc rounded-5">
                         <Form.Item
                           label={ t(__('cooperation contract')) }
                           valuePropName="fileList"
@@ -639,8 +639,8 @@ const ManufacturingCapabilityForm = (
                   />
                 </Form.Item>
 
-                <Row>
-                  <Col span={ 24 } className="mb-4 border border-bc rounded-5 formCloneable">
+                <Row className="formCloneable">
+                  <Col span={ 24 } className="mb-4 border border-bc rounded-5">
                     <Form.Item
                       name={ [ 'profile_fields', "15" ] }
                       label={ t(__('Equipment Name')) }
@@ -695,8 +695,8 @@ const ManufacturingCapabilityForm = (
                   />
                 </Form.Item>
 
-                <Row>
-                  <Col span={ 24 } className="mb-4 border border-bc rounded-5 formCloneable">
+                <Row className="formCloneable">
+                  <Col span={ 24 } className="mb-4 border border-bc rounded-5">
                     <Form.Item
                       name={ [ 'profile_fields', "19" ] }
                       label={ t(__('Production Line nameEquipment Name')) }

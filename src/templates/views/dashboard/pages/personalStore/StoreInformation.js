@@ -192,7 +192,7 @@ const StoreInformation = () => {
         spinnerDispatch(isLoadingAction(false));
       })
       .then(() => {
-        if (currentTab === 5) {
+        if (currentTab === 4) {
           setFinishFormModalVisible(true);
         } else {
           handleNextTab();
@@ -275,12 +275,12 @@ const StoreInformation = () => {
             />
           </TabPane>
 
-          <TabPane className="manufacturingTab--content" tab={ t(__("Company Introduction")) } key="5">
+          {/*<TabPane className="manufacturingTab--content" tab={ t(__("Company Introduction")) } key="5">
             <CompanyIntroductionForm
               formRef={ companyIntroductionFrm }
               handleSubmitForm={ handleSubmitForm }
             />
-          </TabPane>
+          </TabPane>*/}
         </Tabs>
       </Col>
     </Row>

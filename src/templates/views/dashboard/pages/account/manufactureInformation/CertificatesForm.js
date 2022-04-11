@@ -42,8 +42,8 @@ const CertificatesForm = (
         />
       </Form.Item>
 
-      <Row>
-        <Col span={24} className="mb-4 border border-bc rounded-5 formCloneable">
+      <Row className="formCloneable">
+        <Col span={24} className="mb-4 border border-bc rounded-5">
           <Form.Item
             name={['profile_fields', "73"]}
             label={t(__('certification type'))}
@@ -128,8 +128,8 @@ const CertificatesForm = (
         />
       </Form.Item>
 
-      <Row>
-        <Col span={24} className="mb-4 border border-bc rounded-5 formCloneable">
+      <Row className="formCloneable">
+        <Col span={24} className="mb-4 border border-bc rounded-5">
           <Form.Item
             name={['profile_fields', "78"]}
             label={t(__('Award name'))}
@@ -187,8 +187,8 @@ const CertificatesForm = (
         />
       </Form.Item>
 
-      <Row>
-        <Col span={24} className="mb-4 border border-bc rounded-5 formCloneable">
+      <Row className="formCloneable">
+        <Col span={24} className="mb-4 border border-bc rounded-5">
           <Form.Item
             name={['profile_fields', "82"]}
             label={t(__('patent Name'))}

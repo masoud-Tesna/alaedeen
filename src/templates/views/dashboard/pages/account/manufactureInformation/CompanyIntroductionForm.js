@@ -134,8 +134,8 @@ const CompanyIntroductionForm = (
         />
       </Form.Item>
 
-      <Row>
-        <Col span={24} className="mb-4 border border-bc rounded-5 formCloneable">
+      <Row className="formCloneable">
+        <Col span={24} className="mb-4 border border-bc rounded-5">
           <Form.Item
             name={['profile_fields', "88"]}
             label={t(__('Trade Show Name'))}

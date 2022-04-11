@@ -293,8 +293,8 @@ const ExportCapabilityForm = (
             />
           </Form.Item>
 
-          <Row>
-            <Col span={24} className="mb-4 border border-bc rounded-5 formCloneable">
+          <Row className="formCloneable">
+            <Col span={24} className="mb-4 border border-bc rounded-5">
               <Form.Item
                 name={['profile_fields', "50"]}
                 label={t(__('Project/customer name'))}
@@ -439,8 +439,8 @@ const ExportCapabilityForm = (
             />
           </Form.Item>
 
-          <Row>
-            <Col span={24} className="mb-4 border border-bc rounded-5 formCloneable">
+          <Row className="formCloneable">
+            <Col span={24} className="mb-4 border border-bc rounded-5">
               <Form.Item
                 name={['profile_fields', "58"]}
                 label={t(__('Country/Region'))}

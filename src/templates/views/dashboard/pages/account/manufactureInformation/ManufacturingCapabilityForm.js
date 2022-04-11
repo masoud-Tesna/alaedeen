@@ -72,8 +72,8 @@ const ManufacturingCapabilityForm = (
           />
         </Form.Item>
 
-        <Row>
-          <Col span={ 24 } className="mb-4 border border-bc rounded-5 formCloneable">
+        <Row className="formCloneable">
+          <Col span={ 24 } className="mb-4 border border-bc rounded-5">
             <Form.Item
               name={ [ 'profile_fields', "11" ] }
               label={ t(__('Process name')) }
@@ -262,8 +262,8 @@ const ManufacturingCapabilityForm = (
           />
         </Form.Item>
 
-        <Row>
-          <Col span={ 24 } className="mb-4 border border-bc rounded-5 formCloneable">
+        <Row className="formCloneable">
+          <Col span={ 24 } className="mb-4 border border-bc rounded-5">
             <Form.Item
               name={ [ 'profile_fields', "29" ] }
               label={ t(__('Production Name')) }
