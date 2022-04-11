@@ -99,8 +99,8 @@ const Supply = (
                     onChange={e => setIsSupply(e.target.value)}
                     buttonStyle="solid"
                   >
-                    <Radio.Button value={true}>{t(__("product is available"))}</Radio.Button>
-                    <Radio.Button value={false}>{t(__("Product not available"))}</Radio.Button>
+                    <Radio.Button value={true}>{t("product_required_is_not_available")}</Radio.Button>
+                    <Radio.Button value={false}>{t("product_required_is_available")}</Radio.Button>
                   </Radio.Group>
                 </Form.Item>
               </Col>
@@ -117,8 +117,8 @@ const Supply = (
                               
                               <div className="mb-3"> {`${t(__("part"))} 1:`}</div>
                               <Form.Item
-                                name={ ["terms_supply", "1", "working_day"] }
-                                label={t(__("working day"))}
+                                name={ ["terms_supply", "1", "supply_time"] }
+                                label={t("supply_time")}
                                 labelCol={ { sm: 24, lg: 6 } }
                                 rules={ [
                                   {
@@ -126,17 +126,17 @@ const Supply = (
                                     message: t(__("Please complete the input.")),
                                   },
                                 ] }
-                                extra={t(__("working day", "desc"))}
+                                extra={t(__("supply_time", "desc"))}
                               >
-                                <Input
+                                <InputNumber
+                                  className="w-100"
                                   placeholder={t(__("working day"))}
-                                  allowClear
                                 />
                               </Form.Item>
 
                               <Form.Item
-                                name={ ["terms_supply", "1", "percent"] }
-                                label={t(__("percent"))}
+                                name={ ["terms_supply", "1", "supply_amount"] }
+                                label={t("supply_amount")}
                                 labelCol={ { sm: 24, lg: 6 } }
                                 rules={ [
                                   {
@@ -144,17 +144,17 @@ const Supply = (
                                     message: t(__("Please complete the input.")),
                                   },
                                 ] }
-                                extra={t(__("percent", "desc"))}
+                                extra={t(__("supply_amount", "desc"))}
                               >
-                                <Input
+                                <InputNumber
+                                  className="w-100"
                                   placeholder={t(__("percent"))}
-                                  allowClear
                                 />
                               </Form.Item>
 
                               <Form.Item
-                                name={ ["terms_supply", "1", "amount"] }
-                                label={t(__("Approximate amount"))}
+                                name={ ["terms_supply", "1", "approx_quantity"] }
+                                label={t("approx_quantity")}
                                 labelCol={ { sm: 24, lg: 6 } }
                                 rules={ [
                                   {
@@ -162,11 +162,11 @@ const Supply = (
                                     message: t(__("Please complete the input.")),
                                   },
                                 ] }
-                                extra={t(__("Approximate amount", "desc"))}
+                                extra={t(__("approx_quantity", "desc"))}
                               >
-                                <Input
-                                  placeholder={t(__("amount"))}
-                                  allowClear
+                                <InputNumber
+                                  className="w-100"
+                                  placeholder={t(__("quantity"))}
                                 />
                               </Form.Item>
 
@@ -220,38 +220,38 @@ const Supply = (
 
                               <div className="mb-3 border-top pt-3"> {`${t(__("part"))} 2:`}</div>
                               <Form.Item
-                                name={ ["terms_supply", "2", "working_day"] }
-                                label={t(__("working day"))}
+                                name={ ["terms_supply", "2", "supply_time"] }
+                                label={t("supply_time")}
                                 labelCol={ { sm: 24, lg: 6 } }
-                                extra={t(__("working day", "desc"))}
+                                extra={t(__("supply_time", "desc"))}
                               >
-                                <Input
+                                <InputNumber
+                                  className="w-100"
                                   placeholder={t(__("working day"))}
-                                  allowClear
                                 />
                               </Form.Item>
 
                               <Form.Item
-                                name={ ["terms_supply", "2", "percent"] }
-                                label={t(__("percent"))}
+                                name={ ["terms_supply", "2", "supply_amount"] }
+                                label={t("supply_amount")}
                                 labelCol={ { sm: 24, lg: 6 } }
-                                extra={t(__("percent", "desc"))}
+                                extra={t(__("supply_amount", "desc"))}
                               >
-                                <Input
+                                <InputNumber
+                                  className="w-100"
                                   placeholder={t(__("percent"))}
-                                  allowClear
                                 />
                               </Form.Item>
 
                               <Form.Item
-                                name={ ["terms_supply", "2", "amount"] }
-                                label={t(__("Approximate amount"))}
+                                name={ ["terms_supply", "2", "approx_quantity"] }
+                                label={t("approx_quantity")}
                                 labelCol={ { sm: 24, lg: 6 } }
-                                extra={t(__("Approximate amount", "desc"))}
+                                extra={t(__("approx_quantity", "desc"))}
                               >
-                                <Input
-                                  placeholder={t(__("amount"))}
-                                  allowClear
+                                <InputNumber
+                                  className="w-100"
+                                  placeholder={t(__("quantity"))}
                                 />
                               </Form.Item>
 
@@ -284,38 +284,38 @@ const Supply = (
 
                               <div className="mb-3 border-top pt-3"> {`${t(__("part"))} 3:`}</div>
                               <Form.Item
-                                name={ ["terms_supply", "3", "working_day"] }
-                                label={t(__("working day"))}
+                                name={ ["terms_supply", "3", "supply_time"] }
+                                label={t("supply_time")}
                                 labelCol={ { sm: 24, lg: 6 } }
-                                extra={t(__("working day", "desc"))}
+                                extra={t(__("supply_time", "desc"))}
                               >
-                                <Input
+                                <InputNumber
+                                  className="w-100"
                                   placeholder={t(__("working day"))}
-                                  allowClear
                                 />
                               </Form.Item>
 
                               <Form.Item
-                                name={ ["terms_supply", "3", "percent"] }
-                                label={t(__("percent"))}
+                                name={ ["terms_supply", "3", "supply_amount"] }
+                                label={t("supply_amount")}
                                 labelCol={ { sm: 24, lg: 6 } }
-                                extra={t(__("percent", "desc"))}
+                                extra={t(__("supply_amount", "desc"))}
                               >
-                                <Input
+                                <InputNumber
+                                  className="w-100"
                                   placeholder={t(__("percent"))}
-                                  allowClear
                                 />
                               </Form.Item>
 
                               <Form.Item
-                                name={ ["terms_supply", "3", "amount"] }
-                                label={t(__("Approximate amount"))}
+                                name={ ["terms_supply", "3", "approx_quantity"] }
+                                label={t("approx_quantity")}
                                 labelCol={ { sm: 24, lg: 6 } }
-                                extra={t(__("Approximate amount", "desc"))}
+                                extra={t(__("approx_quantity", "desc"))}
                               >
-                                <Input
-                                  placeholder={t(__("amount"))}
-                                  allowClear
+                                <InputNumber
+                                  className="w-100"
+                                  placeholder={t(__("quantity"))}
                                 />
                               </Form.Item>
 
@@ -348,38 +348,38 @@ const Supply = (
 
                               <div className="mb-3 border-top pt-3"> {`${t(__("part"))} 4:`}</div>
                               <Form.Item
-                                name={ ["terms_supply", "4", "working_day"] }
-                                label={t(__("working day"))}
+                                name={ ["terms_supply", "4", "supply_time"] }
+                                label={t("supply_time")}
                                 labelCol={ { sm: 24, lg: 6 } }
-                                extra={t(__("working day", "desc"))}
+                                extra={t(__("supply_time", "desc"))}
                               >
-                                <Input
+                                <InputNumber
+                                  className="w-100"
                                   placeholder={t(__("working day"))}
-                                  allowClear
                                 />
                               </Form.Item>
 
                               <Form.Item
-                                name={ ["terms_supply", "4", "percent"] }
-                                label={t(__("percent"))}
+                                name={ ["terms_supply", "4", "supply_amount"] }
+                                label={t("supply_amount")}
                                 labelCol={ { sm: 24, lg: 6 } }
-                                extra={t(__("percent", "desc"))}
+                                extra={t(__("supply_amount", "desc"))}
                               >
-                                <Input
+                                <InputNumber
+                                  className="w-100"
                                   placeholder={t(__("percent"))}
-                                  allowClear
                                 />
                               </Form.Item>
 
                               <Form.Item
-                                name={ ["terms_supply", "4", "amount"] }
-                                label={t(__("Approximate amount"))}
+                                name={ ["terms_supply", "4", "approx_quantity"] }
+                                label={t("approx_quantity")}
                                 labelCol={ { sm: 24, lg: 6 } }
-                                extra={t(__("Approximate amount", "desc"))}
+                                extra={t(__("approx_quantity", "desc"))}
                               >
-                                <Input
-                                  placeholder={t(__("amount"))}
-                                  allowClear
+                                <InputNumber
+                                  className="w-100"
+                                  placeholder={t(__("quantity"))}
                                 />
                               </Form.Item>
 
@@ -439,9 +439,9 @@ const Supply = (
                                   },
                                 ] }
                               >
-                                <Input
+                                <InputNumber
+                                  className="w-100"
                                   placeholder={t(__("percent"))}
-                                  allowClear
                                 />
                               </Form.Item>
 
@@ -457,9 +457,9 @@ const Supply = (
                                   },
                                 ] }
                               >
-                                <Input
+                                <InputNumber
+                                  className="w-100"
                                   placeholder={t(__("percent"))}
-                                  allowClear
                                 />
                               </Form.Item>
 
@@ -475,9 +475,9 @@ const Supply = (
                                   },
                                 ] }
                               >
-                                <Input
+                                <InputNumber
+                                  className="w-100"
                                   placeholder={t(__("percent"))}
-                                  allowClear
                                 />
                               </Form.Item>
 
@@ -493,9 +493,9 @@ const Supply = (
                                   },
                                 ] }
                               >
-                                <Input
+                                <InputNumber
+                                  className="w-100"
                                   placeholder={t(__("percent"))}
-                                  allowClear
                                 />
                               </Form.Item>
 
