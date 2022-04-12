@@ -66,11 +66,11 @@ const ChangePassword = () => {
       <Row className="changePasswordForm" gutter={[0, 5]}>
         <Col span={24}>
           <Row>
-            <Col xs={24} md={12} lg={10} xl={9}>
+            <Col xs={24} md={12} lg={10}>
               <Form.Item
                 name="old_password"
                 label={ t(__('old_password')) }
-                labelCol={{sm: 24, lg: 7}}
+                labelCol={{sm: 24, lg: 8}}
                 rules={ [
                   {
                     required: true,
@@ -90,11 +90,11 @@ const ChangePassword = () => {
 
         <Col span={24}>
           <Row>
-            <Col xs={24} md={12} lg={10} xl={9}>
+            <Col xs={24} md={12} lg={10}>
               <Form.Item
                 name="password1"
                 label={ t(__('new_password')) }
-                labelCol={{sm: 24, lg: 7}}
+                labelCol={{sm: 24, lg: 8}}
                 rules={[
                   {
                     required: true,
@@ -112,11 +112,11 @@ const ChangePassword = () => {
 
         <Col span={24}>
           <Row>
-            <Col xs={24} md={12} lg={10} xl={9}>
+            <Col xs={24} md={12} lg={10}>
               <Form.Item
                 name="password2"
                 label={ t(__('confirm_password')) }
-                labelCol={{sm: 24, lg: 7}}
+                labelCol={{sm: 24, lg: 8}}
                 dependencies={['password']}
                 hasFeedback
                 rules={[
@@ -147,7 +147,7 @@ const ChangePassword = () => {
 
         <Col span={24}>
           <Row>
-            <Col xs={24} md={12} lg={10} xl={9} className="mt-4 text-center">
+            <Col xs={24} md={12} lg={10} className="mt-4 text-center">
               <Form.Item
                 className="changePassword--btn"
                 valuePropName="checked"
