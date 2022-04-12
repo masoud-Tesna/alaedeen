@@ -287,24 +287,110 @@
 
       .supplyDetails--container {
         border-radius: .75rem;
-        border: 1px solid #d4d4d4;
+        border: 1px solid #BCBCBC;
         background-color: #FFFFFF !important;
         padding: 1rem 2rem;
         position: relative;
         animation: fadeIn .5s ease-in;
+  
+        .termsSupply__table {
+          & > div {
+            border: 1px solid #BCBCBC;
+            //border-radius: 5px;
+  
+            margin: 0 -2rem;
+            border-left: none;
+            border-right: none;
+          }
+    
+          .__head {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #BCBCBC;
+      
+            & > .ant-col {
+              padding: 0 1.5rem;
+              color: #333333;
+              font-weight: 700;
+              font-size: 1.6rem;
+              min-height: 23.33px;
+        
+              &:not(:last-child) {
+                border-right: 1px solid #BCBCBC;
+              }
+            }
+          }
+    
+          .__body {
+            & > .ant-col {
+              padding: 1rem 0;
+        
+              &:nth-child(odd) {
+                background-color: #EFEFEF;
+              }
+        
+              &:not(:last-child) {
+                border-bottom: 1px solid #BCBCBC;
+              }
+            }
+      
+            .__data {
+        
+              .ant-skeleton {
+                width: 100%;
+              }
+        
+              & > .ant-col {
+                padding: 0 1.5rem;
+              }
+        
+              .__plan,
+              .__price,
+              .__price span {
+                font-weight: 600;
+                font-size: 1.5rem;
+                color: #333333;
+              }
+        
+              .__tax,
+              .__taxPrice span {
+                color: #000000;
+                font-weight: 700;
+                font-size: 1.8rem;
+              }
+            }
+          }
+        }
 
         .--caption {
-          font-size: 1.8rem;
+          font-size: 1.7rem;
           font-weight: 700;
           color: #333333;
-          margin-bottom: 1rem;
         }
 
         .--item {
           .__title {
-            font-size: 1.6rem;
-            font-weight: 600;
-            color: #333333;
+            overflow: unset;
+            line-height: 1.3215em;
+            white-space: unset;
+            flex-grow: 0;
+            text-align: right;
+            
+            span {
+              position: relative;
+              display: inline-flex;
+              align-items: center;
+              max-width: 100%;
+              font-size: 1.6rem;
+              font-weight: 600;
+              color: #333333;
+              
+              &:after {
+                content: ':';
+                position: relative;
+                top: -0.5px;
+                margin: 0 0.6rem;
+              }
+            }
           }
 
           .__value,
@@ -313,12 +399,16 @@
             font-weight: 500;
             color: #919191;
           }
+          
+          .__value {
+            padding-left: 0.8rem;
+          }
         }
 
         .--negotiable {
           font-size: 1.6rem;
           font-weight: 600;
-          margin-top: -1.3rem;
+          margin-top: -.65rem;
           color: @primary-color;
 
           .anticon {

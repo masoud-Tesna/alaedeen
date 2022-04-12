@@ -1,5 +1,5 @@
 import { Button, Col, Empty, Form, Input, Row, Space, Spin, Statistic } from "antd";
-import { __, nl2br } from "../../../../../../functions/Helper";
+import {__, fn_after_discount, fn_discount, nl2br} from "../../../../../../functions/Helper";
 import ShowResponsiveImage from "../../../../../common/ShowResponsiveImage";
 import moment from "moment-jalaali";
 import Moment from "react-moment";
@@ -98,101 +98,127 @@ const Chat = (
             {supplyData.order_supply_id &&
               <Col span={24}>
                 <Row justify="center">
-                  <Col xs={24} lg={18} className="supplyDetails--container">
-                    <Row gutter={[0,25]}>
-                      <Col span={24} className="text-center --caption">
-                        {t("terms_of_order_supply")}
-                      </Col>
-
+                  <Col xs={24} lg={22} xl={20} xxl={18} className="supplyDetails--container">
+                    <Row gutter={[0,30]}>
                       {
                         supplyData?.is_supply === "1" ?
                           (
                             <>
                               <Col span={24}>
-                                <Row gutter={[20, 15]}>
-                                  {
-                                    supplyData?.terms_supply?.map((item, i) => {
-                                      return (
-                                        <Col key={`terms_supply_${i + 1}`} span={12} className="--item">
-                                          <Row gutter={[20, 8]}>
-                                            <Col className="mb-1 vv-font-size-1-5 font-weight-600" span={24}> {`${t(__("part"))} ${i + 1}:`} </Col>
-
-                                            <Col span={12} className="__title">
-                                              { t("supply_time") } :
-                                            </Col>
-
-                                            <Col span={12} className="__value">
-                                              { `${ item?.supply_time }  ${ t('day') }` }
-                                            </Col>
-
-                                            <Col span={12} className="__title">
-                                              { t("supply_amount") } :
-                                            </Col>
-
-                                            <Col span={12} className="__value">
-                                              { `${ t('%') }${ item?.supply_amount }` }
-                                            </Col>
-
-                                            <Col span={12} className="__title">
-                                              { t("approx_quantity") } :
-                                            </Col>
-
-                                            <Col span={12} className="__value">
-                                              <Statistic value={ item?.approx_quantity } suffix={ t(__(item?.unit)) } />
-                                            </Col>
-                                          </Row>
+                                <Row gutter={[0, 16]}>
+                                  <Col span={24} className="--caption">
+                                    {t("terms_of_order_supply")}
+                                  </Col>
+  
+                                  <Col span={24} className="termsSupply__table">
+                                    <div>
+                                      <Row className="__head">
+                                        <Col className="text-center my-auto" span={4}>
+                                          {t('part')}
                                         </Col>
-                                      )
-                                    })
-                                  }
-
+        
+                                        <Col className="text-center my-auto" span={7}>
+                                          {t('supply_time')}
+                                        </Col>
+        
+                                        <Col className="text-center my-auto" span={6}>
+                                          {t('supply_amount')}
+                                        </Col>
+        
+                                        <Col className="text-center my-auto" span={7}>
+                                          {t('approx_quantity')}
+                                        </Col>
+                                      </Row>
+      
+                                      <Row className="__body">
+                                        {
+                                          supplyData?.terms_supply?.map((item, i) => {
+                                            return (
+                                              <Col key={`terms_supply_${i + 1}`} span={24} className="--item">
+                                                <Row className="__data">
+                                                  <Col span={4} className="text-center my-auto __value">
+                                                    {i + 1}
+                                                  </Col>
+                  
+                                                  <Col span={7} className="text-center my-auto __value">
+                                                    { `${ item?.supply_time }  ${ t('day') }` }
+                                                  </Col>
+                  
+                                                  <Col span={6} className="text-center my-auto __value">
+                                                    { `${ t('%') }${ item?.supply_amount }` }
+                                                  </Col>
+                  
+                                                  <Col span={7} className="text-center my-auto __value">
+                                                    <Statistic value={ item?.approx_quantity } suffix={ t(__(item?.unit)) } />
+                                                  </Col>
+                                                </Row>
+                                              </Col>
+                                            )
+                                          })
+                                        }
+                                      </Row>
+                                    </div>
+                                  </Col>
+  
                                   {
                                     supplyData?.negotiable?.terms_supply &&
-                                      <Col span={24} className="--negotiable">
+                                    <Col span={24} className="--negotiable">
                                       <CheckOutlined /> { t(__('The above conditions are negotiable')) }
                                     </Col>
                                   }
                                 </Row>
                               </Col>
-
+  
                               <Col span={24}>
-                                <Row gutter={[0, 15]}>
-                                  <Col span={12} className="--item">
-                                    <Row gutter={[20, 8]}>
-                                      <Col span={12} className="__title">
-                                        { t("prepayment") } :
-                                      </Col>
-
-                                      <Col span={12} className="__value">
-                                        { `${ t('%') }${ supplyData?.terms_of_payment?.prepayment }` }
-                                      </Col>
-
-                                      <Col span={12} className="__title">
-                                        { t("complete_order") } :
-                                      </Col>
-
-                                      <Col span={12} className="__value">
-                                        { `${ t('%') }${ supplyData?.terms_of_payment?.complete_order }` }
-                                      </Col>
-
-                                      <Col span={12} className="__title">
-                                        { t("delivery_border") } :
-                                      </Col>
-
-                                      <Col span={12} className="__value">
-                                        { `${ t('%') }${ supplyData?.terms_of_payment?.delivery_border }` }
-                                      </Col>
-
-                                      <Col span={12} className="__title">
-                                        { t("delivery_destination") } :
-                                      </Col>
-
-                                      <Col span={12} className="__value">
-                                        { `${ t('%') }${ supplyData?.terms_of_payment?.delivery_destination }` }
-                                      </Col>
-                                    </Row>
+                                <Row gutter={[0, 16]}>
+                                  <Col span={24} className="--caption">
+                                    {t("terms_of_payment")}
                                   </Col>
-
+      
+                                  <Col span={24} className="termsSupply__table">
+                                    <div>
+                                      <Row className="__head">
+                                        <Col className="text-center my-auto" span={6}>
+                                          { t("prepayment") }
+                                        </Col>
+            
+                                        <Col className="text-center my-auto" span={6}>
+                                          { t("complete_order") }
+                                        </Col>
+            
+                                        <Col className="text-center my-auto" span={6}>
+                                          { t("delivery_border") }
+                                        </Col>
+            
+                                        <Col className="text-center my-auto" span={6}>
+                                          { t("delivery_destination") }
+                                        </Col>
+                                      </Row>
+          
+                                      <Row className="__body">
+                                        <Col  span={24} className="--item">
+                                          <Row className="__data">
+                                            <Col span={6} className="text-center my-auto __value">
+                                              { `${ t('%') }${ supplyData?.terms_of_payment?.prepayment }` }
+                                            </Col>
+      
+                                            <Col span={6} className="text-center my-auto __value">
+                                              { `${ t('%') }${ supplyData?.terms_of_payment?.complete_order }` }
+                                            </Col>
+      
+                                            <Col span={6} className="text-center my-auto __value">
+                                              { `${ t('%') }${ supplyData?.terms_of_payment?.delivery_border }` }
+                                            </Col>
+      
+                                            <Col span={6} className="text-center my-auto __value">
+                                              { `${ t('%') }${ supplyData?.terms_of_payment?.delivery_destination }` }
+                                            </Col>
+                                          </Row>
+                                        </Col>
+                                      </Row>
+                                    </div>
+                                  </Col>
+      
                                   {
                                     supplyData?.negotiable?.terms_of_payment &&
                                     <Col span={24} className="--negotiable">
@@ -201,15 +227,21 @@ const Chat = (
                                   }
                                 </Row>
                               </Col>
-
+  
                               <Col span={24}>
-                                <Row gutter={[0, 15]}>
+                                <Row gutter={[0, 16]}>
+                                  <Col span={24} className="--caption">
+                                    {t("currency_type")}
+                                  </Col>
+  
                                   <Col span={24} className="--item">
                                     <Row gutter={[40, 8]}>
                                       <Col span={6} className="__title">
-                                        { t("currency_type") } :
+                                        <span>
+                                          { t("type") }
+                                        </span>
                                       </Col>
-
+      
                                       <Col span={18}>
                                         <Space size="middle">
                                           {supplyData?.currency_type?.map((item, i) => {
@@ -223,7 +255,7 @@ const Chat = (
                                       </Col>
                                     </Row>
                                   </Col>
-
+  
                                   {
                                     supplyData?.negotiable?.currency_type &&
                                     <Col span={24} className="--negotiable">
@@ -239,7 +271,9 @@ const Chat = (
                               <Col span={24} className="--item">
                                 <Row gutter={[40, 8]}>
                                   <Col span={6} className="__title">
-                                    { t("order_supply_from") } :
+                                    <span>
+                                      { t("order_supply_from") }
+                                    </span>
                                   </Col>
 
                                   <Col span={18} className="__value">
