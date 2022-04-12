@@ -65,8 +65,6 @@ const Supply = (
         setIsSpinSend(false);
       });
   }
-  
-  console.log(t(__("Form information sent successfully")))
 
   const [productsNotExist, setProductsNotExist] = useState(false);
 
