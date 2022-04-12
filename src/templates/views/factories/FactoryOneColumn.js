@@ -119,11 +119,11 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
 
           if (factory?.store_type === "A") {
             return (
-              <Fragment key = { `FactoryOneColumn_pro_${factory?.company_id}` }>
-                <Col xs={24} lg={12} className={ `factory--container ${selectedStoreId === factory?.company_id ? "byParam" : ""}` }>
-                  <Row gutter={width >= 992 ? 16 : 0} className="bg-white rounded-10 border border-70 h-100 m-0">
-                    <Col span={24}>
-                      <Row className="h-100" gutter={[0, 12]}>
+              <Col xs={24} lg={12} className={ `factory--container ${selectedStoreId === factory?.company_id ? "byParam" : ""}` }>
+                <Row className="bg-white rounded-10 border border-70 h-100 m-0">
+                  <Col span={24}>
+                    <Row className="h-100" gutter={[0, 12]}>
+                      <a className="d-block" href={`https://store.alaedeen.com/?store_id=${factory?.company_id}`} target="_blank">
                         <Col className="align-self-start factory--topSection" span={24}>
                           <Row gutter={10}>
                             <Col xs={8} lg={11} className="product-xs">
@@ -157,7 +157,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                                   />
                                 </div>
                               </div>
-
+        
                               <div className="d-none d-lg-block rounded-10 shadow-y-2 text-center factory--productImage">
                                 {(factory?.images && factory?.images[0]) ?
                                   <div className="product--image">
@@ -201,7 +201,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                                     </Col>
                                   </Row>
                                 </Col>
-
+          
                                 <Col span={24} className="factory--aboutUs">
                                   {factory?.about_us ?
                                     <TextTruncate
@@ -214,7 +214,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                                     <Skeleton className="factory--aboutUs__empty" active={false} paragraph={{ rows: 4 }} />
                                   }
                                 </Col>
-
+          
                                 <Col span={24} className="d-none d-lg-block factory--products">
                                   <Row className="row-cols-2" gutter={16}>
                                     {factory?.products.length ?
@@ -249,7 +249,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                                           </Col>
                                         );
                                       })
-
+                
                                     }
                                   </Row>
                                 </Col>
@@ -257,77 +257,78 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                             </Col>
                           </Row>
                         </Col>
-
-                        <Col className="align-self-end factory--bottomSection" span={24}>
-                          <Row className="d-lg-none row-cols-3 factory--profileDetails" gutter={15}>
-                            <Col>
-                              <Row gutter={ [ 0, 5 ] }>
-                                <Col className="profileDetail--value text-black text-truncate" span={ 24 }>
-                                  {factory?.production_capability?.total_employees || "..."}
-                                </Col>
-                                <Col className="profileDetail--variable text-92 font-weight-600 text-truncate" span={ 24 }>
-                                  {t(__('Total employees'))}
-                                </Col>
-                              </Row>
-                            </Col>
-
-                            <Col>
-                              <Row gutter={ [ 0, 5 ] }>
-                                <Col className="profileDetail--value text-black text-truncate" span={ 24 }>
-                                  {factory?.production_capability?.factory_size || "..."}
-                                </Col>
-                                <Col className="profileDetail--variable text-92 font-weight-600 text-truncate" span={ 24 }>
-                                  {t(__('Factory size'))}
-                                </Col>
-                              </Row>
-                            </Col>
-
-                            <Col>
-                              <Row gutter={ [ 0, 5 ] }>
-                                <Col className="profileDetail--value text-black text-truncate" span={ 24 }>
-                                  {factory?.production_capability?.r_and_d_employees || "..."}
-                                </Col>
-                                <Col className="profileDetail--variable text-92 font-weight-600 text-truncate" span={ 24 }>
-                                  {t(__('R&D employees'))}
-                                </Col>
-                              </Row>
-                            </Col>
-                          </Row>
-
-                          <Row justify="space-between">
-                            <Col className="factory--location">
-                              <i className="fal fa-map-marker-alt text-primary" />
-                              <span className="text-47">{ factory?.general?.country }, { factory?.general?.state }</span>
-                            </Col>
-
-                            <Col>
-                              <Button
-                                icon={ <i className="far fa-address-book vv-font-size-1-7"/> }
-                                className="p-0 bg-transparent border-0 factory--contacts"
-                                size={ "large" }
-                                onClick={() => showContactUsModal(factory?.company_id)}
-                              >
-                                { t(__('Contacts')) }
-                              </Button>
-                            </Col>
-                          </Row>
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
-
-                  {/* Contact Us Modal: */}
-                  <Modal
-                    className="factory--contactUs__modal"
-                    title={ factory?.general?.company }
-                    style={{ top: width < 992 && 10 }}
-                    visible={isContactUsModal[factory?.company_id] || false}
-                    onCancel={() => { handleContactUsModalClose(factory?.company_id) }}
-                    footer={false}
-                  >
-                    <Row className="row-cols-1" gutter={[0, 20]}>
-
-                      {factory?.contact_us?.full_name &&
+                      </a>
+    
+                      <Col className="align-self-end factory--bottomSection" span={24}>
+                        <Row className="d-lg-none row-cols-3 factory--profileDetails" gutter={15}>
+                          <Col>
+                            <Row gutter={ [ 0, 5 ] }>
+                              <Col className="profileDetail--value text-black text-truncate" span={ 24 }>
+                                {factory?.production_capability?.total_employees || "..."}
+                              </Col>
+                              <Col className="profileDetail--variable text-92 font-weight-600 text-truncate" span={ 24 }>
+                                {t(__('Total employees'))}
+                              </Col>
+                            </Row>
+                          </Col>
+        
+                          <Col>
+                            <Row gutter={ [ 0, 5 ] }>
+                              <Col className="profileDetail--value text-black text-truncate" span={ 24 }>
+                                {factory?.production_capability?.factory_size || "..."}
+                              </Col>
+                              <Col className="profileDetail--variable text-92 font-weight-600 text-truncate" span={ 24 }>
+                                {t(__('Factory size'))}
+                              </Col>
+                            </Row>
+                          </Col>
+        
+                          <Col>
+                            <Row gutter={ [ 0, 5 ] }>
+                              <Col className="profileDetail--value text-black text-truncate" span={ 24 }>
+                                {factory?.production_capability?.r_and_d_employees || "..."}
+                              </Col>
+                              <Col className="profileDetail--variable text-92 font-weight-600 text-truncate" span={ 24 }>
+                                {t(__('R&D employees'))}
+                              </Col>
+                            </Row>
+                          </Col>
+                        </Row>
+      
+                        <Row justify="space-between">
+                          <Col className="factory--location">
+                            <i className="fal fa-map-marker-alt text-primary" />
+                            <span className="text-47">{ factory?.general?.country }, { factory?.general?.state }</span>
+                          </Col>
+        
+                          <Col>
+                            <Button
+                              icon={ <i className="far fa-address-book vv-font-size-1-7"/> }
+                              className="p-0 bg-transparent border-0 factory--contacts"
+                              size={ "large" }
+                              onClick={() => showContactUsModal(factory?.company_id)}
+                            >
+                              { t(__('Contacts')) }
+                            </Button>
+                          </Col>
+                        </Row>
+                      </Col>
+                    </Row>
+                  </Col>
+                </Row>
+    
+                {/* Contact Us Modal: */}
+                <Modal
+                  className="factory--contactUs__modal"
+                  title={ factory?.general?.company }
+                  style={{ top: width < 992 && 10 }}
+                  visible={isContactUsModal[factory?.company_id] || false}
+                  onCancel={() => { handleContactUsModalClose(factory?.company_id) }}
+                  footer={false}
+                >
+                  <Row className="row-cols-1" gutter={[0, 20]}>
+        
+                    {factory?.contact_us?.full_name &&
                       <Col>
                         <Row gutter={width >= 992 ? 16 : 0}>
                           <Col xs={9} lg={5} className="text-92 contactUs--modal__variable">
@@ -338,9 +339,9 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                           </Col>
                         </Row>
                       </Col>
-                      }
-
-                      {factory?.contact_us?.telephone &&
+                    }
+        
+                    {factory?.contact_us?.telephone &&
                       <Col>
                         <Row gutter={width >= 992 ? 16 : 0}>
                           <Col xs={9} lg={5} className="text-92 contactUs--modal__variable">
@@ -351,9 +352,9 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                           </Col>
                         </Row>
                       </Col>
-                      }
-
-                      {factory?.contact_us?.whatsapp &&
+                    }
+        
+                    {factory?.contact_us?.whatsapp &&
                       <Col>
                         <Row gutter={width >= 992 ? 16 : 0}>
                           <Col xs={9} lg={5} className="text-92 contactUs--modal__variable">
@@ -364,30 +365,30 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                           </Col>
                         </Row>
                       </Col>
-                      }
-
-                      {factory?.contact_us?.address &&
+                    }
+        
+                    {factory?.contact_us?.address &&
                       <Col>
                         <Row gutter={width >= 992 ? 16 : 0}>
                           <Col xs={9} lg={5} className="text-92 contactUs--modal__variable">
                             { t('address') }:
                           </Col>
                           <Col xs={15} lg={19} className="text-47 contactUs--modal__value">
-
+                
                             { factory?.contact_us?.country && `${factory?.contact_us?.country} - ` }
-
+                
                             { factory?.contact_us?.state && `${factory?.contact_us?.state} - ` }
-
+                
                             { factory?.contact_us?.address &&
-                            <span dangerouslySetInnerHTML={{ __html: factory?.contact_us?.address }} />
+                              <span dangerouslySetInnerHTML={{ __html: factory?.contact_us?.address }} />
                             }
-
+              
                           </Col>
                         </Row>
                       </Col>
-                      }
-
-                      {(!factory?.contact_us?.full_name && !factory?.contact_us?.telephone && !factory?.contact_us?.whatsapp && !factory?.contact_us?.address) &&
+                    }
+        
+                    {(!factory?.contact_us?.full_name && !factory?.contact_us?.telephone && !factory?.contact_us?.whatsapp && !factory?.contact_us?.address) &&
                       <Col>
                         <Row gutter={width >= 992 ? 16 : 0}>
                           <Col xs={9} lg={5} className="text-92 contactUs--modal__variable">
@@ -398,12 +399,11 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                           </Col>
                         </Row>
                       </Col>
-                      }
-
-                    </Row>
-                  </Modal>
-                </Col>
-              </Fragment>
+                    }
+      
+                  </Row>
+                </Modal>
+              </Col>
             );
           }
 
