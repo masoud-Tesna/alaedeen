@@ -1,4 +1,4 @@
-import { Checkbox, Col, Form, Input, Row, Select, Switch, Radio, Space, Button, InputNumber, Spin } from "antd";
+import {Checkbox, Col, Form, Input, Row, Select, Switch, Radio, Space, Button, InputNumber, Spin, message} from "antd";
 import { __ } from "../../../../../../functions/Helper";
 import { useTranslation } from "react-i18next";
 import React, { useState } from "react";
@@ -55,10 +55,18 @@ const Supply = (
           return { ...prev, isSupply: true }
         });
       })
+      .then (() => {
+        message.success({
+          content: t(__("Form information sent successfully")),
+          duration: 2,
+        })
+      })
       .catch(() => {
         setIsSpinSend(false);
       });
   }
+  
+  console.log(t(__("Form information sent successfully")))
 
   const [productsNotExist, setProductsNotExist] = useState(false);
 
