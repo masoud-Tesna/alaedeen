@@ -38,6 +38,8 @@ const Invoices = lazy(() => import('./dashboard/pages/invoices'));
 
 const PaymentResult = lazy(() => import('./dashboard/pages/invoices/Result'));
 
+const Notifications = lazy(() => import('./dashboard/pages/notifications/Notifications'));
+
 const DashboardRoutes = () => {
 
   const { user_data } = useGetAuthState();
@@ -170,6 +172,8 @@ const DashboardRoutes = () => {
 
               </Route>
             </Route>
+  
+            <Route path="notifications" element={ <Suspense fallback={null}><Notifications /></Suspense> }/>
           </> :
           <Route index path={ "*" } element={ <Navigate to="/"/> }/>
       }

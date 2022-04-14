@@ -14,6 +14,7 @@ import { useWindowSize } from "../../../../../functions";
 import { isLoadingAction, useSpinnerDispatch } from "../../../../../contexts/spiner/SpinnerContext";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 import ShowResponsiveImage from "../../../../common/ShowResponsiveImage";
+import {NotificationOutlined} from "@ant-design/icons";
 
 const DashboardSidenav = ({ dashboardToggleDrawer }) => {
 
@@ -95,7 +96,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   }
 
   // submenu keys of first level
-  const rootSubmenuKeys = ['dashboard', 'account', 'personal-store', 'support', 'requests', 'products', 'business-promotion', 'affiliate', 'invoice', 'notices'];
+  const rootSubmenuKeys = ['dashboard', 'account', 'personal-store', 'support', 'requests', 'products', 'business-promotion', 'affiliate', 'invoice', 'notifications'];
 
   const [openKeys, setOpenKeys] = useState(urlPath);
 
@@ -310,11 +311,11 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
                   </Link>
                 </Menu.Item>
 
-                {/*<Menu.Item key="notices"  icon={ <NotificationOutlined /> }>
-                  <Link to="/dashboard/notices" className="side--link">
-                    { t('notices') }
+                <Menu.Item key="notices"  icon={<i className="fa-light fa-bullhorn" /> }>
+                  <Link to="/dashboard/notifications" className="side--link">
+                    { t('notifications') }
                   </Link>
-                </Menu.Item>*/}
+                </Menu.Item>
               </Menu>
             </Col>
           </Row>
