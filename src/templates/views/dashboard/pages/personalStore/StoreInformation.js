@@ -36,7 +36,7 @@ const StoreInformation = () => {
   const [ manufacturingCapabilityFrm ] = Form.useForm();
   const [ exportCapabilityFrm ] = Form.useForm();
   const [ certificatesFrm ] = Form.useForm();
-  const [ companyIntroductionFrm ] = Form.useForm();
+  //const [ companyIntroductionFrm ] = Form.useForm();
 
   // state for save current tab key:
   const [ currentTab, setCurrentTab ] = useState("1");
