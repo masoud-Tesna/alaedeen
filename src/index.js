@@ -52,7 +52,7 @@ const Application = () => {
               <StrictMode>
                 <App />
               </StrictMode>
-              <ReactQueryDevtools />
+              {/*<ReactQueryDevtools />*/}
             </UserProvider>
           </ConfigProvider>
         </SpinnerProvider>
