@@ -96,7 +96,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
   }
 
   // submenu keys of first level
-  const rootSubmenuKeys = ['dashboard', 'account', 'personal-store', 'support', 'requests', 'products', 'business-promotion', 'affiliate', 'invoice', 'notifications'];
+  const rootSubmenuKeys = ['dashboard', 'notifications' , 'account', 'personal-store', 'support', 'requests', 'products', 'business-promotion', 'affiliate', 'invoice'];
 
   const [openKeys, setOpenKeys] = useState(urlPath);
 
@@ -240,6 +240,12 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
                   <Item onClick={() => handleChangeLanguage('en')} key="2">English</Item>
                   <Item onClick={() => handleChangeLanguage('ar')} key="3">عربی</Item>
                 </SubMenu>
+  
+                <Menu.Item key="notifications"  icon={<Badge count={0} offset={[0, -4]}><i className="fa-light fa-bullhorn" /></Badge> }>
+                  <Link to="/dashboard/notifications" className="side--link">
+                    { t('notifications') }
+                  </Link>
+                </Menu.Item>
 
                 <SubMenu key="account" icon={<i className="fa-light fa-user-cog" />} title={ t('account') }>
                   <Item key="account-settings">
@@ -308,12 +314,6 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
                 <Menu.Item key="invoices"  icon={ <i className="fa-light fa-file-invoice-dollar" /> }>
                   <Link to="/dashboard/invoices" className="side--link">
                     { t('invoices') }
-                  </Link>
-                </Menu.Item>
-
-                <Menu.Item key="notices"  icon={<Badge count={0} offset={[0, -4]}><i className="fa-light fa-bullhorn" /></Badge> }>
-                  <Link to="/dashboard/notifications" className="side--link">
-                    { t('notifications') }
                   </Link>
                 </Menu.Item>
               </Menu>
