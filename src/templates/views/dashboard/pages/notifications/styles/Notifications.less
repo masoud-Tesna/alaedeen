@@ -1,0 +1,36 @@
+@import '../../../../../styles/Mixins';
+
+.notifications--container {
+  padding: 0 3rem;
+  
+  .--loading {
+    width: 100%;
+    height: 87px;
+    border-radius: 2px;
+  }
+  
+  .ant-alert {
+    padding: 1.5rem;
+    
+    .ant-alert-icon {
+      min-height: 59px;
+    }
+  
+    .ant-alert-message {
+      margin-bottom: 1.2rem;
+      font-weight: 600;
+    }
+  
+    .--description {
+      * {
+        font-size: 1.6rem;
+      }
+    }
+  
+    .--dateTime {
+      .__date {
+        margin: 0 .5rem;
+      }
+    }
+  }
+}
