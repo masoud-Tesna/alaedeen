@@ -311,7 +311,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
                   </Link>
                 </Menu.Item>
 
-                <Menu.Item key="notices"  icon={<Badge count={1} offset={[0, -4]}><i className="fa-light fa-bullhorn" /></Badge> }>
+                <Menu.Item key="notices"  icon={<Badge count={0} offset={[0, -4]}><i className="fa-light fa-bullhorn" /></Badge> }>
                   <Link to="/dashboard/notifications" className="side--link">
                     { t('notifications') }
                   </Link>
