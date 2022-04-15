@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import "./styles/DashboardSidenav.less";
 
-import { Col, Menu, Row, Skeleton } from 'antd';
+import {Badge, Col, Menu, Row, Skeleton} from 'antd';
 
 // import alaedeen character:
 import alaedeenChar from '../../../../assets/images/alaedeen-char.png';
@@ -311,7 +311,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
                   </Link>
                 </Menu.Item>
 
-                <Menu.Item key="notices"  icon={<i className="fa-light fa-bullhorn" /> }>
+                <Menu.Item key="notices"  icon={<Badge count={1} offset={[0, -4]}><i className="fa-light fa-bullhorn" /></Badge> }>
                   <Link to="/dashboard/notifications" className="side--link">
                     { t('notifications') }
                   </Link>
