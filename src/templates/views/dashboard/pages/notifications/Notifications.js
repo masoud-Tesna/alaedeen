@@ -134,7 +134,7 @@ const Notifications = () => {
                               </span>
                               
                               <span className="__date">
-                                {config.language !== 'en'
+                                {config.language === 'fa'
                                   ? moment.unix(notification?.created_at).format('jDD jMMMM jYYYY | HH:mm')
                                   : <Moment format="DD MMM, YYYY | HH:mm" unix locale="en">{notification?.created_at}</Moment>
                                 }

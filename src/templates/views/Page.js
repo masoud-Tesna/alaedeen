@@ -72,7 +72,7 @@ const Page = () => {
                   </Col>
                   <Col className="text-8b blog-date">
                     <i className="fal fa-clock align-middle" />
-                    {config.language !== 'en'
+                    {config.language === 'fa'
                       ? moment.unix(page?.timestamp).format('jDD jMMMM jYYYY')
                       : <Moment format="DD MMM, YYYY" unix locale="en">{page?.timestamp}</Moment>
                     }

@@ -96,7 +96,7 @@ const Index = () => {
                   <Col xs={24} lg={8}>
                     <span className="--variable">{t("registration_date")}:</span>
                     <span className="--value">
-                      {config.language !== 'en'
+                      {config.language === 'fa'
                         ? moment.unix(user_data?.auth?.timestamp).format('jDD jMMMM jYYYY | HH:mm')
                         : <Moment format="DD MMM, YYYY | HH:mm" unix locale="en">{user_data?.auth?.timestamp}</Moment>
                       }
