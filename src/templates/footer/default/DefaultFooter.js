@@ -83,8 +83,14 @@ const DefaultFooter = () => {
       window.removeEventListener("scroll", handleRayChatPosition)
     }
   }, [width]);
-
-
+  
+  /*const viewZibalTrust = () => {
+    window.open(
+      'https://gateway.zibal.ir/trustMe/alaedeen.com',
+      null,
+      'width=450, height=600, scrollbars=no, resizable=no'
+    )
+  }*/
 
   return (
     <Row className="footer--container">
@@ -228,23 +234,31 @@ const DefaultFooter = () => {
 
           {/* For Desktop */}
           {width > 992 &&
-            <Col span={8} className="eNamad--section">
-              <a
-                className="eNamad--link"
-                referrerPolicy="origin"
-                target="_blank"
-                rel="nofollow"
-                href="https://trustseal.enamad.ir/?id=249644&amp;code=rN4kSWtSgD84AymRm1Py"
-              >
-                <img
+            <>
+              <Col span={8} className="eNamad--section">
+                <a
+                  className="eNamad--link"
                   referrerPolicy="origin"
-                  src="https://Trustseal.eNamad.ir/logo.aspx?id=249644&Code=rN4kSWtSgD84AymRm1Py"
-                  alt=""
-                  className="eNamad--img"
-                  id="rN4kSWtSgD84AymRm1Py"
-                />
-              </a>
-            </Col>
+                  target="_blank"
+                  rel="nofollow"
+                  href="https://trustseal.enamad.ir/?id=249644&amp;code=rN4kSWtSgD84AymRm1Py"
+                >
+                  <img
+                    referrerPolicy="origin"
+                    src="https://Trustseal.eNamad.ir/logo.aspx?id=249644&Code=rN4kSWtSgD84AymRm1Py"
+                    alt=""
+                    className="eNamad--img"
+                    id="rN4kSWtSgD84AymRm1Py"
+                  />
+                </a>
+              </Col>
+              
+              {/*<Col span={8} className="eNamad--section">
+                <span onClick={viewZibalTrust} title="پرداخت آنلاین زیبال">
+                  <img  style={{ height: 85 }} src="https://zibal.ir/trust/assets/1.png" border="0" alt="پرداخت آنلاین زیبال" />
+                  </span>
+              </Col>*/}
+            </>
           }
         </Row>
       </Col>
