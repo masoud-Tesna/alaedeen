@@ -50,6 +50,8 @@ const Page = lazy(() => import('./templates/views/Page'));
 
 const ContactUs = lazy(() => import('./templates/views/ContactUs'));
 
+const Store = lazy(() => import('./templates/views/Store'));
+
 const App = () => {
 
   // get initial config:
@@ -172,6 +174,9 @@ const App = () => {
 
                   {/* show blog detail Route */ }
                   <Route path="/blog/:blog" element={ <Suspense fallback={ null }><Page/></Suspense> }/>
+  
+                  {/* Show Free Company Details Route */ }
+                  <Route path="/store/:company" element={ <Suspense fallback={ null }><Store /></Suspense> }/>
 
                   {/* Dashboard Routes */ }
                   { DashboardRoutes() }
