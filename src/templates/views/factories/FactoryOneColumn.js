@@ -120,7 +120,12 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
 
           if (factory?.store_type === "A") {
             return (
-              <Col xs={24} lg={12} className={ `factory--container ${selectedStoreId === factory?.company_id ? "byParam" : ""}` }>
+              <Col
+                xs={24}
+                lg={12}
+                className={ `factory--container ${selectedStoreId === factory?.company_id ? "byParam" : ""}` }
+                key = { `FactoryOneColumn_pro_${factory?.company_id}` }
+              >
                 <Row className="bg-white rounded-10 border border-70 h-100 m-0">
                   <Col span={24}>
                     <Row className="h-100" gutter={[0, 12]}>
