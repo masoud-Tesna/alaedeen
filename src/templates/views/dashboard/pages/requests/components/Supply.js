@@ -14,6 +14,7 @@ const Supply = (
 ) => {
 
   const { Option } = Select;
+  const { TextArea } = Input;
 
   const { t } = useTranslation();
 
@@ -430,80 +431,180 @@ const Supply = (
 
                         <Col span={24}>
                           <Row>
-                            <Col span={ 24 } className="mb-4 border border-bc rounded-5 formCloneable">
+                            <Col span={ 24 } className="mb-4 border border-bc rounded-5 formCloneable termsOfPayment">
                               <div className="mb-4 vv-font-size-1-5 font-weight-600"> {t(__("Terms of payment"))}</div>
-
-                              <Form.Item
-                                name={ ["terms_of_payment", "prepayment"] }
-                                label={t(__("prepayment"))}
-                                extra={t(__("prepayment", "desc"))}
-                                labelCol={ { sm: 24, lg: 6 } }
-                                rules={ [
-                                  {
-                                    required: true,
-                                    message: t(__("Please complete the input.")),
-                                  },
-                                ] }
-                              >
-                                <InputNumber
-                                  className="w-100"
-                                  placeholder={t(__("percent"))}
-                                />
-                              </Form.Item>
-
-                              <Form.Item
-                                name={ ["terms_of_payment", "complete_order"] }
-                                label={t(__("Complete the order"))}
-                                extra={t(__("Complete the order", "desc"))}
-                                labelCol={ { sm: 24, lg: 6 } }
-                                rules={ [
-                                  {
-                                    required: true,
-                                    message: t(__("Please complete the input.")),
-                                  },
-                                ] }
-                              >
-                                <InputNumber
-                                  className="w-100"
-                                  placeholder={t(__("percent"))}
-                                />
-                              </Form.Item>
-
-                              <Form.Item
-                                name={ ["terms_of_payment", "delivery_border"] }
-                                label={t(__("Delivery at the border"))}
-                                extra={t(__("Delivery at the border", "desc"))}
-                                labelCol={ { sm: 24, lg: 6 } }
-                                rules={ [
-                                  {
-                                    required: true,
-                                    message: t(__("Please complete the input.")),
-                                  },
-                                ] }
-                              >
-                                <InputNumber
-                                  className="w-100"
-                                  placeholder={t(__("percent"))}
-                                />
-                              </Form.Item>
-
-                              <Form.Item
-                                name={ ["terms_of_payment", "delivery_destination"] }
-                                label={t(__("Delivery in destination"))}
-                                extra={t(__("Delivery in destination", "desc"))}
-                                labelCol={ { sm: 24, lg: 6 } }
-                                rules={ [
-                                  {
-                                    required: true,
-                                    message: t(__("Please complete the input.")),
-                                  },
-                                ] }
-                              >
-                                <InputNumber
-                                  className="w-100"
-                                  placeholder={t(__("percent"))}
-                                />
-                              </Form.Item>
+                              
+                              <Col span={24}>
+                                <Row>
+                                  <Col span={13}>
+                                    <Form.Item
+                                      name={ ["terms_of_payment", "first_stage", "percent"] }
+                                      label={t(__("first stage"))}
+                                      extra={t(__("enter the percentage of the amount payable"))}
+                                      labelCol={ { sm: 24, lg: 11 } }
+                                      rules={ [
+                                        {
+                                          required: true,
+                                          message: t(__("Please complete the input.")),
+                                        },
+                                      ] }
+                                    >
+                                      <InputNumber
+                                        className="w-75"
+                                        placeholder={t(__("percent"))}
+                                      />
+                                    </Form.Item>
+                                  </Col>
+                                  
+                                  <Col span={11}>
+                                    <Form.Item
+                                      name={ ["terms_of_payment", "first_stage", "description"] }
+                                      extra={t(__("Description of payment terms"))}
+                                      rules={ [
+                                        {
+                                          required: true,
+                                          message: t(__("Please complete the input.")),
+                                        },
+                                      ] }
+                                    >
+                                      <TextArea
+                                        rows={3}
+                                        className="w-100"
+                                        placeholder={t(__("description"))}
+                                      />
+                                    </Form.Item>
+                                  </Col>
+                                </Row>
+                              </Col>
+  
+                              <Col span={24}>
+                                <Row>
+                                  <Col span={13}>
+                                    <Form.Item
+                                      name={ ["terms_of_payment", "second_stage", "percent"] }
+                                      label={t(__("second stage"))}
+                                      extra={t(__("enter the percentage of the amount payable"))}
+                                      labelCol={ { sm: 24, lg: 11 } }
+                                      rules={ [
+                                        {
+                                          required: true,
+                                          message: t(__("Please complete the input.")),
+                                        },
+                                      ] }
+                                    >
+                                      <InputNumber
+                                        className="w-75"
+                                        placeholder={t(__("percent"))}
+                                      />
+                                    </Form.Item>
+                                  </Col>
+      
+                                  <Col span={11}>
+                                    <Form.Item
+                                      name={ ["terms_of_payment", "second_stage", "description"] }
+                                      extra={t(__("Description of payment terms"))}
+                                      rules={ [
+                                        {
+                                          required: true,
+                                          message: t(__("Please complete the input.")),
+                                        },
+                                      ] }
+                                    >
+                                      <TextArea
+                                        rows={3}
+                                        className="w-100"
+                                        placeholder={t(__("description"))}
+                                      />
+                                    </Form.Item>
+                                  </Col>
+                                </Row>
+                              </Col>
+  
+                              <Col span={24}>
+                                <Row>
+                                  <Col span={13}>
+                                    <Form.Item
+                                      name={ ["terms_of_payment", "third_stage", "percent"] }
+                                      label={t(__("third stage"))}
+                                      extra={t(__("enter the percentage of the amount payable"))}
+                                      labelCol={ { sm: 24, lg: 11 } }
+                                      rules={ [
+                                        {
+                                          required: true,
+                                          message: t(__("Please complete the input.")),
+                                        },
+                                      ] }
+                                    >
+                                      <InputNumber
+                                        className="w-75"
+                                        placeholder={t(__("percent"))}
+                                      />
+                                    </Form.Item>
+                                  </Col>
+      
+                                  <Col span={11}>
+                                    <Form.Item
+                                      name={ ["terms_of_payment", "third_stage", "description"] }
+                                      extra={t(__("Description of payment terms"))}
+                                      rules={ [
+                                        {
+                                          required: true,
+                                          message: t(__("Please complete the input.")),
+                                        },
+                                      ] }
+                                    >
+                                      <TextArea
+                                        rows={3}
+                                        className="w-100"
+                                        placeholder={t(__("description"))}
+                                      />
+                                    </Form.Item>
+                                  </Col>
+                                </Row>
+                              </Col>
+  
+                              <Col span={24}>
+                                <Row>
+                                  <Col span={13}>
+                                    <Form.Item
+                                      name={ ["terms_of_payment", "fourth_stage", "percent"] }
+                                      label={t(__("fourth stage"))}
+                                      extra={t(__("enter the percentage of the amount payable"))}
+                                      labelCol={ { sm: 24, lg: 11 } }
+                                      rules={ [
+                                        {
+                                          required: true,
+                                          message: t(__("Please complete the input.")),
+                                        },
+                                      ] }
+                                    >
+                                      <InputNumber
+                                        className="w-75"
+                                        placeholder={t(__("percent"))}
+                                      />
+                                    </Form.Item>
+                                  </Col>
+      
+                                  <Col span={11}>
+                                    <Form.Item
+                                      name={ ["terms_of_payment", "fourth_stage", "description"] }
+                                      extra={t(__("Description of payment terms"))}
+                                      rules={ [
+                                        {
+                                          required: true,
+                                          message: t(__("Please complete the input.")),
+                                        },
+                                      ] }
+                                    >
+                                      <TextArea
+                                        rows={3}
+                                        className="w-100"
+                                        placeholder={t(__("description"))}
+                                      />
+                                    </Form.Item>
+                                  </Col>
+                                </Row>
+                              </Col>
 
                               <Form.Item
                                 name={["negotiable", "terms_of_payment"]}
@@ -522,7 +623,7 @@ const Supply = (
                             <Col span={ 24 } className="mb-4 border border-bc rounded-5 formCloneable">
                               <Form.Item
                                 name="currency_type"
-                                label={t(__("currency type"))}
+                                label={t(__("receivable currency"))}
                                 labelCol={{span: 24}}
                                 className="--currency"
                                 extra={t(__("currency_type", "desc"))}
