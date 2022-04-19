@@ -1,4 +1,5 @@
-import { useState, Fragment } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 // import style file:
 import "./styles/FactoryOneColumn.less";
@@ -408,36 +409,44 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
           }
 
           return (
-            <Col xs={12} lg={6} key = { `FactoryOneColumn_free_${factory?.company_id}` } className={ `factory--container storeType--free ${selectedStoreId === factory?.company_id ? "byParam" : ""}` }>
+            <Col
+              xs={12}
+              lg={6}
+              key = { `FactoryOneColumn_free_${factory?.company_id}` }
+              className={ `factory--container storeType--free ${selectedStoreId === factory?.company_id ? "byParam" : ""}` }
+            >
               <Row className="bg-white rounded-10 border border-70 h-100" gutter={[0, 7]}>
                 <Col className="factory--topSection" span={24}>
-                  <Row>
-                    <Col span={24} className="factory--logo text-center">
-                      <FactoriesLogo
-                        logo={ factory?.logo }
-                        imageAlt={ factory?.general?.company }
-                        object_id={factory?.company_id}
-                        store_type="F"
-                      />
-                    </Col>
-
-                    <Col span={24} className="text-truncate text-33 factory--name">
-                      {factory?.general?.company}
-                    </Col>
-
-                    <Col span={24} className="factory--aboutUs mt-2">
-                      {factory?.about_us ?
-                        <TextTruncate
-                          className="text-33 factory--aboutUs__paragraph"
-                          line={ width >= 993 ? 4 : 3 }
-                          element="div"
-                          truncateText=" …"
-                          text={ factory?.about_us && `${t(__('About Us'))}: ${factory?.about_us}` }
-                        /> :
-                        <Skeleton className="factory--aboutUs__empty" active={false} paragraph={{ rows: 3 }} />
-                      }
-                    </Col>
-                  </Row>
+                  <Link to={`/store/${factory?.link}`}>
+                    <Row>
+                      <Col span={24} className="factory--logo text-center">
+                        <FactoriesLogo
+                          logo={ factory?.logo }
+                          imageAlt={ factory?.general?.company }
+                          object_id={factory?.company_id}
+                          store_type="F"
+                        />
+                      </Col>
+    
+                      <Col span={24} className="text-truncate text-33 factory--name">
+                        {factory?.general?.company}
+                      </Col>
+    
+                      <Col span={24} className="factory--aboutUs mt-2">
+                        {factory?.about_us ?
+                          <TextTruncate
+                            className="text-33 factory--aboutUs__paragraph"
+                            line={ width >= 993 ? 4 : 3 }
+                            element="div"
+                            truncateText=" …"
+                            text={ factory?.about_us && `${t(__('About Us'))}: ${factory?.about_us}` }
+                          /> :
+                          <Skeleton className="factory--aboutUs__empty" active={false} paragraph={{ rows: 3 }} />
+                        }
+                      </Col>
+                    </Row>
+                  </Link>
+                  
                 </Col>
 
                 <Col className="factory--bottomSection align-self-end" span={24}>
