@@ -21,95 +21,185 @@ import ShowResponsiveImage from "./ShowResponsiveImage";
 // install Swiper modules
 SwiperCore.use([ FreeMode, Thumbs ]);
 
-const ImageGallery = ({ images }) => {
+const ImageGallery = (
+  {
+    images = {},
+    type = "product"
+  }
+) => {
 
   const [ thumbsSwiper, setThumbsSwiper ] = useState(null);
 
   return (
     <Row className="imageGallery--container">
-      {Object.values(images)?.length > 1 ?
-        <Col span={ 24 }>
-          <Image.PreviewGroup>
-            <Swiper
-              spaceBetween={ 5 }
-              navigation={ false }
-              thumbs={ { swiper: thumbsSwiper } }
-              className="imageGallery--swiper"
-            >
-              { Object.values(images)?.map(image => {
-                return (
-                  <SwiperSlide key={ `ImageGallery_${image?.pair_id}` }>
+      {type === "product" ?
+        (
+          Object.values(images)?.length > 1 ?
+            <Col span={ 24 }>
+              <Image.PreviewGroup>
+                <Swiper
+                  spaceBetween={ 5 }
+                  navigation={ false }
+                  thumbs={ { swiper: thumbsSwiper } }
+                  className="imageGallery--swiper"
+                >
+                  { Object.values(images)?.map(image => {
+                    return (
+                      <SwiperSlide key={ `ImageGallery_${image?.pair_id}` }>
+                        <ShowResponsiveImage
+                          imagePath={ image?.detailed?.image_path }
+                          imageFolder='detailed'
+                          width={ 300 }
+                          height={ 300 }
+                          skeletonWidth="100%"
+                          skeletonHeight="350px"
+                          imageAlt={ image?.detailed?.alt }
+                          object_id={ image?.pair_id }
+                          object_type="prd"
+                          preview
+                        />
+                      </SwiperSlide>
+                    );
+                  }) }
+                </Swiper>
+              </Image.PreviewGroup>
+              <Swiper
+                onSwiper={ setThumbsSwiper }
+                spaceBetween={ 15 }
+                slidesPerView={ "auto" }
+                freeMode={ true }
+                watchSlidesProgress={ true }
+                className="imageGallery--thumbnailsSwiper">
+                { Object.values(images)?.map(image => {
+                  return (
+                    <SwiperSlide key={ `ImageGallery_thumbnail_${image?.pair_id}` }>
+                      <ShowResponsiveImage
+                        imagePath={ image?.detailed?.image_path }
+                        imageFolder='detailed'
+                        width={ 68 }
+                        height={ 68 }
+                        skeletonWidth="68px"
+                        skeletonHeight="68px"
+                        imageAlt={ image?.detailed?.alt }
+                        object_id={ `thumbs_${ image?.pair_id }` }
+                        object_type="prd"
+                      />
+                    </SwiperSlide>
+                  );
+                }) }
+              </Swiper>
+            </Col> :
+    
+            Object.values(images)?.length === 1 ?
+              <Col span={24} className="imageGallery--oneImage">
+                { images?.map(image => {
+                  return (
                     <ShowResponsiveImage
+                      key={ `ImageGallery_${image?.pair_id}` }
                       imagePath={ image?.detailed?.image_path }
                       imageFolder='detailed'
                       width={ 300 }
                       height={ 300 }
-                      skeletonWidth="100%"
-                      skeletonHeight="350px"
                       imageAlt={ image?.detailed?.alt }
                       object_id={ image?.pair_id }
                       object_type="prd"
                       preview
                     />
-                  </SwiperSlide>
-                );
-              }) }
-            </Swiper>
-          </Image.PreviewGroup>
-          <Swiper
-            onSwiper={ setThumbsSwiper }
-            spaceBetween={ 15 }
-            slidesPerView={ "auto" }
-            freeMode={ true }
-            watchSlidesProgress={ true }
-            className="imageGallery--thumbnailsSwiper">
-            { Object.values(images)?.map(image => {
-              return (
-                <SwiperSlide key={ `ImageGallery_thumbnail_${image?.pair_id}` }>
-                  <ShowResponsiveImage
-                    imagePath={ image?.detailed?.image_path }
-                    imageFolder='detailed'
-                    width={ 68 }
-                    height={ 68 }
-                    skeletonWidth="68px"
-                    skeletonHeight="68px"
-                    imageAlt={ image?.detailed?.alt }
-                    object_id={ `thumbs_${ image?.pair_id }` }
-                    object_type="prd"
-                  />
-                </SwiperSlide>
-              );
-            }) }
-          </Swiper>
-        </Col> :
-
-        Object.values(images)?.length === 1 ?
-          <Col span={24} className="imageGallery--oneImage">
-            { images?.map(image => {
-              return (
+                  );
+                }) }
+              </Col> :
+      
+              !Object.values(images)?.length &&
+              <Col span={24} className="imageGallery--oneImage">
                 <ShowResponsiveImage
-                  key={ `ImageGallery_${image?.pair_id}` }
-                  imagePath={ image?.detailed?.image_path }
-                  imageFolder='detailed'
-                  width={ 300 }
-                  height={ 300 }
-                  imageAlt={ image?.detailed?.alt }
-                  object_id={ image?.pair_id }
-                  object_type="prd"
-                  preview
+                  imagePath=""
+                  skeletonWidth="100%"
+                  skeletonHeight="350px"
                 />
-              );
-            }) }
-          </Col> :
-
-          !Object.values(images)?.length &&
-            <Col span={24} className="imageGallery--oneImage">
-              <ShowResponsiveImage
-                imagePath=""
-                skeletonWidth="100%"
-                skeletonHeight="350px"
-              />
-            </Col>
+              </Col>
+        ) :
+        (
+          Object.values(images)?.length > 1 ?
+            <Col span={ 24 }>
+              <Image.PreviewGroup>
+                <Swiper
+                  spaceBetween={ 5 }
+                  navigation={ false }
+                  thumbs={ { swiper: thumbsSwiper } }
+                  className="imageGallery--swiper"
+                >
+                  { Object.values(images)?.map((image, i) => {
+                    return (
+                      <SwiperSlide key={ `ImageGallery_${i}` }>
+                        <ShowResponsiveImage
+                          imagePath={ image }
+                          imageFolder='profiles'
+                          width={ 400 }
+                          height={ 400 }
+                          skeletonWidth="100%"
+                          skeletonHeight="350px"
+                          object_id={ i }
+                          object_type="prd"
+                          preview
+                        />
+                      </SwiperSlide>
+                    );
+                  }) }
+                </Swiper>
+              </Image.PreviewGroup>
+              <Swiper
+                onSwiper={ setThumbsSwiper }
+                spaceBetween={ 15 }
+                slidesPerView={ "auto" }
+                freeMode={ true }
+                watchSlidesProgress={ true }
+                className="imageGallery--thumbnailsSwiper">
+                { Object.values(images)?.map((image, i) => {
+                  return (
+                    <SwiperSlide key={ `ImageGallery_thumbnail_${i}` }>
+                      <ShowResponsiveImage
+                        imagePath={ image }
+                        imageFolder='profiles'
+                        width={ 68 }
+                        height={ 68 }
+                        skeletonWidth="68px"
+                        skeletonHeight="68px"
+                        object_id={ `thumbs_${ i }` }
+                        object_type="prd"
+                      />
+                    </SwiperSlide>
+                  );
+                }) }
+              </Swiper>
+            </Col> :
+    
+            Object.values(images)?.length === 1 ?
+              <Col span={24} className="imageGallery--oneImage">
+                { images?.map((image, i) => {
+                  return (
+                    <ShowResponsiveImage
+                      key={ `ImageGallery_${i}` }
+                      imagePath={ image }
+                      imageFolder='profiles'
+                      width={ 300 }
+                      height={ 300 }
+                      object_id={ i }
+                      object_type="prd"
+                      preview
+                    />
+                  );
+                }) }
+              </Col> :
+      
+              !Object.values(images)?.length &&
+              <Col span={24} className="imageGallery--oneImage">
+                <ShowResponsiveImage
+                  imagePath=""
+                  skeletonWidth="100%"
+                  skeletonHeight="350px"
+                />
+              </Col>
+        )
       }
     </Row>
   );
