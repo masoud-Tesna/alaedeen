@@ -161,8 +161,6 @@ const ManufactureInformation = () => {
       values['profile_fields'][90] = fn_date_to_timestamp(values['profile_fields'][90].format('YYYY-MM'));
     }
 
-    console.log(values)
-
     // show spinner (spinner context):
     spinnerDispatch(isLoadingAction(true));
 
