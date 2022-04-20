@@ -337,12 +337,12 @@ export const fn_date_to_timestamp = strDate => {
   return datum / 1000;
 }
 
-function fn_get_lines_count(element) {
-  var prevLH = element.style.lineHeight;
-  var factor = 1000;
+export const fn_get_lines_count = element => {
+  const prevLH = element.style.lineHeight;
+  const factor = 1000;
   element.style.lineHeight = factor + 'px';
   
-  var height = element.getBoundingClientRect().height;
+  const height = element.getBoundingClientRect().height;
   element.style.lineHeight = prevLH;
   
   return Math.floor(height / factor);
