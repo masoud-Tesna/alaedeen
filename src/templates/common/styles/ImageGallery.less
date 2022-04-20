@@ -55,3 +55,43 @@
     }
   }
 }
+
+.ant-image-preview-root {
+  .ant-image-preview-mask {
+    background-color: rgba(0, 0, 0, 0.87);
+  }
+  
+  .ant-image-preview-body {
+    .ant-image-preview-operations {
+      padding: 1rem 2rem;
+      background: rgba(0, 0, 0, 0.4);
+      
+      li {
+        svg {
+          font-size: 2rem;
+        }
+      }
+    }
+    
+    .ant-image-preview-switch-left,
+    .ant-image-preview-switch-right {
+      background: rgba(0, 0, 0, 0.4);
+      
+      svg {
+        font-size: 2rem;
+      }
+    }
+    
+    
+  
+    @media (min-width: @screen-md) {
+      .ant-image-preview-switch-right {
+        right: 25px;
+      }
+  
+      .ant-image-preview-switch-left {
+        left: 25px;
+      }
+    }
+  }
+}
