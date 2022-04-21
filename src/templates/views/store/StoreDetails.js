@@ -1,5 +1,5 @@
 import "./styles/StoreDetails.less";
-import {Col, Divider, Row, Skeleton, Typography} from "antd";
+import {Col, Divider, Row, Skeleton, Tabs, Typography} from "antd";
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 import ImageGallery from "../../common/ImageGallery";
 import React, {useEffect, useRef, useState} from "react";
@@ -7,10 +7,12 @@ import {useGetConfig} from "../../../contexts/config/ConfigContext";
 import {useTranslation} from "react-i18next";
 import {__, fn_get_lines_count} from "../../../functions/Helper";
 import {useWindowSize} from "../../../functions";
+import CompanyInformation from "./components/CompanyInformation";
 
 const StoreDetails = ({store, isLoading}) => {
   
   const { Paragraph } = Typography;
+  const { TabPane } = Tabs;
   
   // get initial config:
   const { config } = useGetConfig();
@@ -107,7 +109,7 @@ const StoreDetails = ({store, isLoading}) => {
   }
   
   return (
-    <Row gutter={[0, 15]} className="storeDetails--container">
+    <Row gutter={[0, 30]} className="storeDetails--container">
       <Col span={24} className="storeDetails--topSection">
         <Row gutter={{ md: 17 }}>
           <Col className="storeDetails--imageContainer">
@@ -120,6 +122,7 @@ const StoreDetails = ({store, isLoading}) => {
               <ImageGallery images={store?.company_Introduction?.company_images} type="profiles" />
             }
           </Col>
+          
           <Col className="storeDetails">
             <Row gutter={[0, 20]} className="h-100">
               <Col span={24}>
@@ -218,7 +221,14 @@ const StoreDetails = ({store, isLoading}) => {
                       <Col>
                         <Row gutter={10}>
                           <Col>{t("business_type")}: </Col>
-                          <Col>{ store?.general?.business_type }</Col>
+                          
+                          <Col className="--businessTyp">
+                            {store?.general?.business_type?.map((type, i) => {
+                              return (
+                                <span key={`businessType_${i}`}>{ t(__(type)) }</span>
+                              )
+                            })}
+                          </Col>
                         </Row>
                       </Col>
                     </>
@@ -229,7 +239,18 @@ const StoreDetails = ({store, isLoading}) => {
           </Col>
         </Row>
       </Col>
-      <Col span={24} className="storeDetails--bottomSection"></Col>
+      
+      <Col span={24} className="storeDetails--bottomSection">
+        <Tabs defaultActiveKey="profile"  className="--tab" destroyInactiveTabPane={true}>
+          <TabPane tab={t(__('Company information'))} key="profile">
+            <CompanyInformation details={store} isLoading={isLoading} />
+          </TabPane>
+  
+          <TabPane tab={t(__('products'))} key="products">
+            Products
+          </TabPane>
+        </Tabs>
+      </Col>
     </Row>
   );
 };
