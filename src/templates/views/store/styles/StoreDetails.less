@@ -120,11 +120,94 @@
           }
         }
       }
+      
+      .__bottom {
+        .--businessTyp {
+          span {
+            &:not(:last-child) {
+              &:after {
+                content: ",\00a0";
+              }
+            }
+          }
+          
+          &.ant-col-rtl {
+            span {
+              &:not(:last-child) {
+                &:after {
+                  content: "،\00a0\00a0";
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
   
   .storeDetails--bottomSection {
+    box-shadow: 0 -5px 9px -2px rgba(0,0,0,0.2);
+    
+    .--tab {
+      overflow: unset !important;
+      background-color: #FFFFFF;
   
+      .ant-tabs-nav {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        margin: 0;
+    
+        .ant-tabs-nav-list {
+          width: 100%;
+          background-color: #FFFFFF;
+          justify-content: space-between;
+      
+          .ant-tabs-tab {
+            width: calc(50% - 32px);
+            height: 45px;
+            padding: 0;
+            justify-content: center;
+            border: none;
+            margin: 0;
+        
+            &.ant-tabs-tab-active {
+              .ant-tabs-tab-btn {
+                color: @primary-color;
+              }
+            }
+        
+            .ant-tabs-tab-btn {
+              font-size: 1.3rem;
+              color: #474747;
+              display: block;
+              font-weight: 500;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              padding: 0 1rem 0;
+  
+              @media (min-width: @screen-md) {
+                font-size: 1.7rem;
+                font-weight: 600;
+              }
+            }
+          }
+          
+          .ant-tabs-ink-bar {
+            @media (min-width: @screen-md) {
+              height: 3px;
+            }
+          }
+        }
+      }
+  
+      .ant-tabs-content-holder {
+        margin: 2rem 0 1.7rem;
+        padding: 0 1rem;
+      }
+    }
   }
   
   .ant-skeleton {
