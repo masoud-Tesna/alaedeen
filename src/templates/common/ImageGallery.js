@@ -24,7 +24,8 @@ SwiperCore.use([ FreeMode, Thumbs ]);
 const ImageGallery = (
   {
     images = {},
-    type = "product"
+    type = "product",
+    id
   }
 ) => {
 
@@ -45,7 +46,7 @@ const ImageGallery = (
                 >
                   { Object.values(images)?.map(image => {
                     return (
-                      <SwiperSlide key={ `ImageGallery_${image?.pair_id}` }>
+                      <SwiperSlide key={ `ImageGallery_${id}_${image?.pair_id}` }>
                         <ShowResponsiveImage
                           imagePath={ image?.detailed?.image_path }
                           imageFolder='detailed'
@@ -54,7 +55,7 @@ const ImageGallery = (
                           skeletonWidth="100%"
                           skeletonHeight="350px"
                           imageAlt={ image?.detailed?.alt }
-                          object_id={ image?.pair_id }
+                          object_id={ `${image?.pair_id}_${id}` }
                           object_type="prd"
                           preview
                         />
@@ -72,7 +73,7 @@ const ImageGallery = (
                 className="imageGallery--thumbnailsSwiper">
                 { Object.values(images)?.map(image => {
                   return (
-                    <SwiperSlide key={ `ImageGallery_thumbnail_${image?.pair_id}` }>
+                    <SwiperSlide key={ `ImageGallery_thumbnail_${id}_${image?.pair_id}` }>
                       <ShowResponsiveImage
                         imagePath={ image?.detailed?.image_path }
                         imageFolder='detailed'
@@ -81,7 +82,7 @@ const ImageGallery = (
                         skeletonWidth="68px"
                         skeletonHeight="68px"
                         imageAlt={ image?.detailed?.alt }
-                        object_id={ `thumbs_${ image?.pair_id }` }
+                        object_id={ `thumbs_${ image?.pair_id }_${id}` }
                         object_type="prd"
                       />
                     </SwiperSlide>
@@ -95,13 +96,13 @@ const ImageGallery = (
                 { images?.map(image => {
                   return (
                     <ShowResponsiveImage
-                      key={ `ImageGallery_${image?.pair_id}` }
+                      key={ `ImageGallery_${id}_${image?.pair_id}` }
                       imagePath={ image?.detailed?.image_path }
                       imageFolder='detailed'
                       width={ 300 }
                       height={ 300 }
                       imageAlt={ image?.detailed?.alt }
-                      object_id={ image?.pair_id }
+                      object_id={ `${image?.pair_id}_${id}` }
                       object_type="prd"
                       preview
                     />
@@ -130,7 +131,7 @@ const ImageGallery = (
                 >
                   { Object.values(images)?.map((image, i) => {
                     return (
-                      <SwiperSlide key={ `ImageGallery_${i}` }>
+                      <SwiperSlide key={ `ImageGallery_${id}_${i}` }>
                         <ShowResponsiveImage
                           imagePath={ image }
                           imageFolder='profiles'
@@ -138,7 +139,7 @@ const ImageGallery = (
                           height={ 400 }
                           skeletonWidth="100%"
                           skeletonHeight="350px"
-                          object_id={ i }
+                          object_id={ `${i}_${id}` }
                           object_type="prd"
                           preview
                         />
@@ -156,7 +157,7 @@ const ImageGallery = (
                 className="imageGallery--thumbnailsSwiper">
                 { Object.values(images)?.map((image, i) => {
                   return (
-                    <SwiperSlide key={ `ImageGallery_thumbnail_${i}` }>
+                    <SwiperSlide key={ `ImageGallery_thumbnail_${id}_${i}` }>
                       <ShowResponsiveImage
                         imagePath={ image }
                         imageFolder='profiles'
@@ -164,7 +165,7 @@ const ImageGallery = (
                         height={ 68 }
                         skeletonWidth="68px"
                         skeletonHeight="68px"
-                        object_id={ `thumbs_${ i }` }
+                        object_id={ `thumbs_${ i }_${id}` }
                         object_type="prd"
                       />
                     </SwiperSlide>
@@ -178,12 +179,12 @@ const ImageGallery = (
                 { images?.map((image, i) => {
                   return (
                     <ShowResponsiveImage
-                      key={ `ImageGallery_${i}` }
+                      key={ `ImageGallery_${id}_${i}` }
                       imagePath={ image }
                       imageFolder='profiles'
                       width={ 300 }
                       height={ 300 }
-                      object_id={ i }
+                      object_id={ `${ i }_${id}` }
                       object_type="prd"
                       preview
                     />
