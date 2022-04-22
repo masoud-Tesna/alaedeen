@@ -10,14 +10,19 @@ const SkeletonGrid = (props) => {
   const { height } = props;
   return (
     <Col className={ `productsMultiColumnVertical--item` } {...props.grid} xs={ props.xs } lg={ props.lg } style={{ minHeight: `${height}px` }}>
-      <Row className={ `h-100 ${props.className}` } justify="center">
-        <Col span={24} className="d-flex align-items-center justify-content-center productsMultiColumnVertical--item__image">
-          <Skeleton.Image active={true} className="w-100 h-100 border-bottom border-w-05 rounded-top-10" />
+      <Row className={ `h-100 ${props.className} bg-white shadow-y` } justify="center">
+        <Col span={24} className="align-self-start">
+          <Row gutter={[0, 10]}>
+            <Col span={24} className="d-flex align-items-center justify-content-center productsMultiColumnVertical--item__image">
+              <Skeleton.Image active={true} className="w-100 h-100 border-bottom border-w-05 rounded-top-10" />
+            </Col>
+            <Col span={24} className="px-4 text-47 vv-font-size-1-8 text-truncate productsMultiColumnVertical--item__title m-0">
+              <Skeleton.Input style={{ width: 150, height: 20 }} active={true} size={"small"} />
+            </Col>
+          </Row>
         </Col>
-        <Col span={24} className="px-4 text-47 vv-font-size-1-8 text-truncate productsMultiColumnVertical--item__title">
-          <Skeleton.Input style={{ width: 150, height: 20 }} active={true} size={"small"} />
-        </Col>
-        <Col span={24} className="px-4 mb-2 productsMultiColumnVertical--item__location-detailIcon">
+        
+        <Col span={24} className="px-4 mb-2 productsMultiColumnVertical--item__location-detailIcon align-self-end">
           <Row justify="space-between" align="bottom">
             <Col className="align-self-end skeletonForLocation" span={16}>
               <Skeleton active={true} paragraph={{ rows: 0 }} />
