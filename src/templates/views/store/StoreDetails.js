@@ -120,7 +120,7 @@ const StoreDetails = ({store, isLoading}) => {
                 skeletonWidth="100%"
                 skeletonHeight="350px"
               /> :
-              <ImageGallery images={store?.company_Introduction?.company_images} type="profiles" />
+              <ImageGallery images={store?.company_Introduction?.company_images} type="profiles" id="company_images" />
             }
           </Col>
           
