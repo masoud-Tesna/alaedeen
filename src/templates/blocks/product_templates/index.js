@@ -53,7 +53,7 @@ const ProductDetail = (props) => {
                     skeletonWidth="100%"
                     skeletonHeight="350px"
                   /> :
-                  <ImageGallery images={product?.product_images} />
+                  <ImageGallery images={product?.product_images} id={`product_image_${product?.product_id}`} />
                 }
               </Col>
               <Col xs={24} lg={14} className="productDetail">
