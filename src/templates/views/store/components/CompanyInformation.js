@@ -3,10 +3,22 @@ import {useTranslation} from "react-i18next";
 import {__} from "../../../../functions/Helper";
 import React from "react";
 import ImageGallery from "../../../common/ImageGallery";
+import Moment from "react-moment";
+import moment from "moment-jalaali";
+import fa from "moment/locale/fa";
+import {useGetConfig} from "../../../../contexts/config/ConfigContext";
 
 const CompanyInformation = ({details, isLoading}) => {
   
+  // get initial config:
+  const { config } = useGetConfig();
+  
   const { t } = useTranslation();
+  
+  if (config.language !== 'en') {
+    moment.updateLocale("fa", fa);
+    moment.loadPersian({usePersianDigits: true});
+  }
   
   return (
     <Row>
@@ -440,7 +452,10 @@ const CompanyInformation = ({details, isLoading}) => {
                         <Row gutter={15}>
                           <Col className = "__var">{ t(__('date_attended')) }:</Col>
                           <Col className = "__val">
-                            {details?.company_Introduction?.trade_shows?.date_attended}
+                            {config.language === 'fa'
+                              ? moment.unix(details?.company_Introduction?.trade_shows?.date_attended).format('jMMMM YYYY')
+                              : <Moment format="MMM, YYYY" unix locale="en">{details?.company_Introduction?.trade_shows?.date_attended}</Moment>
+                            }
                           </Col>
                         </Row>
                       </Col>
