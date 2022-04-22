@@ -7,6 +7,29 @@
     padding: 0 calc(5rem + 60px);
   }
   
+  .storeDetails--topSection .storeDetails .__bottom,
+  .storeDetails--bottomSection .companyInformation--container .--item  .--table {
+    .--businessTyp {
+      span {
+        &:not(:last-child) {
+          &:after {
+            content: ",\00a0";
+          }
+        }
+      }
+      
+      &.ant-col-rtl {
+        span {
+          &:not(:last-child) {
+            &:after {
+              content: "،\00a0\00a0";
+            }
+          }
+        }
+      }
+    }
+  }
+  
   .storeDetails--topSection {
     box-shadow: 0 0 rgba(0,0,0,0), 0 0 rgba(0,0,0,0), 0 5px 7px -3px rgba(0,0,0,0.2);
     background-color: #FFFFFF;
@@ -120,28 +143,6 @@
           }
         }
       }
-      
-      .__bottom {
-        .--businessTyp {
-          span {
-            &:not(:last-child) {
-              &:after {
-                content: ",\00a0";
-              }
-            }
-          }
-          
-          &.ant-col-rtl {
-            span {
-              &:not(:last-child) {
-                &:after {
-                  content: "،\00a0\00a0";
-                }
-              }
-            }
-          }
-        }
-      }
     }
   }
   
@@ -206,6 +207,114 @@
       .ant-tabs-content-holder {
         margin: 4rem 0 1.7rem;
         padding: 0 2rem;
+        
+        .companyInformation--container {
+          .--item {
+            &:not(:last-child) {
+              border-bottom: 1px solid #EFEFEF;
+              padding-bottom: 2rem;
+            }
+            
+            .--title {
+              font-size: 1.5rem;
+              font-weight: 600;
+              color: #474747;
+  
+              @media (min-width: @screen-md) {
+                font-size: 1.8rem;
+              }
+              
+              &.--side {
+                font-size: 1.4rem;
+                font-weight: 600;
+  
+                @media (min-width: @screen-md) {
+                  font-size: 1.5rem;
+                }
+              }
+            }
+            
+            .--table {
+              /*.ant-col {
+                padding: 2rem 0;
+                &:nth-child(4n+3),
+                &:nth-child(4n+4) {
+                  background-color: #f6f6f6;
+                }
+    
+                @media (min-width: @screen-md) {
+                  &:nth-child(4n+3),
+                  &:nth-child(4n+4) {
+                    background-color: unset;
+                  }
+      
+                  &:nth-child(8n+5),
+                  &:nth-child(8n+6),
+                  &:nth-child(8n+7),
+                  &:nth-child(8n+8) {
+                    background-color: #f6f6f6;
+                  }
+                }
+              }*/
+              
+              .__var,
+              .__val {
+                &,
+                &.--businessTyp span {
+                  font-size: 1.3rem;
+  
+                  @media (min-width: @screen-md) {
+                    font-size: 1.5rem;
+                  }
+                }
+              }
+  
+              .__var {
+                color: #929191;
+              }
+  
+              .__val {
+                color: #474747;
+              }
+              
+              .--images {
+                .__val {
+                  width: 100%;
+  
+                  .imageGallery--swiper {
+                    margin: 0;
+                  }
+  
+                  .imageGallery--thumbnailsSwiper {
+                    position: absolute;
+                    bottom: 0;
+                    width: 100%;
+                    background-color: rgba(0,0,0, .45);
+    
+                    .swiper-wrapper {
+                      padding: .5rem 0 0;
+                    }
+                  }
+  
+                  @media (min-width: @screen-md) {
+                    width: 400px;
+    
+                    .imageGallery--container {
+                      .imageGallery--swiper {
+                        .swiper-slide {
+                          .ant-image ,
+                          img {
+                            height: 100%;
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
