@@ -8,6 +8,7 @@ import {useTranslation} from "react-i18next";
 import {__, fn_get_lines_count} from "../../../functions/Helper";
 import {useWindowSize} from "../../../functions";
 import CompanyInformation from "./components/CompanyInformation";
+import StoreProducts from "./components/StoreProducts";
 
 const StoreDetails = ({store, isLoading}) => {
   
@@ -247,7 +248,7 @@ const StoreDetails = ({store, isLoading}) => {
           </TabPane>
   
           <TabPane tab={t(__('products'))} key="products">
-            Products
+            <StoreProducts companyId={store?.general?.company_id} />
           </TabPane>
         </Tabs>
       </Col>
