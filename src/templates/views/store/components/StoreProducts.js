@@ -42,7 +42,7 @@ const StoreProducts = ({ companyId }) => {
       <Col span={24} className="storeProducts--container">
         <Row justify="center">
           
-          { !productsIsLoading ?
+          { productsIsLoading ?
             <Col span={24}>
               <Row gutter={[20, 20]} className="row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
                 <SkeletonCategoryMultiColumn
