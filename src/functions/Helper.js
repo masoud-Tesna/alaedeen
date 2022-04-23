@@ -347,3 +347,24 @@ export const fn_get_lines_count = element => {
   
   return Math.floor(height / factor);
 }
+
+export function countLines(target) {
+  let style = window.getComputedStyle(target, null),
+    height = parseInt(style.getPropertyValue("height")),
+    font_size = parseInt(style.getPropertyValue("font-size")),
+    line_height = parseInt(style.getPropertyValue("line-height")),
+    box_sizing = style.getPropertyValue("box-sizing");
+  
+  if(isNaN(line_height)) line_height = font_size * 1.2;
+  
+  if(box_sizing=='border-box')
+  {
+    let padding_top = parseInt(style.getPropertyValue("padding-top"));
+    let padding_bottom = parseInt(style.getPropertyValue("padding-bottom"));
+    let border_top = parseInt(style.getPropertyValue("border-top-width"));
+    let border_bottom = parseInt(style.getPropertyValue("border-bottom-width"));
+    height = height - padding_top - padding_bottom - border_top - border_bottom
+  }
+  
+  return Math.ceil(height / line_height);
+}
