@@ -127,17 +127,17 @@ const StoreDetails = ({store, isLoading}) => {
       <Col span={24} className="storeDetails--topSection">
         {
           isLoading ?
-            <Row gutter={16} className="--isLoading">
-              <Col span={18} style={{ height: 350 }}>
+            <Row gutter={[16, 16]} className="--isLoading">
+              <Col xs={24} md={17} style={{ height: 350 }}>
                 <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "100%", "--text-height": "100%"}} active={true} size={"small"} />
               </Col>
   
-              <Col span={6} style={{ height: 350 }}>
+              <Col xs={24} md={7} style={{ height: 350 }}>
                 <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "100%", "--text-height": "100%"}} active={true} size={"small"} />
               </Col>
             </Row> :
-            <Row gutter={16}>
-              <Col span={isSupport ? 18 : 24}>
+            <Row gutter={[16, 16]}>
+              <Col xs={24} md={isSupport ? 17 : 24}>
                 <div className="--details">
                   <Row gutter={{ md: 17 }}>
                     <Col className="storeDetails--imageContainer">
@@ -271,39 +271,16 @@ const StoreDetails = ({store, isLoading}) => {
   
               {
                 isSupport &&
-                <Col span={6}>
+                <Col xs={24} md={7}>
                   <div className="--support">
                     <Row gutter={[0, 10]}>
                       <Col span={24} className="--top">
                         <div className="--bg" />
                         <div className="--img">
                           {
-                            isLoading ?
-                              (
-                                <ShowResponsiveImage
-                                  skeletonWidth="100%"
-                                  skeletonHeight="100%"
-                                  skeletonRadius="50%"
-                                  skeletonSvgWidth="50px"
-                                />
-                              ) :
-                              (
-                                (support?.personal_photo && support?.personal_photo !== "") ?
-                                  <ShowResponsiveImage
-                                    imagePath={ support?.personal_photo }
-                                    imageFolder='profiles'
-                                    width={95}
-                                    height={95}
-                                    skeletonWidth="100%"
-                                    skeletonHeight="100%"
-                                    skeletonRadius="50%"
-                                    skeletonSvgWidth="50px"
-                                    imageAlt={ store?.general?.company }
-                                    object_id={`support_img_${store?.general?.company_id}`}
-                                    object_type={`support_img_${store?.general?.company_id}`}
-                                  /> :
-                                  <i className="fa-thin fa-user" />
-                              )
+                            (support?.personal_photo && support?.personal_photo !== "") ?
+                              <img src={support?.personal_photo} alt={store?.full_name} /> :
+                              <i className="fa-thin fa-user" />
                           }
                         </div>
                       </Col>

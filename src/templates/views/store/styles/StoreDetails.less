@@ -156,30 +156,51 @@
     
     .--support {
       min-height: 350px;
+      padding-bottom: 1rem;
       
       .--top {
         position: relative;
-        height: 150px;
+        height: 215px;
+  
+        @media (min-width: @screen-md) {
+          height: 170px;
+        }
         
         .--bg {
           background-color: #3ba949;
           background-image: linear-gradient(180deg, #3ba949 0%, #81d38b 100%);
-          height: 100px;
+          height: 140px;
+  
+          @media (min-width: @screen-md) {
+            height: 115px;
+          }
         }
         
         .--img {
-          width: 100px;
-          height: 100px;
+          width: 150px;
+          height: 150px;
           border: 5px solid #3ba949;
           background-color: #81d38b;
           position: absolute;
           text-align: center;
-          top: calc(50% - 25px);
-          right: calc(50% - 50px);
+          top: calc(50% - 47px);
+          right: calc(50% - 75px);
+  
+          @media (min-width: @screen-md) {
+            width: 130px;
+            height: 130px;
+            top: calc(50% - 40px);
+            right: calc(50% - 65px);
+          }
           
           &,
           & * {
             border-radius: 50%;
+          }
+          
+          img {
+            width: 100%;
+            height: 100%;
           }
           
           .fa-thin.fa-user {
@@ -187,14 +208,6 @@
             color: #FFF;
             line-height: 90px;
             font-weight: 300;
-          }
-          
-          svg.ant-skeleton-image-svg {
-            border-radius: unset;
-            
-            .ant-skeleton-image-path {
-              fill: #FFF;
-            }
           }
         }
       }
