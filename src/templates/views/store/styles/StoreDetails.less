@@ -31,8 +31,17 @@
   }
   
   .storeDetails--topSection {
-    box-shadow: 0 0 rgba(0,0,0,0), 0 0 rgba(0,0,0,0), 0 5px 7px -3px rgba(0,0,0,0.2);
-    background-color: #FFFFFF;
+    .--isLoading {
+      .ant-skeleton {
+        height: 100%;
+      }
+    }
+    
+    .--details,
+    .--support {
+      box-shadow: 0 0 rgba(0, 0, 0, 0), 0 0 rgba(0, 0, 0, 0), 0 5px 7px -3px rgba(0, 0, 0, 0.2);
+      background-color: #FFFFFF;
+    }
     
     .storeDetails--imageContainer {
       padding-bottom: 1rem;
@@ -142,6 +151,77 @@
             }
           }
         }
+      }
+    }
+    
+    .--support {
+      min-height: 350px;
+      
+      .--top {
+        position: relative;
+        height: 150px;
+        
+        .--bg {
+          background-color: #3ba949;
+          background-image: linear-gradient(180deg, #3ba949 0%, #81d38b 100%);
+          height: 100px;
+        }
+        
+        .--img {
+          width: 100px;
+          height: 100px;
+          border: 5px solid #3ba949;
+          background-color: #81d38b;
+          position: absolute;
+          text-align: center;
+          top: calc(50% - 25px);
+          right: calc(50% - 50px);
+          
+          &,
+          & * {
+            border-radius: 50%;
+          }
+          
+          .fa-thin.fa-user {
+            font-size: 5rem;
+            color: #FFF;
+            line-height: 90px;
+            font-weight: 300;
+          }
+          
+          svg.ant-skeleton-image-svg {
+            border-radius: unset;
+            
+            .ant-skeleton-image-path {
+              fill: #FFF;
+            }
+          }
+        }
+      }
+      
+      .--name {
+        font-weight: 600;
+      }
+      
+      .--name,
+      .--location, .--location i,
+      .--detail, .--detail i {
+        font-size: 1.6rem;
+      }
+      
+      .--location,
+      .--detail {
+        i {
+          color: @primary-color;
+          &:before {
+            margin: 0 .32rem;
+          }
+        }
+      }
+      
+      .--detail {
+        direction: ltr;
+        padding: 0 1.5rem;
       }
     }
   }

@@ -39,7 +39,9 @@ const StoreDetails = ({store, isLoading}) => {
     
     if (storeAboutUs.current && !isLoading) {
       const aboutUsLinesCount = fn_get_lines_count(storeAboutUs.current);
-      if (aboutUsLinesCount >= 7 && width >= 993) {
+      //console.log(aboutUsLinesCount)
+      
+      if (aboutUsLinesCount >= 6 && width >= 993) {
         setEllipsisStoreAboutUsShow(true);
       }
       else if (aboutUsLinesCount >= 4 && width < 993) {
@@ -109,136 +111,244 @@ const StoreDetails = ({store, isLoading}) => {
     
   }
   
+  const { support } = store || {};
+  
+  const [isSupport, setIsSupport] = useState(false);
+  
+  useEffect(() => {
+    if (support?.length !== 0 && (support?.full_name && support?.telephone_number)) {
+      setIsSupport(true);
+    }
+  }, [support]);
+  
+  
   return (
     <Row gutter={[0, 30]} className="storeDetails--container">
       <Col span={24} className="storeDetails--topSection">
-        <Row gutter={{ md: 17 }}>
-          <Col className="storeDetails--imageContainer">
-            {isLoading ?
-              <ShowResponsiveImage
-                imagePath=""
-                skeletonWidth="100%"
-                skeletonHeight="350px"
-              /> :
-              <ImageGallery images={store?.company_Introduction?.company_images} type="profiles" id="company_images" />
-            }
-          </Col>
-          
-          <Col className="storeDetails">
-            <Row gutter={[0, 20]} className="h-100">
-              <Col span={24}>
-                <Row gutter={[0, 20]}>
-                  <Col className="__top" span={24}>
-                    <Row gutter={10} justify="space-between">
-                      <Col className="--title">
-                        {(isLoading) ?
-                          <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "30%", "--text-height": "16px" }} active={true} size={"small"} /> :
-                          <h1>{ store?.general?.company }</h1>
-                        }
-                      </Col>
-                      <Col className="--logo">
-                        <FactoriesLogo
-                          logo={ store?.company_Introduction?.logo }
-                          imageAlt={ store?.general?.company }
-                          object_id={ store?.general?.company_id }
-                          store_type="F"
-                        />
-                      </Col>
-                    </Row>
-                  </Col>
+        {
+          isLoading ?
+            <Row gutter={16} className="--isLoading">
+              <Col span={18} style={{ height: 350 }}>
+                <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "100%", "--text-height": "100%"}} active={true} size={"small"} />
+              </Col>
   
-                  {(isLoading) ?
-                    <>
-                      <Skeleton active={true} paragraph={{ rows: 4 }} />
-                      <div className="px-2 w-100">
-                        <Divider className="border-ef m-0 mt-2" />
-                      </div>
-                    </> :
-                    store?.company_Introduction?.detailed_company_introduction ?
-                      (
-                        <Col span={24} className="--aboutUs" ref={storeAboutUs}>
-                          <Paragraph
-                            ellipsis={
-                              ellipsisStoreAboutUsShow ?
+              <Col span={6} style={{ height: 350 }}>
+                <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "100%", "--text-height": "100%"}} active={true} size={"small"} />
+              </Col>
+            </Row> :
+            <Row gutter={16}>
+              <Col span={isSupport ? 18 : 24}>
+                <div className="--details">
+                  <Row gutter={{ md: 17 }}>
+                    <Col className="storeDetails--imageContainer">
+                      {isLoading ?
+                        <ShowResponsiveImage
+                          imagePath=""
+                          skeletonWidth="100%"
+                          skeletonHeight="350px"
+                        /> :
+                        <ImageGallery images={store?.company_Introduction?.company_images} type="profiles" id="company_images" />
+                      }
+                    </Col>
+          
+                    <Col className="storeDetails">
+                      <Row gutter={[0, 20]} className="h-100">
+                        <Col span={24}>
+                          <Row gutter={[0, 20]}>
+                            <Col className="__top" span={24}>
+                              <Row gutter={10} justify="space-between">
+                                <Col className="--title">
+                                  {(isLoading) ?
+                                    <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "30%", "--text-height": "16px" }} active={true} size={"small"} /> :
+                                    <h1>{ store?.general?.company }</h1>
+                                  }
+                                </Col>
+                                <Col className="--logo">
+                                  <FactoriesLogo
+                                    logo={ store?.company_Introduction?.logo }
+                                    imageAlt={ store?.general?.company }
+                                    object_id={ store?.general?.company_id }
+                                    store_type="F"
+                                  />
+                                </Col>
+                              </Row>
+                            </Col>
+                  
+                            {(isLoading) ?
+                              <>
+                                <Skeleton active={true} paragraph={{ rows: 4 }} />
+                                <div className="px-2 w-100">
+                                  <Divider className="border-ef m-0 mt-2" />
+                                </div>
+                              </> :
+                              store?.company_Introduction?.detailed_company_introduction ?
                                 (
-                                  ellipsisStoreAboutUs ?
-                                    {
-                                      rows: width < 993 ? 4 : 10,
-                                    } :
-                                    false
+                                  <Col span={24} className="--aboutUs">
+                                    <Paragraph
+                                      ellipsis={
+                                        ellipsisStoreAboutUsShow ?
+                                          (
+                                            ellipsisStoreAboutUs ?
+                                              {
+                                                rows: width < 993 ? 4 : 6,
+                                              } :
+                                              false
+                                          ) :
+                                          false
+                                      }
+                                      className="vv-font-size-2 text-70 font-weight-500"
+                                    >
+                                      <div dangerouslySetInnerHTML={ { __html: `${store?.company_Introduction?.detailed_company_introduction}` }} ref={storeAboutUs} />
+                                    </Paragraph>
+                          
+                                    {ellipsisStoreAboutUsShow &&
+                                      <div className="__ellipseBtn" onClick={() => storeAboutUsEllipseHandle()}>
+                                        {ellipsisStoreAboutUs ?
+                                          <>
+                                            <span className="cursor-pointer">{t('more')}</span>
+                                            <i className={ `fas fa-long-arrow-${config.language === 'en' ? 'right' : 'left'} cursor-pointer` } />
+                                          </> :
+                                          <>
+                                            <i className={ `fas fa-long-arrow-${config.language === 'en' ? 'left' : 'right'} cursor-pointer` } />
+                                            <span className="cursor-pointer">{t('less')}</span>
+                                          </>
+                                        }
+                            
+                                      </div>
+                                    }
+                          
+                                    <div className="px-2">
+                                      <Divider className="border-ef m-0 mt-2" />
+                                    </div>
+                                  </Col>
                                 ) :
-                                false
+                                null
                             }
-                            className="vv-font-size-2 text-70 font-weight-500"
-                          >
-                            <div dangerouslySetInnerHTML={ { __html: `${store?.company_Introduction?.detailed_company_introduction}` }} />
-                          </Paragraph>
-          
-                          {ellipsisStoreAboutUsShow &&
-                            <div className="__ellipseBtn" onClick={() => storeAboutUsEllipseHandle()}>
-                              {ellipsisStoreAboutUs ?
-                                <>
-                                  <span className="cursor-pointer">{t('more')}</span>
-                                  <i className={ `fas fa-long-arrow-${config.language === 'en' ? 'right' : 'left'} cursor-pointer` } />
-                                </> :
-                                <>
-                                  <i className={ `fas fa-long-arrow-${config.language === 'en' ? 'left' : 'right'} cursor-pointer` } />
-                                  <span className="cursor-pointer">{t('less')}</span>
-                                </>
-                              }
-            
-                            </div>
-                          }
-          
-                          <div className="px-2">
-                            <Divider className="border-ef m-0 mt-2" />
-                          </div>
+                          </Row>
                         </Col>
-                      ) :
-                      null
-                  }
-                </Row>
-              </Col>
               
-              <Col className="__bottom" span={24}>
-                <Row gutter={[10, 10]} justify="space-between">
-                  {isLoading ?
-                   <>
-                     <Col>
-                       <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "20px", "--text-height": "16px" }} active={true} size={"small"} />
-                     </Col>
-                     <Col>
-                       <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "20px", "--text-height": "16px" }} active={true} size={"small"} />
-                     </Col>
-                   </> :
-                    <>
-                      <Col>
-                        <Row gutter={10}>
-                          <Col>{t("brand")}: </Col>
-                          <Col>{ store?.general?.brand }</Col>
-                        </Row>
+                        <Col className="__bottom" span={24}>
+                          <Row gutter={[10, 10]} justify="space-between">
+                            {isLoading ?
+                              <>
+                                <Col>
+                                  <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "20px", "--text-height": "16px" }} active={true} size={"small"} />
+                                </Col>
+                                <Col>
+                                  <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "20px", "--text-height": "16px" }} active={true} size={"small"} />
+                                </Col>
+                              </> :
+                              <>
+                                <Col>
+                                  <Row gutter={10}>
+                                    <Col>{t("brand")}: </Col>
+                                    <Col>{ store?.general?.brand }</Col>
+                                  </Row>
+                                </Col>
+                      
+                                <Col>
+                                  <Row gutter={10}>
+                                    <Col>{t("business_type")}: </Col>
+                          
+                                    <Col className="--businessTyp">
+                                      {store?.general?.business_type?.map((type, i) => {
+                                        return (
+                                          <span key={`businessType_${i}`}>{ t(__(type)) }</span>
+                                        )
+                                      })}
+                                    </Col>
+                                  </Row>
+                                </Col>
+                              </>
+                            }
+                          </Row>
+                        </Col>
+                      </Row>
+                    </Col>
+                  </Row>
+                </div>
+              </Col>
+  
+              {
+                isSupport &&
+                <Col span={6}>
+                  <div className="--support">
+                    <Row gutter={[0, 10]}>
+                      <Col span={24} className="--top">
+                        <div className="--bg" />
+                        <div className="--img">
+                          {
+                            isLoading ?
+                              (
+                                <ShowResponsiveImage
+                                  skeletonWidth="100%"
+                                  skeletonHeight="100%"
+                                  skeletonRadius="50%"
+                                  skeletonSvgWidth="50px"
+                                />
+                              ) :
+                              (
+                                (support?.personal_photo && support?.personal_photo !== "") ?
+                                  <ShowResponsiveImage
+                                    imagePath={ support?.personal_photo }
+                                    imageFolder='profiles'
+                                    width={95}
+                                    height={95}
+                                    skeletonWidth="100%"
+                                    skeletonHeight="100%"
+                                    skeletonRadius="50%"
+                                    skeletonSvgWidth="50px"
+                                    imageAlt={ store?.general?.company }
+                                    object_id={`support_img_${store?.general?.company_id}`}
+                                    object_type={`support_img_${store?.general?.company_id}`}
+                                  /> :
+                                  <i className="fa-thin fa-user" />
+                              )
+                          }
+                        </div>
                       </Col>
   
-                      <Col>
-                        <Row gutter={10}>
-                          <Col>{t("business_type")}: </Col>
-                          
-                          <Col className="--businessTyp">
-                            {store?.general?.business_type?.map((type, i) => {
-                              return (
-                                <span key={`businessType_${i}`}>{ t(__(type)) }</span>
-                              )
-                            })}
-                          </Col>
-                        </Row>
-                      </Col>
-                    </>
-                  }
-                </Row>
-              </Col>
+                      {
+                        support?.full_name &&
+                        <Col span={24} className="text-center --name">
+                          {support?.full_name}
+                        </Col>
+                      }
+  
+                      {
+                        (support?.country && support?.state) &&
+                        <Col span={24} className="text-center --location">
+                          <i className="fa-regular fa-location-dot" /> {` ${support?.country}, ${support?.state} `}
+                        </Col>
+                      }
+  
+                      {
+                        support?.telephone_number &&
+                        <Col span={24} className="--detail">
+                          <i className="fa-regular fa-phone" /> { support?.telephone_number }
+                        </Col>
+                      }
+  
+                      {
+                        support?.whatsapp_number &&
+                        <Col span={24} className="--detail">
+                          <i className="fa-brands fa-whatsapp" /> { support?.whatsapp_number }
+                        </Col>
+                      }
+  
+                      {
+                        (support?.country && support?.state && support?.address) &&
+                        <Col span={24} className="--detail">
+                          <i className="fa-regular fa-location-dot" /> {` ${support?.country}, ${support?.state} - ${support?.address} `}
+                        </Col>
+                      }
+                    </Row>
+                  </div>
+                </Col>
+              }
             </Row>
-          </Col>
-        </Row>
+        }
+        
       </Col>
       
       <Col span={24} className="storeDetails--bottomSection">
