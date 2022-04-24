@@ -39,9 +39,8 @@ const StoreDetails = ({store, isLoading}) => {
     
     if (storeAboutUs.current && !isLoading) {
       const aboutUsLinesCount = fn_get_lines_count(storeAboutUs.current);
-      //console.log(aboutUsLinesCount)
       
-      if (aboutUsLinesCount >= 6 && width >= 993) {
+      if (aboutUsLinesCount >= 5 && width >= 993) {
         setEllipsisStoreAboutUsShow(true);
       }
       else if (aboutUsLinesCount >= 4 && width < 993) {
@@ -190,7 +189,7 @@ const StoreDetails = ({store, isLoading}) => {
                                           (
                                             ellipsisStoreAboutUs ?
                                               {
-                                                rows: width < 993 ? 4 : 6,
+                                                rows: width < 993 ? 4 : 5,
                                               } :
                                               false
                                           ) :
