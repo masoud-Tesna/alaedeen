@@ -493,54 +493,6 @@ const CompanyInformation = ({details, isLoading}) => {
                 </Row>
               </Col>
             }
-  
-            <Col span={24} className="--item">
-              <Row gutter={[0, 15]}>
-                <Col span={24} className="--title">
-                  { t(__('support')) }
-                </Col>
-      
-                <Col span={24} className="--table">
-                  <Row gutter={[40, 20]}>
-                    <Col>
-                      <Row gutter={15}>
-                        <Col className = "__var">{ t(__('full_name')) }:</Col>
-                        <Col className = "__val">
-                          {details?.support?.full_name}
-                        </Col>
-                      </Row>
-                    </Col>
-  
-                    <Col>
-                      <Row gutter={15}>
-                        <Col className = "__var">{ t(__('telephone_number')) }:</Col>
-                        <Col className = "__val">
-                          {details?.support?.telephone_number}
-                        </Col>
-                      </Row>
-                    </Col>
-  
-                    <Col>
-                      <Row gutter={15}>
-                        <Col className = "__var">{ t(__('whatsapp_number')) }:</Col>
-                        <Col className = "__val">
-                          {details?.support?.whatsapp_number}
-                        </Col>
-                      </Row>
-                    </Col>
-  
-                    <Col>
-                      <Row gutter={15}>
-                        <Col className = "__var">{ t(__('address')) }:</Col>
-                        <Col className = "__val">
-                          {` ${details?.support?.country},  ${details?.support?.state} - ${details?.support?.address} `}
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
-                </Col>
-              </Row>
-            </Col>
           </Row>
         }
       </Col>
