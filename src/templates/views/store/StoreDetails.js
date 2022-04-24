@@ -301,14 +301,14 @@ const StoreDetails = ({store, isLoading}) => {
                       {
                         support?.telephone_number &&
                         <Col span={24} className="--detail">
-                          <i className="fa-regular fa-phone" /> { support?.telephone_number }
+                          <i className="fa-regular fa-phone" /> <a href="tel:+982177874366">{ support?.telephone_number }</a>
                         </Col>
                       }
   
                       {
                         support?.whatsapp_number &&
                         <Col span={24} className="--detail">
-                          <i className="fa-brands fa-whatsapp" /> { support?.whatsapp_number }
+                          <i className="fa-brands fa-whatsapp" /> <a href="whatsapp://send?abid=+989912322188&text=">{ support?.whatsapp_number }</a>
                         </Col>
                       }
   
