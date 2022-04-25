@@ -102,31 +102,81 @@ html:lang(ar) {
     }
   }*/
 
-  .header--left__searchBox {
-    .ant-input-affix-wrapper {
-      padding: 0 !important;
-      border: 1px solid darken(@primary-color, 10%) !important;
-      height: 40px;
-      border-radius: 10px;
-
+  .--searchBox {
+    border: 1px solid darken(@primary-color, 10%);
+    border-radius: 10px;
+    
+    .searchType--container {
+      padding-right: 1rem;
+      border-right: 1px solid darken(@primary-color, 10%);
+      
+      min-width: 130px;
+      
+      .--searchType {
+        margin: auto 0;
+        width: 100%;
+        
+        .ant-select-selection-search {
+          display: none !important;
+        }
+        
+        .ant-select-selector {
+          .ant-select-selection-item {
+            font-size: 1.7rem;
+          }
+        }
+        
+        .ant-select-arrow {
+          top: 59%;
+        }
+      }
+    }
+    
+    .searchInput--container {
+      padding-left: 1rem;
+      
+      .ant-input-affix-wrapper {
+        padding: 0;
+        border: none;
+        box-shadow: none;
+        border-radius: 10px;
+      }
+  
+      .ant-input-group-addon {
+        background-color: transparent;
+        border: none;
+        height: 40px;
+      }
+  
       .ant-input {
-        padding-left: 2rem;
-        font-size: 1.8rem!important;
-        border-radius: 10px 0 0 10px;
+        font-size: 1.8rem !important;
+    
         &::placeholder {
           color: #929191 !important;
         }
       }
-
+  
       .ant-input-suffix {
         min-width: 105px;
-        background-color: darken(@primary-color, 10%) !important;
+        background-color: #2e8339 !important;
         text-align: center;
         display: block;
-        line-height: 4rem;
         cursor: pointer;
         color: white;
         border-radius: 0 10px 10px 0;
+    
+        .suffix-content {
+          display: block;
+          margin: 4px 0;
+        }
+      }
+    }
+    
+    .searchResult--container {
+      position: relative;
+      
+      .--result {
+      
       }
     }
   }

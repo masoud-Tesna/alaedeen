@@ -1,11 +1,11 @@
-import { useState } from "react";
+import {useEffect, useRef, useState} from "react";
 import { Link } from "react-router-dom";
 
 // import Styles For default:
 import './styles/DefaultHeader.less';
 
 // Ant Design Import:
-import { Button, Col, Dropdown, Input, Layout, Menu, Row, Skeleton } from 'antd';
+import {AutoComplete, Button, Col, Dropdown, Input, Layout, Menu, Row, Select, Skeleton} from 'antd';
 import { DownOutlined } from "@ant-design/icons";
 
 // import alaedeen character:
@@ -28,6 +28,9 @@ import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 /*import OneRequestMultipleQuotesModal from "../../blocks/static_templates/OneRequestMultipleQuotesModal";*/
 
 const DefaultHeader = ({ pathName }) => {
+  
+  const { Header } = Layout;
+  const { Option } = Select;
 
   // get initial config:
   const { config } = useGetConfig();
@@ -38,8 +41,6 @@ const DefaultHeader = ({ pathName }) => {
   const [dropDownIsActive, setDropDownIsActive] = useState(false);
 
   const [searchValue, setSearchValue] = useState();
-
-  const { Header } = Layout;
 
   const { t } = useTranslation();
 
@@ -100,7 +101,9 @@ const DefaultHeader = ({ pathName }) => {
 
   const handleSubmitSearch = () => {
     if (searchValue) {
-      window.location.href = `/horn/?subcats=Y&pcode_from_q=Y&pshort=Y&pfull=Y&pname=Y&pkeywords=Y&search_performed=Y&q=${ searchValue }&dispatch=products.search&security_hash=6f98c36fe3677b696695ad3ca456de51`;
+      /*window.location.href = `/horn/?subcats=Y&pcode_from_q=Y&pshort=Y&pfull=Y&pname=Y&pkeywords=Y&search_performed=Y&q=${ searchValue }&dispatch=products.search&security_hash=6f98c36fe3677b696695ad3ca456de51`;*/
+  
+      console.log(searchValue)
     }
   }
 
@@ -120,6 +123,108 @@ const DefaultHeader = ({ pathName }) => {
   /*const showRequestModalHeader = () => {
     setIsRequestModalVisible(true);
   }*/
+  
+  
+  const Complete = () => {
+    const [options, setOptions] = useState([]);
+  
+    const [searchInputValue, setSearchInputValue] = useState("");
+  
+    const [searchTypeValue, setSearchTypeValue] = useState("P");
+  
+    const [isLoading, setIsLoading] = useState(true);
+  
+    const searchResult = (query) => {
+      const category = `${query}`;
+      if (query === "masoud") {
+        return [
+          {
+            value: category,
+            label: (
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                }}
+              >
+            <span>
+              Found {query} on{' '}
+              <a
+                href={`https://s.taobao.com/search?q=${query}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-47"
+              >
+                {category} link
+              </a>
+            </span>
+                <span> results</span>
+              </div>
+            ),
+          }
+        ];
+      }
+    }
+    
+    const handleSearch = (value) => {
+      setSearchInputValue(value);
+      setOptions(value ? searchResult(value) : []);
+    };
+    
+    const onSelect = (value) => {
+      console.log('onSelect', value);
+    };
+    
+    const notFoundContent = () => {
+      return (
+        <h1>Not Found!</h1>
+      )
+    }
+  
+    const searchType = (
+      <Select
+        defaultValue="P"
+        className="--searchType"
+        bordered={false}
+        onChange={(e) => {
+          setSearchTypeValue(e);
+          setSearchInputValue("");
+          setOptions([]);
+        }}
+      >
+        <Option value="P">{t("products")}</Option>
+        <Option value="C">{t("companies")}</Option>
+      </Select>
+    );
+  
+    return (
+      <AutoComplete
+        style={{
+          width: "100%",
+        }}
+        options={options}
+        onSelect={onSelect}
+        notFoundContent={notFoundContent()}
+      >
+        <Row className="--searchBox">
+                <Col className="searchType--container" >
+                  {searchType}
+                </Col>
+                
+                <Col flex="1 1" className="searchInput--container">
+                  <Input
+                    value={searchInputValue}
+                    placeholder={ t(__('What are you looking for...')) }
+                    suffix={searchTextSuffix(t(__('search')))}
+                    onChange = {e => handleSearch(e.target.value)}
+                    onPressEnter={e => handleSearch(e.target.value)}
+                  />
+                </Col>
+              </Row>
+      </AutoComplete>
+    );
+  };
+  
 
   return (
     <Header className="site--header">
@@ -148,10 +253,23 @@ const DefaultHeader = ({ pathName }) => {
               </div>
             </Col>
 
-            <Col span={12} className="my-auto header--left__searchBox">
-              {/*{(pathName !== 'page' && pathName !== 'blog') &&
-              <Input placeholder={ t(__('What are you looking for...')) } suffix={searchTextSuffix(t(__('search')))} onChange={e => {setSearchValue(e.target.value)}} onPressEnter={() => { handleSubmitSearch() }} />
-              }*/}
+            <Col span={12} className="my-auto">
+              {/*<Row className="--searchBox">
+                <Col className="searchType--container" >
+                  {searchType}
+                </Col>
+                
+                <Col flex="1 1" className="searchInput--container">
+                  <Input
+                    placeholder={ t(__('What are you looking for...')) }
+    
+                    suffix={searchTextSuffix(t(__('search')))}
+                    onChange={e => {setSearchValue(e.target.value)}}
+                    onPressEnter={() => { handleSubmitSearch() }}
+                  />
+                </Col>
+              </Row>*/}
+              <Complete />
             </Col>
 
             <Col span={6} className="my-auto">
