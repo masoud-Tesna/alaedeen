@@ -23,6 +23,7 @@ import { logout, useDispatchAuthState, useGetAuthState } from '../../../contexts
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
+import axios from "axios";
 
 // import OneRequestMultipleQuotesModal component for show send request form modal:
 /*import OneRequestMultipleQuotesModal from "../../blocks/static_templates/OneRequestMultipleQuotesModal";*/
@@ -126,7 +127,6 @@ const DefaultHeader = ({ pathName }) => {
   
   
   const Complete = () => {
-    const [options, setOptions] = useState([]);
   
     const [searchInputValue, setSearchInputValue] = useState("");
   
@@ -134,42 +134,37 @@ const DefaultHeader = ({ pathName }) => {
   
     const [isLoading, setIsLoading] = useState(true);
   
-    const searchResult = (query) => {
-      const category = `${query}`;
-      if (query === "masoud") {
-        return [
-          {
-            value: category,
-            label: (
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                }}
-              >
-            <span>
-              Found {query} on{' '}
-              <a
-                href={`https://s.taobao.com/search?q=${query}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-47"
-              >
-                {category} link
-              </a>
-            </span>
-                <span> results</span>
-              </div>
-            ),
-          }
-        ];
+    const [characters, setCharacters] = useState([])
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const {data} = await axios.get(`https://rickandmortyapi.com/api/character/?name=${searchInputValue}`)
+          setCharacters(data.results)
+        } catch (error) {
+          console.error(error)
+        }
       }
-    }
     
-    const handleSearch = (value) => {
-      setSearchInputValue(value);
-      setOptions(value ? searchResult(value) : []);
-    };
+      fetchData()
+    }, [searchInputValue]);
+  
+    const searchResult = characters.map((character) => ({
+      value: character?.id,
+      label: (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+          }}
+        >
+            <span>
+              Found {character?.name}
+            </span>
+          <span> results</span>
+        </div>
+      ),
+    }));
     
     const onSelect = (value) => {
       console.log('onSelect', value);
@@ -185,11 +180,12 @@ const DefaultHeader = ({ pathName }) => {
       <Select
         defaultValue="P"
         className="--searchType"
+        dropdownClassName="--searchType__dropDown"
         bordered={false}
         onChange={(e) => {
           setSearchTypeValue(e);
           setSearchInputValue("");
-          setOptions([]);
+          setCharacters([]);
         }}
       >
         <Option value="P">{t("products")}</Option>
@@ -202,7 +198,7 @@ const DefaultHeader = ({ pathName }) => {
         style={{
           width: "100%",
         }}
-        options={options}
+        options={searchResult}
         onSelect={onSelect}
         notFoundContent={notFoundContent()}
       >
@@ -216,8 +212,8 @@ const DefaultHeader = ({ pathName }) => {
                     value={searchInputValue}
                     placeholder={ t(__('What are you looking for...')) }
                     suffix={searchTextSuffix(t(__('search')))}
-                    onChange = {e => handleSearch(e.target.value)}
-                    onPressEnter={e => handleSearch(e.target.value)}
+                    onChange = {e => setSearchInputValue(e.target.value)}
+                    onPressEnter={e => setSearchInputValue(e.target.value)}
                   />
                 </Col>
               </Row>
