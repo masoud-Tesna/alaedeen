@@ -154,18 +154,20 @@ const DefaultHeader = ({ pathName }) => {
   
       if (searchInput?.length <= 3 && !isLoading) {
         return (
-          <div className="search--status">Please enter more than 3 words!</div>
+          <div className="search--status">{t(__("Please enter more than 3 words!"))}</div>
         );
       }
       
       if (isLoading) {
         return (
-          <div className="search--status">Loading...</div>
+          <div className="search--status" style={{ width: "80%" }}>
+            <Skeleton active paragraph={{ rows: 6, width: "50%" }} />
+          </div>
         )
       }
       
       return (
-        <div className="search--status">Not Found!</div>
+        <div className="search--status">{t(__("Not Found!"))}</div>
       )
     }
   
