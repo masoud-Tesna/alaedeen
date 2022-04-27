@@ -178,44 +178,60 @@ const Chat = (
                                   <Col span={24} className="termsSupply__table">
                                     <div>
                                       <Row className="__head">
-                                        <Col className="text-center my-auto" span={6}>
-                                          { t("prepayment") }
+                                        <Col className="text-center my-auto" span={4}>
+                                          { t("stage") }
                                         </Col>
             
-                                        <Col className="text-center my-auto" span={6}>
-                                          { t("complete_order") }
+                                        <Col className="text-center my-auto" span={7}>
+                                          { t("Percent_total_amount") }
                                         </Col>
             
-                                        <Col className="text-center my-auto" span={6}>
-                                          { t("delivery_border") }
-                                        </Col>
-            
-                                        <Col className="text-center my-auto" span={6}>
-                                          { t("delivery_destination") }
+                                        <Col className="text-center my-auto" span={13}>
+                                          { t("description") }
                                         </Col>
                                       </Row>
-          
+  
                                       <Row className="__body">
+                                        {
+                                          supplyData?.terms_of_payment?.map((item, i) => {
+                                            return (
+                                              <Col key={`terms_supply_${i + 1}`} span={24} className="--item">
+                                                <Row className="__data">
+                                                  <Col span={4} className="text-center my-auto __value">
+                                                    {i + 1}
+                                                  </Col>
+        
+                                                  <Col span={7} className="text-center my-auto __value">
+                                                    { `${ t('%') }${ item?.percent }` }
+                                                  </Col>
+        
+                                                  <Col span={13} className="text-center my-auto __value">
+                                                    { item?.description }
+                                                  </Col>
+                                                </Row>
+                                              </Col>
+                                            )
+                                          })
+                                        }
+                                      </Row>
+          
+                                      {/*<Row className="__body">
                                         <Col  span={24} className="--item">
                                           <Row className="__data">
-                                            <Col span={6} className="text-center my-auto __value">
+                                            <Col span={4} className="text-center my-auto __value">
                                               { `${ t('%') }${ supplyData?.terms_of_payment?.prepayment }` }
                                             </Col>
       
-                                            <Col span={6} className="text-center my-auto __value">
+                                            <Col span={7} className="text-center my-auto __value">
                                               { `${ t('%') }${ supplyData?.terms_of_payment?.complete_order }` }
                                             </Col>
       
-                                            <Col span={6} className="text-center my-auto __value">
+                                            <Col span={13} className="text-center my-auto __value">
                                               { `${ t('%') }${ supplyData?.terms_of_payment?.delivery_border }` }
-                                            </Col>
-      
-                                            <Col span={6} className="text-center my-auto __value">
-                                              { `${ t('%') }${ supplyData?.terms_of_payment?.delivery_destination }` }
                                             </Col>
                                           </Row>
                                         </Col>
-                                      </Row>
+                                      </Row>*/}
                                     </div>
                                   </Col>
       
