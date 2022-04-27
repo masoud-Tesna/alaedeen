@@ -438,7 +438,7 @@ const Supply = (
                                 <Row>
                                   <Col span={13}>
                                     <Form.Item
-                                      name={ ["terms_of_payment", "first_stage", "percent"] }
+                                      name={ ["terms_of_payment", "1", "percent"] }
                                       label={t(__("first stage"))}
                                       extra={t(__("enter the percentage of the amount payable"))}
                                       labelCol={ { sm: 24, lg: 11 } }
@@ -458,7 +458,7 @@ const Supply = (
                                   
                                   <Col span={11}>
                                     <Form.Item
-                                      name={ ["terms_of_payment", "first_stage", "description"] }
+                                      name={ ["terms_of_payment", "1", "description"] }
                                       extra={t(__("Description of payment terms"))}
                                       rules={ [
                                         {
@@ -481,7 +481,7 @@ const Supply = (
                                 <Row>
                                   <Col span={13}>
                                     <Form.Item
-                                      name={ ["terms_of_payment", "second_stage", "percent"] }
+                                      name={ ["terms_of_payment", "2", "percent"] }
                                       label={t(__("second stage"))}
                                       extra={t(__("enter the percentage of the amount payable"))}
                                       labelCol={ { sm: 24, lg: 11 } }
@@ -495,7 +495,7 @@ const Supply = (
       
                                   <Col span={11}>
                                     <Form.Item
-                                      name={ ["terms_of_payment", "second_stage", "description"] }
+                                      name={ ["terms_of_payment", "2", "description"] }
                                       extra={t(__("Description of payment terms"))}
                                     >
                                       <TextArea
@@ -512,7 +512,7 @@ const Supply = (
                                 <Row>
                                   <Col span={13}>
                                     <Form.Item
-                                      name={ ["terms_of_payment", "third_stage", "percent"] }
+                                      name={ ["terms_of_payment", "3", "percent"] }
                                       label={t(__("third stage"))}
                                       extra={t(__("enter the percentage of the amount payable"))}
                                       labelCol={ { sm: 24, lg: 11 } }
@@ -526,7 +526,7 @@ const Supply = (
       
                                   <Col span={11}>
                                     <Form.Item
-                                      name={ ["terms_of_payment", "third_stage", "description"] }
+                                      name={ ["terms_of_payment", "3", "description"] }
                                       extra={t(__("Description of payment terms"))}
                                     >
                                       <TextArea
@@ -543,7 +543,7 @@ const Supply = (
                                 <Row>
                                   <Col span={13}>
                                     <Form.Item
-                                      name={ ["terms_of_payment", "fourth_stage", "percent"] }
+                                      name={ ["terms_of_payment", "4", "percent"] }
                                       label={t(__("fourth stage"))}
                                       extra={t(__("enter the percentage of the amount payable"))}
                                       labelCol={ { sm: 24, lg: 11 } }
@@ -557,7 +557,7 @@ const Supply = (
       
                                   <Col span={11}>
                                     <Form.Item
-                                      name={ ["terms_of_payment", "fourth_stage", "description"] }
+                                      name={ ["terms_of_payment", "4", "description"] }
                                       extra={t(__("Description of payment terms"))}
                                     >
                                       <TextArea
