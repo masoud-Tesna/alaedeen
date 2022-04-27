@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 // import i18n:
 import "./translations/i18n";
@@ -61,5 +61,7 @@ const Application = () => {
   );
 }
 
-ReactDOM.render( <Application />, document.getElementById('AlaedeenApp'));
+const container = document.getElementById('AlaedeenApp');
+const root = createRoot(container);
+root.render(<Application />);
 
