@@ -199,15 +199,15 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
                     <ShowResponsiveImage
                       imagePath={ user_data?.auth?.company_logo?.logo_path }
                       imageFolder='company_logo'
-                      width={55}
-                      height={55}
-                      skeletonWidth="55px"
-                      skeletonHeight="55px"
-                      skeletonRadius="55%"
+                      width={45}
+                      height={45}
+                      skeletonWidth="45px"
+                      skeletonHeight="45px"
+                      skeletonRadius="45%"
                       skeletonSvgWidth="30px"
                       imageAlt={ user_data?.auth?.company ? user_data?.auth?.company : ` ${user_data?.auth?.firstname} ${user_data?.auth?.lastname} `}
                       object_id={user_data?.auth?.company_id}
-                      object_type={`company_logo${config.language}`}
+                      object_type={`company_logo_${config.language}`}
                     /> :
                     <i className="fal fa-user display-3 text-70 d-block" />
                   }

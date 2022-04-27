@@ -1,7 +1,7 @@
 import "./styles/Dashboard.less";
 import { Col, Row } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
-import { __, SeoGenerator } from "../../../../../functions/Helper";
+import { SeoGenerator } from "../../../../../functions/Helper";
 import ShowResponsiveImage from "../../../../common/ShowResponsiveImage";
 import React from "react";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";
@@ -11,7 +11,6 @@ import moment from "moment-jalaali";
 import Moment from "react-moment";
 import fa from "moment/locale/fa";
 import { useNavigate } from "react-router-dom";
-import { ShoppingCartOutlined } from "@ant-design/icons";
 
 const Index = () => {
 
@@ -21,7 +20,6 @@ const Index = () => {
 
   // initial state for language:
   const { config } = useGetConfig();
-  const { configDispatch } = useConfigDispatch();
   const navigate = useNavigate();
 
   const { user_data } = useGetAuthState();
@@ -47,15 +45,15 @@ const Index = () => {
                       <ShowResponsiveImage
                         imagePath={ user_data?.auth?.company_logo?.logo_path }
                         imageFolder='company_logo'
-                        width={55}
-                        height={55}
-                        skeletonWidth="55px"
-                        skeletonHeight="55px"
-                        skeletonRadius="55%"
+                        width={45}
+                        height={45}
+                        skeletonWidth="45px"
+                        skeletonHeight="45px"
+                        skeletonRadius="45%"
                         skeletonSvgWidth="30px"
                         imageAlt={ user_data?.auth?.company ? user_data?.auth?.company : ` ${user_data?.auth?.firstname} ${user_data?.auth?.lastname} `}
                         object_id={user_data?.auth?.company_id}
-                        object_type={`company_logo${config.language}`}
+                        object_type={`company_logo_${config.language}`}
                       /> :
                       <i className="fal fa-user display-3 text-70 d-block" />
                     }
