@@ -485,12 +485,6 @@ const Supply = (
                                       label={t(__("second stage"))}
                                       extra={t(__("enter the percentage of the amount payable"))}
                                       labelCol={ { sm: 24, lg: 11 } }
-                                      rules={ [
-                                        {
-                                          required: true,
-                                          message: t(__("Please complete the input.")),
-                                        },
-                                      ] }
                                     >
                                       <InputNumber
                                         className="w-75"
@@ -503,12 +497,6 @@ const Supply = (
                                     <Form.Item
                                       name={ ["terms_of_payment", "second_stage", "description"] }
                                       extra={t(__("Description of payment terms"))}
-                                      rules={ [
-                                        {
-                                          required: true,
-                                          message: t(__("Please complete the input.")),
-                                        },
-                                      ] }
                                     >
                                       <TextArea
                                         rows={3}
@@ -528,12 +516,6 @@ const Supply = (
                                       label={t(__("third stage"))}
                                       extra={t(__("enter the percentage of the amount payable"))}
                                       labelCol={ { sm: 24, lg: 11 } }
-                                      rules={ [
-                                        {
-                                          required: true,
-                                          message: t(__("Please complete the input.")),
-                                        },
-                                      ] }
                                     >
                                       <InputNumber
                                         className="w-75"
@@ -546,12 +528,6 @@ const Supply = (
                                     <Form.Item
                                       name={ ["terms_of_payment", "third_stage", "description"] }
                                       extra={t(__("Description of payment terms"))}
-                                      rules={ [
-                                        {
-                                          required: true,
-                                          message: t(__("Please complete the input.")),
-                                        },
-                                      ] }
                                     >
                                       <TextArea
                                         rows={3}
@@ -571,12 +547,6 @@ const Supply = (
                                       label={t(__("fourth stage"))}
                                       extra={t(__("enter the percentage of the amount payable"))}
                                       labelCol={ { sm: 24, lg: 11 } }
-                                      rules={ [
-                                        {
-                                          required: true,
-                                          message: t(__("Please complete the input.")),
-                                        },
-                                      ] }
                                     >
                                       <InputNumber
                                         className="w-75"
@@ -589,12 +559,6 @@ const Supply = (
                                     <Form.Item
                                       name={ ["terms_of_payment", "fourth_stage", "description"] }
                                       extra={t(__("Description of payment terms"))}
-                                      rules={ [
-                                        {
-                                          required: true,
-                                          message: t(__("Please complete the input.")),
-                                        },
-                                      ] }
                                     >
                                       <TextArea
                                         rows={3}
