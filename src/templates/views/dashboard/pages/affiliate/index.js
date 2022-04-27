@@ -43,7 +43,7 @@ const Affiliate = () => {
             <Row gutter={ 10 } className="getReferral">
               <Col className="--link">
                 { (user_data?.load || !referralCode) ?
-                  <Skeleton.Input style={ { width: `30vw`, height: 130 } } active={ true } size={ "small" }/> :
+                  <Skeleton.Input style={ { width: `30vw`, height: 130 } } active size={ "small" }/> :
                   <Row className="h-100" gutter={ [ 0, 10 ] }>
                     <Col span={ 24 } className="my-auto __title">{ `${ t('referral_link') }:` }</Col>
                     <Col span={ 24 }>
@@ -63,7 +63,7 @@ const Affiliate = () => {
               <Col className="--divider">
                 <div className="__text">
                   { (user_data?.load || !referralCode) ?
-                    <Skeleton.Input style={ { width: 20, height: 18 } } active={ true } size={ "small" }/> :
+                    <Skeleton.Input style={ { width: 20, height: 18 } } active size={ "small" }/> :
                     t('or')
                   }
                 </div>
@@ -71,7 +71,7 @@ const Affiliate = () => {
 
               <Col className="--code">
                 { (user_data?.load || !referralCode) ?
-                  <Skeleton.Input style={ { width: `30vw`, height: 130 } } active={ true } size={ "small" }/> :
+                  <Skeleton.Input style={ { width: `30vw`, height: 130 } } active size={ "small" }/> :
                   <Row className="h-100" gutter={ [ 0, 10 ] }>
                     <Col span={ 24 } className="my-auto __title">{ `${ t('referral_code') }:` }</Col>
                     <Col span={ 24 }>

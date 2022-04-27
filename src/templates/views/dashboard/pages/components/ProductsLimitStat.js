@@ -29,7 +29,7 @@ const ProductsLimitStat = (
 
   return (
     (isLoading || isFetching) ?
-      <Skeleton.Input style={{ width: "calc(.5 * 50vw + 50%)", height: 10, verticalAlign: "middle" }} active={true} size={"small"} /> :
+      <Skeleton.Input style={{ width: "calc(.5 * 50vw + 50%)", height: 10, verticalAlign: "middle" }} active size={"small"} /> :
       (showProgress) &&
         <div className={`productsLimitStat--progress ${className}`}>
           <Progress

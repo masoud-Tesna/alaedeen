@@ -128,11 +128,11 @@ const StoreDetails = ({store, isLoading}) => {
           isLoading ?
             <Row gutter={[16, 16]} className="--isLoading">
               <Col xs={24} md={17} style={{ height: 350 }}>
-                <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "100%", "--text-height": "100%"}} active={true} size={"small"} />
+                <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "100%", "--text-height": "100%"}} active size={"small"} />
               </Col>
   
               <Col xs={24} md={7} style={{ height: 350 }}>
-                <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "100%", "--text-height": "100%"}} active={true} size={"small"} />
+                <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "100%", "--text-height": "100%"}} active size={"small"} />
               </Col>
             </Row> :
             <Row gutter={[16, 16]}>
@@ -158,7 +158,7 @@ const StoreDetails = ({store, isLoading}) => {
                               <Row gutter={10} justify="space-between">
                                 <Col className="--title">
                                   {(isLoading) ?
-                                    <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "30%", "--text-height": "16px" }} active={true} size={"small"} /> :
+                                    <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "30%", "--text-height": "16px" }} active size={"small"} /> :
                                     <h1>{ store?.general?.company }</h1>
                                   }
                                 </Col>
@@ -175,7 +175,7 @@ const StoreDetails = ({store, isLoading}) => {
                   
                             {(isLoading) ?
                               <>
-                                <Skeleton active={true} paragraph={{ rows: 4 }} />
+                                <Skeleton active paragraph={{ rows: 4 }} />
                                 <div className="px-2 w-100">
                                   <Divider className="border-ef m-0 mt-2" />
                                 </div>
@@ -231,10 +231,10 @@ const StoreDetails = ({store, isLoading}) => {
                             {isLoading ?
                               <>
                                 <Col>
-                                  <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "20px", "--text-height": "16px" }} active={true} size={"small"} />
+                                  <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "20px", "--text-height": "16px" }} active size={"small"} />
                                 </Col>
                                 <Col>
-                                  <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "20px", "--text-height": "16px" }} active={true} size={"small"} />
+                                  <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "20px", "--text-height": "16px" }} active size={"small"} />
                                 </Col>
                               </> :
                               <>

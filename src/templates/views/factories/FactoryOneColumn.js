@@ -217,7 +217,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                                       truncateText=" …"
                                       text={ factory?.about_us && `${t(__('About Us'))}: ${factory?.about_us}` }
                                     /> :
-                                    <Skeleton className="factory--aboutUs__empty" active={false} paragraph={{ rows: 4 }} />
+                                    <Skeleton className="factory--aboutUs__empty" paragraph={{ rows: 4 }} />
                                   }
                                 </Col>
           
@@ -446,7 +446,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                             truncateText=" …"
                             text={ factory?.about_us && `${t(__('About Us'))}: ${factory?.about_us}` }
                           /> :
-                          <Skeleton className="factory--aboutUs__empty" active={false} paragraph={{ rows: 3 }} />
+                          <Skeleton className="factory--aboutUs__empty" paragraph={{ rows: 3 }} />
                         }
                       </Col>
                     </Row>

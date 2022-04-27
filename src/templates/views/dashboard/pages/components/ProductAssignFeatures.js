@@ -266,7 +266,7 @@ const ProductAssignFeatures = (
 
   return (
     featuresIsLoading ?
-      <Skeleton active={true} paragraph={{ rows: 13 }} /> :
+      <Skeleton active paragraph={{ rows: 13 }} /> :
       (features && Object.values(features)?.length) ?
         Object.values(features).map(feature => {
           return featureItem(feature);

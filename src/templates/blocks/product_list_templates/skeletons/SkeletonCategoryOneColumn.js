@@ -24,16 +24,16 @@ const SkeletonGrid = (props) => {
         <Col flex="1 1" className="text-truncate">
           <Row className="h-100" gutter={[0, 5]}>
             <Col span={24}>
-              <Skeleton.Input style={{ width: width >= 992 ? 250 : 130, height: 20 }} active={true} size={"small"} />
+              <Skeleton.Input style={{ width: width >= 992 ? 250 : 130, height: 20 }} active size="small" />
             </Col>
             <Col span={24}>
-              <Skeleton.Input style={{ width: width >= 992 ? 160 : 90, height: 20 }} active={true} size={"small"} />
+              <Skeleton.Input style={{ width: width >= 992 ? 160 : 90, height: 20 }} active size="small" />
             </Col>
             <Col span={24}>
-              <Skeleton.Input style={{ width: width >= 992 ? 400 : 180, height: 20 }} active={true} size={"small"} />
+              <Skeleton.Input style={{ width: width >= 992 ? 400 : 180, height: 20 }} active size="small" />
             </Col>
             <Col span={24} className="text-sm-left text-lg-right pr-3">
-              <Skeleton.Input style={{ width: 70, height: 20,}} active={true} size={"small"} />
+              <Skeleton.Input style={{ width: 70, height: 20,}} active size="small" />
             </Col>
           </Row>
         </Col>

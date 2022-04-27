@@ -60,13 +60,13 @@ const ProductDetail = (props) => {
                 <Row className="h-100" gutter={[0, 5]}>
                   <Col span={24} className="productDetails--title">
                     {(isLoading) ?
-                      <Skeleton.Input className="productSkeleton--text" style={{ "--text-width": "60vw", "--text-height": "2.55vh" }} active={true} size={"small"} /> :
+                      <Skeleton.Input className="productSkeleton--text" style={{ "--text-width": "60vw", "--text-height": "2.55vh" }} active size="small" /> :
                       <h1>{ product?.product }</h1>
                     }
                   </Col>
 
                   {(isLoading) ?
-                    <Skeleton.Input className="productSkeleton--text" style={{ "--text-width": "40vw", "--text-height": "2.55vh" }} active={true} size={"small"} /> :
+                    <Skeleton.Input className="productSkeleton--text" style={{ "--text-width": "40vw", "--text-height": "2.55vh" }} active size="small" /> :
                     (productPrice !== "0.00") &&
                       <Col span={24} className="productDetails--price">
                             <span className={ `${ width >= 992 ? 'vv-font-size-2-5' : 'vv-font-size-1-6' } text-primary font-weight-bold` }>${ productPrice }</span>
@@ -90,7 +90,7 @@ const ProductDetail = (props) => {
 
                   {(isLoading) ?
                     <>
-                      <Skeleton active={true} paragraph={{ rows: 4 }} />
+                      <Skeleton active paragraph={{ rows: 4 }} />
                       <div className="px-2 w-100">
                         <Divider className="border-ef m-0 mt-2" />
                       </div>
@@ -124,7 +124,7 @@ const ProductDetail = (props) => {
                     <Row justify={"space-between"} align="bottom">
                       <Col className="productDetails--location">
                         {(isLoading) ?
-                          <Skeleton.Input className="productSkeleton--text" style={{ "--text-width": "30vw", "--text-height": "2.55vh" }} active={true} size={"small"} /> :
+                          <Skeleton.Input className="productSkeleton--text" style={{ "--text-width": "30vw", "--text-height": "2.55vh" }} active size="small" /> :
                           product?.wk_location &&
                           <>
                             <i className="fal fa-map-marker-alt text-red-a0 mr-2 mr-lg-3" />
@@ -134,7 +134,7 @@ const ProductDetail = (props) => {
                       </Col>
                       <Col className="productDetails--Manufacture">
                         {(isLoading) ?
-                          <Skeleton.Input className="productSkeleton--text" style={{ "--text-width": "20vw", "--text-height": "2.55vh" }} active={true} size={"small"} /> :
+                          <Skeleton.Input className="productSkeleton--text" style={{ "--text-width": "20vw", "--text-height": "2.55vh" }} active size="small" /> :
                           product?.manufacturing_country &&
                           <>
                             <i className={ `fi fi-${ (product?.manufacturing_country)?.toLowerCase() } display-5 mr-2 mr-lg-3` } />

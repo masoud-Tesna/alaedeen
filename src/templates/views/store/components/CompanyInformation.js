@@ -25,9 +25,9 @@ const CompanyInformation = ({details, isLoading}) => {
       <Col span={24} className="companyInformation--container">
         {isLoading ?
           <>
-            <Skeleton active={true} paragraph={{ rows: 4 }} />
-            <Skeleton active={true} paragraph={{ rows: 7 }} />
-            <Skeleton active={true} paragraph={{ rows: 3 }} />
+            <Skeleton active paragraph={{ rows: 4 }} />
+            <Skeleton active paragraph={{ rows: 7 }} />
+            <Skeleton active paragraph={{ rows: 3 }} />
           </> :
           <Row gutter={[0, 50]}>
             <Col span={24} className="--item">

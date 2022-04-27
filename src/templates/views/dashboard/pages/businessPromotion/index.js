@@ -142,11 +142,11 @@ const BusinessPromotion = () => {
             <Col span={24} className="DiscountDetails">
               <Row gutter={[0, 15]}>
                 <Col span={24}>
-                  <Skeleton.Input style={{ width: "calc(.32 * 100vw - 100px)", height: 16 }} active={true} />
+                  <Skeleton.Input style={{ width: "calc(.32 * 100vw - 100px)", height: 16 }} active />
                 </Col>
 
                 <Col span={24}>
-                  <Skeleton.Input style={{ width: "calc(.37 * 100vw - 100px)", height: 16 }} active={true} />
+                  <Skeleton.Input style={{ width: "calc(.37 * 100vw - 100px)", height: 16 }} active />
                 </Col>
               </Row>
             </Col>
@@ -156,7 +156,7 @@ const BusinessPromotion = () => {
                 {new Array(4).fill("", 0, 4).map((__, i) => {
                   return(
                     <Col xs={24} md={6} key={`isLoading_prising_${i + 1}`}>
-                      <Skeleton.Input style={{ height: "48rem", borderRadius: 10 }} active={true} />
+                      <Skeleton.Input style={{ height: "48rem", borderRadius: 10 }} active />
                     </Col>
                   )
                 })}
@@ -164,7 +164,7 @@ const BusinessPromotion = () => {
             </Col>
 
             <Col span={24}>
-              <Skeleton paragraph={{ rows: 5 }} active={true} />
+              <Skeleton paragraph={{ rows: 5 }} active />
             </Col>
           </Row> :
           <>

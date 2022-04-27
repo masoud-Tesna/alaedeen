@@ -26,7 +26,7 @@ const SkeletonGrid = (props) => {
                 </div>
               </Col>
               <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-5 pb-2 text-wrap px-3">
-                <Skeleton.Input style={{ width: '8rem', height: '1.2rem', marginTop: '1.6rem' }} active={true} size={'default'} />
+                <Skeleton.Input style={{ width: '8rem', height: '1.2rem', marginTop: '1.6rem' }} active size='default' />
               </Col>
             </Row>
           </Col>
@@ -44,7 +44,7 @@ const SkeletonGrid = (props) => {
               </div>
             </Col>
             <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-8 pb-2 text-truncate px-3">
-              <Skeleton.Input style={{ width: 80, height: 15, marginTop: 8 }} active={true} size={'default'} />
+              <Skeleton.Input style={{ width: 80, height: 15, marginTop: 8 }} active size='default' />
             </Col>
           </Row>
         </Col>
@@ -80,7 +80,7 @@ const CategoriesMultiColumnSkeleton = (props) => {
                 </div>
               </Col>
               <Col span={24} className="categoriesMultiColumn--title text-center text-47 vv-font-size-1-5 pb-2 text-wrap px-3">
-                <Skeleton.Input style={{ width: '8rem', height: '1.2rem', marginTop: '1.6rem' }} active={true} size={'default'} />
+                <Skeleton.Input style={{ width: '8rem', height: '1.2rem', marginTop: '1.6rem' }} active size='default' />
               </Col>
             </Row>
           </Row>

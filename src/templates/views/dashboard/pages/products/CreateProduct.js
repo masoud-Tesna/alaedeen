@@ -232,7 +232,7 @@ const CreateProduct = () => {
   }, [productsLimitIsLoading, productsLimitIsFetching])
 
   if (productsLimitIsLoading || productsLimitIsFetching) {
-    return <Skeleton active={true} paragraph={{ rows: 15 }} />
+    return <Skeleton active paragraph={{ rows: 15 }} />
   }
 
   return (
@@ -316,7 +316,7 @@ const CreateProduct = () => {
                     >
                       <Row>
                         {categoryPickerIsLoading ?
-                          <Skeleton active={true} paragraph={{ rows: 7 }} /> :
+                          <Skeleton active paragraph={{ rows: 7 }} /> :
                           <Col span={24}>
                             <Row>
 

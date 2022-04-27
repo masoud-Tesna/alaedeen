@@ -84,7 +84,7 @@ const TopRankingProducts = () => {
                   <Row className="ProductsMultiColumnHorizontal--content row-cols-1">
                     <Col className="text-black vv-font-size-2 font-weight-bold mb-3" span={24}>
                       {load ?
-                        <Skeleton.Input style={{ width: 150, borderRadius: '10px' }} active={true} size={"small"} /> :
+                        <Skeleton.Input style={{ width: 150, borderRadius: '10px' }} active size={"small"} /> :
                         "Carpets"
                       }
                     </Col>
@@ -119,7 +119,7 @@ const TopRankingProducts = () => {
                   <Row className="ProductsMultiColumnHorizontal--content row-cols-1">
                     <Col className="text-black vv-font-size-2 font-weight-bold mb-3" span={24}>
                       {load ?
-                        <Skeleton.Input style={{ width: 150, borderRadius: '10px' }} active={true} size={"small"} /> :
+                        <Skeleton.Input style={{ width: 150, borderRadius: '10px' }} active size={"small"} /> :
                         "Handmade carpet"
                       }
                     </Col>
@@ -154,7 +154,7 @@ const TopRankingProducts = () => {
                   <Row className="ProductsMultiColumnHorizontal--content row-cols-1">
                     <Col className="text-black vv-font-size-2 font-weight-bold mb-3" span={24}>
                       {load ?
-                        <Skeleton.Input style={{ width: 150, borderRadius: '10px' }} active={true} size={"small"} /> :
+                        <Skeleton.Input style={{ width: 150, borderRadius: '10px' }} active size={"small"} /> :
                         "Kids & Baby Carpet"
                       }
                     </Col>
@@ -208,7 +208,7 @@ const TopRankingProducts = () => {
                       <Row className="ProductsMultiColumnHorizontal--content row-cols-1">
                         <Col className="text-black vv-font-size-1-4 font-weight-bold text-center ProductsMultiColumnHorizontal--content__title" span={24}>
                           {load ?
-                            <Skeleton.Input style={{ width: 50, borderRadius: '10px' }} active={true} size={"small"} /> :
+                            <Skeleton.Input style={{ width: 50, borderRadius: '10px' }} active size={"small"} /> :
                             "Carpets"
                           }
                         </Col>
@@ -244,7 +244,7 @@ const TopRankingProducts = () => {
                       <Row className="ProductsMultiColumnHorizontal--content row-cols-1">
                         <Col className="text-black vv-font-size-1-4 font-weight-bold text-center ProductsMultiColumnHorizontal--content__title" span={24}>
                           {load ?
-                            <Skeleton.Input style={{ width: 50, borderRadius: '10px' }} active={true} size={"small"} /> :
+                            <Skeleton.Input style={{ width: 50, borderRadius: '10px' }} active size={"small"} /> :
                             "Handmade carpet"
                           }
                         </Col>
@@ -280,7 +280,7 @@ const TopRankingProducts = () => {
                       <Row className="ProductsMultiColumnHorizontal--content row-cols-1">
                         <Col className="text-black vv-font-size-1-4 font-weight-bold text-center ProductsMultiColumnHorizontal--content__title" span={24}>
                           {load ?
-                            <Skeleton.Input style={{ width: 50, borderRadius: '10px' }} active={true} size={"small"} /> :
+                            <Skeleton.Input style={{ width: 50, borderRadius: '10px' }} active size={"small"} /> :
                             "Kids & Baby Carpet"
                           }
                         </Col>

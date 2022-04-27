@@ -96,7 +96,7 @@ const CreateCategory = ({ formRef }) => {
 
       {(!categoryDetail.length && !categoryDetail?.category_id) ?
         isLoading ?
-          <Skeleton active={true} paragraph={{ rows: 9 }} /> :
+          <Skeleton active paragraph={{ rows: 9 }} /> :
 
           <Row gutter={[0, 20]}>
             <Col span={24} className="CategoryParent--title">

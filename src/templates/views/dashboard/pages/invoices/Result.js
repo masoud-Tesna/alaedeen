@@ -272,7 +272,7 @@ const Result = () => {
           </Col>
 
           {isLoading ?
-            <Skeleton paragraph={{ rows: 10 }} active={true}/> :
+            <Skeleton paragraph={{ rows: 10 }} active/> :
             order?.order_id &&
               <Col span={24} className="invoice">
                 <Row gutter={[0, 20]}>

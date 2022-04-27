@@ -54,7 +54,7 @@ const Settings = () => {
           <TabPane className="profileTab--content" tab={ t("profile") } key="profile">
 
             {user_data?.load  ?
-              <Skeleton active={true} paragraph={{ rows: 10 }} /> :
+              <Skeleton active paragraph={{ rows: 10 }} /> :
               <EditProfile />
             }
 

@@ -188,8 +188,8 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
       <Col span={24} className="dashboard--menu">
         {user_data?.load ?
           <div className="px-5 menuLoading">
-            <Skeleton className="--avatar" active={true} paragraph={{ rows: 0 }} title={true} avatar={true} />
-            <Skeleton className="--menu" active={true} paragraph={{ rows: 11 }} title={false} />
+            <Skeleton className="--avatar" active paragraph={{ rows: 0 }} avatar />
+            <Skeleton className="--menu" active paragraph={{ rows: 11 }} title={false} />
           </div> :
           <Row gutter={[0, 20]}>
             <Col span={24} className="user--details">

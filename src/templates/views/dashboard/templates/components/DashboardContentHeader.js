@@ -44,7 +44,7 @@ const DashboardContentHeader = (
         <Col span={12}>
           <Row justify="end">
             <Col className="d-none d-lg-block dashboardContentHeader--extraLink">
-              <Skeleton.Input active={true} size="small" style={{ width: 100, height: 35 }} />
+              <Skeleton.Input active size="small" style={{ width: 100, height: 35 }} />
             </Col>
           </Row>
         </Col> :

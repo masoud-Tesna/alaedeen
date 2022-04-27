@@ -16,10 +16,10 @@ const SkeletonGrid = (props) => {
       <div className={ `d-inline skeletonTopBrands--item` } {...props.grid}>
         <Row className={ `h-100 ${props.className} skeletonTopBrands--row` } justify="center">
           <Col span={24} className="d-flex align-items-center justify-content-center skeletonTopBrands--item__image">
-            <Skeleton.Image active={true} className="" />
+            <Skeleton.Image active />
           </Col>
           <Col span={12} className="px-0 px-lg-4 text-47 vv-font-size-1-8 text-truncate text-center skeletonTopBrands--item__title">
-            <Skeleton active={true} paragraph={{ rows: 1 }} />
+            <Skeleton active paragraph={{ rows: 1 }} />
           </Col>
         </Row>
       </div>
@@ -29,10 +29,10 @@ const SkeletonGrid = (props) => {
     <Col className={ `skeletonTopBrands--item` } {...props.grid} style={{ minHeight: `${height}px` }}>
       <Row className={ `h-100 ${props.className}` } justify="center">
         <Col span={24} className="d-flex align-items-center justify-content-center skeletonTopBrands--item__image">
-          <Skeleton.Image active={true} className="" />
+          <Skeleton.Image active />
         </Col>
         <Col span={12} className="px-0 px-lg-4 text-47 vv-font-size-1-8 text-truncate text-center skeletonTopBrands--item__title">
-          <Skeleton active={true} paragraph={{ rows: 1 }} />
+          <Skeleton active paragraph={{ rows: 1 }} />
         </Col>
       </Row>
     </Col>

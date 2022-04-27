@@ -95,11 +95,11 @@ const Sent = () => {
                     <Col key={`RequestsLoading_${i}`} span={24} className="__item">
                       <Row className="h-100">
                         <Col flex="1 1" className="--details">
-                          <Skeleton.Input style={{ width: `calc(20vw - ${(i + 1) * Math.floor(Math.random() * 17) + 5}px)`, height: 22 }} active={true} size={"small"} />
+                          <Skeleton.Input style={{ width: `calc(20vw - ${(i + 1) * Math.floor(Math.random() * 17) + 5}px)`, height: 22 }} active size={"small"} />
                         </Col>
 
                         <Col className="--date">
-                          <Skeleton.Input style={{ width: "6rem", height: 22 }} active={true} size={"small"} />
+                          <Skeleton.Input style={{ width: "6rem", height: 22 }} active size={"small"} />
                         </Col>
 
                       </Row>
@@ -259,11 +259,11 @@ const Sent = () => {
                 isLoading ?
                   <Row gutter={[0, 5]}>
                     <Col span={24} className="text-center">
-                      <Skeleton.Input style={{ width: 90, height: 90, borderRadius: 10 }} active={true} size={"small"} />
+                      <Skeleton.Input style={{ width: 90, height: 90, borderRadius: 10 }} active size={"small"} />
                     </Col>
 
                     <Col span={24} className="text-center">
-                      <Skeleton.Input style={{ width: 110, height: 20 }} active={true} size={"small"} />
+                      <Skeleton.Input style={{ width: 110, height: 20 }} active size={"small"} />
                     </Col>
                   </Row> :
                   <Empty description={t("no_requests")}/>

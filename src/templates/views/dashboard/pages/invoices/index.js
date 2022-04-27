@@ -56,7 +56,7 @@ const Invoices = () => {
 
       <Col span={ 24 } className="invoices--container">
         { isLoading ?
-          <Skeleton paragraph={{ rows: 10 }} active={true}/> :
+          <Skeleton paragraph={{ rows: 10 }} /> :
           <Row gutter={[0, 20]} className="invoices">
             <Col span={24} className="invoices__table">
               <div>

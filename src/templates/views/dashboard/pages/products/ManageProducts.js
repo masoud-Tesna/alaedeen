@@ -100,31 +100,31 @@ const ManageProducts = () => {
                       </Col>
 
                       <Col className="text-center my-auto __name" span={8}>
-                        <Skeleton.Input style={{ width: `calc(60% - ${i + 2}px)`, height: 22 }} active={true} size={"small"} />
+                        <Skeleton.Input style={{ width: `calc(60% - ${i + 2}px)`, height: 22 }} active size={"small"} />
                       </Col>
 
                       <Col className="text-center my-auto __price" span={2}>
-                        <Skeleton.Input style={{ width: `calc(60% - ${i + 2}px)`, height: 22 }} active={true} size={"small"} />
+                        <Skeleton.Input style={{ width: `calc(60% - ${i + 2}px)`, height: 22 }} active size={"small"} />
                       </Col>
 
                       <Col className="text-center my-auto __price" span={2}>
-                        <Skeleton.Input style={{ width: `calc(60% - ${i + 2}px)`, height: 22 }} active={true} size={"small"} />
+                        <Skeleton.Input style={{ width: `calc(60% - ${i + 2}px)`, height: 22 }} active size={"small"} />
                       </Col>
 
                       <Col className="my-auto __actions" span={6}>
                         <Row justify="space-between" gutter={10}>
                           <Col span={12}>
-                            <Skeleton.Input style={{ width: `calc(60% - ${i + 2}px)`, height: 22 }} active={true} size={"small"} />
+                            <Skeleton.Input style={{ width: `calc(60% - ${i + 2}px)`, height: 22 }} active size={"small"} />
                           </Col>
 
                           <Col span={12}>
-                            <Skeleton.Input style={{ width: `calc(60% - ${i + 2}px)`, height: 22 }} active={true} size={"small"} />
+                            <Skeleton.Input style={{ width: `calc(60% - ${i + 2}px)`, height: 22 }} active size={"small"} />
                           </Col>
                         </Row>
                       </Col>
 
                       <Col className="text-center my-auto __publish" span={4}>
-                        <Skeleton.Input style={{ width: `calc(60% - ${i + 2}px)`, height: 22 }} active={true} size={"small"} />
+                        <Skeleton.Input style={{ width: `calc(60% - ${i + 2}px)`, height: 22 }} active size={"small"} />
                       </Col>
                     </Row>
                   </Col>

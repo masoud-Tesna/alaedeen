@@ -108,7 +108,7 @@ const Notifications = () => {
               new Array(5).fill("", 0, 5).map((__, i) => {
                 return(
                   <Col xs={24} key={`isLoading_notification_${i + 1}`}>
-                    <Skeleton.Input className="--loading" active={true} />
+                    <Skeleton.Input className="--loading" active />
                   </Col>
                 )
               })

@@ -145,16 +145,16 @@ const DefaultFooter = () => {
               {pagesIsLoading &&
                 <>
                   <Col span={24} className="text-47">
-                    <Skeleton.Input style={{ width: "calc(.5 * 31vw + 50%)", height: "3vh" }} active={true} size={"small"} />
+                    <Skeleton.Input style={{ width: "calc(.5 * 31vw + 50%)", height: "3vh" }} active size={"small"} />
                   </Col>
                   <Col span={24} className="text-47">
-                    <Skeleton.Input style={{ width: "calc(.5 * 37vw + 50%)", height: "3vh" }} active={true} size={"small"} />
+                    <Skeleton.Input style={{ width: "calc(.5 * 37vw + 50%)", height: "3vh" }} active size={"small"} />
                   </Col>
                   <Col span={24} className="text-47">
-                    <Skeleton.Input style={{ width: "calc(.5 * 20vw + 50%)", height: "3vh" }} active={true} size={"small"} />
+                    <Skeleton.Input style={{ width: "calc(.5 * 20vw + 50%)", height: "3vh" }} active size={"small"} />
                   </Col>
                   <Col span={24} className="text-47">
-                    <Skeleton.Input style={{ width: "calc(.5 * 35vw + 50%)", height: "3vh" }} active={true} size={"small"} />
+                    <Skeleton.Input style={{ width: "calc(.5 * 35vw + 50%)", height: "3vh" }} active size={"small"} />
                   </Col>
                 </>
               }
@@ -201,20 +201,16 @@ const DefaultFooter = () => {
               { categoriesIsLoading &&
                 <>
                   <Col span={ 24 } className="text-47">
-                    <Skeleton.Input style={ { width: "calc(.5 * 31vw + 50%)", height: "3vh" } } active={ true }
-                                    size={ "small" }/>
+                    <Skeleton.Input style={ { width: "calc(.5 * 31vw + 50%)", height: "3vh" } } active size={ "small" }/>
                   </Col>
                   <Col span={ 24 } className="text-47">
-                    <Skeleton.Input style={ { width: "calc(.5 * 37vw + 50%)", height: "3vh" } } active={ true }
-                                    size={ "small" }/>
+                    <Skeleton.Input style={ { width: "calc(.5 * 37vw + 50%)", height: "3vh" } } active size={ "small" }/>
                   </Col>
                   <Col span={ 24 } className="text-47">
-                    <Skeleton.Input style={ { width: "calc(.5 * 20vw + 50%)", height: "3vh" } } active={ true }
-                                    size={ "small" }/>
+                    <Skeleton.Input style={ { width: "calc(.5 * 20vw + 50%)", height: "3vh" } } active size={ "small" }/>
                   </Col>
                   <Col span={ 24 } className="text-47">
-                    <Skeleton.Input style={ { width: "calc(.5 * 35vw + 50%)", height: "3vh" } } active={ true }
-                                    size={ "small" }/>
+                    <Skeleton.Input style={ { width: "calc(.5 * 35vw + 50%)", height: "3vh" } } active size={ "small" }/>
                   </Col>
                 </>
               }

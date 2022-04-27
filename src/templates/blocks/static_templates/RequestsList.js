@@ -21,26 +21,26 @@ const RequestSkeleton = () => {
     <div className="d-inline requestsList--item__content">
       <Row className="p-3 bg-white rounded-lg requestsList--item">
         <Col span={12} className="text-left text-black vv-font-size-1-9 my-auto">
-          <Skeleton.Input style={{ width: 100, height: 15 }} active={true} size={"small"} />
+          <Skeleton.Input style={{ width: 100, height: 15 }} active size={"small"} />
         </Col>
         <Col span={12} className="text-right text-primary vv-font-size-1-5 my-auto">
-          <Skeleton.Input style={{ width: 100, height: 15 }} active={true} size={"small"} />
+          <Skeleton.Input style={{ width: 100, height: 15 }} active size={"small"} />
         </Col>
         <Col span={24} className="text-70 vv-font-size-1-5 requestsList--item__buyerLooking text-center">
-          <Skeleton.Input style={{ width: 200, height: 19 }} active={true} size={"small"} />
+          <Skeleton.Input style={{ width: 200, height: 19 }} active size={"small"} />
         </Col>
         <Col span={24} className="mt-3 px-2 pb-1 border-bottom border-8b">
           <Row justify="space-between">
             <Col>
-              <Skeleton.Input style={{ width: 122, height: 17 }} active={true} size={"small"} />
+              <Skeleton.Input style={{ width: 122, height: 17 }} active size={"small"} />
             </Col>
             <Col className="align-self-end">
-              <Skeleton.Avatar style={{ height: 17 }} active={true} size={"small"} shape={'square'} />
+              <Skeleton.Avatar style={{ height: 17 }} active size={"small"} shape={'square'} />
             </Col>
           </Row>
         </Col>
         <Col span={24} className="vv-font-size-1-7 text-center mt-2 requestsList--item__contact text-center">
-          <Skeleton.Input style={{ width: 100, height: 20 }} active={true} size={"small"} />
+          <Skeleton.Input style={{ width: 100, height: 20 }} active size={"small"} />
         </Col>
       </Row>
     </div>

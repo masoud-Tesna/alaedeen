@@ -110,15 +110,15 @@ const ContactUs = () => {
                   <Col xs={24} lg={11}>
                     <Row gutter={[0, 20]}>
                       <Col xs={24} lg={15}>
-                        <Skeleton.Input style={{ width: `calc(${width >= 992 ? 19.9 : 75}vw)`, height: 35, borderRadius: "1.2rem" }} active={true} size={"small"} />
+                        <Skeleton.Input style={{ width: `calc(${width >= 992 ? 19.9 : 75}vw)`, height: 35, borderRadius: "1.2rem" }} active size={"small"} />
                       </Col>
 
                       <Col xs={24} lg={15}>
-                        <Skeleton.Input style={{ width: `calc(${width >= 992 ? 19.9 : 75}vw)`, height: 35, borderRadius: "1.2rem" }} active={true} size={"small"} />
+                        <Skeleton.Input style={{ width: `calc(${width >= 992 ? 19.9 : 75}vw)`, height: 35, borderRadius: "1.2rem" }} active size={"small"} />
                       </Col>
 
                       <Col xs={24} lg={15}>
-                        <Skeleton.Input style={{ width: `calc(${width >= 992 ? 19.9 : 75}vw)`, height: 35, borderRadius: "1.2rem" }} active={true} size={"small"} />
+                        <Skeleton.Input style={{ width: `calc(${width >= 992 ? 19.9 : 75}vw)`, height: 35, borderRadius: "1.2rem" }} active size={"small"} />
                       </Col>
                     </Row>
                   </Col>
@@ -126,17 +126,17 @@ const ContactUs = () => {
                   <Col xs={24} lg={11} style={{ paddingTop: width >= 992 ? 0 : 10 }}>
                     <Row gutter={[0, 20]}>
                       <Col span={15}>
-                        <Skeleton.Input style={{ width: `calc(${width >= 992 ? 19.9 : 75}vw)`, height: 35, borderRadius: "1.2rem" }} active={true} size={"small"} />
+                        <Skeleton.Input style={{ width: `calc(${width >= 992 ? 19.9 : 75}vw)`, height: 35, borderRadius: "1.2rem" }} active size={"small"} />
                       </Col>
 
                       <Col span={20} className="form-item-comment">
-                        <Skeleton.Input style={{ width: `calc(${width >= 992 ? 25.24 : 80}vw)`, height: 90, borderRadius: "1.2rem" }} active={true} size={"small"} />
+                        <Skeleton.Input style={{ width: `calc(${width >= 992 ? 25.24 : 80}vw)`, height: 90, borderRadius: "1.2rem" }} active size={"small"} />
                       </Col>
                     </Row>
                   </Col>
 
                   <Col span={24} className="text-center" style={{ paddingTop: 10 }}>
-                    <Skeleton.Input style={{ width: `calc(${width >= 992 ? 10.28 : 30}vw)`, height: 42, borderRadius: 3 }} active={true} size={"small"} />
+                    <Skeleton.Input style={{ width: `calc(${width >= 992 ? 10.28 : 30}vw)`, height: 42, borderRadius: 3 }} active size={"small"} />
                   </Col>
                 </Row>
               </Col>

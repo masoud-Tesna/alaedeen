@@ -21,7 +21,7 @@ const FeaturesGrid = (props) => {
 
             {
               (isLoading || !features) ?
-                new Array(12).fill("", 0, 12).map((p, i) => <Skeleton.Input key={`FeaturesGridLoading_${i}`} style={{ width: `calc(60% - ${i + 10}px)`, height: 22 }} active={true} size={"small"} />) :
+                new Array(12).fill("", 0, 12).map((p, i) => <Skeleton.Input key={`FeaturesGridLoading_${i}`} style={{ width: `calc(60% - ${i + 10}px)`, height: 22 }} active size={"small"} />) :
 
                 (features && features.length !== 0) &&
                   Object.entries(features)
@@ -62,7 +62,7 @@ const FeaturesGrid = (props) => {
 
             {
               (isLoading || !features) ?
-                new Array(4).fill("", 0, 4).map((p, i) => <Skeleton.Input key={`FeaturesGridLoading_${i}`} style={{ width: `calc(60% - ${i + 10}px)`, height: 22 }} active={true} size={"small"} />) :
+                new Array(4).fill("", 0, 4).map((p, i) => <Skeleton.Input key={`FeaturesGridLoading_${i}`} style={{ width: `calc(60% - ${i + 10}px)`, height: 22 }} active size={"small"} />) :
 
                 (features && features.length !== 0) &&
                   Object.entries(features)

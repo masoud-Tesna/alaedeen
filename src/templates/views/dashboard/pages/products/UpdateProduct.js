@@ -249,9 +249,9 @@ const UpdateProduct = () => {
         />
 
         <div className="mt-4 px-5">
-          <Skeleton active={true} paragraph={{ rows: 8 }} />
-          <Skeleton active={true} paragraph={{ rows: 5 }} />
-          <Skeleton active={true} paragraph={{ rows: 4 }} />
+          <Skeleton active paragraph={{ rows: 8 }} />
+          <Skeleton active paragraph={{ rows: 5 }} />
+          <Skeleton active paragraph={{ rows: 4 }} />
         </div>
       </>
     );
@@ -338,7 +338,7 @@ const UpdateProduct = () => {
                       >
                         <Row>
                           { categoryPickerIsLoading ?
-                            <Skeleton active={ true } paragraph={ { rows: 7 } }/> :
+                            <Skeleton active paragraph={ { rows: 7 } }/> :
                             <Col span={ 24 }>
                               <Row>
 
