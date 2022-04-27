@@ -368,3 +368,11 @@ export function countLines(target) {
   
   return Math.ceil(height / line_height);
 }
+
+export const isObject = value => {
+  return !(value instanceof Date)
+    && !Array.isArray(value)
+    && !Object.is(value, null)
+    && !Object.is(value, undefined)
+    && !(value instanceof Function);
+}
