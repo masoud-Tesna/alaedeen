@@ -24,6 +24,8 @@ import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 import axios from "axios";
+import {useQuery} from "react-query";
+import {useGetApi} from "../../../functions";
 
 // import OneRequestMultipleQuotesModal component for show send request form modal:
 /*import OneRequestMultipleQuotesModal from "../../blocks/static_templates/OneRequestMultipleQuotesModal";*/
@@ -100,98 +102,97 @@ const DefaultHeader = ({ pathName }) => {
     </Menu>
   );
 
-  const handleSubmitSearch = () => {
-    if (searchValue) {
-      /*window.location.href = `/horn/?subcats=Y&pcode_from_q=Y&pshort=Y&pfull=Y&pname=Y&pkeywords=Y&search_performed=Y&q=${ searchValue }&dispatch=products.search&security_hash=6f98c36fe3677b696695ad3ca456de51`;*/
-  
-      console.log(searchValue)
-    }
-  }
-
-  // Show suffix for search input:
-  const searchTextSuffix = (text) => {
-    return(
-      <span className="suffix-content vv-font-size-2" onClick={() => { handleSubmitSearch() }}>
-      <i className="far fa-search vv-font-size-2" /> { text }
-    </span>
-    );
-  }
-
-  // Show prefix for search input:
-  const searchTextPrefix = <i className="far fa-search text-primary vv-font-size-2 cursor-pointer" onClick={() => { handleSubmitSearch() }} />
-
   // show request form modal function:
   /*const showRequestModalHeader = () => {
     setIsRequestModalVisible(true);
   }*/
   
   
-  const Complete = () => {
+  const Search = () => {
   
-    const [searchInputValue, setSearchInputValue] = useState("");
+    const [searchInput, setSearchInput] = useState("");
   
-    const [searchTypeValue, setSearchTypeValue] = useState("P");
+    const [searchType, setSearchType] = useState("P");
   
-    const [isLoading, setIsLoading] = useState(true);
-  
-    const [characters, setCharacters] = useState([])
-  
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          const {data} = await axios.get(`https://rickandmortyapi.com/api/character/?name=${searchInputValue}`)
-          setCharacters(data.results)
-        } catch (error) {
-          console.error(error)
-        }
+    const {
+      data,
+      isLoading
+    } = useGetApi(
+      "Search",
+      {
+        "search_type": searchType,
+        "q": searchInput,
+      },
+      `search_${searchType}_${searchInput}`,
+      {
+        enabled: !!(searchInput.length > 3)
       }
+    );
     
-      fetchData()
-    }, [searchInputValue]);
+    const results = data || [];
   
-    const searchResult = characters.map((character) => ({
-      value: character?.id,
+    const searchResult = results?.map(result => ({
+      value: searchType === "P" ? result?.product_id : result?.company_id,
       label: (
         <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-          }}
+          key={searchType === "P" ? result?.product_id : result?.company_id}
+          className="text-truncate search--result__item"
         >
-            <span>
-              Found {character?.name}
-            </span>
-          <span> results</span>
+          {searchType === "P" ?
+            <Link to={`/product/${result?.seo_name}`}>{result?.product}</Link> :
+            (
+              result?.store_type === "A" ?
+                <a href={`https://store.alaedeen.com/?store_id=${result?.company_id}`}>{result?.company} ({result?.brand})</a> :
+                <Link to={`/store/${result?.link}`}>{result?.company} ({result?.brand})</Link>
+            )
+          }
         </div>
       ),
     }));
     
-    const onSelect = (value) => {
-      console.log('onSelect', value);
-    };
-    
     const notFoundContent = () => {
+  
+      if (searchInput?.length <= 3 && !isLoading) {
+        return (
+          <div className="search--status">Please enter more than 3 words!</div>
+        );
+      }
+      
+      if (isLoading) {
+        return (
+          <div className="search--status">Loading...</div>
+        )
+      }
+      
       return (
-        <h1>Not Found!</h1>
+        <div className="search--status">Not Found!</div>
       )
     }
   
-    const searchType = (
-      <Select
-        defaultValue="P"
+    // Show suffix for search input:
+    const searchBtn = (text) => {
+      return(
+        <span className="suffix-content vv-font-size-2">
+          <i className="far fa-search vv-font-size-2" /> { text }
+        </span>
+      );
+    }
+  
+    const SearchTypeSelect = () => {
+      return <Select
+        defaultValue={searchType}
         className="--searchType"
         dropdownClassName="--searchType__dropDown"
         bordered={false}
         onChange={(e) => {
-          setSearchTypeValue(e);
-          setSearchInputValue("");
-          setCharacters([]);
+          setSearchType(e);
+          setSearchInput("");
         }}
       >
         <Option value="P">{t("products")}</Option>
         <Option value="C">{t("companies")}</Option>
       </Select>
-    );
+    };
   
     return (
       <AutoComplete
@@ -199,21 +200,21 @@ const DefaultHeader = ({ pathName }) => {
           width: "100%",
         }}
         options={searchResult}
-        onSelect={onSelect}
         notFoundContent={notFoundContent()}
+        dropdownClassName="search--result"
       >
         <Row className="--searchBox">
                 <Col className="searchType--container" >
-                  {searchType}
+                  <SearchTypeSelect />
                 </Col>
                 
                 <Col flex="1 1" className="searchInput--container">
                   <Input
-                    value={searchInputValue}
+                    value={searchInput}
                     placeholder={ t(__('What are you looking for...')) }
-                    suffix={searchTextSuffix(t(__('search')))}
-                    onChange = {e => setSearchInputValue(e.target.value)}
-                    onPressEnter={e => setSearchInputValue(e.target.value)}
+                    suffix={searchBtn(t(__('search')))}
+                    onChange = {e => setSearchInput(e.target.value)}
+                    onPressEnter={e => setSearchInput(e.target.value)}
                   />
                 </Col>
               </Row>
@@ -250,22 +251,7 @@ const DefaultHeader = ({ pathName }) => {
             </Col>
 
             <Col span={12} className="my-auto">
-              {/*<Row className="--searchBox">
-                <Col className="searchType--container" >
-                  {searchType}
-                </Col>
-                
-                <Col flex="1 1" className="searchInput--container">
-                  <Input
-                    placeholder={ t(__('What are you looking for...')) }
-    
-                    suffix={searchTextSuffix(t(__('search')))}
-                    onChange={e => {setSearchValue(e.target.value)}}
-                    onPressEnter={() => { handleSubmitSearch() }}
-                  />
-                </Col>
-              </Row>*/}
-              <Complete />
+              <Search />
             </Col>
 
             <Col span={6} className="my-auto">

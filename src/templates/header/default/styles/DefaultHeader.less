@@ -16,6 +16,7 @@ html:lang(ar) {
   .header--mobile__searchBox input,
   .header--content__account,
   .header--content__account .header--account__link,
+  .--searchBox,
   .header--content__account .ant-dropdown-trigger {
     direction: rtl !important;
   }
@@ -108,12 +109,19 @@ html:lang(ar) {
     
     .searchType--container {
       padding-right: 1rem;
-      border-right: 1px solid darken(@primary-color, 10%);
-      
+      border-right: 1px solid;
+      border-color: darken(@primary-color, 10%);
+      margin: auto 0;
       min-width: 130px;
       
+      &.ant-col-rtl {
+        padding-right: 0;
+        padding-left: 1rem;
+        border-right: none;
+        border-left: 1px solid;
+      }
+      
       .--searchType {
-        margin: auto 0;
         width: 100%;
         
         .ant-select-selection-search {
@@ -127,25 +135,28 @@ html:lang(ar) {
         }
         
         .ant-select-arrow {
-          top: 59%;
+          top: 55%;
         }
       }
     }
     
     .searchInput--container {
       padding-left: 1rem;
+  
+      &.ant-col-rtl {
+        padding-left: 0;
+        padding-right: 1rem;
+  
+        .ant-input-suffix {
+          border-radius: 10px 0 0 10px;
+        }
+      }
       
       .ant-input-affix-wrapper {
         padding: 0;
         border: none;
         box-shadow: none;
         border-radius: 10px;
-      }
-  
-      .ant-input-group-addon {
-        background-color: transparent;
-        border: none;
-        height: 40px;
       }
   
       .ant-input {
@@ -337,5 +348,23 @@ html:lang(ar) {
 
 .--searchType__dropDown {
   z-index: 2050;
+}
+
+.search--result {
+  .ant-select-item {
+    min-height: 40px;
+    padding: 0 1rem;
+    
+    .ant-select-item-option-content {
+      margin: auto 0;
+      
+      .search--result__item {
+        a {
+          font-size: 1.6rem;
+          color: rgba(0, 0, 0, 0.65);
+        }
+      }
+    }
+  }
 }
 
