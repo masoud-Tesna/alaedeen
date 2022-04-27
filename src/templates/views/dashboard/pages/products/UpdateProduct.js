@@ -237,7 +237,7 @@ const UpdateProduct = () => {
         spinnerDispatch(isLoadingAction(false));
       })
       .then(() => {
-        navigate('/dashboard/products/manage');
+        navigate('/dashboard/products');
       });
   }
 
