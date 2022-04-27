@@ -276,11 +276,13 @@ const StoreDetails = ({store, isLoading}) => {
                       <Col span={24} className="--top">
                         <div className="--bg" />
                         <div className="--img">
-                          {
-                            (support?.personal_photo && support?.personal_photo !== "") ?
-                              <img src={support?.personal_photo} alt={store?.full_name} /> :
-                              <i className="fa-thin fa-user" />
-                          }
+                          <div>
+                            {
+                              (support?.personal_photo && support?.personal_photo !== "") ?
+                                <img src={support?.personal_photo} alt={store?.full_name} /> :
+                                <i className="fa-thin fa-user" />
+                            }
+                          </div>
                         </div>
                       </Col>
   

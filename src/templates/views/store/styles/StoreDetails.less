@@ -183,39 +183,28 @@
         .--img {
           width: 150px;
           height: 150px;
-          //border: 5px solid #3ba949;
-          background-color: #81d38b;
           position: absolute;
           text-align: center;
-          top: calc(50% - 47px);
+          top: calc(50% - 43px);
           right: calc(50% - 75px);
-          
-          &:after {
-            content: "";
-            height: 75px;
-            width: 159px;
-            display: block;
-            position: absolute;
-            top: calc(50% - -3px);
-            right: calc(50% - 79.5px);
-            border-bottom-left-radius: 50% 100%;
-            border-bottom-right-radius: 50% 100%;
-            border-top-right-radius: 0;
-            border-top-left-radius: 0;
-            border: 5px solid #81d38b;
-            border-top: 0;
   
-            @media (min-width: @screen-md) {
-              height: 65px;
-              width: 139px;
-              right: calc(50% - 69.5px);
-            }
+          border: 5px solid #81d38b;
+          border-radius: 50%;
+          border-top-color: transparent;
+          border-right-color: transparent;
+          transform: rotate(-45deg);
+          
+          & > div {
+            width: 100%;
+            height: 100%;
+            background-color: #81d38b;
+            transform: rotate(45deg);
           }
   
           @media (min-width: @screen-md) {
             width: 130px;
             height: 130px;
-            top: calc(50% - 40px);
+            top: calc(50% - 36px);
             right: calc(50% - 65px);
           }
           
@@ -230,9 +219,9 @@
           }
           
           .fa-thin.fa-user {
-            font-size: 5rem;
+            font-size: 5.5rem;
             color: #FFF;
-            line-height: 90px;
+            line-height: 120px;
             font-weight: 300;
           }
         }
