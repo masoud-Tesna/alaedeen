@@ -4,6 +4,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useGetApi} from "../../functions";
 import {useGetConfig} from "../../contexts/config/ConfigContext";
 import StoreDetails from "./store/StoreDetails";
+import {useEffect} from "react";
 
 const Store = () => {
   
@@ -12,8 +13,6 @@ const Store = () => {
   
   // get initial config:
   const { config } = useGetConfig();
-  
-  const navigate = useNavigate();
   
   // get invoices from API:
   const { isLoading, data } = useGetApi(
@@ -29,6 +28,10 @@ const Store = () => {
   );
   
   const store = data || {};
+  
+  useEffect(() => {
+    window.scroll({ top: 0, behavior: 'smooth' });
+  }, [companySeoName]);
   
   return (
     <Row>
