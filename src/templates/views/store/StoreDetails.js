@@ -275,7 +275,7 @@ const StoreDetails = ({store, isLoading}) => {
                     <Row gutter={[0, 10]}>
                       <Col span={24} className="--top">
                         <div className="--bg" />
-                        <div className="--img">
+                        <div className={`--img ${(support?.personal_photo && support?.personal_photo !== "") ? "--border" : "--borderNone"}`}>
                           <div>
                             {
                               (support?.personal_photo && support?.personal_photo !== "") ?
