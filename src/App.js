@@ -59,7 +59,7 @@ const App = () => {
 
   const { user_data } = useGetAuthState();
 
-  const directionTheme = config.language === 'en' ? 'ltr' : 'rtl';
+  const directionTheme = ['fa', 'ar'].find(lng => lng === config.language) ? 'rtl' : 'ltr';
 
   const lang = config.language;
 

@@ -282,6 +282,8 @@ const DefaultTopPanel = ({ pathName }) => {
                                       <option value="en">English</option>
                                       <option value="ar">عربی</option>
                                       <option value="fa">فارسی</option>
+                                      <option value="zh">Chinese</option>
+                                      <option value="ru">Russian</option>
                                     </select>
                                   </Col>
                                 </Row>
@@ -439,6 +441,26 @@ const DefaultTopPanel = ({ pathName }) => {
                 onClick={() => handleChangeLanguage('fa')}>
                 <span className="topPanel--item__text">
                   فارسی
+                </span>
+              </span>
+  
+  
+              <Divider type="vertical" className="border-70"/>
+              <span
+                className={ `vv-cursor-pointer topPanel--content__item ${ config.language === 'zh' ? 'active' : 'hover' }` }
+                onClick={() => handleChangeLanguage('zh')}
+              >
+                <span className="topPanel--item__text">
+                  Chinese
+                </span>
+              </span>
+              <Divider type="vertical" className="border-70"/>
+              <span
+                className={ `vv-cursor-pointer topPanel--content__item ${ config.language === 'ru' ? 'active' : 'hover' }` }
+                onClick={() => handleChangeLanguage('ru')}
+              >
+                <span className="topPanel--item__text">
+                  Russian
                 </span>
               </span>
 

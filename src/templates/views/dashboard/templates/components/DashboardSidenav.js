@@ -239,6 +239,8 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
                   <Item onClick={() => handleChangeLanguage('fa')} key="1">فارسی</Item>
                   <Item onClick={() => handleChangeLanguage('en')} key="2">English</Item>
                   <Item onClick={() => handleChangeLanguage('ar')} key="3">عربی</Item>
+                  <Item onClick={() => handleChangeLanguage('zh')} key="3">Chinese</Item>
+                  <Item onClick={() => handleChangeLanguage('ru')} key="3">Russian</Item>
                 </SubMenu>
   
                 <Menu.Item key="notifications"  icon={<Badge count={0} offset={[0, -4]}><i className="fa-light fa-bullhorn" /></Badge> }>
