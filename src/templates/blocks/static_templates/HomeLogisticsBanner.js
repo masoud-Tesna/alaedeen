@@ -34,29 +34,29 @@ const HomeLogisticsBanner = () => {
         {/* For Desktop ? code else for Mobile : code */}
         {width >= 992 ?
           <>
-            {config.language === 'en' &&
+            { ['en', 'zh', 'ru'].find(lng => lng === config.language) &&
               <img className="homeLogisticsBanner--img" src={ bannerXlEn } alt={ t('alaedeen_title') }/>
             }
 
-            {config.language === 'fa' &&
+            { config.language === 'fa' &&
             <img className="homeLogisticsBanner--img" src={ bannerXlFa } alt={ t('alaedeen_title') }/>
             }
 
-            {config.language === 'ar' &&
+            { config.language === 'ar' &&
             <img className="homeLogisticsBanner--img" src={ bannerXlAr } alt={ t('alaedeen_title') }/>
             }
           </> :
           /*For Mobile*/
           <>
-            {config.language === 'en' &&
+            { ['en', 'zh', 'ru'].find(lng => lng === config.language) &&
             <img className="homeLogisticsBanner--img" src={ bannerXsEn } alt={ t('alaedeen_title') }/>
             }
 
-            {config.language === 'fa' &&
+            { config.language === 'fa' &&
             <img className="homeLogisticsBanner--img" src={ bannerXsFa } alt={ t('alaedeen_title') }/>
             }
 
-            {config.language === 'ar' &&
+            { config.language === 'ar' &&
             <img className="homeLogisticsBanner--img" src={ bannerXsAr } alt={ t('alaedeen_title') }/>
             }
           </>
