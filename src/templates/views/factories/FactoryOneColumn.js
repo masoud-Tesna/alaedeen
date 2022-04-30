@@ -57,25 +57,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
     const { config } = useGetConfig();
 
     const logoSize = width >= 993 ? 80 : 53;
-
-    if ((config.language === 'en' || config.language === 'ar') && logo?.en) {
-      return (
-        <ShowResponsiveImage
-          imagePath={ logo?.en }
-          imageFolder='company_logo'
-          width={logoSize}
-          height={logoSize}
-          skeletonWidth={ `${logoSize}px` }
-          skeletonHeight={ `${logoSize}px` }
-          skeletonSvgWidth="3rem"
-          skeletonRadius="50%"
-          imageAlt={ imageAlt }
-          object_id={object_id}
-          object_type={`company_logo_en`}
-        />
-      );
-    }
-
+  
     if (config.language === 'fa' && logo?.fa) {
       return (
         <ShowResponsiveImage
@@ -90,6 +72,24 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
           imageAlt={ imageAlt }
           object_id={object_id}
           object_type={`company_logo_fa`}
+        />
+      );
+    }
+    
+    if (config.language !== 'fa' && logo?.en) {
+      return (
+        <ShowResponsiveImage
+          imagePath={ logo?.en }
+          imageFolder='company_logo'
+          width={logoSize}
+          height={logoSize}
+          skeletonWidth={ `${logoSize}px` }
+          skeletonHeight={ `${logoSize}px` }
+          skeletonSvgWidth="3rem"
+          skeletonRadius="50%"
+          imageAlt={ imageAlt }
+          object_id={object_id}
+          object_type={`company_logo_en`}
         />
       );
     }

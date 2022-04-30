@@ -32,11 +32,11 @@ const DashboardMain = ({ children }) => {
         <Col className="d-none d-lg-block side--section">
           <Drawer
             title={ false }
-            placement={ config.language === 'en' ? 'left' : 'right' }
+            placement={ ['fa', 'ar'].find(lng => lng === config.language) ? 'right' : 'left' }
             closable={ false }
             onClose={ () => setDrawerVisible(false) }
             visible={ DrawerVisible }
-            key={ config.language === 'en' ? 'left' : 'right' }
+            key={ ['fa', 'ar'].find(lng => lng === config.language) ? 'right' : 'left' }
             width={ 250 }
             className="d-lg-none dashboard--drawer"
           >

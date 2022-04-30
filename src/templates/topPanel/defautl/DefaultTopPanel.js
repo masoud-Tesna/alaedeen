@@ -266,7 +266,7 @@ const DefaultTopPanel = ({ pathName }) => {
                           <Collapse
                             expandIconPosition={"right"}
                             ghost
-                            expandIcon={({ isActive }) => <DownOutlined rotate={ config.language === 'en' ? (isActive ? 180 : 0) : (isActive ? 0 : 1)} />}
+                            expandIcon={({ isActive }) => <DownOutlined rotate={ ['fa', 'ar'].find(lng => lng === config.language) ? (isActive ? 0 : 1) : (isActive ? 180 : 0) } />}
                           >
                             <Panel header={t(__('Language & Currency'))} key="1">
                               <div className="mb-4">

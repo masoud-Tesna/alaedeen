@@ -196,10 +196,10 @@ const ReadyToShip = () => {
   // pagination render element:
   const paginationItemRender = (current, type, originalElement) => {
     if (type === 'prev') {
-      return <i className ={ `fal fa-chevron-${config.language === 'en' ? 'left' : 'right'} vv-font-size-2` } />;
+      return <i className ={ `fal fa-chevron-${ ['fa', 'ar'].find(lng => lng === config.language) ? 'right' : 'left' } vv-font-size-2` } />;
     }
     if (type === 'next') {
-      return <i className ={ `fal fa-chevron-${config.language === 'en' ? 'right' : 'left'} vv-font-size-2` } />;
+      return <i className ={ `fal fa-chevron-${ ['fa', 'ar'].find(lng => lng === config.language) ? 'left' : 'right' } vv-font-size-2` } />;
     }
     return originalElement;
   }

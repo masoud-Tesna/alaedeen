@@ -27,23 +27,7 @@ const FactoriesLogo = ({ logo, alt, object_id, width }) => {
 
   // get initial config:
   const { config } = useGetConfig();
-
-  if ((config.language === 'en' || config.language === 'ar') && logo.en) {
-    return (
-      <ShowResponsiveImage
-        imagePath={ logo.en }
-        imageFolder='company_logo'
-        width={width >= 992 ? 60 : 26}
-        height={width >= 992 ? 60 : 26}
-        imageAlt={ alt }
-        object_id={object_id}
-        object_type={`company_logo_en`}
-        skeletonWidth={width >= 992 ? "60px" : "26px"}
-        skeletonHeight={width >= 992 ? "60px" : "26px"}
-      />
-    );
-  }
-
+  
   if (config.language === 'fa' && logo.fa) {
     return (
       <ShowResponsiveImage
@@ -54,6 +38,22 @@ const FactoriesLogo = ({ logo, alt, object_id, width }) => {
         imageAlt={ alt }
         object_id={object_id}
         object_type={`company_logo_fa`}
+        skeletonWidth={width >= 992 ? "60px" : "26px"}
+        skeletonHeight={width >= 992 ? "60px" : "26px"}
+      />
+    );
+  }
+
+  if (config.language !== 'fa' && logo.en) {
+    return (
+      <ShowResponsiveImage
+        imagePath={ logo.en }
+        imageFolder='company_logo'
+        width={width >= 992 ? 60 : 26}
+        height={width >= 992 ? 60 : 26}
+        imageAlt={ alt }
+        object_id={object_id}
+        object_type={`company_logo_en`}
         skeletonWidth={width >= 992 ? "60px" : "26px"}
         skeletonHeight={width >= 992 ? "60px" : "26px"}
       />

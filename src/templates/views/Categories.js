@@ -224,10 +224,10 @@ const Categories = () => {
   // pagination render element:
   const paginationItemRender = (current, type, originalElement) => {
     if (type === 'prev') {
-      return <i className ={ `fal fa-chevron-${config.language === 'en' ? 'left' : 'right'} vv-font-size-2` } />;
+      return <i className ={ `fal fa-chevron-${ ['fa', 'ar'].find(lng => lng === config.language) ? 'right' : 'left' } vv-font-size-2` } />;
     }
     if (type === 'next') {
-      return <i className ={ `fal fa-chevron-${config.language === 'en' ? 'right' : 'left'} vv-font-size-2` } />;
+      return <i className ={ `fal fa-chevron-${ ['fa', 'ar'].find(lng => lng === config.language) ? 'left' : 'right' } vv-font-size-2` } />;
     }
     return originalElement;
   }
@@ -307,8 +307,8 @@ const Categories = () => {
                           {subCategories?.length > 6 &&
                           <Col>
                             <Space size={12}>
-                              <i className={ `fa fa-chevron-${config.language === 'en' ? 'left' : 'right'} text-47 vv-font-size-1-7 vv-cursor-pointer` } onClick={handleSubCategorySliderPrev} />
-                              <i className={ `fa fa-chevron-${config.language === 'en' ? 'right' : 'left'} text-47 vv-font-size-1-7 vv-cursor-pointer` } onClick={handleSubCategorySliderNext} />
+                              <i className={ `fa fa-chevron-${ ['fa', 'ar'].find(lng => lng === config.language) ? 'right' : 'left' } text-47 vv-font-size-1-7 vv-cursor-pointer` } onClick={handleSubCategorySliderPrev} />
+                              <i className={ `fa fa-chevron-${ ['fa', 'ar'].find(lng => lng === config.language) ? 'left' : 'right' } text-47 vv-font-size-1-7 vv-cursor-pointer` } onClick={handleSubCategorySliderNext} />
                             </Space>
                           </Col>
                           }

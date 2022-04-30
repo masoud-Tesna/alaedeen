@@ -104,7 +104,7 @@ const ProductFilters = (props) => {
           <Collapse
             expandIconPosition={"right"}
             ghost
-            expandIcon={({ isActive }) => <DownOutlined rotate={ config.language === 'en' ? (isActive ? 180 : 0) : (isActive ? 0 : 1)} />}
+            expandIcon={({ isActive }) => <DownOutlined rotate={ ['fa', 'ar'].find(lng => lng === config.language) ? (isActive ? 0 : 1) : (isActive ? 180 : 0) } />}
           >
             <Panel header={t(__('categories'))} key="subCategories_panel">
               <Row gutter={[0, 10]} className="subCategories--items">
@@ -141,7 +141,7 @@ const ProductFilters = (props) => {
                 defaultActiveKey={filterCollapseShow}
                 expandIconPosition={"right"}
                 ghost
-                expandIcon={({ isActive }) => <DownOutlined rotate={ config.language === 'en' ? (isActive ? 180 : 0) : (isActive ? 0 : 1)} />}
+                expandIcon={({ isActive }) => <DownOutlined rotate={ ['fa', 'ar'].find(lng => lng === config.language) ? (isActive ? 0 : 1) : (isActive ? 180 : 0) } />}
               >
                 <Panel
                   header={t(__(filter?.filter))}

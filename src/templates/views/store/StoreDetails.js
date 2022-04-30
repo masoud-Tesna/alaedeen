@@ -62,25 +62,7 @@ const StoreDetails = ({store, isLoading}) => {
     const { config } = useGetConfig();
     
     const logoSize = width >= 993 ? 50 : 35;
-    
-    if ((config.language === 'en' || config.language === 'ar') && logo?.en) {
-      return (
-        <ShowResponsiveImage
-          imagePath={ logo?.en }
-          imageFolder='company_logo'
-          width={logoSize}
-          height={logoSize}
-          skeletonWidth={ `${logoSize}px` }
-          skeletonHeight={ `${logoSize}px` }
-          skeletonSvgWidth="3rem"
-          skeletonRadius="50%"
-          imageAlt={ imageAlt }
-          object_id={object_id}
-          object_type={`company_logo_en`}
-        />
-      );
-    }
-    
+  
     if (config.language === 'fa' && logo?.fa) {
       return (
         <ShowResponsiveImage
@@ -98,6 +80,26 @@ const StoreDetails = ({store, isLoading}) => {
         />
       );
     }
+    
+    if (config.language !== 'fa' && logo?.en) {
+      return (
+        <ShowResponsiveImage
+          imagePath={ logo?.en }
+          imageFolder='company_logo'
+          width={logoSize}
+          height={logoSize}
+          skeletonWidth={ `${logoSize}px` }
+          skeletonHeight={ `${logoSize}px` }
+          skeletonSvgWidth="3rem"
+          skeletonRadius="50%"
+          imageAlt={ imageAlt }
+          object_id={object_id}
+          object_type={`company_logo_en`}
+        />
+      );
+    }
+    
+    
     
     return (
       <ShowResponsiveImage
@@ -205,10 +207,10 @@ const StoreDetails = ({store, isLoading}) => {
                                         {ellipsisStoreAboutUs ?
                                           <>
                                             <span className="cursor-pointer">{t('more')}</span>
-                                            <i className={ `fas fa-long-arrow-${config.language === 'en' ? 'right' : 'left'} cursor-pointer` } />
+                                            <i className={ `fas fa-long-arrow-${ ['fa', 'ar'].find(lng => lng === config.language) ? 'left' : 'right' } cursor-pointer` } />
                                           </> :
                                           <>
-                                            <i className={ `fas fa-long-arrow-${config.language === 'en' ? 'left' : 'right'} cursor-pointer` } />
+                                            <i className={ `fas fa-long-arrow-${ ['fa', 'ar'].find(lng => lng === config.language) ? 'right' : 'left' } cursor-pointer` } />
                                             <span className="cursor-pointer">{t('less')}</span>
                                           </>
                                         }
