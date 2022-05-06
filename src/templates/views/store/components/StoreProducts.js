@@ -14,7 +14,7 @@ const StoreProducts = ({ companyId }) => {
   const fetchProducts = async ({ pageParam = 1 }) => {
     
     const { data } = await axios.get(
-      `https://alaedeen.com/horn/products-api/?items_per_page=10&page=${pageParam}&company_id=${companyId}`
+      `https://alaedeen.com/horn/products-api/?items_per_page=12&page=${pageParam}&company_id=${companyId}`
     );
     
     return { results: data, nextPage: pageParam + 1 };
@@ -44,10 +44,10 @@ const StoreProducts = ({ companyId }) => {
           
           { productsIsLoading ?
             <Col span={24}>
-              <Row gutter={[20, 20]} className="row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+              <Row gutter={[20, 20]} className="row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
                 <SkeletonCategoryMultiColumn
                   skeleton = {true}
-                  skeltonNumbers = {10}
+                  skeltonNumbers = {12}
                   width = { width }
                   height = {width >= 992 ? 300 : 261}
                 />
@@ -59,10 +59,10 @@ const StoreProducts = ({ companyId }) => {
                 loadMore={fetchNextPage}
                 loader={
                   <Col span={24} style={{ marginTop: 23 }}>
-                    <Row gutter={[20, 20]} className="row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+                    <Row gutter={[20, 20]} className="row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
                       <SkeletonCategoryMultiColumn
                         skeleton = {true}
-                        skeltonNumbers = {width >= 992 ? 5 : 2}
+                        skeltonNumbers = {width >= 992 ? 4 : 2}
                         width = { width }
                         height = {width >= 992 ? 325 : 261}
                       />
@@ -71,7 +71,7 @@ const StoreProducts = ({ companyId }) => {
                 }
               >
                 <Col span={24}>
-                  <Row className="h-100 row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5" gutter={[ { xs:8, lg: 23 }, { xs:10, lg: 23 }]} justify={"center"}>
+                  <Row className="h-100 row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" gutter={[ { xs:8, lg: 23 }, { xs:10, lg: 23 }]} justify={"center"}>
                     {pages?.map((page) =>
                       page?.results?.products.map(product => {
                         return (
