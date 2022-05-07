@@ -1007,7 +1007,7 @@ const Register = () => {
                                   <Row className="register--formContent__item" align="middle">
                                     <Col span={ 24 }>
                                       <Form.Item
-                                        name="store_categories"
+                                        name="categories"
                                         rules={ [
                                           {
                                             required: true,
