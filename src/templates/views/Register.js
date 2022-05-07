@@ -3,7 +3,21 @@ import { useEffect, useRef, useState } from "react";
 // import style file:
 import './styles/Register.less';
 
-import { Button, Checkbox, Col, Form, Input, InputNumber, message, Modal, Row, Select, Statistic, Tabs } from "antd";
+import {
+  Button,
+  Checkbox,
+  Col,
+  Form,
+  Input,
+  InputNumber,
+  message,
+  Modal,
+  Row,
+  Select,
+  Statistic,
+  Tabs,
+  TreeSelect
+} from "antd";
 import { __, fn_deadline, SeoGenerator } from "../../functions/Helper";
 import { EditOutlined, EyeInvisibleOutlined, EyeTwoTone, LoadingOutlined, SendOutlined } from "@ant-design/icons";
 import googlePic from "../assets/images/google.png";
@@ -25,6 +39,7 @@ const Register = () => {
   const { TabPane } = Tabs;
   const { Option } = Select;
   const { Countdown } = Statistic;
+  const { TreeNode, SHOW_PARENT, SHOW_CHILD, SHOW_ALL } = TreeSelect;
 
   // get initial config:
   const { config } = useGetConfig();
@@ -90,6 +105,9 @@ const Register = () => {
   const { data } = useGetApiOld(`city-lists-api`, 'country_code=IR', `citiesList_IR`);
 
   const { city_lists: cityLists } = data || [];
+  
+  const {isLoading: categoriesIsLoading, data: categoriesData} = useGetApiOld('categories-tree-api', "category_id=524", `categoriesTree`, { refetchOnWindowFocus: false });
+  const categories = categoriesData || {};
 
   useEffect(() => {
     // If you are already logged in:
@@ -183,10 +201,8 @@ const Register = () => {
 
         });
     }
-
   }
-
-
+  
   // create phone verify axios async function:
   async function VerificationApi(verificationCode, values) {
     return await axios.put(
@@ -316,7 +332,34 @@ const Register = () => {
         setVerificationModalConfirmLoading(false);
       });
   }
-
+  
+  const subCategoriesHandle = subCategories => {
+    return (subCategories && subCategories?.length) && subCategories?.map(subCategory => {
+      const categoryId = subCategory?.category_id;
+      
+      if (subCategory?.subcategories) {
+        return (
+          <TreeNode
+            key={categoryId}
+            value={categoryId}
+            title={<b style={{ color: '#707070' }}>{subCategory?.category}</b>}
+            checkable={false}
+          >
+            {subCategoriesHandle(subCategory?.subcategories)}
+          </TreeNode>
+        );
+      }else {
+        return (
+          <TreeNode
+            key={categoryId}
+            value={categoryId}
+            title={subCategory?.category}
+          />
+        );
+      }
+    });
+  }
+  
   return (
     <Row justify={ "center" } className="register--container h-100">
       <SeoGenerator
@@ -948,6 +991,60 @@ const Register = () => {
                                             </Col>
                                           </Row>
                                         </Checkbox.Group>
+                                      </Form.Item>
+                                    </Col>
+                                  </Row>
+                                </Col>
+                              </Row>
+                            </Col>
+  
+                            <Col span={ 24 }>
+                              <Row gutter={ [ 0, 15 ] }>
+                                <Col span={ 24 } className="vv-font-size-2 text-70">
+                                  { t("register.category") }:
+                                </Col>
+                                <Col span={ 24 }>
+                                  <Row className="register--formContent__item" align="middle">
+                                    <Col span={ 24 }>
+                                      <Form.Item name="category">
+                                        <TreeSelect
+                                          showSearch
+                                          style={{ width: '100%' }}
+                                          placeholder={ t("select_category") }
+                                          allowClear
+                                          treeCheckable
+                                          showCheckedStrategy={SHOW_CHILD}
+                                          maxTagCount={4}
+                                          bordered={ false }
+                                          loadData={categoriesIsLoading}
+                                        >
+                                          {
+                                            (categories && categories.length) && categories?.map(category => {
+                                              const categoryId = category?.category_id;
+                                              
+                                              if (category?.subcategories) {
+                                                return (
+                                                  <TreeNode
+                                                    key={categoryId}
+                                                    value={categoryId}
+                                                    title={<b style={{ color: '#707070' }}>{category?.category}</b>}
+                                                    checkable={false}
+                                                  >
+                                                    {subCategoriesHandle(category?.subcategories)}
+                                                  </TreeNode>
+                                                );
+                                              }else {
+                                                return (
+                                                  <TreeNode
+                                                    key={categoryId}
+                                                    value={categoryId}
+                                                    title={category?.category}
+                                                  />
+                                                );
+                                              }
+                                            })
+                                          }
+                                        </TreeSelect>
                                       </Form.Item>
                                     </Col>
                                   </Row>
