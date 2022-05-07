@@ -1006,7 +1006,15 @@ const Register = () => {
                                 <Col span={ 24 }>
                                   <Row className="register--formContent__item" align="middle">
                                     <Col span={ 24 }>
-                                      <Form.Item name="category">
+                                      <Form.Item
+                                        name="store_categories"
+                                        rules={ [
+                                          {
+                                            required: true,
+                                            message: t(__('Please select category')),
+                                          },
+                                        ] }
+                                      >
                                         <TreeSelect
                                           showSearch
                                           style={{ width: '100%' }}
