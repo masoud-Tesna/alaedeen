@@ -39,7 +39,7 @@ const Register = () => {
   const { TabPane } = Tabs;
   const { Option } = Select;
   const { Countdown } = Statistic;
-  const { TreeNode, SHOW_PARENT, SHOW_CHILD, SHOW_ALL } = TreeSelect;
+  const { TreeNode, SHOW_CHILD } = TreeSelect;
 
   // get initial config:
   const { config } = useGetConfig();
@@ -102,7 +102,7 @@ const Register = () => {
   const { AuthDispatch } = useDispatchAuthState();
 
   // get cities list from API:
-  const { data } = useGetApiOld(`city-lists-api`, 'country_code=IR', `citiesList_IR`);
+  const { data } = useGetApiOld(`city-lists-api`, 'country_code=IR', `citiesList_IR`, { refetchOnWindowFocus: false });
 
   const { city_lists: cityLists } = data || [];
   
