@@ -33,7 +33,14 @@ const OneRequestMultipleQuotes = () => {
 
 
   // get country lists from API:
-  const { data: quantityUnits } = useGetApiOld(`request-content-api`, 'variant=quantity_units', `quantityUnits`);
+  const { data: quantityUnits } = useGetApiOld(
+    `request-content-api`,
+    'variant=quantity_units',
+    `quantityUnits`,
+    {
+      refetchOnWindowFocus: false
+    }
+  );
 
   return (
     <div className="px-4 border border-secondary-2 border-w-5 rounded-lg h-100 oneRequest--container">

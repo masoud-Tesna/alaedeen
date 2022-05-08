@@ -17,7 +17,14 @@ const Stats = () => {
   const { t } = useTranslation();
 
   // get country lists from API:
-  const { isLoading, data: stats } = useGetApiOld(`stats-api`, '', `stats`);
+  const { isLoading, data: stats } = useGetApiOld(
+    `stats-api`,
+    '',
+    `stats`,
+    {
+      refetchOnWindowFocus: false
+    }
+  );
 
   return (
     <div className="stats--container">

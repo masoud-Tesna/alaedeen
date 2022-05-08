@@ -125,7 +125,8 @@ const DefaultHeader = ({ pathName }) => {
       },
       `search_${searchType}_${searchInput}`,
       {
-        enabled: !!(searchInput.length > 3)
+        enabled: !!(searchInput.length > 3),
+        refetchOnWindowFocus: false
       }
     );
     

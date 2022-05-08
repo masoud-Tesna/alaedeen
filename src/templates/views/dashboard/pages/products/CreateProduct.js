@@ -92,19 +92,48 @@ const CreateProduct = () => {
   }
 
   // get categories from API:
-  const {isLoading: categoryPickerIsLoading, data: categoryPickerData} = useGetApiOld('picker-categories-api', `category_id=${categoryId}`, `categoriesPicker_${categoryId}`);
+  const {isLoading: categoryPickerIsLoading, data: categoryPickerData} = useGetApiOld(
+    'picker-categories-api',
+    `category_id=${categoryId}`,
+    `categoriesPicker_${categoryId}`,
+    {
+      refetchOnWindowFocus: false
+    }
+  );
   const categories = categoryPickerData || [];
 
   // get quantity Units list from API:
-  const { data: quantityUnitsData } = useGetApiOld(`request-content-api`, 'variant=quantity_units', `quantityUnits`);
+  const { data: quantityUnitsData } = useGetApiOld(
+    `request-content-api`,
+    'variant=quantity_units',
+    `quantityUnits`,
+    {
+      refetchOnWindowFocus: false
+    }
+  );
   const quantityUnits = quantityUnitsData || [];
 
   // get country lists from API:
-  const { data: countryListsData } = useGetApiOld(`country-lists-api`, '', `countryLists`);
+  const { data: countryListsData } = useGetApiOld(
+    `country-lists-api`,
+    '',
+    `countryLists`,
+    {
+      refetchOnWindowFocus: false
+    }
+  );
   const countryLists = countryListsData || [];
 
   // get cities list from API:
-  const { isLoading: cityListsIsLoading, data: cityListsData } = useGetApiOld(`city-lists-api`, `country_code=${countryCode}`, `citiesList_${countryCode}`, { enabled: !!countryCode });
+  const { isLoading: cityListsIsLoading, data: cityListsData } = useGetApiOld(
+    `city-lists-api`,
+    `country_code=${countryCode}`,
+    `citiesList_${countryCode}`,
+    {
+      enabled: !!countryCode,
+      refetchOnWindowFocus: false
+    }
+  );
   const cityLists = cityListsData || [];
 
   // function for show category picker modal:

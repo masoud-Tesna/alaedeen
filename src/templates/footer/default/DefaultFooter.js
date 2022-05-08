@@ -37,11 +37,25 @@ const DefaultFooter = () => {
   const { config } = useGetConfig();*/
 
   // get categories from API:
-  const { isLoading: categoriesIsLoading, data: categories_data } = useGetApiOld(`home-categories-api`, '', `allCategories`);
+  const { isLoading: categoriesIsLoading, data: categories_data } = useGetApiOld(
+    `home-categories-api`,
+    '',
+    `allCategories`,
+    {
+      refetchOnWindowFocus: false
+    }
+  );
   const { categories } = categories_data || [];
 
   // get footer pages:
-  const { isLoading: pagesIsLoading, data: pages_data } = useGetApiOld(`footer-pages-api`, "store_id=440", `footerPage`);
+  const { isLoading: pagesIsLoading, data: pages_data } = useGetApiOld(
+    `footer-pages-api`,
+    "store_id=440",
+    `footerPage`,
+    {
+      refetchOnWindowFocus: false
+    }
+  );
 
   const pages = pages_data || [];
 

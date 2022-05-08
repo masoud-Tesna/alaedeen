@@ -27,7 +27,14 @@ const CategoriesMultiColumn = () => {
   const { width } = useWindowSize();
 
   // get categories from API:
-  const { isLoading, data } = useGetApiOld(`home-categories-api`, '', `allCategories`);
+  const { isLoading, data } = useGetApiOld(
+    `home-categories-api`,
+    '',
+    `allCategories`,
+    {
+      refetchOnWindowFocus: false
+    }
+  );
   const { categories } = data || [];
 
   return (

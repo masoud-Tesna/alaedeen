@@ -21,7 +21,14 @@ const ReadyToShipProducts = () => {
   }
 
   // get products from API:
-  const { isLoading, data } = useGetApiOld(`products-api`, `rtsShowHome=Y&items_per_page=${items_per_page}`, `shipProducts_${items_per_page}`);
+  const { isLoading, data } = useGetApiOld(
+    `products-api`,
+    `rtsShowHome=Y&items_per_page=${items_per_page}`,
+    `shipProducts_${items_per_page}`,
+    {
+      refetchOnWindowFocus: false
+    }
+  );
   const { products } = data || [];
 
   return (

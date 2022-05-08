@@ -43,7 +43,7 @@ const Page = () => {
     key = `page_${blogSeoName}`;
   }
 
-  const { isLoading, data } = useGetApiOld(mode, params, key);
+  const { isLoading, data } = useGetApiOld(mode, params, key, { refetchOnWindowFocus: false });
   const page = data || [];
 
   return (

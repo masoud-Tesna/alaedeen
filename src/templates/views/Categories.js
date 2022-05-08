@@ -195,7 +195,14 @@ const Categories = () => {
   }*/
 
   // get products from API before selecting filters and after selecting filter:
-  const { isLoading, data: product_data } = useGetApiOld(`products-api`, `category_path=${categorySeoName}&items_per_page=20&page=${page}&features_hash=${featuresHash}${storeId ? `&store_id=${storeId}` : ''}`, `category_product_${categorySeoName}${page ? `_${page}` : ''}${featuresHash ? `_${featuresHash}` : ''}${storeId ? `_${storeId}` : ''}`);
+  const { isLoading, data: product_data } = useGetApiOld(
+    `products-api`,
+    `category_path=${categorySeoName}&items_per_page=20&page=${page}&features_hash=${featuresHash}${storeId ? `&store_id=${storeId}` : ''}`,
+    `category_product_${categorySeoName}${page ? `_${page}` : ''}${featuresHash ? `_${featuresHash}` : ''}${storeId ? `_${storeId}` : ''}`,
+    {
+      refetchOnWindowFocus: false
+    }
+  );
 
   // get products and params from product_data Or empty array:
   const { products, categoryBanners, params} = product_data || [];

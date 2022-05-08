@@ -12,13 +12,19 @@ const Product = () => {
   const navigate = useNavigate();
 
   // get products from API before selecting filters and after selecting filter:
-  const { isLoading, data } = useGetApiOld(`products-api`, `product_path=${productSeoName}`, `product_details_${productSeoName}`, {
-    onSuccess: (data) => {
-      if (data === 'not_found') {
-        navigate('/');
-      }
+  const { isLoading, data } = useGetApiOld(
+    `products-api`,
+    `product_path=${productSeoName}`,
+    `product_details_${productSeoName}`,
+    {
+      onSuccess: (data) => {
+        if (data === 'not_found') {
+          navigate('/');
+        }
+      },
+      refetchOnWindowFocus: false
     }
-  });
+  );
 
   const product = data || "";
 

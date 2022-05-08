@@ -24,10 +24,24 @@ const Supply = (
 
   const [isSpinSend, setIsSpinSend] = useState(false); // state for show spin after send form
 
-  const { data: unitsData } = useGetApiOld("get-profile-field-value-api", "field_id=31", "units", { refetchOnWindowFocus: false });
+  const { data: unitsData } = useGetApiOld(
+    "get-profile-field-value-api",
+    "field_id=31",
+    "units",
+    {
+      refetchOnWindowFocus: false
+    }
+  );
   const units = unitsData || [];
 
-  const { data: paymentCurrenciesData } = useGetApiOld("get-profile-field-value-api", "field_id=70", "paymentCurrencies", { refetchOnWindowFocus: false });
+  const { data: paymentCurrenciesData } = useGetApiOld(
+    "get-profile-field-value-api",
+    "field_id=70",
+    "paymentCurrencies",
+    {
+      refetchOnWindowFocus: false
+    }
+  );
   const paymentCurrencies = paymentCurrenciesData || [];
 
   const handleSubmitSupply = values => {

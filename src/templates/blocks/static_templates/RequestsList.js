@@ -54,7 +54,11 @@ const RequestsList = () => {
   const { t } = useTranslation();
 
   // get request lists from API:
-  const { isLoading, data } = useGetApiOld(`request-list-api`, 'items_per_page=5&status=C', `requestLists`);
+  const { isLoading, data } = useGetApiOld(
+    `request-list-api`,
+    'items_per_page=5&status=C',
+    `requestLists`
+  );
   const requestLists = data || [];
 
   const [isRequestModal, setIsRequestModal] = useState([]);

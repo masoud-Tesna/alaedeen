@@ -22,7 +22,14 @@ const ContactUs = () => {
   // get window width
   const { width } = useWindowSize();
 
-  const { isLoading, data } = useGetApiOld("page-api", "page_seo=alaedeen-contact-us", "page_alaedeen-contact-us");
+  const { isLoading, data } = useGetApiOld(
+    "page-api",
+    "page_seo=alaedeen-contact-us",
+    "page_alaedeen-contact-us",
+    {
+      refetchOnWindowFocus: false
+    }
+  );
   const page = data || [];
 
   useEffect(() => {

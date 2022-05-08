@@ -28,7 +28,6 @@ const ManageCategories = () => {
   const company_id = user_data?.auth?.company_id;
 
   const { isLoading, data: categoriesData, refetch: refetchCategoryList } = useGetApiOld(
-
     'vendor-categories-api',
     `company_id=${company_id}`,
     `vendor-categories_${company_id}`,

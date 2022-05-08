@@ -72,32 +72,95 @@ const StoreInformation = () => {
   };
 
   // get data from API:
-  const { data: officeSizesData } = useGetApiOld("get-profile-field-value-api", "field_id=8", "officeSizes", { refetchOnWindowFocus: false });
+  const { data: officeSizesData } = useGetApiOld(
+    "get-profile-field-value-api",
+    "field_id=8",
+    "officeSizes",
+    {
+      refetchOnWindowFocus: false
+    }
+  );
   const officeSizes = officeSizesData || [];
 
-  const { data: employeesData } = useGetApiOld("get-profile-field-value-api", "field_id=5", "employees", { refetchOnWindowFocus: false });
+  const { data: employeesData } = useGetApiOld(
+    "get-profile-field-value-api",
+    "field_id=5",
+    "employees",
+    {
+      refetchOnWindowFocus: false
+    }
+  );
   const employees = employeesData || [];
 
-  const { data: qualityControlStaffsData } = useGetApiOld("get-profile-field-value-api", "field_id=25", "qualityControlStaffs", { refetchOnWindowFocus: false });
+  const { data: qualityControlStaffsData } = useGetApiOld(
+    "get-profile-field-value-api",
+    "field_id=25",
+    "qualityControlStaffs",
+    {
+      refetchOnWindowFocus: false
+    }
+  );
   const qualityControlStaffs = qualityControlStaffsData || [];
 
-  const { data: researchesStaffsData } = useGetApiOld("get-profile-field-value-api", "field_id=26", "researchesStaffs", { refetchOnWindowFocus: false });
+  const { data: researchesStaffsData } = useGetApiOld(
+    "get-profile-field-value-api",
+    "field_id=26",
+    "researchesStaffs",
+    {
+      refetchOnWindowFocus: false
+    }
+  );
   const researchesStaffs = researchesStaffsData || [];
 
-  const { data: unitsData } = useGetApiOld("get-profile-field-value-api", "field_id=31", "units", { refetchOnWindowFocus: false });
+  const { data: unitsData } = useGetApiOld(
+    "get-profile-field-value-api",
+    "field_id=31",
+    "units",
+    {
+      refetchOnWindowFocus: false
+    }
+  );
   const units = unitsData || [];
 
-  const { data: dutiesData } = useGetApiOld("get-profile-field-value-api", "field_id=65", "duties", { refetchOnWindowFocus: false });
+  const { data: dutiesData } = useGetApiOld(
+    "get-profile-field-value-api",
+    "field_id=65",
+    "duties",
+    {
+      refetchOnWindowFocus: false
+    }
+  );
   const duties = dutiesData || [];
 
-  const { data: totalTransactionsData } = useGetApiOld("get-profile-field-value-api", "field_id=112", "total_transactions", { refetchOnWindowFocus: false });
+  const { data: totalTransactionsData } = useGetApiOld(
+    "get-profile-field-value-api",
+    "field_id=112",
+    "total_transactions",
+    {
+      refetchOnWindowFocus: false
+    }
+  );
   const totalTransactions = totalTransactionsData || [];
 
-  const { data: countryListsData } = useGetApiOld(`country-lists-api`, '', `countryLists`, { refetchOnWindowFocus: false });
+  const { data: countryListsData } = useGetApiOld(
+    `country-lists-api`,
+    '',
+    `countryLists`,
+    {
+      refetchOnWindowFocus: false
+    }
+  );
   const countryLists = countryListsData || [];
 
   // get country codes from API:
-  const { data: countryCodesData } = useGetApiOld(`country-code-api`, "", `countryCodes`, { refetchOnWindowFocus: false });
+  const { data: countryCodesData } = useGetApiOld(
+    `country-code-api`,
+    "",
+    `countryCodes`,
+    {
+      refetchOnWindowFocus: false
+    }
+  );
   const countryCodes = countryCodesData?.country_code || [];
 
   // function for upload images:

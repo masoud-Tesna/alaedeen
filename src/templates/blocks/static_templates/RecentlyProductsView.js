@@ -30,7 +30,14 @@ const RecentlyProductsView = () => {
   const { width } = useWindowSize();
 
   // get products from API:
-  const { isLoading, data } = useGetApiOld(`products-api`, `items_per_page=5`, `recentlyProducts`);
+  const { isLoading, data } = useGetApiOld(
+    `products-api`,
+    `items_per_page=5`,
+    `recentlyProducts`,
+    {
+      refetchOnWindowFocus: false
+    }
+  );
   const { products } = data || [];
 
   return (

@@ -102,11 +102,25 @@ const Register = () => {
   const { AuthDispatch } = useDispatchAuthState();
 
   // get cities list from API:
-  const { data } = useGetApiOld(`city-lists-api`, 'country_code=IR', `citiesList_IR`, { refetchOnWindowFocus: false });
+  const { data } = useGetApiOld(
+    `city-lists-api`,
+    'country_code=IR',
+    `citiesList_IR`,
+    {
+      refetchOnWindowFocus: false
+    }
+  );
 
   const { city_lists: cityLists } = data || [];
   
-  const {isLoading: categoriesIsLoading, data: categoriesData} = useGetApiOld('categories-tree-api', "category_id=524", `categoriesTree`, { refetchOnWindowFocus: false });
+  const {isLoading: categoriesIsLoading, data: categoriesData} = useGetApiOld(
+    'categories-tree-api',
+    "category_id=524",
+    `categoriesTree`,
+    {
+      refetchOnWindowFocus: false
+    }
+  );
   const categories = categoriesData || {};
 
   useEffect(() => {

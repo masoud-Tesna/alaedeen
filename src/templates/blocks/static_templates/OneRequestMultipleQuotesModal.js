@@ -28,25 +28,81 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
   const { t } = useTranslation();
 
   // get quantity Units list from API:
-  const { data: quantityUnits } = useGetApiOld(`request-content-api`, 'variant=quantity_units', `quantityUnits`, { enabled: isRequestModalVisible });
+  const { data: quantityUnits } = useGetApiOld(
+    `request-content-api`,
+    'variant=quantity_units',
+    `quantityUnits`,
+    {
+      enabled: isRequestModalVisible,
+      refetchOnWindowFocus: false
+    }
+  );
 
   // get country lists from API:
-  const { data: countryLists } = useGetApiOld(`country-lists-api`, '', `countryLists`, { enabled: isRequestModalVisible });
+  const { data: countryLists } = useGetApiOld(
+    `country-lists-api`,
+    '',
+    `countryLists`,
+    {
+      enabled: isRequestModalVisible,
+      refetchOnWindowFocus: false
+    }
+  );
 
   // get order values lists from API:
-  const { data: orderValues } = useGetApiOld(`request-content-api`, 'variant=order_values', `orderValues`, { enabled: isRequestModalVisible });
+  const { data: orderValues } = useGetApiOld(
+    `request-content-api`,
+    'variant=order_values',
+    `orderValues`,
+    {
+      enabled: isRequestModalVisible,
+      refetchOnWindowFocus: false
+    }
+  );
 
   // get supp Locations lists from API:
-  const { data: suppLocations } = useGetApiOld(`request-content-api`, 'variant=supp_locations', `suppLocations`, { enabled: isRequestModalVisible });
+  const { data: suppLocations } = useGetApiOld(
+    `request-content-api`,
+    'variant=supp_locations',
+    `suppLocations`,
+    {
+      enabled: isRequestModalVisible,
+      refetchOnWindowFocus: false
+    }
+  );
 
   // get regular Types lists from API:
-  const { data: regularTypes } = useGetApiOld(`request-content-api`, 'variant=regular_types', `regularTypes`, { enabled: isRequestModalVisible });
+  const { data: regularTypes } = useGetApiOld(
+    `request-content-api`,
+    'variant=regular_types',
+    `regularTypes`,
+    {
+      enabled: isRequestModalVisible,
+      refetchOnWindowFocus: false
+    }
+  );
 
   // get requirement Urgencies lists from API:
-  const { data: requirementUrgencies } = useGetApiOld(`request-content-api`, 'variant=requirement_urgencies', `requirementUrgencies`, { enabled: isRequestModalVisible });
+  const { data: requirementUrgencies } = useGetApiOld(
+    `request-content-api`,
+    'variant=requirement_urgencies',
+    `requirementUrgencies`,
+    {
+      enabled: isRequestModalVisible,
+      refetchOnWindowFocus: false
+    }
+  );
 
   // get country codes from API:
-  const { data: countryCodes } = useGetApiOld(`country-code-api`, `lang_code=${config.language}`, `countryCodes`, { enabled: isRequestModalVisible });
+  const { data: countryCodes } = useGetApiOld(
+    `country-code-api`,
+    `lang_code=${config.language}`,
+    `countryCodes`,
+    {
+      enabled: isRequestModalVisible,
+      refetchOnWindowFocus: false
+    }
+  );
 
   const [isSpinSend, setIsSpinSend] = useState(false);
 
@@ -62,7 +118,14 @@ const OneRequestMultipleQuotesModal = ({ isRequestModalVisible, setIsRequestModa
   const [isRegularType, setIsRegularType] = useState(false);
 
   // get cities list from API:
-  const { data: cityLists } = useGetApiOld(`city-lists-api`, `country_code=${countryCode}`, `citiesList_${countryCode}`);
+  const { data: cityLists } = useGetApiOld(
+    `city-lists-api`,
+    `country_code=${countryCode}`,
+    `citiesList_${countryCode}`,
+    {
+      refetchOnWindowFocus: false
+    }
+  );
 
   async function getRequestCheck() {
     return await axios.get("https://alaedeen.com/horn/request-check-api/?table=?:vv_products_request&column=request_check");

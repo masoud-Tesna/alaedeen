@@ -32,7 +32,14 @@ const News = () => {
   const { t } = useTranslation();
 
   // get news one blog:
-  const { isLoading, data } = useGetApiOld("blogs-api", "category_path=news-and-events&items_per_page=1", `newsBlog`);
+  const { isLoading, data } = useGetApiOld(
+    "blogs-api",
+    "category_path=news-and-events&items_per_page=1",
+    `newsBlog`,
+    {
+      refetchOnWindowFocus: false
+    }
+  );
   const {sub_pages: page} = data || [];
 
   return (

@@ -11,7 +11,14 @@ const AllCategories = () => {
   const { t } = useTranslation();
 
   // get categories from API:
-  const { isLoading, data } = useGetApiOld(`home-categories-api`, '', `allCategories`);
+  const { isLoading, data } = useGetApiOld(
+    `home-categories-api`,
+    '',
+    `allCategories`,
+    {
+      refetchOnWindowFocus: false
+    }
+  );
 
   const { categories } = data || [];
 

@@ -120,7 +120,14 @@ const PremiumFactories = () => {
   const { width } = useWindowSize();
 
   // get premium factories from API:
-  const { isLoading, data } = useGetApiOld(`premium-factories-api`, `items_per_page=3`, `premiumFactoriesHomePage`);
+  const { isLoading, data } = useGetApiOld(
+    `premium-factories-api`,
+    `items_per_page=3`,
+    `premiumFactoriesHomePage`,
+    {
+      refetchOnWindowFocus: false
+    }
+  );
   const { factories } = data || [];
 
   return (

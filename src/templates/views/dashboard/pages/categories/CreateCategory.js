@@ -18,7 +18,14 @@ const CreateCategory = ({ formRef }) => {
   const [categoryDetail, setCategoryDetail] = useState({});
 
   // get categories from API:
-  const {isLoading, data} = useGetApiOld('categories-tree-api', "category_id=524", `categoriesTree`, { refetchOnWindowFocus: false });
+  const {isLoading, data} = useGetApiOld(
+    'categories-tree-api',
+    "category_id=524",
+    `categoriesTree`,
+    {
+      refetchOnWindowFocus: false
+    }
+  );
   const categories = data || {};
 
   const SelectCategoryParent = (categoryId, categoryName) => {

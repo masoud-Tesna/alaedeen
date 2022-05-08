@@ -19,7 +19,15 @@ const ManageProducts = () => {
 
   const company_id = user_data?.auth?.company_id;
 
-  const {isLoading, data: productsData} = useGetApiOld('vendor-products-api', `company_id=${company_id}`, `vendor_products_${user_data?.auth?.company_id}`, { enabled: !!company_id });
+  const {isLoading, data: productsData} = useGetApiOld(
+    'vendor-products-api',
+    `company_id=${company_id}`,
+    `vendor_products_${user_data?.auth?.company_id}`,
+    {
+      enabled: !!company_id,
+      refetchOnWindowFocus: false
+    }
+  );
 
   const {products} = productsData || {};
 

@@ -27,7 +27,15 @@ const ProductAssignFeatures = (
   const { t } = useTranslation();
 
   // get Feature list from API:
-  const { isLoading: featuresIsLoading, data } = useGetApiOld(`feature-list-api`, `category_id=${category_id}`, `features_${category_id}`, { enabled: !!category_id, refetchOnWindowFocus: false });
+  const { isLoading: featuresIsLoading, data } = useGetApiOld(
+    `feature-list-api`,
+    `category_id=${category_id}`,
+    `features_${category_id}`,
+    {
+      enabled: !!category_id,
+      refetchOnWindowFocus: false
+    }
+  );
 
   const { features } = data || [];
 

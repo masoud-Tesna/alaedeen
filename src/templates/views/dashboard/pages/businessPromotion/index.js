@@ -34,9 +34,14 @@ const BusinessPromotion = () => {
 
   const [payLink, setPayLink] = useState("");
 
-  const {isLoading, data} = useGetApiOld("plans-api", "", "plans", {
-    refetchOnWindowFocus: false
-  });
+  const {isLoading, data} = useGetApiOld(
+    "plans-api",
+    "",
+    "plans",
+    {
+      refetchOnWindowFocus: false
+    }
+  );
 
   const [hasAffiliateDiscount, setHasAffiliateDiscount] = useState(false);
   const [planDiscount, setPlanDiscount] = useState(0);
