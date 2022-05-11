@@ -216,6 +216,7 @@ const Conversation = () => {
                         <Supply
                           conversationId = {conversationData?.conversation_id}
                           setConversationData = {setConversationData}
+                          companyId={user?.id}
                         /> :
                         <Empty description={t(__("Please wait for supplier response"))}/>
                     )

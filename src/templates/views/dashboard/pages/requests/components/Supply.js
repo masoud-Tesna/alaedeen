@@ -9,7 +9,8 @@ import axios from "axios";
 const Supply = (
   {
     conversationId,
-    setConversationData
+    setConversationData,
+    companyId
   }
 ) => {
 
@@ -48,6 +49,7 @@ const Supply = (
     setIsSpinSend(true); // show spin
 
     values.conversation_id = conversationId;
+    values.sender = companyId;
 
     if (values.is_supply) {
       values.negotiable.terms_supply = values.negotiable.terms_supply || false;
