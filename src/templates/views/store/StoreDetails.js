@@ -1,8 +1,8 @@
 import "./styles/StoreDetails.less";
-import {Affix, Col, Divider, Row, Skeleton, Tabs, Typography} from "antd";
+import {Affix, Col, Divider, Progress, Row, Skeleton, Tabs, Typography} from "antd";
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 import ImageGallery from "../../common/ImageGallery";
-import React, {createRef, useEffect, useRef, useState} from "react";
+import React, {createRef, useCallback, useEffect, useLayoutEffect, useRef, useState} from "react";
 import {useGetConfig} from "../../../contexts/config/ConfigContext";
 import {useTranslation} from "react-i18next";
 import {__, fn_get_lines_count} from "../../../functions/Helper";
@@ -112,7 +112,39 @@ const StoreDetails = ({store, isLoading}) => {
     
   }
   
-  const { support } = store || {};
+  const { support, rate } = store || {};
+  
+  const [dotPercent, setDotPercent] = useState(0);
+  
+  const progressRef = useCallback(node => {
+    if (node !== null) {
+      if (rate?.interaction !== false) {
+        const progressDot = node?.children[1].children[0].children[0].children[1];
+  
+        let bgColor = "red";
+  
+        if (rate?.interaction >= -51) {
+          bgColor = "orange";
+        }
+        if (rate?.interaction >= 10) {
+          bgColor = "yellow";
+        }
+        if (rate?.interaction >= 31) {
+          bgColor = "#D9FC5D";
+        }
+        if (rate?.interaction >= 71) {
+          bgColor = "green";
+        }
+  
+        setDotPercent(((rate?.interaction) + 100) / 2);
+  
+        if (progressDot) {
+          progressDot.style.backgroundColor = bgColor;
+          progressDot.style.left = `calc(${dotPercent}% - 7.5px)`;
+        }
+      }
+    }
+  }, [isLoading, dotPercent]);
   
   const [isSupport, setIsSupport] = useState(false);
   
@@ -140,7 +172,7 @@ const StoreDetails = ({store, isLoading}) => {
                 </Row>
               </Col> :
               <>
-                <Col xs={24} md={isSupport ? 17 : 24} className="storeDetails--leftSection">
+                <Col xs={24} md={17} className="storeDetails--leftSection">
                   <Row gutter={[0, 16]}>
                     <Col span={24} className="storeDetails--topSection">
                       <div className="--details">
@@ -287,63 +319,100 @@ const StoreDetails = ({store, isLoading}) => {
                     </Col>
                   </Row>
                 </Col>
-        
-                {
-                  isSupport &&
-                  <Col xs={24} md={7} className="storeDetails--rightSection">
-                    <div className="--support">
-                      <Row gutter={[0, 10]}>
-                        <Col span={24} className="--top">
-                          <div className="--bg" />
-                          <div className={`--img ${(support?.personal_photo && support?.personal_photo !== "") ? "--border" : "--borderNone"}`}>
-                            <div>
-                              {
-                                (support?.personal_photo && support?.personal_photo !== "") ?
-                                  <img src={support?.personal_photo} alt={store?.full_name} /> :
-                                  <i className="fa-thin fa-user" />
-                              }
+  
+                <Col xs={24} md={7} className="storeDetails--rightSection">
+                  <Row gutter={[0, 16]} className="--sticky">
+                    {isSupport &&
+                      <Col span={24} className="--support">
+                        <Row gutter={[0, 10]}>
+                          <Col span={24} className="--top">
+                            <div className="--bg" />
+                            <div className={`--img ${(support?.personal_photo && support?.personal_photo !== "") ? "--border" : "--borderNone"}`}>
+                              <div>
+                                {
+                                  (support?.personal_photo && support?.personal_photo !== "") ?
+                                    <img src={support?.personal_photo} alt={store?.full_name} /> :
+                                    <i className="fa-thin fa-user" />
+                                }
+                              </div>
                             </div>
+                          </Col>
+            
+                          {
+                            support?.full_name &&
+                            <Col span={24} className="text-center --name">
+                              {support?.full_name}
+                            </Col>
+                          }
+            
+                          {
+                            (support?.country && support?.state) &&
+                            <Col span={24} className="text-center --location">
+                              <i className="fa-regular fa-location-dot" /> {` ${support?.country}, ${support?.state} `}
+                            </Col>
+                          }
+            
+                          {
+                            support?.telephone_number &&
+                            <Col span={24} className="--detail">
+                              <i className="fa-regular fa-phone" /> <a href="tel:+982177874366">{ support?.telephone_number }</a>
+                            </Col>
+                          }
+            
+                          {
+                            support?.whatsapp_number &&
+                            <Col span={24} className="--detail">
+                              <i className="fa-brands fa-whatsapp" /> <a href="whatsapp://send?abid=+989912322188&text=">{ support?.whatsapp_number }</a>
+                            </Col>
+                          }
+            
+                          {
+                            (support?.country && support?.state && support?.address) &&
+                            <Col span={24} className="--detail">
+                              <i className="fa-regular fa-location-dot" /> {` ${support?.country}, ${support?.state} - ${support?.address} `}
+                            </Col>
+                          }
+                        </Row>
+                      </Col>
+                    }
+  
+                    <Col span={24} className="--rate">
+                      <Row gutter={[0, 16]}>
+                        <Col span={24} className={`__interactionRate `} ref={progressRef}>
+                          <div className="__caption">
+                            {t("interaction_rate")}: {rate?.interaction === false && t("data_not_available")}
+                          </div>
+                          
+                          {rate?.interaction !== false &&
+                            <>
+                              <Progress
+                                percent={100}
+                                className="__progress"
+                                success={{ percent: dotPercent }}
+                                showInfo={false}
+                              />
+  
+                              <div className="__details">
+                                <span className="__green">{t("excellent")}</span>
+                                <span className="__lemon">{t("good")}</span>
+                                <span className="__yellow">{t("medium")}</span>
+                                <span className="__orange">{t("weak ")}</span>
+                                <span className="__red">{t("very_weak")}</span>
+                              </div>
+                            </>
+                          }
+                        </Col>
+      
+                        <Col span={24} className="__responseRate">
+                          <div className="__caption">
+                            {`${t("response_time")} ${rate?.interaction === false ? t("data_not_available") : `≥ ${rate?.response?.value} ${rate?.response?.indicator}`}`}
                           </div>
                         </Col>
-                
-                        {
-                          support?.full_name &&
-                          <Col span={24} className="text-center --name">
-                            {support?.full_name}
-                          </Col>
-                        }
-                
-                        {
-                          (support?.country && support?.state) &&
-                          <Col span={24} className="text-center --location">
-                            <i className="fa-regular fa-location-dot" /> {` ${support?.country}, ${support?.state} `}
-                          </Col>
-                        }
-                
-                        {
-                          support?.telephone_number &&
-                          <Col span={24} className="--detail">
-                            <i className="fa-regular fa-phone" /> <a href="tel:+982177874366">{ support?.telephone_number }</a>
-                          </Col>
-                        }
-                
-                        {
-                          support?.whatsapp_number &&
-                          <Col span={24} className="--detail">
-                            <i className="fa-brands fa-whatsapp" /> <a href="whatsapp://send?abid=+989912322188&text=">{ support?.whatsapp_number }</a>
-                          </Col>
-                        }
-                
-                        {
-                          (support?.country && support?.state && support?.address) &&
-                          <Col span={24} className="--detail">
-                            <i className="fa-regular fa-location-dot" /> {` ${support?.country}, ${support?.state} - ${support?.address} `}
-                          </Col>
-                        }
                       </Row>
-                    </div>
-                  </Col>
-                }
+                    </Col>
+                  </Row>
+  
+                </Col>
               </>
           }
         </Row>
