@@ -151,8 +151,10 @@ const StoreDetails = ({store, isLoading}) => {
   useEffect(() => {
     if (support?.length !== 0 && (support?.full_name && support?.telephone_number)) {
       setIsSupport(true);
+    }else {
+      setIsSupport(false);
     }
-  }, [support, config.language]);
+  }, [support]);
   
   return (
     <Row className="storeDetails--container" >
