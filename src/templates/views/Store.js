@@ -1,10 +1,10 @@
+import {useEffect} from "react";
 import {Col, Row} from "antd";
 import {SeoGenerator} from "../../functions/Helper";
 import {useNavigate, useParams} from "react-router-dom";
 import {useGetApi} from "../../functions";
 import {useGetConfig} from "../../contexts/config/ConfigContext";
 import StoreDetails from "./store/StoreDetails";
-import {useEffect} from "react";
 
 const Store = () => {
   
@@ -13,6 +13,8 @@ const Store = () => {
   
   // get initial config:
   const { config } = useGetConfig();
+  
+  const navigate = useNavigate();
   
   // get invoices from API:
   const { isLoading, data } = useGetApi(
@@ -23,7 +25,10 @@ const Store = () => {
     `storeDetails_${companySeoName}`,
     {
       enabled: !!companySeoName,
-      refetchOnWindowFocus: false
+      refetchOnWindowFocus: false,
+      onError: () => {
+        navigate('/factories');
+      }
     }
   );
   
