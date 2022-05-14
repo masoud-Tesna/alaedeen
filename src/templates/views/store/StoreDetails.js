@@ -163,13 +163,29 @@ const StoreDetails = ({store, isLoading}) => {
           {
             isLoading ?
               <Col span={24}>
-                <Row gutter={[16, 16]} className="--isLoading">
-                  <Col xs={24} md={17} style={{ height: 600 }}>
-                    <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "100%", "--text-height": "100%"}} active size={"small"} />
+                <Row gutter={16} className="--isLoading">
+                  <Col xs={24} md={17}>
+                    <Row gutter={[0, 16]}>
+                      <Col span={24} style={{ height: 350 }}>
+                        <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "100%", "--text-height": "100%"}} active size={"small"} />
+                      </Col>
+      
+                      <Col span={24} style={{ height: 450 }}>
+                        <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "100%", "--text-height": "100%"}} active size={"small"} />
+                      </Col>
+                    </Row>
                   </Col>
           
-                  <Col xs={24} md={7} style={{ height: 350 }}>
-                    <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "100%", "--text-height": "100%"}} active size={"small"} />
+                  <Col xs={24} md={7}>
+                   <Row gutter={[0, 16]}>
+                     <Col span={24} style={{ height: 350 }}>
+                       <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "100%", "--text-height": "100%"}} active size={"small"} />
+                     </Col>
+  
+                     <Col span={24} style={{ height: 170 }}>
+                       <Skeleton.Input className="storeSkeleton--text" style={{ "--text-width": "100%", "--text-height": "100%"}} active size={"small"} />
+                     </Col>
+                   </Row>
                   </Col>
                 </Row>
               </Col> :
