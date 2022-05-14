@@ -41,7 +41,7 @@ const Store = () => {
   return (
     <Row>
       <SeoGenerator
-        title={  companySeoName }
+        title={  store?.general?.company || "Loading..." }
         description={ store?.company_Introduction?.detailed_company_introduction?.slice(0, 152)+'...' }
         canonical={ `https://alaedeen.com/store/${companySeoName}` }
         ogImage={store?.company_Introduction?.logo[config?.language] || ""}
