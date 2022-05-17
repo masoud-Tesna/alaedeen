@@ -398,38 +398,36 @@ const StoreDetails = ({store, isLoading}) => {
                       <Row gutter={[0, 16]}>
                         <Col span={24} className={`__interactionRate `} ref={progressRef}>
                           <div className="__caption">
-                            {t("interaction_rate")}: {rate?.interaction === false && t("data_not_available")}
+                            {t("interaction_rate")}: {rate?.interaction === false ? t("there_is_no_record") : rate?.interaction}
                           </div>
-                          
-                          {rate?.interaction !== false &&
-                            <>
-                              <Progress
-                                percent={100}
-                                className="__progress"
-                                success={{ percent: dotPercent }}
-                                showInfo={false}
-                              />
   
-                              <div className="__details">
-                                <span className="__green">{t("excellent")}</span>
-                                <span className="__lemon">{t("good")}</span>
-                                <span className="__yellow">{t("medium")}</span>
-                                <span className="__orange">{t("weak ")}</span>
-                                <span className="__red">{t("very_weak")}</span>
-                              </div>
-                            </>
+                          <Progress
+                            percent={100}
+                            className={`__progress ${rate?.interaction === false && "-noRecord"}`}
+                            success={{ percent: dotPercent }}
+                            showInfo={false}
+                          />
+                          
+                          {
+                            rate?.interaction &&
+                            <div className="__details">
+                              <span className="__green">{t("excellent")}</span>
+                              <span className="__lemon">{t("good")}</span>
+                              <span className="__yellow">{t("medium")}</span>
+                              <span className="__orange">{t("weak ")}</span>
+                              <span className="__red">{t("very_weak")}</span>
+                            </div>
                           }
                         </Col>
       
                         <Col span={24} className="__responseRate">
                           <div className="__caption">
-                            {`${t("response_time")} ${rate?.interaction === false ? t("data_not_available") : `≥ ${rate?.response?.value} ${rate?.response?.indicator}`}`}
+                            {`${t("response_time")} ${rate?.interaction === false ? t("there_is_no_record") : `≥ ${rate?.response?.value} ${rate?.response?.indicator}`}`}
                           </div>
                         </Col>
                       </Row>
                     </Col>
                   </Row>
-  
                 </Col>
               </>
           }

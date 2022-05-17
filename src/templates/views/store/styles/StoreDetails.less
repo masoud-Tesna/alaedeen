@@ -462,6 +462,7 @@
           .__caption {
             font-size: 1.5rem;
             font-weight: 600;
+            margin-bottom: .5rem;
           }
         }
         
@@ -486,6 +487,19 @@
                 z-index: 9999;
                 top: calc(50% - 7.5px);
                 transition: ease-in left 1.2s, transform !important;
+              }
+            }
+            
+            &.-noRecord {
+              .ant-progress-inner {
+                .ant-progress-bg {
+                  background-color: #8B8B8B;
+                  background-image: none;
+                }
+                
+                .ant-progress-success-bg {
+                  background-color: #8B8B8B;
+                }
               }
             }
           }
