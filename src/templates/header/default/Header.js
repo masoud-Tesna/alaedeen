@@ -1,7 +1,6 @@
 import "./styles/Header.less";
 import {Col, Divider, Row} from "antd";
 import AlaedeenCharacter from "./components/AlaedeenCharacter";
-import Search from "./components/Search";
 
 const Header = () => {
   
@@ -11,10 +10,6 @@ const Header = () => {
         <Row gutter={{ md: 8, lg: 16, xl: 50 }}>
           <Col span={6}>
             <AlaedeenCharacter />
-          </Col>
-          
-          <Col span={12}>
-            <Search />
           </Col>
         </Row>
       </Col>
