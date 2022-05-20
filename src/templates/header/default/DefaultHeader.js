@@ -207,20 +207,20 @@ const DefaultHeader = ({ pathName }) => {
         dropdownClassName="search--result"
       >
         <Row className="--searchBox">
-                <Col className="searchType--container" >
-                  <SearchTypeSelect />
-                </Col>
-                
-                <Col flex="1 1" className="searchInput--container">
-                  <Input
-                    value={searchInput}
-                    placeholder={ t(__('What are you looking for...')) }
-                    suffix={searchBtn(t(__('search')))}
-                    onChange = {e => setSearchInput(e.target.value)}
-                    onPressEnter={e => setSearchInput(e.target.value)}
-                  />
-                </Col>
-              </Row>
+          <Col className="searchType--container" >
+            <SearchTypeSelect />
+          </Col>
+          
+          <Col flex="1 1" className="searchInput--container">
+            <Input
+              value={searchInput}
+              placeholder={ t(__('What are you looking for...')) }
+              suffix={searchBtn(t(__('search')))}
+              onChange = {e => setSearchInput(e.target.value)}
+              onPressEnter={e => setSearchInput(e.target.value)}
+            />
+          </Col>
+        </Row>
       </AutoComplete>
     );
   };
