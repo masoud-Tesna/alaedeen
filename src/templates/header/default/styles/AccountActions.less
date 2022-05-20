@@ -1,0 +1,56 @@
+.accountActions--container {
+  .--accountImg {
+    i {
+      font-size: 3.5rem;
+      color: #82879B;
+    }
+  }
+  
+  .header--account__link {
+    padding-left: 1rem;
+    
+    a {
+      color: #82879B;
+      
+      &:hover {
+        color: #2D8327;
+      }
+    }
+  }
+  
+  .accountDropDown {
+    .content--account__companyLogo {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.38);
+      img {
+        border-radius: 50%;
+        width: 100%;
+      }
+    }
+  
+    &:hover {
+      cursor: pointer;
+      .content--account__companyName,
+      .anticon.anticon-down svg {
+        color: #2e8339;
+      }
+    }
+  
+    .anticon.anticon-down {
+      margin: 0 1rem;
+    
+      svg {
+        transition: all 0.1s 0.1s;
+        font-weight: bolder;
+      }
+    }
+  
+    .content--account__companyName,
+    .anticon.anticon-down svg {
+      font-size: 1.5rem;
+    }
+  }
+}
