@@ -1,12 +1,12 @@
-import {useCallback, useMemo, useRef, useState} from "react";
+import {useCallback, useRef, useState} from "react";
 import "../styles/Search.less";
-import {AutoComplete, Col, Divider, Form, Input, Row, Select, Skeleton} from "antd";
+import {AutoComplete, Col, Input, Row, Select, Skeleton} from "antd";
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
 import {__} from "../../../../functions/Helper";
 import {useGetApi} from "../../../../functions";
 
-const Search = (callback, deps) => {
+const Search = () => {
   
   const { Option } = Select;
   

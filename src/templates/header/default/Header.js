@@ -3,8 +3,8 @@ import {Col, Divider, Row} from "antd";
 import AlaedeenCharacter from "./components/AlaedeenCharacter";
 import Search from "./components/Search";
 import AccountActions from "./components/AccountActions";
-import {useGetAuthState} from "../../../contexts/user/UserContext";
 import FavLink from "./components/FavLink";
+import {useGetAuthState} from "../../../contexts/user/UserContext";
 
 const Header = () => {
   
