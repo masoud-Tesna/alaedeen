@@ -1,10 +1,10 @@
 import "./styles/Header.less";
 import {Col, Divider, Row} from "antd";
+import {useGetAuthState} from "../../../contexts/user/UserContext";
 import AlaedeenCharacter from "./components/AlaedeenCharacter";
 import Search from "./components/Search";
 import AccountActions from "./components/AccountActions";
 import FavLink from "./components/FavLink";
-import {useGetAuthState} from "../../../contexts/user/UserContext";
 import Menu from "../../menu";
 
 const Header = () => {

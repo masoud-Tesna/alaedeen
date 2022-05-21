@@ -1,17 +1,11 @@
 import React, {useState} from "react";
 import "../styles/LanguageDropDown.less";
-import {Col, Dropdown, Menu, Row, Skeleton} from "antd";
-import {useGetApiOld} from "../../../functions";
-import {Link} from "react-router-dom";
-import {__} from "../../../functions/Helper";
+import {Col, Dropdown, Menu, Row} from "antd";
 import {DownOutlined} from "@ant-design/icons";
-import {useTranslation} from "react-i18next";
 import {changeLanguageAction, useConfigDispatch, useGetConfig} from "../../../contexts/config/ConfigContext";
 import {isLoadingAction, useSpinnerDispatch} from "../../../contexts/spiner/SpinnerContext";
 
 const LanguageDropDown = () => {
-  
-  const { t } = useTranslation();
   
   // initial state for language:
   const { config } = useGetConfig();
