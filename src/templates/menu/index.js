@@ -8,6 +8,7 @@ import {useTranslation} from "react-i18next";
 import {useWindowSize} from "../../functions";
 import {useConfigDispatch, useGetConfig} from "../../contexts/config/ConfigContext";
 import {useSpinnerDispatch} from "../../contexts/spiner/SpinnerContext";
+import LanguageDropDown from "./components/LanguageDropDown";
 
 const Menu = () => {
   
@@ -31,7 +32,7 @@ const Menu = () => {
     <Row className="menu--container h-100" justify="space-between" align="middle">
       <Col className="--firstSection">
         <Space size="middle" align={"center"}>
-          <Categories userClass="categories--dropDown topPanel--content__item hover" />
+          <Categories />
           <Divider type="vertical" style={{borderColor: "#CED4DA"}}/>
           <Link className="--item __hover" to={"/factories"} >
                 <span className="topPanel--item__text">
@@ -40,16 +41,18 @@ const Menu = () => {
           </Link>
     
           <a className="--item __hover" href={`https://calendar.iranfair.com/${config.language === 'ar'? '' : config.language}`} target="_blank" rel="noreferrer">
-                <span className="topPanel--item__text">
+              <span className="topPanel--item__text">
                   {t(__('International Exhibition'))}
                 </span>
           </a>
-    
-          {/*<a className="topPanel--content__item hover" href="https://alaedeen.com/horn/create-ticket" target="_blank" rel="noreferrer">
-                <span className="topPanel--item__text">
-                  {t(__('Free consultation'))}
-                </span>
-              </a>*/}
+        </Space>
+      </Col>
+      
+      <Col className="--secondSection">
+        <Space size="middle" align={"center"}>
+          <LanguageDropDown />
+          
+          <i class="fa-light fa-message-question" />
         </Space>
       </Col>
     </Row>
