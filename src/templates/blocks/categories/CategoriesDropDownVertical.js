@@ -1,6 +1,5 @@
-
-
-import { Dropdown, Menu } from "antd";
+import "./styles/CategoriesDropDownVertical.less";
+import {Col, Dropdown, Menu, Row, Skeleton} from "antd";
 import { DownOutlined } from "@ant-design/icons";
 
 // import helper functions:
@@ -11,6 +10,7 @@ import { useTranslation } from "react-i18next";
 // import custom hooks:
 import { useGetApiOld } from "../../../functions";
 import { Link } from "react-router-dom";
+import React, {useState} from "react";
 
 const CategoriesContent = () => {
 
@@ -32,12 +32,21 @@ const CategoriesContent = () => {
       className="dropDownCategories--content"
     >
       {isLoading ?
-        <>Loading...</> :
+        new Array(8).fill("", 0, 8).map((p, i) => {
+          return(
+            <Menu.Item  key={`topPanelCategoriesDropDownLoading_${i}`}>
+              <Skeleton.Input style={{ height: 12 }} active size={"small"} />
+            </Menu.Item>
+          )
+        }) :
         <>
           {categories?.map((category) => {
             return(
-              <Menu.Item key={ `CategoriesContent_${category?.category_id}` }>
-                <Link to={ `/categories/${category?.seo_name}` } className={ `d-block ${category?.p_count === 0 ? 'link--disable': ''}` }>{ category?.category }</Link>
+              <Menu.Item key={ `CategoriesContent_${category?.category_id}` } className={category?.p_count === 0 ? 'item--disable': ''} >
+                <Link to={ `/categories/${category?.seo_name}` } className={ `d-block ${category?.p_count === 0 ? 'link--disable': ''}` }>
+                  <img src={ `${process.env.PUBLIC_URL}/categories-image/category-${category?.category_id}.svg` } alt={ category?.category }/>
+                  <span>{ category?.category }</span>
+                </Link>
               </Menu.Item>
             )
           })}
@@ -47,17 +56,33 @@ const CategoriesContent = () => {
   );
 };
 
-const CategoriesDropDownVertical = ({ userClass }) => {
+const CategoriesDropDownVertical = () => {
 
   const { t } = useTranslation();
+  
+  const [dropDownIsActive, setDropDownIsActive] = useState(false);
 
   return (
-    <Dropdown className={ `${userClass} topPanelCategoriesDropDown` } overlay={CategoriesContent()} trigger={['click']}>
-      <span className="vv-cursor-pointer" onClick={e => e.preventDefault()}>
-        <i className="fal fa-list-ul vv-font-size-2" />
-        <span className="topPanel--item__text">{t(__('Categories'))}</span>
-        <DownOutlined />
-      </span>
+    <Dropdown
+      className="topPanelCategoriesDropDown"
+      overlayClassName="topPanelCategoriesDropDown__DropDownIsOpen"
+      overlay={CategoriesContent()}
+      trigger={['click']}
+      onVisibleChange={setDropDownIsActive}
+    >
+      <Row gutter={7} className="vv-cursor-pointer" onClick={e => e.preventDefault()}>
+        <Col className="--listIcon" flex="18px">
+          <i className="fal fa-list-ul vv-font-size-2" />
+        </Col>
+        
+        <Col className="--text" flex="1 1">
+          {t(__('Categories'))}
+        </Col>
+        
+        <Col className="--arrowIcon" flex="13px">
+          <DownOutlined rotate={ dropDownIsActive ? 180 : 0} />
+        </Col>
+      </Row>
     </Dropdown>
   );
 };
