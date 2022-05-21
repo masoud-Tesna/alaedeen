@@ -4,38 +4,41 @@ import AlaedeenCharacter from "./components/AlaedeenCharacter";
 import Search from "./components/Search";
 import AccountActions from "./components/AccountActions";
 import {useGetAuthState} from "../../../contexts/user/UserContext";
+import FavLink from "./components/FavLink";
 
 const Header = () => {
   
   const { user_data } = useGetAuthState();
   
+  const accountActionSpan = !!(user_data.auth.user_id) ? {span: 17} : null;
+  
   return (
     <Row className="header--container">
       <Col span={24} className="--header">
         <Row gutter={{ md: 8, lg: 16, xl: 40 }}>
-          <Col span={5}>
+          <Col span={6}>
             <AlaedeenCharacter />
           </Col>
           
-          <Col span={10}>
+          <Col span={!!(user_data.auth.user_id) ? 11 : 12}>
             <Search />
           </Col>
           
-          <Col span={9}>
-            <Row gutter={15}>
-              <Col span={user_data.auth.user_id ? 15 : 13}>
+          <Col span={!!(user_data.auth.user_id) ? 7 : 6}>
+            <Row justify="space-between" align="middle">
+              <Col {...accountActionSpan}>
                 <AccountActions />
               </Col>
               
-              <Col span={user_data.auth.user_id ? 9 : 11}>
-                Fav
+              <Col>
+                <FavLink />
               </Col>
             </Row>
           </Col>
         </Row>
       </Col>
       
-      <Divider />
+      <Divider className="m-0" />
   
       <Col span={24} className="--menu">
         Menu
