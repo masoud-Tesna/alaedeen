@@ -5,6 +5,7 @@ import Search from "./components/Search";
 import AccountActions from "./components/AccountActions";
 import FavLink from "./components/FavLink";
 import {useGetAuthState} from "../../../contexts/user/UserContext";
+import Menu from "../../menu";
 
 const Header = () => {
   
@@ -41,7 +42,7 @@ const Header = () => {
       <Divider className="m-0" />
   
       <Col span={24} className="--menu">
-        Menu
+        <Menu />
       </Col>
     </Row>
   );
