@@ -3,28 +3,29 @@ import "../styles/AlaedeenCharacter.less";
 import alaedeenChar from '../../../assets/images/alaedeen-char.png';
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
+import {Col, Row} from "antd";
 
 const AlaedeenCharacter = () => {
   
   const { t } = useTranslation();
   
   return (
-    <div className="alaedeenCharacter--container">
-      <div className="--character">
+    <Row className="alaedeenCharacter--container">
+      <Col className="--character">
         <img src={alaedeenChar} alt="Alaedeen.com"/>
-      </div>
+      </Col>
       
-      <div className="--extra pl-2">
+      <Col className="--extra">
         <div className="__address">
           <i className="logo-icon-alaedeen-com" />
         </div>
         <div className="__slug">
           { t('alaedeen_slug_section') }
         </div>
-      </div>
+      </Col>
       
       <Link to={"/"} className="--link" />
-    </div>
+    </Row>
   );
 };
 

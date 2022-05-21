@@ -47,6 +47,11 @@
   
   .--searchInput {
     border-left: 1px solid #CED4DA;
+  
+    &[class*="rtl"] {
+      border-left: none;
+      border-right: 1px solid #CED4DA;
+    }
     
     .ant-select-selector {
       .ant-select-selection-search-input {

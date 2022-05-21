@@ -1,7 +1,4 @@
 .alaedeenCharacter--container {
-  display: flex;
-  flex-flow: row wrap;
-  
   .--character {
     flex: 0 0 26px;
     
@@ -14,6 +11,12 @@
     flex: 1 1 0%;
     display: flex;
     flex-flow: row wrap;
+    padding-left: .5rem;
+    
+    &[class*="rtl"] {
+      padding-left: 0;
+      padding-right: .5rem;
+    }
     
     > div {
       display: block;
