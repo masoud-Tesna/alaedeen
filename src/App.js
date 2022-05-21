@@ -19,7 +19,7 @@ import { MatchMediaBreakpoints } from "react-hook-breakpoints"
 
 // Templates:
 import TopPanel from "./templates/topPanel";
-import { Header as SiteHeader } from "./templates/header";
+import { SiteHeader } from "./templates/header";
 import { SiteFooter } from "./templates/footer";
 
 import { Helmet } from "react-helmet";
@@ -28,8 +28,11 @@ import { useGetAuthState } from "./contexts/user/UserContext";
 
 import DashboardRoutes from "./templates/views/DashboardRoutes";
 import DashboardMain from "./templates/views/dashboard/templates/DashboardMain";
+import LoadSpinner from "./templates/common/LoadSpinner";
 
 // Pages:
+const HomePage = lazy(() => import('./templates/views/HomePage'));
+
 const Home = lazy(() => import('./templates/views/Home'));
 
 const SignIn = lazy(() => import('./templates/views/SignIn'));
@@ -135,7 +138,7 @@ const App = () => {
   
         <Layout className="layout">
           <Router>
-            <TopPanel/>
+            {/*<TopPanel/>*/}
   
             <SiteHeader/>
   
@@ -145,6 +148,8 @@ const App = () => {
                   <Routes>
                     {/* Home Route */ }
                     <Route exact path="/" element={ <Suspense fallback={ null } ><Home/></Suspense> }/>
+                    
+                    <Route exact path="/home" element={ <Suspense fallback={ <LoadSpinner /> } ><HomePage/></Suspense> }/>
   
                     {/* Sign in Route */ }
                     <Route path="/sign-in" element={ <Suspense fallback={ null } ><SignIn/></Suspense> }/>

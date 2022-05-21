@@ -3,9 +3,9 @@ import { useWindowSize } from '../../functions';
 import { useParsPathName } from "../../functions/Helper";
 
 // Templates:
-import DefaultHeader from "./default/DefaultHeader";
+import Header from "./default/Header";
 
-const Header = () => {
+const SiteHeader = () => {
 
   // Get Width Window:
   const { width } = useWindowSize();
@@ -32,8 +32,8 @@ const Header = () => {
     return <></> // remove Footer
   }
 
-  // if get default Top panel:
-  return <DefaultHeader pathName={pathName} />
+  // if app get default Top panel:
+  return <Header pathName={pathName} />
 };
 
-export { Header };
+export { SiteHeader };
