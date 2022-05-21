@@ -1,0 +1,51 @@
+.favLink--container {
+  cursor: pointer;
+  
+  .--logo,
+  .--text {
+    text-align: center;
+    
+    &,
+    > i {
+      color: #82879B;
+    }
+  }
+  
+  .--logo {
+    i {
+      font-size: 2rem;
+    }
+  }
+  
+  &:hover {
+    .--text {
+      color: #2D8327;
+    }
+  }
+}
+
+.favLink--tooltip {
+  .ant-tooltip-arrow span,
+  .ant-tooltip-inner {
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+  }
+  
+  .ant-tooltip-inner {
+    border-radius: 4px;
+    color: #030304;
+    
+    a {
+      color: #185E91;
+    }
+    
+    &,
+    a {
+      font-size: 12px;
+      font-weight: 400;
+    }
+  }
+  
+  &:not(.ant-tooltip-hidden) {
+    top: 70px !important;
+  }
+}
