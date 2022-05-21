@@ -8,6 +8,7 @@ import {useGetConfig} from "../../../../contexts/config/ConfigContext";
 import {logout, useDispatchAuthState, useGetAuthState} from "../../../../contexts/user/UserContext";
 import {useTranslation} from "react-i18next";
 import {useState} from "react";
+import TextTruncate from "react-text-truncate";
 
 const AccountActions = () => {
   
@@ -74,7 +75,7 @@ const AccountActions = () => {
   );
   
   return (
-    <Row className="accountActions--container">
+    <Row className="accountActions--container" align="middle">
     
       { user_data.load ?
         <>
@@ -83,24 +84,23 @@ const AccountActions = () => {
         <>
           { user_data.auth.user_id ?
             <>
-              <Dropdown
-                overlay={menu}
-                trigger={['click']}
-                className="accountDropDown"
-                openClassName="content--account__DropDownIsOpen"
-                onVisibleChange={visible => setDropDownIsActive(visible)}
-              >
-              
-                <Row
-                  className="w-100"
-                  align="middle"
-                  justify={ config?.language === "en" ? "end" : "start" }
-                  gutter={12}
-                  onClick={e => e.preventDefault()}
+              <Col span={24}>
+                <Dropdown
+                  overlay={menu}
+                  trigger={['click']}
+                  className="accountDropDown"
+                  openClassName="content--account__DropDownIsOpen"
+                  onVisibleChange={visible => setDropDownIsActive(visible)}
                 >
-                  <Col>
-                    { (user_data?.auth?.company_logo && user_data?.auth?.company_logo.length !== 0) ?
-                      <span className="content--account__companyLogo">
+                  <Row
+                    className="w-100"
+                    align="middle"
+                    gutter={12}
+                    onClick={e => e.preventDefault()}
+                  >
+                    <Col flex="58px">
+                      { (user_data?.auth?.company_logo && user_data?.auth?.company_logo.length !== 0) ?
+                        <span className="content--account__companyLogo">
                         <ShowResponsiveImage
                           imagePath={ user_data?.auth?.company_logo?.logo_path }
                           imageFolder='company_logo'
@@ -109,25 +109,35 @@ const AccountActions = () => {
                           skeletonWidth="46px"
                           skeletonHeight="46px"
                           skeletonRadius="46%"
-                          skeletonSvgWidth="26px"
+                          skeletonSvgWidth="24px"
                           imageAlt={ user_data?.auth?.company ? user_data?.auth?.company : ` ${user_data?.auth?.firstname} ${user_data?.auth?.lastname} `}
                           object_id={user_data?.auth?.company_id}
                           object_type={`company_logo${config.language}`}
                         />
                       </span> :
-                      <i className="fal fa-user display-3 text-70 d-block" />
-                    }
-                  </Col>
-                
-                  <Col>
-                    <span className="content--account__companyName">
-                                    { user_data?.auth?.company || `${user_data?.auth?.firstname} ${user_data?.auth?.lastname}` }
-                                  </span>
-                    <DownOutlined rotate={ dropDownIsActive ? 180 : 0} />
-                  </Col>
-                </Row>
-            
-              </Dropdown>
+                        <i className="fal fa-user display-3 text-70 d-block" />
+                      }
+                    </Col>
+      
+                    <Col flex="1 1">
+                      <Row>
+                        <Col style={{ width: "calc(86% - 13px)" }}>
+                          <TextTruncate
+                            className="d-block w-100"
+                            line={ 1 }
+                            element="div"
+                            text="اکانت تست داشبورد"
+                          />
+                        </Col>
+          
+                        <Col flex="13px">
+                          <DownOutlined rotate={ dropDownIsActive ? 180 : 0} />
+                        </Col>
+                      </Row>
+                    </Col>
+                  </Row>
+                </Dropdown>
+              </Col>
             </> :
             <>
               <Col className="--accountImg">
