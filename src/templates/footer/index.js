@@ -1,8 +1,9 @@
 // import Footer:
 import { DefaultFooter } from './default/DefaultFooter';
 import { useParsPathName } from "../../functions/Helper";
+import Footer from "./default/Footer";
 
-const SiteFooter = (props) => {
+const SiteFooter = () => {
 
   // Get Location:
   const pathName = useParsPathName();
@@ -21,7 +22,7 @@ const SiteFooter = (props) => {
   }
 
   // if get default Footer:
-  return <DefaultFooter />
+  return <><Footer /> <DefaultFooter /></>
 };
 
 export { SiteFooter };
