@@ -4,6 +4,7 @@ import Newsletters from "./components/Newsletters";
 import Lists from "./components/Lists";
 import AppDownload from "./components/AppDownload";
 import Extra from "./components/Extra";
+import Reserved from "./components/Reserved";
 
 const Footer = () => {
   return (
@@ -24,6 +25,10 @@ const Footer = () => {
           
           <Col span={24} className="--extra">
             <Extra />
+          </Col>
+          
+          <Col span={24} className="--reserved">
+            <Reserved />
           </Col>
         </Row>
       </Col>
