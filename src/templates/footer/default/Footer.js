@@ -3,6 +3,7 @@ import {Col, Row} from "antd";
 import Newsletters from "./components/Newsletters";
 import Lists from "./components/Lists";
 import AppDownload from "./components/AppDownload";
+import Extra from "./components/Extra";
 
 const Footer = () => {
   return (
@@ -19,6 +20,10 @@ const Footer = () => {
           
           <Col span={24} className="--appDl">
             <AppDownload />
+          </Col>
+          
+          <Col span={24} className="--extra">
+            <Extra />
           </Col>
         </Row>
       </Col>
