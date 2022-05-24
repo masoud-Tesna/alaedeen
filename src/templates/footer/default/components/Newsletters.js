@@ -2,7 +2,6 @@ import "../styles/Newsletters.less";
 import {Button, Col, Form, Input, Row} from "antd";
 import {useTranslation} from "react-i18next";
 import {__} from "../../../../functions/Helper";
-import {UserOutlined} from "@ant-design/icons";
 import {useState} from "react";
 
 const Newsletters = () => {
