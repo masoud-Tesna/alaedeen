@@ -90,7 +90,7 @@ const Lists = () => {
             );
           }) :
           type === "C" ?
-            links?.slice(0, 6)?.map(link => {
+            links?.slice(0, 4)?.map(link => {
               return (
                 <Col key={`footerCategories_${link?.category_id}`} className="__linkItem" span={24}>
                   {/*link: /categories/${category?.seo_name}*/}
