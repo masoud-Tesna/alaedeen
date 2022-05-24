@@ -1,6 +1,7 @@
 import "./styles/Footer.less";
 import {Col, Row} from "antd";
 import Newsletters from "./components/Newsletters";
+import Lists from "./components/Lists";
 
 const Footer = () => {
   return (
@@ -9,6 +10,10 @@ const Footer = () => {
         <Row>
           <Col span={24}>
             <Newsletters />
+          </Col>
+          
+          <Col span={24} className="--lists">
+            <Lists />
           </Col>
         </Row>
       </Col>
