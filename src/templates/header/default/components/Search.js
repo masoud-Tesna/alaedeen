@@ -1,4 +1,4 @@
-import {useCallback, useRef, useState} from "react";
+import {memo, useCallback, useRef, useState} from "react";
 import "../styles/Search.less";
 import {AutoComplete, Col, Input, Row, Select, Skeleton} from "antd";
 import {useTranslation} from "react-i18next";
@@ -86,6 +86,7 @@ const Search = () => {
         setSearchType(e);
         setSearchInput("");
       }}
+      getPopupContainer={trigger => trigger.parentNode}
     >
       <Option value="P">{t("products")}</Option>
       <Option value="C">{t("suppliers")}</Option>
@@ -125,6 +126,7 @@ const Search = () => {
               value={searchInput}
               onClick={() => changeSearchContainerStyle(true)}
               onBlur={() => changeSearchContainerStyle(false)}
+              getPopupContainer={trigger => trigger.parentNode}
             >
               <Input
                 placeholder={ t(__('What are you looking for...')) }
@@ -141,4 +143,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default memo(Search);
