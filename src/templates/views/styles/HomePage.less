@@ -1,2 +1,16 @@
 // import Mixin:
 @import '../../styles/Mixins';
+
+.homePage--container {
+  .--requestSection {
+    height: calc(100vh - 170px);
+    
+    .--blurBg {
+      background-image: url(../../assets/images/requests-bg.png);
+      height: 100%;
+      background-size: cover;
+      filter: blur(4px);
+      -webkit-filter: blur(4px);
+    }
+  }
+}
