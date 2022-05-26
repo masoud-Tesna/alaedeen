@@ -376,3 +376,5 @@ export const isObject = value => {
     && !Object.is(value, undefined)
     && !(value instanceof Function);
 }
+
+export const upperFirst = (text) => text.charAt(0).toUpperCase() + text.slice(1);
