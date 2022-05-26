@@ -15,12 +15,11 @@ import { ConfigProvider, Layout } from 'antd';
 // import Config context:
 import { useGetConfig } from "./contexts/config/ConfigContext";
 
-import { MatchMediaBreakpoints } from "react-hook-breakpoints"
+import { MatchMediaBreakpoints, MatchBreakpoint } from "react-hook-breakpoints"
 
 // Templates:
 import TopPanel from "./templates/topPanel";
 import { SiteHeader } from "./templates/header";
-import { SiteFooter } from "./templates/footer";
 
 import { Helmet } from "react-helmet";
 
@@ -56,6 +55,8 @@ const Page = lazy(() => import('./templates/views/Page'));
 const ContactUs = lazy(() => import('./templates/views/ContactUs'));
 
 const Store = lazy(() => import('./templates/views/Store'));
+
+const SiteFooter = lazy(() => import('./templates/footer'));
 
 const App = () => {
 
@@ -202,9 +203,13 @@ const App = () => {
               </div>
             </Content>
   
-            <Footer>
-              <SiteFooter/>
-            </Footer>
+            <MatchBreakpoint min="md">
+              <Suspense fallback={null}>
+                <Footer>
+                  <SiteFooter/>
+                </Footer>
+              </Suspense>
+            </MatchBreakpoint>
           </Router>
         </Layout>
       </MatchMediaBreakpoints>
