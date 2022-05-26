@@ -153,13 +153,13 @@ const Lists = () => {
             />
           </Col>
           
-          <Col span={8} className="--items">
+          {/*<Col span={8} className="--items">
             <ListContent
               caption="Social"
               isLoading={false}
               type="S"
             />
-          </Col>
+          </Col>*/}
         </Row>
       </Col>
     </Row>
