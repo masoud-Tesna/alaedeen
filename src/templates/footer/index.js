@@ -24,4 +24,4 @@ const SiteFooter = () => {
   return <Footer />
 };
 
-export { SiteFooter };
+export default SiteFooter;
