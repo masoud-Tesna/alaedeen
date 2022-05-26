@@ -1,0 +1,117 @@
+// import Mixin:
+@import '../../../styles/Mixins';
+
+.mobileHeader--container {
+  height: 60px;
+  
+  .topPanel--col {
+    padding: 0 .8rem;
+    
+    .topPanel--col__logoXS {
+      .logo--character {
+        img {
+          height: 50px;
+        }
+      }
+    
+      .logo-slug {
+        padding-left: 0.7rem;
+      
+        .logo--alaedeenSlug {
+          p {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  
+    .topPanel--col__titleXS {
+      display: none;
+    }
+  }
+}
+
+.topPanel--menuXs {
+  .ant-drawer-content {
+    .ant-drawer-body {
+      padding: 0!important;
+      height: 100%;
+      .topPanel--menuXs__container {
+        .topPanel--menuXs__topSection {
+          .menuXs--bgTopSection__container {
+            background: #003501;
+            background-image: none;
+            background-size: auto;
+            background-image: url(../../../assets/images/sideNavBg.png);
+            background-size: cover;
+            height: 95px;
+            
+            .content--account__companyLogo {
+              display: inline-block;
+              background-color: #FFFFFF;
+              width: 60px;
+              height: 60px;
+              border-radius: 50%;
+              img {
+                border-radius: 50%;
+                width: 100%;
+              }
+            }
+          }
+        }
+        .topPanel--menuXs__middleSection {
+          max-height: calc(100% - 70px);
+          overflow-y: scroll;
+          overflow-x: hidden;
+          .menuXs--sideNavLinks__items {
+            .menuXs--sideNavLinks__item {
+              &:hover {
+                i {
+                  color: darken(@primary-color, 10%) !important;
+                }
+                span, .ant-collapse-header{
+                  color: darken(#707070, 10%) !important;
+                }
+              }
+            }
+            .languagesCurrencyCollapse {
+              .ant-collapse {
+                .ant-collapse-item {
+                  .ant-collapse-header {
+                    padding: 0 !important;
+                    color: #707070;
+                    font-size: 1.6rem;
+                    .ant-collapse-arrow {
+                      right: 1px;
+                      padding-top: 3px;
+                      color: #bcbcbc !important;
+                    }
+                  }
+                  .ant-collapse-content {
+                    .ant-collapse-content-box {
+                      padding-left: 0!important;
+                      padding-right: 0!important;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .menuXs--sideNavBtn__items {
+            div {
+              width: 100%;
+            }
+            a {
+              height: 35px;
+              line-height: 33px;
+            }
+          }
+        }
+        .topPanel--menuXs__bottomSection {
+          position: absolute;
+          bottom: 0;
+        }
+      }
+    }
+  }
+}
