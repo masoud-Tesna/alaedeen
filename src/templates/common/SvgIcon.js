@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import {upperFirst} from "../../functions/Helper";
 
 const SvgIcon = (
   {
@@ -12,7 +11,7 @@ const SvgIcon = (
   }
 ) => {
   
-  const requireIcon = require(`../assets/svg-icon/${type}/${upperFirst(icon)}.svg`);
+  const requireIcon = require(`../assets/svg-icon/${type}/${icon}.svg`);
   
   const Icon = styled.i`
     -webkit-mask-size: cover;
