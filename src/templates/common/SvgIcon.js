@@ -6,8 +6,8 @@ const SvgIcon = (
     icon,
     type = "outline",
     color = "#82879B",
-    width = 60,
-    height = 60,
+    width = 24,
+    height = 24,
     ...reset
   }
 ) => {
