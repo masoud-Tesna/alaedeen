@@ -9,6 +9,7 @@ import {useGetConfig} from "../../../../contexts/config/ConfigContext";
 import {logout, useDispatchAuthState, useGetAuthState} from "../../../../contexts/user/UserContext";
 import {useTranslation} from "react-i18next";
 import TextTruncate from "react-text-truncate";
+import SvgIcon from "../../../common/SvgIcon";
 
 const AccountActions = () => {
   
@@ -101,21 +102,21 @@ const AccountActions = () => {
                     <Col flex="58px">
                       { (user_data?.auth?.company_logo && user_data?.auth?.company_logo.length !== 0) ?
                         <span className="content--account__companyLogo">
-                        <ShowResponsiveImage
-                          imagePath={ user_data?.auth?.company_logo?.logo_path }
-                          imageFolder='company_logo'
-                          width={46}
-                          height={46}
-                          skeletonWidth="46px"
-                          skeletonHeight="46px"
-                          skeletonRadius="46%"
-                          skeletonSvgWidth="24px"
-                          imageAlt={ user_data?.auth?.company ? user_data?.auth?.company : ` ${user_data?.auth?.firstname} ${user_data?.auth?.lastname} `}
-                          object_id={user_data?.auth?.company_id}
-                          object_type={`company_logo${config.language}`}
-                        />
-                      </span> :
-                        <i className="fal fa-user display-3 text-70 d-block" />
+                          <ShowResponsiveImage
+                            imagePath={ user_data?.auth?.company_logo?.logo_path }
+                            imageFolder='company_logo'
+                            width={46}
+                            height={46}
+                            skeletonWidth="46px"
+                            skeletonHeight="46px"
+                            skeletonRadius="46%"
+                            skeletonSvgWidth="24px"
+                            imageAlt={ user_data?.auth?.company ? user_data?.auth?.company : ` ${user_data?.auth?.firstname} ${user_data?.auth?.lastname} `}
+                            object_id={user_data?.auth?.company_id}
+                            object_type={`company_logo${config.language}`}
+                          />
+                        </span> :
+                        <SvgIcon icon="profile" width={46} height={46} />
                       }
                     </Col>
       
@@ -141,7 +142,7 @@ const AccountActions = () => {
             </> :
             <>
               <Col className="--accountImg">
-                <i className="fal fa-user" />
+                <SvgIcon icon="profile" width={30} height={37} />
               </Col>
               <Col className="header--account__link">
                 <div>
