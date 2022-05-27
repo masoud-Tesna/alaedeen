@@ -1,3 +1,4 @@
+import {memo} from "react";
 import styled from 'styled-components';
 
 const SvgIcon = (
@@ -5,7 +6,7 @@ const SvgIcon = (
     icon,
     type = "outline",
     color = "#82879B",
-    width = 24,
+    width  = 24,
     height = 24,
     ...reset
   }
@@ -13,7 +14,7 @@ const SvgIcon = (
   
   const requireIcon = require(`../assets/svg-icon/${type}/${icon}.svg`);
   
-  const Icon = styled.i`
+  const Icon = styled.span`
     -webkit-mask-size: cover;
     mask-size: cover;
     -webkit-mask-image: url(${requireIcon});
@@ -27,4 +28,4 @@ const SvgIcon = (
   return <Icon className={`--svgIcon ${!!reset?.className ? reset?.className : ""}`} />
 };
 
-export default SvgIcon;
+export default memo(SvgIcon);
