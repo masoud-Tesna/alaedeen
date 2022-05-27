@@ -81,7 +81,7 @@ const CategoriesDropDownVertical = () => {
         </Col>
         
         <Col className="--arrowIcon" flex="13px">
-          <SvgIcon icon="angle-down" width={20} height={20} />
+          <DownOutlined rotate={ dropDownIsActive ? 180 : 0} />
         </Col>
       </Row>
     </Dropdown>
