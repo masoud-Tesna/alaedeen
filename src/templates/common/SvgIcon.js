@@ -22,7 +22,7 @@ const SvgIcon = (
     background-color: ${color};
     width: ${width}px;
     height: ${height}px;
-    display: inline-block;
+    display: block;
   `;
   
   return <Icon className={`--svgIcon ${!!reset?.className ? reset?.className : ""}`} />
