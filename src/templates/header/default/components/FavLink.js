@@ -3,6 +3,7 @@ import {Col, Row, Tooltip} from "antd";
 import {useTranslation} from "react-i18next";
 import {__} from "../../../../functions/Helper";
 import {Link} from "react-router-dom";
+import SvgIcon from "../../../common/SvgIcon";
 
 const FavLink = () => {
   
@@ -17,7 +18,7 @@ const FavLink = () => {
     <Tooltip placement="bottomRight" title={favTitle} color="#FFF" overlayClassName="favLink--tooltip">
       <Row className="favLink--container">
         <Col span={24} className="--logo">
-          <i className="fa-light fa-heart" />
+          <SvgIcon icon="heart" />
         </Col>
         <Col span={24} className="--text">
           {t("favorites")}
