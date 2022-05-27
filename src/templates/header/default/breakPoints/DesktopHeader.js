@@ -1,5 +1,5 @@
 import "../styles/DesktopHeader.less";
-import {Button, Col, Divider, Row} from "antd";
+import {Button, Col, Row} from "antd";
 import AlaedeenCharacter from "../components/AlaedeenCharacter";
 import Search from "../components/Search";
 import AccountActions from "../components/AccountActions";
@@ -44,7 +44,7 @@ const DesktopHeader = () => {
   return (
     <Row className="header--container">
       <Col span={24} className={`--header ${!!sticky && "--isSticky"}`}>
-        <Row gutter={{ md: 8, lg: 16, xl: 40 }}>
+        <Row gutter={{ md: 8, lg: 16, xl: 40 }} align="middle" className="h-100">
           <Col span={6}>
             <AlaedeenCharacter />
           </Col>
@@ -73,8 +73,6 @@ const DesktopHeader = () => {
           </Col>
         </Row>
       </Col>
-    
-      <Divider className={`m-0 `} />
     
       <Col span={24} className={`--menu `}>
         <Menu />

@@ -2,14 +2,24 @@
 @import '../../../styles/Mixins';
 
 .header--container {
-  height: 150px;
+  height: 148px;
   background-color: #FFF;
   box-shadow: 0 4px 63px -33px rgba(0, 0, 0, 0.13);
   
+  .--header,
+  .--menu {
+    padding: 0 8.5vw;
+  }
+  
   .--header {
-    padding: 30px 8vw;
+    height: 108px;
+    
+    &:not(.--isSticky) {
+      border-bottom: 1px solid #E9ECEF;
+    }
     
     &.--isSticky {
+      height: 78px;
       animation: smoothScroll 500ms;
       width: 100%;
       position: fixed;
@@ -17,7 +27,6 @@
       background-color: #FFF;
       box-shadow: 0 0 rgba(0,0,0,0), 0 0 rgba(0,0,0,0), 0 3px 9px -3px rgba(0,0,0,0.13);
       top: 0;
-      padding: 16px 8vw;
     }
     
     .--requestQuote {
@@ -38,7 +47,7 @@
   }
   
   .--menu {
-    padding: 8px 8.5vw;
+    height: 40px;
   }
 }
 
