@@ -6,6 +6,7 @@ import {useTranslation} from "react-i18next";
 import {useGetConfig} from "../../contexts/config/ConfigContext";
 import {CategoriesDropDownVertical as Categories} from "../blocks/categories/CategoriesDropDownVertical";
 import LanguageDropDown from "./components/LanguageDropDown";
+import SvgIcon from "../common/SvgIcon";
 
 const Menu = () => {
   
@@ -15,9 +16,9 @@ const Menu = () => {
   const { config } = useGetConfig();
   
   return (
-    <Row className="menu--container h-100" justify="space-between" align="middle">
+    <Row className="menu--container h-100" justify="space-between">
       <Col className="--firstSection">
-        <Space size="middle" align={"center"}>
+        <Space size="middle" align={"center"} className="h-100">
           <Categories />
           <Divider type="vertical" style={{borderColor: "#CED4DA"}}/>
           <Link className="--item __hover" to={"/factories"} >
@@ -35,10 +36,10 @@ const Menu = () => {
       </Col>
       
       <Col className="--secondSection">
-        <Space size="middle" align={"center"}>
+        <Space size="middle" align={"center"} className="h-100">
           <LanguageDropDown />
-          
-          <i className="fa-light fa-message-question" />
+  
+          <SvgIcon icon="message-question" color="#185E91" />
         </Space>
       </Col>
     </Row>
