@@ -5,6 +5,7 @@ import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
 import {__} from "../../../../functions/Helper";
 import {useGetApi} from "../../../../functions";
+import SvgIcon from "../../../common/SvgIcon";
 
 const Search = () => {
   
@@ -130,7 +131,7 @@ const Search = () => {
             >
               <Input
                 placeholder={ t(__('What are you looking for...')) }
-                suffix={<i className="far fa-search vv-font-size-2" />}
+                suffix={<SvgIcon icon="search" color="#2D8327" width={20} height={20} /> }
                 onChange = {e => setSearchInput(e.target.value)}
                 onPressEnter={e => setSearchInput(e.target.value)}
                 bordered={false}
