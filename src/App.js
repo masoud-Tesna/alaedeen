@@ -18,7 +18,6 @@ import { useGetConfig } from "./contexts/config/ConfigContext";
 import { MatchMediaBreakpoints, MatchBreakpoint } from "react-hook-breakpoints"
 
 // Templates:
-import TopPanel from "./templates/topPanel";
 import { SiteHeader } from "./templates/header";
 
 import { Helmet } from "react-helmet";
@@ -139,8 +138,6 @@ const App = () => {
   
         <Layout className="layout">
           <Router>
-            {/*<TopPanel/>*/}
-  
             <SiteHeader/>
   
             <Content>
