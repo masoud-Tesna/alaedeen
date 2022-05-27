@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import { useGetApiOld } from "../../../functions";
 import { Link } from "react-router-dom";
 import React, {useState} from "react";
+import SvgIcon from "../../common/SvgIcon";
 
 const CategoriesContent = () => {
 
@@ -72,7 +73,7 @@ const CategoriesDropDownVertical = () => {
     >
       <Row gutter={7} className="vv-cursor-pointer" onClick={e => e.preventDefault()}>
         <Col className="--listIcon" flex="18px">
-          <i className="fal fa-list-ul vv-font-size-2" />
+          <SvgIcon icon="list" width={20} height={20} />
         </Col>
         
         <Col className="--text" flex="1 1">
@@ -80,7 +81,7 @@ const CategoriesDropDownVertical = () => {
         </Col>
         
         <Col className="--arrowIcon" flex="13px">
-          <DownOutlined rotate={ dropDownIsActive ? 180 : 0} />
+          <SvgIcon icon="angle-down" width={20} height={20} />
         </Col>
       </Row>
     </Dropdown>
