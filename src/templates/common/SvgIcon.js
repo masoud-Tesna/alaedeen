@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import {upperFirst} from "../../functions/Helper";
 
-
-
 const SvgIcon = (
   {
     icon,
@@ -27,9 +25,7 @@ const SvgIcon = (
     display: inline-block;
   `;
   
-  return (
-    <Icon className={`--svgIcon ${!!reset?.className ? reset?.className : ""}`} />
-  );
+  return <Icon className={`--svgIcon ${!!reset?.className ? reset?.className : ""}`} />
 };
 
 export default SvgIcon;
