@@ -1,8 +1,8 @@
 import "./styles/StoreDetails.less";
-import {Affix, Col, Divider, Progress, Row, Skeleton, Tabs, Typography} from "antd";
+import {Col, Divider, Progress, Row, Skeleton, Tabs, Typography} from "antd";
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 import ImageGallery from "../../common/ImageGallery";
-import React, {createRef, useCallback, useEffect, useLayoutEffect, useRef, useState} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import {useGetConfig} from "../../../contexts/config/ConfigContext";
 import {useTranslation} from "react-i18next";
 import {__, fn_get_lines_count} from "../../../functions/Helper";
