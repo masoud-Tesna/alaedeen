@@ -33,92 +33,7 @@ const ImageGallery = (
 
   return (
     <Row className="imageGallery--container">
-      {type === "product" ?
-        (
-          Object.values(images)?.length > 1 ?
-            <Col span={ 24 }>
-              <Image.PreviewGroup>
-                <Swiper
-                  spaceBetween={ 5 }
-                  navigation={ false }
-                  thumbs={ { swiper: thumbsSwiper } }
-                  className="imageGallery--swiper"
-                >
-                  { Object.values(images)?.map(image => {
-                    return (
-                      <SwiperSlide key={ `ImageGallery_${id}_${image?.pair_id}` }>
-                        <ShowResponsiveImage
-                          imagePath={ image?.detailed?.image_path }
-                          imageFolder='detailed'
-                          width={ 300 }
-                          height={ 300 }
-                          skeletonWidth="100%"
-                          skeletonHeight="350px"
-                          imageAlt={ image?.detailed?.alt }
-                          object_id={ `${image?.pair_id}_${id}` }
-                          object_type="prd"
-                          preview
-                        />
-                      </SwiperSlide>
-                    );
-                  }) }
-                </Swiper>
-              </Image.PreviewGroup>
-              <Swiper
-                onSwiper={ setThumbsSwiper }
-                spaceBetween={ 15 }
-                slidesPerView={ "auto" }
-                freeMode={ true }
-                watchSlidesProgress={ true }
-                className="imageGallery--thumbnailsSwiper">
-                { Object.values(images)?.map(image => {
-                  return (
-                    <SwiperSlide key={ `ImageGallery_thumbnail_${id}_${image?.pair_id}` }>
-                      <ShowResponsiveImage
-                        imagePath={ image?.detailed?.image_path }
-                        imageFolder='detailed'
-                        width={ 68 }
-                        height={ 68 }
-                        skeletonWidth="68px"
-                        skeletonHeight="68px"
-                        imageAlt={ image?.detailed?.alt }
-                        object_id={ `thumbs_${ image?.pair_id }_${id}` }
-                        object_type="prd"
-                      />
-                    </SwiperSlide>
-                  );
-                }) }
-              </Swiper>
-            </Col> :
-    
-            Object.values(images)?.length === 1 ?
-              <Col span={24} className="imageGallery--oneImage">
-                { images?.map(image => {
-                  return (
-                    <ShowResponsiveImage
-                      key={ `ImageGallery_${id}_${image?.pair_id}` }
-                      imagePath={ image?.detailed?.image_path }
-                      imageFolder='detailed'
-                      width={ 300 }
-                      height={ 300 }
-                      imageAlt={ image?.detailed?.alt }
-                      object_id={ `${image?.pair_id}_${id}` }
-                      object_type="prd"
-                      preview
-                    />
-                  );
-                }) }
-              </Col> :
-      
-              !Object.values(images)?.length &&
-              <Col span={24} className="imageGallery--oneImage">
-                <ShowResponsiveImage
-                  imagePath=""
-                  skeletonWidth="100%"
-                  skeletonHeight="350px"
-                />
-              </Col>
-        ) :
+      {
         (
           Object.values(images)?.length > 1 ?
             <Col span={ 24 }>
@@ -130,17 +45,25 @@ const ImageGallery = (
                   className="imageGallery--swiper"
                 >
                   { Object.values(images)?.map((image, i) => {
+              
+                    const imagePath = type === "product" ? image?.detailed?.image_path : image;
+              
+                    const imageFolder = type === "product" ? "detailed" : "profiles";
+              
+                    const object_type = type === "prd" ? "detailed" : "prf";
+              
                     return (
-                      <SwiperSlide key={ `ImageGallery_${id}_${i}` }>
+                      <SwiperSlide key={ `ImageGallery_${id}_${image?.pair_id || i}` }>
                         <ShowResponsiveImage
-                          imagePath={ image }
-                          imageFolder='profiles'
-                          width={ 400 }
-                          height={ 400 }
+                          imagePath={ imagePath }
+                          imageFolder={ imageFolder }
+                          width={ 350 }
+                          height={ 350 }
                           skeletonWidth="100%"
                           skeletonHeight="350px"
-                          object_id={ `${i}_${id}` }
-                          object_type="prd"
+                          imageAlt={ image?.detailed?.alt }
+                          object_id={ `${image?.pair_id || i}_${id}` }
+                          object_type={ object_type }
                           preview
                         />
                       </SwiperSlide>
@@ -156,42 +79,60 @@ const ImageGallery = (
                 watchSlidesProgress={ true }
                 className="imageGallery--thumbnailsSwiper">
                 { Object.values(images)?.map((image, i) => {
+            
+                  const imagePath = type === "product" ? image?.detailed?.image_path : image;
+            
+                  const imageFolder = type === "product" ? "detailed" : "profiles";
+            
+                  const object_type = type === "prd" ? "detailed" : "prf";
+            
                   return (
-                    <SwiperSlide key={ `ImageGallery_thumbnail_${id}_${i}` }>
+                    <SwiperSlide key={ `ImageGallery_thumbnail_${id}_${image?.pair_id || i}` }>
                       <ShowResponsiveImage
-                        imagePath={ image }
-                        imageFolder='profiles'
+                        imagePath={ imagePath }
+                        imageFolder={ imageFolder }
                         width={ 68 }
                         height={ 68 }
                         skeletonWidth="68px"
                         skeletonHeight="68px"
-                        object_id={ `thumbs_${ i }_${id}` }
-                        object_type="prd"
+                        imageAlt={ image?.detailed?.alt || "" }
+                        object_id={ `thumbs_${ image?.pair_id || i }_${id}` }
+                        object_type={ object_type }
                       />
                     </SwiperSlide>
                   );
                 }) }
               </Swiper>
             </Col> :
-    
+      
             Object.values(images)?.length === 1 ?
               <Col span={24} className="imageGallery--oneImage">
                 { images?.map((image, i) => {
+            
+                  const imagePath = type === "product" ? image?.detailed?.image_path : image;
+            
+                  const imageFolder = type === "product" ? "detailed" : "profiles";
+            
+                  const object_type = type === "prd" ? "detailed" : "prf";
+            
                   return (
                     <ShowResponsiveImage
-                      key={ `ImageGallery_${id}_${i}` }
-                      imagePath={ image }
-                      imageFolder='profiles'
-                      width={ 300 }
-                      height={ 300 }
-                      object_id={ `${ i }_${id}` }
-                      object_type="prd"
+                      key={ `ImageGallery_${id}_${image?.pair_id || i}` }
+                      imagePath={ imagePath }
+                      imageFolder={ imageFolder }
+                      width={ 350 }
+                      height={ 350 }
+                      skeletonWidth="100%"
+                      skeletonHeight="350px"
+                      imageAlt={ image?.detailed?.alt || "" }
+                      object_id={ `${image?.pair_id || i}_${id}` }
+                      object_type={ object_type }
                       preview
                     />
                   );
                 }) }
               </Col> :
-      
+        
               !Object.values(images)?.length &&
               <Col span={24} className="imageGallery--oneImage">
                 <ShowResponsiveImage
