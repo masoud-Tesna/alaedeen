@@ -208,9 +208,9 @@ const StoreDetails = ({store, isLoading}) => {
                   
                           <Col className="storeDetails">
                             <Row gutter={[0, 20]} className="h-100">
-                              <Col span={24}>
+                              <Col span={24} className="__top">
                                 <Row gutter={[0, 20]}>
-                                  <Col className="__top" span={24}>
+                                  <Col span={24}>
                                     <Row gutter={10} justify="space-between">
                                       <Col className="--title">
                                         {(isLoading) ?
