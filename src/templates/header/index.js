@@ -12,6 +12,14 @@ const SiteHeader = () => {
 
   // Get Location:
   const pathName = useParsPathName();
+  
+  let headerProps = {};
+  
+  if (pathName === 'product') {
+    headerProps = {
+      isHeader: false
+    }
+  }
 
   // Check pathName For Set Default Header Or Not:
   if (
@@ -26,14 +34,13 @@ const SiteHeader = () => {
     || pathName === 'sign-in'
     || pathName === 'register'
     || pathName === 'all-categories'
-    || pathName === 'product'
     || pathName === 'dashboard'
   ) {
     return <></> // remove Footer
   }
 
   // if app get default Top panel:
-  return <Header pathName={pathName} />
+  return <Header { ...headerProps }s/>
 };
 
 export { SiteHeader };
