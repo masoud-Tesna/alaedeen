@@ -1,9 +1,19 @@
 import "../styles/Extra.less";
-import {Col, Row, Space} from "antd";
+import {Col, Row, Skeleton, Space} from "antd";
 import {RightOutlined} from "@ant-design/icons";
 import React from "react";
+import {useTranslation} from "react-i18next";
+import {useGetApiOld} from "../../../../functions";
+import TextTruncate from "react-text-truncate";
+import {fn_stripHtml} from "../../../../functions/Helper";
+import {Link} from "react-router-dom";
 
 const Extra = () => {
+  
+  const { t } = useTranslation();
+  
+  const { isLoading: alaedeenAboutIsLoading, data: alaedeenAboutUsData } = useGetApiOld("page-api", "page_seo=alaedeen-about-us", "page_alaedeen-about-us", { refetchOnWindowFocus: false });
+  const alaedeenAboutUs = alaedeenAboutUsData || [];
   
   const viewTrust = (type) => {
     if (type === "zibal") {
@@ -18,17 +28,35 @@ const Extra = () => {
   return (
     <Row className="extra--container" justify="space-between" align="middle">
       <Col className="--aboutUs" span={8}>
-        <div className="__caption">
-          Alaedeen Online Store
-        </div>
         
-        <div className="__text">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur dolor eum, expedita incidunt, iusto labore maxime modi nemo nihil odio quod, sequi temporibus voluptate.
-        </div>
+        {
+          alaedeenAboutIsLoading ?
+            <Skeleton paragraph={{rows: 4}} />:
+            (
+              !!alaedeenAboutUs.description &&
+              <>
+                <div className="__caption">
+                  {t("alaedeen_about_us")}
+                </div>
+  
+                <div className="__text">
+                  <TextTruncate
+                    line={3}
+                    element="div"
+                    truncateText=" …"
+                    text={ fn_stripHtml(alaedeenAboutUs.description) }
+                  />
+                </div>
+  
+                <div className="__more">
+                  <Link to="/page/alaedeen-about-us">
+                    {t("more")} <RightOutlined />
+                  </Link>
+                </div>
+              </>
+            )
+        }
         
-        <div className="__more">
-          More <RightOutlined />
-        </div>
       </Col>
       
       <Col className="--eNamads">

@@ -10,11 +10,34 @@
       color: #82879B;
       font-size: 12px;
       margin-bottom: .25rem;
+      text-align: justify;
     }
     
     .__more {
-      color: #185E91;
-      font-size: 12px;
+      a {
+        color: #185E91;
+        font-size: 12px;
+      }
+    }
+  
+    .ant-skeleton-content {
+      .ant-skeleton-title {
+        margin-top: 0 !important;
+      }
+  
+      .ant-skeleton-paragraph {
+        & > li + li {
+          margin-top: 6.6px !important;
+        }
+      }
+    }
+  
+    &[class*="rtl"] {
+      .__more {
+        svg {
+          transform: rotate(-180deg);
+        }
+      }
     }
   }
   
