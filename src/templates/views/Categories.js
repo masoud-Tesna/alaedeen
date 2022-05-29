@@ -28,7 +28,7 @@ import CategoryMultiColumn from "../blocks/product_list_templates/CategoryMultiC
 
 // import filters show:
 
-//import ProductFilters from "../blocks/product_filters"; // TODO: commented filter
+//import ProductFilters from "../blocks/product_filters"; TODO: commented filter
 import SubCategoriesSwiperMobile from "./categories/SubCategoriesSwiperMobile";
 import SubCategoriesSwiperDesktop from "./categories/SubCategoriesSwiperDesktop";
 import LoaderSpinner from "../common/LoadSpinner";

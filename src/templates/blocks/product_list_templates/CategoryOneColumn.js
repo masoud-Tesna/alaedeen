@@ -1,6 +1,6 @@
 // import style file:
 import './styles/CategoryOneColumn.less';
-import { Button, Col, Row, Space } from "antd";
+import {Button, Col, Modal, Row, Space} from "antd";
 import { useWindowSize } from "../../../functions";
 import TextTruncate from "react-text-truncate";
 import { __, fn_stripHtml } from "../../../functions/Helper";
@@ -14,6 +14,7 @@ import {
   PrdFeatures_SINGLE_CHECKBOX,
   PrdFeatures_TEXT_FIELD
 } from "../../common/FeatureTypeConst";
+import {useState} from "react";
 
 const CategoryOneColumn = (props) => {
 
@@ -24,6 +25,8 @@ const CategoryOneColumn = (props) => {
 
   // product data:
   const { product } = props;
+  
+  const { contact_us: contactUs } = product || {};
 
   const productPrice = parseFloat(product.price).toFixed(2);
   const productListPrice = parseFloat(product.list_price).toFixed(2);
@@ -74,6 +77,16 @@ const CategoryOneColumn = (props) => {
       default: return <span className="textField">--</span>
     }
 
+  }
+  
+  const [isContactUsModal, setIsContactUsModal] = useState(false);
+  
+  const showContactUsModal = () => {
+    setIsContactUsModal(true);
+  }
+  
+  const handleContactUsModalClose = () => {
+    setIsContactUsModal(false);
   }
 
   return (
@@ -204,19 +217,17 @@ const CategoryOneColumn = (props) => {
                     </Col>
                     <Col span={12} className="productsOneColumnVertical--item__sendRequestBtn-phoneNumber text-right">
                       <div>
-                        {product?.agent_whatsApp_number ?
-                          <a className="text-primary" href={ `whatsapp://send?abid=${product?.agent_whatsApp_number}&text=` }>
-                            <i className="fab fa-whatsapp vv-font-size-2" style={{ verticalAlign: "sub", marginRight: ".5rem" }} /> {product?.agent_whatsApp_number}
-                          </a> :
-                          product?.agent_phone_number &&
-                          <a className="text-primary" href={ `tel:${product?.agent_phone_number}` }>
-                            <i className="fal fa-phone vv-font-size-2" style={{ marginRight: ".5rem" }}/> {product?.agent_phone_number}
-                          </a>
-                        }
+                        <Button
+                          icon={ <i className="far fa-address-book vv-font-size-1-7"/> }
+                          className="p-0 bg-transparent border-0 shadow-none factory--contacts"
+                          size={ "large" }
+                          onClick={showContactUsModal}
+                        >
+                          { t(__('Contacts')) }
+                        </Button>
 
                         <Button className="border border-primary p-0 productsOneColumnVertical--item__sendRequestBtn" size="large">{t(__('send request'))}</Button>
                       </div>
-
                     </Col>
                   </> :
                   <>
@@ -236,6 +247,93 @@ const CategoryOneColumn = (props) => {
 
       </Row>
       <Link className="productsOneColumnVertical--item__link" to={`/product/${product?.seo_name}`} />
+  
+      <Modal
+        className="factory--contactUs__modal"
+        title={ contactUs?.company }
+        visible={isContactUsModal}
+        onCancel={handleContactUsModalClose}
+        footer={false}
+        destroyOnClose
+      >
+        <Row className="row-cols-1" gutter={[0, 20]}>
+      
+          {contactUs?.full_name &&
+            <Col>
+              <Row gutter={width >= 992 ? 16 : 0}>
+                <Col xs={9} lg={5} className="text-92 contactUs--modal__variable">
+                  { t('supervisor') }:
+                </Col>
+                <Col xs={15} lg={19} className="text-47 contactUs--modal__value">
+                  { contactUs?.full_name }
+                </Col>
+              </Row>
+            </Col>
+          }
+      
+          {contactUs?.telephone &&
+            <Col>
+              <Row gutter={width >= 992 ? 16 : 0}>
+                <Col xs={9} lg={5} className="text-92 contactUs--modal__variable">
+                  { t('telephone') }:
+                </Col>
+                <Col xs={15} lg={19} className="text-47 contactUs--modal__value">
+                  { contactUs?.telephone }
+                </Col>
+              </Row>
+            </Col>
+          }
+      
+          {contactUs?.whatsapp &&
+            <Col>
+              <Row gutter={width >= 992 ? 16 : 0}>
+                <Col xs={9} lg={5} className="text-92 contactUs--modal__variable">
+                  { t('whatsapp') }:
+                </Col>
+                <Col xs={15} lg={19} className="text-47 contactUs--modal__value">
+                  { contactUs?.whatsapp }
+                </Col>
+              </Row>
+            </Col>
+          }
+      
+          {contactUs?.address &&
+            <Col>
+              <Row gutter={width >= 992 ? 16 : 0}>
+                <Col xs={9} lg={5} className="text-92 contactUs--modal__variable">
+                  { t('address') }:
+                </Col>
+                <Col xs={15} lg={19} className="text-47 contactUs--modal__value">
+              
+                  { contactUs?.country && `${contactUs?.country} - ` }
+              
+                  { contactUs?.state && `${contactUs?.state} - ` }
+              
+                  { contactUs?.address &&
+                    <span dangerouslySetInnerHTML={{ __html: contactUs?.address }} />
+                  }
+            
+                </Col>
+              </Row>
+            </Col>
+          }
+      
+          {(!contactUs?.full_name && !contactUs?.telephone && !contactUs?.whatsapp && !contactUs?.address) &&
+            <Col>
+              <Row gutter={width >= 992 ? 16 : 0}>
+                <Col xs={9} lg={5} className="text-92 contactUs--modal__variable">
+                  { t('email') }:
+                </Col>
+                <Col xs={15} lg={19} className="text-47 contactUs--modal__value">
+                  { contactUs?.email }
+                </Col>
+              </Row>
+            </Col>
+          }
+    
+        </Row>
+      </Modal>
+      
     </Col>
   );
 };

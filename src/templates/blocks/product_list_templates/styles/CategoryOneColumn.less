@@ -145,6 +145,31 @@ html:lang(ar) {
 
     }
   }
+  
+  .factory--contacts {
+    width: 130px;
+    height: 20px;
+    line-height: 16px;
+    z-index: 2;
+    
+    i {
+      margin-right: .9rem;
+      transform: scale(1.3);
+      font-weight: 300;
+      color: #3ba949;
+    }
+    
+    span:last-child {
+      font-weight: 600;
+    }
+  
+    &[class*="rtl"] {
+      i {
+        margin-right: 0;
+        margin-left: .9rem;
+      }
+    }
+  }
 
   .productsOneColumnVertical--item__sendRequestBtn {
     width: 105px;
@@ -173,4 +198,12 @@ html:lang(ar) {
     left: 0;
   }
 
+}
+
+
+.factory--contactUs__modal {
+  .ant-modal-content {
+    padding: 5px;
+    border-radius: 5px;
+  }
 }
