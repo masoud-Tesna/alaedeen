@@ -25,6 +25,7 @@ import { signInLoadingFalseAction } from "../../contexts/user/UserActionCreators
 
 import { useMutation } from "react-query";
 import { signInApi } from "../../functions";
+import alaedeenChar from "../assets/images/alaedeen-char.png";
 
 const SignIn = () => {
 
@@ -112,6 +113,20 @@ const SignIn = () => {
         description={ t('alaedeen_description') }
         keywords={ t('alaedeen_keywords') }
       />
+  
+      <Col span={ 24 } className="signIn--topSection">
+        <Row>
+          <Col span={ 24 } className="text-center logo-char cursor-pointer" onClick={() => navigate("/")}>
+            <img src={ alaedeenChar } alt=""/>
+          </Col>
+          <Col span={ 24 } className="text-center logo-text cursor-pointer" onClick={() => navigate("/")}>
+            <i className="logo-icon-alaedeen-com"/>
+          </Col>
+          <Col span={ 24 } className="text-center top-msg">
+            { t('register_top_msg') }
+          </Col>
+        </Row>
+      </Col>
 
       <Col xs={24} lg={15} className="signIn--content bg-white p-5">
         <Form

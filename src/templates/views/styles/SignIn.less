@@ -2,6 +2,39 @@
 @import '../../styles/Mixins';
 
 .signIn--container {
+  .signIn--topSection {
+    margin-top: 2.5rem;
+    
+    @media (min-width: @screen-md) {
+      margin-top: 4rem;
+    }
+    
+    .logo-char img {
+      width: 50px;
+      
+      @media (min-width: @screen-md) {
+        width: 52px;
+      }
+    }
+    
+    .logo-text i {
+      font-size: 2.8rem;
+      
+      @media (min-width: @screen-md) {
+        font-size: 3.5rem;
+      }
+    }
+    
+    .top-msg {
+      font-size: 1.5rem;
+      color: #333333;
+      
+      @media (min-width: @screen-md) {
+        font-size: 2rem;
+      }
+    }
+  }
+  
   .signIn--content {
     @media (min-width: @screen-md) {
       box-shadow: 0 0 1rem rgba(0, 0, 0, 0.17);
@@ -117,6 +150,6 @@
 
 @media (min-width: 992px) {
   .site-layout-content.siteLayoutContent__signIn--page {
-    height: calc(100vh - 41px);
+    height: calc(100vh - 170px);
   }
 }
