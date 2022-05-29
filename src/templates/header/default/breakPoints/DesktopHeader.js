@@ -9,7 +9,7 @@ import {useGetAuthState} from "../../../../contexts/user/UserContext";
 import {useTranslation} from "react-i18next";
 import {useEffect, useState} from "react";
 
-const DesktopHeader = () => {
+const DesktopHeader = ({ isHeader = true, isMenu = true }) => {
   
   const { user_data } = useGetAuthState();
   
@@ -42,41 +42,47 @@ const DesktopHeader = () => {
   }, []);
   
   return (
-    <Row className="header--container">
-      <Col span={24} className={`--header ${!!sticky && "--isSticky"}`}>
-        <Row gutter={{ md: 8, lg: 16, xl: 40 }} align="middle" className="h-100">
-          <Col span={6}>
-            <AlaedeenCharacter />
-          </Col>
+    <Row className={`header--container ${!isHeader ? "--noHeader" : ""} ${!isMenu ? "--noMenu" : ""}`}>
+      {
+        !!isHeader &&
+          <Col span={24} className={`--header ${!!sticky && "--isSticky"}`}>
+            <Row gutter={{ md: 8, lg: 16, xl: 40 }} align="middle" className="h-100">
+              <Col span={6}>
+                <AlaedeenCharacter />
+              </Col>
         
-          <Col span={sticky ? 12 : !!(user_data.auth.user_id) ? 11 : 12}>
-            <Search />
-          </Col>
+              <Col span={sticky ? 12 : !!(user_data.auth.user_id) ? 11 : 12}>
+                <Search />
+              </Col>
         
-          <Col span={sticky ? 6 : !!(user_data.auth.user_id) ? 7 : 6}>
-            <Row justify={!!sticky ? "center" : "space-between"} align="middle" className="h-100">
-              {!!sticky ?
-                <Col className="--requestQuote">
-                  <Button onClick={scrollToRequestSection} type="primary">{t("request_a_quote")}</Button>
-                </Col> :
-                <>
-                  <Col {...accountActionSpan}>
-                    <AccountActions />
-                  </Col>
+              <Col span={sticky ? 6 : !!(user_data.auth.user_id) ? 7 : 6}>
+                <Row justify={!!sticky ? "center" : "space-between"} align="middle" className="h-100">
+                  {!!sticky ?
+                    <Col className="--requestQuote">
+                      <Button onClick={scrollToRequestSection} type="primary">{t("request_a_quote")}</Button>
+                    </Col> :
+                    <>
+                      <Col {...accountActionSpan}>
+                        <AccountActions />
+                      </Col>
                 
-                  <Col span={4}>
-                    <FavLink />
-                  </Col>
-                </>
-              }
+                      <Col span={4}>
+                        <FavLink />
+                      </Col>
+                    </>
+                  }
+                </Row>
+              </Col>
             </Row>
           </Col>
-        </Row>
-      </Col>
-    
-      <Col span={24} className={`--menu `}>
-        <Menu />
-      </Col>
+      }
+  
+      {
+        !!isMenu &&
+          <Col span={24} className={`--menu `}>
+            <Menu />
+          </Col>
+      }
     </Row>
   );
 };

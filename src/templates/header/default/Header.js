@@ -4,7 +4,7 @@ import {MatchBreakpoint} from "react-hook-breakpoints";
 const MobileHeader = lazy(() => import('./breakPoints/MobileHeader'));
 const DesktopHeader = lazy(() => import('./breakPoints/DesktopHeader'));
 
-const Header = () => {
+const Header = ({ isHeader = true, isMenu= true }) => {
   
   return (
     <>
@@ -16,7 +16,7 @@ const Header = () => {
       
       <MatchBreakpoint min="md">
         <Suspense fallback={null}>
-          <DesktopHeader />
+          <DesktopHeader isMenu={ isMenu } isHeader={ isHeader } />
         </Suspense>
       </MatchBreakpoint>
     </>
