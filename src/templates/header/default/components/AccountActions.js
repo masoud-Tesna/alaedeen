@@ -122,16 +122,16 @@ const AccountActions = () => {
       
                     <Col flex="1 1">
                       <Row>
-                        <Col style={{ width: "calc(86% - 13px)" }}>
+                        <Col className="--accountName">
                           <TextTruncate
                             className="d-block w-100"
                             line={ 1 }
                             element="div"
-                            text="اکانت تست داشبورد"
+                            text={ user_data?.auth?.company || `${user_data?.auth?.firstname} ${user_data?.auth?.lastname}` }
                           />
                         </Col>
           
-                        <Col flex="13px">
+                        <Col >
                           <DownOutlined rotate={ dropDownIsActive ? 180 : 0} />
                         </Col>
                       </Row>
