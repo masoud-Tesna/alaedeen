@@ -26,7 +26,7 @@ const Extra = () => {
   }
   
   return (
-    <Row className="extra--container" justify="space-between" align="middle">
+    <Row className="extra--container" justify="space-between">
       <Col className="--aboutUs" span={8}>
         
         {
