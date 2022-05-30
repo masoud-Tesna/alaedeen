@@ -15,7 +15,7 @@ const DesktopHeader = ({ isHeader = true, isMenu = true }) => {
   
   const { t } = useTranslation();
   
-  const accountActionSpan = (!!(user_data.auth.user_id) || user_data.load) ? {span: 19} : null;
+  const accountActionSpan = (!!(user_data.auth.user_id) || user_data.load) ? {span: 19} : {};
   
   const scrollToRequestSection = () => {
     window.scroll({ top: 148, behavior: 'smooth' });
@@ -66,7 +66,7 @@ const DesktopHeader = ({ isHeader = true, isMenu = true }) => {
                         <AccountActions />
                       </Col>
                 
-                      <Col span={4}>
+                      <Col span={5}>
                         <FavLink />
                       </Col>
                     </>
