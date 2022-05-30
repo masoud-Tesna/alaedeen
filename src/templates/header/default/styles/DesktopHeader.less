@@ -5,6 +5,7 @@
   height: 148px;
   background-color: #FFF;
   box-shadow: 0 4px 63px -33px rgba(0, 0, 0, 0.13);
+  z-index: 1;
   
   &.--noHeader {
     height: 40px !important;
@@ -22,9 +23,9 @@
   .--header {
     height: 108px;
     
-    &:not(.--isSticky) {
+    /*&:not(.--isSticky) {
       border-bottom: 1px solid #E9ECEF;
-    }
+    }*/
     
     &.--isSticky {
       height: 78px;
@@ -56,6 +57,9 @@
   
   .--menu {
     height: 40px;
+    border: 1px solid #E9ECEF;
+    border-right: none;
+    border-left: none;
   }
 }
 
