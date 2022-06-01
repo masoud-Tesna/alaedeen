@@ -3,7 +3,7 @@ import {Col, Row} from "antd";
 import {Helmet} from "react-helmet";
 import {SeoGenerator} from "../../functions/Helper";
 import {useTranslation} from "react-i18next";
-import Requests from "./homePage/Requests";
+import Requests from "./homePage/requests/Requests";
 
 const HomePage = () => {
   
