@@ -1,0 +1,118 @@
+.requestsList--container {
+  .--caption {
+    color: #FFFFFF;
+    font-size: 2.71em;
+    font-weight: 500;
+    margin-bottom: 1.26em;
+    
+    &.__medium {
+      font-size: 1.71em;
+      margin-bottom: .33em;
+    }
+  
+    &.__small {
+      font-size: 0.85em;
+      margin-bottom: 9.33em;
+    }
+  }
+  
+  .--listItems {
+    background: #FFFFFF;
+    border: 1px solid #CED4DA;
+    border-radius: 4px;
+    
+    .--item {
+      padding: 14px 0 0 16px;
+      cursor: pointer;
+  
+      .--border {
+        padding: 0 8px;
+    
+        div {
+          border-bottom: 1px solid #E9ECEF;
+        }
+      }
+      
+      .--details {
+        .--requestName {
+          padding-top: 2px;
+          color: #030304;
+          font-weight: 500;
+          font-size: 1.14em;
+        }
+        
+        .--lookingFor,
+        .--date,
+        .--location {
+          color: #82879B;
+          font-size: .85em;
+        }
+        
+        .--countryIcon {
+          i {
+            display: block;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+          }
+        }
+        
+        .--dateAndLocation {
+          width: calc(100% - 54px);
+          padding-right: 10px;
+          
+          .--calendarIcon,
+          .--countryIcon {
+            width: 26px;
+          }
+          
+          .--date,
+          .--location {
+            width: calc(100% - 26px);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+  
+        .--arrowIcon {
+          width: 40px;
+          transition: all 0.3s;
+    
+          &:before {
+            content: "";
+            border-left: 1px solid #E9ECEF;
+            width: 1px;
+            position: absolute;
+            top: 10px;
+            height: 36px;
+          }
+    
+          .--svgIcon {
+            position: absolute;
+            top: 15px;
+            margin-left: 16px;
+          }
+        }
+      }
+      
+      &:hover {
+        .--arrowIcon{
+          .--svgIcon {
+            left: 8px;
+            animation: arrowIconMoveLeft 0.3s;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes arrowIconMoveLeft {
+  from {
+    left: 0;
+  }
+  to {
+    left: 8px;
+  }
+}
