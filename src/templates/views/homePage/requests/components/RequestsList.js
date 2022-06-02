@@ -55,7 +55,6 @@ const RequestsList = () => {
     ]
   )
   
-  
   return (
     <Row className="requestsList--container">
       <Col span={24} className="--caption">

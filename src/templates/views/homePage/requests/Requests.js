@@ -8,7 +8,7 @@ const Requests = () => {
     <Row className="requests--container" align="middle">
       <Col span={24} style={{ overflowX: "hidden" }}>
         <Row gutter={0} justify="space-between">
-          <Col span={11} className="--list">
+          <Col span={10} className="--list">
             <RequestsList />
           </Col>
           
