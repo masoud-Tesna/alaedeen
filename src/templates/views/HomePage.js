@@ -44,7 +44,6 @@ const HomePage = () => {
       </SeoGenerator>
       
       <Col span={24} className="--requestSection">
-        <div className="--blurBg" />
         <Requests />
       </Col>
     </Row>
