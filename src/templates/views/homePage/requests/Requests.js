@@ -7,16 +7,12 @@ const Requests = () => {
   return (
     <Row className="requests--container" align="middle">
       <Col span={24} style={{ overflowX: "hidden" }}>
-        <Row gutter={100}>
-          <Col span={12}>
-            <Row>
-              <Col span={24} className="--list">
-                <RequestsList />
-              </Col>
-            </Row>
+        <Row gutter={0} justify="space-between">
+          <Col span={11} className="--list">
+            <RequestsList />
           </Col>
           
-          <Col span={12} className="--form">
+          <Col span={11} className="--form">
             <RequestForm />
           </Col>
         </Row>
