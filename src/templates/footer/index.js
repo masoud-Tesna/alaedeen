@@ -1,5 +1,5 @@
 // import Footer:
-import { useParsPathName } from "../../functions/Helper";
+import { useParsPathName } from "../../utilities/functions/Helper";
 import Footer from "./default/Footer";
 
 const SiteFooter = () => {

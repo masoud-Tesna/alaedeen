@@ -4,7 +4,7 @@ import React, { Fragment } from 'react';
 import './styles/FeaturesGrid.less';
 import { Col, Image, Row, Skeleton, Space } from "antd";
 import {useTranslation} from "react-i18next";
-import {__} from "../../functions/Helper";
+import {__} from "../../utilities/functions/Helper";
 
 import ShowResponsiveImage from "./ShowResponsiveImage";
 

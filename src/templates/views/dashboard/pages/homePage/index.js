@@ -1,7 +1,7 @@
 import "./styles/Dashboard.less";
 import { Col, Row } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
-import { SeoGenerator } from "../../../../../functions/Helper";
+import { SeoGenerator } from "../../../../../utilities/functions/Helper";
 import ShowResponsiveImage from "../../../../common/ShowResponsiveImage";
 import React from "react";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";

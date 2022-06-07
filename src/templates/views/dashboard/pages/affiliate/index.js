@@ -5,7 +5,7 @@ import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { SeoGenerator } from "../../../../../functions/Helper";
+import { SeoGenerator } from "../../../../../utilities/functions/Helper";
 
 const Affiliate = () => {
 

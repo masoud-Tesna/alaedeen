@@ -5,8 +5,8 @@ import { useLocation } from 'react-router-dom';
 import axios from "axios";
 
 import { useQuery } from "react-query";
-import { useGetConfig } from "../contexts/config/ConfigContext";
-import { useGetAuthState } from "../contexts/user/UserContext";
+import { useGetConfig } from "../../contexts/config/ConfigContext";
+import { useGetAuthState } from "../../contexts/user/UserContext";
 
 export function useGetTopRankingProducts(cat1, cat2, cat3) {
   const [load, setLoad] = useState(true);

@@ -5,9 +5,9 @@ import "./styles/ManufactureInformation.less";
 
 import { Button, Col, Form, Modal, Result, Row, Tabs } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
-import { useGetApiOld } from "../../../../../functions";
+import { useGetApiOld } from "../../../../../utilities/functions";
 import { useTranslation } from "react-i18next";
-import { __, fn_date_to_timestamp, scrollTop, SeoGenerator } from "../../../../../functions/Helper";
+import { __, fn_date_to_timestamp, scrollTop, SeoGenerator } from "../../../../../utilities/functions/Helper";
 import CompanyDetailsForm from "./manufactureInformation/CompanyDetailsForm";
 import ManufacturingCapabilityForm from "./manufactureInformation/ManufacturingCapabilityForm";
 import ExportCapabilityForm from "./manufactureInformation/ExportCapabilityForm";

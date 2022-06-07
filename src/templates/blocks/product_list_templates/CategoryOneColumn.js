@@ -1,9 +1,9 @@
 // import style file:
 import './styles/CategoryOneColumn.less';
 import {Button, Col, Modal, Row, Space} from "antd";
-import { useWindowSize } from "../../../functions";
+import { useWindowSize } from "../../../utilities/functions";
 import TextTruncate from "react-text-truncate";
-import { __, fn_stripHtml } from "../../../functions/Helper";
+import { __, fn_stripHtml } from "../../../utilities/functions/Helper";
 import { useTranslation } from "react-i18next";
 
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";

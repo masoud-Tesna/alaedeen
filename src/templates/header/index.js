@@ -1,6 +1,6 @@
 // import Custom Hooks:
-import { useWindowSize } from '../../functions';
-import { useParsPathName } from "../../functions/Helper";
+import { useWindowSize } from '../../utilities/functions';
+import { useParsPathName } from "../../utilities/functions/Helper";
 
 // Templates:
 import Header from "./default/Header";

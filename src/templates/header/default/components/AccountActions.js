@@ -4,7 +4,7 @@ import {Button, Col, Dropdown, Menu, Row, Skeleton} from "antd";
 import ShowResponsiveImage from "../../../common/ShowResponsiveImage";
 import {DownOutlined} from "@ant-design/icons";
 import {Link} from "react-router-dom";
-import {__} from "../../../../functions/Helper";
+import {__} from "../../../../utilities/functions/Helper";
 import {useGetConfig} from "../../../../contexts/config/ConfigContext";
 import {logout, useDispatchAuthState, useGetAuthState} from "../../../../contexts/user/UserContext";
 import {useTranslation} from "react-i18next";

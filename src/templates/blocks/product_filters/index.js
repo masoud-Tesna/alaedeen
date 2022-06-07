@@ -3,11 +3,11 @@ import './styles/ProductFilters.less';
 
 import { Button, Col, Collapse, Row, Space } from "antd";
 import { useTranslation } from "react-i18next";
-import { __ } from "../../../functions/Helper";
+import { __ } from "../../../utilities/functions/Helper";
 import { DownOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import ProductFilterVariants from "./components/productFilterVariants";
-import { useWindowSize } from "../../../functions";
+import { useWindowSize } from "../../../utilities/functions";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 
 const ProductFilters = (props) => {

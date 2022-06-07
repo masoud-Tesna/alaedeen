@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./styles/ImagesUploader.less";
 
 import { useTranslation } from "react-i18next";
-import { __, fn_get_base64 } from "../../functions/Helper";
+import { __, fn_get_base64 } from "../../utilities/functions/Helper";
 import { Modal, Upload } from "antd";
 
 const ImagesUploader = (

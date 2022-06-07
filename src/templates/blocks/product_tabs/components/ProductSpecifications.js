@@ -2,7 +2,7 @@
 import { Col, Row, Skeleton } from "antd";
 
 import { useTranslation } from "react-i18next";
-import { __ } from "../../../../functions/Helper";
+import { __ } from "../../../../utilities/functions/Helper";
 
 //import feature type const:
 import {

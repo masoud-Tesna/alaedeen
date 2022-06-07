@@ -5,10 +5,10 @@ import './styles/ShipProductsBanner.less';
 import { Button, Col, Row } from "antd";
 
 // import another components used:
-import { useWindowSize } from "../../../functions";
+import { useWindowSize } from "../../../utilities/functions";
 
 // import helper functions:
-import { __ } from '../../../functions/Helper';
+import { __ } from '../../../utilities/functions/Helper';
 
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";

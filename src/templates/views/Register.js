@@ -18,14 +18,14 @@ import {
   Tabs,
   TreeSelect
 } from "antd";
-import { __, fn_deadline, SeoGenerator } from "../../functions/Helper";
+import { __, fn_deadline, SeoGenerator } from "../../utilities/functions/Helper";
 import { EditOutlined, EyeInvisibleOutlined, EyeTwoTone, LoadingOutlined, SendOutlined } from "@ant-design/icons";
 import googlePic from "../assets/images/google.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { signInAction, useDispatchAuthState, useGetAuthState } from "../../contexts/user/UserContext";
 
-import { signInApi, useGetApiOld, useQueryString } from "../../functions";
+import { signInApi, useGetApiOld, useQueryString } from "../../utilities/functions";
 import axios from "axios";
 import { useGetConfig } from "../../contexts/config/ConfigContext";
 

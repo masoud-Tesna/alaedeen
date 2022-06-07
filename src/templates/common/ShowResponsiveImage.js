@@ -1,4 +1,4 @@
-import { useResizeImage } from "../../functions";
+import { useResizeImage } from "../../utilities/functions";
 import { Image, Skeleton } from 'antd';
 import React from "react";
 

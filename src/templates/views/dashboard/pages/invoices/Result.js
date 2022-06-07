@@ -5,7 +5,7 @@ import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 import { Col, Row, Skeleton, Statistic } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import React from "react";
-import { useGetApi, useGetApiOld, useQueryString } from "../../../../../functions";
+import { useGetApi, useGetApiOld, useQueryString } from "../../../../../utilities/functions";
 import {
   CheckCircleTwoTone,
   ExclamationCircleOutlined,
@@ -16,7 +16,7 @@ import Moment from "react-moment";
 import moment from "moment-jalaali";
 import fa from "moment/locale/fa";
 import { useGetConfig } from "../../../../../contexts/config/ConfigContext";
-import { fn_after_discount, fn_discount, SeoGenerator } from "../../../../../functions/Helper";
+import { fn_after_discount, fn_discount, SeoGenerator } from "../../../../../utilities/functions/Helper";
 import { useParams } from "react-router-dom";
 
 const Result = () => {

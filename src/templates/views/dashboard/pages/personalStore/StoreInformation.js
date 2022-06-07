@@ -5,9 +5,9 @@ import "./styles/StoreInformation.less";
 
 import { Col, Form, Modal, Result, Row, Tabs } from "antd";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
-import { useGetApiOld } from "../../../../../functions";
+import { useGetApiOld } from "../../../../../utilities/functions";
 import { useTranslation } from "react-i18next";
-import { __, scrollTop, SeoGenerator } from "../../../../../functions/Helper";
+import { __, scrollTop, SeoGenerator } from "../../../../../utilities/functions/Helper";
 import CompanyDetailsForm from "./storeInformation/CompanyDetailsForm";
 import ManufacturingCapabilityForm from "./storeInformation/ManufacturingCapabilityForm";
 import ExportCapabilityForm from "./storeInformation/ExportCapabilityForm";

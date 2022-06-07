@@ -3,12 +3,12 @@ import {Col, Dropdown, Menu, Row, Skeleton} from "antd";
 import { DownOutlined } from "@ant-design/icons";
 
 // import helper functions:
-import { __ } from "../../../functions/Helper";
+import { __ } from "../../../utilities/functions/Helper";
 
 import { useTranslation } from "react-i18next";
 
 // import custom hooks:
-import { useGetApiOld } from "../../../functions";
+import { useGetApiOld } from "../../../utilities/functions";
 import { Link } from "react-router-dom";
 import React, {useState} from "react";
 import SvgIcon from "../../common/SvgIcon";

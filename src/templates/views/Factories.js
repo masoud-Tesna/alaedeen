@@ -11,10 +11,10 @@ import { Col, Row, Space } from "antd";
 import topSectionBg from '../assets/images/factoriezTopSectionBg.png';
 
 // import helper functions:
-import { __, SeoGenerator } from '../../functions/Helper';
+import { __, SeoGenerator } from '../../utilities/functions/Helper';
 
 import { useTranslation } from "react-i18next";
-import { useGetApiOld, useQueryString } from "../../functions";
+import { useGetApiOld, useQueryString } from "../../utilities/functions";
 
 // import Factories Show Component:
 import FactoryOneColumn from "./factories/FactoryOneColumn";

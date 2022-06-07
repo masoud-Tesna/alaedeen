@@ -4,7 +4,7 @@ import "keen-slider/keen-slider.min.css"
 import {Col, Row} from "antd";
 import { useKeenSlider } from "keen-slider/react"
 import {useTranslation} from "react-i18next";
-import {__} from "../../../../../functions/Helper";
+import {__} from "../../../../../utilities/functions/Helper";
 import SvgIcon from "../../../../common/SvgIcon";
 
 const RequestsList = () => {

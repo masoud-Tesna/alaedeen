@@ -1,14 +1,14 @@
 import "../styles/index.less";
 import DashboardContentHeader from "../../../templates/components/DashboardContentHeader";
 import { Col, Empty, Row, Skeleton } from "antd";
-import { useGetApi } from "../../../../../../functions";
+import { useGetApi } from "../../../../../../utilities/functions";
 import Moment from "react-moment";
 import moment from "moment-jalaali";
 import fa from "moment/locale/fa";
 import React, { useEffect, useState } from "react";
 import { useGetConfig } from "../../../../../../contexts/config/ConfigContext";
 import { useTranslation } from "react-i18next";
-import { __, SeoGenerator } from "../../../../../../functions/Helper";
+import { __, SeoGenerator } from "../../../../../../utilities/functions/Helper";
 import { CommentOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { useGetAuthState } from "../../../../../../contexts/user/UserContext";

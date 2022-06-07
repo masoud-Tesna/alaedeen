@@ -1,5 +1,5 @@
 import { Button, Checkbox, Col, Form, Input, message, Row } from "antd";
-import { __ } from "../../../../../../functions/Helper";
+import { __ } from "../../../../../../utilities/functions/Helper";
 import { useTranslation } from "react-i18next";
 import { useGetAuthState } from "../../../../../../contexts/user/UserContext";
 import axios from "axios";

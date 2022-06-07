@@ -1,7 +1,7 @@
 import "../styles/FavLink.less";
 import {Col, Row, Tooltip} from "antd";
 import {useTranslation} from "react-i18next";
-import {__} from "../../../../functions/Helper";
+import {__} from "../../../../utilities/functions/Helper";
 import {Link} from "react-router-dom";
 import SvgIcon from "../../../common/SvgIcon";
 

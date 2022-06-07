@@ -9,10 +9,10 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import SkeletonTopBrands from "./skeletons/SkeletonTopBrands";
 
 // import custom hooks:
-import { useGetApiOld, useWindowSize } from "../../../functions";
+import { useGetApiOld, useWindowSize } from "../../../utilities/functions";
 
 // import helper functions:
-import { __, fn_stripHtml } from '../../../functions/Helper';
+import { __, fn_stripHtml } from '../../../utilities/functions/Helper';
 
 import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";

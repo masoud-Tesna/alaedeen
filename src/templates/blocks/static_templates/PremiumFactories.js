@@ -13,10 +13,10 @@ import verifiedIcon from '../../assets/images/verified.png';
 import SkeletonTopBrands from "./skeletons/SkeletonTopBrands";
 
 // import custom hook used:
-import { useGetApiOld, useWindowSize } from '../../../functions';
+import { useGetApiOld, useWindowSize } from '../../../utilities/functions';
 
 // import helper functions:
-import { __ } from '../../../functions/Helper';
+import { __ } from '../../../utilities/functions/Helper';
 
 import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";

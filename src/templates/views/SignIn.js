@@ -10,7 +10,7 @@ import { Button, Col, Form, Input, message, Row } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone, LockOutlined, UserOutlined } from "@ant-design/icons";
 
 // import helper functions:
-import { __, SeoGenerator } from "../../functions/Helper";
+import { __, SeoGenerator } from "../../utilities/functions/Helper";
 import { useTranslation } from "react-i18next";
 
 // import google pic:
@@ -24,7 +24,7 @@ import { useGetConfig } from "../../contexts/config/ConfigContext";
 import { signInLoadingFalseAction } from "../../contexts/user/UserActionCreators";
 
 import { useMutation } from "react-query";
-import { signInApi } from "../../functions";
+import { signInApi } from "../../utilities/functions";
 import alaedeenChar from "../assets/images/alaedeen-char.png";
 
 const SignIn = () => {

@@ -3,7 +3,7 @@ import './styles/ProductTab.less';
 
 import { Col, Row, Tabs } from 'antd';
 import { useTranslation } from "react-i18next";
-import { __ } from "../../../functions/Helper";
+import { __ } from "../../../utilities/functions/Helper";
 import ProductSpecifications from "./components/ProductSpecifications";
 
 

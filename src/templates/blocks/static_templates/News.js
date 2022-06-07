@@ -8,11 +8,11 @@ import moment from "moment-jalaali";
 import { Col, Divider, Row, Skeleton } from "antd";
 
 // import helper functions:
-import { __, fn_stripHtml } from '../../../functions/Helper';
+import { __, fn_stripHtml } from '../../../utilities/functions/Helper';
 
 import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
-import { useGetApiOld } from "../../../functions";
+import { useGetApiOld } from "../../../utilities/functions";
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 
 import fa from "moment/locale/fa";

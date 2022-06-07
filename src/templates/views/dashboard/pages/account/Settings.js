@@ -1,6 +1,6 @@
 import "./styles/ManufactureInformation.less";
 import { Col, Row, Skeleton, Tabs } from "antd";
-import { scrollTop, SeoGenerator } from "../../../../../functions/Helper";
+import { scrollTop, SeoGenerator } from "../../../../../utilities/functions/Helper";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import { useTranslation } from "react-i18next";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";

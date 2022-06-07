@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./styles/Notifications.less";
 import {Alert, Col, Row, Skeleton} from "antd";
-import {SeoGenerator} from "../../../../../functions/Helper";
+import {SeoGenerator} from "../../../../../utilities/functions/Helper";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
-import {useGetApi} from "../../../../../functions";
+import {useGetApi} from "../../../../../utilities/functions";
 import {useGetConfig} from "../../../../../contexts/config/ConfigContext";
 import Moment from "react-moment";
 import moment from "moment-jalaali";

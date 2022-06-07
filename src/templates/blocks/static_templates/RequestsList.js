@@ -8,10 +8,10 @@ import './styles/RequestsList.less';
 import { Col, Row, Skeleton, Modal } from "antd";
 
 // import helper functions:
-import { __ } from '../../../functions/Helper';
+import { __ } from '../../../utilities/functions/Helper';
 
 import { useTranslation } from "react-i18next";
-import { useGetApiOld, useWindowSize } from "../../../functions";
+import { useGetApiOld, useWindowSize } from "../../../utilities/functions";
 
 // import Moment for show date:
 import Moment from 'react-moment';

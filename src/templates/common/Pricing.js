@@ -2,7 +2,7 @@ import "./styles/Pricing.less";
 
 import { Checkbox, Col, Row, Statistic } from "antd";
 import { useTranslation } from "react-i18next";
-import { fn_discount } from "../../functions/Helper";
+import { fn_discount } from "../../utilities/functions/Helper";
 
 const Pricing = (
   {

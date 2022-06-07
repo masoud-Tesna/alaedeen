@@ -1,7 +1,7 @@
 import "../styles/Lists.less";
 import {Col, Row, Skeleton, Space} from "antd";
-import {useGetApiOld} from "../../../../functions";
-import {__} from "../../../../functions/Helper";
+import {useGetApiOld} from "../../../../utilities/functions";
+import {__} from "../../../../utilities/functions/Helper";
 import {Link} from "react-router-dom";
 import React from "react";
 import {useTranslation} from "react-i18next";

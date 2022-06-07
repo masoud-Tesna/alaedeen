@@ -14,10 +14,10 @@ import InfiniteScroll from "react-infinite-scroller";
 import { useGetConfig } from "../../contexts/config/ConfigContext";
 
 // import helper functions:
-import { useWindowSize } from "../../functions";
+import { useWindowSize } from "../../utilities/functions";
 
 // import helpers function:
-import { __, SeoGenerator } from "../../functions/Helper";
+import { __, SeoGenerator } from "../../utilities/functions/Helper";
 import { useTranslation } from "react-i18next";
 
 // import product show and product skeleton show:

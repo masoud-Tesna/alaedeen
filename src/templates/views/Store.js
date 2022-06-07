@@ -1,8 +1,8 @@
 import {useEffect} from "react";
 import {Col, Row} from "antd";
-import {SeoGenerator} from "../../functions/Helper";
+import {SeoGenerator} from "../../utilities/functions/Helper";
 import {useNavigate, useParams} from "react-router-dom";
-import {useGetApi} from "../../functions";
+import {useGetApi} from "../../utilities/functions";
 import {useGetConfig} from "../../contexts/config/ConfigContext";
 import StoreDetails from "./store/StoreDetails";
 

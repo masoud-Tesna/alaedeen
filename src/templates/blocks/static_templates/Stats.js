@@ -5,10 +5,10 @@ import './styles/Stats.less';
 import { Col, Row, Skeleton } from "antd";
 
 // import custom hooks:
-import { useGetApiOld } from "../../../functions";
+import { useGetApiOld } from "../../../utilities/functions";
 
 // import helper functions:
-import { __ } from '../../../functions/Helper';
+import { __ } from '../../../utilities/functions/Helper';
 
 import { useTranslation } from "react-i18next";
 

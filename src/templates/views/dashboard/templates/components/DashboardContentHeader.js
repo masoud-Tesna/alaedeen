@@ -2,7 +2,7 @@ import "./styles/DashboardContentHeader.less"
 
 import { Button, Col, Row, Skeleton } from "antd";
 import { useTranslation } from "react-i18next";
-import { __ } from "../../../../../functions/Helper";
+import { __ } from "../../../../../utilities/functions/Helper";
 
 import { DashboardDrawerContext } from "../DashboardMain";
 import { Link } from "react-router-dom";

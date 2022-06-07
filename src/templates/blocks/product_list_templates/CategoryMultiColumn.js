@@ -1,7 +1,7 @@
 // import style file:
 import './styles/CategoryMultiColumn.less';
 import { Col, Row } from "antd";
-import { useWindowSize } from "../../../functions";
+import { useWindowSize } from "../../../utilities/functions";
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 import { Link } from "react-router-dom";
 

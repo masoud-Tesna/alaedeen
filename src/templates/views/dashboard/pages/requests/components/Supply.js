@@ -1,9 +1,9 @@
 import {Checkbox, Col, Form, Input, Row, Select, Switch, Radio, Space, Button, InputNumber, Spin, message} from "antd";
-import { __ } from "../../../../../../functions/Helper";
+import { __ } from "../../../../../../utilities/functions/Helper";
 import { useTranslation } from "react-i18next";
 import React, { useState } from "react";
 import { CheckOutlined, CloseOutlined } from "@ant-design/icons";
-import { useGetApiOld } from "../../../../../../functions";
+import { useGetApiOld } from "../../../../../../utilities/functions";
 import axios from "axios";
 
 const Supply = (

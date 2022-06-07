@@ -8,7 +8,7 @@ import { useGetConfig } from "../../../../contexts/config/ConfigContext";
 
 import DashboardSidenav from "./components/DashboardSidenav";
 import { Content } from "antd/es/layout/layout";
-import { useParsPathName } from "../../../../functions/Helper";
+import { useParsPathName } from "../../../../utilities/functions/Helper";
 
 export const DashboardDrawerContext = createContext();
 

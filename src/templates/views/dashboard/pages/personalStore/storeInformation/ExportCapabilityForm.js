@@ -9,7 +9,7 @@ import {
   Switch,
   Button
 } from "antd";
-import { __ } from "../../../../../../functions/Helper";
+import { __ } from "../../../../../../utilities/functions/Helper";
 import { useTranslation } from "react-i18next";
 import ImagesUploader from "../../../../../common/ImagesUploader";
 import { UploadOutlined } from "@ant-design/icons";

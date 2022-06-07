@@ -3,8 +3,8 @@ import "../styles/Search.less";
 import {AutoComplete, Col, Input, Row, Select, Skeleton} from "antd";
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
-import {__} from "../../../../functions/Helper";
-import {useGetApi} from "../../../../functions";
+import {__} from "../../../../utilities/functions/Helper";
+import {useGetApi} from "../../../../utilities/functions";
 import SvgIcon from "../../../common/SvgIcon";
 
 const Search = () => {

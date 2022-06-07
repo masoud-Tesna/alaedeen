@@ -3,7 +3,7 @@ import { isLoadingAction, useSpinnerDispatch } from "../../../../../../contexts/
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import { useGetAuthState } from "../../../../../../contexts/user/UserContext";
-import { __ } from "../../../../../../functions/Helper";
+import { __ } from "../../../../../../utilities/functions/Helper";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { useState } from "react";
 

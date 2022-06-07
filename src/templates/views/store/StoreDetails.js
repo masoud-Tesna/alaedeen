@@ -5,8 +5,8 @@ import ImageGallery from "../../common/ImageGallery";
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import {useGetConfig} from "../../../contexts/config/ConfigContext";
 import {useTranslation} from "react-i18next";
-import {__, fn_get_lines_count} from "../../../functions/Helper";
-import {useWindowSize} from "../../../functions";
+import {__, fn_get_lines_count} from "../../../utilities/functions/Helper";
+import {useWindowSize} from "../../../utilities/functions";
 import CompanyInformation from "./components/CompanyInformation";
 import StoreProducts from "./components/StoreProducts";
 

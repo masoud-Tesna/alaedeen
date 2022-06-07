@@ -8,14 +8,14 @@ import { Col, Row } from "antd";
 import ScrollContainer from 'react-indiana-drag-scroll';
 
 // import custom hooks:
-import { useGetApiOld, useWindowSize } from "../../../functions";
+import { useGetApiOld, useWindowSize } from "../../../utilities/functions";
 
 import CategoriesMultiColumnSkeleton from "./skeletons/CategoriesMultiColumnSkeleton";
 
 import TextTruncate from "react-text-truncate";
 
 // import helper functions:
-import { __ } from '../../../functions/Helper';
+import { __ } from '../../../utilities/functions/Helper';
 
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";

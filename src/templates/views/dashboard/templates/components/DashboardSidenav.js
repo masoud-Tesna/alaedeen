@@ -10,7 +10,7 @@ import alaedeenChar from '../../../../assets/images/alaedeen-char.png';
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useConfigDispatch, useGetConfig, changeLanguageAction } from "../../../../../contexts/config/ConfigContext";
-import { useWindowSize } from "../../../../../functions";
+import { useWindowSize } from "../../../../../utilities/functions";
 import { isLoadingAction, useSpinnerDispatch } from "../../../../../contexts/spiner/SpinnerContext";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 import ShowResponsiveImage from "../../../../common/ShowResponsiveImage";

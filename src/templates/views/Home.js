@@ -3,10 +3,10 @@ import './styles/Home.less';
 
 import { Helmet } from "react-helmet";
 
-import { SeoGenerator } from "../../functions/Helper";
+import { SeoGenerator } from "../../utilities/functions/Helper";
 
 // import Custom Hooks:
-import { useWindowSize } from '../../functions';
+import { useWindowSize } from '../../utilities/functions';
 
 // import Design:
 import { Col, Row } from "antd";

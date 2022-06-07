@@ -1,7 +1,7 @@
 import "./styles/Invoices.less";
-import { useGetApi } from "../../../../../functions";
+import { useGetApi } from "../../../../../utilities/functions";
 import { Button, Col, Row, Skeleton, Statistic } from "antd";
-import { __, SeoGenerator } from "../../../../../functions/Helper";
+import { __, SeoGenerator } from "../../../../../utilities/functions/Helper";
 import DashboardContentHeader from "../../templates/components/DashboardContentHeader";
 import React from "react";
 import { useGetConfig } from "../../../../../contexts/config/ConfigContext";

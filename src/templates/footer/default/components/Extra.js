@@ -3,9 +3,9 @@ import {Col, Row, Skeleton, Space} from "antd";
 import {RightOutlined} from "@ant-design/icons";
 import React from "react";
 import {useTranslation} from "react-i18next";
-import {useGetApiOld} from "../../../../functions";
+import {useGetApiOld} from "../../../../utilities/functions";
 import TextTruncate from "react-text-truncate";
-import {fn_stripHtml} from "../../../../functions/Helper";
+import {fn_stripHtml} from "../../../../utilities/functions/Helper";
 import {Link} from "react-router-dom";
 
 const Extra = () => {

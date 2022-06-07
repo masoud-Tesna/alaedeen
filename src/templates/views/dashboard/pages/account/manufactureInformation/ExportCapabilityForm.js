@@ -5,7 +5,7 @@ import {
   Row,
   Checkbox
 } from "antd";
-import { __, scrollIntoViewIfTargetNotOnDisplay } from "../../../../../../functions/Helper";
+import { __, scrollIntoViewIfTargetNotOnDisplay } from "../../../../../../utilities/functions/Helper";
 import { useTranslation } from "react-i18next";
 import { useRef } from "react";
 

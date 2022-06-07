@@ -16,10 +16,10 @@ import polygon_2 from '../../assets/images/polygon2.png';
 import polygon_3 from '../../assets/images/polygon3.png';
 
 // import custom hooks:
-import { useGetTopRankingProducts, useWindowSize } from "../../../functions";
+import { useGetTopRankingProducts, useWindowSize } from "../../../utilities/functions";
 
 // import helper functions:
-import { __ } from '../../../functions/Helper';
+import { __ } from '../../../utilities/functions/Helper';
 
 import { useTranslation } from "react-i18next";
 

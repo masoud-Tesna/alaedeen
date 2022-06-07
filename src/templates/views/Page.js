@@ -5,8 +5,8 @@ import './styles/Page.less';
 
 // import ant design:
 import { Col, Row, Skeleton } from "antd";
-import { useGetApiOld } from "../../functions";
-import { SeoGenerator } from "../../functions/Helper";
+import { useGetApiOld } from "../../utilities/functions";
+import { SeoGenerator } from "../../utilities/functions/Helper";
 import moment from "moment-jalaali";
 import Moment from "react-moment";
 import React from "react";

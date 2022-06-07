@@ -1,8 +1,8 @@
-import {useGetApiOld} from "../../functions";
+import {useGetApiOld} from "../../utilities/functions";
 import { useNavigate, useParams } from "react-router-dom";
 import {Col, Row} from "antd";
 import ProductDetail from "../blocks/product_templates";
-import { SeoGenerator } from "../../functions/Helper";
+import { SeoGenerator } from "../../utilities/functions/Helper";
 
 const Product = () => {
 

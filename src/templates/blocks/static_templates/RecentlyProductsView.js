@@ -14,10 +14,10 @@ import ProductsMultiColumnVertical from "../product_list_templates/ProductsMulti
 import SkeletonMultiColumnVertical from "../product_list_templates/skeletons/SkeletonMultiColumnVertical";
 
 // import custom hooks:
-import { useGetApiOld, useWindowSize } from '../../../functions';
+import { useGetApiOld, useWindowSize } from '../../../utilities/functions';
 
 // import helper functions:
-import { __ } from '../../../functions/Helper';
+import { __ } from '../../../utilities/functions/Helper';
 
 import { useTranslation } from "react-i18next";
 

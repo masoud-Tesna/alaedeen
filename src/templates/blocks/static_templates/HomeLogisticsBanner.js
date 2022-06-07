@@ -2,7 +2,7 @@
 import './styles/HomeLogisticsBanner.less';
 
 // import helper functions:
-import { useWindowSize } from "../../../functions";
+import { useWindowSize } from "../../../utilities/functions";
 
 import { useTranslation } from "react-i18next";
 

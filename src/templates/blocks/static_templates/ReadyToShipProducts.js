@@ -6,7 +6,7 @@ import SkeletonMultiColumnVertical from "../product_list_templates/skeletons/Ske
 import { Row } from "antd";
 
 // import Custom hooks:
-import { useGetApiOld, useWindowSize } from "../../../functions";
+import { useGetApiOld, useWindowSize } from "../../../utilities/functions";
 
 const ReadyToShipProducts = () => {
 

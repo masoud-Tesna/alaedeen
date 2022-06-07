@@ -4,11 +4,11 @@ import { useState } from "react";
 import './styles/OneRequestMultipleQuotes.less';
 
 // import helper functions:
-import { __ } from '../../../functions/Helper';
+import { __ } from '../../../utilities/functions/Helper';
 
 import { useTranslation } from "react-i18next";
 
-import { useGetApiOld, useWindowSize } from '../../../functions';
+import { useGetApiOld, useWindowSize } from '../../../utilities/functions';
 
 // import ant design:
 import { Col, Row, Form, Input, Button, Select, InputNumber, Modal, Checkbox, Radio, Result, Spin } from "antd";

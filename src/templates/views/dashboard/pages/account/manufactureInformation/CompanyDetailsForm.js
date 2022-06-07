@@ -1,5 +1,5 @@
 import { Form, Input} from "antd";
-import { __ } from "../../../../../../functions/Helper";
+import { __ } from "../../../../../../utilities/functions/Helper";
 import { useTranslation } from "react-i18next";
 
 const CompanyDetailsForm = () => {

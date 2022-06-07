@@ -3,10 +3,10 @@ import { useState } from "react";
 import "./styles/CreateCategory.less";
 
 import { Col, Collapse, Form, Input, Row, Skeleton } from "antd";
-import { useGetApiOld } from "../../../../../functions";
+import { useGetApiOld } from "../../../../../utilities/functions";
 import { useTranslation } from "react-i18next";
 import { EditOutlined } from "@ant-design/icons";
-import { __ } from "../../../../../functions/Helper";
+import { __ } from "../../../../../utilities/functions/Helper";
 
 const CreateCategory = ({ formRef }) => {
 

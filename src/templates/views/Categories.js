@@ -12,10 +12,10 @@ import { Button, Carousel, Col, Collapse, Pagination, Row, Space, Typography } f
 import { useGetConfig } from "../../contexts/config/ConfigContext";
 
 // import helper functions:
-import { useGetApiOld, useQueryString, useWindowSize } from "../../functions";
+import { useGetApiOld, useQueryString, useWindowSize } from "../../utilities/functions";
 
 // import helpers function:
-import { __, SeoGenerator, splitArray } from "../../functions/Helper";
+import { __, SeoGenerator, splitArray } from "../../utilities/functions/Helper";
 import { useTranslation } from "react-i18next";
 
 // Import Swiper styles

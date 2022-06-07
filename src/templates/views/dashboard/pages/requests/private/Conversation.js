@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../styles/Conversation.less";
 import { Col, Empty, Row, Skeleton } from "antd";
-import { __, SeoGenerator } from "../../../../../../functions/Helper";
+import { __, SeoGenerator } from "../../../../../../utilities/functions/Helper";
 import DashboardContentHeader from "../../../templates/components/DashboardContentHeader";
-import { useGetApi } from "../../../../../../functions";
+import { useGetApi } from "../../../../../../utilities/functions";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useGetAuthState } from "../../../../../../contexts/user/UserContext";
 import { ArrowLeftOutlined } from "@ant-design/icons";

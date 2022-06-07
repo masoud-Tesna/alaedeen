@@ -1,5 +1,5 @@
 import { Col, Form, Input, Row, Select } from "antd";
-import { __ } from "../../../../../../functions/Helper";
+import { __ } from "../../../../../../utilities/functions/Helper";
 import { UploadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import ImageUploader from "../../../../../common/ImageUploader";

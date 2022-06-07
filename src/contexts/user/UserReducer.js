@@ -1,6 +1,6 @@
 import { AUTH_LOADING, AUTH_LOADING_FALSE, AUTH_LOGOUT, AUTH_SIGN_IN, CHECK_REMEMBER_ME } from "./UserActions";
 
-import { fn_set_date_day } from "../../functions/Helper";
+import { fn_set_date_day } from "../../utilities/functions/Helper";
 import { Cookies } from "react-cookie";
 
 export function UserReducer(state, action) {

@@ -2,7 +2,7 @@ import {Col, Row} from "antd";
 import axios from "axios";
 import {useInfiniteQuery} from "react-query";
 import SkeletonCategoryMultiColumn from "../../../blocks/product_list_templates/skeletons/SkeletonCategoryMultiColumn";
-import {useWindowSize} from "../../../../functions";
+import {useWindowSize} from "../../../../utilities/functions";
 import InfiniteScroll from "react-infinite-scroller";
 import CategoryMultiColumn from "../../../blocks/product_list_templates/CategoryMultiColumn";
 

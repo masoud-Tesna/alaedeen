@@ -1,7 +1,7 @@
 import "./styles/HomePage.less";
 import {Col, Row} from "antd";
 import {Helmet} from "react-helmet";
-import {SeoGenerator} from "../../functions/Helper";
+import {SeoGenerator} from "../../utilities/functions/Helper";
 import {useTranslation} from "react-i18next";
 import Requests from "./homePage/requests/Requests";
 

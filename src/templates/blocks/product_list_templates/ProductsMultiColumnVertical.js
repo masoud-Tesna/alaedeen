@@ -1,5 +1,5 @@
 // import Custom Hooks:
-import { useWindowSize } from "../../../functions";
+import { useWindowSize } from "../../../utilities/functions";
 
 // import style file:
 import './styles/ProductsMultiColumnVertical.less';

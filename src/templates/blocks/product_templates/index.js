@@ -4,7 +4,7 @@ import './styles/ProductDetail.less';
 // import ant design components:
 import {Col, Divider, Progress, Row, Skeleton, Typography} from "antd";
 
-import {useWindowSize} from "../../../functions";
+import {useWindowSize} from "../../../utilities/functions";
 import {useTranslation} from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
 import ProductTab from "../product_tabs";

@@ -1,9 +1,9 @@
 // import style file:
 import './styles/AllCategories.less';
-import { useGetApiOld } from "../../functions";
+import { useGetApiOld } from "../../utilities/functions";
 import { Col, Row } from "antd";
 import { Link } from "react-router-dom";
-import { __, SeoGenerator } from "../../functions/Helper";
+import { __, SeoGenerator } from "../../utilities/functions/Helper";
 import { useTranslation } from "react-i18next";
 
 const AllCategories = () => {

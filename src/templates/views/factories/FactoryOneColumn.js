@@ -8,7 +8,7 @@ import "./styles/FactoryOneColumn.less";
 import { Button, Col, Row, Skeleton, Modal } from "antd";
 
 // import Custom hooks:
-import { useWindowSize } from "../../../functions";
+import { useWindowSize } from "../../../utilities/functions";
 
 // import Verified
 import verifiedIcon from "../../assets/images/verified.png";
@@ -20,7 +20,7 @@ import TextTruncate from "react-text-truncate";
 import SkeletonFactoriesShow from "../../blocks/skeletons/SkeletonFactoriesShow";
 
 // import helper functions:
-import { __ } from '../../../functions/Helper';
+import { __ } from '../../../utilities/functions/Helper';
 
 import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";

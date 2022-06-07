@@ -5,11 +5,11 @@ import './styles/AlaedeenServices.less';
 import { Col, Divider, Row } from "antd";
 
 // import helper functions:
-import { __ } from '../../../functions/Helper';
+import { __ } from '../../../utilities/functions/Helper';
 
 import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../../contexts/config/ConfigContext";
-import { useWindowSize } from "../../../functions";
+import { useWindowSize } from "../../../utilities/functions";
 
 const AlaedeenServices = () => {
 

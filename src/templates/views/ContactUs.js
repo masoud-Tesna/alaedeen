@@ -5,8 +5,8 @@ import { useLocation } from "react-router-dom";
 import './styles/ContactUs.less';
 
 import { Button, Col, Form, Input, Row, Skeleton } from "antd";
-import { useGetApiOld, useWindowSize } from "../../functions";
-import { SeoGenerator } from "../../functions/Helper";
+import { useGetApiOld, useWindowSize } from "../../utilities/functions";
+import { SeoGenerator } from "../../utilities/functions/Helper";
 import { useTranslation } from "react-i18next";
 import { useGetConfig } from "../../contexts/config/ConfigContext";
 

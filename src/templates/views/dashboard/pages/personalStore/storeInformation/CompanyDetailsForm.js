@@ -1,5 +1,5 @@
 import { Button, Col, DatePicker, Form, Input, Row, Select } from "antd";
-import { __ } from "../../../../../../functions/Helper";
+import { __ } from "../../../../../../utilities/functions/Helper";
 import { useTranslation } from "react-i18next";
 
 const CompanyDetailsForm = (
