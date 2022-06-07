@@ -6,7 +6,7 @@ import {
   CHANGE_CLIENT_LANGUAGE,
   CHANGE_CURRENCY
 } from "./ConfigActions";
-import i18n from "../../translations/i18n";
+import i18n from "../../utilities/i18n";
 // import Cookies Package:
 import { Cookies } from "react-cookie";
 
