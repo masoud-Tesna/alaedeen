@@ -17,6 +17,18 @@ const RequestsList = () => {
     }
   );
   
+  const requestItemStyle = useRtlStyles(
+    {
+      paddingStart: 16,
+    }
+  );
+  
+  const dateLocationStyle = useRtlStyles(
+    {
+      paddingEnd: 16,
+    }
+  );
+  
   const [sliderRef] = useKeenSlider(
     {
       loop: true,
@@ -77,11 +89,11 @@ const RequestsList = () => {
       
       <Col span={24} className="--listItems">
         <Row ref={sliderRef} className="keen-slider" style={{ height: 170 }}>
-          <Col span={24} className="keen-slider__slide  --item">
+          <Col span={24} className="keen-slider__slide  --item" style={requestItemStyle}>
             <Row gutter={[0, 16]}>
               <Col span={24} className="--details">
                 <Row gutter={16} justify="space-between">
-                  <Col span={14}>
+                  <Col sm={13} xxl={14}>
                     <Row gutter={[0, 8]}>
                       <Col span={24} className="--requestName">
                         Practical Note Book
@@ -93,9 +105,9 @@ const RequestsList = () => {
                     </Row>
                   </Col>
                   
-                  <Col span={10}>
+                  <Col sm={11} xxl={10}>
                     <Row>
-                      <Col className="--dateAndLocation">
+                      <Col className="--dateAndLocation" style={dateLocationStyle}>
                         <Row gutter={[0, 16]}>
                           <Col span={24}>
                             <Row gutter={10}>
@@ -137,11 +149,11 @@ const RequestsList = () => {
             </Row>
           </Col>
   
-          <Col span={24} className="keen-slider__slide  --item">
+          <Col span={24} className="keen-slider__slide  --item" style={requestItemStyle}>
             <Row gutter={[0, 16]}>
               <Col span={24} className="--details">
                 <Row gutter={16} justify="space-between">
-                  <Col span={14}>
+                  <Col sm={13} xxl={14}>
                     <Row gutter={[0, 8]}>
                       <Col span={24} className="--requestName">
                         Practical Note Book
@@ -153,9 +165,9 @@ const RequestsList = () => {
                     </Row>
                   </Col>
           
-                  <Col span={10}>
+                  <Col sm={11} xxl={10}>
                     <Row>
-                      <Col className="--dateAndLocation">
+                      <Col className="--dateAndLocation" style={dateLocationStyle}>
                         <Row gutter={[0, 16]}>
                           <Col span={24}>
                             <Row gutter={10}>
@@ -197,11 +209,11 @@ const RequestsList = () => {
             </Row>
           </Col>
   
-          <Col span={24} className="keen-slider__slide  --item">
+          <Col span={24} className="keen-slider__slide  --item" style={requestItemStyle}>
             <Row gutter={[0, 16]}>
               <Col span={24} className="--details">
                 <Row gutter={16} justify="space-between">
-                  <Col span={14}>
+                  <Col sm={13} xxl={14}>
                     <Row gutter={[0, 8]}>
                       <Col span={24} className="--requestName">
                         Practical Note Book
@@ -213,9 +225,9 @@ const RequestsList = () => {
                     </Row>
                   </Col>
           
-                  <Col span={10}>
+                  <Col sm={11} xxl={10}>
                     <Row>
-                      <Col className="--dateAndLocation">
+                      <Col className="--dateAndLocation" style={dateLocationStyle}>
                         <Row gutter={[0, 16]}>
                           <Col span={24}>
                             <Row gutter={10}>
@@ -257,11 +269,11 @@ const RequestsList = () => {
             </Row>
           </Col>
   
-          <Col span={24} className="keen-slider__slide  --item">
+          <Col span={24} className="keen-slider__slide  --item" style={requestItemStyle}>
             <Row gutter={[0, 16]}>
               <Col span={24} className="--details">
                 <Row gutter={16} justify="space-between">
-                  <Col span={14}>
+                  <Col sm={13} xxl={14}>
                     <Row gutter={[0, 8]}>
                       <Col span={24} className="--requestName">
                         Practical Note Book
@@ -273,9 +285,9 @@ const RequestsList = () => {
                     </Row>
                   </Col>
           
-                  <Col span={10}>
+                  <Col sm={11} xxl={10}>
                     <Row>
-                      <Col className="--dateAndLocation">
+                      <Col className="--dateAndLocation" style={dateLocationStyle}>
                         <Row gutter={[0, 16]}>
                           <Col span={24}>
                             <Row gutter={10}>
@@ -317,11 +329,11 @@ const RequestsList = () => {
             </Row>
           </Col>
   
-          <Col span={24} className="keen-slider__slide  --item">
+          <Col span={24} className="keen-slider__slide  --item" style={requestItemStyle}>
             <Row gutter={[0, 16]}>
               <Col span={24} className="--details">
                 <Row gutter={16} justify="space-between">
-                  <Col span={14}>
+                  <Col sm={13} xxl={14}>
                     <Row gutter={[0, 8]}>
                       <Col span={24} className="--requestName">
                         Practical Note Book
@@ -333,9 +345,9 @@ const RequestsList = () => {
                     </Row>
                   </Col>
           
-                  <Col span={10}>
+                  <Col sm={11} xxl={10}>
                     <Row>
-                      <Col className="--dateAndLocation">
+                      <Col className="--dateAndLocation" style={dateLocationStyle}>
                         <Row gutter={[0, 16]}>
                           <Col span={24}>
                             <Row gutter={10}>
