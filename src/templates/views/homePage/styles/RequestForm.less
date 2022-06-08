@@ -1,5 +1,197 @@
 .requestForm--container {
   background: #E9ECEF;
   border-radius: 16px;
-  padding: 32px 25px;
+  padding: calc(3.5vh) 25px;
+  
+  .--form {
+    .__piece {
+      .ant-form-item-label {
+        visibility: hidden;
+      }
+    }
+    
+    .__openRequestModalBtn {
+      width: 100%;
+      height: 54px;
+      background: #2D8327;
+      border-radius: 8px;
+      padding: 0;
+      line-height: 54px;
+      
+      span {
+        color: #FFFFFF;
+        font-weight: 700;
+      }
+    }
+    
+    .__terms {
+      margin-bottom: 16px;
+  
+      .ant-checkbox-wrapper {
+        &:hover,
+        .ant-checkbox:hover,
+        .ant-checkbox-input:focus {
+          .ant-checkbox-inner {
+            border-color: #185E91 !important;
+          }
+        }
+    
+        .ant-checkbox {
+          .ant-checkbox-inner {
+            width: 20px;
+            height: 20px;
+            border-radius: 6px;
+        
+            &:after {
+              left: 25.5%;
+            }
+          }
+      
+          &.ant-checkbox-checked {
+            .ant-checkbox-inner {
+              background-color: #185E91;
+              border-color: #185E91;
+            }
+        
+            &:after {
+              border: none !important;
+            }
+          }
+        }
+    
+        span + span {
+          color: #030304;
+          font-size: .85714286em;
+          margin: auto 0;
+        }
+      }
+      
+      .ant-form-item-explain {
+        display: none;
+      }
+      
+      &.ant-form-item-with-help {
+        .ant-checkbox-wrapper {
+          .ant-checkbox-inner {
+            border-color: #C62606 !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+.requestForm--container,
+.request--modal {
+  .--form {
+    .ant-form-item {
+      
+      &:not(.__terms) {
+        margin-bottom: 3vh;
+        
+        .ant-form-item-control {
+          height: 68px;
+        }
+      }
+      
+      .ant-form-item-label {
+        padding: 0 .28571429em;
+        
+        > label {
+          height: auto;
+          font-size: .85714286em;
+          line-height: 22px;
+        }
+      }
+      
+      .ant-input-affix-wrapper,
+      .ant-input-number,
+      .ant-select-selector {
+        border-color: #CED4DA;
+        border-radius: 8px;
+        width: 100%;
+        height: 3.14285714em;
+        padding: .85714286em 1.14285714em;
+        
+        &[class*="-status-error"] {
+          border-color: #C62606 !important;
+        }
+        
+        &,
+        .ant-input,
+        .ant-input-number-input {
+          background: #FAFAFA !important;
+        }
+        
+        .ant-select-selection-search {
+          padding: .85714286em 0;
+          left: 1.14285714em;
+        }
+        
+        .ant-select-selection-placeholder,
+        .ant-select-selection-item {
+          line-height: 22px !important;
+        }
+        
+        .ant-input-number-handler-wrap {
+          border-radius: 8px
+        }
+        
+        input {
+          color: #030304 !important;
+          
+          &::placeholder {
+            color: #82879B !important;
+            font-size: .85714286em !important;
+            line-height: 22px !important;
+          }
+          
+          &.ant-input-number-input,
+          &.ant-select-selection-search-input {
+            height: auto !important;
+            padding: 0 !important;
+          }
+        }
+      }
+      
+      .ant-select-status-error {
+        .ant-select-selector {
+          border-color: #C62606 !important;
+          box-shadow: 0 0 0 2px rgba(198, 38, 6, .2) !important;
+        }
+      }
+      
+      .ant-form-item-explain-error {
+        margin-top: .28571429em;
+        
+        .--error {
+          font-size: .85714286em;
+          color: #030304;
+          
+          &.__emailError {
+            color: #C62606;
+          }
+          
+          .--svgIcon {
+            display: inline-block;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+    
+    .__openRequestModalBtn {
+      width: 100%;
+      height: 54px;
+      background: #2D8327;
+      border-radius: 8px;
+      padding: 0;
+      line-height: 54px;
+      
+      span {
+        color: #FFFFFF;
+        font-weight: 700;
+      }
+    }
+  }
 }
