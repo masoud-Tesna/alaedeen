@@ -77,7 +77,6 @@
   
         .--arrowIcon {
           width: 40px;
-          transition: all 0.3s;
     
           &:before {
             content: "";
@@ -91,28 +90,30 @@
           .--svgIcon {
             position: absolute;
             top: 15px;
-            margin-left: 16px;
+            transition: transform 0.3s;
           }
+  
+          
         }
       }
       
       &:hover {
         .--arrowIcon{
           .--svgIcon {
-            left: 8px;
-            animation: arrowIconMoveLeft 0.3s;
+            transform: translateX(8px);
+          }
+        }
+      }
+  
+      &[class*="rtl"] {
+        &:hover {
+          .--arrowIcon{
+            .--svgIcon {
+              transform: translateX(-8px);
+            }
           }
         }
       }
     }
-  }
-}
-
-@keyframes arrowIconMoveLeft {
-  from {
-    left: 0;
-  }
-  to {
-    left: 8px;
   }
 }
