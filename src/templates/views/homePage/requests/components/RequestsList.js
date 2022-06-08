@@ -4,12 +4,18 @@ import "keen-slider/keen-slider.min.css"
 import {Col, Row} from "antd";
 import { useKeenSlider } from "keen-slider/react"
 import {useTranslation} from "react-i18next";
-import {__} from "../../../../../utilities/functions/Helper";
+import {__, useRtlStyles} from "../../../../../utilities/functions/Helper";
 import SvgIcon from "../../../../common/SvgIcon";
 
 const RequestsList = () => {
   
-  const { t } = useTranslation();
+  const { t, i18n: {dir} } = useTranslation();
+  
+  const arrowIconStyle = useRtlStyles(
+    {
+      marginStart: 16,
+    }
+  );
   
   const [sliderRef] = useKeenSlider(
     {
@@ -71,7 +77,7 @@ const RequestsList = () => {
       
       <Col span={24} className="--listItems">
         <Row ref={sliderRef} className="keen-slider" style={{ height: 170 }}>
-          <Col span={24} className="keen-slider__slide --item">
+          <Col span={24} className="keen-slider__slide  --item">
             <Row gutter={[0, 16]}>
               <Col span={24} className="--details">
                 <Row gutter={16} justify="space-between">
@@ -118,7 +124,7 @@ const RequestsList = () => {
                       </Col>
                       
                       <Col className="--arrowIcon">
-                        <SvgIcon icon="arrow-right" type="bold" color="#185E91" width={24} height={24} />
+                        <SvgIcon icon={dir() === "rtl" ? "arrow-left" : "arrow-right"} type="bold" color="#185E91" width={24} height={24} style={arrowIconStyle} />
                       </Col>
                     </Row>
                   </Col>
@@ -131,7 +137,7 @@ const RequestsList = () => {
             </Row>
           </Col>
   
-          <Col span={24} className="keen-slider__slide --item">
+          <Col span={24} className="keen-slider__slide  --item">
             <Row gutter={[0, 16]}>
               <Col span={24} className="--details">
                 <Row gutter={16} justify="space-between">
@@ -178,67 +184,7 @@ const RequestsList = () => {
                       </Col>
               
                       <Col className="--arrowIcon">
-                        <SvgIcon icon="arrow-right" type="bold" color="#185E91" width={24} height={24} />
-                      </Col>
-                    </Row>
-                  </Col>
-                </Row>
-              </Col>
-      
-              <Col span={24} className="--border">
-                <div />
-              </Col>
-            </Row>
-          </Col>
-  
-          <Col span={24} className="keen-slider__slide --item">
-            <Row gutter={[0, 16]}>
-              <Col span={24} className="--details">
-                <Row gutter={16} justify="space-between">
-                  <Col span={14}>
-                    <Row gutter={[0, 8]}>
-                      <Col span={24} className="--requestName">
-                        Practical Note Book
-                      </Col>
-              
-                      <Col span={24} className="--lookingFor">
-                        Buyer is looking for practical note boo
-                      </Col>
-                    </Row>
-                  </Col>
-          
-                  <Col span={10}>
-                    <Row>
-                      <Col className="--dateAndLocation">
-                        <Row gutter={[0, 16]}>
-                          <Col span={24}>
-                            <Row gutter={10}>
-                              <Col className="--calendarIcon">
-                                <SvgIcon icon="calendar" color="#E3A921" width={16} height={16} />
-                              </Col>
-                      
-                              <Col className="--date">
-                                10 May, 2022
-                              </Col>
-                            </Row>
-                          </Col>
-                  
-                          <Col span={24}>
-                            <Row gutter={10}>
-                              <Col className="--countryIcon">
-                                <i className="fi fi-gb fis" />
-                              </Col>
-                      
-                              <Col className="--location">
-                                Madrid, Spain
-                              </Col>
-                            </Row>
-                          </Col>
-                        </Row>
-                      </Col>
-              
-                      <Col className="--arrowIcon">
-                        <SvgIcon icon="arrow-right" type="bold" color="#185E91" width={24} height={24} />
+                        <SvgIcon icon={dir() === "rtl" ? "arrow-left" : "arrow-right"} type="bold" color="#185E91" width={24} height={24} style={arrowIconStyle} />
                       </Col>
                     </Row>
                   </Col>
@@ -251,7 +197,7 @@ const RequestsList = () => {
             </Row>
           </Col>
   
-          <Col span={24} className="keen-slider__slide --item">
+          <Col span={24} className="keen-slider__slide  --item">
             <Row gutter={[0, 16]}>
               <Col span={24} className="--details">
                 <Row gutter={16} justify="space-between">
@@ -298,7 +244,7 @@ const RequestsList = () => {
                       </Col>
               
                       <Col className="--arrowIcon">
-                        <SvgIcon icon="arrow-right" type="bold" color="#185E91" width={24} height={24} />
+                        <SvgIcon icon={dir() === "rtl" ? "arrow-left" : "arrow-right"} type="bold" color="#185E91" width={24} height={24} style={arrowIconStyle} />
                       </Col>
                     </Row>
                   </Col>
@@ -311,7 +257,7 @@ const RequestsList = () => {
             </Row>
           </Col>
   
-          <Col span={24} className="keen-slider__slide --item">
+          <Col span={24} className="keen-slider__slide  --item">
             <Row gutter={[0, 16]}>
               <Col span={24} className="--details">
                 <Row gutter={16} justify="space-between">
@@ -358,7 +304,67 @@ const RequestsList = () => {
                       </Col>
               
                       <Col className="--arrowIcon">
-                        <SvgIcon icon="arrow-right" type="bold" color="#185E91" width={24} height={24} />
+                        <SvgIcon icon={dir() === "rtl" ? "arrow-left" : "arrow-right"} type="bold" color="#185E91" width={24} height={24} style={arrowIconStyle} />
+                      </Col>
+                    </Row>
+                  </Col>
+                </Row>
+              </Col>
+      
+              <Col span={24} className="--border">
+                <div />
+              </Col>
+            </Row>
+          </Col>
+  
+          <Col span={24} className="keen-slider__slide  --item">
+            <Row gutter={[0, 16]}>
+              <Col span={24} className="--details">
+                <Row gutter={16} justify="space-between">
+                  <Col span={14}>
+                    <Row gutter={[0, 8]}>
+                      <Col span={24} className="--requestName">
+                        Practical Note Book
+                      </Col>
+              
+                      <Col span={24} className="--lookingFor">
+                        Buyer is looking for practical note boo
+                      </Col>
+                    </Row>
+                  </Col>
+          
+                  <Col span={10}>
+                    <Row>
+                      <Col className="--dateAndLocation">
+                        <Row gutter={[0, 16]}>
+                          <Col span={24}>
+                            <Row gutter={10}>
+                              <Col className="--calendarIcon">
+                                <SvgIcon icon="calendar" color="#E3A921" width={16} height={16} />
+                              </Col>
+                      
+                              <Col className="--date">
+                                10 May, 2022
+                              </Col>
+                            </Row>
+                          </Col>
+                  
+                          <Col span={24}>
+                            <Row gutter={10}>
+                              <Col className="--countryIcon">
+                                <i className="fi fi-gb fis" />
+                              </Col>
+                      
+                              <Col className="--location">
+                                Madrid, Spain
+                              </Col>
+                            </Row>
+                          </Col>
+                        </Row>
+                      </Col>
+              
+                      <Col className="--arrowIcon">
+                        <SvgIcon icon={dir() === "rtl" ? "arrow-left" : "arrow-right"} type="bold" color="#185E91" width={24} height={24} style={arrowIconStyle} />
                       </Col>
                     </Row>
                   </Col>
