@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import rtlCSSJS from "rtl-css-js";
+import bidiCSSJS from 'bidi-css-js';
 
 export function fn_stripHtml(strip) {
   const regex = /(<([^>]+)>)/ig;
@@ -381,7 +381,7 @@ export const isObject = value => {
 export const upperFirst = (text) => text.charAt(0).toUpperCase() + text.slice(1);
 
 export const useRtlStyles = (styles) => {
-  const isRtl = (document.documentElement.lang === "fa" || document.documentElement.lang === "ar");
+  const direction = (document.documentElement.lang === "fa" || document.documentElement.lang === "ar") ? "rtl" : "ltr";
   
-  return !!isRtl ? rtlCSSJS(styles) : styles;
+  return bidiCSSJS(styles, direction);
 }
