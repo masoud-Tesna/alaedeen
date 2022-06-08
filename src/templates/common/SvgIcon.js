@@ -8,6 +8,7 @@ const SvgIcon = (
     color = "#82879B",
     width  = 24,
     height = 24,
+    style = {},
     ...reset
   }
 ) => {
@@ -25,7 +26,7 @@ const SvgIcon = (
     display: block;
   `;
   
-  return <Icon className={`--svgIcon ${!!reset?.className ? reset?.className : ""}`} />
+  return <Icon className={`--svgIcon ${!!reset?.className ? reset?.className : ""}`} style={style} />
 };
 
 export default memo(SvgIcon);
