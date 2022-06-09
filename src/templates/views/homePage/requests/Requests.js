@@ -2,6 +2,7 @@ import "../styles/Requests.less";
 import {Col, Row} from "antd";
 import RequestsList from "./components/RequestsList";
 import RequestForm from "./components/RequestForm";
+import State from "./components/State";
 
 const Requests = () => {
   return (
@@ -17,7 +18,9 @@ const Requests = () => {
           </Col>
         </Row>
       </Col>
-      <Col span={24} className="--statRequests">Test</Col>
+      <Col span={24} className="--statRequests">
+        <State />
+      </Col>
     </Row>
   );
 };

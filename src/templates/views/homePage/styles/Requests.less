@@ -3,16 +3,21 @@
 
 .requests--container {
   height: 100%;
-  padding-left: calc(9.166vw + 50px);
-  padding-right: calc(9.166vw + 24px);
+  
+  &,
+  .--statRequests {
+    padding-left: calc(9.166vw + 50px);
+    padding-right: calc(9.166vw + 24px);
+  }
+  
+  .--statRequests {
+    background-color: #4A3858;
+    height: 100px;
+    width: 100vw;
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+  }
 }
 
-.--statRequests {
-  background-color: #4A3858;
-  height: 100px;
-  width: 100vw;
-  position: absolute;
-  z-index: 1;
-  bottom: 0;
-  left: 0;
-}
