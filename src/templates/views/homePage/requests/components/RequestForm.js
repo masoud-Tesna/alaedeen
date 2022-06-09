@@ -2,26 +2,25 @@ import "../../styles/RequestForm.less";
 import {Button, Checkbox, Col, Form, Input, InputNumber, Modal, Row, Select} from "antd";
 import {useTranslation} from "react-i18next";
 import {__} from "../../../../../utilities/functions/Helper";
-import React, {useCallback, useState} from "react";
 import {useGetApiOld} from "../../../../../utilities/functions";
 import SvgIcon from "../../../../common/SvgIcon";
+import {useGetConfig} from "../../../../../contexts/config/ConfigContext";
+import { Choose, When, Otherwise } from "control-statements";
+import {useNavigate} from "react-router-dom";
 
 const RequestForm = () => {
   
   const { Option } = Select;
   
+  // user data context state:
+  const { config } = useGetConfig();
+  
+  const countryCode = config.countryCode;
+  
   const { t } = useTranslation();
   
-  // useForm for request forms(first and in modal):
-  const [ requestFirstForm ] = Form.useForm();
+  // useForm for request forms:
   const [ requestForm ] = Form.useForm();
-  
-  // watch for changes in first form:
-  const productName = Form.useWatch('product_name', requestFirstForm);
-  const quantity = Form.useWatch('quantity', requestFirstForm);
-  const quantityUnit = Form.useWatch('quantity_unit', requestFirstForm);
-  const authEmail = Form.useWatch('auth_email', requestFirstForm);
-  const terms = Form.useWatch('terms', requestFirstForm);
   
   // get quantity Units list from API:
   const { data: quantityUnitsData } = useGetApiOld(
@@ -34,98 +33,19 @@ const RequestForm = () => {
   );
   const quantityUnits = quantityUnitsData || {};
   
-  // Modal:
-  const [isRequestModalVisible, setIsRequestModalVisible] = useState(false);
+  const navigate = useNavigate();
   
-  // Open Modal
-  const openRequestModal = () => {
-    setIsRequestModalVisible(true);
-  };
-  
-  // Close Modal:
-  
-  const closeRequestModal = () => {
-    setIsRequestModalVisible(false);
-  };
-  
-  const handleSubmitRequest = v => {
-    const values = {
-      ...v,
-      product_name: productName,
-      quantity: quantity,
-      quantity_unit: quantityUnit,
-      auth_email: authEmail,
-      terms: terms
-    };
-  
-    console.log(values)
+  const redirectToRfq = v => {
+    return navigate('/rfq', { state: v });
   }
-  
-  const ModalRequest = () => {
-    return (
-      <Modal
-        title={t(__('Post Your buy Requirement'))}
-        visible={isRequestModalVisible}
-        onCancel={closeRequestModal}
-        destroyOnClose={true}
-        footer={false}
-        className="request--modal"
-      >
-        <Form
-          className="--form"
-          name="request-form"
-          form={requestForm}
-          onFinish={handleSubmitRequest}
-        >
-          <Row>
-            <Col span={24}>
-              <Form.Item
-                name="product_name2"
-                label={t(__('Product or Service2'))}
-                labelCol={{span: 24}}
-                rules={[
-                  {
-                    required: true,
-                    message: (
-                      <div className="--error">
-                        <SvgIcon icon="circle-exclamation" color="#C62606" width={16}
-                                 height={16}/> {t(__("Please complete the input"))}
-                      </div>
-                    ),
-                  }
-                ]}
-              >
-                <Input
-                  placeholder={t(__('What are you looking for...'))}
-                  allowClear
-                />
-              </Form.Item>
-            </Col>
-          
-            <Col span={24}>
-              <Form.Item noStyle>
-                <Button
-                  htmlType="submit"
-                  className="__openRequestModalBtn"
-                >
-                  {t(__('Request for Quotation'))}
-                </Button>
-              </Form.Item>
-            </Col>
-          </Row>
-        </Form>
-      </Modal>
-    )
-  }
-  
   
   return (
     <Row className="requestForm--container">
       <Col span={24}>
         <Form
           className="--form"
-          form={requestFirstForm}
-          onFinish={openRequestModal}
+          form={requestForm}
+          onFinish={redirectToRfq}
         >
           <Row>
             <Col span={24} className="--caption">
@@ -217,34 +137,61 @@ const RequestForm = () => {
             </Col>
   
             <Col span={24}>
-              <Form.Item
-                name="auth_email"
-                className="__email"
-                label={ t(__('email')) }
-                labelCol={ { span: 24 } }
-                rules={[
-                  {
-                    type: 'email',
-                    message: (
-                      <div className="--error __emailError">
-                        {t(__("The input is not valid E-mail"))}
-                      </div>
-                    ),
-                  },
-                  {
-                    required: true,
-                    message: (
-                      <div className="--error">
-                        <SvgIcon icon="circle-exclamation" color="#C62606" width={16} height={16} /> {t(__("Please complete the input"))}
-                      </div>
-                    ),
-                  }
-                ]}>
-                <Input
-                  placeholder="example@mail.com"
-                  allowClear
-                />
-              </Form.Item>
+              <Choose>
+                <When condition={countryCode === "IR"}>
+                  <Form.Item
+                    name="phone_number"
+                    className="__phone"
+                    label={ t(__('Mobile No')) }
+                    labelCol={ { span: 24 } }
+                    rules={[
+                      {
+                        required: true,
+                        message: (
+                          <div className="--error">
+                            <SvgIcon icon="circle-exclamation" color="#C62606" width={16} height={16} /> {t(__("Please complete the input"))}
+                          </div>
+                        ),
+                      }
+                    ]}>
+                    <Input
+                      placeholder={ t(__('Enter your mobile number')) }
+                      allowClear
+                    />
+                  </Form.Item>
+                </When>
+                
+                <Otherwise>
+                  <Form.Item
+                    name="auth_email"
+                    className="__email"
+                    label={ t(__('email')) }
+                    labelCol={ { span: 24 } }
+                    rules={[
+                      {
+                        type: 'email',
+                        message: (
+                          <div className="--error __emailError">
+                            {t(__("The input is not valid E-mail"))}
+                          </div>
+                        ),
+                      },
+                      {
+                        required: true,
+                        message: (
+                          <div className="--error">
+                            <SvgIcon icon="circle-exclamation" color="#C62606" width={16} height={16} /> {t(__("Please complete the input"))}
+                          </div>
+                        ),
+                      }
+                    ]}>
+                    <Input
+                      placeholder="example@mail.com"
+                      allowClear
+                    />
+                  </Form.Item>
+                </Otherwise>
+              </Choose>
             </Col>
   
             <Col span={24}>
@@ -275,8 +222,6 @@ const RequestForm = () => {
           </Row>
         </Form>
       </Col>
-      
-      {!!isRequestModalVisible && <ModalRequest />}
     </Row>
   );
 };
