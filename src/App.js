@@ -55,6 +55,8 @@ const ContactUs = lazy(() => import('./templates/views/ContactUs'));
 
 const Store = lazy(() => import('./templates/views/Store'));
 
+const Rfq = lazy(() => import("./templates/views/Rfq"));
+
 const SiteFooter = lazy(() => import('./templates/footer'));
 
 const App = () => {
@@ -191,6 +193,8 @@ const App = () => {
     
                     {/* Show Free Company Details Route */ }
                     <Route path="/store/:company" element={ <Suspense fallback={ null }><Store /></Suspense> }/>
+  
+                    <Route path="/rfq" element={ <Suspense fallback={ <LoadSpinner /> }><Rfq /></Suspense> }/>
   
                     {/* Dashboard Routes */ }
                     { DashboardRoutes() }
