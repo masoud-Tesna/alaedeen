@@ -15,8 +15,6 @@ const State = () => {
   
   const states = data?.stats || {};
   
-  console.log(states)
-  
   return (
     <Row className="state--container" align="middle" gutter={26}>
       <StateCol isLoading={isLoading} state={states?.total_store} type="Active Suppliers" />
