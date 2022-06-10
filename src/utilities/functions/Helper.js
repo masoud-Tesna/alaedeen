@@ -381,7 +381,9 @@ export const isObject = value => {
 export const upperFirst = (text) => text.charAt(0).toUpperCase() + text.slice(1);
 
 export const useRtlStyles = (styles) => {
-  const direction = (document.documentElement.lang === "fa" || document.documentElement.lang === "ar") ? "rtl" : "ltr";
+  const rtlLanguages = ["fa", "ar"];
+  
+  const direction = !!(rtlLanguages.includes(document?.documentElement?.lang)) ? "rtl" : "ltr";
   
   return bidiCSSJS(styles, direction);
 }
