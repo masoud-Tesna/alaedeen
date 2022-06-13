@@ -358,7 +358,7 @@ export function countLines(target) {
   
   if(isNaN(line_height)) line_height = font_size * 1.2;
   
-  if(box_sizing=='border-box')
+  if(box_sizing === 'border-box')
   {
     let padding_top = parseInt(style.getPropertyValue("padding-top"));
     let padding_bottom = parseInt(style.getPropertyValue("padding-bottom"));
