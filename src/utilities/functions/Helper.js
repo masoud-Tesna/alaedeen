@@ -1,6 +1,8 @@
+import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import bidiCSSJS from 'bidi-css-js';
+import {useTheme} from "styled-components";
 
 export function fn_stripHtml(strip) {
   const regex = /(<([^>]+)>)/ig;
@@ -8,9 +10,9 @@ export function fn_stripHtml(strip) {
 }
 
 export function __(world, suffix = "", sign = ".") {
-
+  
   let returnWord = world;
-
+  
   returnWord = returnWord.toString().trim().toLowerCase()
     .replaceAll(" / ", "_or_")
     .replaceAll("/", "_or_")
@@ -36,16 +38,16 @@ export function __(world, suffix = "", sign = ".") {
     .replaceAll("  ", "_")
     .replaceAll(" ", "_")
   ;
-
+  
   returnWord = suffix? `${returnWord}${sign}${suffix}` : returnWord;
-
+  
   return returnWord;
-
+  
 }
 
 export function fn_set_date_day(day) {
   const date = new Date();
-
+  
   date.setTime(date.getTime() + (day*24*60*60*1000));
   return date;
 }
@@ -72,25 +74,25 @@ export const partitionArray = (list = [], n = 1) => {
   if (!isPositiveInteger) {
     throw new RangeError('n must be a positive integer');
   }
-
+  
   const partitions = [];
   const partitionLength = Math.ceil(list.length / n);
-
+  
   for (let i = 0; i < list.length; i += partitionLength) {
     const partition = list.slice(i, i+partitionLength);
     partitions.push( partition );
   }
-
+  
   return partitions;
 }
 
 // get url and add parameter to url or update parameter by new value (no change url! return string new url)
 export function appendQueryParameter(key, value) {
-
+  
   const url = window.location.href;
-
+  
   let k;
-
+  
   if(value!==undefined){
     value = encodeURI(value);
   }
@@ -116,7 +118,7 @@ export function appendQueryParameter(key, value) {
       outPara[ekey] = evalue;
     }
   }
-
+  
   if(value!==undefined){
     outPara[key] = value;
   }else{
@@ -126,33 +128,33 @@ export function appendQueryParameter(key, value) {
   for(let k in outPara){
     parameters.push(k + '=' + outPara[k]);
   }
-
+  
   let finalUrl = baseUrl;
-
+  
   if(parameters.length>0){
     finalUrl += '?' + parameters.join('&');
   }
-
+  
   return finalUrl + url.substring(hashIndex);
-
+  
 }
 
 export const useAppendRouteParameter = (name, value) => {
-
+  
   const location = useLocation();
-
+  
   const queryParams = new URLSearchParams(location.search);
   const pathName = location.pathname;
-
+  
   if (queryParams.has(name)) {
     queryParams.delete(name);
     queryParams.set(name, value);
   } else {
     queryParams.set(name, value);
   }
-
+  
   return pathName+ "?"+ queryParams;
-
+  
 }
 
 export const SeoGenerator = (
@@ -165,7 +167,7 @@ export const SeoGenerator = (
     children
   }
 ) => {
-
+  
   // object for languages link tag:
   const languageLinks = [
     {title: "فارسی", dir: 'rtl', hrefLang: 'x-default', href: window.location.origin + window.location.pathname},
@@ -173,7 +175,7 @@ export const SeoGenerator = (
     {title: "العربية", dir: 'rtl', hrefLang: 'ar', href: appendQueryParameter("lang_code", "ar")},
     {title: "فارسی", dir: 'rtl', hrefLang: 'fa', href: appendQueryParameter("lang_code", "fa")},
   ];
-
+  
   return (
     <Helmet
       title={title}
@@ -245,11 +247,11 @@ export const SeoGenerator = (
       ]}
     >
       {children}
-
+      
       {canonical &&
         <link rel="canonical" href={ canonical } />
       }
-
+      
       { languageLinks?.map((languageLink, i) => {
         return(
           <link
@@ -271,7 +273,7 @@ export function scrollIntoViewIfTargetNotOnDisplay(target) {
   if (target.getBoundingClientRect().bottom > window.innerHeight) {
     target.scrollIntoView(false);
   }
-
+  
   if (target.getBoundingClientRect().top < 0) {
     target.scrollIntoView({
       behavior: 'smooth',
@@ -319,7 +321,7 @@ export function fn_after_discount(price, percent) {
  * @return {string} Filtered text
  */
 export function nl2br (str, replaceMode, isXhtml) {
-
+  
   let breakTag = (isXhtml) ? '<br />' : '<br>';
   let replaceStr = (replaceMode) ? '$1'+ breakTag : '$1'+ breakTag +'$2';
   return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, replaceStr);
@@ -381,9 +383,13 @@ export const isObject = value => {
 export const upperFirst = (text) => text.charAt(0).toUpperCase() + text.slice(1);
 
 export const useRtlStyles = (styles) => {
-  const rtlLanguages = ["fa", "ar"];
+  const {dir: direction} = useTheme();
   
-  const direction = !!(rtlLanguages.includes(document?.documentElement?.lang)) ? "rtl" : "ltr";
+  return useMemo(
+    () => {
+      return bidiCSSJS(styles, direction);
+    },
+    [direction],
+  );
   
-  return bidiCSSJS(styles, direction);
 }
