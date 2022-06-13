@@ -1,6 +1,18 @@
 import {memo} from "react";
 import styled from 'styled-components';
 
+
+const Icon = styled.span`
+    -webkit-mask-size: cover;
+    mask-size: cover;
+    -webkit-mask-image: url(${p => p.requireIcon});
+    mask-image: url(${p => p.requireIcon});
+    background-color: ${p => p.color};
+    width: ${p => p.width}px;
+    height: ${p => p.height}px;
+    display: block;
+  `;
+
 const SvgIcon = (
   {
     icon,
@@ -15,18 +27,14 @@ const SvgIcon = (
   
   const requireIcon = require(`../assets/svg-icon/${type}/${icon}.svg`);
   
-  const Icon = styled.span`
-    -webkit-mask-size: cover;
-    mask-size: cover;
-    -webkit-mask-image: url(${requireIcon});
-    mask-image: url(${requireIcon});
-    background-color: ${color};
-    width: ${width}px;
-    height: ${height}px;
-    display: block;
-  `;
-  
-  return <Icon className={`--svgIcon ${!!reset?.className ? reset?.className : ""}`} style={style} />
+  return <Icon
+    requireIcon={requireIcon}
+    color={color}
+    width={width}
+    height={height}
+    className={`--svgIcon ${!!reset?.className ? reset?.className : ""}`}
+    style={style}
+  />
 };
 
 export default memo(SvgIcon);
