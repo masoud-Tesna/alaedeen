@@ -46,6 +46,27 @@ const HomePage = () => {
       <Col span={24} className="--requestSection">
         <Requests />
       </Col>
+      
+      <Col span={24} className="--secondSection">
+        <Row gutter={[0, 32]}>
+          <Col span={24}>
+            <Row gutter={16} className="__top">
+              <Col span={6} className="--startSection">
+                Categories
+              </Col>
+              
+              <Col span={12} className="--middleSection">
+                Carousel
+              </Col>
+              
+              <Col span={6} className="--endSection">
+                End Section
+              </Col>
+            </Row>
+          </Col>
+          <Col span={24}>Bottom</Col>
+        </Row>
+      </Col>
     </Row>
   );
 };
