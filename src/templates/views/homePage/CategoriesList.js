@@ -1,4 +1,4 @@
-import "./styles/Categories.less";
+import "./styles/CategoriesList.less";
 import {Col, Row, Skeleton} from "antd";
 import { Choose, When, Otherwise } from "control-statements";
 import {useGetApiOld} from "../../../utilities/functions";
