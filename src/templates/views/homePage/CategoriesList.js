@@ -1,13 +1,13 @@
-import "../styles/Categories.less";
+import "./styles/Categories.less";
 import {Col, Row, Skeleton} from "antd";
 import { Choose, When, Otherwise } from "control-statements";
-import {useGetApiOld} from "../../../../utilities/functions";
+import {useGetApiOld} from "../../../utilities/functions";
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
-import SvgIcon from "../../../common/SvgIcon";
+import SvgIcon from "../../common/SvgIcon";
 import React from "react";
 
-const Categories = () => {
+const CategoriesList = () => {
   
   const { t } = useTranslation();
   
@@ -73,7 +73,7 @@ const Categories = () => {
   }
   
   return (
-    <Row className="categories--container">
+    <Row className="categoriesList--container">
       <Col span={24} className="--caption">
         {t("Categories")}
       </Col>
@@ -81,7 +81,7 @@ const Categories = () => {
       <Choose>
         <When condition={!!isLoading}>
           {
-            new Array(8).fill("", 0, 7).map((__, i) => {
+            new Array(8).fill("", 0, 6).map((__, i) => {
               return (
                 <CategorySkeleton key={i} />
               )
@@ -103,4 +103,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default CategoriesList;
