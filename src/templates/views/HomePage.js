@@ -4,7 +4,7 @@ import {Helmet} from "react-helmet";
 import {SeoGenerator} from "../../utilities/functions/Helper";
 import {useTranslation} from "react-i18next";
 import Requests from "./homePage/requests/Requests";
-import Categories from "./homePage/categories";
+import CategoriesList from "./homePage/CategoriesList";
 
 const HomePage = () => {
   
@@ -53,7 +53,7 @@ const HomePage = () => {
           <Col span={24}>
             <Row gutter={16} className="__top">
               <Col span={6} className="--startSection">
-                <Categories />
+                <CategoriesList />
               </Col>
               
               <Col span={12} className="--middleSection">
