@@ -2,19 +2,104 @@
   background: #FFFFFF;
   border: 1px solid #E9ECEF;
   border-radius: 8px;
-  padding: 1.1428571428571428em .9285714285714286em 1.1428571428571428em 1.1428571428571428em;
+  padding-top: 16px;
   
   .--caption {
     color: #030304;
     font-weight: 500;
+    margin-bottom: 16px;
     
     &:after {
       content: " ";
       display: block;
-      margin-top: 4px;
+      margin-top: 2px;
       border-bottom: 2px solid #2D8327;
       width: calc(100% - 86.12%);
       height: 2px;
     }
+  }
+  
+  .--categoryItem {
+    height: 56px;
+    line-height: 56px;
+  
+    & > .ant-row {
+      height: 100%;
+    }
+    
+    &:not(:last-child) {
+      border-bottom: 1px solid #FAFAFA;
+    }
+    
+    .__image {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      
+      img {
+        width: 100%;
+      }
+      
+      &,
+      img {
+        border-radius: 50%;
+      }
+    }
+    
+    .__title {
+      color: #030304;
+      width: calc(100% - 24px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      line-height: 16px;
+    }
+    
+    .__arrow {
+      width: 16px;
+    }
+    
+    a {
+      /*position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;*/
+    }
+  
+    &.link--disable {
+      .__title {
+        color: lighten(#474747, 40%) !important;
+      }
+    
+      .__image {
+        img {
+          opacity: .3;
+        }
+      }
+    }
+    
+    &.--skeleton {
+      .ant-skeleton.ant-skeleton-element {
+        width: 100%;
+      }
+      
+      .ant-skeleton-avatar {
+        margin-top: 4px;
+      }
+    }
+    
+    &:hover {
+      background: #FAFAFA;
+      
+      .__title {
+        color: #2D8327;
+      }
+    }
+  }
+  
+  .--caption,
+  .--categoryItem {
+    padding: 0 13px 0 16px;
   }
 }
