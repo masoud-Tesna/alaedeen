@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import {useState, useEffect, useMemo, memo, useCallback} from "react";
 
 import { useLocation } from 'react-router-dom';
 
@@ -174,3 +174,66 @@ export function useWindowSize() {
 export function useQueryString() {
   return new URLSearchParams(useLocation().search);
 }
+
+const breakpointConfig = (width) => {
+  if(width > 1600) {
+    return 'xxl';
+  }
+  else if(width > 1200 && width <= 1600) {
+    return 'xl';
+  }
+  else if(width > 992 && width <= 1200) {
+    return 'lg';
+  }
+  else if(width > 768 && width <= 992) {
+    return 'md';
+  }
+  else if(width > 576 && width <= 768) {
+    return 'sm';
+  }
+  else if(width <= 576) {
+    return 'xs';
+  }
+}
+
+export const useBreakpoint = () => {
+  
+  const { width } = useWindowSize();
+  
+  return useMemo(() => breakpointConfig(width), [width]);
+};
+
+/*function useMediaQuery(query) {
+  const [matches, setMatches] = useState(false);
+  useEffect(
+    () => {
+      const mediaQuery = window.matchMedia(query);
+      setMatches(mediaQuery.matches);
+      const handler = (event) => setMatches(event.matches);
+      mediaQuery.addEventListener("change", handler);
+      return () => mediaQuery.removeEventListener("change", handler);
+    },
+    [] // Empty array ensures effect is only run on mount and unmount
+  );
+  return matches;
+}
+
+export const useBreakpoint2 = () => {
+  const breakpoints = {
+    isXs: useMediaQuery("(max-width: 576px)"),
+    isSm: useMediaQuery("(min-width: 576px)"),
+    isMd: useMediaQuery("(min-width: 768px)"),
+    isLg: useMediaQuery("(min-width: 992px)"),
+    isXl: useMediaQuery("(min-width: 1200px)"),
+    isXXl: useMediaQuery("(min-width: 1600px)"),
+    active: "xs"
+  };
+  if (breakpoints.isXs) breakpoints.active = "xs";
+  if (breakpoints.isSm) breakpoints.active = "sm";
+  if (breakpoints.isMd) breakpoints.active = "md";
+  if (breakpoints.isLg) breakpoints.active = "lg";
+  if (breakpoints.isXl) breakpoints.active = "xl";
+  if (breakpoints.isXXl) breakpoints.active = "xxl";
+  return breakpoints;
+}*/
+
