@@ -1,12 +1,9 @@
 .homeCarousel--container {
-  /*&,
-  .slick-slide,
-  .slick-slide * {
-    border-radius: 8px;
-  }*/
-  
   border-radius: 8px;
   overflow: hidden;
+  * {
+    z-index: 0;
+  }
   
   .ant-carousel {
     .slick-arrow {
@@ -45,6 +42,44 @@
       right: 8px;
     }
   
+    .slick-dots {
+      right: 8px;
+      left: unset;
+      bottom: 8px;
+      margin: unset;
+      background: #FFFFFF;
+      border-radius: 22px;
+      padding: 4px;
+    
+      li {
+        width: 8px;
+      
+        button {
+          background: #CED4DA;
+          border-radius: 50%;
+        }
+      
+        &,
+        button {
+          height: 8px;
+        }
+      
+        &.slick-active {
+          button {
+            background: #82879B;
+            border-radius: 11px;
+          }
+        
+          &,
+          button {
+            width: 16px;
+          }
+        
+        
+        }
+      }
+    }
+  
     &[class*="rtl"] {
       .slick-prev {
         right: 8px;
@@ -55,43 +90,10 @@
         left: 8px;
         right: unset;
       }
-    }
-  }
-  
-  .slick-dots {
-    right: 8px;
-    left: unset;
-    bottom: 8px;
-    margin: unset;
-    background: #FFFFFF;
-    border-radius: 22px;
-    padding: 4px;
-    
-    li {
-      width: 8px;
       
-      button {
-        background: #CED4DA;
-        border-radius: 50%;
-      }
-      
-      &,
-      button {
-        height: 8px;
-      }
-      
-      &.slick-active {
-        button {
-          background: #82879B;
-          border-radius: 11px;
-        }
-  
-        &,
-        button {
-          width: 16px;
-        }
-        
-        
+      .slick-dots {
+        left: 8px;
+        right: unset;
       }
     }
   }
