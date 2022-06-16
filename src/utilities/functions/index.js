@@ -175,7 +175,7 @@ export function useQueryString() {
   return new URLSearchParams(useLocation().search);
 }
 
-const breakpointConfig = (width) => {
+/*const breakpointConfig = (width) => {
   if(width > 1600) {
     return 'xxl';
   }
@@ -196,14 +196,14 @@ const breakpointConfig = (width) => {
   }
 }
 
-export const useBreakpoint = () => {
+export const useBreakpoint2 = () => {
   
   const { width } = useWindowSize();
   
   return useMemo(() => breakpointConfig(width), [width]);
-};
+};*/
 
-/*function useMediaQuery(query) {
+function useMediaQuery(query) {
   const [matches, setMatches] = useState(false);
   useEffect(
     () => {
@@ -218,7 +218,7 @@ export const useBreakpoint = () => {
   return matches;
 }
 
-export const useBreakpoint2 = () => {
+export const useBreakpoint = () => {
   const breakpoints = {
     isXs: useMediaQuery("(max-width: 576px)"),
     isSm: useMediaQuery("(min-width: 576px)"),
@@ -235,5 +235,5 @@ export const useBreakpoint2 = () => {
   if (breakpoints.isXl) breakpoints.active = "xl";
   if (breakpoints.isXXl) breakpoints.active = "xxl";
   return breakpoints;
-}*/
+}
 
