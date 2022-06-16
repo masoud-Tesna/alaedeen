@@ -1,0 +1,53 @@
+.joinBox--container {
+  background: #FFFFFF;
+  border: 1px solid #E9ECEF;
+  border-radius: 8px;
+  padding: 24px 16px;
+  
+  .--caption {
+    text-align: center;
+    color: #030304;
+    font-size: 1.1428571em;
+  }
+  
+  .--joinBox,
+  .--loginBox,
+  .--dashboardBox{
+    a {
+      display: block;
+      border-radius: 21px;
+      height: 38px;
+      text-align: center;
+      line-height: 40px;
+      font-weight: 700;
+    }
+    
+    &.__skeleton {
+      .ant-skeleton.ant-skeleton-element {
+        width: 100%;
+        
+        .ant-skeleton-input {
+          max-width: 100% !important;
+          min-width: 100% !important;
+          border-radius: 21px;
+          height: 38px;
+        }
+      }
+    }
+  }
+  
+  .--joinBox,
+  .--dashboardBox {
+    a {
+      background: #2D8327;
+      color: #FFFFFF;
+    }
+  }
+  
+  .--loginBox {
+    a {
+      background: #E9ECEF;
+      color: #82879B;
+    }
+  }
+}
