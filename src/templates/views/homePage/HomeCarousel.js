@@ -5,6 +5,8 @@ import SvgIcon from "../../common/SvgIcon";
 
 const HomeCarousel = () => {
   
+  const {dir: direction} = useTheme();
+  
   const contentStyle = {
     display: "block",
     height: '451px',
@@ -17,28 +19,34 @@ const HomeCarousel = () => {
   const NextArrow = props => {
     const { className, onClick } = props
     return (
-      <span
+      <div
         className={className}
         onClick={onClick}
       >
-        {direction === "ltr" ? <SvgIcon icon="angle-right"/> : <SvgIcon icon="angle-left"/>}
-      </span>
+        {
+          direction === "ltr" ?
+          <SvgIcon icon="angle-right" style={{marginRight: "-2px"}}/> :
+          <SvgIcon icon="angle-left" style={{marginLeft: "-2px"}}/>
+        }
+      </div>
     )
   }
   
   const PrevArrow = props => {
     const { className, onClick } = props
     return (
-      <span
+      <div
         className={className}
         onClick={onClick}
       >
-        {direction === "ltr" ? <SvgIcon icon="angle-left" /> : <SvgIcon icon="angle-right" />}
-      </span>
+        {
+          direction === "ltr" ?
+            <SvgIcon icon="angle-left" style={{marginLeft: "-2px"}} /> :
+            <SvgIcon icon="angle-right" style={{marginRight: "-2px"}} />
+        }
+      </div>
     )
   }
-  
-  const {dir: direction} = useTheme();
   
   return (
     <Row className="homeCarousel--container">
