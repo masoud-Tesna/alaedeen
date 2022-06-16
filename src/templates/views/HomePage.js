@@ -11,6 +11,7 @@ import RecommendedProductsBox from "./homePage/RecommendedProductsBox";
 import StoreBox from "./homePage/StoreBox";
 import serviceProvideImage from "../assets/images/home-service-provider-box.jpg";
 import manufacturerImage from "../assets/images/home-manufacturer-box.jpg";
+import RecommendedProducts from "./homePage/RecommendedProducts";
 
 const manufacturerBox = {
   image: manufacturerImage,
@@ -104,6 +105,10 @@ const HomePage = () => {
             </Row>
           </Col>
         </Row>
+      </Col>
+      
+      <Col span={24} className="--recommendedProductSection">
+        <RecommendedProducts />
       </Col>
     </Row>
   );
