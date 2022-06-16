@@ -92,7 +92,6 @@ const CategoriesList = () => {
         <Otherwise>
           {
             categories?.slice(0, 7)?.map(category => {
-              console.log(category)
               return <CategoryItem key={category?.category_id} category={category} />
             })
           }
