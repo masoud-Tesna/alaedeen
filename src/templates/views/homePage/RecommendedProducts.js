@@ -1,14 +1,14 @@
 import "./styles/RecommendedProducts.less";
-import {Col, Row, Grid} from "antd";
+import {Col, Row} from "antd";
 import {useTranslation} from "react-i18next";
-import {useBreakpoint, useGetApiOld, useWindowSize} from "../../../utilities/functions";
+import {useBreakpoint, useGetApiOld} from "../../../utilities/functions";
 import ProductsMultiColumn from "../../blocks/products_column/ProductsMultiColumn";
+import {__} from "../../../utilities/functions/Helper";
+import {Link} from "react-router-dom";
 
 const RecommendedProducts = () => {
   
   const { t } = useTranslation();
-  
-  const { width } = useWindowSize();
   
   const { isLg } = useBreakpoint();
   
@@ -24,8 +24,6 @@ const RecommendedProducts = () => {
     }
   );
   const { products } = productsData || {};
-  
-  const productGrid = { span: !!isLg ? null : 12 };
   
   return (
     <Row className="recommendedProducts--container" gutter={[0, 24]}>
@@ -48,6 +46,12 @@ const RecommendedProducts = () => {
             })
           }
         </Row>
+      </Col>
+      
+      <Col className="--moreLink" span={24}>
+        <Link to={ "/recommended" }>
+          { t(__('Show More')) }
+        </Link>
       </Col>
     </Row>
   );
