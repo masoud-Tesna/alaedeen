@@ -8,6 +8,21 @@ import CategoriesList from "./homePage/CategoriesList";
 import HomeCarousel from "./homePage/HomeCarousel";
 import JoinBox from "./homePage/JoinBox";
 import RecommendedProductsBox from "./homePage/RecommendedProductsBox";
+import StoreBox from "./homePage/StoreBox";
+import serviceProvideImage from "../assets/images/home-service-provider-box.jpg";
+import manufacturerImage from "../assets/images/home-manufacturer-box.jpg";
+
+const manufacturerBox = {
+  image: manufacturerImage,
+  caption: "manufacturer box",
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+}
+
+const serviceProvide = {
+  image: serviceProvideImage,
+  caption: "service Provide box",
+  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua"
+}
 
 const HomePage = () => {
   
@@ -53,8 +68,8 @@ const HomePage = () => {
       
       <Col span={24} className="--secondSection">
         <Row gutter={[0, 32]}>
-          <Col span={24}>
-            <Row gutter={16} className="__top">
+          <Col span={24} className="__top">
+            <Row gutter={16}>
               <Col span={6} className="--startSection">
                 <CategoriesList />
               </Col>
@@ -76,7 +91,18 @@ const HomePage = () => {
               </Col>
             </Row>
           </Col>
-          <Col span={24}>Bottom</Col>
+          
+          <Col span={24} className="__bottom">
+            <Row gutter={27}>
+              <Col xs={24} lg={12} className="--startSection">
+                <StoreBox {...manufacturerBox} />
+              </Col>
+              
+              <Col xs={24} lg={12} className="--endSection">
+                <StoreBox {...serviceProvide} />
+              </Col>
+            </Row>
+          </Col>
         </Row>
       </Col>
     </Row>
