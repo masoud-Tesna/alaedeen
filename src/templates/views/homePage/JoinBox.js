@@ -32,7 +32,7 @@ const JoinBox = () => {
             
             <Otherwise>
               <Choose>
-                <When condition={!(user_data.auth.user_id)}>
+                <When condition={!!(user_data.auth.user_id)}>
                   <Col span={12} className="--dashboardBox">
                     <Link to="/dashboard">{t("dashboard")}</Link>
                   </Col>
