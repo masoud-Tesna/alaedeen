@@ -7,6 +7,7 @@ import Requests from "./homePage/requests/Requests";
 import CategoriesList from "./homePage/CategoriesList";
 import HomeCarousel from "./homePage/HomeCarousel";
 import JoinBox from "./homePage/JoinBox";
+import RecommendedProductsBox from "./homePage/RecommendedProductsBox";
 
 const HomePage = () => {
   
@@ -66,6 +67,10 @@ const HomePage = () => {
                 <Row gutter={[0, 8]}>
                   <Col span={24}>
                     <JoinBox />
+                  </Col>
+                  
+                  <Col span={24}>
+                    <RecommendedProductsBox />
                   </Col>
                 </Row>
               </Col>
