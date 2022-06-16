@@ -64,12 +64,12 @@ const HomePage = () => {
               </Col>
               
               <Col span={6} className="--endSection">
-                <Row gutter={[0, 8]}>
+                <Row gutter={[0, 8]} className="h-100">
                   <Col span={24}>
                     <JoinBox />
                   </Col>
                   
-                  <Col span={24}>
+                  <Col span={24} style={{height: "calc(100% - 156.05px)"}}>
                     <RecommendedProductsBox />
                   </Col>
                 </Row>
