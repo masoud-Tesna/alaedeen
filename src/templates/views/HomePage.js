@@ -6,6 +6,7 @@ import {useTranslation} from "react-i18next";
 import Requests from "./homePage/requests/Requests";
 import CategoriesList from "./homePage/CategoriesList";
 import HomeCarousel from "./homePage/HomeCarousel";
+import JoinBox from "./homePage/JoinBox";
 
 const HomePage = () => {
   
@@ -62,7 +63,11 @@ const HomePage = () => {
               </Col>
               
               <Col span={6} className="--endSection">
-                End Section
+                <Row gutter={[0, 8]}>
+                  <Col span={24}>
+                    <JoinBox />
+                  </Col>
+                </Row>
               </Col>
             </Row>
           </Col>
