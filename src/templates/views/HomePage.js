@@ -5,6 +5,7 @@ import {SeoGenerator} from "../../utilities/functions/Helper";
 import {useTranslation} from "react-i18next";
 import Requests from "./homePage/requests/Requests";
 import CategoriesList from "./homePage/CategoriesList";
+import HomeCarousel from "./homePage/HomeCarousel";
 
 const HomePage = () => {
   
@@ -57,7 +58,7 @@ const HomePage = () => {
               </Col>
               
               <Col span={12} className="--middleSection">
-                Carousel
+                <HomeCarousel />
               </Col>
               
               <Col span={6} className="--endSection">
