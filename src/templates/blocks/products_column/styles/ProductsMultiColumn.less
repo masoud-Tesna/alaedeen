@@ -19,6 +19,29 @@
   
   .--title {
     min-height: 44px;
+  
+    .ant-skeleton {
+      &:first-child {
+        .ant-skeleton-input {
+          max-width: 90% !important;
+          min-width: 90% !important;
+        }
+      }
+    }
+  }
+  
+  .--title,
+  .--price,
+  .--location {
+    .ant-skeleton {
+      width: 100%;
+    
+      .ant-skeleton-input {
+        max-width: 100% !important;
+        min-width: 100% !important;
+        height: 13px;
+      }
+    }
   }
   
   .--title,
@@ -56,6 +79,13 @@
     
     i {
       margin-right: 8px;
+    }
+  
+    .ant-skeleton {
+      .ant-skeleton-input {
+        max-width: 30% !important;
+        min-width: 30% !important;
+      }
     }
   }
 }

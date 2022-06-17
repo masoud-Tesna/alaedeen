@@ -15,6 +15,8 @@ const RecommendedProducts = () => {
   
   const product_items_per_page = !!isLg ? 10 : 4;
   
+  let test = {};
+  
   // get products from API:
   const { isLoading: productsIsLoading, data: productsData } = useGetApiOld(
     `recommended-api`,
@@ -36,10 +38,13 @@ const RecommendedProducts = () => {
         <Row className="row-cols-2 row-cols-lg-5" gutter={[16, 16]}>
           <Choose>
             <When condition={!!productsIsLoading}>
-              { new Array(10).fill("", 0, 10)?.map(([p, i]) => {
+              { Array.from({ length: 10 })?.map((_, i) => {
                 return (
-                  <Col>
-                    Loding...
+                  <Col style={{minHeight: 354}}>
+                    <ProductsMultiColumn
+                      key={`ProductsMultiColumnIsLoading_${i}`}
+                      isLoading
+                    />
                   </Col>
                 )
               }) }
@@ -48,7 +53,7 @@ const RecommendedProducts = () => {
             <Otherwise>
               {products?.map(product => {
                 return (
-                  <Col>
+                  <Col style={{minHeight: 354}}>
                     <ProductsMultiColumn
                       key={`ProductsMultiColumn_${product?.product_id}`}
                       product={product}
