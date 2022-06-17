@@ -393,3 +393,31 @@ export const useRtlStyles = (styles) => {
   );
   
 }
+
+export const If = props => {
+  
+  const {condition, children} = props;
+  
+  const thenComponent = !!children?.length ? children?.find(c => c.type.name === "Then") : children;
+  
+  const elseComponent = !!children?.length ? children?.find(c => c.type.name === "Else") : false;
+  
+  if (!!condition) {
+    return thenComponent;
+  }
+  
+  else if (elseComponent) {
+    return elseComponent;
+  }
+  
+  return null;
+  
+}
+
+export const Then = props => {
+  return props.children;
+}
+
+export const Else = props => {
+  return props.children;
+}
