@@ -13,6 +13,7 @@ import serviceProvideImage from "../assets/images/home-service-provider-box.jpg"
 import manufacturerImage from "../assets/images/home-manufacturer-box.jpg";
 import RecommendedProducts from "./homePage/RecommendedProducts";
 import WhatAlaedeen from "./homePage/WhatAlaedeen";
+import News from "./homePage/News";
 
 const manufacturerBox = {
   image: manufacturerImage,
@@ -124,6 +125,10 @@ const HomePage = () => {
           
           <Col span={11} className="--endSection" />
         </Row>
+      </Col>
+      
+      <Col span={24} className="--newsSection">
+        <News />
       </Col>
     </Row>
   );
