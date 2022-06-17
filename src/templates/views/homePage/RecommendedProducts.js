@@ -5,6 +5,7 @@ import {useBreakpoint, useGetApiOld} from "../../../utilities/functions";
 import ProductsMultiColumn from "../../blocks/products_column/ProductsMultiColumn";
 import {__} from "../../../utilities/functions/Helper";
 import {Link} from "react-router-dom";
+import { Choose, When, Otherwise } from "control-statements";
 
 const RecommendedProducts = () => {
   
@@ -33,18 +34,30 @@ const RecommendedProducts = () => {
       
       <Col className="--products" span={24}>
         <Row className="row-cols-2 row-cols-lg-5" gutter={[16, 16]}>
-          {
-            new Array(10).fill("", 0, 10)?.map(([p, i]) => {
-              return (
-                <Col>
-                  <ProductsMultiColumn
-                    key={`ProductsMultiColumn_${i}`}
-                    product={p}
-                  />
-                </Col>
-              )
-            })
-          }
+          <Choose>
+            <When condition={!!productsIsLoading}>
+              { new Array(10).fill("", 0, 10)?.map(([p, i]) => {
+                return (
+                  <Col>
+                    Loding...
+                  </Col>
+                )
+              }) }
+            </When>
+            
+            <Otherwise>
+              {products?.map(product => {
+                return (
+                  <Col>
+                    <ProductsMultiColumn
+                      key={`ProductsMultiColumn_${product?.product_id}`}
+                      product={product}
+                    />
+                  </Col>
+                )
+              })}
+            </Otherwise>
+          </Choose>
         </Row>
       </Col>
       
