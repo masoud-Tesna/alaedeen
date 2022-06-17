@@ -158,7 +158,7 @@ const BusinessPromotion = () => {
 
             <Col span={24}>
               <Row gutter={[20, 20]} className="isLoading--Pricing" justify="center">
-                {new Array(4).fill("", 0, 4).map((__, i) => {
+                {Array.from({ length: 5 })?.map((_, i) => {
                   return(
                     <Col xs={24} md={6} key={`isLoading_prising_${i + 1}`}>
                       <Skeleton.Input style={{ height: "48rem", borderRadius: 10 }} active />

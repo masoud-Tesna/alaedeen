@@ -81,7 +81,7 @@ const CategoriesList = () => {
       <Choose>
         <When condition={!!isLoading}>
           {
-            new Array(6).fill("", 0, 6).map((__, i) => {
+            Array.from({ length: 7 })?.map((_, i) => {
               return (
                 <CategorySkeleton key={i} />
               )

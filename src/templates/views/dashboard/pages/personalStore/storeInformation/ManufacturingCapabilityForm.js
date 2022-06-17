@@ -110,7 +110,7 @@ const ManufacturingCapabilityForm = (
                         }
                       >
 
-                        {new Array(11).fill("", 1, 11).map((__, i) => {
+                        {Array.from({ length: 10 })?.map((_, i) => {
                           return(
                             <Option key={`cooperation_year_${i}`} value={ i }>
                               { t("cooperation_year", { years: i }) }
@@ -396,7 +396,7 @@ const ManufacturingCapabilityForm = (
                             }
                           >
 
-                            {new Array(11).fill("", 1, 11).map((__, i) => {
+                            {Array.from({ length: 10 })?.map((_, i) => {
                               return(
                                 <Option key={`cooperation_year_${i}`} value={ i }>
                                   { t("cooperation_year", { years: i }) }

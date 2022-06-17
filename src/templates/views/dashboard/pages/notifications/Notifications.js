@@ -105,7 +105,7 @@ const Notifications = () => {
         <Row gutter={[0, 20]}>
           {isLoading ?
             (
-              new Array(5).fill("", 0, 5).map((__, i) => {
+              Array.from({ length: 6 })?.map((_, i) => {
                 return(
                   <Col xs={24} key={`isLoading_notification_${i + 1}`}>
                     <Skeleton.Input className="--loading" active />

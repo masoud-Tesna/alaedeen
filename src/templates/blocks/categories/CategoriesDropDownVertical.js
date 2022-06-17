@@ -33,7 +33,7 @@ const CategoriesContent = () => {
       className="dropDownCategories--content"
     >
       {isLoading ?
-        new Array(8).fill("", 0, 8).map((p, i) => {
+        Array.from({ length: 9 })?.map((__, i) => {
           return(
             <Menu.Item  key={`topPanelCategoriesDropDownLoading_${i}`}>
               <Skeleton.Input style={{ height: 12 }} active size={"small"} />
@@ -43,7 +43,7 @@ const CategoriesContent = () => {
         <>
           {categories?.map((category) => {
             return(
-              <Menu.Item key={ `CategoriesContent_${category?.category_id}` } className={category?.p_count === 0 ? 'item--disable': ''} >
+              <Menu.Item key={ `topPanelCategoriesDropDown_${category?.category_id}` } className={category?.p_count === 0 ? 'item--disable': ''} >
                 <Link to={ `/categories/${category?.seo_name}` } className={ `d-block ${category?.p_count === 0 ? 'link--disable': ''}` }>
                   <img src={ `${process.env.PUBLIC_URL}/categories-image/category-${category?.category_id}.svg` } alt={ category?.category }/>
                   <span>{ category?.category }</span>

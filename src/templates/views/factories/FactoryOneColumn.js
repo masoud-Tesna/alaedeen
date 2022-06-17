@@ -243,7 +243,7 @@ const FactoryOneColumn = ({ factories, isLoading, selectedStoreId }) => {
                                           </Col>
                                         );
                                       }) :
-                                      new Array(4).fill("", 0, 4).map((_, i) => {
+                                      Array.from({ length: 5 })?.map((_, i) => {
                                         return(
                                           <Col key={`factoryProduct_${factory?.company_id}_${i}`}>
                                             <div className="rounded-10 shadow-y-2 text-center factory--productImage">

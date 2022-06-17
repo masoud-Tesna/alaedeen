@@ -127,7 +127,7 @@ const Conversation = () => {
           <Col span={8} className="conversation--userList">
             <Row>
               {conversationsIsLoading ?
-                new Array(6).fill("", 0, 6).map((p, i) => {
+                Array.from({ length: 7 })?.map((_, i) => {
                   return(
                     <Col key={`RequestsLoading_${i}`} span={24} className="__item">
                       <Row className="h-100">

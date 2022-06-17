@@ -137,7 +137,7 @@ const ManageCategories = () => {
 
           <Row className="__body">
             {(!company_id || isLoading) ?
-              new Array(6).fill("", 0, 6).map((p, i) => {
+              Array.from({ length: 7 })?.map((_, i) => {
                 return(
                   <Col key={`ManageCategoriesLoading_${i}`} span={24}>
                     <Row className="__data">
