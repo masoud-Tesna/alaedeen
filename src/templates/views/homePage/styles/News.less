@@ -1,0 +1,129 @@
+// import Mixin:
+@import '../../../styles/Mixins';
+
+.news--container {
+  .--caption {
+    text-align: center;
+    color: #030304;
+    font-weight: 500;
+    font-size: 1.71428571em;
+    text-transform: uppercase;
+  }
+  
+  .--item {
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+  
+    .__image {
+      max-height: 370px;
+    
+      .ant-image {
+        display: block;
+      
+        &,
+        img {
+          height: 100%;
+        }
+      
+        img {
+          border-radius: 15px 15px 0 0;
+          height: 310px;
+          @media (min-width: @screen-md) {
+            border-radius: 15px 0 0 15px;
+            height: 100%;
+          }
+        }
+      }
+    }
+  
+    .__content {
+      padding: 13px;
+  
+      .__title {
+        font-size: 1.14285714em;
+    
+        font-weight: bolder;
+      }
+  
+      .__date {
+        font-weight: 600;
+        text-align: right;
+        font-size: 1em;
+    
+        &,
+        i,
+        time {
+          color: #82879B;
+        }
+    
+        time {
+          font-size: 1em;
+        }
+    
+        i {
+          padding-right: 6px;
+          font-size: 1.2em;
+          margin-top: -2px;
+        }
+      }
+    
+      .__description {
+        text-align: justify;
+        line-height: 1.6;
+        @media (min-width: @screen-md) {
+          line-height: 1.9;
+        }
+      
+        & > div > span,
+        & > div > span > span {
+          font-size: 1.14285714em;
+        }
+      
+        .__readMoreLink {
+          color: #2874F2;
+          font-size: 1.14285714em;
+        }
+      }
+    }
+  
+    .__link- {
+      position: absolute;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      top: 0;
+    }
+  
+    &:hover {
+      .__readMoreLink {
+        color: darken(#2874F2, 20%);
+      }
+    }
+    
+    .ant-skeleton {
+    
+      .ant-skeleton-title {
+        margin-top: 0 !important;
+        @media (min-width: @screen-md) {
+          margin-top: 23px !important;
+        }
+      }
+    
+      .ant-skeleton-paragraph {
+        margin-top: 23px !important;
+      }
+      
+      .ant-skeleton-content {
+        padding: 13px;
+      }
+    
+      .ant-skeleton-content .ant-skeleton-paragraph > li + li {
+        margin-top: 1rem !important;
+        @media (min-width: @screen-md) {
+          margin-top: 2rem !important;
+        }
+      }
+    }
+  }
+}
