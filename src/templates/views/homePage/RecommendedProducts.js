@@ -15,8 +15,6 @@ const RecommendedProducts = () => {
   
   const product_items_per_page = !!isLg ? 10 : 4;
   
-  let test = {};
-  
   // get products from API:
   const { isLoading: productsIsLoading, data: productsData } = useGetApiOld(
     `recommended-api`,
