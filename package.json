@@ -2,7 +2,7 @@
   "name": "alaedeen",
   "proxy": "https://alaedeen.com",
   "homepage": "https://alaedeen.com/",
-  "version": "4.0.2",
+  "version": "5.0.0",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
