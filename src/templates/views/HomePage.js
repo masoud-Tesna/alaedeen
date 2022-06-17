@@ -12,6 +12,7 @@ import StoreBox from "./homePage/StoreBox";
 import serviceProvideImage from "../assets/images/home-service-provider-box.jpg";
 import manufacturerImage from "../assets/images/home-manufacturer-box.jpg";
 import RecommendedProducts from "./homePage/RecommendedProducts";
+import WhatAlaedeen from "./homePage/WhatAlaedeen";
 
 const manufacturerBox = {
   image: manufacturerImage,
@@ -109,6 +110,20 @@ const HomePage = () => {
       
       <Col span={24} className="--recommendedProductSection">
         <RecommendedProducts />
+      </Col>
+      
+      {/*<Col span={24} className="--logisticsSection">
+        <Logistics />
+      </Col>*/}
+      
+      <Col span={24} className="--whatAlaedeenSection">
+        <Row gutter={31} className="h-100">
+          <Col span={13} className="--firstSection">
+            <WhatAlaedeen />
+          </Col>
+          
+          <Col span={11} className="--endSection" />
+        </Row>
       </Col>
     </Row>
   );
