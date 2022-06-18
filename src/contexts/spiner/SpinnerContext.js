@@ -2,15 +2,15 @@ import { createContext, useContext, useReducer, Suspense } from "react";
 import LoaderSpinner from "../../templates/common/LoadSpinner";
 
 // spinner Context Create:
-const spinnerContext = createContext();
+const spinnerContext = createContext({});
 
 // initial state:
-const spinnerInitialState = {
+const initialState = {
   isLoading: false
 }
 
 // reducer function:
-const spinnerReducer = (state, { type, payload }) => {
+const reducer = (state, { type, payload }) => {
   if (type === "loading_state") return {...state, isLoading: payload}
   return state;
 }
@@ -20,8 +20,8 @@ export const SpinnerProvider = ({ children }) => {
 
   // useReducer For Language use in app
   const [spinner, spinnerDispatch] = useReducer(
-    spinnerReducer,
-    spinnerInitialState
+    reducer,
+    initialState
   );
 
   return (

@@ -1,5 +1,5 @@
 // Initial State:
-export const UserInitialState = {
+export const initialState = {
   auth: [],
   load: true
 }

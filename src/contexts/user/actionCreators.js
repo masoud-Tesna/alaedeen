@@ -1,4 +1,4 @@
-import { AUTH_SIGN_IN, CHECK_REMEMBER_ME, AUTH_LOGOUT, AUTH_LOADING, AUTH_LOADING_FALSE } from "./UserActions";
+import { AUTH_SIGN_IN, CHECK_REMEMBER_ME, AUTH_LOGOUT, AUTH_LOADING, AUTH_LOADING_FALSE } from "./actions";
 
 // Actions Creator
 export const signInAction = (user_data, token, update_expiration = true) => {

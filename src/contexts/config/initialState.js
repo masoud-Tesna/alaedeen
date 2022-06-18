@@ -20,7 +20,7 @@ if (!clientCurrencyLocalStorage) {
   window.localStorage.setItem("client_currency", "USD");
 }
 
-export const ConfigInitialState = {
+export const initialState = {
   ip: null,
   country: null,
   countryCode: null,

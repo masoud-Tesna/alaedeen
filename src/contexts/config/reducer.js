@@ -5,12 +5,12 @@ import {
   CHANGE_LANGUAGE,
   CHANGE_CLIENT_LANGUAGE,
   CHANGE_CURRENCY
-} from "./ConfigActions";
+} from "./actions";
 import i18n from "../../utilities/i18n";
 // import Cookies Package:
 import { Cookies } from "react-cookie";
 
-export const ConfigReducer = (state, { type, payload }) => {
+export const reducer = (state, { type, payload }) => {
   const mappedAction = actionMap.get(type);
   return mappedAction ? mappedAction(state, payload) : state;
 }

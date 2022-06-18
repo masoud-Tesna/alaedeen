@@ -1,4 +1,4 @@
-import { AUTH_LOADING, AUTH_LOADING_FALSE, AUTH_LOGOUT, AUTH_SIGN_IN, CHECK_REMEMBER_ME } from "./UserActions";
+import { AUTH_LOADING, AUTH_LOADING_FALSE, AUTH_LOGOUT, AUTH_SIGN_IN, CHECK_REMEMBER_ME } from "./actions";
 
 import { fn_set_date_day } from "../../utilities/functions/Helper";
 import { Cookies } from "react-cookie";
@@ -8,12 +8,12 @@ import {
   CHANGE_COUNTRY_CODE, CHANGE_CURRENCY,
   CHANGE_IP,
   CHANGE_LANGUAGE
-} from "../config/ConfigActions";
+} from "../config/actions";
 
 // use Cookies Class:
 const Cookie = new Cookies();
 
-export const UserReducer = (state, action) => {
+export const reducer = (state, action) => {
   const mappedAction = actionMap.get(action.type);
   return mappedAction ? mappedAction(state, action) : state;
 }

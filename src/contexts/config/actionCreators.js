@@ -5,7 +5,7 @@ import {
   CHANGE_LANGUAGE,
   CHANGE_CLIENT_LANGUAGE,
   CHANGE_CURRENCY
-} from './ConfigActions';
+} from './actions';
 
 // Actions Creator
 export const changeIpAction = (ip) => {

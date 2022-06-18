@@ -21,7 +21,7 @@ import { signInAction, useGetAuthState, useDispatchAuthState, checkSignInLoading
 
 import { useGetConfig } from "../../contexts/config/ConfigContext";
 
-import { signInLoadingFalseAction } from "../../contexts/user/UserActionCreators";
+import { signInLoadingFalseAction } from "../../contexts/user/actionCreators";
 
 import { useMutation } from "react-query";
 import { signInApi } from "../../utilities/functions";

@@ -1,12 +1,12 @@
 import { createContext, useContext, useReducer } from "react";
 
 // import Config reducer:
-import { ConfigReducer } from './ConfigReducer';
+import { reducer } from './reducer';
 
 // import Config initial state:
-import { ConfigInitialState } from './ConfigInitialState';
+import { initialState } from './initialState';
 
-import { changeIpAction, changeCountryAction, changeCountryCodeAction, changeClientLanguageAction } from './ConfigActionCreators';
+import { changeIpAction, changeCountryAction, changeCountryCodeAction, changeClientLanguageAction } from './actionCreators';
 import axios from "axios";
 
 import { useQuery } from "react-query";
@@ -14,7 +14,7 @@ import { isLoadingAction, useSpinnerDispatch } from "../spiner/SpinnerContext";
 
 
 // Config Context Create:
-const configContext = createContext();
+const configContext = createContext({});
 
 // create Config Context Provide:
 function ConfigProvider({ children }) {
@@ -24,8 +24,8 @@ function ConfigProvider({ children }) {
 
   // useReducer For Language use in app
   const [config, configDispatch] = useReducer(
-    ConfigReducer,
-    ConfigInitialState
+    reducer,
+    initialState
   );
 
   async function getConfigApi() {
@@ -69,7 +69,7 @@ function useConfigDispatch() {
   return { configDispatch };
 }
 
-export { changeLanguageAction, changeCurrencyAction } from './ConfigActionCreators';
+export { changeLanguageAction, changeCurrencyAction } from './actionCreators';
 
 export {
   ConfigProvider,

@@ -6,20 +6,20 @@ import { useMutation } from "react-query";
 import { Cookies } from "react-cookie";
 
 // import use reducer:
-import { UserReducer } from './UserReducer';
+import { reducer } from './reducer';
 
 // import user initial state:
-import { UserInitialState } from './UserInitialState';
+import { initialState } from './initialState';
 
 // import Action Creator:
-import { signInAction, logOutAction, checkSignInLoadingAction, signInLoadingFalseAction } from './UserActionCreators';
+import { signInAction, logOutAction, checkSignInLoadingAction, signInLoadingFalseAction } from './actionCreators';
 
 // import config context:
 import { useGetConfig } from "../config/ConfigContext";
 import { isLoadingAction, useSpinnerDispatch } from "../spiner/SpinnerContext";
 
 // User Context Create:
-const userContext = createContext();
+const userContext = createContext({});
 
 // create User Context Provide:
 export function UserProvider ({ children }) {
@@ -35,8 +35,8 @@ export function UserProvider ({ children }) {
 
   // useReducer For Language use in app
   const [auth, dispatch] = useReducer(
-    UserReducer,
-    UserInitialState
+    reducer,
+    initialState
   );
 
   const token = Cookie.get('_token');
@@ -99,4 +99,4 @@ export function useDispatchAuthState() {
   return { AuthDispatch };
 }
 
-export { signInAction, checkSignInLoadingAction, checkRememberAction } from './UserActionCreators';
+export { signInAction, checkSignInLoadingAction, checkRememberAction } from './actionCreators';
