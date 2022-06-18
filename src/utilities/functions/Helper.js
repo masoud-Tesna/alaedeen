@@ -394,9 +394,7 @@ export const useRtlStyles = (styles) => {
   
 }
 
-export const If = props => {
-  
-  const {condition, children} = props;
+export const If = ({condition, children}) => {
   
   const thenComponent = !!children?.length ? children?.find(c => c.type.name === "Then") : children;
   
