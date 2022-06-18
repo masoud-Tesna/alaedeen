@@ -1,8 +1,9 @@
-import { useMemo } from "react";
+import { useMemo, Children } from "react";
 import { useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import bidiCSSJS from 'bidi-css-js';
 import {useTheme} from "styled-components";
+import PropTypes from 'prop-types';
 
 export function fn_stripHtml(strip) {
   const regex = /(<([^>]+)>)/ig;
@@ -394,28 +395,51 @@ export const useRtlStyles = (styles) => {
   
 }
 
+const typeOfComponent = component =>
+  component?.props?.__TYPE ||
+  component?.type?.toString().replace('Symbol(react.fragment)', 'react.fragment') ||
+  undefined;
+
+const getChildrenByType = (children, types) =>
+  Children.toArray(children).filter(child => types.indexOf(typeOfComponent(child)) !== -1);
+
 export const If = ({condition, children}) => {
   
-  const thenComponent = !!children?.length ? children?.find(c => c.type.name === "Then") : children;
+  const thenComponent = getChildrenByType(children, ["Then"]);
   
-  const elseComponent = !!children?.length ? children?.find(c => c.type.name === "Else") : false;
+  const elseComponent = getChildrenByType(children, ["Else"]);
   
-  if (!!condition) {
-    return thenComponent;
-  }
+  if (!!condition) return thenComponent;
   
-  else if (elseComponent) {
-    return elseComponent;
-  }
+  else if (elseComponent) return elseComponent;
   
-  return null;
+  return <></>;
   
 }
 
-export const Then = props => {
-  return props.children;
-}
+export const Then = ({children}) => children;
 
-export const Else = props => {
-  return props.children;
-}
+export const Else = ({children}) => children;
+
+If.propTypes = {
+  children: PropTypes.node.isRequired,
+  condition: PropTypes.bool.isRequired,
+};
+
+Then.propTypes = {
+  children: PropTypes.node,
+  __TYPE: PropTypes.string,
+};
+
+Then.defaultProps = {
+  __TYPE: 'Then',
+};
+
+Else.propTypes = {
+  children: PropTypes.node,
+  __TYPE: PropTypes.string,
+};
+
+Else.defaultProps = {
+  __TYPE: 'Else',
+};
