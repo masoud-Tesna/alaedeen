@@ -3,9 +3,8 @@ import {Col, Row} from "antd";
 import {useTranslation} from "react-i18next";
 import {useBreakpoint, useGetApiOld} from "../../../utilities/functions";
 import ProductsMultiColumn from "../../blocks/products_column/ProductsMultiColumn";
-import {__} from "../../../utilities/functions/Helper";
+import {__, Else, If, Then} from "../../../utilities/functions/Helper";
 import {Link} from "react-router-dom";
-import { Choose, When, Otherwise } from "control-statements";
 
 const RecommendedProducts = () => {
   
@@ -34,8 +33,8 @@ const RecommendedProducts = () => {
       
       <Col className="--products" span={24}>
         <Row className="row-cols-2 row-cols-lg-5" gutter={[16, 16]}>
-          <Choose>
-            <When condition={!!productsIsLoading}>
+          <If condition={!!productsIsLoading}>
+            <Then>
               { Array.from({ length: 10 })?.map((_, i) => {
                 return (
                   <Col style={{minHeight: 354}}>
@@ -46,21 +45,23 @@ const RecommendedProducts = () => {
                   </Col>
                 )
               }) }
-            </When>
+            </Then>
             
-            <Otherwise>
-              {products?.map(product => {
+            <Else>
+              { products?.map(product => {
                 return (
-                  <Col style={{minHeight: 354}}>
+                  <Col
+                    key={`ProductsMultiColumn_${product?.product_id}`}
+                    style={{minHeight: 354}}
+                  >
                     <ProductsMultiColumn
-                      key={`ProductsMultiColumn_${product?.product_id}`}
                       product={product}
                     />
                   </Col>
                 )
-              })}
-            </Otherwise>
-          </Choose>
+              }) }
+            </Else>
+          </If>
         </Row>
       </Col>
       

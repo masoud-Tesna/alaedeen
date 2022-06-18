@@ -1,9 +1,8 @@
 import {useLocation} from "react-router-dom";
 import "./styles/Rfq.less";
 import {Button, Checkbox, Col, Form, Input, InputNumber, Row, Select} from "antd";
-import {__} from "../../utilities/functions/Helper";
+import {__, Else, If, Then} from "../../utilities/functions/Helper";
 import SvgIcon from "../common/SvgIcon";
-import {Choose, Otherwise, When} from "control-statements";
 import {useTranslation} from "react-i18next";
 import {useGetConfig} from "../../contexts/config/ConfigContext";
 import {useGetApiOld} from "../../utilities/functions";
@@ -132,8 +131,8 @@ const Rfq = () => {
         </Col>
       
         <Col span={24}>
-          <Choose>
-            <When condition={countryCode === "IR"}>
+          <If condition={countryCode === "IR"}>
+            <Then>
               <Form.Item
                 name="phone_number"
                 className="__phone"
@@ -154,9 +153,9 @@ const Rfq = () => {
                   allowClear
                 />
               </Form.Item>
-            </When>
-          
-            <Otherwise>
+            </Then>
+            
+            <Else>
               <Form.Item
                 name="auth_email"
                 className="__email"
@@ -185,8 +184,8 @@ const Rfq = () => {
                   allowClear
                 />
               </Form.Item>
-            </Otherwise>
-          </Choose>
+            </Else>
+          </If>
         </Col>
       
         <Col span={24}>

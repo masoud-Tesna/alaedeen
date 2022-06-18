@@ -1,11 +1,10 @@
 import "../../styles/RequestForm.less";
 import {Button, Checkbox, Col, Form, Input, InputNumber, Row, Select} from "antd";
 import {useTranslation} from "react-i18next";
-import {__} from "../../../../../utilities/functions/Helper";
+import {__, Else, If, Then} from "../../../../../utilities/functions/Helper";
 import {useGetApiOld} from "../../../../../utilities/functions";
 import SvgIcon from "../../../../common/SvgIcon";
 import {useGetConfig} from "../../../../../contexts/config/ConfigContext";
-import { Choose, When, Otherwise } from "control-statements";
 import {useNavigate} from "react-router-dom";
 
 const RequestForm = () => {
@@ -137,8 +136,8 @@ const RequestForm = () => {
             </Col>
   
             <Col span={24}>
-              <Choose>
-                <When condition={countryCode === "IR"}>
+              <If condition={countryCode === "IR"}>
+                <Then>
                   <Form.Item
                     name="phone_number"
                     className="__phone"
@@ -159,9 +158,9 @@ const RequestForm = () => {
                       allowClear
                     />
                   </Form.Item>
-                </When>
+                </Then>
                 
-                <Otherwise>
+                <Else>
                   <Form.Item
                     name="auth_email"
                     className="__email"
@@ -190,8 +189,8 @@ const RequestForm = () => {
                       allowClear
                     />
                   </Form.Item>
-                </Otherwise>
-              </Choose>
+                </Else>
+              </If>
             </Col>
   
             <Col span={24}>

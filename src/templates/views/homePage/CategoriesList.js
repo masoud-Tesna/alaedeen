@@ -1,11 +1,11 @@
 import "./styles/CategoriesList.less";
 import {Col, Row, Skeleton} from "antd";
-import { Choose, When, Otherwise } from "control-statements";
 import {useGetApiOld} from "../../../utilities/functions";
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
 import SvgIcon from "../../common/SvgIcon";
 import React from "react";
+import {Else, If, Then} from "../../../utilities/functions/Helper";
 
 const CategoriesList = () => {
   
@@ -77,9 +77,9 @@ const CategoriesList = () => {
       <Col span={24} className="--caption">
         {t("Categories")}
       </Col>
-  
-      <Choose>
-        <When condition={!!isLoading}>
+      
+      <If condition={!!isLoading}>
+        <Then>
           {
             Array.from({ length: 7 })?.map((_, i) => {
               return (
@@ -87,17 +87,16 @@ const CategoriesList = () => {
               )
             })
           }
-          <CategorySkeleton />
-        </When>
-        <Otherwise>
+        </Then>
+        
+        <Else>
           {
             categories?.slice(0, 7)?.map(category => {
               return <CategoryItem key={category?.category_id} category={category} />
             })
           }
-        </Otherwise>
-      </Choose>
-      
+        </Else>
+      </If>
     </Row>
   );
 };
