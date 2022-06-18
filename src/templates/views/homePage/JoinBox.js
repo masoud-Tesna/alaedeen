@@ -50,7 +50,6 @@ const JoinBox = () => {
               </If>
             </Else>
           </If>
-          
         </Row>
       </Col>
     </Row>
