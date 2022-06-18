@@ -2,56 +2,68 @@ import { AUTH_LOADING, AUTH_LOADING_FALSE, AUTH_LOGOUT, AUTH_SIGN_IN, CHECK_REME
 
 import { fn_set_date_day } from "../../utilities/functions/Helper";
 import { Cookies } from "react-cookie";
+import {
+  CHANGE_CLIENT_LANGUAGE,
+  CHANGE_COUNTRY,
+  CHANGE_COUNTRY_CODE, CHANGE_CURRENCY,
+  CHANGE_IP,
+  CHANGE_LANGUAGE
+} from "../config/ConfigActions";
 
-export function UserReducer(state, action) {
-  // use Cookies Class:
-  const Cookie = new Cookies();
+// use Cookies Class:
+const Cookie = new Cookies();
 
-  switch (action.type) {
-    case AUTH_SIGN_IN:
-      if (action.update_expiration) {
-        // add _token cookie:
-        Cookie.set("_token", action.token,
-          {
-            path: "/",
-            //domain: ".alaedeen.com",
-            expires: fn_set_date_day(1)
-          }
-        )
-      }
-      return {
-        ...state, auth: action?.user_data, load: false
-      };
-    case AUTH_LOGOUT:
-
-      // remove _token cookie:
-      Cookie.remove("_token",
-        {
-          path: "/",
-          //domain: ".alaedeen.com"
-        });
-
-      return {
-        ...state, auth: [], load: false
-      };
-    case AUTH_LOADING:
-      return {
-        ...state, load: true
-      };
-    case AUTH_LOADING_FALSE:
-      return {
-        ...state, load: false
-      };
-    case CHECK_REMEMBER_ME:
-      // set _token cookie:
-      Cookie.set("_token", action.token,
-        {
-          path: "/",
-          //domain: ".alaedeen.com"
-        }
-      );
-      return state;
-    default:
-      return state;
-  }
+export const UserReducer = (state, action) => {
+  const mappedAction = actionMap.get(action.type);
+  return mappedAction ? mappedAction(state, action) : state;
 }
+
+const signIn = (state, action) => {
+  if (action.update_expiration) {
+    // add _token cookie:
+    Cookie.set("_token", action.token,
+      {
+        path: "/",
+        //domain: ".alaedeen.com",
+        expires: fn_set_date_day(1)
+      }
+    )
+  }
+  
+  return {...state, auth: action?.user_data, load: false};
+}
+
+const logOut = (state) => {
+  Cookie.remove("_token",
+    {
+      path: "/",
+      //domain: ".alaedeen.com"
+    });
+  
+  return {...state, auth: [], load: false};
+}
+
+const rememberMe = (state, action) => {
+  Cookie.set("_token", action.token,
+    {
+      path: "/",
+      //domain: ".alaedeen.com"
+    }
+  );
+  
+  return state;
+}
+
+const actionMap = new Map([
+  
+  [AUTH_SIGN_IN, signIn],
+  
+  [AUTH_LOGOUT, logOut],
+  
+  [AUTH_LOADING, state => ({...state, load: true})],
+  
+  [AUTH_LOADING_FALSE, state => ({...state, load: false})],
+  
+  [CHECK_REMEMBER_ME, rememberMe],
+
+]);

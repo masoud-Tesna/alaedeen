@@ -10,15 +10,9 @@ const spinnerInitialState = {
 }
 
 // reducer function:
-function spinnerReducer(state, action) {
-  switch (action.type) {
-    case "loading_state" :
-      return {
-        ...state, isLoading: action.payload
-      };
-    default:
-      return state;
-  }
+const spinnerReducer = (state, { type, payload }) => {
+  if (type === "loading_state") return {...state, isLoading: payload}
+  return state;
 }
 
 // create spinner provider:
