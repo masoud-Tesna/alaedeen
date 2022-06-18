@@ -8,59 +8,7 @@ import { useQuery } from "react-query";
 import { useGetConfig } from "../../contexts/config/ConfigContext";
 import { useGetAuthState } from "../../contexts/user/UserContext";
 
-export function useGetTopRankingProducts(cat1, cat2, cat3) {
-  const [load, setLoad] = useState(true);
-  const [productsCat1, setProductsCat1] = useState([]);
-  const [productsCat2, setProductsCat2] = useState([]);
-  const [productsCat3, setProductsCat3] = useState([]);
-  const [parametersCat1, setParametersCat1] = useState([]);
-  const [parametersCat2, setParametersCat2] = useState([]);
-  const [parametersCat3, setParametersCat3] = useState([]);
-  const [error, setError] = useState(null);
-
-  // get initial config:
-  const { config } = useGetConfig();
-
-  useEffect(() => {
-    let mounted  = true;
-    setLoad(true);
-
-    if (mounted && config.language) {
-
-      // async function for get API:
-      async function getProduct() {
-        return await axios.all([
-          axios.get(`https://alaedeen.com/horn/products-api/?${cat1}&lang_code=${config.language}`),
-          axios.get(`https://alaedeen.com/horn/products-api/?${cat2}&lang_code=${config.language}`),
-          axios.get(`https://alaedeen.com/horn/products-api/?${cat3}&lang_code=${config.language}`)
-        ]);
-      }
-
-      getProduct()
-        .then(axios.spread((firstResponse, secondResponse, thirdResponse) => {
-          setProductsCat1(firstResponse.data.products);
-          setProductsCat2(secondResponse.data.products);
-          setProductsCat3(thirdResponse.data.products);
-
-          setParametersCat1(thirdResponse.data.params);
-          setParametersCat2(thirdResponse.data.params);
-          setParametersCat3(thirdResponse.data.params);
-        }))
-        .then(() => {
-          setLoad(false);
-        })
-        .catch ((error) => {
-          setError(error);
-          setLoad(false);
-        })
-    }
-    return () => mounted = false;
-  }, [cat1, cat2, cat3, config.language]);
-
-  return { productsCat1, productsCat2, productsCat3, parametersCat1, parametersCat2, parametersCat3, load, error }
-}
-
-export function useGetApiOld(mode, params, key, options) {
+export const useGetApiOld = (mode, params, key, options) => {
 
   // get initial config from context:
   const { config } = useGetConfig();
@@ -70,7 +18,7 @@ export function useGetApiOld(mode, params, key, options) {
 
 
   // async function for get API:
-  async function getApi() {
+  const getApi = async () => {
     const { data } = await axios.get(url);
     return data;
   }
@@ -81,7 +29,7 @@ export function useGetApiOld(mode, params, key, options) {
 }
 
 // TODO: Change All Get Api by useGetApiOld() change to new API (useGetApiNew()), And remove old get API...
-export function useGetApi(path, params, key, options) {
+export const useGetApi = (path, params, key, options) => {
 
   // get initial config from context:
   const { config } = useGetConfig();
@@ -90,7 +38,7 @@ export function useGetApi(path, params, key, options) {
 
 
   // async function for get API:
-  async function getApi() {
+  const getApi = async () => {
     const { data } = await axios.get(`https://alaedeen.com/horn/api/${ path }/`,
       {
         params: {
@@ -125,11 +73,20 @@ export const signInApi = async (values) => {
 
 };
 
-export function useResizeImage({ image_path, image_folder, image_width, image_height, useQueryKey, options }) {
+export const useResizeImage = (
+  {
+    image_path,
+    image_folder,
+    image_width,
+    image_height,
+    useQueryKey,
+    options
+  }
+) => {
 
   // async function for get API:
   const url = `https://alaedeen.com/horn/image-resize-api/?image_path=${image_path}&image_folder=${image_folder}&image_width=${image_width}&image_height=${image_height}`;
-  async function getImageResized() {
+  const getImageResized = async () => {
     const { data } = await axios.get(url);
     return data;
   }
@@ -140,7 +97,7 @@ export function useResizeImage({ image_path, image_folder, image_width, image_he
   });
 }
 
-export function useWindowSize() {
+export const useWindowSize = () => {
   // Initialize state with undefined width/height so server and client renders match
   // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
   const [windowSize, setWindowSize] = useState({
@@ -150,7 +107,7 @@ export function useWindowSize() {
 
   useEffect(() => {
     // Handler to call on window resize
-    function handleResize() {
+    const handleResize = () => {
       // Set window width/height to state
       setWindowSize({
         width: window.innerWidth,
@@ -171,39 +128,11 @@ export function useWindowSize() {
   return windowSize;
 }
 
-export function useQueryString() {
+export const useQueryString = () => {
   return new URLSearchParams(useLocation().search);
 }
 
-/*const breakpointConfig = (width) => {
-  if(width > 1600) {
-    return 'xxl';
-  }
-  else if(width > 1200 && width <= 1600) {
-    return 'xl';
-  }
-  else if(width > 992 && width <= 1200) {
-    return 'lg';
-  }
-  else if(width > 768 && width <= 992) {
-    return 'md';
-  }
-  else if(width > 576 && width <= 768) {
-    return 'sm';
-  }
-  else if(width <= 576) {
-    return 'xs';
-  }
-}
-
-export const useBreakpoint2 = () => {
-  
-  const { width } = useWindowSize();
-  
-  return useMemo(() => breakpointConfig(width), [width]);
-};*/
-
-function useMediaQuery(query) {
+const useMediaQuery = (query) => {
   const [matches, setMatches] = useState(false);
   useEffect(
     () => {

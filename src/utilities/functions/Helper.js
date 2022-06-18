@@ -5,12 +5,12 @@ import bidiCSSJS from 'bidi-css-js';
 import {useTheme} from "styled-components";
 import PropTypes from 'prop-types';
 
-export function fn_stripHtml(strip) {
+export const fn_stripHtml = (strip) => {
   const regex = /(<([^>]+)>)/ig;
   return strip.replace(regex, '');
 }
 
-export function __(world, suffix = "", sign = ".") {
+export const __ = (world, suffix = "", sign = ".") => {
   
   let returnWord = world;
   
@@ -46,7 +46,7 @@ export function __(world, suffix = "", sign = ".") {
   
 }
 
-export function fn_set_date_day(day) {
+export const fn_set_date_day = (day) => {
   const date = new Date();
   
   date.setTime(date.getTime() + (day*24*60*60*1000));
@@ -69,8 +69,8 @@ export const splitArray = (arr, len) => {
   return chunks;
 }
 
-// partition array for example: $array=[1,2,3,4,5,6,7] splitArray($array, 2) = [[1,2,3,4],[5,6,7]] => Items in two arrays:
-export const partitionArray = (list = [], n = 1) => {
+// partition array for example: $array=[1,2,3,4,5,6,7] splitArray($array, 2) = [[1,2,3,4],[5,6,7]] => Items in two arrays: TODO: Commented for now
+/*export const partitionArray = (list = [], n = 1) => {
   const isPositiveInteger = Number.isSafeInteger(n) && n > 0;
   if (!isPositiveInteger) {
     throw new RangeError('n must be a positive integer');
@@ -85,10 +85,10 @@ export const partitionArray = (list = [], n = 1) => {
   }
   
   return partitions;
-}
+}*/
 
 // get url and add parameter to url or update parameter by new value (no change url! return string new url)
-export function appendQueryParameter(key, value) {
+export const appendQueryParameter = (key, value) => {
   
   const url = window.location.href;
   
@@ -140,7 +140,8 @@ export function appendQueryParameter(key, value) {
   
 }
 
-export const useAppendRouteParameter = (name, value) => {
+// TODO: Commented for now
+/*export const useAppendRouteParameter = (name, value) => {
   
   const location = useLocation();
   
@@ -156,7 +157,7 @@ export const useAppendRouteParameter = (name, value) => {
   
   return pathName+ "?"+ queryParams;
   
-}
+}*/
 
 export const SeoGenerator = (
   {
@@ -270,7 +271,7 @@ export const SeoGenerator = (
   );
 }
 
-export function scrollIntoViewIfTargetNotOnDisplay(target) {
+export const scrollIntoViewIfTargetNotOnDisplay = (target) => {
   if (target.getBoundingClientRect().bottom > window.innerHeight) {
     target.scrollIntoView(false);
   }
@@ -283,19 +284,21 @@ export function scrollIntoViewIfTargetNotOnDisplay(target) {
   }
 }
 
-export function scrollTop() {
+export const scrollTop = () => {
   window.scroll({ top: 0, behavior: 'smooth' });
 }
 
-export function isEven(n) {
+// TODO: Commented for now
+/*export const isEven = (n) => {
   return n % 2 === 0;
-}
+}*/
 
-export function isOdd(n) {
+// TODO: Commented for now
+/*export const isOdd = (n) => {
   return Math.abs(n % 2) === 1;
-}
+}*/
 
-export function fn_get_base64(file) {
+export const fn_get_base64 = (file) => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -304,12 +307,12 @@ export function fn_get_base64(file) {
   });
 }
 
-export function fn_discount(price, percent) {
+export const fn_discount = (price, percent) => {
   const discount = (percent / 100) * price;
   return (price - discount);
 }
 
-export function fn_after_discount(price, percent) {
+export const fn_after_discount = (price, percent) => {
   return (percent / 100) * price;
 }
 
@@ -321,20 +324,21 @@ export function fn_after_discount(price, percent) {
  * @param {boolean} isXhtml Use XHTML
  * @return {string} Filtered text
  */
-export function nl2br (str, replaceMode, isXhtml) {
+export const nl2br = (str, replaceMode, isXhtml) => {
   
   let breakTag = (isXhtml) ? '<br />' : '<br>';
   let replaceStr = (replaceMode) ? '$1'+ breakTag : '$1'+ breakTag +'$2';
   return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, replaceStr);
 }
 
-export function fn_deadline(min) {
+export const fn_deadline = (min) => {
   return Date.now() + min * 60000;
 }
 
-export const fn_alternation = (x, y, extra) => {
+// TODO: Commented for now
+/*export const fn_alternation = (x, y, extra) => {
   return extra ? (x * y) + 1 :  x * y;
-}
+}*/
 
 export const fn_date_to_timestamp = strDate => {
   const datum = Date.parse(strDate);
@@ -352,7 +356,8 @@ export const fn_get_lines_count = element => {
   return Math.floor(height / factor);
 }
 
-export function countLines(target) {
+// TODO: Commented for now (use fn_get_lines_count())
+/*export const countLines = (target) => {
   let style = window.getComputedStyle(target, null),
     height = parseInt(style.getPropertyValue("height")),
     font_size = parseInt(style.getPropertyValue("font-size")),
@@ -371,17 +376,19 @@ export function countLines(target) {
   }
   
   return Math.ceil(height / line_height);
-}
+}*/
 
-export const isObject = value => {
+// TODO: Commented for now
+/*export const isObject = value => {
   return !(value instanceof Date)
     && !Array.isArray(value)
     && !Object.is(value, null)
     && !Object.is(value, undefined)
     && !(value instanceof Function);
-}
+}*/
 
-export const upperFirst = (text) => text.charAt(0).toUpperCase() + text.slice(1);
+// TODO: Commented for now
+/*export const upperFirst = (text) => text.charAt(0).toUpperCase() + text.slice(1);*/
 
 export const useRtlStyles = (styles) => {
   const {dir: direction} = useTheme();
