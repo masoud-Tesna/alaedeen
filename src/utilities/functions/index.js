@@ -165,4 +165,3 @@ export const useBreakpoint = () => {
   if (breakpoints.isXXl) breakpoints.active = "xxl";
   return breakpoints;
 }
-
