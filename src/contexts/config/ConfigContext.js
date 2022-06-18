@@ -12,12 +12,11 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import { isLoadingAction, useSpinnerDispatch } from "../spiner/SpinnerContext";
 
-
 // Config Context Create:
 const configContext = createContext({});
 
 // create Config Context Provide:
-function ConfigProvider({ children }) {
+export const ConfigProvider = ({ children }) => {
 
   // spinner dispatch context:
   const { spinnerDispatch } = useSpinnerDispatch();
@@ -28,7 +27,7 @@ function ConfigProvider({ children }) {
     initialState
   );
 
-  async function getConfigApi() {
+  const getConfigApi = async () => {
     // show spinner (spinner context):
     spinnerDispatch(isLoadingAction(true));
     const url = "https://alaedeen.com/horn/config-api";
@@ -59,20 +58,14 @@ function ConfigProvider({ children }) {
 }
 
 // get current Config
-function useGetConfig() {
+export const useGetConfig = () => {
   const config = useContext(configContext).config;
   return { config };
 }
 
-function useConfigDispatch() {
+export const useConfigDispatch = () => {
   const configDispatch = useContext(configContext).configDispatch
   return { configDispatch };
 }
 
 export { changeLanguageAction, changeCurrencyAction } from './actionCreators';
-
-export {
-  ConfigProvider,
-  useGetConfig,
-  useConfigDispatch
-};

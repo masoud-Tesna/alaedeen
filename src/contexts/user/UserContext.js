@@ -22,7 +22,7 @@ import { isLoadingAction, useSpinnerDispatch } from "../spiner/SpinnerContext";
 const userContext = createContext({});
 
 // create User Context Provide:
-export function UserProvider ({ children }) {
+export const UserProvider =  ({ children }) => {
 
   // spinner dispatch context:
   const { spinnerDispatch } = useSpinnerDispatch();
@@ -75,11 +75,11 @@ export function UserProvider ({ children }) {
   );
 }
 
-async function signOutApi() {
+const signOutApi = async () => {
   return await axios.get(`https://alaedeen.com/horn/logout-api/`);
 }
 
-export async function logout(dispatch) {
+export const logout = async (dispatch) => {
   dispatch(checkSignInLoadingAction());
 
   signOutApi()
@@ -89,12 +89,12 @@ export async function logout(dispatch) {
 }
 
 // get current user data
-export function useGetAuthState() {
+export const useGetAuthState = () => {
   const user_data = useContext(userContext).auth;
   return { user_data };
 }
 
-export function useDispatchAuthState() {
+export const useDispatchAuthState = () => {
   const AuthDispatch = useContext(userContext).dispatch;
   return { AuthDispatch };
 }

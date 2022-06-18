@@ -40,13 +40,13 @@ export const SpinnerProvider = ({ children }) => {
 }
 
 // get current spinner state
-export function useGetSpinner() {
+export const useGetSpinner = () => {
   const spinner = useContext(spinnerContext).spinner;
   return { spinner };
 }
 
 //get spinner dispatch function:
-export function useSpinnerDispatch() {
+export const useSpinnerDispatch = () => {
   const spinnerDispatch = useContext(spinnerContext).spinnerDispatch
   return { spinnerDispatch };
 }
