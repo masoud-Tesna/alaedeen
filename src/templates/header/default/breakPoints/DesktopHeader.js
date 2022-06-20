@@ -42,7 +42,7 @@ const DesktopHeader = ({ isHeader = true, isMenu = true }) => {
         !!isHeader &&
           <Col span={24} className={`--header ${!!sticky && "--isSticky"}`}>
             <Row gutter={16} align="middle" className="h-100">
-              <Col span={7}>
+              <Col span={6}>
                 <AlaedeenCharacter />
               </Col>
   
@@ -50,7 +50,7 @@ const DesktopHeader = ({ isHeader = true, isMenu = true }) => {
                 <Search />
               </Col>
   
-              <Col span={7}>
+              <Col span={8}>
                 <Row justify={!!sticky ? "center" : "end"} align="middle" gutter={{lg: 16, xl: 18, xxl: 26}}>
                   {!!sticky ?
                     <Col className="--requestQuote">
