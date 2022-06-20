@@ -45,6 +45,7 @@
     "react-visibility-sensor": "^5.1.1",
     "rtl-css-js": "^1.15.0",
     "styled-components": "^5.3.5",
+    "styled-components-rtl": "^5.2.0",
     "swiper": "^8.1.4",
     "web-vitals": "^2.1.4"
   },
