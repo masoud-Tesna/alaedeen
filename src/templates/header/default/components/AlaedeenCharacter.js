@@ -9,15 +9,15 @@ import styled from "styled-components";
 
 import rtl from "styled-components-rtl"
 
-const AlaedeenCharacter = () => {
-  
-  const { t } = useTranslation();
-  
-  const Extra = styled(Col)`
+const Extra = styled(Col)`
     ${rtl`
       padding-left: 5px;
     `};
   `;
+
+const AlaedeenCharacter = () => {
+  
+  const { t } = useTranslation();
   
   return (
     <Row className="alaedeenCharacter--container" align="middle">
