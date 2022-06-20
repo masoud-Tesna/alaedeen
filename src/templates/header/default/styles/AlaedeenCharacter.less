@@ -1,24 +1,16 @@
 .alaedeenCharacter--container {
   .--character {
     flex: 0 0 26px;
-    
-    img {
-      width: 100%;
-    }
+    max-width: 26px;
   }
   
   .--extra {
-    flex: 1 1 0;
+    flex: 0 0 26px;
+    max-width: 26px;
     display: flex;
     flex-flow: row wrap;
-    padding-left: .5rem;
     
-    &[class*="rtl"] {
-      padding-left: 0;
-      padding-right: .5rem;
-    }
-    
-    > div {
+    & > div {
       display: block;
       flex: 0 0 100%;
       max-width: 100%;
