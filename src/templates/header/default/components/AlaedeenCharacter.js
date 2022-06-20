@@ -4,6 +4,7 @@ import alaedeenChar from '../../../assets/images/alaedeen-char.png';
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import {Col, Row} from "antd";
+import {memo} from "react";
 
 const AlaedeenCharacter = () => {
   
@@ -29,4 +30,4 @@ const AlaedeenCharacter = () => {
   );
 };
 
-export default AlaedeenCharacter;
+export default memo(AlaedeenCharacter);
