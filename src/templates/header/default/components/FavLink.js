@@ -4,6 +4,7 @@ import {useTranslation} from "react-i18next";
 import {__} from "../../../../utilities/functions/Helper";
 import {Link} from "react-router-dom";
 import SvgIcon from "../../../common/SvgIcon";
+import {memo} from "react";
 
 const FavLink = () => {
   
@@ -28,4 +29,4 @@ const FavLink = () => {
   );
 };
 
-export default FavLink;
+export default memo(FavLink);
