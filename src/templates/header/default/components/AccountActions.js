@@ -96,43 +96,38 @@ const AccountActions = () => {
                   <Row
                     className="w-100"
                     align="middle"
-                    gutter={12}
+                    gutter={8}
                     onClick={e => e.preventDefault()}
                   >
-                    <Col flex="58px">
+                    <Col style={{width: 48}}>
                       { (user_data?.auth?.company_logo && user_data?.auth?.company_logo.length !== 0) ?
                         <span className="content--account__companyLogo">
                           <ShowResponsiveImage
                             imagePath={ user_data?.auth?.company_logo?.logo_path }
                             imageFolder='company_logo'
-                            width={46}
-                            height={46}
-                            skeletonWidth="46px"
-                            skeletonHeight="46px"
-                            skeletonRadius="46%"
-                            skeletonSvgWidth="24px"
+                            width={40}
+                            height={40}
+                            skeletonWidth="40px"
+                            skeletonHeight="40px"
+                            skeletonRadius="50%"
+                            skeletonSvgWidth="20px"
                             imageAlt={ user_data?.auth?.company ? user_data?.auth?.company : ` ${user_data?.auth?.firstname} ${user_data?.auth?.lastname} `}
                             object_id={user_data?.auth?.company_id}
                             object_type={`company_logo${config.language}`}
                           />
                         </span> :
-                        <SvgIcon icon="profile" width={46} height={46} />
+                        <SvgIcon icon="profile" width={40} height={40} />
                       }
                     </Col>
       
-                    <Col flex="1 1">
+                    <Col style={{width: "calc(100% - 48px)", marginTop: 3}}>
                       <Row>
                         <Col className="--accountName">
-                          <TextTruncate
-                            className="d-block w-100"
-                            line={ 1 }
-                            element="div"
-                            text={ user_data?.auth?.company || `${user_data?.auth?.firstname} ${user_data?.auth?.lastname}` }
-                          />
+                          {t("my_alaedeen")}
                         </Col>
           
-                        <Col >
-                          <DownOutlined rotate={ dropDownIsActive ? 180 : 0} />
+                        <Col>
+                          <DownOutlined rotate={ dropDownIsActive ? 180 : 0} style={{marginTop: 3}} />
                         </Col>
                       </Row>
                     </Col>
@@ -142,7 +137,7 @@ const AccountActions = () => {
             </> :
             <>
               <Col className="--accountImg">
-                <SvgIcon icon="profile" width={30} height={37} />
+                <SvgIcon icon="profile" width={40} height={40} />
               </Col>
               <Col className="header--account__link">
                 <div>
