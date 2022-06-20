@@ -6,6 +6,14 @@ import {Link} from "react-router-dom";
 import {__} from "../../../../utilities/functions/Helper";
 import {useGetApi} from "../../../../utilities/functions";
 import SvgIcon from "../../../common/SvgIcon";
+import styled from "styled-components";
+import rtl from "styled-components-rtl";
+
+const SearchInput = styled(AutoComplete)`
+    ${rtl`
+      border-left: 1px solid #CED4DA;
+    `};
+  `;
 
 const Search = () => {
   
@@ -116,7 +124,7 @@ const Search = () => {
           </Col>
   
           <Col flex="1 1" style={{ margin: "auto 0", lineHeight: "25px" }}>
-            <AutoComplete
+            <SearchInput
               style={{
                 width: "100%",
               }}
@@ -136,7 +144,7 @@ const Search = () => {
                 onPressEnter={e => setSearchInput(e.target.value)}
                 bordered={false}
               />
-            </AutoComplete>
+            </SearchInput>
           </Col>
         </Row>
       </Col>
