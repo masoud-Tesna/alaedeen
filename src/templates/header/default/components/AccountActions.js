@@ -8,8 +8,21 @@ import {__} from "../../../../utilities/functions/Helper";
 import {useGetConfig} from "../../../../contexts/config/ConfigContext";
 import {logout, useDispatchAuthState, useGetAuthState} from "../../../../contexts/user/UserContext";
 import {useTranslation} from "react-i18next";
-import TextTruncate from "react-text-truncate";
 import SvgIcon from "../../../common/SvgIcon";
+import styled from "styled-components";
+import rtl from "styled-components-rtl";
+
+const AccountLink = styled(Col)`
+  ${rtl`
+    padding-left: 6px;
+  `};
+`;
+
+const MyAlaedeen = styled(Col)`
+  ${rtl`
+    padding-right: 9px;
+  `};
+`;
 
 const AccountActions = () => {
   
@@ -122,9 +135,9 @@ const AccountActions = () => {
       
                     <Col style={{width: "calc(100% - 48px)", marginTop: 3}}>
                       <Row>
-                        <Col className="--accountName">
+                        <MyAlaedeen className="--myAlaedeen">
                           {t("my_alaedeen")}
-                        </Col>
+                        </MyAlaedeen>
           
                         <Col>
                           <DownOutlined rotate={ dropDownIsActive ? 180 : 0} style={{marginTop: 3}} />
@@ -139,7 +152,7 @@ const AccountActions = () => {
               <Col className="--accountImg">
                 <SvgIcon icon="profile" width={40} height={40} />
               </Col>
-              <Col className="header--account__link">
+              <AccountLink className="--accountLink">
                 <div>
                   <Link to={"/sign-in"} >
                     {t(__('Sign in'))}
@@ -151,7 +164,7 @@ const AccountActions = () => {
                     {t(__('Join Free'))}
                   </Link>
                 </div>
-              </Col>
+              </AccountLink>
             </>
           }
       
