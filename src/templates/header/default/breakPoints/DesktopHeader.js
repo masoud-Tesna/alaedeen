@@ -1,12 +1,21 @@
-import "../styles/DesktopHeader.less";
+// import react hooks:
+import {useEffect, useState} from "react";
+
+// import antd components:
 import {Button, Col, Row} from "antd";
+
+// import useTranslation:
+import {useTranslation} from "react-i18next";
+
+// import components for display:
 import AlaedeenCharacter from "../components/AlaedeenCharacter";
 import Search from "../components/Search";
 import AccountActions from "../components/AccountActions";
 import FavLink from "../components/FavLink";
 import Menu from "../../../menu";
-import {useTranslation} from "react-i18next";
-import {useEffect, useState} from "react";
+
+// import styles:
+import "../styles/DesktopHeader.less";
 
 const DesktopHeader = ({ isHeader = true, isMenu = true }) => {
   

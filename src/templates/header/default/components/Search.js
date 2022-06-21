@@ -1,14 +1,24 @@
+// import react hooks:
 import {memo, useCallback, useRef, useState} from "react";
-import "../styles/Search.less";
-import {AutoComplete, Col, Input, Row, Select, Skeleton} from "antd";
+
+// import extra hooks:
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
 import {__} from "../../../../utilities/functions/Helper";
 import {useGetApi} from "../../../../utilities/functions";
-import SvgIcon from "../../../common/SvgIcon";
 import styled from "styled-components";
 import rtl from "styled-components-rtl";
 
+// import antd components:
+import {AutoComplete, Col, Input, Row, Select, Skeleton} from "antd";
+
+// import SvgIcon:
+import SvgIcon from "../../../common/SvgIcon";
+
+// import style:
+import "../styles/Search.less";
+
+// create styled component (SearchInput):
 const SearchInput = styled(AutoComplete)`
     ${rtl`
       border-left: 1px solid #CED4DA;

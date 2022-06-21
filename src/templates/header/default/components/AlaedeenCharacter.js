@@ -1,11 +1,19 @@
-import "../styles/AlaedeenCharacter.less";
-// import alaedeen character:
-import {ReactComponent as AlaedeenChar} from '../../../assets/images/alaedeen-char.svg';
+// import react hooks:
+import {memo} from "react";
+
+// import hooks:
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
-import {Col, Row} from "antd";
-import {memo} from "react";
 import styled from "styled-components";
+
+// import antd components:
+import {Col, Row} from "antd";
+
+// import style:
+import "../styles/AlaedeenCharacter.less";
+
+// import alaedeen character:
+import {ReactComponent as AlaedeenChar} from '../../../assets/images/alaedeen-char.svg';
 
 import rtl from "styled-components-rtl"
 
