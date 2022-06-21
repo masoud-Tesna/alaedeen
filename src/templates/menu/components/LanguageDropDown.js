@@ -1,9 +1,30 @@
-import React, {useState} from "react";
-import "../styles/LanguageDropDown.less";
+// import react hooks:
+import {useState} from "react";
+
+// import antd components:
 import {Col, Dropdown, Menu, Row} from "antd";
+
+// import antd icons:
 import {DownOutlined} from "@ant-design/icons";
+
+// import language context and loading context:
 import {changeLanguageAction, useConfigDispatch, useGetConfig} from "../../../contexts/config/ConfigContext";
 import {isLoadingAction, useSpinnerDispatch} from "../../../contexts/spiner/SpinnerContext";
+
+// import styled components:
+import styled from "styled-components";
+import rtl from "styled-components-rtl";
+
+// import styles:
+import "../styles/LanguageDropDown.less";
+
+const LanguageIcon = styled(Col)`
+  i {
+    ${rtl`
+      margin-left: 8px;
+  `};
+  }
+`;
 
 const LanguageDropDown = () => {
   
@@ -98,15 +119,15 @@ const LanguageDropDown = () => {
       onVisibleChange={setDropDownIsActive}
     >
       <Row gutter={7} className="vv-cursor-pointer" onClick={e => e.preventDefault()}>
-        <Col className="--langIcon" flex="18px">
+        <LanguageIcon className="--langIcon">
           <i className={ languagesList[config?.language].flag } />
-        </Col>
+        </LanguageIcon>
     
-        <Col className="--text" flex="1 1">
+        <Col className="--text">
           {languagesList[config?.language].text}
         </Col>
     
-        <Col className="--arrowIcon" flex="13px">
+        <Col className="--arrowIcon">
           <DownOutlined rotate={ dropDownIsActive ? 180 : 0} />
         </Col>
       </Row>

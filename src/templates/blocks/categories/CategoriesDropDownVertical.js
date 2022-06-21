@@ -1,17 +1,27 @@
-import "./styles/CategoriesDropDownVertical.less";
+// import react hooks:
+import {useState} from "react";
+
+// import antd components:
 import {Col, Dropdown, Menu, Row, Skeleton} from "antd";
+
+// import antd icons:
 import { DownOutlined } from "@ant-design/icons";
 
 // import helper functions:
 import { __ } from "../../../utilities/functions/Helper";
 
+// import translation function:
 import { useTranslation } from "react-i18next";
 
 // import custom hooks:
 import { useGetApiOld } from "../../../utilities/functions";
 import { Link } from "react-router-dom";
-import React, {useState} from "react";
+
+// import svg icons:
 import SvgIcon from "../../common/SvgIcon";
+
+// import styles:
+import "./styles/CategoriesDropDownVertical.less";
 
 const CategoriesContent = () => {
 

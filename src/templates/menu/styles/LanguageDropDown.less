@@ -1,18 +1,14 @@
 .languageDropDown--container {
   .--langIcon {
     margin: auto 0;
+    flex: 0 0 39px;
+    max-width: 39px;
     
     i {
       display: block;
       border-radius: 50%;
-      font-size: 2.2rem;
-      margin-left: 8px;
-    }
-    &[class*="rtl"] {
-      i {
-        margin-left: 0;
-        margin-right: 8px;
-      }
+      width: 24px;
+      height: 24px;
     }
   }
   
@@ -28,6 +24,16 @@
         transition: all 0.3s;
       }
     }
+  }
+  
+  .--text {
+    flex: 0 0 calc(100% - 60px);
+    max-width: calc(100% - 60px);
+  }
+  
+  .--arrowIcon {
+    flex: 0 0 21px;
+    max-width: 21px;
   }
 }
 
