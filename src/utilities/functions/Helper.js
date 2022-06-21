@@ -390,7 +390,8 @@ export const fn_get_lines_count = element => {
 // TODO: Commented for now
 /*export const upperFirst = (text) => text.charAt(0).toUpperCase() + text.slice(1);*/
 
-export const useRtlStyles = (styles) => {
+// TODO: Commented for now (use styled-component and styled-components-rtl)
+/*export const useRtlStyles = (styles) => {
   const {dir: direction} = useTheme();
   
   return useMemo(
@@ -400,7 +401,7 @@ export const useRtlStyles = (styles) => {
     [direction],
   );
   
-}
+}*/
 
 const typeOfComponent = component =>
   component?.props?.__TYPE ||
