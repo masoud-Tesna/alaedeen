@@ -1,11 +1,18 @@
-import "./styles/Menu.less";
+// import antd components:
 import {Col, Divider, Row, Space} from "antd";
+
+// import extra hooks and components:
 import {Link} from "react-router-dom";
 import {__} from "../../utilities/functions/Helper";
 import {useTranslation} from "react-i18next";
 import {useGetConfig} from "../../contexts/config/ConfigContext";
 import {CategoriesDropDownVertical as Categories} from "../blocks/categories/CategoriesDropDownVertical";
 import LanguageDropDown from "./components/LanguageDropDown";
+
+// import styles:
+import "./styles/Menu.less";
+
+// import svg icons:
 import SvgIcon from "../common/SvgIcon";
 
 const Menu = () => {
