@@ -5,8 +5,13 @@ import { useLocation } from 'react-router-dom';
 import axios from "axios";
 
 import { useQuery } from "react-query";
-import { useGetConfig } from "../../contexts/config/ConfigContext";
+import {useGetConfig} from "../../contexts/config/ConfigContext";
 import { useGetAuthState } from "../../contexts/user/UserContext";
+import i18n from "i18next";
+import {Cookies} from "react-cookie";
+
+// use cookies:
+const Cookie = new Cookies();
 
 export const useGetApiOld = (mode, params, key, options) => {
 
@@ -164,4 +169,21 @@ export const useBreakpoint = () => {
   if (breakpoints.isXl) breakpoints.active = "xl";
   if (breakpoints.isXXl) breakpoints.active = "xxl";
   return breakpoints;
+}
+
+export const changeLanguage = async (lang) => {
+  // change language by i18n:
+  return await i18n
+    .changeLanguage(lang)
+    .then(() => {
+      Cookie.set("lang_code", lang,
+        {
+          path: "/",
+          //domain: ".alaedeen.com"
+        }
+      )
+    }) // change language in cookie
+    .then(() => {
+      document.documentElement.lang = lang;
+    }) // change html lang attribute
 }
