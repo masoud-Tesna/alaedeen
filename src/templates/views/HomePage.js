@@ -1,8 +1,19 @@
-import "./styles/HomePage.less";
+// import antd components:
 import {Col, Row} from "antd";
+
+// import helmet components:
 import {Helmet} from "react-helmet";
+
+// import utilities functions:
 import {SeoGenerator} from "../../utilities/functions/Helper";
+
+// import translations functions:
 import {useTranslation} from "react-i18next";
+
+// import styles:
+import "./styles/HomePage.less";
+
+// import components view:
 import Requests from "./homePage/requests/Requests";
 import CategoriesList from "./homePage/CategoriesList";
 import HomeCarousel from "./homePage/HomeCarousel";

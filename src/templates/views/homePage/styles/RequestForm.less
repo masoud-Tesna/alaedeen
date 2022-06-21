@@ -4,6 +4,13 @@
   padding: calc(3.5vh) 25px;
   
   .--form {
+    
+    &[class*="-rtl"] {
+      .ant-form-item-label {
+        text-align: right;
+      }
+    }
+    
     .__piece {
       .ant-form-item-label {
         visibility: hidden;
@@ -87,7 +94,7 @@
     .ant-form-item {
       
       &:not(.__terms) {
-        margin-bottom: 3vh;
+        margin-bottom: 2vh;
         
         .ant-form-item-control {
           height: 68px;

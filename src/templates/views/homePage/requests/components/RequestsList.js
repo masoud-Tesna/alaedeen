@@ -1,33 +1,52 @@
+// import react hooks:
 import {memo} from "react";
+
+// import styles:
 import "../../styles/RequestsList.less";
 import "keen-slider/keen-slider.min.css"
+
+// import antd components:
 import {Col, Row} from "antd";
+
+// import styled components:
+import styled from "styled-components";
+import rtl from "styled-components-rtl";
+
+// import slider hooks:
 import { useKeenSlider } from "keen-slider/react"
+
+// import translations functions:
 import {useTranslation} from "react-i18next";
-import {__, useRtlStyles} from "../../../../../utilities/functions/Helper";
+
+// import utilities functions:
+import {__} from "../../../../../utilities/functions/Helper";
+
+// import svg icons:
 import SvgIcon from "../../../../common/SvgIcon";
+
+const ArrowIcon = styled(Col)`
+  .--svgIcon {
+    ${rtl`
+      margin-left: 16px;
+    `};
+  }
+`;
+
+const RequestItem = styled(Col)`
+  ${rtl`
+    padding-left: 16px;
+  `}
+`;
+
+const DateLocation = styled(Col)`
+  ${rtl`
+    padding-right: 16px;
+  `}
+`;
 
 const RequestsList = () => {
   
   const { t, i18n: {dir} } = useTranslation();
-  
-  const arrowIconStyle = useRtlStyles(
-    {
-      marginStart: 16,
-    }
-  );
-  
-  const requestItemStyle = useRtlStyles(
-    {
-      paddingStart: 16,
-    }
-  );
-  
-  const dateLocationStyle = useRtlStyles(
-    {
-      paddingEnd: 16,
-    }
-  );
   
   const [sliderRef] = useKeenSlider(
     {
@@ -89,7 +108,7 @@ const RequestsList = () => {
       
       <Col span={24} className="--listItems">
         <Row ref={sliderRef} className="keen-slider" style={{ height: 170 }}>
-          <Col span={24} className="keen-slider__slide  --item" style={requestItemStyle}>
+          <RequestItem span={24} className="keen-slider__slide  --item">
             <Row gutter={[0, 16]}>
               <Col span={24} className="--details">
                 <Row gutter={16} justify="space-between">
@@ -107,7 +126,7 @@ const RequestsList = () => {
                   
                   <Col sm={11} xxl={10}>
                     <Row>
-                      <Col className="--dateAndLocation" style={dateLocationStyle}>
+                      <DateLocation className="--dateAndLocation">
                         <Row gutter={[0, 16]}>
                           <Col span={24}>
                             <Row gutter={10}>
@@ -133,11 +152,11 @@ const RequestsList = () => {
                             </Row>
                           </Col>
                         </Row>
-                      </Col>
+                      </DateLocation>
                       
-                      <Col className="--arrowIcon">
-                        <SvgIcon icon={dir() === "rtl" ? "arrow-left" : "arrow-right"} type="bold" color="#185E91" width={24} height={24} style={arrowIconStyle} />
-                      </Col>
+                      <ArrowIcon className="--arrowIcon">
+                        <SvgIcon icon={dir() === "rtl" ? "arrow-left" : "arrow-right"} type="bold" color="#185E91" width={24} height={24} />
+                      </ArrowIcon>
                     </Row>
                   </Col>
                 </Row>
@@ -147,9 +166,9 @@ const RequestsList = () => {
                 <div />
               </Col>
             </Row>
-          </Col>
+          </RequestItem>
   
-          <Col span={24} className="keen-slider__slide  --item" style={requestItemStyle}>
+          <RequestItem span={24} className="keen-slider__slide  --item">
             <Row gutter={[0, 16]}>
               <Col span={24} className="--details">
                 <Row gutter={16} justify="space-between">
@@ -167,7 +186,7 @@ const RequestsList = () => {
           
                   <Col sm={11} xxl={10}>
                     <Row>
-                      <Col className="--dateAndLocation" style={dateLocationStyle}>
+                      <DateLocation className="--dateAndLocation">
                         <Row gutter={[0, 16]}>
                           <Col span={24}>
                             <Row gutter={10}>
@@ -193,11 +212,11 @@ const RequestsList = () => {
                             </Row>
                           </Col>
                         </Row>
-                      </Col>
+                      </DateLocation>
               
-                      <Col className="--arrowIcon">
-                        <SvgIcon icon={dir() === "rtl" ? "arrow-left" : "arrow-right"} type="bold" color="#185E91" width={24} height={24} style={arrowIconStyle} />
-                      </Col>
+                      <ArrowIcon className="--arrowIcon">
+                        <SvgIcon icon={dir() === "rtl" ? "arrow-left" : "arrow-right"} type="bold" color="#185E91" width={24} height={24}/>
+                      </ArrowIcon>
                     </Row>
                   </Col>
                 </Row>
@@ -207,9 +226,9 @@ const RequestsList = () => {
                 <div />
               </Col>
             </Row>
-          </Col>
+          </RequestItem>
   
-          <Col span={24} className="keen-slider__slide  --item" style={requestItemStyle}>
+          <RequestItem span={24} className="keen-slider__slide  --item">
             <Row gutter={[0, 16]}>
               <Col span={24} className="--details">
                 <Row gutter={16} justify="space-between">
@@ -227,7 +246,7 @@ const RequestsList = () => {
           
                   <Col sm={11} xxl={10}>
                     <Row>
-                      <Col className="--dateAndLocation" style={dateLocationStyle}>
+                      <DateLocation className="--dateAndLocation">
                         <Row gutter={[0, 16]}>
                           <Col span={24}>
                             <Row gutter={10}>
@@ -253,11 +272,11 @@ const RequestsList = () => {
                             </Row>
                           </Col>
                         </Row>
-                      </Col>
+                      </DateLocation>
               
-                      <Col className="--arrowIcon">
-                        <SvgIcon icon={dir() === "rtl" ? "arrow-left" : "arrow-right"} type="bold" color="#185E91" width={24} height={24} style={arrowIconStyle} />
-                      </Col>
+                      <ArrowIcon className="--arrowIcon">
+                        <SvgIcon icon={dir() === "rtl" ? "arrow-left" : "arrow-right"} type="bold" color="#185E91" width={24} height={24} />
+                      </ArrowIcon>
                     </Row>
                   </Col>
                 </Row>
@@ -267,9 +286,9 @@ const RequestsList = () => {
                 <div />
               </Col>
             </Row>
-          </Col>
+          </RequestItem>
   
-          <Col span={24} className="keen-slider__slide  --item" style={requestItemStyle}>
+          <RequestItem span={24} className="keen-slider__slide  --item">
             <Row gutter={[0, 16]}>
               <Col span={24} className="--details">
                 <Row gutter={16} justify="space-between">
@@ -287,7 +306,7 @@ const RequestsList = () => {
           
                   <Col sm={11} xxl={10}>
                     <Row>
-                      <Col className="--dateAndLocation" style={dateLocationStyle}>
+                      <DateLocation className="--dateAndLocation">
                         <Row gutter={[0, 16]}>
                           <Col span={24}>
                             <Row gutter={10}>
@@ -313,11 +332,11 @@ const RequestsList = () => {
                             </Row>
                           </Col>
                         </Row>
-                      </Col>
+                      </DateLocation>
               
-                      <Col className="--arrowIcon">
-                        <SvgIcon icon={dir() === "rtl" ? "arrow-left" : "arrow-right"} type="bold" color="#185E91" width={24} height={24} style={arrowIconStyle} />
-                      </Col>
+                      <ArrowIcon className="--arrowIcon">
+                        <SvgIcon icon={dir() === "rtl" ? "arrow-left" : "arrow-right"} type="bold" color="#185E91" width={24} height={24} />
+                      </ArrowIcon>
                     </Row>
                   </Col>
                 </Row>
@@ -327,9 +346,9 @@ const RequestsList = () => {
                 <div />
               </Col>
             </Row>
-          </Col>
+          </RequestItem>
   
-          <Col span={24} className="keen-slider__slide  --item" style={requestItemStyle}>
+          <RequestItem span={24} className="keen-slider__slide  --item">
             <Row gutter={[0, 16]}>
               <Col span={24} className="--details">
                 <Row gutter={16} justify="space-between">
@@ -347,7 +366,7 @@ const RequestsList = () => {
           
                   <Col sm={11} xxl={10}>
                     <Row>
-                      <Col className="--dateAndLocation" style={dateLocationStyle}>
+                      <DateLocation className="--dateAndLocation">
                         <Row gutter={[0, 16]}>
                           <Col span={24}>
                             <Row gutter={10}>
@@ -373,11 +392,11 @@ const RequestsList = () => {
                             </Row>
                           </Col>
                         </Row>
-                      </Col>
+                      </DateLocation>
               
-                      <Col className="--arrowIcon">
-                        <SvgIcon icon={dir() === "rtl" ? "arrow-left" : "arrow-right"} type="bold" color="#185E91" width={24} height={24} style={arrowIconStyle} />
-                      </Col>
+                      <ArrowIcon className="--arrowIcon">
+                        <SvgIcon icon={dir() === "rtl" ? "arrow-left" : "arrow-right"} type="bold" color="#185E91" width={24} height={24} />
+                      </ArrowIcon>
                     </Row>
                   </Col>
                 </Row>
@@ -387,7 +406,7 @@ const RequestsList = () => {
                 <div />
               </Col>
             </Row>
-          </Col>
+          </RequestItem>
         </Row>
       </Col>
     </Row>
