@@ -13,8 +13,10 @@ import {
   useConfigDispatch,
   useGetConfig
 } from "../../../../contexts/config/ConfigContext";
+
 import {isLoadingAction, useSpinnerDispatch} from "../../../../contexts/spiner/SpinnerContext";
 import alaedeenChar from "../../../assets/images/alaedeen-char.png";
+import {changeLanguage} from "../../../../utilities/functions";
 
 const MobileHeader = () => {
   
@@ -58,19 +60,18 @@ const MobileHeader = () => {
     if (lang !== config.language) {
       // show spinner (spinner context):
       spinnerDispatch(isLoadingAction(true));
-      
-      const changeLanguageTimer = setTimeout(() => {
-        // change language:
-        configDispatch(changeLanguageAction(lang));
-        
-        // close top panel menu:
-        closeTopPanelMenu();
-        
-        // hidden spinner (spinner context):
-        spinnerDispatch(isLoadingAction(false));
-      }, 1000);
-      return () => clearTimeout(changeLanguageTimer);
-      
+  
+      // call change language function:
+      changeLanguage(lang)
+        .then(() => {
+          configDispatch(changeLanguageAction(lang));
+        }) // call change language dispatch
+        .then(() => {
+          closeTopPanelMenu();
+        }) // close top panel menu
+        .then(() => {
+          spinnerDispatch(isLoadingAction(false));
+        }); // hide spinner (spinner context)
     }
   }
   

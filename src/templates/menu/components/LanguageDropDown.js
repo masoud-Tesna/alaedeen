@@ -17,6 +17,7 @@ import rtl from "styled-components-rtl";
 
 // import styles:
 import "../styles/LanguageDropDown.less";
+import {changeLanguage} from "../../../utilities/functions";
 
 const LanguageIcon = styled(Col)`
   i {
@@ -95,16 +96,15 @@ const LanguageDropDown = () => {
       
       // close dropdown:
       setDropDownIsActive(false);
-      
-      const changeLanguageTimer = setTimeout(() => {
-        // change language:
-        configDispatch(changeLanguageAction(lang));
-        
-        // hidden spinner (spinner context):
-        spinnerDispatch(isLoadingAction(false));
-      }, 1000);
-      return () => clearTimeout(changeLanguageTimer);
-      
+  
+      // call change language function:
+      changeLanguage(lang)
+        .then(() => {
+          configDispatch(changeLanguageAction(lang));
+        }) // call change language dispatch
+        .then(() => {
+          spinnerDispatch(isLoadingAction(false));
+        }); // hide spinner (spinner context)
     }
   }
   

@@ -10,11 +10,10 @@ import alaedeenChar from '../../../../assets/images/alaedeen-char.png';
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useConfigDispatch, useGetConfig, changeLanguageAction } from "../../../../../contexts/config/ConfigContext";
-import { useWindowSize } from "../../../../../utilities/functions";
+import {changeLanguage, useWindowSize} from "../../../../../utilities/functions";
 import { isLoadingAction, useSpinnerDispatch } from "../../../../../contexts/spiner/SpinnerContext";
 import { useGetAuthState } from "../../../../../contexts/user/UserContext";
 import ShowResponsiveImage from "../../../../common/ShowResponsiveImage";
-import {NotificationOutlined} from "@ant-design/icons";
 
 const DashboardSidenav = ({ dashboardToggleDrawer }) => {
 
@@ -42,7 +41,7 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
 
   const urlPath = pathname?.split("/").filter(Boolean);
 
-  // remove first item of array (first item is "dashboard") :
+  // remove first item of array (first item is "dashboard"):
   urlPath.shift();
 
   if (urlPath[0] === "requests") {
@@ -78,20 +77,20 @@ const DashboardSidenav = ({ dashboardToggleDrawer }) => {
     if (lang !== config.language) {
       // show spinner (spinner context):
       spinnerDispatch(isLoadingAction(true));
-
-      const changeLanguageTimer = setTimeout(() => {
-        // change language:
-        configDispatch(changeLanguageAction(lang));
-
-        if (width < 993) {
-          dashboardToggleDrawer();
-        }
-
-        // hidden spinner (spinner context):
-        spinnerDispatch(isLoadingAction(false));
-      }, 1000);
-      return () => clearTimeout(changeLanguageTimer);
-
+  
+      // call change language function:
+      changeLanguage(lang)
+        .then(() => {
+          configDispatch(changeLanguageAction(lang));
+        }) // call change language dispatch
+        .then(() => {
+          if (width < 993) {
+            dashboardToggleDrawer();
+          }
+        }) // drawer close if width < 993
+        .then(() => {
+          spinnerDispatch(isLoadingAction(false));
+        }); // hide spinner (spinner context)
     }
   }
 
