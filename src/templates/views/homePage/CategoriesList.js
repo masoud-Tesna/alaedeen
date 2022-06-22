@@ -1,18 +1,18 @@
-// import react router Link:
+// react router Link:
 import {Link} from "react-router-dom";
 
-// import styles:
+// style:
 import "./styles/CategoriesList.less";
 
-// import antd components:
+// antd components:
 import {Col, Row, Skeleton} from "antd";
 
-// import utilities function:
+// utilities function:
 import {useTranslation} from "react-i18next";
 import {useGetApiOld} from "../../../utilities/functions";
 import {Else, If, Then} from "../../../utilities/functions/Helper";
 
-// import extra component:
+// extra component:
 import SvgIcon from "../../common/SvgIcon";
 
 const CategoryItem = ({category}) => {

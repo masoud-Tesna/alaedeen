@@ -1,21 +1,20 @@
-// import react hooks:
+// react hooks:
 import {memo} from "react";
 
-// import hooks:
+// extra hooks:
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import styled from "styled-components";
+import rtl from "styled-components-rtl";
 
-// import antd components:
+// antd components:
 import {Col, Row} from "antd";
 
-// import style:
+// style:
 import "../styles/AlaedeenCharacter.less";
 
-// import alaedeen character:
+// alaedeen character:
 import {ReactComponent as AlaedeenChar} from '../../../assets/images/alaedeen-char.svg';
-
-import rtl from "styled-components-rtl"
 
 const Extra = styled(Col)`
     ${rtl`

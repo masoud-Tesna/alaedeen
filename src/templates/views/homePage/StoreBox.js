@@ -1,13 +1,13 @@
-// import react hooks:
+// react hooks:
 import {memo} from "react";
 
-// import style:
+// style:
 import "./styles/StoreBox.less";
 
-// import antd components:
+// antd components:
 import {Col, Row} from "antd";
 
-// import styled components:
+// styled components:
 import styled from "styled-components";
 import rtl from "styled-components-rtl";
 

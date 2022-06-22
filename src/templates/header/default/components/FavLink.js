@@ -1,16 +1,16 @@
-// import react hooks:
+// react hooks:
 import {memo} from "react";
 
-// import antd components:
+// antd components:
 import {Col, Row, Tooltip} from "antd";
 
-// import extra hooks and components:
+// extra hooks and components:
 import {useTranslation} from "react-i18next";
 import {__} from "../../../../utilities/functions/Helper";
 import {Link} from "react-router-dom";
 import SvgIcon from "../../../common/SvgIcon";
 
-// import style:
+// style:
 import "../styles/FavLink.less";
 
 const FavLink = () => {

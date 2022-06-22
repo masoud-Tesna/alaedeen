@@ -1,25 +1,27 @@
-// import antd components:
+// antd components:
 import {Col, Divider, Row, Space} from "antd";
 
-// import extra hooks and context:
+// extra hooks and context:
 import {Link} from "react-router-dom";
 import {__} from "../../utilities/functions/Helper";
 import {useTranslation} from "react-i18next";
 import {useGetConfig} from "../../contexts/config/ConfigContext";
 
-// import components view:
+// components view:
 import {CategoriesDropDownVertical as Categories} from "../blocks/categories/CategoriesDropDownVertical";
 import LanguageDropDown from "./components/LanguageDropDown";
 
-// import styled components:
+// styled components:
 import styled from "styled-components";
 import rtl from "styled-components-rtl";
 
-// import styles:
+// style:
 import "./styles/Menu.less";
 
-// import svg icons:
+// svgIcons:
 import SvgIcon from "../common/SvgIcon";
+
+
 const SecondSection = styled(Col)`
   ${rtl`
     padding-right: 1%;

@@ -1,7 +1,7 @@
-// import react hooks:
+// react hooks:
 import {memo, useCallback, useRef, useState} from "react";
 
-// import extra hooks:
+// extra hooks:
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
 import {__} from "../../../../utilities/functions/Helper";
@@ -9,13 +9,13 @@ import {useGetApi} from "../../../../utilities/functions";
 import styled from "styled-components";
 import rtl from "styled-components-rtl";
 
-// import antd components:
+// antd components:
 import {AutoComplete, Col, Input, Row, Select, Skeleton} from "antd";
 
-// import SvgIcon:
+// SvgIcon:
 import SvgIcon from "../../../common/SvgIcon";
 
-// import style:
+// style:
 import "../styles/Search.less";
 
 // create styled component (SearchInput):

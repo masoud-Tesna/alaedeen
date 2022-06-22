@@ -1,21 +1,21 @@
-// import react hooks:
+// react hooks:
 import {useState} from "react";
 
-// import antd components:
+// antd components:
 import {Col, Dropdown, Menu, Row} from "antd";
 
-// import antd icons:
+// antd icons:
 import {DownOutlined} from "@ant-design/icons";
 
-// import language context and loading context:
+// language context and loading context:
 import {changeLanguageAction, useConfigDispatch, useGetConfig} from "../../../contexts/config/ConfigContext";
 import {isLoadingAction, useSpinnerDispatch} from "../../../contexts/spiner/SpinnerContext";
 
-// import styled components:
+// styled components:
 import styled from "styled-components";
 import rtl from "styled-components-rtl";
 
-// import styles:
+// style:
 import "../styles/LanguageDropDown.less";
 import {changeLanguage} from "../../../utilities/functions";
 

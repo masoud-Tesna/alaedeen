@@ -1,19 +1,19 @@
-// import antd components:
+// antd components:
 import {Col, Row} from "antd";
 
-// import helmet components:
+// helmet components:
 import {Helmet} from "react-helmet";
 
-// import utilities functions:
+// utilities functions:
 import {SeoGenerator} from "../../utilities/functions/Helper";
 
-// import translations functions:
+// translation hook:
 import {useTranslation} from "react-i18next";
 
-// import styles:
+// style:
 import "./styles/HomePage.less";
 
-// import components view:
+// components view:
 import Requests from "./homePage/requests/Requests";
 import CategoriesList from "./homePage/CategoriesList";
 import HomeCarousel from "./homePage/HomeCarousel";

@@ -1,19 +1,19 @@
-// import Link from react router:
+// Link from react router:
 import {Link} from "react-router-dom";
 
-// import style:
+// style:
 import "./styles/JoinBox.less";
 
-// import antd components:
+// antd components:
 import {Col, Row, Skeleton} from "antd";
 
-// import translation hook:
+// translation hook:
 import {useTranslation} from "react-i18next";
 
-// import user context:
+// user context:
 import {useGetAuthState} from "../../../contexts/user/UserContext";
 
-// import utilities functions:
+// utilities functions:
 import {If, Then, Else} from "../../../utilities/functions/Helper";
 
 const JoinBox = () => {

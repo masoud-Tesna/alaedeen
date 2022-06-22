@@ -1,10 +1,10 @@
-// import react hooks:
+// react hooks:
 import {useState} from "react";
 
-// import antd components:
+// antd components:
 import {Button, Col, Dropdown, Menu, Row, Skeleton} from "antd";
 
-// import extra hooks and context function:
+// extra hooks and context function:
 import {Link} from "react-router-dom";
 import {__} from "../../../../utilities/functions/Helper";
 import {useGetConfig} from "../../../../contexts/config/ConfigContext";
@@ -14,11 +14,11 @@ import SvgIcon from "../../../common/SvgIcon";
 import styled from "styled-components";
 import rtl from "styled-components-rtl";
 
-// import extra components:
+// extra components:
 import ShowResponsiveImage from "../../../common/ShowResponsiveImage";
 import {DownOutlined} from "@ant-design/icons";
 
-// import style:
+// style:
 import "../styles/AccountActions.less";
 
 // create styled components (AccountLink, MyAlaedeen)

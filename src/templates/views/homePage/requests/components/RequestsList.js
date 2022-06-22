@@ -1,27 +1,27 @@
-// import react hooks:
+// hooks:
 import {memo} from "react";
 
-// import styles:
+// style:
 import "../../styles/RequestsList.less";
 import "keen-slider/keen-slider.min.css"
 
-// import antd components:
+// antd components:
 import {Col, Row} from "antd";
 
-// import styled components:
+// styled components:
 import styled from "styled-components";
 import rtl from "styled-components-rtl";
 
-// import slider hooks:
+// slider hooks:
 import { useKeenSlider } from "keen-slider/react"
 
-// import translations functions:
+// translations functions:
 import {useTranslation} from "react-i18next";
 
-// import utilities functions:
+// utilities functions:
 import {__} from "../../../../../utilities/functions/Helper";
 
-// import svg icons:
+// svgIcon:
 import SvgIcon from "../../../../common/SvgIcon";
 
 const ArrowIcon = styled(Col)`

@@ -1,35 +1,35 @@
-// import Link from react router:
+// Link from react router:
 import {Link} from "react-router-dom";
 
-// import style:
+// style:
 import "./styles/News.less";
 
-// import antd components:
+// antd components:
 import {Col, Row, Skeleton} from "antd";
 
-// import styled components:
+// styled components:
 import styled from "styled-components";
 import rtl from "styled-components-rtl";
 
-// import user context:
+// user context:
 import {useGetConfig} from "../../../contexts/config/ConfigContext";
 
-// import moment:
+// moment:
 import Moment from "react-moment";
 import moment from "moment-jalaali";
 import fa from "moment/locale/fa";
 
-// import text truncate:
+// text truncate:
 import TextTruncate from "react-text-truncate";
 
-// import translation hook:
+// translation hook:
 import {useTranslation} from "react-i18next";
 
-// import utilities function:
+// utilities function:
 import {useGetApiOld} from "../../../utilities/functions";
 import {fn_stripHtml} from "../../../utilities/functions/Helper";
 
-// import show responsive image:
+// show responsive image:
 import ShowResponsiveImage from "../../common/ShowResponsiveImage";
 
 const DateIcon = styled.i`

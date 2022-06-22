@@ -1,10 +1,10 @@
-// import styles:
+// styles:
 import "../../styles/State.less";
 
-// import antd components:
+// antd components:
 import {Col, Row, Skeleton} from "antd";
 
-// import utilities functions:
+// utilities functions:
 import {useGetApiOld} from "../../../../../utilities/functions";
 
 const State = () => {

@@ -1,10 +1,10 @@
-// import styles:
+// style:
 import "../styles/Requests.less";
 
-// import antd components:
+// antd components:
 import {Col, Row} from "antd";
 
-// import components view:
+// components view:
 import RequestsList from "./components/RequestsList";
 import RequestForm from "./components/RequestForm";
 import State from "./components/State";

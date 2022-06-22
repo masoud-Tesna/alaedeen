@@ -1,23 +1,23 @@
-// import styles:
+// style:
 import "../../styles/RequestForm.less";
 
-// import react-router hooks:
+// react-router hook:
 import {useNavigate} from "react-router-dom";
 
-// import antd components:
+// antd components:
 import {Button, Checkbox, Col, Form, Input, InputNumber, Row, Select} from "antd";
 
-// import user context:
+// user context:
 import {useGetConfig} from "../../../../../contexts/config/ConfigContext";
 
-// import translation function:
+// translation function:
 import {useTranslation} from "react-i18next";
 
-// import utilities functions:
+// utilities functions:
 import {__, Else, If, Then} from "../../../../../utilities/functions/Helper";
 import {useGetApiOld} from "../../../../../utilities/functions";
 
-// import svg icons:
+// svgIcon:
 import SvgIcon from "../../../../common/SvgIcon";
 
 const RequestForm = () => {

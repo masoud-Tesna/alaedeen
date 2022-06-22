@@ -1,7 +1,7 @@
-// import react hooks:
+// react hooks:
 import {lazy, Suspense} from "react";
 
-// import MatchBreakpoint:
+// MatchBreakpoint:
 import {MatchBreakpoint} from "react-hook-breakpoints";
 
 const MobileHeader = lazy(() => import('./breakPoints/MobileHeader')); // if screen size is mobile

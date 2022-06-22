@@ -1,16 +1,16 @@
-// import Link from react router:
+// Link from react router:
 import {Link} from "react-router-dom";
 
-// import style:
+// style:
 import "./styles/WhatAlaedeen.less";
 
-// import antd components:
+// antd components:
 import {Button, Col, Row} from "antd";
 
-// import translation hook:
+// translation hook:
 import {useTranslation} from "react-i18next";
 
-// import svg icons:
+// svg icons:
 import {ReactComponent as BoxIcon} from "../../assets/svg-icon/what-alaedeen/box.svg";
 import {ReactComponent as TruckIcon} from "../../assets/svg-icon/what-alaedeen/truck.svg";
 import {ReactComponent as LikeIcon} from "../../assets/svg-icon/what-alaedeen/like.svg";
