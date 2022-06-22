@@ -48,11 +48,8 @@ const RecommendedProducts = () => {
             <Then>
               { Array.from({ length: 10 })?.map((_, i) => {
                 return (
-                  <Col style={{minHeight: 354}}>
-                    <ProductsMultiColumn
-                      key={`ProductsMultiColumnIsLoading_${i}`}
-                      isLoading
-                    />
+                  <Col key={`ProductsMultiColumnIsLoading_${i}`} style={{minHeight: 354}}>
+                    <ProductsMultiColumn isLoading/>
                   </Col>
                 )
               }) }
