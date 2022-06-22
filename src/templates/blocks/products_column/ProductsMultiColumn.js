@@ -88,7 +88,7 @@ const ProductPrice = (
   
   return (
     <>
-      <If condition={productPrice !== "0.00"}>
+      <If condition={(productPrice !== "0.00")}>
         <Then>
           <Col span={24} className="--price">
             ${ productPrice } {productListPrice !== "0.00" && ` - $${productListPrice}`} {quantityUnit && <span className="__piece">/ { quantityUnit }</span>}
@@ -96,7 +96,7 @@ const ProductPrice = (
         </Then>
       </If>
   
-      <If condition={minQuantity && quantityUnit}>
+      <If condition={!!minQuantity && !!quantityUnit}>
         <Then>
           <Col span={24} className="--piece">
             { minQuantity } { quantityUnit } <span className="__piece"> (MOQ)</span>
