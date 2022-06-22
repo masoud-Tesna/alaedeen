@@ -1,7 +1,121 @@
+// import react hooks:
+import {memo} from "react";
+
+// import style:
 import "./styles/ProductsMultiColumn.less";
+
+// import antd components:
 import {Col, Row, Skeleton} from "antd";
-import ShowResponsiveImage from "../../common/ShowResponsiveImage";
+
+// import text truncate:
 import TextTruncate from "react-text-truncate";
+
+// import show responsive image:
+import ShowResponsiveImage from "../../common/ShowResponsiveImage";
+import {If, Then} from "../../../utilities/functions/Helper";
+
+const ProductImage = (
+  {
+    isLoading = false,
+    image = {},
+    imageAlt,
+    productId,
+    imageWidth = 214,
+    imageHeight = 214,
+  }
+) => {
+  if (isLoading) {
+    return <ShowResponsiveImage
+      imagePath=""
+      skeletonWidth={`${imageWidth}px`}
+      skeletonHeight={`${imageHeight}px`}
+    />
+  }
+  
+  return (
+    <ShowResponsiveImage
+      imagePath={ image }
+      imageFolder='detailed'
+      width={imageWidth}
+      height={imageHeight}
+      skeletonWidth={`${imageWidth}px`}
+      skeletonHeight={`${imageHeight}px`}
+      imageAlt={ imageAlt }
+      object_id={productId}
+      object_type={`prd`}
+    />
+  );
+}
+
+const ProductTitle = ({isLoading = false, title = ""}) => {
+  if (isLoading) {
+    return (
+      <>
+        <Skeleton.Input active size={"small"} />
+        <Skeleton.Input active size={"small"} />
+      </>
+    );
+  }
+  
+  return (
+    <TextTruncate
+      line={3}
+      element="div"
+      truncateText=" …"
+      text={title}
+    />
+  );
+}
+
+const ProductPrice = (
+  {
+    isLoading = false,
+    productPrice,
+    productListPrice,
+    quantityUnit,
+    minQuantity
+  }
+) => {
+  if (isLoading) {
+    return (
+      <Col span={24} className="--price">
+        <Skeleton.Input active size={"small"} />
+    
+        <Skeleton.Input active size={"small"} />
+      </Col>
+    );
+  }
+  
+  return (
+    <>
+      <If condition={productPrice !== "0.00"}>
+        <Then>
+          <Col span={24} className="--price">
+            ${ productPrice } {productListPrice !== "0.00" && ` - $${productListPrice}`} {quantityUnit && <span className="__piece">/ { quantityUnit }</span>}
+          </Col>
+        </Then>
+      </If>
+  
+      <If condition={minQuantity && quantityUnit}>
+        <Then>
+          <Col span={24} className="--piece">
+            { minQuantity } { quantityUnit } <span className="__piece"> (MOQ)</span>
+          </Col>
+        </Then>
+      </If>
+    </>
+  );
+}
+
+const ProductManufacturing = ({isLoading = false, manufacturing}) => {
+  if (isLoading) return <Skeleton.Input active size={"small"} />
+  
+  return (
+    <>
+      <i className={ `fi fi-${ manufacturing.toLowerCase() }` } /> <span>{ manufacturing }</span>
+    </>
+  );
+}
 
 const ProductsMultiColumn = ({product = {}, imageWidth, imageHeight, isLoading = false}) => {
   
@@ -14,81 +128,41 @@ const ProductsMultiColumn = ({product = {}, imageWidth, imageHeight, isLoading =
       <Col className="--topSection align-self-start">
         <Row gutter={[0, 8]}>
           <Col span={24} className="--image">
-            {
-              !!isLoading ?
-                <ShowResponsiveImage
-                  imagePath=""
-                  skeletonWidth={imageWidth || "214px"}
-                  skeletonHeight={imageHeight || "214px"}
-                /> :
-                <ShowResponsiveImage
-                  imagePath={ product?.main_pair?.detailed?.image_path }
-                  imageFolder='detailed'
-                  width={imageWidth || 214}
-                  height={imageHeight || 214}
-                  skeletonWidth={imageWidth || "214px"}
-                  skeletonHeight={imageHeight || "214px"}
-                  imageAlt={ product?.product }
-                  object_id={product?.product_id}
-                  object_type={`prd`}
-                />
-            }
+            <ProductImage
+              isLoading={isLoading}
+              image={product?.main_pair?.detailed?.image_path}
+              imageAlt={product?.product}
+              productId={product?.product_id}
+              imageWidth={imageWidth}
+              imageHeight={imageHeight}
+            />
           </Col>
   
           <Col span={24} className="--title">
-            {
-              !!isLoading ?
-                <>
-                  <Skeleton.Input active size={"small"} />
-                  <Skeleton.Input active size={"small"} />
-                </> :
-                <TextTruncate
-                  line={3}
-                  element="div"
-                  truncateText=" …"
-                  text={product?.product}
-                />
-            }
+            <ProductTitle
+              isLoading={isLoading}
+              title={product?.product}
+            />
           </Col>
-  
-          {
-            !!isLoading ?
-              <Col span={24} className="--price">
-                <Skeleton.Input active size={"small"} />
-  
-                <Skeleton.Input active size={"small"} />
-              </Col> :
-              <>
-                {
-                  (productPrice !== "0.00") &&
-                  <Col span={24} className="--price">
-                    ${ productPrice } {productListPrice !== "0.00" && ` - $${productListPrice}`} {product?.quantity_unit && <span className="__piece">/ { product?.quantity_unit }</span>}
-                  </Col>
-                }
-  
-                {
-                  (product?.min_qty && product?.quantity_unit) &&
-                  <Col span={24} className="--piece">
-                    { product?.min_qty } { product?.quantity_unit } <span className="__piece"> (MOQ)</span>
-                  </Col>
-                }
-              </>
-          }
           
+          <ProductPrice
+            isLoading={isLoading}
+            productPrice={productPrice}
+            productListPrice={productListPrice}
+            quantityUnit={product?.quantity_unit}
+            minQuantity={product?.min_qty}
+          />
         </Row>
       </Col>
       
       <Col span={24} className="--bottomSection --location align-self-end">
-        {
-          !!isLoading ?
-            <Skeleton.Input active size={"small"} /> :
-            <>
-              <i className={ `fi fi-${ manufacturing_country.toLowerCase() }` } /> <span>{ manufacturing_country }</span>
-            </>
-        }
+        <ProductManufacturing
+          isLoading={isLoading}
+          manufacturing={manufacturing_country}
+        />
       </Col>
     </Row>
   );
 };
 
-export default ProductsMultiColumn;
+export default memo(ProductsMultiColumn);
