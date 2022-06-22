@@ -1,6 +1,13 @@
+// import style:
 import "./styles/HomeCarousel.less";
+
+// import antd components
 import {Carousel, Col, Row} from "antd";
+
+// import styled components:
 import {useTheme} from "styled-components";
+
+// import svg icon component:
 import SvgIcon from "../../common/SvgIcon";
 
 const HomeCarousel = () => {

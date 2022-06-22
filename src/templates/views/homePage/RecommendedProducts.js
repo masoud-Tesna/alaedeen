@@ -1,10 +1,21 @@
-import "./styles/RecommendedProducts.less";
-import {Col, Row} from "antd";
-import {useTranslation} from "react-i18next";
-import {useBreakpoint, useGetApiOld} from "../../../utilities/functions";
-import ProductsMultiColumn from "../../blocks/products_column/ProductsMultiColumn";
-import {__, Else, If, Then} from "../../../utilities/functions/Helper";
+// import Link from react router:
 import {Link} from "react-router-dom";
+
+// import style:
+import "./styles/RecommendedProducts.less";
+
+// import antd components:
+import {Col, Row} from "antd";
+
+// import translation hooks:
+import {useTranslation} from "react-i18next";
+
+// import utilities functions:
+import {useBreakpoint, useGetApiOld} from "../../../utilities/functions";
+import {__, Else, If, Then} from "../../../utilities/functions/Helper";
+
+// import product multi column component:
+import ProductsMultiColumn from "../../blocks/products_column/ProductsMultiColumn";
 
 const RecommendedProducts = () => {
   
