@@ -1,15 +1,74 @@
+// import Link from react router:
 import {Link} from "react-router-dom";
+
+// import style:
 import "./styles/WhatAlaedeen.less";
+
+// import antd components:
 import {Button, Col, Row} from "antd";
+
+// import translation hook:
 import {useTranslation} from "react-i18next";
+
+// import svg icons:
 import {ReactComponent as BoxIcon} from "../../assets/svg-icon/what-alaedeen/box.svg";
 import {ReactComponent as TruckIcon} from "../../assets/svg-icon/what-alaedeen/truck.svg";
 import {ReactComponent as LikeIcon} from "../../assets/svg-icon/what-alaedeen/like.svg";
 import {ReactComponent as ShapesIcon} from "../../assets/svg-icon/what-alaedeen/shapes.svg";
 
+const aboutItemObject = [
+  {
+    id: 1,
+    icon: BoxIcon,
+    title: "Introducing Top Brands",
+    description: "Introduction of Iranian manufacturers & products",
+  },
+  {
+    id: 2,
+    icon: TruckIcon,
+    title: "Freight Service",
+    description: "The introduction of the prestigious shipping companies",
+  },
+  {
+    id: 3,
+    icon: LikeIcon,
+    title: "Experienced Guides",
+    description: "Advisers with experience in business affairs",
+  },
+  {
+    id: 4,
+    icon: ShapesIcon,
+    title: "Introducing Top Brands",
+    description: "Introduction of Iranian manufacturers & products",
+  },
+]
+
+const AboutBox = ({Icon = <></>, title = "", description = ""}) => {
+  
+  const { t } = useTranslation();
+  
+  return (
+    <Col span={11} className="--item">
+      <Row>
+        <Col span={24} className="__icon">
+          <Icon />
+        </Col>
+      
+        <Col span={24} className="--title">
+          {t(title)}
+        </Col>
+      
+        <Col span={24} className="__description">
+          {t(description)}
+        </Col>
+      </Row>
+    </Col>
+  );
+}
+
 const WhatAlaedeen = () => {
   
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   
   const scrollToRequestSection = () => {
     window.scroll({ top: 148, behavior: 'smooth' });
@@ -21,74 +80,21 @@ const WhatAlaedeen = () => {
       <Col className="align-self-start">
         <Row gutter={[0, 48]}>
           <Col span={24} className="--caption">
-            WHAT DOES ALAEDEEN DO?
+            {t("What_does_alaedeen_do")}
           </Col>
           
           <Col span={24}>
             <Row gutter={[57, 48]} justify="space-between">
-              <Col span={11} className="--item">
-                <Row>
-                  <Col span={24} className="__icon">
-                    <BoxIcon />
-                  </Col>
-          
-                  <Col span={24} className="--title">
-                    Introducing Top Brands
-                  </Col>
-          
-                  <Col span={24} className="__description">
-                    Introduction of Iranian manufacturers & products
-                  </Col>
-                </Row>
-              </Col>
-      
-              <Col span={11} className="--item">
-                <Row>
-                  <Col span={24} className="__icon">
-                    <TruckIcon />
-                  </Col>
-          
-                  <Col span={24} className="--title">
-                    Freight Service
-                  </Col>
-          
-                  <Col span={24} className="__description">
-                    The introduction of the prestigious shipping companies
-                  </Col>
-                </Row>
-              </Col>
-      
-              <Col span={11} className="--item">
-                <Row>
-                  <Col span={24} className="__icon">
-                    <LikeIcon />
-                  </Col>
-          
-                  <Col span={24} className="--title">
-                    Experienced Guides
-                  </Col>
-          
-                  <Col span={24} className="__description">
-                    Advisers with experience in business affairs
-                  </Col>
-                </Row>
-              </Col>
-      
-              <Col span={11} className="--item">
-                <Row>
-                  <Col span={24} className="__icon">
-                    <ShapesIcon />
-                  </Col>
-          
-                  <Col span={24} className="--title">
-                    Introducing Top Brands
-                  </Col>
-          
-                  <Col span={24} className="__description">
-                    Introduction of Iranian manufacturers & products
-                  </Col>
-                </Row>
-              </Col>
+              {aboutItemObject?.map(item => {
+                return(
+                  <AboutBox
+                    key={item?.id}
+                    Icon={item?.icon}
+                    title={item?.title}
+                    description={item?.description}
+                  />
+                );
+              })}
             </Row>
           </Col>
         </Row>
