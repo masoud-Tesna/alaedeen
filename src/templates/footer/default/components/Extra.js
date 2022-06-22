@@ -1,16 +1,26 @@
-import "../styles/Extra.less";
-import {Col, Row, Skeleton, Space} from "antd";
-import {RightOutlined} from "@ant-design/icons";
-import React from "react";
-import {useTranslation} from "react-i18next";
-import {useGetApiOld} from "../../../../utilities/functions";
-import TextTruncate from "react-text-truncate";
-import {fn_stripHtml} from "../../../../utilities/functions/Helper";
+// link from react router
 import {Link} from "react-router-dom";
+
+// style:
+import "../styles/Extra.less";
+
+// antd components:
+import {Col, Row, Skeleton, Space} from "antd";
+
+// translation hook:
+import {useTranslation} from "react-i18next";
+
+// utilities functions:
+import {useGetApiOld} from "../../../../utilities/functions";
+import {fn_stripHtml} from "../../../../utilities/functions/Helper";
+
+// extra:
+import TextTruncate from "react-text-truncate";
+import SvgIcon from "../../../common/SvgIcon";
 
 const Extra = () => {
   
-  const { t } = useTranslation();
+  const { t, i18n: {dir} } = useTranslation();
   
   const { isLoading: alaedeenAboutIsLoading, data: alaedeenAboutUsData } = useGetApiOld("page-api", "page_seo=alaedeen-about-us", "page_alaedeen-about-us", { refetchOnWindowFocus: false });
   const alaedeenAboutUs = alaedeenAboutUsData || [];
@@ -50,7 +60,7 @@ const Extra = () => {
   
                 <div className="__more">
                   <Link to="/page/alaedeen-about-us">
-                    {t("more")} <RightOutlined />
+                    {t("more")} <SvgIcon icon={dir() === "rtl" ? "angle-left" : "angle-right"} width={16} height={16} />
                   </Link>
                 </div>
               </>

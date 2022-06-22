@@ -1,8 +1,17 @@
-import "../styles/Newsletters.less";
-import {Button, Col, Form, Input, Row} from "antd";
-import {useTranslation} from "react-i18next";
-import {__} from "../../../../utilities/functions/Helper";
+// import react hooks:
 import {useState} from "react";
+
+// import style:
+import "../styles/Newsletters.less";
+
+// import antd components:
+import {Button, Col, Form, Input, Row} from "antd";
+
+// import translation hook:
+import {useTranslation} from "react-i18next";
+
+// import utilities functions:
+import {__} from "../../../../utilities/functions/Helper";
 
 const Newsletters = () => {
   

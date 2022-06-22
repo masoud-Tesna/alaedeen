@@ -1,5 +1,10 @@
+// style:
 import "../styles/Reserved.less";
+
+// antd components:
 import {Col, Row} from "antd";
+
+// translation hook:
 import {useTranslation} from "react-i18next";
 
 const Reserved = () => {

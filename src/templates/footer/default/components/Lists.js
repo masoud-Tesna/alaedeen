@@ -16,6 +16,7 @@ import {useTranslation} from "react-i18next";
 
 // config context:
 import {useGetConfig} from "../../../../contexts/config/ConfigContext";
+import SvgIcon from "../../../common/SvgIcon";
 
 const SocialList = () => {
   const { config } = useGetConfig();
@@ -30,19 +31,19 @@ const SocialList = () => {
       <Space size={32}>
         <div className="footer--bottomSection-socialLink facebook">
           <a href="#">
-            <i className="fab fa-facebook-f" />
+            <SvgIcon icon="facebook" type="socials" />
           </a>
         </div>
       
         <div className="footer--bottomSection-socialLink instagram">
           <a href={instagramLink} target="_blank" rel="noreferrer">
-            <i className="fab fa-instagram" />
+            <SvgIcon icon="instagram" type="socials" />
           </a>
         </div>
       
         <div className="footer--bottomSection-socialLink twitter">
           <a href="#">
-            <i className="fab fa-twitter" />
+            <SvgIcon icon="twitter" type="socials" />
           </a>
         </div>
       

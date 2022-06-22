@@ -1,5 +1,10 @@
+// import style:
 import "./styles/Footer.less";
+
+// import antd components:
 import {Col, Row} from "antd";
+
+// import components:
 import Newsletters from "./components/Newsletters";
 import Lists from "./components/Lists";
 import AppDownload from "./components/AppDownload";
